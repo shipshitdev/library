@@ -1,29 +1,3 @@
-# Installation
-
-## Prerequisites
-- Cursor installed
-- Clone this repository
-
-## Install via Symlink
-```bash
-ln -s /path/to/skills/.cursor/commands/review-pr.md ~/.cursor/commands/review-pr.md
-```
-
-## Install via Copy
-```bash
-cp /path/to/skills/.cursor/commands/review-pr.md ~/.cursor/commands/review-pr.md
-```
-
-## Verify Installation
-```bash
-ls -la ~/.cursor/commands/review-pr.md
-```
-
-## Usage
-`/review-pr` in Cursor
-
----
-
 # Pull Request Review Checklist
 
 **Purpose:** Systematic code review for quality, security, and consistency

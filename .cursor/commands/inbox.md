@@ -1,29 +1,3 @@
-# Installation
-
-## Prerequisites
-- Cursor installed
-- Clone this repository
-
-## Install via Symlink
-```bash
-ln -s /path/to/skills/.cursor/commands/inbox.md ~/.cursor/commands/inbox.md
-```
-
-## Install via Copy
-```bash
-cp /path/to/skills/.cursor/commands/inbox.md ~/.cursor/commands/inbox.md
-```
-
-## Verify Installation
-```bash
-ls -la ~/.cursor/commands/inbox.md
-```
-
-## Usage
-`/inbox` in Cursor
-
----
-
 # Inbox Task Management
 
 Quick task capture and expansion. Backlog only - no status tracking here.

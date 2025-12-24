@@ -1,29 +1,3 @@
-# Installation
-
-## Prerequisites
-- Cursor installed
-- Clone this repository
-
-## Install via Symlink
-```bash
-ln -s /path/to/skills/.cursor/commands/docs-update.md ~/.cursor/commands/docs-update.md
-```
-
-## Install via Copy
-```bash
-cp /path/to/skills/.cursor/commands/docs-update.md ~/.cursor/commands/docs-update.md
-```
-
-## Verify Installation
-```bash
-ls -la ~/.cursor/commands/docs-update.md
-```
-
-## Usage
-`/docs-update` in Cursor
-
----
-
 # Update Documentation - Session Continuity Command
 
 This command ensures comprehensive tracking of all work, decisions, and context for session continuity.

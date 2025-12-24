@@ -1,29 +1,3 @@
-# Installation
-
-## Prerequisites
-- Cursor installed
-- Clone this repository
-
-## Install via Symlink
-```bash
-ln -s /path/to/skills/.cursor/commands/new-cmd.md ~/.cursor/commands/new-cmd.md
-```
-
-## Install via Copy
-```bash
-cp /path/to/skills/.cursor/commands/new-cmd.md ~/.cursor/commands/new-cmd.md
-```
-
-## Verify Installation
-```bash
-ls -la ~/.cursor/commands/new-cmd.md
-```
-
-## Usage
-`/new-cmd` in Cursor
-
----
-
 # New Command: Create Custom Claude Commands
 
 Guide for creating new Claude Code CLI commands with best practices and patterns.
@@ -60,10 +34,10 @@ Questions to ask:
 **Check existing commands:**
 ```bash
 # List current commands
-ls .claude/commands/
+ls .cursor/commands/
 
 # Read similar commands for patterns
-cat .claude/commands/gh-*.md
+cat .cursor/commands/*.md
 ```
 
 **Identify patterns to reuse:**
@@ -82,20 +56,20 @@ cat .claude/commands/gh-*.md
 
 **Choose between project or user directory:**
 
-**Project Directory** (`.claude/commands/`)
+**Project Directory** (`.cursor/commands/`)
 - Codebase-specific commands
 - Team collaboration features
 - Project workflow automation
 - Examples: project setup, deploy, test
 
-**User Directory** (`~/.claude/commands/`)
+**User Directory** (`~/.cursor/commands/`)
 - General-purpose utilities
 - Personal workflow tools
 - Cross-project functionality
 - Examples: git helpers, file operations
 
 **Project Context:**
-Most commands should go in `.claude/commands/` because:
+Most commands should go in `.cursor/commands/` because:
 - Team uses the same monorepo
 - Consistent workflows across developers
 - Project-specific patterns (NestJS, monorepo, etc.)
@@ -556,7 +530,7 @@ Database patterns:
 
 Reference these commands for patterns:
 ```bash
-ls .claude/commands/
+ls .cursor/commands/
 
 # Current commands:
 /de-slop      # Clean AI artifacts, monorepo-aware
@@ -756,7 +730,7 @@ When creating a new command, show:
 📝 CREATING NEW COMMAND
 
 Command: /db-sync
-Location: .claude/commands/db-sync.md
+Location: .cursor/commands/db-sync.md
 Type: Infrastructure automation
 
 📋 STRUCTURE GENERATED
@@ -771,7 +745,7 @@ Sections:
 
 📄 FILE CREATED
 
-Location: .claude/commands/db-sync.md
+Location: .cursor/commands/db-sync.md
 Size: 2.4 KB
 
 💡 NEXT STEPS

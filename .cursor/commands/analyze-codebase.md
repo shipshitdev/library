@@ -1,29 +1,3 @@
-# Installation
-
-## Prerequisites
-- Cursor installed
-- Clone this repository
-
-## Install via Symlink
-```bash
-ln -s /path/to/skills/.cursor/commands/analyze-codebase.md ~/.cursor/commands/analyze-codebase.md
-```
-
-## Install via Copy
-```bash
-cp /path/to/skills/.cursor/commands/analyze-codebase.md ~/.cursor/commands/analyze-codebase.md
-```
-
-## Verify Installation
-```bash
-ls -la ~/.cursor/commands/analyze-codebase.md
-```
-
-## Usage
-`/analyze-codebase` in Cursor
-
----
-
 # Analyze Codebase
 
 **Purpose:** Generate comprehensive analysis of the codebase structure, architecture, and organization.

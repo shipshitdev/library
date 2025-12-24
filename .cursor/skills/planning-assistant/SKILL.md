@@ -1,7 +1,6 @@
 ---
-name: content-planning-assistant
+name: planning-assistant
 description: This skill should be used when users need help with content planning, calendar management, research organization, content ideation, or multi-platform planning. It activates when users ask about content planning, calendar management, research organization, content ideation, or multi-platform planning.
-location: .claude/skills/content/planning-assistant/
 ---
 
 # Content Planning Assistant

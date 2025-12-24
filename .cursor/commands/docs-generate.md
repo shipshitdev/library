@@ -1,29 +1,3 @@
-# Installation
-
-## Prerequisites
-- Cursor installed
-- Clone this repository
-
-## Install via Symlink
-```bash
-ln -s /path/to/skills/.cursor/commands/docs-generate.md ~/.cursor/commands/docs-generate.md
-```
-
-## Install via Copy
-```bash
-cp /path/to/skills/.cursor/commands/docs-generate.md ~/.cursor/commands/docs-generate.md
-```
-
-## Verify Installation
-```bash
-ls -la ~/.cursor/commands/docs-generate.md
-```
-
-## Usage
-`/docs-generate` in Cursor
-
----
-
 # Generate Documentation
 
 **Purpose:** Create comprehensive technical documentation for code, APIs, and features.

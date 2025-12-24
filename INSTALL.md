@@ -96,30 +96,45 @@ Commands are single `.md` files that can be installed individually. Each command
 
 Skills are directories containing `SKILL.md` and optional supporting files. Each skill has its own `INSTALL.md` file.
 
-| Skill                                                      | Description                                                  | Installation                                                    |
-| ---------------------------------------------------------- | ------------------------------------------------------------ | --------------------------------------------------------------- |
-| [analytics-expert](.cursor/skills/analytics-expert/)       | Analyze analytics data, create reports, identify trends      | See [INSTALL.md](.cursor/skills/analytics-expert/INSTALL.md)    |
-| [planning-assistant](.cursor/skills/planning-assistant/)   | Content planning, calendar management, research organization | See [INSTALL.md](.cursor/skills/planning-assistant/INSTALL.md)  |
-| [strategy-expert](.cursor/skills/strategy-expert/)         | Content strategy, persona building, competitive analysis     | See [INSTALL.md](.cursor/skills/strategy-expert/INSTALL.md)     |
-| [workflow-automation](.cursor/skills/workflow-automation/) | Design workflows, create process documentation, automation   | See [INSTALL.md](.cursor/skills/workflow-automation/INSTALL.md) |
+| Skill                                                                    | Description                                                  | Installation                                                           |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| [agent-folder-init](.cursor/skills/agent-folder-init/)                   | Initialize comprehensive .agent/ folder structure            | See [INSTALL.md](.cursor/skills/agent-folder-init/INSTALL.md)          |
+| [analytics-expert](.cursor/skills/analytics-expert/)                     | Analyze analytics data, create reports, identify trends      | See [INSTALL.md](.cursor/skills/analytics-expert/INSTALL.md)           |
+| [changelog-generator](.cursor/skills/changelog-generator/)               | Generate changelogs from git history                         | See [INSTALL.md](.cursor/skills/changelog-generator/INSTALL.md)        |
+| [design-consistency-auditor](.cursor/skills/design-consistency-auditor/) | Audit design consistency across projects                     | See [INSTALL.md](.cursor/skills/design-consistency-auditor/INSTALL.md) |
+| [fullstack-workspace-init](.cursor/skills/fullstack-workspace-init/)     | Initialize fullstack workspace structure                     | See [INSTALL.md](.cursor/skills/fullstack-workspace-init/INSTALL.md)   |
+| [internal-comms](.cursor/skills/internal-comms/)                         | Generate internal communications and updates                 | See [INSTALL.md](.cursor/skills/internal-comms/INSTALL.md)             |
+| [micro-landing-builder](.cursor/skills/micro-landing-builder/)           | Build micro landing pages                                    | See [INSTALL.md](.cursor/skills/micro-landing-builder/INSTALL.md)      |
+| [planning-assistant](.cursor/skills/planning-assistant/)                 | Content planning, calendar management, research organization | See [INSTALL.md](.cursor/skills/planning-assistant/INSTALL.md)         |
+| [project-scaffold](.cursor/skills/project-scaffold/)                     | Unified project scaffolder for all platforms                 | See [INSTALL.md](.cursor/skills/project-scaffold/INSTALL.md)           |
+| [qa-reviewer](.cursor/skills/qa-reviewer/)                               | Quality assurance review assistance                          | See [INSTALL.md](.cursor/skills/qa-reviewer/INSTALL.md)                |
+| [roadmap-analyzer](.cursor/skills/roadmap-analyzer/)                     | Analyze and plan product roadmaps                            | See [INSTALL.md](.cursor/skills/roadmap-analyzer/INSTALL.md)           |
+| [session-documenter](.cursor/skills/session-documenter/)                 | Document AI coding sessions                                  | See [INSTALL.md](.cursor/skills/session-documenter/INSTALL.md)         |
+| [strategy-expert](.cursor/skills/strategy-expert/)                       | Content strategy, persona building, competitive analysis     | See [INSTALL.md](.cursor/skills/strategy-expert/INSTALL.md)            |
+| [webapp-testing](.cursor/skills/webapp-testing/)                         | Web application testing assistance                           | See [INSTALL.md](.cursor/skills/webapp-testing/INSTALL.md)             |
+| [workflow-automation](.cursor/skills/workflow-automation/)               | Design workflows, create process documentation, automation   | See [INSTALL.md](.cursor/skills/workflow-automation/INSTALL.md)        |
 
 ### Claude Skills
 
 Skills are directories containing `SKILL.md` and optional supporting files. Each skill has its own `INSTALL.md` file.
 
-| Skill                                                                    | Description                                       | Installation                                                           |
-| ------------------------------------------------------------------------ | ------------------------------------------------- | ---------------------------------------------------------------------- |
-| [agent-folder-init](.claude/skills/agent-folder-init/)                   | Initialize comprehensive .agent/ folder structure | See [INSTALL.md](.claude/skills/agent-folder-init/INSTALL.md)          |
-| [changelog-generator](.claude/skills/changelog-generator/)               | Generate changelogs from git history              | See [INSTALL.md](.claude/skills/changelog-generator/INSTALL.md)        |
-| [design-consistency-auditor](.claude/skills/design-consistency-auditor/) | Audit design consistency across projects          | See [INSTALL.md](.claude/skills/design-consistency-auditor/INSTALL.md) |
-| [fullstack-workspace-init](.claude/skills/fullstack-workspace-init/)     | Initialize fullstack workspace structure          | See [INSTALL.md](.claude/skills/fullstack-workspace-init/INSTALL.md)   |
-| [internal-comms](.claude/skills/internal-comms/)                         | Generate internal communications and updates      | See [INSTALL.md](.claude/skills/internal-comms/INSTALL.md)             |
-| [micro-landing-builder](.claude/skills/micro-landing-builder/)           | Build micro landing pages                         | See [INSTALL.md](.claude/skills/micro-landing-builder/INSTALL.md)      |
-| [qa-reviewer](.claude/skills/qa-reviewer/)                               | Quality assurance review assistance               | See [INSTALL.md](.claude/skills/qa-reviewer/INSTALL.md)                |
-| [roadmap-analyzer](.claude/skills/roadmap-analyzer/)                     | Analyze and plan product roadmaps                 | See [INSTALL.md](.claude/skills/roadmap-analyzer/INSTALL.md)           |
-| [session-documenter](.claude/skills/session-documenter/)                 | Document AI coding sessions                       | See [INSTALL.md](.claude/skills/session-documenter/INSTALL.md)         |
-| [skill-creator](.claude/skills/skill-creator/)                           | Create new skills for AI assistants               | See [INSTALL.md](.claude/skills/skill-creator/INSTALL.md)              |
-| [webapp-testing](.claude/skills/webapp-testing/)                         | Web application testing assistance                | See [INSTALL.md](.claude/skills/webapp-testing/INSTALL.md)             |
+| Skill                                                                    | Description                                                  | Installation                                                           |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| [agent-folder-init](.claude/skills/agent-folder-init/)                   | Initialize comprehensive .agent/ folder structure            | See [INSTALL.md](.claude/skills/agent-folder-init/INSTALL.md)          |
+| [analytics-expert](.claude/skills/analytics-expert/)                     | Analyze analytics data, create reports, identify trends      | See [INSTALL.md](.claude/skills/analytics-expert/INSTALL.md)           |
+| [changelog-generator](.claude/skills/changelog-generator/)               | Generate changelogs from git history                         | See [INSTALL.md](.claude/skills/changelog-generator/INSTALL.md)        |
+| [design-consistency-auditor](.claude/skills/design-consistency-auditor/) | Audit design consistency across projects                     | See [INSTALL.md](.claude/skills/design-consistency-auditor/INSTALL.md) |
+| [fullstack-workspace-init](.claude/skills/fullstack-workspace-init/)     | Initialize fullstack workspace structure                     | See [INSTALL.md](.claude/skills/fullstack-workspace-init/INSTALL.md)   |
+| [internal-comms](.claude/skills/internal-comms/)                         | Generate internal communications and updates                 | See [INSTALL.md](.claude/skills/internal-comms/INSTALL.md)             |
+| [micro-landing-builder](.claude/skills/micro-landing-builder/)           | Build micro landing pages                                    | See [INSTALL.md](.claude/skills/micro-landing-builder/INSTALL.md)      |
+| [planning-assistant](.claude/skills/planning-assistant/)                 | Content planning, calendar management, research organization | See [INSTALL.md](.claude/skills/planning-assistant/INSTALL.md)         |
+| [qa-reviewer](.claude/skills/qa-reviewer/)                               | Quality assurance review assistance                          | See [INSTALL.md](.claude/skills/qa-reviewer/INSTALL.md)                |
+| [roadmap-analyzer](.claude/skills/roadmap-analyzer/)                     | Analyze and plan product roadmaps                            | See [INSTALL.md](.claude/skills/roadmap-analyzer/INSTALL.md)           |
+| [session-documenter](.claude/skills/session-documenter/)                 | Document AI coding sessions                                  | See [INSTALL.md](.claude/skills/session-documenter/INSTALL.md)         |
+| [skill-creator](.claude/skills/skill-creator/)                           | Create new skills for AI assistants                          | See [INSTALL.md](.claude/skills/skill-creator/INSTALL.md)              |
+| [strategy-expert](.claude/skills/strategy-expert/)                       | Content strategy, persona building, competitive analysis     | See [INSTALL.md](.claude/skills/strategy-expert/INSTALL.md)            |
+| [webapp-testing](.claude/skills/webapp-testing/)                         | Web application testing assistance                           | See [INSTALL.md](.claude/skills/webapp-testing/INSTALL.md)             |
+| [workflow-automation](.claude/skills/workflow-automation/)               | Design workflows, create process documentation, automation   | See [INSTALL.md](.claude/skills/workflow-automation/INSTALL.md)        |
 
 ## Installation Method Comparison
 

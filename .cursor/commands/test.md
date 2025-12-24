@@ -1,29 +1,3 @@
-# Installation
-
-## Prerequisites
-- Cursor installed
-- Clone this repository
-
-## Install via Symlink
-```bash
-ln -s /path/to/skills/.cursor/commands/test.md ~/.cursor/commands/test.md
-```
-
-## Install via Copy
-```bash
-cp /path/to/skills/.cursor/commands/test.md ~/.cursor/commands/test.md
-```
-
-## Verify Installation
-```bash
-ls -la ~/.cursor/commands/test.md
-```
-
-## Usage
-`/test` in Cursor
-
----
-
 # Test Tracking - AI Agent Command
 
 **Purpose:** Track manual testing TODOs and test scenarios that need to be verified.

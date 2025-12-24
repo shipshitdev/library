@@ -1,29 +1,3 @@
-# Installation
-
-## Prerequisites
-- Cursor installed
-- Clone this repository
-
-## Install via Symlink
-```bash
-ln -s /path/to/skills/.cursor/commands/new-session.md ~/.cursor/commands/new-session.md
-```
-
-## Install via Copy
-```bash
-cp /path/to/skills/.cursor/commands/new-session.md ~/.cursor/commands/new-session.md
-```
-
-## Verify Installation
-```bash
-ls -la ~/.cursor/commands/new-session.md
-```
-
-## Usage
-`/new-session` in Cursor
-
----
-
 # Create New Session
 
 Quickly create a new session file from template.

@@ -1,29 +1,3 @@
-# Installation
-
-## Prerequisites
-- Cursor installed
-- Clone this repository
-
-## Install via Symlink
-```bash
-ln -s /path/to/skills/.cursor/commands/security-audit.md ~/.cursor/commands/security-audit.md
-```
-
-## Install via Copy
-```bash
-cp /path/to/skills/.cursor/commands/security-audit.md ~/.cursor/commands/security-audit.md
-```
-
-## Verify Installation
-```bash
-ls -la ~/.cursor/commands/security-audit.md
-```
-
-## Usage
-`/security-audit` in Cursor
-
----
-
 # Security Audit - Security Scanning Command
 
 **Purpose:** Comprehensive security audit for React, Next.js, NestJS applications covering dependencies, code patterns, configuration, and best practices.

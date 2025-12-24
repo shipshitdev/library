@@ -1,29 +1,3 @@
-# Installation
-
-## Prerequisites
-- Cursor installed
-- Clone this repository
-
-## Install via Symlink
-```bash
-ln -s /path/to/skills/.cursor/commands/api-test.md ~/.cursor/commands/api-test.md
-```
-
-## Install via Copy
-```bash
-cp /path/to/skills/.cursor/commands/api-test.md ~/.cursor/commands/api-test.md
-```
-
-## Verify Installation
-```bash
-ls -la ~/.cursor/commands/api-test.md
-```
-
-## Usage
-`/api-test [endpoint]` in Cursor (e.g., `/api-test /api/users`, `/api-test all`)
-
----
-
 # API Test - API Testing Command
 
 **Purpose:** Generate, run, and validate API tests for NestJS endpoints covering authentication, authorization, validation, error handling, and edge cases.

@@ -52,11 +52,7 @@ def ask_yes_no(prompt: str, default: bool = False) -> bool:
 
 def scaffold_agent_folder(root: Path, project_name: str, tech_stack: str = "", allow_outside: bool = False) -> None:
     """Scaffold .agent folder structure."""
-    agent_init_script = Path.home() / ".codex" / "skills" / "agent-folder-init" / "scripts" / "scaffold.py"
-    if not agent_init_script.exists():
-        agent_init_script = Path.home() / ".claude" / "skills" / "agent-folder-init" / "scripts" / "scaffold.py"
-    if not agent_init_script.exists():
-        agent_init_script = Path.home() / ".cursor" / "skills" / "agent-folder-init" / "scripts" / "scaffold.py"
+    agent_init_script = Path.home() / ".cursor" / "skills" / "agent-folder-init" / "scripts" / "scaffold.py"
     
     if agent_init_script.exists():
         try:
@@ -394,7 +390,7 @@ def create_frontend_structure(root: Path, name: str, org: str, is_monorepo: bool
     # layout.tsx
     layout_tsx = dedent("""\
         import type { Metadata } from "next";
-        "./globals.css";
+        import "./globals.css";
 
         export const metadata: Metadata = {
           title: "Dashboard",

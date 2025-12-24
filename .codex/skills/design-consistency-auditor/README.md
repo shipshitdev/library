@@ -297,7 +297,7 @@ This skill works well with:
 
 ### Documentation
 
-- [DaisyUI Docs](https://daisyui.com/)
+- @agenticindiedev/ui (check package README/docs)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [WCAG Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
 - [Material Design](https://material.io/design)

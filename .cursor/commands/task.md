@@ -1,34 +1,3 @@
-# Installation
-
-## Prerequisites
-
-- Cursor installed
-- Clone this repository
-
-## Install via Symlink
-
-```bash
-ln -s /path/to/skills/.cursor/commands/task.md ~/.cursor/commands/task.md
-```
-
-## Install via Copy
-
-```bash
-cp /path/to/skills/.cursor/commands/task.md ~/.cursor/commands/task.md
-```
-
-## Verify Installation
-
-```bash
-ls -la ~/.cursor/commands/task.md
-```
-
-## Usage
-
-`/task` in Cursor
-
----
-
 # Task Management - AI Agent Command
 
 **MANDATORY: When user requests a new feature/task, CREATE TASK + PRD FILES FIRST before implementing anything.**

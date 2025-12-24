@@ -6,7 +6,7 @@ description: Scaffold a full-stack monorepo workspace with NextJS frontend, Nest
 # Full Stack Workspace Init
 
 Create a production-ready monorepo with:
-- **Frontend:** NextJS + React + TypeScript + Tailwind + DaisyUI
+- **Frontend:** NextJS + React + TypeScript + Tailwind + @agenticindiedev/ui
 - **Backend:** NestJS + MongoDB + Redis + BullMQ
 - **Mobile:** React Native + Expo
 - **Shared:** Packages for types, serializers, enums, helpers
@@ -16,15 +16,15 @@ Create a production-ready monorepo with:
 
 ```bash
 # Show help
-python ~/.codex/skills/fullstack-workspace-init/scripts/init-workspace.py --help
+python ~/.claude/skills/fullstack-workspace-init/scripts/init-workspace.py --help
 
 # Create full workspace
-python ~/.codex/skills/fullstack-workspace-init/scripts/init-workspace.py \
+python ~/.claude/skills/fullstack-workspace-init/scripts/init-workspace.py \
   --root ~/www/myproject \
   --name "My Project"
 
 # Create with custom org name (for packages)
-python ~/.codex/skills/fullstack-workspace-init/scripts/init-workspace.py \
+python ~/.claude/skills/fullstack-workspace-init/scripts/init-workspace.py \
   --root ~/www/myproject \
   --name "My Project" \
   --org "myorg"
@@ -117,12 +117,12 @@ myproject/
 
 ```bash
 # Add a new frontend app
-python ~/.codex/skills/fullstack-workspace-init/scripts/add-frontend-app.py \
+python ~/.claude/skills/fullstack-workspace-init/scripts/add-frontend-app.py \
   --root ~/www/myproject/frontend \
   --name admin
 
 # Add a new API collection
-python ~/.codex/skills/fullstack-workspace-init/scripts/add-api-collection.py \
+python ~/.claude/skills/fullstack-workspace-init/scripts/add-api-collection.py \
   --root ~/www/myproject/api \
   --name users
 ```

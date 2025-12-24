@@ -1,29 +1,3 @@
-# Installation
-
-## Prerequisites
-- Cursor installed
-- Clone this repository
-
-## Install via Symlink
-```bash
-ln -s /path/to/skills/.cursor/commands/refactor-code.md ~/.cursor/commands/refactor-code.md
-```
-
-## Install via Copy
-```bash
-cp /path/to/skills/.cursor/commands/refactor-code.md ~/.cursor/commands/refactor-code.md
-```
-
-## Verify Installation
-```bash
-ls -la ~/.cursor/commands/refactor-code.md
-```
-
-## Usage
-`/refactor-code` in Cursor
-
----
-
 # Code Refactoring Workflow
 
 **Purpose:** Systematic approach to refactoring code safely

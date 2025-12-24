@@ -1,29 +1,3 @@
-# Installation
-
-## Prerequisites
-- Cursor installed
-- Clone this repository
-
-## Install via Symlink
-```bash
-ln -s /path/to/skills/.cursor/commands/deploy.md ~/.cursor/commands/deploy.md
-```
-
-## Install via Copy
-```bash
-cp /path/to/skills/.cursor/commands/deploy.md ~/.cursor/commands/deploy.md
-```
-
-## Verify Installation
-```bash
-ls -la ~/.cursor/commands/deploy.md
-```
-
-## Usage
-`/deploy [environment]` in Cursor (e.g., `/deploy staging`, `/deploy production`)
-
----
-
 # Deploy - Deployment Workflow Command
 
 **Purpose:** Streamline deployment workflows for React, Next.js, NestJS applications to various environments (AWS, Vercel, etc.)

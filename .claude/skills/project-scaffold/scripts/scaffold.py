@@ -311,7 +311,8 @@ def create_frontend_structure(root: Path, name: str, org: str, is_monorepo: bool
             "zustand": "^5.0.0",
             "react-hook-form": "^7.50.0",
             "zod": "^3.23.0",
-            "@hookform/resolvers": "^3.9.0"
+            "@hookform/resolvers": "^3.9.0",
+            "@agenticindiedev/ui": "latest"
         },
         "devDependencies": {
             "@types/node": "^22.0.0",
@@ -319,8 +320,7 @@ def create_frontend_structure(root: Path, name: str, org: str, is_monorepo: bool
             "@types/react-dom": "^19.0.0",
             "typescript": "^5.7.0",
             "tailwindcss": "^4.0.0",
-            "@tailwindcss/postcss": "^4.0.0",
-            "daisyui": "^5.0.0"
+            "@tailwindcss/postcss": "^4.0.0"
         }
     }
     (frontend_root / "package.json").write_text(json.dumps(package_json, indent=2))
@@ -340,20 +340,17 @@ def create_frontend_structure(root: Path, name: str, org: str, is_monorepo: bool
     # tailwind.config.ts
     tailwind_config = dedent("""\
         import type { Config } from "tailwindcss";
-        import daisyui from "daisyui";
 
         const config: Config = {
           content: [
             "./apps/**/*.{js,ts,jsx,tsx,mdx}",
             "./packages/**/*.{js,ts,jsx,tsx,mdx}",
+            "./node_modules/@agenticindiedev/ui/**/*.{js,ts,jsx,tsx}",
           ],
           theme: {
             extend: {},
           },
-          plugins: [daisyui],
-          daisyui: {
-            themes: ["light", "dark"],
-          },
+          plugins: [],
         };
 
         export default config;
@@ -394,7 +391,7 @@ def create_frontend_structure(root: Path, name: str, org: str, is_monorepo: bool
     # layout.tsx
     layout_tsx = dedent("""\
         import type { Metadata } from "next";
-        "./globals.css";
+        import "./globals.css";
 
         export const metadata: Metadata = {
           title: "Dashboard",
@@ -603,7 +600,8 @@ def create_extension_structure(root: Path, name: str, org: str, is_monorepo: boo
         "dependencies": {
             "plasmo": "0.90.5",
             "react": "^19.0.0",
-            "react-dom": "^19.0.0"
+            "react-dom": "^19.0.0",
+            "@agenticindiedev/ui": "latest"
         },
         "devDependencies": {
             "@types/chrome": "0.1.32",
@@ -612,8 +610,7 @@ def create_extension_structure(root: Path, name: str, org: str, is_monorepo: boo
             "@types/react-dom": "^19.0.0",
             "typescript": "^5.7.0",
             "tailwindcss": "^3.4.18",
-            "@tailwindcss/postcss": "^4.0.0",
-            "daisyui": "^5.0.0"
+            "@tailwindcss/postcss": "^4.0.0"
         },
         "manifest": {
             "host_permissions": [],
@@ -644,17 +641,16 @@ def create_extension_structure(root: Path, name: str, org: str, is_monorepo: boo
     # tailwind.config.ts
     tailwind_config = dedent("""\
         import type { Config } from "tailwindcss";
-        import daisyui from "daisyui";
 
         const config: Config = {
-          content: ["./src/**/*.{js,ts,jsx,tsx}"],
+          content: [
+            "./src/**/*.{js,ts,jsx,tsx}",
+            "./node_modules/@agenticindiedev/ui/**/*.{js,ts,jsx,tsx}",
+          ],
           theme: {
             extend: {},
           },
-          plugins: [daisyui],
-          daisyui: {
-            themes: ["light", "dark"],
-          },
+          plugins: [],
         };
 
         export default config;
@@ -1028,4 +1024,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

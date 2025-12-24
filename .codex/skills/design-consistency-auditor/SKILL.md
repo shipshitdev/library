@@ -9,7 +9,7 @@ tags:
   - consistency
   - audit
   - tailwind
-  - daisyui
+  - agenticindiedev-ui
   - accessibility
 ---
 
@@ -44,7 +44,7 @@ This skill activates when:
 ### Technology Stack
 
 **Frontend Framework**: Next.js 15.3.4 with App Router
-**Styling**: Tailwind CSS + DaisyUI + SCSS
+**Styling**: Tailwind CSS + @agenticindiedev/ui + SCSS
 **Typography**: Inter font family
 **Themes**: Light and Dark mode support
 **State**: React Context API
@@ -100,7 +100,7 @@ This skill activates when:
 
 **✅ DO:**
 
-- Use DaisyUI semantic color classes: `bg-base-100`, `text-primary`, `border-base-300`
+- Use @agenticindiedev/ui semantic tokens/classes (e.g. primary/surface/border)
 - Use custom theme classes: `.gf-app`, `.gf-card`, `.btn-secondary`
 - Apply colors through Tailwind utilities: `bg-primary`, `text-base-content`
 - Use opacity modifiers for subtle effects: `bg-primary/5`, `bg-primary/20`
@@ -156,7 +156,7 @@ This skill activates when:
 **✅ DO:**
 
 - Use Tailwind spacing scale: `p-4`, `m-8`, `gap-6`, `space-y-4`
-- Apply DaisyUI utilities: `rounded-box`, `shadow-sm`
+- Apply shared UI utilities for radius, spacing, and shadows from @agenticindiedev/ui
 - Use consistent container padding: `px-4 md:px-8`
 - Apply grid/flex gaps consistently
 
@@ -331,7 +331,7 @@ This skill activates when:
 
 2. **Verify theme tokens**
 
-   - Ensure all colors use DaisyUI tokens
+   - Ensure all colors use @agenticindiedev/ui tokens
    - Check custom classes are applied correctly
    - Validate light/dark theme consistency
 
@@ -667,7 +667,7 @@ When reviewing frontend code, ask:
 
 ### Design References
 
-- **DaisyUI Docs**: https://daisyui.com/
+- **@agenticindiedev/ui**: Check the package README/docs
 - **Tailwind Docs**: https://tailwindcss.com/
 - **WCAG Guidelines**: https://www.w3.org/WAI/WCAG21/quickref/
 - **Material Design**: https://material.io/design

@@ -1,29 +1,3 @@
-# Installation
-
-## Prerequisites
-- Cursor installed
-- Clone this repository
-
-## Install via Symlink
-```bash
-ln -s /path/to/skills/.cursor/commands/optimize-prompt.md ~/.cursor/commands/optimize-prompt.md
-```
-
-## Install via Copy
-```bash
-cp /path/to/skills/.cursor/commands/optimize-prompt.md ~/.cursor/commands/optimize-prompt.md
-```
-
-## Verify Installation
-```bash
-ls -la ~/.cursor/commands/optimize-prompt.md
-```
-
-## Usage
-`/optimize-prompt` in Cursor
-
----
-
 # Optimize Prompt (Lyra-Inspired)
 
 **Purpose:** Transform vague prompts into precision-crafted, effective AI prompts using systematic optimization.

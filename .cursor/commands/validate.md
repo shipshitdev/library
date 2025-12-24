@@ -1,29 +1,3 @@
-# Installation
-
-## Prerequisites
-- Cursor installed
-- Clone this repository
-
-## Install via Symlink
-```bash
-ln -s /path/to/skills/.cursor/commands/validate.md ~/.cursor/commands/validate.md
-```
-
-## Install via Copy
-```bash
-cp /path/to/skills/.cursor/commands/validate.md ~/.cursor/commands/validate.md
-```
-
-## Verify Installation
-```bash
-ls -la ~/.cursor/commands/validate.md
-```
-
-## Usage
-`/validate docs`, `/validate sessions`, `/validate tasks`, or `/validate all` in Cursor
-
----
-
 # Validate - Unified Validation Command
 
 **Purpose:** Validate documentation structure, session files, tasks, and codebase integrity with a single command

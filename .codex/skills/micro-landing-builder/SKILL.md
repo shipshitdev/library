@@ -11,13 +11,13 @@ Create config-driven NextJS landing pages for startups.
 
 Each landing page is a standalone NextJS app where:
 - Content is defined in `app.json` config file
-- UI comes from a shared Tailwind components package
+- UI comes from `@agenticindiedev/ui`
 - Deploy independently to any domain via Vercel
 
 ## Prerequisites
 
 You need a published landing UI components package. The skill expects:
-- Package name (default: `@decod3rs/landing-ui`)
+- Package name (default: `@agenticindiedev/ui`)
 - Components: Hero, Features, Pricing, FAQ, CTA, Testimonials, Stats, EmailCapture, Header, Footer
 
 ## Usage

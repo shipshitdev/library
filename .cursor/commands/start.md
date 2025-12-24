@@ -1,29 +1,3 @@
-# Installation
-
-## Prerequisites
-- Cursor installed
-- Clone this repository
-
-## Install via Symlink
-```bash
-ln -s /path/to/skills/.cursor/commands/start.md ~/.cursor/commands/start.md
-```
-
-## Install via Copy
-```bash
-cp /path/to/skills/.cursor/commands/start.md ~/.cursor/commands/start.md
-```
-
-## Verify Installation
-```bash
-ls -la ~/.cursor/commands/start.md
-```
-
-## Usage
-`/start` in Cursor
-
----
-
 # Start: Bootstrap Session with Critical Context
 
 Load all critical preferences and instructions at the start of each session or after `/clear`.

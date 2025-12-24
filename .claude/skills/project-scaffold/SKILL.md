@@ -12,7 +12,7 @@ Unified project scaffolder for creating new projects or adding components to exi
 This skill provides a unified way to scaffold:
 - `.agent/` folder structure for AI-first development
 - Backend (NestJS) with MongoDB, Swagger, and best practices
-- Frontend (NextJS) with Tailwind, DaisyUI, and TypeScript
+- Frontend (NextJS) with Tailwind and @agenticindiedev/ui
 - Mobile (Expo) with React Native and Expo Router
 - Browser Extension (Plasmo) with React and Tailwind
 
@@ -65,7 +65,7 @@ The script handles all interactive prompts.
 All components are optional - scaffold only what you need:
 - `.agent/` folder with full AI documentation structure
 - Backend with NestJS, MongoDB, Swagger
-- Frontend with NextJS 15, Tailwind, DaisyUI
+- Frontend with NextJS 15, Tailwind, @agenticindiedev/ui
 - Mobile with Expo Router, React Native
 - Extension with Plasmo, React, Tailwind
 
@@ -126,7 +126,7 @@ myproject-frontend/          # Frontend only
 
 ### Frontend (NextJS)
 - Path aliases: `@components/`, `@services/`, `@hooks/`
-- Tailwind CSS with DaisyUI
+- Tailwind CSS with @agenticindiedev/ui
 - TypeScript strict mode
 - App Router structure
 
@@ -137,7 +137,7 @@ myproject-frontend/          # Frontend only
 
 ### Extension (Plasmo)
 - React + TypeScript
-- Tailwind CSS with DaisyUI
+- Tailwind CSS with @agenticindiedev/ui
 - Manifest configuration
 - Popup component
 
@@ -180,4 +180,3 @@ This skill integrates with:
 **Python not found**: Ensure Python 3 is installed and in PATH
 
 **Agent folder not created**: The script tries to use `agent-folder-init` skill. If not found, it will skip .agent folder creation.
-

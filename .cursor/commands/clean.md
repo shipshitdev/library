@@ -1,29 +1,3 @@
-# Installation
-
-## Prerequisites
-- Cursor installed
-- Clone this repository
-
-## Install via Symlink
-```bash
-ln -s /path/to/skills/.cursor/commands/clean.md ~/.cursor/commands/clean.md
-```
-
-## Install via Copy
-```bash
-cp /path/to/skills/.cursor/commands/clean.md ~/.cursor/commands/clean.md
-```
-
-## Verify Installation
-```bash
-ls -la ~/.cursor/commands/clean.md
-```
-
-## Usage
-`/clean tasks`, `/clean sessions`, or `/clean all` in Cursor
-
----
-
 # Clean - Unified Cleanup Command
 
 **Purpose:** Clean up completed tasks, session files, and documentation with a single command

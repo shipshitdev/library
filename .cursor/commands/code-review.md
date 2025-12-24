@@ -1,29 +1,3 @@
-# Installation
-
-## Prerequisites
-- Cursor installed
-- Clone this repository
-
-## Install via Symlink
-```bash
-ln -s /path/to/skills/.cursor/commands/code-review.md ~/.cursor/commands/code-review.md
-```
-
-## Install via Copy
-```bash
-cp /path/to/skills/.cursor/commands/code-review.md ~/.cursor/commands/code-review.md
-```
-
-## Verify Installation
-```bash
-ls -la ~/.cursor/commands/code-review.md
-```
-
-## Usage
-`/code-review` in Cursor
-
----
-
 # Enhanced Code Review
 
 **Purpose:** Comprehensive code review focusing on quality, security, performance, and testing.

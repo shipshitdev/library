@@ -5,7 +5,7 @@ Generic slash commands for efficient development workflow across projects.
 ## All Commands (Alphabetical)
 
 ```
-.cursor/commands/                    # Global commands (18 commands)
+.cursor/commands/                    # Global commands (24 commands)
 ├── analyze-codebase.md        # Generate architecture analysis
 ├── bug.md                     # Quick bug capture
 ├── clean.md                   # Unified cleanup (tasks/sessions)
@@ -20,6 +20,7 @@ Generic slash commands for efficient development workflow across projects.
 ├── quick-fix.md               # Daily task list
 ├── refactor-code.md           # Refactoring workflows
 ├── review-pr.md               # Pull request review (basic)
+├── scaffold.md                # Unified project scaffolder
 ├── start.md                   # Bootstrap session context
 ├── task.md                    # Create and manage tasks
 ├── test.md                    # Test tracking
@@ -62,6 +63,7 @@ Generic slash commands for efficient development workflow across projects.
 
 - `/new-cmd` - Create new slash commands
 - `/new-session` - Create session file from template
+- `/scaffold` - Unified project scaffolder (backend, frontend, mobile, extension)
 
 #### Maintenance
 
@@ -112,6 +114,7 @@ These commands use standard `.agent/` folder structure. Only adapt project-speci
 ### Standard Paths (Do Not Change)
 
 All commands use these standard paths:
+
 - `.agent/SYSTEM/` - Architecture, rules, summary
 - `.agent/SESSIONS/` - Session documentation
 - `.agent/TASKS/` - Task files
@@ -121,15 +124,18 @@ All commands use these standard paths:
 ### Common Adaptations Needed
 
 **Project Paths:**
+
 - `[frontend-project]/` → Your frontend project name
 - `[api-project]/` → Your backend project name
 
 **Security Patterns:**
+
 - Multi-tenancy: Adapt `organization`/`tenantId` to your field names
 - Soft delete: Adapt `isDeleted` to your pattern
 - Auth guards: Adapt `ClerkAuthGuard` to your auth system
 
 **Project Structure:**
+
 - Monorepo structure: Adapt to your workspace setup
 - Task/PRD locations: Adapt to your task tracking system
 
@@ -156,5 +162,5 @@ Follow the naming convention:
 
 ---
 
-**Total Commands:** 18
+**Total Commands:** 24
 **Last Updated:** 2025-12-24

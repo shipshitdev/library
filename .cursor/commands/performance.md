@@ -1,29 +1,3 @@
-# Installation
-
-## Prerequisites
-- Cursor installed
-- Clone this repository
-
-## Install via Symlink
-```bash
-ln -s /path/to/skills/.cursor/commands/performance.md ~/.cursor/commands/performance.md
-```
-
-## Install via Copy
-```bash
-cp /path/to/skills/.cursor/commands/performance.md ~/.cursor/commands/performance.md
-```
-
-## Verify Installation
-```bash
-ls -la ~/.cursor/commands/performance.md
-```
-
-## Usage
-`/performance [area]` in Cursor (e.g., `/performance frontend`, `/performance api`, `/performance database`)
-
----
-
 # Performance - Performance Analysis Command
 
 **Purpose:** Analyze and optimize performance for React, Next.js, NestJS applications covering frontend, backend, database, and infrastructure.

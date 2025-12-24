@@ -1,29 +1,3 @@
-# Installation
-
-## Prerequisites
-- Cursor installed
-- Clone this repository
-
-## Install via Symlink
-```bash
-ln -s /path/to/skills/.cursor/commands/end.md ~/.cursor/commands/end.md
-```
-
-## Install via Copy
-```bash
-cp /path/to/skills/.cursor/commands/end.md ~/.cursor/commands/end.md
-```
-
-## Verify Installation
-```bash
-ls -la ~/.cursor/commands/end.md
-```
-
-## Usage
-`/end` in Cursor
-
----
-
 # End - Document Session Before Clearing
 
 **⚠️ CRITICAL: This command documents your session but does NOT clear the context.**

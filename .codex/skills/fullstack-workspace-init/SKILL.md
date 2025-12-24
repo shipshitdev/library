@@ -6,7 +6,7 @@ description: Scaffold a full-stack monorepo workspace with NextJS frontend, Nest
 # Full Stack Workspace Init
 
 Create a production-ready monorepo with:
-- **Frontend:** NextJS + React + TypeScript + Tailwind + DaisyUI
+- **Frontend:** NextJS + React + TypeScript + Tailwind + @agenticindiedev/ui
 - **Backend:** NestJS + MongoDB + Redis + BullMQ
 - **Mobile:** React Native + Expo
 - **Shared:** Packages for types, serializers, enums, helpers

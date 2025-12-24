@@ -1,29 +1,3 @@
-# Installation
-
-## Prerequisites
-- Cursor installed
-- Clone this repository
-
-## Install via Symlink
-```bash
-ln -s /path/to/skills/.cursor/commands/migrate.md ~/.cursor/commands/migrate.md
-```
-
-## Install via Copy
-```bash
-cp /path/to/skills/.cursor/commands/migrate.md ~/.cursor/commands/migrate.md
-```
-
-## Verify Installation
-```bash
-ls -la ~/.cursor/commands/migrate.md
-```
-
-## Usage
-`/migrate [action]` in Cursor (e.g., `/migrate create`, `/migrate up`, `/migrate down`)
-
----
-
 # Migrate - Database Migration Command
 
 **Purpose:** Manage MongoDB (and other database) migrations safely with version control and rollback capabilities.

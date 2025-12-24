@@ -1,5 +1,5 @@
 ---
-skill_name: nestjs-queue-architect
+name: NestJS Queue Architect
 version: 1.0.0
 technology: BullMQ 5.61.0 with NestJS 11.1.7
 description: Queue job management patterns, processors, and async workflows for video/image processing

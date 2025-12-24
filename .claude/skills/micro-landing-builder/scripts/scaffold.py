@@ -15,7 +15,7 @@ from textwrap import dedent
 SKILL_DIR = Path(__file__).parent.parent
 TEMPLATES_DIR = SKILL_DIR / "assets" / "templates" / "landing"
 
-DEFAULT_UI_PACKAGE = "@decod3rs/landing-ui"
+DEFAULT_UI_PACKAGE = "@agenticindiedev/ui"
 
 
 def create_package_json(name: str, ui_package: str) -> str:
@@ -33,7 +33,7 @@ def create_package_json(name: str, ui_package: str) -> str:
             "next": "^15.0.0",
             "react": "^19.0.0",
             "react-dom": "^19.0.0",
-            ui_package: "^1.0.0"
+            ui_package: "latest"
         },
         "devDependencies": {
             "@types/node": "^22.0.0",
@@ -58,14 +58,14 @@ def create_next_config() -> str:
     """)
 
 
-def create_tailwind_config() -> str:
-    return dedent("""\
+def create_tailwind_config(ui_package: str) -> str:
+    template = dedent("""\
         import type { Config } from "tailwindcss";
 
         const config: Config = {
           content: [
             "./app/**/*.{js,ts,jsx,tsx,mdx}",
-            "./node_modules/@decod3rs/landing-ui/**/*.{js,ts,jsx,tsx}",
+            "./node_modules/__UI_PACKAGE__/**/*.{js,ts,jsx,tsx}",
           ],
           theme: {
             extend: {},
@@ -75,6 +75,7 @@ def create_tailwind_config() -> str:
 
         export default config;
     """)
+    return template.replace("__UI_PACKAGE__", ui_package)
 
 
 def create_tsconfig() -> str:
@@ -450,7 +451,7 @@ def scaffold_landing(
     files = {
         "package.json": create_package_json(name, ui_package),
         "next.config.ts": create_next_config(),
-        "tailwind.config.ts": create_tailwind_config(),
+        "tailwind.config.ts": create_tailwind_config(ui_package),
         "tsconfig.json": create_tsconfig(),
         "vercel.json": create_vercel_json(domain),
         "app.json": create_app_json(name, slug, domain, concept),

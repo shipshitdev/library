@@ -1,29 +1,3 @@
-# Installation
-
-## Prerequisites
-- Cursor installed
-- Clone this repository
-
-## Install via Symlink
-```bash
-ln -s /path/to/skills/.cursor/commands/quick-fix.md ~/.cursor/commands/quick-fix.md
-```
-
-## Install via Copy
-```bash
-cp /path/to/skills/.cursor/commands/quick-fix.md ~/.cursor/commands/quick-fix.md
-```
-
-## Verify Installation
-```bash
-ls -la ~/.cursor/commands/quick-fix.md
-```
-
-## Usage
-`/quick-fix` in Cursor
-
----
-
 # Quick Fix - Daily Task List
 
 **Purpose:** Create a simple daily task list in markdown format for personal productivity tracking.

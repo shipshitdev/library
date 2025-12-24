@@ -1,29 +1,3 @@
-# Installation
-
-## Prerequisites
-- Cursor installed
-- Clone this repository
-
-## Install via Symlink
-```bash
-ln -s /path/to/skills/.cursor/commands/bug.md ~/.cursor/commands/bug.md
-```
-
-## Install via Copy
-```bash
-cp /path/to/skills/.cursor/commands/bug.md ~/.cursor/commands/bug.md
-```
-
-## Verify Installation
-```bash
-ls -la ~/.cursor/commands/bug.md
-```
-
-## Usage
-`/bug` in Cursor
-
----
-
 # Bug Capture - AI Agent Command
 
 **Purpose:** Quick bug capture for later triage and fixing. Don't worry about details - just get it documented fast.

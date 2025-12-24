@@ -1,7 +1,6 @@
 ---
-name: content-strategy-expert
+name: strategy-expert
 description: This skill should be used when users need help with content strategy, persona building, competitive analysis, content planning, or brand voice consistency. It activates when users ask about content strategy, building personas or target audiences, competitive analysis requests, content planning and ideation, or brand voice questions.
-location: .claude/skills/content/strategy-expert/
 ---
 
 # Content Strategy Expert

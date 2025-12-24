@@ -94,7 +94,7 @@ cat .claude/commands/gh-*.md
 - Cross-project functionality
 - Examples: git helpers, file operations
 
-**Genfeed Context:**
+**Project Context:**
 Most commands should go in `.claude/commands/` because:
 - Team uses the same monorepo
 - Consistent workflows across developers
@@ -102,7 +102,7 @@ Most commands should go in `.claude/commands/` because:
 
 **Use user directory only for:**
 - Personal productivity scripts
-- Non-genfeed-specific tools
+- Cross-project tools
 - Experimental commands
 
 ### Step 4: Follow Structural Patterns
@@ -369,11 +369,11 @@ Run this command from inside a git repo
 ```
 ```
 
-## Genfeed-Specific Patterns
+## Monorepo Patterns
 
 ### Monorepo Commands
 
-When creating commands for genfeed monorepo:
+When creating commands for monorepo projects:
 
 **Package-Aware:**
 ```markdown
@@ -387,7 +387,7 @@ When creating commands for genfeed monorepo:
 **Example:**
 ```bash
 # Build specific package
-/build @genfeed/api
+/build @[project]/api
 
 # Test all affected packages
 /test-affected
@@ -436,9 +436,9 @@ When creating commands for genfeed monorepo:
 # Scans for violations before commit
 ```
 
-### ⚠️ Critical Genfeed Rules for Commands
+### ⚠️ Critical Project Rules for Commands
 
-When creating ANY command for genfeed, ALWAYS include these patterns:
+When creating ANY command for a project, ALWAYS include these patterns:
 
 **1. Reference Critical Rules First:**
 ```markdown
@@ -453,7 +453,7 @@ cat .agent/SYSTEM/critical/CROSS-PROJECT-RULES.md
 Ensure command doesn't violate:
 - ❌ No console.log (use logger service)
 - ❌ No `any` types (strict TypeScript)
-- ❌ No inline interfaces (use packages.genfeed.ai)
+- ❌ No inline interfaces (use shared packages)
 - ❌ No test execution locally (kills dev machine)
 - ❌ No deletedAt (use isDeleted: boolean)
 - ❌ No serializers in API repo
@@ -464,7 +464,7 @@ Ensure command doesn't violate:
 ```markdown
 ## Test Execution Rule
 
-⚠️ **CRITICAL:** Tests NEVER run locally in genfeed
+⚠️ **CRITICAL:** Tests NEVER run locally (check project rules)
 
 ❌ WRONG:
 ```bash
@@ -487,7 +487,7 @@ gh run watch
 
 **3. Monorepo Structure Awareness:**
 ```markdown
-## Genfeed Monorepo
+## Monorepo Structure
 
 Protected files across ALL projects:
 - `AGENTS.md`, `CLAUDE.md`, `CODEX.md` (MANDATORY in each project root)
@@ -495,12 +495,12 @@ Protected files across ALL projects:
 - `**/README.md` (Standard docs)
 
 Projects:
-- `api.genfeed.ai/` - Backend (NestJS, MongoDB)
-- `genfeed.ai/` - Frontend (Next.js monorepo)
-- `extension.genfeed.ai/` - Browser extension (Plasmo)
-- `mobile.genfeed.ai/` - Mobile app (Expo)
-- `docs.genfeed.ai/` - Documentation (Docusaurus)
-- `packages.genfeed.ai/` - Shared packages
+- `[api-project]/` - Backend (NestJS, MongoDB)
+- `[frontend-project]/` - Frontend (Next.js monorepo)
+- `[extension-project]/` - Browser extension (Plasmo)
+- `[mobile-project]/` - Mobile app (Expo)
+- `[docs-project]/` - Documentation (Docusaurus)
+- `[packages-project]/` - Shared packages
 ```
 
 **4. GitHub Actions Integration:**
@@ -524,11 +524,11 @@ gh run rerun <run-id> --failed
 ```
 
 Common workflows (in project directories):
-- `api.genfeed.ai/.github/workflows/deploy-production.yml`
-- `api.genfeed.ai/.github/workflows/quality-gates.yml`
-- `genfeed.ai/.github/workflows/staging.yml`
-- `genfeed.ai/.github/workflows/ci.yml`
-- `packages.genfeed.ai/.github/workflows/build.yml`
+- `[api-project]/.github/workflows/deploy-production.yml`
+- `[api-project]/.github/workflows/quality-gates.yml`
+- `[frontend-project]/.github/workflows/staging.yml`
+- `[frontend-project]/.github/workflows/ci.yml`
+- `[packages-project]/.github/workflows/build.yml`
 ```
 
 **5. Package Location Rules:**
@@ -537,18 +537,18 @@ Common workflows (in project directories):
 
 Serializers location:
 ```
-packages.genfeed.ai/packages/common/serializers/
+[packages-project]/packages/common/serializers/
 ```
 
 Interfaces location:
 ```
-packages.genfeed.ai/packages/*/interfaces/
-packages.genfeed.ai/packages/*/props/
+[packages-project]/packages/*/interfaces/
+[packages-project]/packages/*/props/
 ```
 
 Database patterns:
 - Use `isDeleted: boolean` (NOT deletedAt)
-- Always filter by `organization: orgId`
+- Always filter by `organization: orgId` (if multi-tenant)
 - Indexes in module useFactory, NOT schema
 ```
 

@@ -2,7 +2,6 @@
 name: Docusaurus Technical Writer
 description: Expert in creating clear, comprehensive technical documentation with Docusaurus 3.9.1, MDX, and modern documentation patterns
 version: 1.0.0
-author: Genfeed Team
 tags:
   - documentation
   - docusaurus
@@ -31,12 +30,12 @@ This skill activates automatically when you're:
 
 ---
 
-## Genfeed Docusaurus Architecture
+## Docusaurus Project Structure
 
-### Project Structure
+### Typical Project Structure
 
 ```
-docs.genfeed.ai/
+[project-docs]/
 ├── docs/                      # Documentation content
 │   ├── home.md               # Landing page (routeBasePath: '/')
 │   ├── getting-started.md    # Quick start guide
@@ -71,9 +70,9 @@ docs.genfeed.ai/
 ```typescript
 // docusaurus.config.ts
 const config: Config = {
-  title: 'Genfeed.ai Documentation',
-  tagline: 'Generate AI-powered content for your business',
-  url: 'https://docs.genfeed.ai',
+  title: '[Project] Documentation',
+  tagline: '[Project tagline]',
+  url: 'https://docs.[project].com',
   baseUrl: '/',
 
   // Strict link checking
@@ -126,7 +125,7 @@ description: SEO-friendly description for this page
 keywords:
   - ai
   - video generation
-  - genfeed
+  - documentation
 ---
 
 # Feature Name
@@ -140,8 +139,8 @@ Content starts here...
 ---
 sidebar_position: 1
 slug: /
-title: Genfeed.ai Documentation
-description: Complete guide to Genfeed.ai's AI-powered content generation platform
+title: [Project] Documentation
+description: Complete guide to [Project]'s features and capabilities
 ---
 ```
 
@@ -343,13 +342,13 @@ import TabItem from '@theme/TabItem';
 
 <Tabs>
   <TabItem value="npm" label="npm" default>
-    ```bash npm install @genfeed/sdk ```
+    ```bash npm install @[project]/sdk ```
   </TabItem>
   <TabItem value="yarn" label="Yarn">
-    ```bash yarn add @genfeed/sdk ```
+    ```bash yarn add @[project]/sdk ```
   </TabItem>
   <TabItem value="pnpm" label="pnpm">
-    ```bash pnpm add @genfeed/sdk ```
+    ```bash pnpm add @[project]/sdk ```
   </TabItem>
 </Tabs>
 ````
@@ -469,10 +468,13 @@ import SwaggerUI from 'swagger-ui-react';
 import 'swagger-ui-react/swagger-ui.css';
 
 export default function ApiPage() {
+  // Discover API URL from project config or environment
+  const apiUrl = process.env.API_DOCS_URL || 'https://api.example.com/v1/openapi.json';
+  
   return (
-    <Layout title="API Documentation" description="Genfeed.ai API Documentation">
+    <Layout title="API Documentation" description="[Project] API Documentation">
       <BrowserOnly fallback={<div>Loading...</div>}>
-        {() => <SwaggerUI url="https://api.genfeed.ai/v1/openapi.json" />}
+        {() => <SwaggerUI url={apiUrl} />}
       </BrowserOnly>
     </Layout>
   );
@@ -684,11 +686,11 @@ Best practice recommendations
 
 ---
 
-## Real Documentation Examples from Genfeed
+## Documentation Examples
 
 ### Example 1: Getting Started Page Structure
 
-Based on `/docs/getting-started.md`:
+Typical structure for getting started pages:
 
 ```markdown
 ---
@@ -848,7 +850,7 @@ Links to related guides.
 
    ```markdown
    ---
-   description: Learn how to generate AI-powered videos with Genfeed.ai in under 5 minutes
+   description: Learn how to get started with [Project] in under 5 minutes
    ---
    ```
 
@@ -859,7 +861,7 @@ Links to related guides.
    keywords:
      - ai video generation
      - text to video
-     - genfeed tutorial
+     - getting started
    ---
    ```
 
@@ -871,7 +873,7 @@ Links to related guides.
 
 5. **Alt Text for Images**: Always include descriptive alt text
    ```markdown
-   ![Screenshot of the Genfeed.ai Studio interface showing video generation options](/img/studio-interface.png)
+   ![Screenshot of the [Project] interface](/img/interface.png)
    ```
 
 ### Search-Friendly Content
@@ -929,7 +931,7 @@ npm run docusaurus docs:version 1.0.0
 
 ```markdown
 :::info Version Info
-This feature is available in Genfeed.ai v2.0 and later.
+This feature is available in [Project] v2.0 and later.
 :::
 
 :::warning Deprecated
@@ -1029,7 +1031,7 @@ Term 2
 
 ## Plugins and Themes
 
-### Current Genfeed Plugins
+### Common Plugins
 
 ```typescript
 // docusaurus.config.ts
@@ -1076,15 +1078,15 @@ npm install @docusaurus/plugin-pwa
 
 ## Navbar Configuration
 
-### Current Genfeed Navbar
+### Navbar Configuration Example
 
 ```typescript
 navbar: {
-  title: 'Genfeed.ai',
+  title: '[Project Name]',
   logo: {
-    alt: 'Genfeed.ai',
-    src: 'https://cdn.genfeed.ai/assets/branding/logo-dark.png',
-    srcDark: 'https://cdn.genfeed.ai/assets/branding/logo-white.png',
+    alt: '[Project Name]',
+    src: '/img/logo-dark.png', // Discover from project assets
+    srcDark: '/img/logo-white.png',
   },
   items: [
     {
@@ -1100,8 +1102,8 @@ navbar: {
       position: 'left',
     },
     {
-      href: 'https://genfeed.ai',
-      label: 'Back to Genfeed.ai',
+      href: 'https://[project].com', // Discover from project config
+      label: 'Back to [Project]',
       position: 'right',
     },
   ],
@@ -1112,7 +1114,7 @@ navbar: {
 
 ## Footer Configuration
 
-### Current Genfeed Footer
+### Footer Configuration Example
 
 ```typescript
 footer: {
@@ -1121,38 +1123,29 @@ footer: {
     {
       title: 'Documentation',
       items: [
-        { label: 'Pricing', to: '/pricing' },
-        { label: 'Models', to: '/models' },
-      ],
-    },
-    {
-      title: 'Guides',
-      items: [
-        { label: 'Prompting Tutorial', to: '/prompting-guide' },
-        { label: 'Team Members Guide', to: '/members-guide' },
-        { label: 'Voice Recognition', to: '/voice-recognition' },
-        { label: 'Keyboard Shortcuts', to: '/keyboard-shortcuts' },
+        // Discover from project's sidebar structure
+        { label: 'Getting Started', to: '/getting-started' },
+        { label: 'API Reference', to: '/api' },
       ],
     },
     {
       title: 'Resources',
       items: [
+        // Discover from project docs
         { label: 'FAQ', to: '/faq' },
-        { label: 'Genfeed.ai', href: 'https://genfeed.ai' },
+        { label: '[Project]', href: 'https://[project].com' },
       ],
     },
     {
       title: 'Connect',
       items: [
-        { label: 'Discord', href: 'https://discord.gg/genfeedai' },
-        { label: 'Twitter', href: 'https://x.com/genfeedai' },
-        { label: 'Instagram', href: 'https://instagram.com/genfeedai' },
-        { label: 'TikTok', href: 'https://tiktok.com/@genfeedai' },
-        { label: 'YouTube', href: 'https://youtube.com/@genfeedai' },
+        // Discover from project's social links or config
+        { label: 'GitHub', href: 'https://github.com/[org]/[project]' },
+        { label: 'Discord', href: 'https://discord.gg/[project]' },
       ],
     },
   ],
-  copyright: `Copyright © ${new Date().getFullYear()} Genfeed.ai. All rights reserved.`,
+  copyright: `Copyright © ${new Date().getFullYear()} [Project Name]. All rights reserved.`,
 },
 ```
 
@@ -1266,7 +1259,7 @@ Authorization: Bearer YOUR_API_KEY
 ### Example Request
 
 ```bash
-curl -X POST https://api.genfeed.ai/v1/generate/video \
+curl -X POST https://api.example.com/v1/generate/video \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -1399,11 +1392,11 @@ You can customize shortcuts in **Settings** → **Keyboard Shortcuts**
    - Try a different model
 
 3. **Check system status:**
-   - Visit [status.genfeed.ai](https://status.genfeed.ai)
+   - Visit project status page (discover URL from project config)
    - If there's an outage, wait and retry
 
 4. **Contact support:**
-   - If issue persists, email support@genfeed.ai
+   - If issue persists, contact project support (discover from project docs)
    - Include generation ID from error message
 
 :::tip
@@ -1421,7 +1414,7 @@ Most generation failures are due to insufficient credits or content policy viola
 
 1. **Allow popups:**
    - Check browser's popup blocker
-   - Whitelist genfeed.ai
+   - Whitelist [project-domain] (discover from project config)
 
 2. **Clear browser cache:**
    ```bash
@@ -1457,7 +1450,7 @@ Most generation failures are due to insufficient credits or content policy viola
 ### Example
 
 ```markdown
-![Genfeed Studio video editor interface](/img/studio-video-editor.png)
+![Project interface screenshot](/img/interface.png)
 ````
 
 ````
@@ -1527,11 +1520,11 @@ pnpm run serve
 - **MDX**: https://mdxjs.com/
 - **React**: https://react.dev/
 
-### Genfeed Resources
+### Project Resources
 
-- **API Docs**: https://api.genfeed.ai/v1/openapi.json
-- **Main Site**: https://genfeed.ai
-- **Support**: support@genfeed.ai
+- **API Docs**: Discover from project config or environment variables
+- **Main Site**: Discover from project config
+- **Support**: Discover from project documentation or config
 
 ### Tools
 
@@ -1541,4 +1534,18 @@ pnpm run serve
 
 ---
 
-**When this skill is active**, you will create clear, comprehensive, and well-structured technical documentation that helps users quickly find answers and accomplish their goals. You'll leverage Docusaurus's powerful features while maintaining consistency with Genfeed's documentation standards.
+**When this skill is active**, you will:
+
+1. **Discover Project Context**: Scan project documentation, config files, and codebase to understand:
+   - Project name, branding, and tone
+   - API endpoints and structure
+   - Existing documentation patterns
+   - Social links and resources
+
+2. **Adapt to Project Style**: Match the project's documentation style, terminology, and structure
+
+3. **Use Project-Specific Skills**: If project has `[project]-docusaurus-writer` skill, collaborate with it
+
+4. **Create Clear Documentation**: Create clear, comprehensive, and well-structured technical documentation that helps users quickly find answers and accomplish their goals
+
+You'll leverage Docusaurus's powerful features while maintaining consistency with the project's discovered documentation standards.

@@ -484,7 +484,7 @@ Before updating files, answer these questions:
    - Reference Context7 docs if library-specific patterns
 
 5. **Update `.http` Files (if API endpoints changed)**
-   - **Applies to:** Backend API (api.genfeed.ai) only
+   - **Applies to:** Backend API projects only
    - **When:** If you added/modified/removed API endpoints
    - **Where:** Co-located with controller (e.g., `public.brands.http` next to `public.brands.controller.ts`)
    - **What to update:**
@@ -516,7 +516,7 @@ After making changes, verify the build compiles successfully using the optimized
 1. **Run parallel build** (Frontend projects):
 
    ```bash
-   cd genfeed.ai
+   cd [frontend-project]
    pnpm build:all
    ```
 
@@ -529,7 +529,7 @@ After making changes, verify the build compiles successfully using the optimized
    # or
    pnpm lint
    # or for specific project
-   cd api.genfeed.ai && pnpm lint
+   cd [api-project] && pnpm lint
    ```
 
 3. **Run TypeScript type checking** (if applicable):

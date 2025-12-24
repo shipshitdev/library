@@ -295,7 +295,7 @@ Now create a similar post for: [your topic]"
 - Multiple subjects can be confusing
 ```
 
-## Genfeed-Specific Use Cases
+## Common Use Cases
 
 ### 1. Social Media Post Generation
 
@@ -508,23 +508,22 @@ Metrics to track:
 ✅ AFTER: "Create a summary by: 1) Identifying 3 main points, 2) Distilling each to one sentence, 3) Connecting with transitions"
 ```
 
-## Integration with Genfeed
+## Integration Examples
 
 ### Update Prompt Templates
 
 ```bash
 # After optimization, update template
-# Location: apps/api/src/prompts/templates/
+# Location: [project]/src/prompts/templates/
 
-/gen-template
 # Then apply optimized prompt structure
 ```
 
 ### Test in Services
 
 ```typescript
-// apps/api/src/posts/posts.service.ts
-async generatePost(prompt: string, platform: string) {
+// Example: [project]/src/services/content.service.ts
+async generateContent(prompt: string, platform: string) {
   const optimizedPrompt = this.buildOptimizedPrompt({
     platform,
     userInput: prompt,
@@ -573,4 +572,3 @@ async generatePost(prompt: string, platform: string) {
 **Created:** 2025-11-21
 **Category:** Specialized
 **Inspired by:** claudecodecommands.directory/Lyra
-**Adapted for:** Genfeed AI prompt optimization (social posts, images, templates)

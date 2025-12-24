@@ -1,6 +1,6 @@
 ---
 name: content-workflow-automation
-description: This skill should be used when users need help designing content workflows, creating process documentation, implementing automation rules, designing approval processes, or optimizing content pipelines for Genfeed. It activates when users ask about workflow design, process documentation, automation, approval workflows, or content pipeline optimization.
+description: This skill should be used when users need help designing content workflows, creating process documentation, implementing automation rules, designing approval processes, or optimizing content pipelines. It activates when users ask about workflow design, process documentation, automation, approval workflows, or content pipeline optimization.
 location: .claude/skills/content/workflow-automation/
 ---
 
@@ -8,7 +8,7 @@ location: .claude/skills/content/workflow-automation/
 
 ## Overview
 
-This skill enables Claude to help Genfeed users design and implement content workflows, create process documentation, suggest automation rules, document approval processes, and optimize content pipelines for efficiency and quality.
+This skill enables Claude to help users design and implement content workflows, create process documentation, suggest automation rules, document approval processes, and optimize content pipelines for efficiency and quality.
 
 ## When to Use This Skill
 
@@ -49,11 +49,11 @@ To design effective content workflows:
 **Example User Request:**
 "Design a content workflow for my team that includes approval steps"
 
-**Genfeed Integration:**
+**Integration:**
 
-- Manager App: Store workflow documentation
-- Publisher App: Implement workflow automation
-- Studio App: Integrate workflow steps into content generation
+- Content Management Platform: Store workflow documentation
+- Publishing Platform: Implement workflow automation
+- Content Creation Tools: Integrate workflow steps into content generation
 
 ### 2. Create Process Documentation
 
@@ -80,9 +80,9 @@ To create comprehensive process documentation:
 **Example User Request:**
 "Create a flowchart for my content creation process"
 
-**Genfeed Integration:**
+**Integration:**
 
-- Manager App: Store process documentation
+- Content Management Platform: Store process documentation
 - Team collaboration features: Share workflows with team
 
 ### 3. Automation Rule Suggestions
@@ -102,18 +102,18 @@ To suggest and implement automation rules:
    - Design error handling and fallbacks
 
 3. **Implement Automation**
-   - Configure automation rules in Genfeed
+   - Configure automation rules in content platform
    - Test automation workflows
    - Monitor automation performance
 
 **Example User Request:**
 "What parts of my content workflow can be automated?"
 
-**Genfeed Integration:**
+**Integration:**
 
-- Publisher App: Automated scheduling and distribution
-- Manager App: Automated content organization
-- Analytics App: Automated report generation
+- Publishing Platform: Automated scheduling and distribution
+- Content Management Platform: Automated content organization
+- Analytics Platform: Automated report generation
 
 ### 4. Approval Process Design
 
@@ -132,18 +132,18 @@ To design content approval workflows:
    - Design approval notifications and reminders
 
 3. **Implement Approval System**
-   - Configure approval workflow in Genfeed
+   - Configure approval workflow in content platform
    - Set up notifications and alerts
    - Track approval status and history
 
 **Example User Request:**
 "Design an approval workflow where content needs manager approval before publishing"
 
-**Genfeed Integration:**
+**Integration:**
 
-- Manager App: Approval workflow management
+- Content Management Platform: Approval workflow management
 - Mobile App: Approval notifications and actions
-- Publisher App: Approval-gated publishing
+- Publishing Platform: Approval-gated publishing
 
 ### 5. Content Pipeline Optimization
 
@@ -170,44 +170,55 @@ To optimize content pipelines for efficiency:
 **Example User Request:**
 "Help me optimize my content pipeline to reduce time from ideation to publishing"
 
-**Genfeed Integration:**
+**Integration:**
 
-- All Apps: Optimize workflows across platform
-- Analytics App: Track pipeline performance metrics
-- Manager App: Monitor workflow efficiency
+- All Platforms: Optimize workflows across platform
+- Analytics Platform: Track pipeline performance metrics
+- Content Management Platform: Monitor workflow efficiency
 
-## Genfeed Workflow Context
+## Project Context Discovery
 
-**Current Genfeed Workflow:**
+**Before designing workflows, discover the project's context:**
 
-```
-Trend Detection (Extension) → Content Generation (Studio) →
-Distribution (Publisher) → Analytics (Analytics) → Optimization
-```
+1. **Scan Project Documentation:**
+   - Check `.agent/SYSTEM/ARCHITECTURE.md` for workflow architecture
+   - Review `.agent/SOP/` for existing process documentation
+   - Look for workflow diagrams or process maps
+   - Check for automation documentation
 
-**Workflow Components:**
+2. **Identify Workflow Components:**
+   - Scan codebase for content creation tools
+   - Look for publishing/distribution systems
+   - Check for analytics integrations
+   - Review approval/notification systems
+   - Identify browser extensions or bookmarking features
 
-- Browser Extension: Trend discovery and bookmarking
-- Studio: AI content generation
-- Publisher: Multi-platform scheduling and distribution
-- Analytics: Performance tracking and reporting
-- Manager: Content library and organization
+3. **Discover Existing Processes:**
+   - Review `.agent/SOP/` for documented workflows
+   - Look for existing automation rules
+   - Check for approval process documentation
+   - Identify current pain points from project docs
 
-**Automation Opportunities:**
+4. **Use Project-Specific Skills:**
+   - Check for `[project]-workflow-automation` skill
+   - Look for project-specific automation patterns
+   - Review project's automation best practices
 
-- Automated content scheduling
-- Automated analytics refresh (hourly cron job)
-- Automated report generation
-- Automated content organization
-- Automated approval notifications
+5. **Match Project Patterns:**
+   - Use project's terminology from documentation
+   - Follow project's workflow documentation style
+   - Align with project's automation approach
 
 ## Best Practices
 
-1. **Start Simple**: Begin with basic workflows and add complexity gradually
-2. **Document Everything**: Maintain clear documentation for all workflows
-3. **Test Thoroughly**: Test automation rules before full implementation
-4. **Monitor Performance**: Track workflow efficiency and optimize continuously
-5. **User-Centric Design**: Design workflows that serve users, not just automate tasks
+1. **Discover Project Context First**: Scan project documentation to understand existing workflows and automation
+2. **Use Project-Specific Skills**: If project has `[project]-workflow-automation` skill, collaborate with it
+3. **Match Project Patterns**: Follow project's workflow documentation style and terminology
+4. **Start Simple**: Begin with basic workflows and add complexity gradually
+5. **Document Everything**: Maintain clear documentation matching project's documentation standards
+6. **Test Thoroughly**: Test automation rules before full implementation
+7. **Monitor Performance**: Track workflow efficiency and optimize continuously
+8. **User-Centric Design**: Design workflows that serve users, not just automate tasks
 
 ## Resources
 

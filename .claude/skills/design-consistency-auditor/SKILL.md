@@ -1,8 +1,7 @@
 ---
 name: Design Consistency Auditor
-description: Audit and maintain design system consistency, UX/UI patterns, color palettes, and design best practices across genfeed.ai frontend applications
+description: Audit and maintain design system consistency, UX/UI patterns, color palettes, and design best practices across frontend applications
 version: 1.0.0
-author: Genfeed Team
 tags:
   - design
   - ux
@@ -18,7 +17,7 @@ tags:
 
 ## Purpose
 
-This skill helps audit and maintain design consistency across all genfeed.ai frontend applications. It ensures that:
+This skill helps audit and maintain design consistency across frontend applications. Before auditing, discover the project's frontend structure from documentation. It ensures that:
 
 - Color palettes are used consistently
 - UI/UX patterns follow best practices
@@ -677,20 +676,16 @@ When reviewing frontend code, ask:
 
 #### Design System Files
 
-- `genfeed.ai/packages/styles/globals.scss` - Global styles
-- `genfeed.ai/packages/styles/theme.scss` - Theme definitions
-- `genfeed.ai/packages/styles/animate.scss` - Animations
-- `genfeed.ai/tailwind.config.ts` - Tailwind configuration
+- `[frontend-project]/packages/styles/globals.scss` - Global styles (discover from project)
+- `[frontend-project]/packages/styles/theme.scss` - Theme definitions
+- `[frontend-project]/packages/styles/animate.scss` - Animations
+- `[frontend-project]/tailwind.config.ts` - Tailwind configuration
 
 #### Frontend Apps
 
-- `genfeed.ai/apps/studio/` - Studio app
-- `genfeed.ai/apps/dashboard/` - Dashboard app
-- `genfeed.ai/apps/publisher/` - Publisher app
-- `genfeed.ai/apps/website/` - Marketing website
-- `genfeed.ai/apps/manager/` - Manager app
-- `genfeed.ai/apps/analytics/` - Analytics app
-- `genfeed.ai/apps/automation/` - Automation app
+- `[frontend-project]/apps/[app-1]/` - App 1 (discover from project structure)
+- `[frontend-project]/apps/[app-2]/` - App 2
+- `[frontend-project]/apps/[app-3]/` - App 3
 
 ## Audit Commands
 
@@ -698,19 +693,19 @@ When reviewing frontend code, ask:
 
 ```bash
 # Find hardcoded hex colors
-grep -r "#[0-9a-fA-F]\{6\}" genfeed.ai/apps --include="*.tsx" --include="*.jsx"
+grep -r "#[0-9a-fA-F]\{6\}" [frontend-project]/apps --include="*.tsx" --include="*.jsx"  # Discover from project
 
 # Find arbitrary Tailwind values
-grep -r "bg-\[#\|text-\[#\|p-\[\|m-\[" genfeed.ai/apps --include="*.tsx"
+grep -r "bg-\[#\|text-\[#\|p-\[\|m-\[" [frontend-project]/apps --include="*.tsx"  # Discover from project
 
 # Find inline styles
-grep -r "style={{" genfeed.ai/apps --include="*.tsx"
+grep -r "style={{" [frontend-project]/apps --include="*.tsx"  # Discover from project
 
 # Find missing theme classes
-grep -r "className=\".*card" genfeed.ai/apps --include="*.tsx" | grep -v "gf-card"
+grep -r "className=\".*card" [frontend-project]/apps --include="*.tsx" | grep -v "[project-prefix]-card"  # Discover prefix from project
 
 # Check for non-semantic buttons
-grep -r "<div.*onClick" genfeed.ai/apps --include="*.tsx"
+grep -r "<div.*onClick" [frontend-project]/apps --include="*.tsx"  # Discover from project
 ```
 
 ## Maintenance
@@ -734,4 +729,4 @@ Keep this skill updated when:
 
 **Last Updated**: 2025-10-22
 **Version**: 1.0.0
-**Maintained by**: Genfeed Design Team
+**Maintained by**: Project Design Team

@@ -69,7 +69,7 @@ ls -la ~/.cursor/commands/validate.md
 - [ ] `.agent/SESSIONS/README.md` exists
 - [ ] `.agent/SESSIONS/TEMPLATE.md` exists
 
-#### For Each Project (api, genfeed, extension, docs, mobile)
+#### For Each Project (discover from project structure)
 
 - [ ] `[project]/.agent/README.md` exists
 - [ ] `[project]/.agent/SYSTEM/ARCHITECTURE.md` exists (if applicable)
@@ -113,7 +113,8 @@ done
 echo ""
 
 # Check project files
-PROJECTS=("api.genfeed.ai" "genfeed.ai" "extension.genfeed.ai" "docs.genfeed.ai" "mobile.genfeed.ai")
+# Detect projects dynamically or use generic placeholder
+PROJECTS=("[project-1]" "[project-2]" "[project-3]")
 
 for project in "${PROJECTS[@]}"; do
   echo "📁 Checking $project..."
@@ -245,7 +246,8 @@ violations=$(find .agent/SESSIONS -type f -name "*.md" \
   ! -regex ".*/[0-9]{4}-[0-9]{2}-[0-9]{2}\.md")
 
 # Check all project sessions
-for project in api.genfeed.ai genfeed.ai extension.genfeed.ai mobile.genfeed.ai docs.genfeed.ai; do
+# Detect projects dynamically or use generic placeholder
+for project in [project-1] [project-2] [project-3]; do
   if [ -d "$project/.agent/SESSIONS" ]; then
     violations+=$(find "$project/.agent/SESSIONS" -type f -name "*.md" \
       ! -name "README.md" \
@@ -408,7 +410,8 @@ if [ -d ".agent/SESSIONS" ]; then
 fi
 
 # Validate project sessions
-for project in api.genfeed.ai genfeed.ai extension.genfeed.ai mobile.genfeed.ai docs.genfeed.ai packages.genfeed.ai; do
+# Detect projects dynamically or use generic placeholder
+for project in [project-1] [project-2] [project-3]; do
   if [ -d "$project/.agent/SESSIONS" ]; then
     validate_sessions "$project/.agent/SESSIONS" "$project"
   fi
@@ -443,7 +446,7 @@ fi
       - QUICK-WINS-2025-10-09.md
       → Consolidated into 2025-10-09.md
 
-📁 Checking: api.genfeed.ai
+📁 Checking: [project-name]
    ✅ Compliant
 
 ================================
@@ -460,7 +463,7 @@ All sessions now follow the ONE FILE PER DAY rule
 📁 Checking: Workspace
    ✅ Compliant
 
-📁 Checking: api.genfeed.ai
+📁 Checking: [project-name]
    ✅ Compliant
 
 ================================

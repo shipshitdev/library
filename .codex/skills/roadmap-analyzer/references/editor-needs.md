@@ -204,7 +204,7 @@
 - Runway ML (AI effects, generative tools)
 - Pictory AI (script to video)
 
-**What Genfeed.ai Needs to Match/Exceed:**
+**What [Project] Needs to Match/Exceed:**
 - Ease of CapCut + Power of Premiere
 - AI automation + Creative control
 - Speed of mobile tools + Quality of desktop

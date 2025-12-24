@@ -1,13 +1,13 @@
 ---
 name: roadmap-analyzer
-description: Analyze Genfeed.ai features against ICP needs (SMBs creating UGC with AI, empowering users, AI avatar army) to identify gaps and recommend roadmap priorities. Use this skill when asked to evaluate current product state, identify what should be built next, assess competitive positioning, or plan product roadmap based on target customer needs. Outputs gap analysis, prioritized backlog, and strategic themes.
+description: Analyze project features against ICP (Ideal Customer Profile) needs to identify gaps and recommend roadmap priorities. Use this skill when asked to evaluate current product state, identify what should be built next, assess competitive positioning, or plan product roadmap based on target customer needs. Outputs gap analysis, prioritized backlog, and strategic themes. Discovers ICP and features from project documentation.
 ---
 
 # Roadmap Analyzer
 
 ## Overview
 
-This skill analyzes Genfeed.ai's current feature set against the needs of the Ideal Customer Profile (ICP): SMBs who want to create user-generated content (UGC) with AI while empowering their teams to do so, building an "AI army of avatars." The analysis considers what video editors need to create great content for social media platforms.
+This skill analyzes a project's current feature set against the needs of the Ideal Customer Profile (ICP). Before analyzing, discover the project's ICP from documentation (`.agent/SYSTEM/` or project docs) and current features from the codebase and documentation.
 
 The skill produces three outputs:
 1. **Gap Analysis Table**: Side-by-side comparison of ICP needs vs current features with gaps highlighted
@@ -29,7 +29,7 @@ Invoke this skill when asked to:
 
 ### Step 1: Discover Current Features
 
-Use a hybrid approach to identify existing Genfeed.ai capabilities:
+Use a hybrid approach to identify existing project capabilities (discover from project):
 
 #### 1.1 Automated Codebase Scan
 
@@ -262,7 +262,7 @@ Recommend theme focus order based on:
 Combine all analysis into a comprehensive report:
 
 ```markdown
-# Genfeed.ai Roadmap Analysis
+# [Project] Roadmap Analysis
 ## [Date]
 
 ## Executive Summary
@@ -317,7 +317,7 @@ Combine all analysis into a comprehensive report:
 
 1. **Theme coherence**: Themes should feel cohesive, not arbitrary groupings
 2. **ICP-centric**: Every recommendation should trace back to ICP needs
-3. **Differentiation**: Emphasize features that set Genfeed.ai apart
+3. **Differentiation**: Emphasize features that set the project apart
 4. **Reality check**: Acknowledge market timing, competitive landscape, technical feasibility
 
 ## Common Pitfalls to Avoid

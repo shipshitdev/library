@@ -2,7 +2,6 @@
 name: rules-capture
 description: Automatically detects and documents user preferences, coding rules, and style guidelines when expressed during conversations
 version: 1.0.0
-author: Genfeed Team
 tags:
   - preferences
   - rules

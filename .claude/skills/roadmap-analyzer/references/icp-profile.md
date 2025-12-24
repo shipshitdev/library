@@ -1,4 +1,6 @@
-# Genfeed.ai ICP (Ideal Customer Profile)
+# [Project] ICP (Ideal Customer Profile)
+
+**Note:** This is a template. Discover the project's actual ICP from project documentation (`.agent/SYSTEM/` or project docs).
 
 ## Primary Customer Segment: Marketing Agencies ⭐
 
@@ -67,7 +69,7 @@
    - Need tools that improve margins while delivering quality
    - **Impact**: Agencies are price-sensitive but value ROI over sticker price
 
-### Core Needs from Genfeed.ai
+### Core Needs from [Project]
 
 #### 1. AI-Powered UGC Creation
 
@@ -157,7 +159,7 @@
 
 ### Differentiation Needs
 
-What makes Genfeed.ai the obvious choice:
+What makes [Project] the obvious choice:
 
 1. **UGC-native**: Not just talking heads, but authentic social content styles
 2. **Team enablement**: Anyone can create, not just specialists
@@ -172,7 +174,7 @@ What makes Genfeed.ai the obvious choice:
 - In-house marketing teams (10-50 employees)
 - E-commerce brands managing their own content
 - SaaS companies with content marketing needs
-- **Note**: Agencies will often recommend Genfeed to their clients
+- **Note**: Discover project-specific value propositions from documentation
 
 ### Individual Content Creators/Influencers
 

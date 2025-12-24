@@ -7,15 +7,15 @@ Centralized **global** skills and commands for Claude Code, OpenAI Codex, and Cu
 ```
 skills/
 ├── .claude/
-│   ├── skills/              # Claude global skills (11)
+│   ├── skills/              # Claude global skills (12)
 │   └── commands/            # Claude global commands
 │
 ├── .codex/
-│   ├── skills/              # Codex global skills (27)
+│   ├── skills/              # Codex global skills (36)
 │   └── commands/            # Codex global commands
 │
 └── .cursor/
-    ├── skills/              # Cursor global skills (4)
+    ├── skills/              # Cursor global skills (5)
     └── commands/            # Cursor global commands (18)
 ```
 
@@ -32,10 +32,10 @@ This repo is symlinked from each agent's home directory:
 
 Project repos can also symlink to specific skills here for shared functionality.
 
-**Genfeedai Integration:**
-- All genfeedai projects symlink to this repo for generic commands
-- Genfeed-specific commands remain in genfeedai workspace
-- See `GENFEEDAI-SETUP.md` for details
+**Project Integration:**
+- Projects can symlink to this repo for generic commands and skills
+- Project-specific commands and skills remain in project workspace
+- Skills adapt to project context by scanning project documentation
 
 Edit skills/commands here, changes are immediately available to agents.
 
@@ -74,9 +74,9 @@ See [INSTALL.md](INSTALL.md) for:
 
 - analyze-codebase, bug, clean, code-review, docs-generate, docs-update, end, inbox, new-cmd, new-session, optimize-prompt, quick-fix, refactor-code, review-pr, start, task, test, validate
 
-**Skills (4):**
+**Skills (5):**
 
-- analytics-expert, planning-assistant, strategy-expert, workflow-automation
+- analytics-expert, planning-assistant, project-scaffold, strategy-expert, workflow-automation
 
 See `.cursor/commands/README.md` and `.cursor/skills/README.md` for details.
 
@@ -88,6 +88,7 @@ See `.cursor/commands/README.md` and `.cursor/skills/README.md` for details.
 - fullstack-workspace-init
 - internal-comms
 - micro-landing-builder
+- project-scaffold
 - qa-reviewer
 - roadmap-analyzer
 - session-documenter
@@ -102,9 +103,12 @@ See `.cursor/commands/README.md` and `.cursor/skills/README.md` for details.
 - artifacts-builder
 - changelog-generator
 - component-library
+- content-script-developer
 - copywriter
 - design-consistency-auditor
+- docs
 - docusaurus-writer
+- expo-architect
 - fullstack-workspace-init
 - gh-address-comments
 - gh-fix-ci
@@ -112,13 +116,19 @@ See `.cursor/commands/README.md` and `.cursor/skills/README.md` for details.
 - landing-page-vercel
 - mcp-builder
 - micro-landing-builder
+- mongodb-migration-expert
 - nestjs-queue-architect
+- nestjs-testing-expert
+- package-architect
 - planning-assistant
+- plasmo-extension-architect
+- project-scaffold
 - prompt-engineer
 - qa-reviewer
 - react-native-components
 - roadmap-analyzer
 - rules-capture
+- serializer-specialist
 - session-documenter
 - strategy-expert
 - webapp-testing
@@ -177,7 +187,24 @@ skill-name/
 
 ## Documentation
 
-- `GENFEEDAI-SETUP.md` - How genfeedai projects use this repository
 - `INSTALL.md` - Complete installation guide for all skills/commands
 - `.cursor/commands/README.md` - Cursor commands reference
 - `.cursor/skills/README.md` - Cursor skills reference
+
+## How Skills Adapt to Projects
+
+Skills in this repository are designed to be **adaptive**:
+
+1. **Discover Project Context**: Skills scan project documentation (`.agent/SYSTEM/`, `.agent/SOP/`, etc.) to understand:
+   - Project architecture and structure
+   - Brand voice and tone
+   - Existing patterns and conventions
+   - Terminology and style
+
+2. **Use Project-Specific Skills**: If a project has its own skill (e.g., `[project]-analytics-expert`), the generic skill will collaborate with or defer to it
+
+3. **Adapt to Project Patterns**: Skills match the project's:
+   - Documentation style
+   - Code patterns
+   - Naming conventions
+   - Workflow processes

@@ -82,7 +82,7 @@ ls -la ~/.cursor/commands/docs-generate.md
 **Rate Limiting:** 100 requests/minute
 
 **Example:**
-curl -X POST https://api.genfeed.ai/api/endpoint \
+curl -X POST https://api.example.com/api/endpoint \
   -H "Authorization: Bearer $TOKEN" \
   -d '{"field": "value"}'
 ```
@@ -269,7 +269,7 @@ Organization is automatically set from authenticated user. Post is isolated to u
 
 **Example Request:**
 ```bash
-curl -X POST https://api.genfeed.ai/api/posts \
+curl -X POST https://api.example.com/api/posts \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -279,9 +279,9 @@ curl -X POST https://api.genfeed.ai/api/posts \
 ```
 
 **Implementation:**
-- Controller: `apps/api/src/posts/posts.controller.ts`
-- Service: `apps/api/src/posts/posts.service.ts`
-- Schema: `apps/api/src/posts/schemas/post.schema.ts`
+- Controller: `[api-project]/src/posts/posts.controller.ts`
+- Service: `[api-project]/src/posts/posts.service.ts`
+- Schema: `[api-project]/src/posts/schemas/post.schema.ts`
 ````
 
 ### Example 2: Document Feature Implementation
@@ -318,13 +318,13 @@ graph TD
 ### Components
 
 **Frontend:**
-- `apps/web/components/PostGenerator.tsx` - User interface
-- `apps/web/services/posts.service.ts` - API client
+- `[frontend-project]/components/PostGenerator.tsx` - User interface
+- `[frontend-project]/services/posts.service.ts` - API client
 
 **Backend:**
-- `apps/api/src/posts/posts.controller.ts` - Endpoint handler
-- `apps/api/src/posts/posts.service.ts` - Business logic
-- `apps/api/src/posts/queues/post-generation.queue.ts` - Background job
+- `[api-project]/src/posts/posts.controller.ts` - Endpoint handler
+- `[api-project]/src/posts/posts.service.ts` - Business logic
+- `[api-project]/src/posts/queues/post-generation.queue.ts` - Background job
 
 **External:**
 - OpenAI GPT-4 API - Content generation

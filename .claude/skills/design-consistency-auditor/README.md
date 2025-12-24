@@ -1,6 +1,6 @@
 # Design Consistency Auditor Skill
 
-A comprehensive Claude Code skill for auditing and maintaining design system consistency across genfeed.ai frontend applications.
+A comprehensive Claude Code skill for auditing and maintaining design system consistency across frontend applications. Discovers project structure from documentation.
 
 ## Quick Start
 
@@ -11,7 +11,7 @@ A comprehensive Claude Code skill for auditing and maintaining design system con
 "Audit the Studio app for design consistency"
 
 # Audit all apps
-"Run a full design audit across all genfeed.ai apps"
+"Run a full design audit across all frontend apps" (discovers project structure)
 
 # Focus on specific areas
 "Check color palette consistency in Publisher app"
@@ -124,16 +124,16 @@ design-consistency-auditor/
 
 ```bash
 # Find hardcoded colors
-grep -r "#[0-9a-fA-F]\{6\}" genfeed.ai/apps/studio --include="*.tsx"
+grep -r "#[0-9a-fA-F]\{6\}" [frontend-project]/apps/[app-name] --include="*.tsx"  # Discover from project
 
 # Find arbitrary Tailwind values
-grep -r "bg-\[#\|text-\[#\|p-\[\|m-\[" genfeed.ai/apps --include="*.tsx"
+grep -r "bg-\[#\|text-\[#\|p-\[\|m-\[" [frontend-project]/apps --include="*.tsx"  # Discover from project
 
 # Find inline styles
-grep -r "style={{" genfeed.ai/apps --include="*.tsx"
+grep -r "style={{" [frontend-project]/apps --include="*.tsx"  # Discover from project
 
 # Find non-semantic buttons
-grep -r "<div.*onClick" genfeed.ai/apps --include="*.tsx"
+grep -r "<div.*onClick" [frontend-project]/apps --include="*.tsx"  # Discover from project
 ```
 
 ### Manual Testing
@@ -306,6 +306,6 @@ This skill works well with:
 
 **Created**: 2025-10-22
 **Version**: 1.0.0
-**Maintained by**: Genfeed Design Team
+**Maintained by**: Project Design Team
 
 Need help? Ask Claude: "How do I use the Design Consistency Auditor skill?"

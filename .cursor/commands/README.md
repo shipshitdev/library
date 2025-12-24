@@ -106,7 +106,7 @@ For commands with options:
 These commands use standard `.agent/` folder structure. Only adapt project-specific paths:
 
 - `[project]` - Replace with your project name/path
-- `[frontend-project]` - Replace with your frontend project path (e.g., `genfeed.ai/`, `web/`)
+- `[frontend-project]` - Replace with your frontend project path (e.g., `web/`, `frontend/`)
 - `[backend-project]` - Replace with your backend project path (e.g., `api/`, `server/`)
 
 ### Standard Paths (Do Not Change)
@@ -121,8 +121,8 @@ All commands use these standard paths:
 ### Common Adaptations Needed
 
 **Project Paths:**
-- `genfeed.ai/` → Your frontend project name
-- `api.genfeed.ai/` → Your backend project name
+- `[frontend-project]/` → Your frontend project name
+- `[api-project]/` → Your backend project name
 
 **Security Patterns:**
 - Multi-tenancy: Adapt `organization`/`tenantId` to your field names

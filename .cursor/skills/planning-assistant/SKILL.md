@@ -1,6 +1,6 @@
 ---
 name: content-planning-assistant
-description: This skill should be used when users need help with content planning, calendar management, research organization, content ideation, or multi-platform planning for Genfeed. It activates when users ask about content planning, calendar management, research organization, content ideation, or multi-platform planning.
+description: This skill should be used when users need help with content planning, calendar management, research organization, content ideation, or multi-platform planning. It activates when users ask about content planning, calendar management, research organization, content ideation, or multi-platform planning.
 location: .claude/skills/content/planning-assistant/
 ---
 
@@ -8,7 +8,7 @@ location: .claude/skills/content/planning-assistant/
 
 ## Overview
 
-This skill enables Claude to assist Genfeed users with comprehensive content planning including weekly/monthly planning, research organization and synthesis, content calendar creation, inspiration-to-plan conversion, and multi-platform content planning.
+This skill enables Claude to assist users with comprehensive content planning including weekly/monthly planning, research organization and synthesis, content calendar creation, inspiration-to-plan conversion, and multi-platform content planning.
 
 ## When to Use This Skill
 
@@ -49,11 +49,11 @@ To help users plan content for weeks or months:
 **Example User Request:**
 "Help me plan my content for next week"
 
-**Genfeed Integration:**
+**Integration:**
 
-- Publisher App: Schedule content in calendar
-- Analytics App: Use performance data for planning
-- Manager App: Organize content ideas and themes
+- Publishing Platform: Schedule content in calendar
+- Analytics Platform: Use performance data for planning
+- Content Management Platform: Organize content ideas and themes
 
 ### 2. Research Organization and Synthesis
 
@@ -80,11 +80,11 @@ To help users organize and synthesize research:
 **Example User Request:**
 "Organize my bookmarked research and turn it into a content plan"
 
-**Genfeed Integration:**
+**Integration:**
 
 - Browser Extension: Import bookmarked research
-- Manager App: Organize research collections
-- Studio App: Generate content from research
+- Content Management Platform: Organize research collections
+- Content Creation Tools: Generate content from research
 
 ### 3. Content Calendar Creation
 
@@ -112,11 +112,11 @@ To create comprehensive content calendars:
 **Example User Request:**
 "Create a content calendar for next month"
 
-**Genfeed Integration:**
+**Integration:**
 
-- Publisher App: Visual calendar interface
-- Manager App: Content idea organization
-- Analytics App: Performance-based scheduling
+- Publishing Platform: Visual calendar interface
+- Content Management Platform: Content idea organization
+- Analytics Platform: Performance-based scheduling
 
 ### 4. Inspiration-to-Plan Conversion
 
@@ -142,12 +142,12 @@ To convert inspiration into actionable content plans:
 **Example User Request:**
 "Turn my bookmarked inspiration into a content plan"
 
-**Genfeed Integration:**
+**Integration:**
 
 - Browser Extension: Import inspiring content
-- Manager App: Organize inspiration and ideas
-- Studio App: Generate content from inspiration
-- Publisher App: Schedule content from plans
+- Content Management Platform: Organize inspiration and ideas
+- Content Creation Tools: Generate content from inspiration
+- Publishing Platform: Schedule content from plans
 
 ### 5. Multi-Platform Content Planning
 
@@ -174,27 +174,43 @@ To plan content across multiple platforms:
 **Example User Request:**
 "Help me plan content for X, LinkedIn, and Instagram for next week"
 
-**Genfeed Integration:**
+**Integration:**
 
-- Publisher App: Multi-platform scheduling
-- Studio App: Platform-specific content generation
-- Analytics App: Platform performance comparison
+- Publishing Platform: Multi-platform scheduling
+- Content Creation Tools: Platform-specific content generation
+- Analytics Platform: Platform performance comparison
 
-## Genfeed Planning Context
+## Project Context Discovery
 
-**Content Planning Workflow:**
+**Before creating content plans, discover the project's context:**
 
-```
-Research/Inspiration → Content Ideas → Content Calendar →
-Content Generation → Publishing → Analytics → Optimization
-```
+1. **Scan Project Documentation:**
+   - Check `.agent/SYSTEM/ARCHITECTURE.md` for planning tools
+   - Review `.agent/SOP/` for content planning processes
+   - Look for existing content calendar templates
+   - Check for planning workflow documentation
 
-**Planning Tools:**
+2. **Identify Planning Tools:**
+   - Scan codebase for calendar/scheduling features
+   - Look for content idea management systems
+   - Check for research/bookmarking integrations
+   - Review analytics platform for planning data
 
-- Publisher App: Content calendar and scheduling
-- Manager App: Content idea organization
-- Browser Extension: Research and inspiration collection
-- Analytics App: Performance-based planning
+3. **Discover Planning Patterns:**
+   - Review existing content calendars if available
+   - Check for content planning templates
+   - Look for research organization patterns
+   - Identify platform-specific planning requirements
+
+4. **Use Project-Specific Skills:**
+   - Check for `[project]-planning-assistant` skill
+   - Look for project-specific planning templates
+   - Review project's content planning best practices
+
+5. **Match Project Style:**
+   - Use project's planning terminology
+   - Follow project's calendar format
+   - Align with project's content organization approach
 
 **Platform-Specific Planning:**
 
@@ -206,11 +222,14 @@ Content Generation → Publishing → Analytics → Optimization
 
 ## Best Practices
 
-1. **Data-Driven Planning**: Base plans on historical performance data
-2. **Platform Optimization**: Adapt content for each platform's requirements
-3. **Consistency**: Maintain consistent posting schedule and brand voice
-4. **Flexibility**: Allow room for trending topics and timely content
-5. **Balance**: Mix content types (educational, entertaining, promotional)
+1. **Discover Project Context First**: Scan project documentation to understand planning tools and processes
+2. **Use Project-Specific Skills**: If project has `[project]-planning-assistant` skill, collaborate with it
+3. **Match Project Patterns**: Follow project's planning templates and terminology
+4. **Data-Driven Planning**: Base plans on historical performance data from the project
+5. **Platform Optimization**: Adapt content for each platform's requirements
+6. **Consistency**: Maintain consistent posting schedule and discovered brand voice
+7. **Flexibility**: Allow room for trending topics and timely content
+8. **Balance**: Mix content types (educational, entertaining, promotional)
 
 ## Resources
 

@@ -1,8 +1,7 @@
 ---
 name: Component Library Standards
-description: Expert React/Next.js component architect specializing in creating consistent, reusable, and maintainable components for the Genfeed.ai monorepo
+description: Expert React/Next.js component architect specializing in creating consistent, reusable, and maintainable components for monorepo projects
 version: 1.0.0
-author: Genfeed Team
 tags:
   - react
   - nextjs
@@ -15,7 +14,7 @@ tags:
 
 # Component Library Standards Skill
 
-You are an expert React/Next.js component architect specializing in creating consistent, reusable, and maintainable components for the Genfeed.ai monorepo.
+You are an expert React/Next.js component architect specializing in creating consistent, reusable, and maintainable components. You adapt to each project's component patterns and standards.
 
 ## When to Use This Skill
 
@@ -30,19 +29,37 @@ This skill activates automatically when you're:
 
 ---
 
-## Genfeed Component Architecture
+## Project Component Architecture Discovery
 
-### Project Structure
+**Before creating components, discover the project's structure:**
+
+1. **Scan Project Structure:**
+   - Check `.agent/SYSTEM/ARCHITECTURE.md` for component architecture
+   - Review project's directory structure
+   - Identify shared vs app-specific component locations
+   - Look for existing component patterns
+
+2. **Identify Component Patterns:**
+   - Review existing components for naming conventions
+   - Check for component library or design system
+   - Look for prop/interface patterns
+   - Identify styling approach (Tailwind, CSS modules, etc.)
+
+3. **Use Project-Specific Skills:**
+   - Check for `[project]-component-library` skill
+   - Look for project-specific component patterns
+   - Review project's component documentation
+
+### Typical Monorepo Structure
 
 ```
-genfeed.ai/
+[project]/
 ├── apps/                    # Individual Next.js applications
-│   ├── website/
-│   ├── studio/
-│   ├── analytics/
+│   ├── [app-1]/
+│   ├── [app-2]/
 │   └── ...
 └── packages/                # Shared packages
-    ├── components/          # Shared UI components (buttons, cards, modals)
+    ├── components/          # Shared UI components (discover from project)
     ├── props/              # Shared prop type definitions
     ├── interfaces/         # TypeScript interfaces
     └── design-system/      # Tokens, themes, icons
@@ -50,27 +67,33 @@ genfeed.ai/
 
 ### Component Location Rules
 
-**When to create in `packages/components/`** (Shared):
+**Discover component location rules from project:**
 
-- ✅ Used in 2+ apps
+1. **Check Project Documentation:**
+   - Review `.agent/SYSTEM/ARCHITECTURE.md` for component organization
+   - Look for component location guidelines
+   - Check existing component structure
+
+2. **General Guidelines (adapt to project):**
+
+**When to create in shared location:**
+- ✅ Used in 2+ apps (discover from project structure)
 - ✅ Generic UI patterns (buttons, modals, cards)
 - ✅ Design system components
 - ✅ Form controls and inputs
 - ✅ Layout components (headers, footers, grids)
 
-**When to create in `apps/[app]/packages/components/`** (App-specific):
-
+**When to create in app-specific location:**
 - ✅ App-specific business logic
 - ✅ Used only in one app
 - ✅ Features tightly coupled to app context
 - ✅ One-off specialized components
 
-**Example**:
-
+**Example** (adapt paths to project structure):
 ```
-✅ packages/components/buttons/Button.tsx (shared, generic)
-✅ apps/studio/packages/components/VideoEditor.tsx (studio-specific)
-❌ apps/studio/packages/components/Button.tsx (should be shared)
+✅ [shared-location]/components/buttons/Button.tsx (shared, generic)
+✅ [app-location]/components/[Feature]Component.tsx (app-specific)
+❌ Duplicate shared components in app locations
 ```
 
 ---
@@ -828,13 +851,17 @@ Before creating or updating a component, verify:
 
 ## Resources
 
-- **Design System**: `packages/design-system/`
-- **Shared Components**: `packages/components/`
-- **Shared Props**: `packages/props/`
+**Discover from project:**
+- **Design System**: Discover location from project structure
+- **Shared Components**: Discover location from project structure
+- **Shared Props**: Discover location from project structure
+- **Project Documentation**: Check `.agent/SYSTEM/ARCHITECTURE.md`
+
+**External Resources:**
 - **DaisyUI Docs**: https://daisyui.com/
 - **Tailwind Docs**: https://tailwindcss.com/
 - **Next.js Docs**: https://nextjs.org/docs
 
 ---
 
-**Questions?** Consult the workspace architecture at `.agent/SYSTEM/WORKSPACE-ARCHITECTURE.md` or the frontend-specific docs in `genfeed.ai/.agent/`.
+**Questions?** Consult the workspace architecture at `.agent/SYSTEM/WORKSPACE-ARCHITECTURE.md` or project-specific frontend documentation.

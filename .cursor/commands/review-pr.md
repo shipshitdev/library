@@ -290,7 +290,7 @@ npm run analyze
 Use this prompt for AI-assisted review:
 
 ```
-Review this PR against Genfeed standards:
+Review this PR against project standards:
 
 1. Read: .agent/SYSTEM/RULES.md
 2. Read: .agent/SOP/code-review.md

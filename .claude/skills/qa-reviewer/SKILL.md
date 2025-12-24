@@ -2,7 +2,6 @@
 name: qa-reviewer
 description: Systematically review AI agent work for quality, accuracy, and completeness. Catches bugs, verifies patterns, checks against requirements, and suggests improvements before committing changes.
 version: 1.0.0
-author: Genfeed Team
 tags:
   - quality-assurance
   - verification
@@ -71,7 +70,7 @@ List all changes made:
 
 **1.3 Check Critical Rules**
 
-For genfeed projects, ALWAYS verify against:
+For projects, ALWAYS verify against:
 
 ```bash
 cat .agent/SYSTEM/critical/CRITICAL-NEVER-DO.md
@@ -148,20 +147,20 @@ grep -n "<pattern>" <file>
 
 **3.2 Pattern Accuracy**
 
-For genfeed-specific patterns, verify:
+For project-specific patterns, verify (discover from project):
 
 ```bash
 # Check serializers location
-ls packages.genfeed.ai/packages/common/serializers/
+ls [packages-project]/packages/common/serializers/  # Discover from project
 
 # Check interfaces location
-find packages.genfeed.ai/packages -name "interfaces" -type d
+find [packages-project]/packages -name "interfaces" -type d  # Discover from project
 
 # Check GitHub workflows
 find . -path "*/.github/workflows/*.yml" -not -path "*/node_modules/*"
 
 # Verify project structure
-ls -d *genfeed*/
+ls -d [project-pattern]*/  # Discover from project
 ```
 
 **3.3 Cross-Reference Validation**
@@ -208,7 +207,7 @@ Look for:
 - Missing error handling
 - Race conditions
 
-**4.3 Genfeed-Specific Violations**
+**4.3 Project-Specific Violations**
 
 Check against CRITICAL-NEVER-DO.md:
 
@@ -340,7 +339,7 @@ None found: ✅
 - ⚠️ Missing: <anything incomplete>
 - ⚠️ Side effects: <unintended changes>
 
-## ⚠️ Genfeed Rules Compliance
+## ⚠️ Project Rules Compliance
 
 CRITICAL-NEVER-DO.md:
 
@@ -462,14 +461,15 @@ balanced = code_blocks % 2 == 0
 
 **Fix:** Validate assumptions before building on them
 
-## Genfeed-Specific Checks
+## Project-Specific Checks
 
 ### Monorepo Structure
 
 Verify all 6 projects respected:
 
 ```bash
-for project in api.genfeed.ai genfeed.ai extension.genfeed.ai mobile.genfeed.ai docs.genfeed.ai packages.genfeed.ai; do
+# Discover projects from project structure
+for project in [project-1] [project-2] [project-3]; do
   echo "Checking $project"
   ls $project/AGENTS.md $project/CLAUDE.md $project/CODEX.md
 done
@@ -481,10 +481,10 @@ Verify correct locations:
 
 ```bash
 # Serializers
-ls packages.genfeed.ai/packages/common/serializers/
+ls [packages-project]/packages/common/serializers/  # Discover from project
 
 # Interfaces
-find packages.genfeed.ai/packages -name "interfaces" -type d
+find [packages-project]/packages -name "interfaces" -type d  # Discover from project
 ```
 
 ### Database Patterns
@@ -536,13 +536,13 @@ git commit -m "..."
 
 ### Example 1: Command Creation Review
 
-**Context:** Created 3 new commands for genfeed
+**Context:** Created 3 new commands for project
 
 **QA Process:**
 
 1. ✅ Verify all 3 commands created
 2. ✅ Check markdown syntax balanced
-3. ✅ Verify genfeed patterns referenced
+3. ✅ Verify project patterns referenced
 4. 🐛 Found: Workflow paths inaccurate
 5. 💡 Suggested: Add more examples
 6. ✅ Fixed: Updated workflow paths
@@ -598,12 +598,12 @@ grep -r "npm test\|pnpm test\|vitest run" <files>
 Verify claims against multiple sources:
 
 ```bash
-# Claim: "Serializers in packages.genfeed.ai"
+# Claim: "Serializers in [packages-project]"
 # Verify 1: Check packages
-ls packages.genfeed.ai/packages/common/serializers/
+ls [packages-project]/packages/common/serializers/  # Discover from project
 
 # Verify 2: Check NOT in API
-find api.genfeed.ai -name "*serializer*" -type f
+find [api-project] -name "*serializer*" -type f  # Discover from project
 
 # Verify 3: Check CRITICAL-NEVER-DO.md confirms
 grep -i "serializer" .agent/SYSTEM/critical/CRITICAL-NEVER-DO.md

@@ -1,6 +1,6 @@
 ---
 name: content-analytics-expert
-description: This skill should be used when users need help analyzing Genfeed analytics data, creating reports, identifying trends, calculating ROI, or providing content optimization recommendations. It activates when users ask analytics questions, request reports, need performance analysis, ROI calculations, trend identification, or content optimization recommendations.
+description: This skill should be used when users need help analyzing content analytics data, creating reports, identifying trends, calculating ROI, or providing content optimization recommendations. It activates when users ask analytics questions, request reports, need performance analysis, ROI calculations, trend identification, or content optimization recommendations.
 location: .claude/skills/content/analytics-expert/
 ---
 
@@ -8,7 +8,7 @@ location: .claude/skills/content/analytics-expert/
 
 ## Overview
 
-This skill enables Claude to analyze Genfeed analytics data, generate comprehensive reports, identify performance trends, calculate ROI and revenue attribution, and provide actionable insights for content optimization.
+This skill enables Claude to analyze content analytics data, generate comprehensive reports, identify performance trends, calculate ROI and revenue attribution, and provide actionable insights for content optimization.
 
 ## When to Use This Skill
 
@@ -25,11 +25,11 @@ This skill activates automatically when users:
 
 ### 1. Generate Analytics Reports
 
-To generate comprehensive analytics reports from Genfeed data:
+To generate comprehensive analytics reports:
 
 1. **Collect Analytics Data**
 
-   - Access Genfeed Analytics app data
+   - Access analytics platform data (discover from project)
    - Aggregate performance metrics across platforms
    - Gather engagement data (views, likes, comments, shares)
    - Collect conversion and revenue data (if available)
@@ -52,11 +52,11 @@ To generate comprehensive analytics reports from Genfeed data:
 **Example User Request:**
 "Generate a monthly performance report for my content"
 
-**Genfeed Integration:**
+**Integration (discover from project):**
 
-- Analytics App: Access performance data
-- Manager App: Store and share reports
-- Publisher App: Use insights for scheduling optimization
+- Analytics Platform: Access performance data
+- Content Management Platform: Store and share reports
+- Publishing Platform: Use insights for scheduling optimization
 
 ### 2. Identify Top-Performing Content Patterns
 
@@ -84,11 +84,11 @@ To identify patterns in top-performing content:
 **Example User Request:**
 "What patterns do you see in my top-performing content?"
 
-**Genfeed Integration:**
+**Integration (discover from project):**
 
-- Analytics App: Analyze performance data
-- Studio App: Apply patterns to new content generation
-- Manager App: Store pattern insights
+- Analytics Platform: Analyze performance data
+- Content Creation Tools: Apply patterns to new content generation
+- Content Management Platform: Store pattern insights
 
 ### 3. Predict Content Performance
 
@@ -115,11 +115,11 @@ To predict content performance before publishing:
 **Example User Request:**
 "Predict how well this content will perform before I publish it"
 
-**Genfeed Integration:**
+**Integration (discover from project):**
 
-- Analytics App: Use historical data for predictions
-- Studio App: Optimize content before generation
-- Publisher App: Optimize scheduling based on predictions
+- Analytics Platform: Use historical data for predictions
+- Content Creation Tools: Optimize content before generation
+- Publishing Platform: Optimize scheduling based on predictions
 
 ### 4. ROI Analysis and Attribution
 
@@ -128,7 +128,7 @@ To calculate ROI and revenue attribution:
 1. **Track Revenue Metrics**
 
    - Link content to conversions and revenue
-   - Track attribution through genfeed.ai/u/[handle] links
+   - Track attribution through project's tracking links (discover format from project docs)
    - Calculate cost per content piece (API costs, time)
 
 2. **Calculate ROI**
@@ -147,11 +147,11 @@ To calculate ROI and revenue attribution:
 **Example User Request:**
 "Calculate the ROI for my content and show me which pieces drive the most revenue"
 
-**Genfeed Integration:**
+**Integration (discover from project):**
 
-- Analytics App: Track conversions and revenue
-- Manager App: Store ROI data and reports
-- Publisher App: Optimize distribution based on ROI
+- Analytics Platform: Track conversions and revenue
+- Content Management Platform: Store ROI data and reports
+- Publishing Platform: Optimize distribution based on ROI
 
 ### 5. Trend Identification
 
@@ -178,28 +178,38 @@ To identify trends from analytics data:
 **Example User Request:**
 "What trends do you see in my content performance over the last 3 months?"
 
-**Genfeed Integration:**
+**Integration (discover from project):**
 
-- Analytics App: Analyze time-series data
-- Manager App: Store trend insights
-- Studio App: Apply trends to content generation
+- Analytics Platform: Analyze time-series data
+- Content Management Platform: Store trend insights
+- Content Creation Tools: Apply trends to content generation
 
-## Genfeed Analytics Context
+## Project Context Discovery
 
-**Available Analytics Data:**
+**Before analyzing analytics, discover the project's context:**
+
+1. **Scan Project Documentation:**
+   - Check `.agent/SYSTEM/ARCHITECTURE.md` for analytics platform details
+   - Review `.agent/SYSTEM/SUMMARY.md` for analytics capabilities
+   - Look for analytics-related documentation
+
+2. **Identify Analytics Platform:**
+   - Check for analytics service integrations in codebase
+   - Look for analytics API endpoints or SDKs
+   - Review environment variables for analytics services
+
+3. **Discover Available Metrics:**
+   - Review analytics API documentation if available
+   - Check for analytics data models or schemas
+   - Identify what metrics the project tracks
+
+**Common Analytics Data Types (adapt based on discovery):**
 
 - Post-level metrics: Views, Likes, Comments, Shares, Engagement Rate
-- Platform-specific metrics: Performance by platform (X, LinkedIn, Instagram, TikTok, YouTube)
+- Platform-specific metrics: Performance by platform
 - Time-based metrics: Performance over time (7d, 30d, 90d)
-- Conversion metrics: Clicks, signups, revenue (via genfeed.ai/u/[handle] links)
-- Content type metrics: Performance by content type (video, image, article)
-
-**Analytics App Features:**
-
-- Post Analytics Dashboard (`/analytics/posts`)
-- Real-time performance tracking
-- Filters: Platform, Timeframe, Sort by metric
-- Hourly analytics refresh (automated cron job)
+- Conversion metrics: Clicks, signups, revenue (via tracking links)
+- Content type metrics: Performance by content type
 
 **Key Metrics:**
 
@@ -220,7 +230,7 @@ To identify trends from analytics data:
 
 ### references/
 
-- `analytics-api-reference.md`: Genfeed Analytics API endpoints and data structures
+- `analytics-api-reference.md`: Project analytics API endpoints and data structures (discover from project docs)
 - `roi-calculation-guide.md`: ROI calculation methods and formulas
 - `performance-benchmarks.md`: Industry benchmarks for content performance
 

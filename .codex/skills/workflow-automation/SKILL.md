@@ -1,6 +1,6 @@
 ---
 name: content-workflow-automation
-description: This skill should be used when users need help designing content workflows, creating process documentation, implementing automation rules, designing approval processes, or optimizing content pipelines for Genfeed. It activates when users ask about workflow design, process documentation, automation, approval workflows, or content pipeline optimization.
+description: This skill should be used when users need help designing content workflows, creating process documentation, implementing automation rules, designing approval processes, or optimizing content pipelines. It activates when users ask about workflow design, process documentation, automation, approval workflows, or content pipeline optimization.
 location: .claude/skills/content/workflow-automation/
 ---
 
@@ -8,7 +8,7 @@ location: .claude/skills/content/workflow-automation/
 
 ## Overview
 
-This skill enables Claude to help Genfeed users design and implement content workflows, create process documentation, suggest automation rules, document approval processes, and optimize content pipelines for efficiency and quality.
+This skill enables Claude to help users design and implement content workflows, create process documentation, suggest automation rules, document approval processes, and optimize content pipelines for efficiency and quality.
 
 ## When to Use This Skill
 
@@ -49,11 +49,11 @@ To design effective content workflows:
 **Example User Request:**
 "Design a content workflow for my team that includes approval steps"
 
-**Genfeed Integration:**
+**Integration (discover from project):**
 
-- Manager App: Store workflow documentation
-- Publisher App: Implement workflow automation
-- Studio App: Integrate workflow steps into content generation
+- Content Management Platform: Store workflow documentation
+- Publishing Platform: Implement workflow automation
+- Content Creation Tools: Integrate workflow steps into content generation
 
 ### 2. Create Process Documentation
 
@@ -80,9 +80,9 @@ To create comprehensive process documentation:
 **Example User Request:**
 "Create a flowchart for my content creation process"
 
-**Genfeed Integration:**
+**Integration (discover from project):**
 
-- Manager App: Store process documentation
+- Content Management Platform: Store process documentation
 - Team collaboration features: Share workflows with team
 
 ### 3. Automation Rule Suggestions
@@ -102,18 +102,18 @@ To suggest and implement automation rules:
    - Design error handling and fallbacks
 
 3. **Implement Automation**
-   - Configure automation rules in Genfeed
+   - Configure automation rules in content platform (discover from project)
    - Test automation workflows
    - Monitor automation performance
 
 **Example User Request:**
 "What parts of my content workflow can be automated?"
 
-**Genfeed Integration:**
+**Integration (discover from project):**
 
-- Publisher App: Automated scheduling and distribution
-- Manager App: Automated content organization
-- Analytics App: Automated report generation
+- Publishing Platform: Automated scheduling and distribution
+- Content Management Platform: Automated content organization
+- Analytics Platform: Automated report generation
 
 ### 4. Approval Process Design
 
@@ -132,18 +132,18 @@ To design content approval workflows:
    - Design approval notifications and reminders
 
 3. **Implement Approval System**
-   - Configure approval workflow in Genfeed
+   - Configure approval workflow in content platform (discover from project)
    - Set up notifications and alerts
    - Track approval status and history
 
 **Example User Request:**
 "Design an approval workflow where content needs manager approval before publishing"
 
-**Genfeed Integration:**
+**Integration (discover from project):**
 
-- Manager App: Approval workflow management
+- Content Management Platform: Approval workflow management
 - Mobile App: Approval notifications and actions
-- Publisher App: Approval-gated publishing
+- Publishing Platform: Approval-gated publishing
 
 ### 5. Content Pipeline Optimization
 
@@ -170,33 +170,46 @@ To optimize content pipelines for efficiency:
 **Example User Request:**
 "Help me optimize my content pipeline to reduce time from ideation to publishing"
 
-**Genfeed Integration:**
+**Integration (discover from project):**
 
-- All Apps: Optimize workflows across platform
-- Analytics App: Track pipeline performance metrics
-- Manager App: Monitor workflow efficiency
+- All Platforms: Optimize workflows across platform
+- Analytics Platform: Track pipeline performance metrics
+- Content Management Platform: Monitor workflow efficiency
 
-## Genfeed Workflow Context
+## Project Context Discovery
 
-**Current Genfeed Workflow:**
+**Before designing workflows, discover the project's context:**
+
+1. **Scan Project Documentation:**
+   - Check `.agent/SYSTEM/ARCHITECTURE.md` for workflow architecture
+   - Review `.agent/SOP/` for existing process documentation
+   - Look for workflow diagrams or process maps
+
+2. **Identify Workflow Components:**
+   - Scan codebase for content creation tools
+   - Look for publishing/distribution systems
+   - Check for analytics integrations
+   - Review approval/notification systems
+
+**Common Content Workflow:**
 
 ```
-Trend Detection (Extension) → Content Generation (Studio) →
-Distribution (Publisher) → Analytics (Analytics) → Optimization
+Trend Detection (Extension) → Content Generation (Creation Tools) →
+Distribution (Publishing Platform) → Analytics (Analytics Platform) → Optimization
 ```
 
 **Workflow Components:**
 
 - Browser Extension: Trend discovery and bookmarking
-- Studio: AI content generation
-- Publisher: Multi-platform scheduling and distribution
-- Analytics: Performance tracking and reporting
-- Manager: Content library and organization
+- Content Creation Tools: AI content generation
+- Publishing Platform: Multi-platform scheduling and distribution
+- Analytics Platform: Performance tracking and reporting
+- Content Management Platform: Content library and organization
 
 **Automation Opportunities:**
 
 - Automated content scheduling
-- Automated analytics refresh (hourly cron job)
+- Automated analytics refresh (cron job)
 - Automated report generation
 - Automated content organization
 - Automated approval notifications

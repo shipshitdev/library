@@ -1,6 +1,6 @@
 ---
 name: content-strategy-expert
-description: This skill should be used when users need help with content strategy, persona building, competitive analysis, content planning, or brand voice consistency for Genfeed. It activates when users ask about content strategy, building personas or target audiences, competitive analysis requests, content planning and ideation, or brand voice questions.
+description: This skill should be used when users need help with content strategy, persona building, competitive analysis, content planning, or brand voice consistency. It activates when users ask about content strategy, building personas or target audiences, competitive analysis requests, content planning and ideation, or brand voice questions.
 location: .claude/skills/content/strategy-expert/
 ---
 
@@ -8,7 +8,7 @@ location: .claude/skills/content/strategy-expert/
 
 ## Overview
 
-This skill enables Claude to assist Genfeed users with comprehensive content strategy tasks including building customer personas from analytics data, conducting competitive content analysis, planning content calendars, managing research-to-content workflows, and ensuring brand voice consistency across all content.
+This skill enables Claude to assist users with comprehensive content strategy tasks including building customer personas from analytics data, conducting competitive content analysis, planning content calendars, managing research-to-content workflows, and ensuring brand voice consistency across all content.
 
 ## When to Use This Skill
 
@@ -25,11 +25,11 @@ This skill activates automatically when users:
 
 ### 1. Build Customer Personas from Analytics Data
 
-To build customer personas from Genfeed analytics:
+To build customer personas from analytics data:
 
 1. **Analyze Engagement Data**
 
-   - Review analytics data from Genfeed Analytics app
+   - Review analytics data from analytics platform (discover from project)
    - Identify patterns in audience engagement
    - Segment audiences by content preferences, platform behavior, and engagement patterns
    - Extract demographics, goals, and pain points from content performance data
@@ -45,18 +45,18 @@ To build customer personas from Genfeed analytics:
    - Use analytics data to validate persona assumptions
 
 3. **Generate Persona Documentation**
-   - Create structured persona profiles in Genfeed Manager app
+   - Create structured persona profiles in content management platform
    - Link personas to content performance data
-   - Enable persona-based content targeting in Studio
+   - Enable persona-based content targeting in content creation tools
 
 **Example User Request:**
 "Build a persona for my top-performing content audience based on my analytics data"
 
-**Genfeed Integration:**
+**Integration (discover from project):**
 
-- Analytics App: Extract engagement data
-- Manager App: Store and manage personas
-- Studio App: Use personas for content targeting
+- Analytics Platform: Extract engagement data
+- Content Management Platform: Store and manage personas
+- Content Creation Tools: Use personas for content targeting
 
 ### 2. Competitive Content Analysis
 
@@ -84,11 +84,11 @@ To conduct competitive content analysis:
 **Example User Request:**
 "Analyze my competitors' content and tell me what topics they're covering that I'm not"
 
-**Genfeed Integration:**
+**Integration (discover from project):**
 
 - Browser Extension: Track competitor accounts
-- Analytics App: Compare performance metrics
-- Manager App: Store competitive intelligence
+- Analytics Platform: Compare performance metrics
+- Content Management Platform: Store competitive intelligence
 
 ### 3. Content Calendar Planning
 
@@ -116,11 +116,11 @@ To help users plan content calendars:
 **Example User Request:**
 "Create a content calendar for next month based on my top-performing content"
 
-**Genfeed Integration:**
+**Integration (discover from project):**
 
-- Publisher App: Schedule content in calendar
-- Analytics App: Use performance data for planning
-- Manager App: Organize content ideas and themes
+- Publishing Platform: Schedule content in calendar
+- Analytics Platform: Use performance data for planning
+- Content Management Platform: Organize content ideas and themes
 
 ### 4. Research-to-Content Workflow
 
@@ -146,11 +146,11 @@ To convert research into actionable content:
 **Example User Request:**
 "Turn my bookmarked research into a content plan for next week"
 
-**Genfeed Integration:**
+**Integration (discover from project):**
 
 - Browser Extension: Import bookmarked research
-- Studio App: Generate content from research outlines
-- Manager App: Organize research and content plans
+- Content Creation Tools: Generate content from research outlines
+- Content Management Platform: Organize research and content plans
 
 ### 5. Brand Voice Consistency
 
@@ -176,21 +176,38 @@ To ensure brand voice consistency across content:
 **Example User Request:**
 "Review my content to ensure it matches my brand voice"
 
-**Genfeed Integration:**
+**Integration (discover from project):**
 
-- Studio App: Apply brand voice in content generation
-- Manager App: Store and manage brand guidelines
-- Publisher App: Ensure brand consistency in distribution
+- Content Creation Tools: Apply brand voice in content generation
+- Content Management Platform: Store and manage brand guidelines
+- Publishing Platform: Ensure brand consistency in distribution
 
-## Genfeed Platform Context
+## Project Context Discovery
 
-**Current Genfeed Architecture:**
+**Before providing strategy recommendations, discover the project's context:**
+
+1. **Scan Project Documentation:**
+   - Check `.agent/SYSTEM/ARCHITECTURE.md` for platform architecture
+   - Review `.agent/SYSTEM/SUMMARY.md` for capabilities overview
+   - Look for brand voice guidelines in project docs
+
+2. **Identify Platform Components:**
+   - Scan codebase for content creation tools
+   - Look for publishing/distribution integrations
+   - Check for analytics platform integrations
+
+3. **Discover Brand Voice:**
+   - Look for brand guidelines or style guides
+   - Check for copywriting documentation
+   - Review existing content examples
+
+**Common Content Platform Architecture:**
 
 - Browser Extension: Trend discovery and bookmarking
-- Studio App: AI content generation
-- Publisher App: Multi-platform distribution
-- Analytics App: Performance tracking
-- Manager App: Content library and organization
+- Content Creation Tools: AI content generation
+- Publishing Platform: Multi-platform distribution
+- Analytics Platform: Performance tracking
+- Content Management Platform: Content library and organization
 
 **Content Intelligence Workflow:**
 
@@ -198,17 +215,10 @@ To ensure brand voice consistency across content:
 Trend Detection → Content Generation → Distribution → Analytics → Optimization
 ```
 
-**Key Genfeed Features:**
-
-- Multi-platform publishing (X, LinkedIn, Instagram, TikTok, YouTube)
-- AI-powered content generation (videos, images, voices, music, articles)
-- Performance analytics and ROI tracking
-- Brand voice training and consistency
-- Content library and organization
-
 ## Best Practices
 
-1. **Data-Driven Decisions**: Always base recommendations on actual analytics data from Genfeed
+1. **Discover Project Context First**: Scan project documentation to understand platform, brand voice, and workflows
+2. **Data-Driven Decisions**: Always base recommendations on actual analytics data from the project
 2. **Platform-Specific Strategy**: Consider platform-specific requirements and best practices
 3. **Brand Consistency**: Ensure all content recommendations align with brand guidelines
 4. **Competitive Intelligence**: Use competitor analysis to identify opportunities, not to copy
@@ -218,7 +228,7 @@ Trend Detection → Content Generation → Distribution → Analytics → Optimi
 
 ### references/
 
-- `genfeed-architecture.md`: Genfeed platform architecture and features
+- `platform-architecture.md`: Platform architecture and features (discover from project docs)
 - `content-strategy-guide.md`: Content strategy best practices and frameworks
 
 ### assets/

@@ -319,6 +319,7 @@ def create_frontend_structure(root: Path, name: str, org: str, is_monorepo: bool
             "@types/react": "^19.0.0",
             "@types/react-dom": "^19.0.0",
             "typescript": "^5.7.0",
+            "sass": "^1.89.2",
             "tailwindcss": "^4.0.0",
             "@tailwindcss/postcss": "^4.0.0"
         }
@@ -391,7 +392,7 @@ def create_frontend_structure(root: Path, name: str, org: str, is_monorepo: bool
     # layout.tsx
     layout_tsx = dedent("""\
         import type { Metadata } from "next";
-        import "./globals.css";
+        import "./globals.scss";
 
         export const metadata: Metadata = {
           title: "Dashboard",
@@ -425,11 +426,11 @@ def create_frontend_structure(root: Path, name: str, org: str, is_monorepo: bool
     """)
     (frontend_root / "apps" / "dashboard" / "app" / "page.tsx").write_text(page_tsx)
     
-    # globals.css
+    # globals.scss
     globals_css = dedent("""\
         @import "tailwindcss";
     """)
-    (frontend_root / "apps" / "dashboard" / "app" / "globals.css").write_text(globals_css)
+    (frontend_root / "apps" / "dashboard" / "app" / "globals.scss").write_text(globals_css)
     
     # Entry files
     agents_md = dedent(f"""\

@@ -16,6 +16,7 @@ This skill scaffolds a complete AI agent documentation system including:
 - Architecture decision records
 - Security checklists
 - SOPs for common workflows
+- Agent config folders (.claude, .codex, .cursor) with commands, rules, and agents
 
 ## When to Use
 
@@ -45,6 +46,8 @@ python3 ~/.claude/skills/agent-folder-init/scripts/scaffold.py \
 ```
 
 ## Generated Structure
+
+### Documentation (.agent/)
 
 ```
 .agent/
@@ -80,6 +83,48 @@ python3 ~/.claude/skills/agent-folder-init/scripts/scaffold.py \
     └── README.md
 ```
 
+### Agent Configs
+
+```
+.claude/
+├── commands/                    # Slash commands
+│   ├── start.md
+│   ├── end.md
+│   ├── new-session.md
+│   ├── commit-summary.md
+│   ├── code-review.md
+│   ├── bug.md
+│   ├── quick-fix.md
+│   ├── refactor-code.md
+│   ├── inbox.md
+│   ├── task.md
+│   ├── validate.md
+│   └── clean.md
+├── rules/                       # Auto-loaded rules
+│   ├── ai-agent-behavior.md
+│   ├── coding-standards.md
+│   ├── session-workflow.md
+│   └── user-preferences.md
+├── agents/                      # Specialized agents
+│   ├── senior-backend-engineer.md
+│   └── senior-frontend-engineer.md
+└── skills/                      # Project-specific skills
+
+.codex/
+├── commands/
+└── skills/
+
+.cursor/
+└── commands/
+```
+
+### Root Files
+
+- `AGENTS.md` - Points to `.agent/README.md`
+- `CLAUDE.md` - Claude-specific entry point
+- `CODEX.md` - Codex-specific entry point
+- `.editorconfig` - Editor configuration
+
 ## Key Patterns
 
 ### Naming Conventions
@@ -90,12 +135,6 @@ python3 ~/.claude/skills/agent-folder-init/scripts/scaffold.py \
 - **One file per day**: `YYYY-MM-DD.md`
 - Multiple sessions same day use Session 1, Session 2, etc. in the same file
 
-### AI Entry Files
-After running this skill, also create these files at the project root:
-- `AGENTS.md` - Points to `.agent/README.md`
-- `CLAUDE.md` - Claude-specific entry point
-- `CODEX.md` - Codex-specific entry point
-
 ## Customization
 
 After scaffolding, customize:
@@ -103,3 +142,5 @@ After scaffolding, customize:
 2. `SYSTEM/ARCHITECTURE.md` - Document your architecture
 3. `SYSTEM/critical/CRITICAL-NEVER-DO.md` - Add project-specific violations
 4. `SOP/` - Add your standard operating procedures
+5. `.claude/rules/` - Add project-specific rules
+6. `.claude/commands/` - Add project-specific commands

@@ -15,6 +15,7 @@ from pathlib import Path
 SKILL_DIR = Path(__file__).parent.parent
 TEMPLATES_DIR = SKILL_DIR / "assets" / "templates"
 ROOT_FILES_DIR = SKILL_DIR / "assets" / "root-files"
+AGENT_CONFIGS_DIR = SKILL_DIR / "assets" / "agent-configs"
 
 
 def scaffold_agent_folder(
@@ -70,6 +71,9 @@ def scaffold_agent_folder(
 
     # Copy root-level config files
     copy_root_files(root)
+
+    # Copy agent config folders (.claude, .codex, .cursor)
+    copy_agent_configs(root)
 
     print(f"\n✅ Agent folder created at: {agent_dir}")
     print("\nNext steps:")
@@ -200,6 +204,52 @@ def copy_root_files(root: Path) -> None:
             content = item.read_text()
             dest_path.write_text(content)
             print(f"Created: {dest_path}")
+
+
+def copy_agent_configs(root: Path) -> None:
+    """Copy agent config folders (.claude, .codex, .cursor) to project root."""
+
+    if not AGENT_CONFIGS_DIR.exists():
+        print("No agent-configs directory found, skipping agent config setup.")
+        return
+
+    # Map source dirs to destination dirs
+    config_mappings = [
+        ("claude", ".claude"),
+        ("codex", ".codex"),
+        ("cursor", ".cursor"),
+    ]
+
+    for src_name, dest_name in config_mappings:
+        src_dir = AGENT_CONFIGS_DIR / src_name
+        dest_dir = root / dest_name
+
+        if not src_dir.exists():
+            continue
+
+        # Create destination directory
+        dest_dir.mkdir(parents=True, exist_ok=True)
+
+        # Copy all files recursively
+        for item in src_dir.rglob("*"):
+            if item.is_file():
+                rel_path = item.relative_to(src_dir)
+                dest_path = dest_dir / rel_path
+
+                # Don't overwrite existing files
+                if dest_path.exists():
+                    continue
+
+                dest_path.parent.mkdir(parents=True, exist_ok=True)
+
+                try:
+                    content = item.read_text()
+                    dest_path.write_text(content)
+                except UnicodeDecodeError:
+                    # Binary file, copy directly
+                    shutil.copy2(item, dest_path)
+
+        print(f"Created: {dest_dir}/ (with commands, rules, agents)")
 
 
 def main() -> None:

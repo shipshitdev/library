@@ -16,6 +16,8 @@ SKILL_DIR = Path(__file__).parent.parent
 TEMPLATES_DIR = SKILL_DIR / "assets" / "templates"
 ROOT_FILES_DIR = SKILL_DIR / "assets" / "root-files"
 AGENT_CONFIGS_DIR = SKILL_DIR / "assets" / "agent-configs"
+# Library root: two levels up from skill directory (e.g., ~/.claude/ or agents/.claude/)
+LIBRARY_ROOT = SKILL_DIR.parent.parent
 
 
 def scaffold_agent_folder(
@@ -207,11 +209,12 @@ def copy_root_files(root: Path) -> None:
 
 
 def copy_agent_configs(root: Path) -> None:
-    """Copy agent config folders (.claude, .codex, .cursor) to project root."""
-
-    if not AGENT_CONFIGS_DIR.exists():
-        print("No agent-configs directory found, skipping agent config setup.")
-        return
+    """Copy agent config folders (.claude, .codex, .cursor) to project root.
+    
+    Copies from library root (e.g., ~/.claude/agents/, ~/.claude/commands/, ~/.claude/rules/)
+    instead of template assets to eliminate duplication and ensure projects get the latest version.
+    Falls back to template assets if library root is not available.
+    """
 
     # Map source dirs to destination dirs
     config_mappings = [
@@ -221,35 +224,59 @@ def copy_agent_configs(root: Path) -> None:
     ]
 
     for src_name, dest_name in config_mappings:
-        src_dir = AGENT_CONFIGS_DIR / src_name
+        # Try library root first (e.g., ~/.claude/agents/, ~/.claude/commands/, ~/.claude/rules/)
+        library_src = LIBRARY_ROOT / src_name
+        # Fallback to template assets if library root doesn't exist
+        template_src = AGENT_CONFIGS_DIR / src_name if AGENT_CONFIGS_DIR.exists() else None
+        
         dest_dir = root / dest_name
 
-        if not src_dir.exists():
+        # Determine which source to use
+        source_dir = None
+        if library_src.exists():
+            source_dir = library_src
+            source_type = "library"
+        elif template_src and template_src.exists():
+            source_dir = template_src
+            source_type = "template"
+        else:
             continue
 
         # Create destination directory
         dest_dir.mkdir(parents=True, exist_ok=True)
 
-        # Copy all files recursively
-        for item in src_dir.rglob("*"):
-            if item.is_file():
-                rel_path = item.relative_to(src_dir)
-                dest_path = dest_dir / rel_path
+        # Copy files recursively
+        # Only copy agents/, commands/, and rules/ subdirectories (not skills/)
+        subdirs_to_copy = ["agents", "commands", "rules"]
+        copied_anything = False
 
-                # Don't overwrite existing files
-                if dest_path.exists():
-                    continue
+        for subdir in subdirs_to_copy:
+            src_subdir = source_dir / subdir
+            if not src_subdir.exists():
+                continue
 
-                dest_path.parent.mkdir(parents=True, exist_ok=True)
+            for item in src_subdir.rglob("*"):
+                if item.is_file():
+                    rel_path = item.relative_to(src_subdir)
+                    dest_path = dest_dir / subdir / rel_path
 
-                try:
-                    content = item.read_text()
-                    dest_path.write_text(content)
-                except UnicodeDecodeError:
-                    # Binary file, copy directly
-                    shutil.copy2(item, dest_path)
+                    # Don't overwrite existing files
+                    if dest_path.exists():
+                        continue
 
-        print(f"Created: {dest_dir}/ (with commands, rules, agents)")
+                    dest_path.parent.mkdir(parents=True, exist_ok=True)
+
+                    try:
+                        content = item.read_text()
+                        dest_path.write_text(content)
+                        copied_anything = True
+                    except UnicodeDecodeError:
+                        # Binary file, copy directly
+                        shutil.copy2(item, dest_path)
+                        copied_anything = True
+
+        if copied_anything:
+            print(f"Created: {dest_dir}/ (with commands, rules, agents) from {source_type}")
 
 
 def main() -> None:

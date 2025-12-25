@@ -118,6 +118,8 @@ python3 ~/.claude/skills/agent-folder-init/scripts/scaffold.py \
 └── commands/
 ```
 
+**Note:** Agent configs (agents/, commands/, rules/) are copied from the library root (e.g., `~/.claude/agents/`) instead of template assets to ensure projects always get the latest version and eliminate duplication. The scaffold script automatically detects the library root and falls back to templates if the library is not available.
+
 ### Root Files
 
 - `AGENTS.md` - Points to `.agent/README.md`

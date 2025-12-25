@@ -5,22 +5,32 @@ Generic slash commands for efficient development workflow across projects.
 ## All Commands (Alphabetical)
 
 ```
-.cursor/commands/                    # Global commands (24 commands)
+.cursor/commands/                    # Global commands (30 commands)
 ├── analyze-codebase.md        # Generate architecture analysis
+├── api-test.md                # API testing workflows
 ├── bug.md                     # Quick bug capture
 ├── clean.md                   # Unified cleanup (tasks/sessions)
 ├── code-review.md             # Comprehensive code review
+├── de-slop.md                 # Clean AI artifacts (monorepo-aware)
+├── deploy.md                  # Deployment workflows
 ├── docs-generate.md           # Generate comprehensive documentation
 ├── docs-update.md             # Update documentation
 ├── end.md                     # Document session before clearing
+├── env-setup.md               # Environment variable management
 ├── inbox.md                   # Process inbox items
+├── launch.md                  # Startup launch workflow
+├── migrate.md                 # Database migrations
+├── monitoring-setup.md        # Sentry & Google Analytics setup
+├── mvp-plan.md                # MVP planning and scoping
 ├── new-cmd.md                 # Create new commands
 ├── new-session.md             # Create session files
 ├── optimize-prompt.md         # AI prompt optimization
+├── performance.md             # Performance optimization
 ├── quick-fix.md               # Daily task list
 ├── refactor-code.md           # Refactoring workflows
 ├── review-pr.md               # Pull request review (basic)
 ├── scaffold.md                # Unified project scaffolder
+├── security-audit.md          # Security audit workflow
 ├── start.md                   # Bootstrap session context
 ├── task.md                    # Create and manage tasks
 ├── test.md                    # Test tracking
@@ -79,9 +89,20 @@ Generic slash commands for efficient development workflow across projects.
 - `/docs-update` - Update documentation
 - `/docs-generate` - Generate comprehensive documentation (APIs, features, code)
 
+#### Launch & Infrastructure
+
+- `/launch` - Full startup launch workflow (pre-flight, deploy, verify)
+- `/mvp-plan` - MVP feature prioritization and scoping
+- `/db-setup` - MongoDB on EC2 (Docker) and Redis setup
+- `/env-setup` - Environment variable management
+- `/monitoring-setup` - Sentry & Google Analytics setup
+- `/de-slop` - Clean AI-generated code artifacts
+
 #### Specialized
 
 - `/optimize-prompt` - Optimize AI prompts using frameworks
+- `/performance` - Performance analysis and optimization
+- `/security-audit` - Comprehensive security audit
 
 ## Command Usage
 
@@ -162,5 +183,5 @@ Follow the naming convention:
 
 ---
 
-**Total Commands:** 24
-**Last Updated:** 2025-12-24
+**Total Commands:** 30
+**Last Updated:** 2025-01-27

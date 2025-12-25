@@ -5,12 +5,13 @@ Generic slash commands for efficient development workflow across projects.
 ## All Commands (Alphabetical)
 
 ```
-.cursor/commands/                    # Global commands (30 commands)
+.cursor/commands/                    # Global commands (32 commands)
 ├── analyze-codebase.md        # Generate architecture analysis
 ├── api-test.md                # API testing workflows
 ├── bug.md                     # Quick bug capture
 ├── clean.md                   # Unified cleanup (tasks/sessions)
 ├── code-review.md             # Comprehensive code review
+├── commit-summary.md          # Generate commit messages
 ├── de-slop.md                 # Clean AI artifacts (monorepo-aware)
 ├── deploy.md                  # Deployment workflows
 ├── docs-generate.md           # Generate comprehensive documentation
@@ -60,6 +61,7 @@ Generic slash commands for efficient development workflow across projects.
 - `/bug` - Fast bug documentation
 - `/test` - Track testing todos
 - `/inbox` - Process inbox items
+- `/commit-summary` - Generate commit messages from staged changes
 
 #### Development & Review
 
@@ -183,5 +185,5 @@ Follow the naming convention:
 
 ---
 
-**Total Commands:** 30
+**Total Commands:** 32
 **Last Updated:** 2025-01-27

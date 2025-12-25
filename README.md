@@ -179,6 +179,7 @@ touch agents/.claude/skills/my-skill/SKILL.md
 ## How Skills Adapt to Projects
 
 Skills are **adaptive** - they scan project documentation to understand:
+
 - Project architecture and structure
 - Brand voice and tone
 - Existing patterns and conventions

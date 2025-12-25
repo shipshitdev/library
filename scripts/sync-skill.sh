@@ -69,8 +69,8 @@ fi
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-SOURCE_DIR="$REPO_ROOT/.$SOURCE_PLATFORM/skills/$SKILL_NAME"
-TARGET_DIR="$REPO_ROOT/.$TARGET_PLATFORM/skills/$SKILL_NAME"
+SOURCE_DIR="$REPO_ROOT/agents/.$SOURCE_PLATFORM/skills/$SKILL_NAME"
+TARGET_DIR="$REPO_ROOT/agents/.$TARGET_PLATFORM/skills/$SKILL_NAME"
 
 # Validate source directory exists
 if [[ ! -d "$SOURCE_DIR" ]]; then

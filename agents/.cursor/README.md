@@ -28,8 +28,8 @@ Cursor IDE does not currently have public documentation for writing skills. Skil
 
 ```
 .cursor/
-├── commands/        # Custom slash commands (24 commands)
-└── skills/          # Global skills (42 skills)
+├── commands/        # Custom slash commands (32 commands)
+└── skills/          # Global skills (50 skills)
 ```
 
 ## Usage

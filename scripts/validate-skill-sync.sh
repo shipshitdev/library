@@ -29,8 +29,8 @@ NC='\033[0m' # No Color
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-CLAUDE_DIR="$REPO_ROOT/.claude/skills"
-CODEX_DIR="$REPO_ROOT/.codex/skills"
+CLAUDE_DIR="$REPO_ROOT/agents/.claude/skills"
+CODEX_DIR="$REPO_ROOT/agents/.codex/skills"
 
 SKILL_NAME="${1:-}"
 

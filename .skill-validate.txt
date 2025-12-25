@@ -1,0 +1,10 @@
+[0;34mValidating all skills...[0m
+
+[0;34mValidating: accessibility[0m
+  Claude version:
+  Codex version:
+  Drift check:
+  [1;33m⚠[0m Significant content drift detected (774 line difference)
+     Claude:      820 lines, Codex:       46 lines
+     Consider syncing to ensure core content is identical
+

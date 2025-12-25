@@ -29,7 +29,7 @@ Use this skill when:
 ### Interactive Mode (Recommended)
 
 ```bash
-python ~/.cursor/skills/project-scaffold/scripts/scaffold.py
+python3 ~/.cursor/skills/project-scaffold/scripts/scaffold.py
 ```
 
 The script will ask you:
@@ -49,7 +49,7 @@ The script will ask you:
 When user requests scaffolding, activate this skill and run:
 
 ```bash
-python ~/.cursor/skills/project-scaffold/scripts/scaffold.py
+python3 ~/.cursor/skills/project-scaffold/scripts/scaffold.py
 ```
 
 The script handles all interactive prompts.

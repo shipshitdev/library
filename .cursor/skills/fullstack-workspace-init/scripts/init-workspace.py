@@ -357,7 +357,8 @@ def create_frontend_package_json(org: str) -> str:
             "zustand": "^5.0.0",
             "react-hook-form": "^7.50.0",
             "zod": "^3.23.0",
-            "@hookform/resolvers": "^3.9.0"
+            "@hookform/resolvers": "^3.9.0",
+            "@agenticindiedev/ui": "latest"
         },
         "devDependencies": {
             "@types/node": "^22.0.0",
@@ -365,8 +366,7 @@ def create_frontend_package_json(org: str) -> str:
             "@types/react-dom": "^19.0.0",
             "typescript": "^5.7.0",
             "tailwindcss": "^4.0.0",
-            "@tailwindcss/postcss": "^4.0.0",
-            "daisyui": "^5.0.0"
+            "@tailwindcss/postcss": "^4.0.0"
         }
     }, indent=2)
 
@@ -386,20 +386,17 @@ def create_frontend_next_config() -> str:
 def create_frontend_tailwind_config() -> str:
     return dedent("""\
         import type { Config } from "tailwindcss";
-        import daisyui from "daisyui";
 
         const config: Config = {
           content: [
             "./apps/**/*.{js,ts,jsx,tsx,mdx}",
             "./packages/**/*.{js,ts,jsx,tsx,mdx}",
+            "./node_modules/@agenticindiedev/ui/**/*.{js,ts,jsx,tsx}",
           ],
           theme: {
             extend: {},
           },
-          plugins: [daisyui],
-          daisyui: {
-            themes: ["light", "dark"],
-          },
+          plugins: [],
         };
 
         export default config;

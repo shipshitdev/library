@@ -16,15 +16,15 @@ Create a production-ready monorepo with:
 
 ```bash
 # Show help
-python ~/.claude/skills/fullstack-workspace-init/scripts/init-workspace.py --help
+python3 ~/.claude/skills/fullstack-workspace-init/scripts/init-workspace.py --help
 
 # Create full workspace
-python ~/.claude/skills/fullstack-workspace-init/scripts/init-workspace.py \
+python3 ~/.claude/skills/fullstack-workspace-init/scripts/init-workspace.py \
   --root ~/www/myproject \
   --name "My Project"
 
 # Create with custom org name (for packages)
-python ~/.claude/skills/fullstack-workspace-init/scripts/init-workspace.py \
+python3 ~/.claude/skills/fullstack-workspace-init/scripts/init-workspace.py \
   --root ~/www/myproject \
   --name "My Project" \
   --org "myorg"
@@ -117,12 +117,12 @@ myproject/
 
 ```bash
 # Add a new frontend app
-python ~/.claude/skills/fullstack-workspace-init/scripts/add-frontend-app.py \
+python3 ~/.claude/skills/fullstack-workspace-init/scripts/add-frontend-app.py \
   --root ~/www/myproject/frontend \
   --name admin
 
 # Add a new API collection
-python ~/.claude/skills/fullstack-workspace-init/scripts/add-api-collection.py \
+python3 ~/.claude/skills/fullstack-workspace-init/scripts/add-api-collection.py \
   --root ~/www/myproject/api \
   --name users
 ```

@@ -33,7 +33,7 @@ def create_package_json(name: str, ui_package: str) -> str:
             "next": "^15.0.0",
             "react": "^19.0.0",
             "react-dom": "^19.0.0",
-            ui_package: "^1.0.0"
+            "@agenticindiedev/ui": "latest"
         },
         "devDependencies": {
             "@types/node": "^22.0.0",

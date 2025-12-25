@@ -9,6 +9,7 @@ Standards for managing AI coding sessions across projects.
 ### Read Critical Documentation First
 
 Before any work:
+
 1. Read project-specific rules (if they exist)
 2. Check for recent session documentation
 3. Understand what was done before
@@ -23,6 +24,7 @@ grep -r "keyword" .agent/SESSIONS/*.md 2>/dev/null || true
 ```
 
 If previous work exists:
+
 - Read how it was done
 - Use the same patterns
 - Don't re-implement
@@ -34,6 +36,7 @@ If previous work exists:
 ### Track Progress
 
 For multi-step tasks:
+
 - Use todo lists to track steps
 - Mark items complete as you go
 - Keep user informed of progress
@@ -43,6 +46,7 @@ For multi-step tasks:
 ### Document Decisions
 
 When making non-obvious choices:
+
 - Note what you chose and why
 - Document alternatives considered
 - Record any trade-offs
@@ -56,12 +60,14 @@ When making non-obvious choices:
 When user is about to clear session (/clear):
 
 1. **Document what was done:**
+
    - Files created/modified
    - Features implemented
    - Bugs fixed
    - Decisions made
 
 2. **Note incomplete work:**
+
    - What remains to be done
    - Blockers encountered
    - Next steps
@@ -81,16 +87,20 @@ When user is about to clear session (/clear):
 ## Session 1 (HH:MM AM/PM)
 
 ### Goal
+
 What was requested
 
 ### Changes Made
+
 - file1.ts: Added X feature
 - file2.ts: Fixed Y bug
 
 ### Decisions
+
 - Chose approach A over B because...
 
 ### Incomplete
+
 - Still need to do Z
 
 ---
@@ -107,12 +117,14 @@ What was requested
 ### One File Per Day
 
 **CORRECT:**
+
 ```
 .agent/SESSIONS/2025-01-15.md
 .agent/SESSIONS/2025-01-16.md
 ```
 
 **WRONG:**
+
 ```
 .agent/SESSIONS/2025-01-15-feature-name.md
 .agent/SESSIONS/2025-01-15-bug-fix.md
@@ -141,6 +153,7 @@ Multiple sessions on same day go in the same file.
 ### Maintain Context
 
 Each session should be able to understand:
+
 - What the project is
 - What was done recently
 - What patterns to follow
@@ -151,6 +164,7 @@ Each session should be able to understand:
 ### Don't Repeat Mistakes
 
 If a mistake was made and corrected in a previous session:
+
 - The fix should be documented
 - Future sessions should reference it
 - The same mistake shouldn't happen again
@@ -182,6 +196,7 @@ If a mistake was made and corrected in a previous session:
 ### For Ongoing Work
 
 When working on something over multiple sessions:
+
 1. Start by reading previous session notes
 2. Continue from where you left off
 3. Update documentation at the end
@@ -191,6 +206,7 @@ When working on something over multiple sessions:
 ### For New Work
 
 When starting something new:
+
 1. Search for related past work
 2. Note any relevant patterns found
 3. Document the new work for future reference

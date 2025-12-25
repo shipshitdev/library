@@ -29,15 +29,15 @@ Use this skill when:
 Run the scaffold script:
 
 ```bash
-python ~/.claude/skills/agent-folder-init/scripts/scaffold.py --help
+python3 ~/.claude/skills/agent-folder-init/scripts/scaffold.py --help
 
 # Basic usage
-python ~/.claude/skills/agent-folder-init/scripts/scaffold.py \
+python3 ~/.claude/skills/agent-folder-init/scripts/scaffold.py \
   --root /path/to/project \
   --name "My Project"
 
 # With custom options
-python ~/.claude/skills/agent-folder-init/scripts/scaffold.py \
+python3 ~/.claude/skills/agent-folder-init/scripts/scaffold.py \
   --root /path/to/project \
   --name "My Project" \
   --tech "nextjs,nestjs" \

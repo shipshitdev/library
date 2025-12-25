@@ -24,23 +24,23 @@ You need a published landing UI components package. The skill expects:
 
 ```bash
 # Show help
-python ~/.cursor/skills/micro-landing-builder/scripts/scaffold.py --help
+python3 ~/.cursor/skills/micro-landing-builder/scripts/scaffold.py --help
 
 # Create a new landing
-python ~/.cursor/skills/micro-landing-builder/scripts/scaffold.py \
+python3 ~/.cursor/skills/micro-landing-builder/scripts/scaffold.py \
   --slug mystartup \
   --name "My Startup" \
   --domain "mystartup.com" \
   --concept "AI-powered analytics"
 
 # With custom UI package
-python ~/.cursor/skills/micro-landing-builder/scripts/scaffold.py \
+python3 ~/.cursor/skills/micro-landing-builder/scripts/scaffold.py \
   --slug mystartup \
   --name "My Startup" \
   --ui-package "@myorg/landing-kit"
 
 # Allow outside current directory
-python ~/.cursor/skills/micro-landing-builder/scripts/scaffold.py \
+python3 ~/.cursor/skills/micro-landing-builder/scripts/scaffold.py \
   --root ~/www/landings \
   --slug mystartup \
   --allow-outside

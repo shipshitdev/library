@@ -31,15 +31,15 @@ Use this skill when:
 Run the scaffold script:
 
 ```bash
-python ~/.cursor/skills/agent-folder-init/scripts/scaffold.py --help
+python3 ~/.cursor/skills/agent-folder-init/scripts/scaffold.py --help
 
 # Basic usage
-python ~/.cursor/skills/agent-folder-init/scripts/scaffold.py \
+python3 ~/.cursor/skills/agent-folder-init/scripts/scaffold.py \
   --root /path/to/project \
   --name "My Project"
 
 # With custom options
-python ~/.cursor/skills/agent-folder-init/scripts/scaffold.py \
+python3 ~/.cursor/skills/agent-folder-init/scripts/scaffold.py \
   --root /path/to/project \
   --name "My Project" \
   --tech "nextjs,nestjs" \

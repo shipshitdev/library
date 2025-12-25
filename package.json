@@ -1,0 +1,33 @@
+{
+  "author": "",
+  "description": "Global skills and commands repository for Claude, Codex, and Cursor AI agents",
+  "devDependencies": {
+    "markdownlint-cli": "^0.42.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "ai",
+    "claude",
+    "codex",
+    "cursor",
+    "skills",
+    "commands",
+    "agent"
+  ],
+  "license": "MIT",
+  "name": "agentic-indie-dev-library",
+  "private": true,
+  "scripts": {
+    "check-symlinks": "bash -c 'for link in ~/.claude/skills ~/.codex/skills ~/.cursor/commands ~/.cursor/skills; do if [[ -L \"$link\" ]]; then echo \"✓ $link -> $(readlink \"$link\")\"; else echo \"✗ $link (not a symlink)\"; fi; done'",
+    "count": "bash -c 'echo \"Claude skills: $(ls -1 .claude/skills 2>/dev/null | wc -l | tr -d \" \")\"; echo \"Codex skills: $(ls -1 .codex/skills 2>/dev/null | wc -l | tr -d \" \")\"; echo \"Cursor commands: $(ls -1 .cursor/commands 2>/dev/null | wc -l | tr -d \" \")\"; echo \"Cursor skills: $(ls -1 .cursor/skills 2>/dev/null | wc -l | tr -d \" \")\"'",
+    "lint": "markdownlint '**/*.md' --ignore node_modules",
+    "lint:docs": "markdownlint '*.md' '**/*.md' --ignore node_modules --ignore '.claude/**' --ignore '.codex/**' --ignore '.cursor/**'",
+    "lint:fix": "markdownlint '**/*.md' --ignore node_modules --fix",
+    "prepare:deploy": "bun run lint:fix && bun run validate && bun run check-symlinks",
+    "validate": "bash scripts/validate-skill-sync.sh",
+    "validate:skill": "bash scripts/validate-skill-sync.sh"
+  },
+  "version": "1.0.0"
+}

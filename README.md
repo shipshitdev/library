@@ -28,7 +28,7 @@ library/
 
 | Category | Claude | Codex | Cursor | Status |
 |----------|--------|-------|--------|--------|
-| **Skills** | 42 | 42 | 47 | Base parity + Cursor extras |
+| **Skills** | 43 | 43 | 48 | Base parity + Cursor extras |
 | **Commands** | 1 | 0 | 30 | Cursor-focused |
 
 ## How It Works
@@ -135,6 +135,7 @@ touch agents/.claude/skills/my-skill/SKILL.md
 | changelog-generator | Git changelogs | Yes | Yes | Yes |
 | clerk-implementer | Clerk auth | Yes | Yes | - |
 | component-library | Component standards | Yes | Yes | Yes |
+| content-creator | Newsletters & tweets with your voice | Yes | Yes | Yes |
 | content-script-developer | Browser extensions | Yes | Yes | Yes |
 | copywriter | Brand copywriting | Yes | Yes | Yes |
 | design-consistency-auditor | Design system | Yes | Yes | Yes |

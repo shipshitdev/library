@@ -1,6 +1,6 @@
 ---
 name: micro-landing-builder
-description: Scaffold a config-driven NextJS landing page that uses a shared UI components package. Use this skill when creating startup landing pages with email capture, analytics, and modern design. Each landing is a standalone NextJS app driven by an app.json config file.
+description: Scaffold, clone, and deploy config-driven NextJS landing pages that use a shared UI components package. Use this skill when creating single or multiple startup landing pages with email capture, analytics, and modern design. Supports batch creation from templates or CSV/JSON files, and automatic Vercel deployment with custom domains. Each landing is a standalone NextJS app driven by an app.json config file.
 ---
 
 # Micro Landing Builder
@@ -104,19 +104,114 @@ The landing is entirely driven by `app.json`. See `references/config-schema.md` 
 - `faq` - Accordion FAQ
 - `cta` - Call to action with email capture
 
+## Batch Creation
+
+Create multiple landing pages from a template or CSV/JSON file:
+
+```bash
+# From CSV file
+python3 ~/.claude/skills/micro-landing-builder/scripts/batch_create.py \
+  --root ~/www/landings \
+  --csv projects.csv \
+  --allow-outside
+
+# From JSON file
+python3 ~/.claude/skills/micro-landing-builder/scripts/batch_create.py \
+  --root ~/www/landings \
+  --json projects.json \
+  --allow-outside
+
+# Clone from existing template
+python3 ~/.claude/skills/micro-landing-builder/scripts/batch_create.py \
+  --root ~/www/landings \
+  --template ~/www/landings/template-landing \
+  --json projects.json \
+  --allow-outside
+```
+
+### CSV Format
+
+```csv
+slug,name,domain,concept
+project1,Project One,project1.com,AI-powered analytics
+project2,Project Two,project2.com,Cloud infrastructure
+```
+
+### JSON Format
+
+```json
+[
+  {
+    "slug": "project1",
+    "name": "Project One",
+    "domain": "project1.com",
+    "concept": "AI-powered analytics"
+  },
+  {
+    "slug": "project2",
+    "name": "Project Two",
+    "domain": "project2.com",
+    "concept": "Cloud infrastructure"
+  }
+]
+```
+
 ## Deployment
+
+### Single Project
 
 ```bash
 cd mystartup
 vercel
 ```
 
+### Batch Deployment with Domains
+
+Deploy multiple projects to Vercel with custom domains:
+
+```bash
+# Deploy with domain mapping
+python3 ~/.claude/skills/micro-landing-builder/scripts/deploy_vercel.py \
+  ~/www/landings/project1 \
+  ~/www/landings/project2 \
+  --domains-json domains.json \
+  --prod \
+  --yes
+
+# Single domain
+python3 ~/.claude/skills/micro-landing-builder/scripts/deploy_vercel.py \
+  ~/www/landings/project1 \
+  --domain project1.com \
+  --prod \
+  --yes
+```
+
+### Domain Mapping JSON
+
+```json
+{
+  "project1": "project1.com",
+  "project2": "project2.com"
+}
+```
+
+**Note:** Domains must be configured in your DNS before adding to Vercel. Vercel will provide DNS records to add.
+
 ## Workflow
+
+### Single Landing Page
 
 1. Run scaffold to create landing structure
 2. Edit `app.json` with your content
 3. Add images to `public/`
-4. Deploy with `vercel`
+4. Deploy with `vercel` or use `deploy_vercel.py`
+
+### Multiple Landing Pages
+
+1. Create CSV/JSON file with project definitions
+2. Run `batch_create.py` to generate all landing pages
+3. Customize each `app.json` as needed
+4. Run `deploy_vercel.py` to deploy all with domains
 
 ## Customization
 

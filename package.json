@@ -2,7 +2,9 @@
   "author": "",
   "description": "Global skills and commands repository for Claude, Codex, and Cursor AI agents",
   "devDependencies": {
-    "markdownlint-cli": "^0.42.0"
+    "husky": "9.1.7",
+    "lint-staged": "16.2.7",
+    "markdownlint-cli": "0.42.0"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -17,6 +19,14 @@
     "agent"
   ],
   "license": "MIT",
+  "lint-staged": {
+    "*.md": [
+      "markdownlint --fix"
+    ],
+    "*.sh": [
+      "bash scripts/lint-shellcheck.sh"
+    ]
+  },
   "name": "agentic-indie-dev-library",
   "private": true,
   "scripts": {
@@ -25,6 +35,8 @@
     "lint": "markdownlint '**/*.md' --ignore node_modules",
     "lint:docs": "markdownlint '*.md' '**/*.md' --ignore node_modules --ignore '.claude/**' --ignore '.codex/**' --ignore '.cursor/**'",
     "lint:fix": "markdownlint '**/*.md' --ignore node_modules --fix",
+    "lint:sh": "bash -c 'if command -v shellcheck >/dev/null 2>&1; then find scripts -name \"*.sh\" -exec shellcheck {} +; else echo \"⚠ shellcheck not installed, skipping shell script linting\"; fi'",
+    "prepare": "husky",
     "prepare:deploy": "bun run lint:fix && bun run validate && bun run check-symlinks",
     "validate": "bash scripts/validate-skill-sync.sh",
     "validate:skill": "bash scripts/validate-skill-sync.sh"

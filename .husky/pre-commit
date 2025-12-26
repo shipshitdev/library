@@ -1,0 +1,4 @@
+bunx lint-staged
+
+# Validate changed skills (if any)
+bash scripts/validate-changed-skills.sh || exit 1

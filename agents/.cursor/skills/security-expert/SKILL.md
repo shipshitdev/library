@@ -1,7 +1,6 @@
 ---
 name: security-expert
 description: Expert in application security, OWASP Top 10, authentication, authorization, data protection, and security best practices for React, Next.js, and NestJS applications
-location: .cursor/skills/security-expert/
 ---
 
 # Security Expert Skill

@@ -1,7 +1,6 @@
 ---
 name: api-design-expert
 description: Expert in RESTful API design, OpenAPI/Swagger documentation, versioning, error handling, and API best practices for NestJS applications
-location: .cursor/skills/api-design-expert/
 ---
 
 # API Design Expert Skill
@@ -26,18 +25,21 @@ This skill activates automatically when you're:
 **Before providing API design guidance, discover the project's context:**
 
 1. **Scan Project Documentation:**
+
    - Check `.agent/SYSTEM/ARCHITECTURE.md` for API architecture
    - Review existing API patterns
    - Look for API documentation standards
    - Check for OpenAPI/Swagger setup
 
 2. **Identify API Patterns:**
+
    - Review existing controllers
    - Check DTO patterns
    - Review error handling patterns
    - Check versioning strategy
 
 3. **Discover API Tools:**
+
    - Check for Swagger/OpenAPI setup
    - Review API testing tools
    - Check for API documentation
@@ -53,6 +55,7 @@ This skill activates automatically when you're:
 ### 1. RESTful Design
 
 **Resource-Based URLs:**
+
 - ✅ Use nouns, not verbs
 - ✅ Use plural nouns
 - ✅ Hierarchical resources
@@ -76,6 +79,7 @@ GET    /api/userPosts/:userId
 ```
 
 **HTTP Methods:**
+
 - `GET`: Retrieve resources
 - `POST`: Create resources
 - `PUT`: Update entire resource
@@ -83,6 +87,7 @@ GET    /api/userPosts/:userId
 - `DELETE`: Delete resource
 
 **HTTP Status Codes:**
+
 - `200 OK`: Success
 - `201 Created`: Resource created
 - `204 No Content`: Success, no body
@@ -96,33 +101,37 @@ GET    /api/userPosts/:userId
 ### 2. API Versioning
 
 **URL Versioning (Recommended):**
+
 ```typescript
 // Version in URL
-GET /api/v1/users
-GET /api/v2/users
+GET / api / v1 / users;
+GET / api / v2 / users;
 
 // NestJS implementation
-@Controller('api/v1/users')
+@Controller("api/v1/users")
 export class UsersV1Controller {}
 
-@Controller('api/v2/users')
+@Controller("api/v2/users")
 export class UsersV2Controller {}
 ```
 
 **Header Versioning:**
+
 ```typescript
 // Version in header
-Accept: application/vnd.api+json;version=1
+Accept: application / vnd.api + json;
+version = 1;
 
 // NestJS implementation
-@ApiVersion('1')
-@Controller('api/users')
+@ApiVersion("1")
+@Controller("api/users")
 export class UsersController {}
 ```
 
 ### 3. Request/Response Design
 
 **Request Bodies:**
+
 ```typescript
 // ✅ GOOD: DTO with validation
 export class CreateUserDto {
@@ -146,6 +155,7 @@ async create(@Body() dto: CreateUserDto) {
 ```
 
 **Response Format:**
+
 ```typescript
 // ✅ GOOD: Consistent response format
 {
@@ -174,6 +184,7 @@ async create(@Body() dto: CreateUserDto) {
 ### 4. Pagination, Filtering, Sorting
 
 **Pagination:**
+
 ```typescript
 export class PaginationDto {
   @IsInt()
@@ -197,6 +208,7 @@ async findAll(@Query() pagination: PaginationDto) {
 ```
 
 **Filtering:**
+
 ```typescript
 export class FilterUsersDto extends PaginationDto {
   @IsString()
@@ -215,23 +227,25 @@ async findAll(@Query() filters: FilterUsersDto) {
 ```
 
 **Sorting:**
+
 ```typescript
 export class SortUsersDto extends FilterUsersDto {
   @IsString()
   @IsOptional()
-  @IsIn(['createdAt', 'email', 'name'])
-  sortBy?: string = 'createdAt';
+  @IsIn(["createdAt", "email", "name"])
+  sortBy?: string = "createdAt";
 
   @IsString()
   @IsOptional()
-  @IsIn(['asc', 'desc'])
-  sortOrder?: 'asc' | 'desc' = 'desc';
+  @IsIn(["asc", "desc"])
+  sortOrder?: "asc" | "desc" = "desc";
 }
 ```
 
 ### 5. Error Handling
 
 **Consistent Error Format:**
+
 ```typescript
 // Error response format
 {
@@ -251,6 +265,7 @@ export class SortUsersDto extends FilterUsersDto {
 ```
 
 **Exception Filters:**
+
 ```typescript
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -274,27 +289,29 @@ export class HttpExceptionFilter implements ExceptionFilter {
 ### 6. OpenAPI/Swagger Documentation
 
 **Setup:**
+
 ```typescript
 // main.ts
 const config = new DocumentBuilder()
-  .setTitle('API Documentation')
-  .setDescription('API description')
-  .setVersion('1.0')
+  .setTitle("API Documentation")
+  .setDescription("API description")
+  .setVersion("1.0")
   .addBearerAuth()
   .build();
 
 const document = SwaggerModule.createDocument(app, config);
-SwaggerModule.setup('api/docs', app, document);
+SwaggerModule.setup("api/docs", app, document);
 ```
 
 **DTO Documentation:**
+
 ```typescript
 export class CreateUserDto {
-  @ApiProperty({ example: 'user@example.com' })
+  @ApiProperty({ example: "user@example.com" })
   @IsEmail()
   email: string;
 
-  @ApiProperty({ example: 'password123', minLength: 8 })
+  @ApiProperty({ example: "password123", minLength: 8 })
   @IsString()
   @MinLength(8)
   password: string;
@@ -302,6 +319,7 @@ export class CreateUserDto {
 ```
 
 **Endpoint Documentation:**
+
 ```typescript
 @ApiOperation({ summary: 'Create a new user' })
 @ApiResponse({ status: 201, description: 'User created' })
@@ -317,15 +335,15 @@ async create(@Body() dto: CreateUserDto) {
 ### 1. CRUD Operations
 
 ```typescript
-@Controller('api/users')
+@Controller("api/users")
 export class UsersController {
   @Get()
   async findAll(@Query() filters: FilterUsersDto) {
     return this.usersService.findAll(filters);
   }
 
-  @Get(':id')
-  async findOne(@Param('id') id: string) {
+  @Get(":id")
+  async findOne(@Param("id") id: string) {
     return this.usersService.findOne(id);
   }
 
@@ -334,18 +352,21 @@ export class UsersController {
     return this.usersService.create(dto);
   }
 
-  @Put(':id')
-  async update(@Param('id') id: string, @Body() dto: UpdateUserDto) {
+  @Put(":id")
+  async update(@Param("id") id: string, @Body() dto: UpdateUserDto) {
     return this.usersService.update(id, dto);
   }
 
-  @Patch(':id')
-  async partialUpdate(@Param('id') id: string, @Body() dto: PartialUpdateUserDto) {
+  @Patch(":id")
+  async partialUpdate(
+    @Param("id") id: string,
+    @Body() dto: PartialUpdateUserDto
+  ) {
     return this.usersService.partialUpdate(id, dto);
   }
 
-  @Delete(':id')
-  async remove(@Param('id') id: string) {
+  @Delete(":id")
+  async remove(@Param("id") id: string) {
     return this.usersService.remove(id);
   }
 }
@@ -354,15 +375,15 @@ export class UsersController {
 ### 2. Nested Resources
 
 ```typescript
-@Controller('api/users/:userId/posts')
+@Controller("api/users/:userId/posts")
 export class UserPostsController {
   @Get()
-  async findAll(@Param('userId') userId: string) {
+  async findAll(@Param("userId") userId: string) {
     return this.postsService.findByUser(userId);
   }
 
   @Post()
-  async create(@Param('userId') userId: string, @Body() dto: CreatePostDto) {
+  async create(@Param("userId") userId: string, @Body() dto: CreatePostDto) {
     return this.postsService.create(userId, dto);
   }
 }
@@ -394,24 +415,28 @@ async search(@Query() query: SearchUsersDto) {
 ## Best Practices
 
 ### 1. Consistency
+
 - ✅ Consistent naming conventions
 - ✅ Consistent response formats
 - ✅ Consistent error handling
 - ✅ Consistent status codes
 
 ### 2. Validation
+
 - ✅ Validate all inputs
 - ✅ Use DTOs with validation decorators
 - ✅ Return clear validation errors
 - ✅ Validate at controller level
 
 ### 3. Documentation
+
 - ✅ OpenAPI/Swagger documentation
 - ✅ Clear endpoint descriptions
 - ✅ Example requests/responses
 - ✅ Authentication requirements documented
 
 ### 4. Security
+
 - ✅ Authentication on all endpoints
 - ✅ Authorization checks
 - ✅ Input validation
@@ -419,12 +444,14 @@ async search(@Query() query: SearchUsersDto) {
 - ✅ CORS configured
 
 ### 5. Performance
+
 - ✅ Pagination for lists
 - ✅ Filtering and sorting
 - ✅ Caching where appropriate
 - ✅ Database query optimization
 
 ### 6. Versioning
+
 - ✅ Version APIs from the start
 - ✅ Maintain backward compatibility
 - ✅ Deprecation strategy
@@ -433,17 +460,19 @@ async search(@Query() query: SearchUsersDto) {
 ## Common Anti-Patterns to Avoid
 
 ### 1. Verb-Based URLs
+
 ```typescript
 // ❌ BAD
-GET /api/getUsers
-POST /api/createUser
+GET / api / getUsers;
+POST / api / createUser;
 
 // ✅ GOOD
-GET /api/users
-POST /api/users
+GET / api / users;
+POST / api / users;
 ```
 
 ### 2. Inconsistent Response Formats
+
 ```typescript
 // ❌ BAD: Inconsistent
 { users: [...] }
@@ -455,6 +484,7 @@ POST /api/users
 ```
 
 ### 3. Poor Error Messages
+
 ```typescript
 // ❌ BAD
 { error: "Error" }
@@ -470,6 +500,7 @@ POST /api/users
 ```
 
 ### 4. No Pagination
+
 ```typescript
 // ❌ BAD: Returns all records
 GET /api/users
@@ -488,6 +519,7 @@ GET /api/users?page=1&limit=20
 ---
 
 **When this skill is active**, you will provide API design guidance that:
+
 1. Follows RESTful principles
 2. Implements proper versioning
 3. Uses consistent request/response formats

@@ -54,6 +54,43 @@ Task Template:
 **Priority:** High
 **Created:** YYYY-MM-DD
 **Updated:** YYYY-MM-DD
+**PRD:** [Link](../PRDS/prd-file.md)
+
+---
+
+### Agent Metadata
+
+**Claimed-By:**
+**Claimed-At:**
+**Completed-At:**
+
+---
+
+### Progress
+
+**Agent-Notes:**
+
+
+**QA-Checklist:**
+- [ ] Code compiles/lints
+- [ ] Tests pass (CI)
+- [ ] User acceptance
+- [ ] Visual review
+
+---
+
+### Rejection History
+
+**Rejection-Count:** 0
+**Rejections:**
+
+
+---
+
+### Implementation
+
+**PR:**
+**Branch:** feature/[task-id]
 
 ---
 

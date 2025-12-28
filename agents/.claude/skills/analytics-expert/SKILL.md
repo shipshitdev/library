@@ -188,11 +188,13 @@ To identify trends from analytics data:
 **Before analyzing analytics, discover the project's context:**
 
 1. **Scan Project Documentation:**
+
    - Check `.agent/SYSTEM/ARCHITECTURE.md` for analytics platform details
    - Review `.agent/SYSTEM/SUMMARY.md` for analytics capabilities
    - Look for analytics-related documentation
 
 2. **Identify Analytics Platform:**
+
    - Check for analytics service integrations in codebase
    - Look for analytics API endpoints or SDKs
    - Review environment variables for analytics services

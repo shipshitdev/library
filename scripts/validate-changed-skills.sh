@@ -15,7 +15,7 @@ if [[ -z "$CHANGED_SKILLS" ]]; then
 fi
 
 # Extract unique skill names
-SKILL_NAMES=$(echo "$CHANGED_SKILLS" | sed -E 's|agents/\.(claude|codex)/skills/([^/]+)/SKILL\.md|\2|' | sort -u)
+SKILL_NAMES=$(echo "$CHANGED_SKILLS" | sed -E 's|agents/\.(claude\|codex)/skills/([^/]+)/SKILL\.md|\2|' | sort -u)
 
 echo "🔍 Validating changed skills..."
 echo

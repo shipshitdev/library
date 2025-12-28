@@ -37,7 +37,6 @@
     "lint:fix": "markdownlint '**/*.md' --ignore node_modules --fix",
     "lint:sh": "bash -c 'if command -v shellcheck >/dev/null 2>&1; then find scripts -name \"*.sh\" -exec shellcheck {} +; else echo \"⚠ shellcheck not installed, skipping shell script linting\"; fi'",
     "prepare": "husky",
-    "prepare:deploy": "bun run lint:fix && bun run validate && bun run check-symlinks",
     "validate": "bash scripts/validate-skill-sync.sh",
     "validate:skill": "bash scripts/validate-skill-sync.sh"
   },

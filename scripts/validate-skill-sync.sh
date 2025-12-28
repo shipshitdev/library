@@ -89,29 +89,32 @@ check_frontmatter() {
     local file="$1"
     local platform="$2"
     local issues=0
-    
+
     if [[ ! -f "$file" ]]; then
         return 0
     fi
-    
+
     local content=$(cat "$file")
-    
-    # Extract frontmatter
+
+    # Extract frontmatter (between first two --- lines)
     if ! echo "$content" | grep -q "^---$"; then
         return 0
     fi
-    
+
+    # Extract only the frontmatter section for checks (macOS compatible)
+    local frontmatter=$(echo "$content" | awk '/^---$/{if(++c==1)next; if(c==2)exit} c==1{print}')
+
     if [[ "$platform" == "codex" ]]; then
         # Codex should have metadata.short-description (optional but recommended)
         # Codex should NOT have license field
-        if echo "$content" | grep -q "^license:"; then
+        if echo "$frontmatter" | grep -q "^license:"; then
             echo -e "  ${YELLOW}⚠${NC} Contains 'license' field (Codex doesn't use this)"
             ((issues++))
         fi
     else
         # Claude can have license field (optional)
-        # Claude should NOT have metadata.short-description
-        if echo "$content" | grep -q "metadata:"; then
+        # Claude should NOT have metadata.short-description in frontmatter
+        if echo "$frontmatter" | grep -q "^metadata:"; then
             echo -e "  ${YELLOW}⚠${NC} Contains 'metadata' section (Claude doesn't use this)"
             ((issues++))
         fi

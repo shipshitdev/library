@@ -1,7 +1,6 @@
 ---
 name: performance-expert
 description: Expert in performance optimization for React, Next.js, NestJS applications covering frontend rendering, API response times, database queries, and infrastructure optimization
-location: .cursor/skills/performance-expert/
 ---
 
 # Performance Expert Skill

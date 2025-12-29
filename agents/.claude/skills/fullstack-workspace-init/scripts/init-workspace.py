@@ -175,7 +175,8 @@ def create_api_package_json(org: str) -> str:
             "start:dev": "nest start --watch",
             "start:debug": "nest start --debug --watch",
             "start:prod": "node dist/main",
-            "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
+            "lint": "biome check .",
+            "lint:fix": "biome check --write .",
             "test": "jest"
         },
         "dependencies": {
@@ -195,7 +196,8 @@ def create_api_package_json(org: str) -> str:
             "@nestjs/schematics": "^11.0.0",
             "@types/express": "^5.0.0",
             "@types/node": "^22.0.0",
-            "typescript": "^5.7.0"
+            "typescript": "^5.7.0",
+            "@biomejs/biome": "^1.9.0"
         }
     }, indent=2)
 
@@ -347,7 +349,8 @@ def create_frontend_package_json(org: str) -> str:
             "dev": "next dev --turbo",
             "build": "next build",
             "start": "next start",
-            "lint": "next lint"
+            "lint": "biome check .",
+            "lint:fix": "biome check --write ."
         },
         "dependencies": {
             "next": "^15.0.0",
@@ -366,7 +369,9 @@ def create_frontend_package_json(org: str) -> str:
             "@types/react-dom": "^19.0.0",
             "typescript": "^5.7.0",
             "tailwindcss": "^4.0.0",
-            "@tailwindcss/postcss": "^4.0.0"
+            "@tailwindcss/postcss": "^4.0.0",
+            "@biomejs/biome": "^1.9.0",
+            "sass": "^1.83.0"
         }
     }, indent=2)
 
@@ -437,7 +442,7 @@ def create_frontend_tsconfig() -> str:
 def create_frontend_layout_tsx() -> str:
     return dedent("""\
         import type { Metadata } from "next";
-        import "./globals.css";
+        import "./globals.scss";
 
         export const metadata: Metadata = {
           title: "Dashboard",
@@ -471,10 +476,47 @@ def create_frontend_page_tsx() -> str:
     """)
 
 
-def create_frontend_globals_css() -> str:
+def create_frontend_globals_scss() -> str:
     return dedent("""\
         @import "tailwindcss";
     """)
+
+
+def create_biome_config() -> str:
+    return json.dumps({
+        "$schema": "https://biomejs.dev/schemas/1.9.0/schema.json",
+        "vcs": {
+            "enabled": True,
+            "clientKind": "git",
+            "useIgnoreFile": True
+        },
+        "files": {
+            "ignoreUnknown": False,
+            "ignore": ["node_modules", "dist", ".next", "build"]
+        },
+        "formatter": {
+            "enabled": True,
+            "indentStyle": "space",
+            "indentWidth": 2,
+            "lineWidth": 100
+        },
+        "organizeImports": {
+            "enabled": True
+        },
+        "linter": {
+            "enabled": True,
+            "rules": {
+                "recommended": True
+            }
+        },
+        "javascript": {
+            "formatter": {
+                "quoteStyle": "double",
+                "semicolons": "always",
+                "trailingCommas": "es5"
+            }
+        }
+    }, indent=2)
 
 
 # Mobile Templates
@@ -682,6 +724,7 @@ def scaffold_workspace(
         root / "api" / "package.json": create_api_package_json(org),
         root / "api" / "nest-cli.json": create_nest_cli_json(),
         root / "api" / "tsconfig.json": create_api_tsconfig(),
+        root / "api" / "biome.json": create_biome_config(),
         root / "api" / "Dockerfile": create_api_dockerfile(),
         root / "api" / "apps" / "api" / "src" / "main.ts": create_api_main_ts(),
         root / "api" / "apps" / "api" / "src" / "app.module.ts": create_api_app_module_ts(),
@@ -694,9 +737,10 @@ def scaffold_workspace(
         root / "frontend" / "next.config.ts": create_frontend_next_config(),
         root / "frontend" / "tailwind.config.ts": create_frontend_tailwind_config(),
         root / "frontend" / "tsconfig.json": create_frontend_tsconfig(),
+        root / "frontend" / "biome.json": create_biome_config(),
         root / "frontend" / "apps" / "dashboard" / "app" / "layout.tsx": create_frontend_layout_tsx(),
         root / "frontend" / "apps" / "dashboard" / "app" / "page.tsx": create_frontend_page_tsx(),
-        root / "frontend" / "apps" / "dashboard" / "app" / "globals.css": create_frontend_globals_css(),
+        root / "frontend" / "apps" / "dashboard" / "app" / "globals.scss": create_frontend_globals_scss(),
         root / "frontend" / "AGENTS.md": create_agents_md(f"{name} Frontend"),
         root / "frontend" / "CLAUDE.md": create_claude_md(f"{name} Frontend"),
         root / "frontend" / "CODEX.md": create_codex_md(f"{name} Frontend"),

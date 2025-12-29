@@ -101,7 +101,8 @@ def create_api_structure(root: Path, name: str, org: str, is_monorepo: bool) -> 
             "start:dev": "nest start --watch",
             "start:debug": "nest start --debug --watch",
             "start:prod": "node dist/main",
-            "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
+            "lint": "biome check .",
+            "lint:fix": "biome check --write .",
             "test": "jest"
         },
         "dependencies": {
@@ -121,11 +122,49 @@ def create_api_structure(root: Path, name: str, org: str, is_monorepo: bool) -> 
             "@nestjs/schematics": "^11.0.0",
             "@types/express": "^5.0.0",
             "@types/node": "^22.0.0",
-            "typescript": "^5.7.0"
+            "typescript": "^5.7.0",
+            "@biomejs/biome": "^1.9.0"
         }
     }
     
     (api_root / "package.json").write_text(json.dumps(package_json, indent=2))
+    
+    # biome.json
+    biome_config = {
+        "$schema": "https://biomejs.dev/schemas/1.9.0/schema.json",
+        "vcs": {
+            "enabled": True,
+            "clientKind": "git",
+            "useIgnoreFile": True
+        },
+        "files": {
+            "ignoreUnknown": False,
+            "ignore": ["node_modules", "dist", ".next", "build"]
+        },
+        "formatter": {
+            "enabled": True,
+            "indentStyle": "space",
+            "indentWidth": 2,
+            "lineWidth": 100
+        },
+        "organizeImports": {
+            "enabled": True
+        },
+        "linter": {
+            "enabled": True,
+            "rules": {
+                "recommended": True
+            }
+        },
+        "javascript": {
+            "formatter": {
+                "quoteStyle": "double",
+                "semicolons": "always",
+                "trailingCommas": "es5"
+            }
+        }
+    }
+    (api_root / "biome.json").write_text(json.dumps(biome_config, indent=2))
     
     # nest-cli.json
     nest_cli = {
@@ -301,7 +340,8 @@ def create_frontend_structure(root: Path, name: str, org: str, is_monorepo: bool
             "dev": "next dev --turbo",
             "build": "next build",
             "start": "next start",
-            "lint": "next lint"
+            "lint": "biome check .",
+            "lint:fix": "biome check --write ."
         },
         "dependencies": {
             "next": "^15.0.0",
@@ -321,7 +361,8 @@ def create_frontend_structure(root: Path, name: str, org: str, is_monorepo: bool
             "typescript": "^5.7.0",
             "sass": "^1.89.2",
             "tailwindcss": "^4.0.0",
-            "@tailwindcss/postcss": "^4.0.0"
+            "@tailwindcss/postcss": "^4.0.0",
+            "@biomejs/biome": "^1.9.0"
         }
     }
     (frontend_root / "package.json").write_text(json.dumps(package_json, indent=2))
@@ -431,6 +472,43 @@ def create_frontend_structure(root: Path, name: str, org: str, is_monorepo: bool
         @import "tailwindcss";
     """)
     (frontend_root / "apps" / "dashboard" / "app" / "globals.scss").write_text(globals_css)
+    
+    # biome.json
+    biome_config = {
+        "$schema": "https://biomejs.dev/schemas/1.9.0/schema.json",
+        "vcs": {
+            "enabled": True,
+            "clientKind": "git",
+            "useIgnoreFile": True
+        },
+        "files": {
+            "ignoreUnknown": False,
+            "ignore": ["node_modules", "dist", ".next", "build"]
+        },
+        "formatter": {
+            "enabled": True,
+            "indentStyle": "space",
+            "indentWidth": 2,
+            "lineWidth": 100
+        },
+        "organizeImports": {
+            "enabled": True
+        },
+        "linter": {
+            "enabled": True,
+            "rules": {
+                "recommended": True
+            }
+        },
+        "javascript": {
+            "formatter": {
+                "quoteStyle": "double",
+                "semicolons": "always",
+                "trailingCommas": "es5"
+            }
+        }
+    }
+    (frontend_root / "biome.json").write_text(json.dumps(biome_config, indent=2))
     
     # Entry files
     agents_md = dedent(f"""\

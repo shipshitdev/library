@@ -15,7 +15,7 @@ def create_layout_tsx(name: str) -> str:
     title = name.replace("-", " ").title()
     return dedent(f"""\
         import type {{ Metadata }} from "next";
-        import "../../../apps/dashboard/app/globals.css";
+        import "../../../apps/dashboard/app/globals.scss";
 
         export const metadata: Metadata = {{
           title: "{title}",

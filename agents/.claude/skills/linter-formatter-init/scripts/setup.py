@@ -179,9 +179,13 @@ LINT_STAGED_CONFIG = {
 }
 
 BIOME_CONFIG = {
-    "$schema": "https://biomejs.dev/schemas/1.4.1/schema.json",
-    "organizeImports": {
-        "enabled": True
+    "$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
+    "assist": {
+        "actions": {
+            "source": {
+                "organizeImports": "on"
+            }
+        }
     },
     "linter": {
         "enabled": True,
@@ -192,6 +196,10 @@ BIOME_CONFIG = {
             },
             "style": {
                 "noNonNullAssertion": "off"
+            },
+            "suspicious": {
+                "noArrayIndexKey": "off",
+                "noExplicitAny": "warn"
             }
         }
     },
@@ -204,33 +212,37 @@ BIOME_CONFIG = {
     "javascript": {
         "formatter": {
             "quoteStyle": "single",
-            "trailingComma": "es5",
+            "trailingCommas": "es5",
             "semicolons": "always"
         }
     }
 }
-
-PRE_COMMIT_HOOK = """#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-npx lint-staged
-"""
-
 
 # ============================================================================
 # Helper Functions
 # ============================================================================
 
 def detect_package_manager(root: Path) -> str:
-    """Detect which package manager is used in the project."""
-    if (root / "pnpm-lock.yaml").exists():
+    """Detect which package manager is used in the project. Prefers bun if available."""
+    # Check for existing lock files first
+    if (root / "bun.lockb").exists():
+        return "bun"
+    elif (root / "pnpm-lock.yaml").exists():
         return "pnpm"
     elif (root / "yarn.lock").exists():
         return "yarn"
-    elif (root / "bun.lockb").exists():
-        return "bun"
-    else:
+    elif (root / "package-lock.json").exists():
         return "npm"
+
+    # No lock file - check if bun is available and prefer it
+    try:
+        result = subprocess.run(["which", "bun"], capture_output=True, text=True)
+        if result.returncode == 0:
+            return "bun"
+    except:
+        pass
+
+    return "npm"
 
 
 def detect_framework(root: Path) -> list:
@@ -441,7 +453,7 @@ def setup_biome(root: Path, dry_run: bool):
 def setup_husky(root: Path, dry_run: bool):
     """Set up Husky pre-commit hooks."""
     print("\n🪝 Setting up pre-commit hooks...")
-    
+
     pm = detect_package_manager(root)
     install_cmd = {
         "npm": ["npm", "install", "-D"],
@@ -449,30 +461,36 @@ def setup_husky(root: Path, dry_run: bool):
         "yarn": ["yarn", "add", "-D"],
         "bun": ["bun", "add", "-D"]
     }[pm]
-    
+
     run_command(install_cmd + ["husky", "lint-staged"], root, dry_run)
-    
-    # Initialize husky
-    run_command(["npx", "husky", "install"], root, dry_run)
-    
-    # Create pre-commit hook
+
+    # Initialize husky (v9+ uses just "husky" not "husky install")
+    exec_cmd = "bunx" if pm == "bun" else "npx"
+    run_command([exec_cmd, "husky"], root, dry_run)
+
+    # Create pre-commit hook with appropriate executor
     husky_dir = root / ".husky"
     if not dry_run:
         husky_dir.mkdir(exist_ok=True)
-    
+
     pre_commit_path = husky_dir / "pre-commit"
-    write_text(pre_commit_path, PRE_COMMIT_HOOK, dry_run)
-    
+    pre_commit_content = f"""#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+{exec_cmd} lint-staged
+"""
+    write_text(pre_commit_path, pre_commit_content, dry_run)
+
     if not dry_run:
         pre_commit_path.chmod(0o755)
-    
-    # Add prepare script to package.json
+
+    # Add prepare script to package.json (v9+ uses just "husky")
     pkg_path = root / "package.json"
     if pkg_path.exists() and not dry_run:
         pkg = json.loads(pkg_path.read_text())
         if "scripts" not in pkg:
             pkg["scripts"] = {}
-        pkg["scripts"]["prepare"] = "husky install"
+        pkg["scripts"]["prepare"] = "husky"
         pkg_path.write_text(json.dumps(pkg, indent=2) + "\n")
 
 
@@ -488,6 +506,9 @@ def setup_vscode(root: Path, biome: bool, dry_run: bool):
     if biome:
         # Override for Biome
         settings["editor.defaultFormatter"] = "biomejs.biome"
+        settings["editor.codeActionsOnSave"] = {
+            "source.organizeImports.biome": "explicit"
+        }
         for key in list(settings.keys()):
             if key.startswith("["):
                 settings[key]["editor.defaultFormatter"] = "biomejs.biome"

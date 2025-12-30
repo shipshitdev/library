@@ -177,8 +177,12 @@ Creates `biome.json` instead of ESLint/Prettier configs:
 
 ```json
 {
-  "$schema": "https://biomejs.dev/schemas/1.4.1/schema.json",
-  "organizeImports": { "enabled": true },
+  "$schema": "https://biomejs.dev/schemas/2.3.10/schema.json",
+  "assist": {
+    "actions": {
+      "source": { "organizeImports": "on" }
+    }
+  },
   "linter": {
     "enabled": true,
     "rules": { "recommended": true }

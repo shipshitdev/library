@@ -28,21 +28,21 @@ Use this skill when:
 
 ```bash
 # Basic setup (ESLint + Prettier)
-python3 ~/.claude/skills/linter-formatter-init/scripts/setup.py \
+python3 ~/.codex/skills/linter-formatter-init/scripts/setup.py \
   --root /path/to/project
 
 # With TypeScript support
-python3 ~/.claude/skills/linter-formatter-init/scripts/setup.py \
+python3 ~/.codex/skills/linter-formatter-init/scripts/setup.py \
   --root /path/to/project \
   --typescript
 
 # Use Biome instead of ESLint + Prettier
-python3 ~/.claude/skills/linter-formatter-init/scripts/setup.py \
+python3 ~/.codex/skills/linter-formatter-init/scripts/setup.py \
   --root /path/to/project \
   --biome
 
 # Skip pre-commit hooks
-python3 ~/.claude/skills/linter-formatter-init/scripts/setup.py \
+python3 ~/.codex/skills/linter-formatter-init/scripts/setup.py \
   --root /path/to/project \
   --no-hooks
 ```
@@ -168,7 +168,7 @@ The skill creates `.vscode/settings.json`:
 Biome is a faster, all-in-one alternative to ESLint + Prettier:
 
 ```bash
-python3 ~/.claude/skills/linter-formatter-init/scripts/setup.py \
+python3 ~/.codex/skills/linter-formatter-init/scripts/setup.py \
   --root /path/to/project \
   --biome
 ```
@@ -177,8 +177,12 @@ Creates `biome.json` instead of ESLint/Prettier configs:
 
 ```json
 {
-  "$schema": "https://biomejs.dev/schemas/1.4.1/schema.json",
-  "organizeImports": { "enabled": true },
+  "$schema": "https://biomejs.dev/schemas/2.3.10/schema.json",
+  "assist": {
+    "actions": {
+      "source": { "organizeImports": "on" }
+    }
+  },
   "linter": {
     "enabled": true,
     "rules": { "recommended": true }
@@ -196,7 +200,7 @@ Creates `biome.json` instead of ESLint/Prettier configs:
 For monorepos, run from the root:
 
 ```bash
-python3 ~/.claude/skills/linter-formatter-init/scripts/setup.py \
+python3 ~/.codex/skills/linter-formatter-init/scripts/setup.py \
   --root /path/to/monorepo \
   --typescript \
   --monorepo
@@ -257,4 +261,4 @@ npx husky install
 npx husky add .husky/pre-commit "npx lint-staged"
 ```
 
-Then copy configs from `~/.claude/skills/linter-formatter-init/assets/configs/`
+Then copy configs from `~/.codex/skills/linter-formatter-init/assets/configs/`

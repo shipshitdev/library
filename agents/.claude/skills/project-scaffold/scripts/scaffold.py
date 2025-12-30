@@ -370,9 +370,77 @@ def create_frontend_structure(root: Path, name: str, org: str, is_monorepo: bool
     # next.config.ts
     next_config = dedent("""\
         import type { NextConfig } from "next";
+        import path from "path";
 
         const nextConfig: NextConfig = {
           reactStrictMode: true,
+          transpilePackages: ["@agenticindiedev/ui"],
+          sassOptions: {
+            includePaths: [path.join(__dirname, "node_modules")],
+          },
+          // Empty turbopack config to acknowledge we have webpack config but want Turbopack
+          turbopack: {},
+          webpack: (config) => {
+            // Configure sass-loader to resolve @agenticindiedev/ui package imports
+            const rules = config.module.rules;
+            const scssRule = rules.find(
+              (rule: unknown) =>
+                rule &&
+                typeof rule === "object" &&
+                rule !== null &&
+                "test" in rule &&
+                rule.test &&
+                typeof rule.test === "object" &&
+                "toString" in rule.test &&
+                rule.test.toString().includes("scss"),
+            );
+
+            if (
+              scssRule &&
+              typeof scssRule === "object" &&
+              scssRule !== null &&
+              "oneOf" in scssRule &&
+              Array.isArray(scssRule.oneOf)
+            ) {
+              scssRule.oneOf.forEach((oneOf: unknown) => {
+                if (
+                  oneOf &&
+                  typeof oneOf === "object" &&
+                  oneOf !== null &&
+                  "use" in oneOf &&
+                  Array.isArray(oneOf.use)
+                ) {
+                  oneOf.use.forEach((loader: unknown) => {
+                    if (
+                      loader &&
+                      typeof loader === "object" &&
+                      loader !== null &&
+                      "loader" in loader &&
+                      typeof loader.loader === "string" &&
+                      loader.loader.includes("sass-loader")
+                    ) {
+                      const loaderWithOptions = loader as {
+                        options?: {
+                          api?: string;
+                          sassOptions?: Record<string, unknown>;
+                        };
+                      };
+                      loaderWithOptions.options = {
+                        ...loaderWithOptions.options,
+                        api: "modern-compiler",
+                        sassOptions: {
+                          ...loaderWithOptions.options?.sassOptions,
+                          includePaths: [path.join(__dirname, "node_modules")],
+                        },
+                      };
+                    }
+                  });
+                }
+              });
+            }
+
+            return config;
+          },
         };
 
         export default nextConfig;
@@ -504,9 +572,24 @@ def create_frontend_structure(root: Path, name: str, org: str, is_monorepo: bool
     }
     (frontend_root / "biome.json").write_text(json.dumps(biome_config, indent=2))
     
+    # postcss.config.mjs
+    postcss_config = dedent("""\
+        const config = {
+          plugins: {
+            "@tailwindcss/postcss": {},
+          },
+        };
+
+        export default config;
+    """)
+    (frontend_root / "postcss.config.mjs").write_text(postcss_config)
+
     # globals.scss
     globals_scss = dedent("""\
-        @import "tailwindcss";
+        @use "tailwindcss";
+        @use "@agenticindiedev/ui/themes/dark";
+
+        @source "../../node_modules/@agenticindiedev/ui/dist/**/*.{js,cjs}";
     """)
     (frontend_root / "apps" / "dashboard" / "app" / "globals.scss").write_text(globals_scss)
     

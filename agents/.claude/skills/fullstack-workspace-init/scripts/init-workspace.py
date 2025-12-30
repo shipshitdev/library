@@ -379,9 +379,77 @@ def create_frontend_package_json(org: str) -> str:
 def create_frontend_next_config() -> str:
     return dedent("""\
         import type { NextConfig } from "next";
+        import path from "path";
 
         const nextConfig: NextConfig = {
           reactStrictMode: true,
+          transpilePackages: ["@agenticindiedev/ui"],
+          sassOptions: {
+            includePaths: [path.join(__dirname, "node_modules")],
+          },
+          // Empty turbopack config to acknowledge we have webpack config but want Turbopack
+          turbopack: {},
+          webpack: (config) => {
+            // Configure sass-loader to resolve @agenticindiedev/ui package imports
+            const rules = config.module.rules;
+            const scssRule = rules.find(
+              (rule: unknown) =>
+                rule &&
+                typeof rule === "object" &&
+                rule !== null &&
+                "test" in rule &&
+                rule.test &&
+                typeof rule.test === "object" &&
+                "toString" in rule.test &&
+                rule.test.toString().includes("scss"),
+            );
+
+            if (
+              scssRule &&
+              typeof scssRule === "object" &&
+              scssRule !== null &&
+              "oneOf" in scssRule &&
+              Array.isArray(scssRule.oneOf)
+            ) {
+              scssRule.oneOf.forEach((oneOf: unknown) => {
+                if (
+                  oneOf &&
+                  typeof oneOf === "object" &&
+                  oneOf !== null &&
+                  "use" in oneOf &&
+                  Array.isArray(oneOf.use)
+                ) {
+                  oneOf.use.forEach((loader: unknown) => {
+                    if (
+                      loader &&
+                      typeof loader === "object" &&
+                      loader !== null &&
+                      "loader" in loader &&
+                      typeof loader.loader === "string" &&
+                      loader.loader.includes("sass-loader")
+                    ) {
+                      const loaderWithOptions = loader as {
+                        options?: {
+                          api?: string;
+                          sassOptions?: Record<string, unknown>;
+                        };
+                      };
+                      loaderWithOptions.options = {
+                        ...loaderWithOptions.options,
+                        api: "modern-compiler",
+                        sassOptions: {
+                          ...loaderWithOptions.options?.sassOptions,
+                          includePaths: [path.join(__dirname, "node_modules")],
+                        },
+                      };
+                    }
+                  });
+                }
+              });
+            }
+
+            return config;
+          },
         };
 
         export default nextConfig;
@@ -476,9 +544,24 @@ def create_frontend_page_tsx() -> str:
     """)
 
 
+def create_frontend_postcss_config() -> str:
+    return dedent("""\
+        const config = {
+          plugins: {
+            "@tailwindcss/postcss": {},
+          },
+        };
+
+        export default config;
+    """)
+
+
 def create_frontend_globals_scss() -> str:
     return dedent("""\
-        @import "tailwindcss";
+        @use "tailwindcss";
+        @use "@agenticindiedev/ui/themes/dark";
+
+        @source "../../node_modules/@agenticindiedev/ui/dist/**/*.{js,cjs}";
     """)
 
 
@@ -735,6 +818,7 @@ def scaffold_workspace(
         # Frontend
         root / "frontend" / "package.json": create_frontend_package_json(org),
         root / "frontend" / "next.config.ts": create_frontend_next_config(),
+        root / "frontend" / "postcss.config.mjs": create_frontend_postcss_config(),
         root / "frontend" / "tailwind.config.ts": create_frontend_tailwind_config(),
         root / "frontend" / "tsconfig.json": create_frontend_tsconfig(),
         root / "frontend" / "biome.json": create_biome_config(),

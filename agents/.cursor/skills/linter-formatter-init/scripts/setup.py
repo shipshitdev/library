@@ -179,9 +179,13 @@ LINT_STAGED_CONFIG = {
 }
 
 BIOME_CONFIG = {
-    "$schema": "https://biomejs.dev/schemas/1.4.1/schema.json",
-    "organizeImports": {
-        "enabled": True
+    "$schema": "https://biomejs.dev/schemas/2.3.10/schema.json",
+    "assist": {
+        "actions": {
+            "source": {
+                "organizeImports": "on"
+            }
+        }
     },
     "linter": {
         "enabled": True,
@@ -204,7 +208,7 @@ BIOME_CONFIG = {
     "javascript": {
         "formatter": {
             "quoteStyle": "single",
-            "trailingComma": "es5",
+            "trailingCommas": "es5",
             "semicolons": "always"
         }
     }

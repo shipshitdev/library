@@ -1,20 +1,20 @@
 ---
 name: linter-formatter-init
-description: Set up ESLint, Prettier, and pre-commit hooks for any JavaScript/TypeScript project. Use this skill when initializing code quality tooling for a new project or adding linting to an existing one. Supports ESLint + Prettier or Biome as alternatives.
+description: Set up Biome (default) or ESLint + Prettier, and pre-commit hooks for any JavaScript/TypeScript project. Uses Bun as the package manager. Use this skill when initializing code quality tooling for a new project or adding linting to an existing one.
 ---
 
 # Linter Formatter Init
 
-Set up comprehensive linting and formatting for JavaScript/TypeScript projects.
+Set up comprehensive linting and formatting for JavaScript/TypeScript projects using **Biome** (default) and **Bun**.
 
 ## Purpose
 
 This skill automates the setup of:
-- ESLint for code linting
-- Prettier for code formatting
+- **Biome** for linting + formatting (default, recommended)
+- ESLint + Prettier (legacy, use `--eslint` flag)
 - Husky + lint-staged for pre-commit hooks
 - VS Code/Cursor settings for auto-format on save
-- npm scripts for manual linting and formatting
+- bun scripts for manual linting and formatting
 
 ## When to Use
 
@@ -27,19 +27,20 @@ Use this skill when:
 ## Quick Start
 
 ```bash
-# Basic setup (ESLint + Prettier)
+# Default setup (Biome) - RECOMMENDED
 python3 ~/.claude/skills/linter-formatter-init/scripts/setup.py \
   --root /path/to/project
 
-# With TypeScript support
+# Use ESLint + Prettier instead (legacy)
 python3 ~/.claude/skills/linter-formatter-init/scripts/setup.py \
   --root /path/to/project \
-  --typescript
+  --eslint
 
-# Use Biome instead of ESLint + Prettier
+# ESLint + Prettier with TypeScript
 python3 ~/.claude/skills/linter-formatter-init/scripts/setup.py \
   --root /path/to/project \
-  --biome
+  --eslint \
+  --typescript
 
 # Skip pre-commit hooks
 python3 ~/.claude/skills/linter-formatter-init/scripts/setup.py \
@@ -51,7 +52,10 @@ python3 ~/.claude/skills/linter-formatter-init/scripts/setup.py \
 
 ### Dependencies
 
-**ESLint + Prettier (default):**
+**Biome (default):**
+- @biomejs/biome
+
+**ESLint + Prettier (legacy, with --eslint):**
 - eslint
 - prettier
 - eslint-config-prettier
@@ -59,20 +63,15 @@ python3 ~/.claude/skills/linter-formatter-init/scripts/setup.py \
 - @typescript-eslint/parser (if --typescript)
 - @typescript-eslint/eslint-plugin (if --typescript)
 
-**Biome (alternative):**
-- @biomejs/biome
-
 **Pre-commit hooks:**
 - husky
 - lint-staged
 
-### Configuration Files
+### Configuration Files (Biome - Default)
 
 ```
 project/
-├── .eslintrc.json          # ESLint config
-├── .prettierrc             # Prettier config
-├── .prettierignore         # Prettier ignore patterns
+├── biome.json              # Biome config (lint + format)
 ├── .vscode/
 │   └── settings.json       # Auto-format on save
 ├── .husky/
@@ -80,7 +79,37 @@ project/
 └── package.json            # Updated with scripts + lint-staged
 ```
 
-### npm Scripts Added
+### Configuration Files (ESLint + Prettier - Legacy)
+
+```
+project/
+├── .eslintrc.json          # ESLint config
+├── .prettierrc             # Prettier config
+├── .prettierignore         # Prettier ignore patterns
+├── .eslintignore           # ESLint ignore patterns
+├── .vscode/
+│   └── settings.json       # Auto-format on save
+├── .husky/
+│   └── pre-commit          # Pre-commit hook
+└── package.json            # Updated with scripts + lint-staged
+```
+
+### Bun Scripts Added (Biome)
+
+```json
+{
+  "scripts": {
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write .",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "check": "biome check .",
+    "check:fix": "biome check --write ."
+  }
+}
+```
+
+### Bun Scripts Added (ESLint + Prettier)
 
 ```json
 {
@@ -93,42 +122,64 @@ project/
 }
 ```
 
-## Configuration Options
+## Biome Configuration (Default)
 
-### ESLint Rules (Default)
-
-The default ESLint config includes:
-- Recommended rules for JS/TS
-- Prettier integration (no formatting conflicts)
-- No console.log in production
-- Prefer const over let
-- No unused variables (error)
-- Consistent return types (TypeScript)
-
-### Prettier Options (Default)
+Biome is a fast, all-in-one linter and formatter. The default config includes:
 
 ```json
 {
-  "semi": true,
-  "singleQuote": true,
-  "tabWidth": 2,
-  "trailingComma": "es5",
-  "printWidth": 100,
-  "bracketSpacing": true
+  "$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
+  "assist": {
+    "actions": {
+      "source": { "organizeImports": "on" }
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "complexity": { "noForEach": "off" },
+      "style": { "noNonNullAssertion": "off" },
+      "suspicious": { "noArrayIndexKey": "off", "noExplicitAny": "warn" }
+    }
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "trailingCommas": "es5",
+      "semicolons": "always"
+    }
+  }
 }
 ```
 
 ### Customization
 
-After setup, customize:
-1. `.eslintrc.json` - Add project-specific rules
-2. `.prettierrc` - Adjust formatting preferences
-3. `.eslintignore` / `.prettierignore` - Add ignore patterns
+After setup, customize `biome.json` to adjust:
+- Linting rules
+- Formatting preferences
+- File ignore patterns
 
 ## Pre-commit Hooks
 
 When enabled (default), lint-staged runs on every commit:
 
+**Biome (default):**
+```json
+{
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css}": ["bunx biome check --write"]
+  }
+}
+```
+
+**ESLint + Prettier (legacy):**
 ```json
 {
   "lint-staged": {
@@ -147,53 +198,38 @@ This ensures:
 
 The skill creates `.vscode/settings.json`:
 
+**Biome (default):**
+```json
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports.biome": "explicit",
+    "quickfix.biome": "explicit"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  }
+}
+```
+
+**ESLint + Prettier (legacy):**
 ```json
 {
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
 ```
 
-## Biome Alternative
+## Why Biome Over ESLint + Prettier?
 
-Biome is a faster, all-in-one alternative to ESLint + Prettier:
-
-```bash
-python3 ~/.claude/skills/linter-formatter-init/scripts/setup.py \
-  --root /path/to/project \
-  --biome
-```
-
-Creates `biome.json` instead of ESLint/Prettier configs:
-
-```json
-{
-  "$schema": "https://biomejs.dev/schemas/2.3.10/schema.json",
-  "assist": {
-    "actions": {
-      "source": { "organizeImports": "on" }
-    }
-  },
-  "linter": {
-    "enabled": true,
-    "rules": { "recommended": true }
-  },
-  "formatter": {
-    "enabled": true,
-    "indentStyle": "space",
-    "indentWidth": 2
-  }
-}
-```
+- **Faster**: Written in Rust, 10-100x faster than ESLint + Prettier
+- **Simpler**: One tool instead of two, one config file
+- **No conflicts**: No need for eslint-config-prettier or similar workarounds
+- **Better defaults**: Sensible rules out of the box
 
 ## Monorepo Support
 
@@ -202,7 +238,6 @@ For monorepos, run from the root:
 ```bash
 python3 ~/.claude/skills/linter-formatter-init/scripts/setup.py \
   --root /path/to/monorepo \
-  --typescript \
   --monorepo
 ```
 
@@ -210,55 +245,51 @@ This adds root-level config that applies to all packages.
 
 ## Troubleshooting
 
-### ESLint conflicts with Prettier
-
-The config includes `eslint-config-prettier` which disables all ESLint rules that conflict with Prettier. If you still see conflicts:
-
-```bash
-# Check for conflicting rules
-npx eslint-config-prettier .eslintrc.json
-```
-
 ### Pre-commit hooks not running
 
 ```bash
 # Reinstall husky
-npx husky install
+bunx husky
 chmod +x .husky/pre-commit
 ```
 
-### Format on save not working
+### Format on save not working (Biome)
+
+1. Install the Biome extension in VS Code/Cursor
+2. Set Biome as default formatter
+3. Enable "Format on Save" in settings
+
+### Format on save not working (ESLint + Prettier)
 
 1. Install the Prettier extension in VS Code/Cursor
 2. Set Prettier as default formatter
 3. Enable "Format on Save" in settings
 
-## Framework-Specific Configs
+## Framework-Specific Configs (ESLint mode only)
 
-The skill detects common frameworks and adjusts config:
+When using `--eslint`, the skill detects common frameworks and adjusts config:
 
 - **Next.js**: Adds `next/core-web-vitals` to ESLint
 - **React**: Adds `eslint-plugin-react` and `eslint-plugin-react-hooks`
 - **NestJS**: Adds rules for decorators and DI patterns
-- **Node.js**: Adds `eslint-plugin-node` rules
 
 ## Manual Setup (Alternative)
 
 If you prefer manual setup over the script:
 
+**Biome:**
 ```bash
-# Install dependencies
-npm install -D eslint prettier eslint-config-prettier eslint-plugin-prettier husky lint-staged
+bun add -D @biomejs/biome husky lint-staged
+bunx biome init
+bunx husky
+```
 
-# TypeScript support
-npm install -D @typescript-eslint/parser @typescript-eslint/eslint-plugin
-
-# Initialize ESLint
-npx eslint --init
-
-# Initialize Husky
-npx husky install
-npx husky add .husky/pre-commit "npx lint-staged"
+**ESLint + Prettier:**
+```bash
+bun add -D eslint prettier eslint-config-prettier eslint-plugin-prettier husky lint-staged
+bun add -D @typescript-eslint/parser @typescript-eslint/eslint-plugin
+bunx eslint --init
+bunx husky
 ```
 
 Then copy configs from `~/.claude/skills/linter-formatter-init/assets/configs/`

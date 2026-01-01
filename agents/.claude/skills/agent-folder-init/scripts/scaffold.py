@@ -246,8 +246,10 @@ def copy_agent_configs(root: Path) -> None:
         dest_dir.mkdir(parents=True, exist_ok=True)
 
         # Copy files recursively
-        # Only copy agents/, commands/, and rules/ subdirectories (not skills/)
-        subdirs_to_copy = ["agents", "commands", "rules"]
+        # Only copy agents/ and commands/ subdirectories
+        # NOTE: rules/ are NOT copied - they're inherited from ~/.claude/rules/ (library level)
+        # This prevents duplication since library-level rules apply to all projects
+        subdirs_to_copy = ["agents", "commands"]
         copied_anything = False
 
         for subdir in subdirs_to_copy:

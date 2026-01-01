@@ -59,6 +59,8 @@ python3 ~/.claude/skills/agent-folder-init/scripts/scaffold.py \
 │   ├── RULES.md                 # Coding standards
 │   ├── ARCHITECTURE.md          # What's implemented
 │   ├── SUMMARY.md               # Current state
+│   ├── PRD.md                   # Product Requirements Document
+│   ├── ENTITIES.md              # Entity documentation
 │   ├── ai/
 │   │   ├── SESSION-QUICK-START.md
 │   │   ├── SESSION-DOCUMENTATION-PROTOCOL.md
@@ -89,7 +91,7 @@ python3 ~/.claude/skills/agent-folder-init/scripts/scaffold.py \
 
 ```
 .claude/
-├── commands/                    # Slash commands
+├── commands/                    # Slash commands (project-specific)
 │   ├── start.md
 │   ├── end.md
 │   ├── new-session.md
@@ -102,12 +104,7 @@ python3 ~/.claude/skills/agent-folder-init/scripts/scaffold.py \
 │   ├── task.md
 │   ├── validate.md
 │   └── clean.md
-├── rules/                       # Auto-loaded rules
-│   ├── ai-agent-behavior.md
-│   ├── coding-standards.md
-│   ├── session-workflow.md
-│   └── user-preferences.md
-├── agents/                      # Specialized agents
+├── agents/                      # Specialized agents (project-specific)
 │   ├── senior-backend-engineer.md
 │   └── senior-frontend-engineer.md
 └── skills/                      # Project-specific skills
@@ -120,7 +117,7 @@ python3 ~/.claude/skills/agent-folder-init/scripts/scaffold.py \
 └── commands/
 ```
 
-**Note:** Agent configs (agents/, commands/, rules/) are copied from the library root (e.g., `~/.claude/agents/`) instead of template assets to ensure projects always get the latest version and eliminate duplication. The scaffold script automatically detects the library root and falls back to templates if the library is not available.
+**Note:** Agent configs (agents/, commands/) are copied from the library root (e.g., `~/.claude/agents/`) to ensure projects get the latest version. Rules are NOT copied because they're inherited from `~/.claude/rules/` at the library/personal level - this prevents duplication and ensures all projects use consistent rules.
 
 ### Root Files
 
@@ -145,9 +142,21 @@ python3 ~/.claude/skills/agent-folder-init/scripts/scaffold.py \
 
 After scaffolding, customize:
 
-1. `SYSTEM/RULES.md` - Add project-specific coding standards
-2. `SYSTEM/ARCHITECTURE.md` - Document your architecture
-3. `SYSTEM/critical/CRITICAL-NEVER-DO.md` - Add project-specific violations
-4. `SOP/` - Add your standard operating procedures
-5. `.claude/rules/` - Add project-specific rules
-6. `.claude/commands/` - Add project-specific commands
+1. `SYSTEM/PRD.md` - Fill in your product requirements (use with fullstack-workspace-init)
+2. `SYSTEM/ENTITIES.md` - Document your data entities
+3. `SYSTEM/RULES.md` - Add project-specific coding standards
+4. `SYSTEM/ARCHITECTURE.md` - Document your architecture
+5. `SYSTEM/critical/CRITICAL-NEVER-DO.md` - Add project-specific violations
+6. `SOP/` - Add your standard operating procedures
+7. `.claude/rules/` - Add project-specific rules
+8. `.claude/commands/` - Add project-specific commands
+
+## Integration with Other Skills
+
+This skill integrates with:
+
+| Skill | How It Works Together |
+|-------|----------------------|
+| `fullstack-workspace-init` | Use PRD.md to define requirements before scaffolding |
+| `linter-formatter-init` | Sets up quality tooling in the scaffolded project |
+| `husky-test-coverage` | Enforces test coverage in pre-commit hooks |

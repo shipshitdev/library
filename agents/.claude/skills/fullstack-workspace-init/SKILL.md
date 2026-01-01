@@ -1,131 +1,308 @@
 ---
 name: fullstack-workspace-init
-description: Scaffold a full-stack monorepo workspace with NextJS frontend, NestJS backend, React Native mobile, and shared packages. Use this skill when starting a new product that needs a complete tech stack with best practices baked in.
+description: Scaffold a production-ready full-stack monorepo with working MVP features, tests, and CI/CD. Generates complete CRUD functionality, Clerk authentication, and quality gates that run immediately with `bun dev`.
 ---
 
 # Full Stack Workspace Init
 
-Create a production-ready monorepo with:
-- **Frontend:** NextJS + React + TypeScript + Tailwind + @agenticindiedev/ui
-- **Backend:** NestJS + MongoDB + Redis + BullMQ
-- **Mobile:** React Native + Expo
-- **Shared:** Packages for types, serializers, enums, helpers
+Create a **production-ready** monorepo with working MVP features:
+- **Frontend:** NextJS 16 + React 19 + TypeScript + Tailwind + @agenticindiedev/ui
+- **Backend:** NestJS 11 + MongoDB + Clerk Auth + Swagger
+- **Mobile:** React Native + Expo (optional)
+- **Quality:** Vitest (80% coverage) + Biome + Husky + GitHub Actions CI/CD
 - **Package Manager:** bun
+
+## What Makes This Different
+
+This skill generates **working applications**, not empty scaffolds:
+- Complete CRUD operations for your main entities
+- Clerk authentication configured and working
+- Tests with 80% coverage threshold
+- GitHub Actions CI/CD pipeline
+- Runs immediately with `bun dev`
+
+---
+
+## Workflow
+
+### Phase 1: PRD Brief Intake
+
+**Ask the user for a 1-2 paragraph product description**, then extract and confirm:
+
+```
+I'll help you build [Project Name]. Based on your description, I understand:
+
+**Entities:**
+- [Entity1]: [fields]
+- [Entity2]: [fields]
+
+**Features:**
+- [Feature 1]
+- [Feature 2]
+
+**Routes:**
+- / - Home/Dashboard
+- /[entity] - List view
+- /[entity]/[id] - Detail view
+
+**API Endpoints:**
+- GET/POST /api/[entity]
+- GET/PATCH/DELETE /api/[entity]/:id
+
+Is this correct? Any adjustments?
+```
+
+### Phase 2: Auth Setup (Always Included)
+
+Generate Clerk authentication:
+
+**Backend:**
+- `auth/guards/clerk-auth.guard.ts` - Token verification guard
+- `auth/decorators/current-user.decorator.ts` - User extraction decorator
+
+**Frontend:**
+- `providers/clerk-provider.tsx` - ClerkProvider wrapper
+- `app/sign-in/[[...sign-in]]/page.tsx` - Sign in page
+- `app/sign-up/[[...sign-up]]/page.tsx` - Sign up page
+- `middleware.ts` - Protected route middleware
+
+**Environment:**
+- `.env.example` with all required variables
+
+### Phase 3: Entity Generation
+
+For each extracted entity, generate complete CRUD:
+
+**Backend (NestJS):**
+```
+api/apps/api/src/collections/{entity}/
+├── {entity}.module.ts
+├── {entity}.controller.ts      # Full CRUD + Swagger + ClerkAuthGuard
+├── {entity}.service.ts         # Business logic
+├── {entity}.service.spec.ts    # Vitest tests
+├── schemas/
+│   └── {entity}.schema.ts      # Mongoose schema with userId
+└── dto/
+    ├── create-{entity}.dto.ts  # class-validator decorators
+    └── update-{entity}.dto.ts  # PartialType of create
+```
+
+**Frontend (NextJS):**
+```
+frontend/apps/dashboard/
+├── app/{entity}/
+│   ├── page.tsx                # List view (protected)
+│   └── [id]/page.tsx           # Detail view (protected)
+└── packages/components/
+    ├── {entity}-list.tsx
+    ├── {entity}-form.tsx
+    └── {entity}-item.tsx
+frontend/packages/services/
+    └── {entity}.service.ts     # API client with auth headers
+```
+
+### Phase 4: Quality Setup
+
+**Vitest Configuration:**
+- `vitest.config.ts` in each project
+- 80% coverage threshold for lines, functions, branches
+- `@vitest/coverage-v8` provider
+
+**GitHub Actions:**
+- `.github/workflows/ci.yml`
+- Runs on push to main and PRs
+- Steps: install → lint → test → build
+
+**Husky Hooks:**
+- Pre-commit: `lint-staged` (Biome check)
+- Pre-push: `bun run typecheck`
+
+**Biome:**
+- `biome.json` in each project
+- 100 character line width
+- Double quotes, semicolons
+
+### Phase 5: Verification
+
+Run quality gate and report results:
+
+```
+✅ Generation complete!
+
+Quality Report:
+- bun install: ✓ succeeded
+- bun run lint: ✓ 0 errors
+- bun run test: ✓ 24 tests passed
+- Coverage: 82% (threshold: 80%)
+
+Ready to run:
+  cd [project]
+  bun dev
+```
+
+---
 
 ## Usage
 
 ```bash
-# Show help
-python3 ~/.claude/skills/fullstack-workspace-init/scripts/init-workspace.py --help
-
-# Create full workspace
-python3 ~/.claude/skills/fullstack-workspace-init/scripts/init-workspace.py \
-  --root ~/www/myproject \
-  --name "My Project"
-
-# Create with custom org name (for packages)
+# Create workspace with PRD-style prompt
 python3 ~/.claude/skills/fullstack-workspace-init/scripts/init-workspace.py \
   --root ~/www/myproject \
   --name "My Project" \
-  --org "myorg"
+  --brief "A task management app where users can create tasks with titles and due dates, organize them into projects, and mark them complete."
+
+# Or interactive mode (prompts for brief)
+python3 ~/.claude/skills/fullstack-workspace-init/scripts/init-workspace.py \
+  --root ~/www/myproject \
+  --name "My Project" \
+  --interactive
 ```
+
+---
 
 ## Generated Structure
 
 ```
 myproject/
-├── .agent/                  # AI documentation
-├── .gitignore
-├── .npmrc                   # Forces bun
-├── package.json             # Workspace root
-├── AGENTS.md
-├── CLAUDE.md
-├── CODEX.md
-├── README.md
+├── .github/
+│   └── workflows/
+│       └── ci.yml              # GitHub Actions CI/CD
+├── .husky/
+│   ├── pre-commit              # Lint staged files
+│   └── pre-push                # Type check
+├── .agent/                     # AI documentation
+├── package.json                # Workspace root
+├── biome.json                  # Root linting config
 │
-├── api/                     # NestJS backend
-│   ├── .agent/
-│   ├── apps/
-│   │   └── api/
-│   │       └── src/
-│   │           ├── main.ts
-│   │           ├── app.module.ts
-│   │           ├── auth/
-│   │           ├── config/
-│   │           └── collections/
+├── api/                        # NestJS backend
+│   ├── apps/api/src/
+│   │   ├── main.ts
+│   │   ├── app.module.ts
+│   │   ├── auth/
+│   │   │   ├── guards/clerk-auth.guard.ts
+│   │   │   └── decorators/current-user.decorator.ts
+│   │   └── collections/
+│   │       └── {entity}/       # Generated per entity
+│   ├── vitest.config.ts
 │   ├── package.json
-│   ├── nest-cli.json
-│   ├── Dockerfile
-│   └── AGENTS.md, CLAUDE.md, CODEX.md
+│   └── .env.example
 │
-├── frontend/                # NextJS apps
-│   ├── .agent/
-│   ├── apps/
-│   │   └── dashboard/
-│   │       └── app/
+├── frontend/                   # NextJS apps
+│   ├── apps/dashboard/
+│   │   ├── app/
+│   │   │   ├── layout.tsx
+│   │   │   ├── page.tsx
+│   │   │   ├── sign-in/[[...sign-in]]/page.tsx
+│   │   │   ├── sign-up/[[...sign-up]]/page.tsx
+│   │   │   └── {entity}/       # Generated per entity
+│   │   ├── middleware.ts       # Clerk route protection
+│   │   └── providers/
+│   │       └── clerk-provider.tsx
 │   ├── packages/
-│   │   ├── components/
-│   │   ├── services/
+│   │   ├── components/         # Generated components
+│   │   ├── services/           # API clients
 │   │   ├── hooks/
 │   │   └── interfaces/
-│   ├── package.json
-│   ├── next.config.ts
-│   ├── tailwind.config.ts
-│   └── AGENTS.md, CLAUDE.md, CODEX.md
+│   ├── vitest.config.ts
+│   └── package.json
 │
-├── mobile/                  # React Native + Expo
-│   ├── .agent/
-│   ├── app/
-│   │   └── _layout.tsx
-│   ├── package.json
-│   ├── app.json
-│   └── AGENTS.md, CLAUDE.md, CODEX.md
+├── mobile/                     # React Native + Expo (optional)
+│   └── ...
 │
-└── packages/                # Shared packages
-    ├── .agent/
-    ├── packages/
-    │   ├── common/
-    │   │   ├── serializers/
-    │   │   ├── interfaces/
-    │   │   └── enums/
-    │   ├── helpers/
-    │   └── constants/
-    ├── package.json
-    └── AGENTS.md, CLAUDE.md, CODEX.md
+└── packages/                   # Shared packages
+    └── packages/
+        ├── common/
+        │   ├── interfaces/
+        │   └── enums/
+        └── helpers/
 ```
 
-## Key Patterns Included
+---
 
-### Backend
-- Soft deletes: `isDeleted: boolean` (not `deletedAt`)
-- Multi-tenancy: Always filter by `organization`
-- Collection pattern: controllers → services → schemas
-- Simple indexes in schema, compound in module
+## Key Patterns
 
-### Frontend
-- Path aliases: `@components/`, `@services/`, `@hooks/`
-- AbortController in useEffect
-- No inline interfaces
-- LoggerService instead of console.log
+### Backend Controller Pattern
 
-### Shared
-- Serializers in `packages/common/serializers/`
-- Interfaces in `packages/common/interfaces/`
-- Enums in `packages/common/enums/`
+```typescript
+@ApiTags('tasks')
+@ApiBearerAuth()
+@UseGuards(ClerkAuthGuard)
+@Controller('tasks')
+export class TasksController {
+  constructor(private readonly tasksService: TasksService) {}
+
+  @Post()
+  @ApiOperation({ summary: 'Create a new task' })
+  create(
+    @Body() createTaskDto: CreateTaskDto,
+    @CurrentUser() user: { userId: string },
+  ) {
+    return this.tasksService.create(createTaskDto, user.userId);
+  }
+  // ... full CRUD
+}
+```
+
+### Backend Service Pattern
+
+```typescript
+@Injectable()
+export class TasksService {
+  constructor(
+    @InjectModel(Task.name) private taskModel: Model<TaskDocument>,
+  ) {}
+
+  async create(createTaskDto: CreateTaskDto, userId: string): Promise<Task> {
+    const task = new this.taskModel({ ...createTaskDto, userId });
+    return task.save();
+  }
+  // ... full CRUD with userId filtering
+}
+```
+
+### Frontend Component Pattern
+
+```typescript
+'use client';
+
+import { useEffect, useState } from 'react';
+import { TaskService } from '@services/task.service';
+import { Task } from '@interfaces/task.interface';
+
+export function TaskList() {
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    TaskService.getAll({ signal: controller.signal })
+      .then(setTasks)
+      .finally(() => setLoading(false));
+    return () => controller.abort();
+  }, []);
+
+  // ... render
+}
+```
+
+---
 
 ## Additional Scripts
 
 ```bash
+# Add a new entity to existing project
+python3 ~/.claude/skills/fullstack-workspace-init/scripts/add-entity.py \
+  --root ~/www/myproject \
+  --name "comment" \
+  --fields "content:string,taskId:string"
+
 # Add a new frontend app
 python3 ~/.claude/skills/fullstack-workspace-init/scripts/add-frontend-app.py \
   --root ~/www/myproject/frontend \
   --name admin
-
-# Add a new API collection
-python3 ~/.claude/skills/fullstack-workspace-init/scripts/add-api-collection.py \
-  --root ~/www/myproject/api \
-  --name users
 ```
+
+---
 
 ## Development Commands
 
@@ -137,18 +314,46 @@ cd myproject
 # Install all dependencies
 bun install
 
-# Start backend
-cd api && bun run start:dev
+# Start all services (backend + frontend)
+bun dev
 
-# Start frontend
-cd frontend && bun run dev
+# Or start individually
+bun run dev:api      # Backend on :3001
+bun run dev:frontend # Frontend on :3000
+bun run dev:mobile   # Mobile via Expo
 
-# Start mobile
-cd mobile && bun run start
+# Quality commands
+bun run lint         # Check code style
+bun run test         # Run tests
+bun run test:coverage # Run with coverage
+bun run typecheck    # Type checking
 ```
+
+---
+
+## Environment Variables
+
+Create `.env` files based on `.env.example`:
+
+**API (.env):**
+```
+PORT=3001
+MONGODB_URI=mongodb://localhost:27017/myproject
+CLERK_SECRET_KEY=sk_test_...
+```
+
+**Frontend (.env.local):**
+```
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
+NEXT_PUBLIC_API_URL=http://localhost:3001
+```
+
+---
 
 ## References
 
+- `references/templates/` - Code generation templates
+- `references/github-actions/ci.yml` - CI/CD workflow
+- `references/vitest.config.ts` - Test configuration
 - `references/architecture-guide.md` - Architectural decisions
 - `references/coding-standards.md` - Coding rules
-- `references/deployment-guide.md` - Deployment patterns

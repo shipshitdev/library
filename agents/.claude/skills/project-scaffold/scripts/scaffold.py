@@ -50,6 +50,30 @@ def ask_yes_no(prompt: str, default: bool = False) -> bool:
     return answer in ("y", "yes")
 
 
+def is_git_initialized(root: Path) -> bool:
+    """Check if git is already initialized in the project."""
+    return (root / ".git").exists()
+
+
+def init_git_repository(root: Path) -> None:
+    """Initialize git repository if not already initialized."""
+    if is_git_initialized(root):
+        print("ℹ️  Git repository already initialized. Skipping.")
+        return
+    
+    try:
+        # Check if git is available
+        subprocess.run(["git", "--version"], check=True, capture_output=True)
+        
+        # Initialize git
+        subprocess.run(["git", "init"], cwd=root, check=True)
+        print("✅ Initialized git repository")
+    except subprocess.CalledProcessError:
+        print("⚠️  Warning: Could not initialize git repository (git may not be installed)")
+    except FileNotFoundError:
+        print("⚠️  Warning: Git not found. Skipping git initialization.")
+
+
 def scaffold_agent_folder(root: Path, project_name: str, tech_stack: str = "", allow_outside: bool = False) -> None:
     """Scaffold .agent folder structure."""
     agent_init_script = Path.home() / ".codex" / "skills" / "agent-folder-init" / "scripts" / "scaffold.py"
@@ -1103,6 +1127,9 @@ def interactive_scaffold() -> None:
     # Create monorepo root files
     if is_monorepo and not is_existing:
         create_monorepo_root(root, project_name, components)
+    
+    # Initialize git repository if not already initialized
+    init_git_repository(root)
     
     print(f"\n✅ Scaffolding complete!")
     print(f"\nNext steps:")

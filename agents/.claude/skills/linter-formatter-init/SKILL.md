@@ -1,20 +1,21 @@
 ---
 name: linter-formatter-init
-description: Set up Biome (default) or ESLint + Prettier, and pre-commit hooks for any JavaScript/TypeScript project. Uses Bun as the package manager. Use this skill when initializing code quality tooling for a new project or adding linting to an existing one.
+description: Set up Biome (default) or ESLint + Prettier, Vitest testing, and pre-commit hooks for any JavaScript/TypeScript project. Uses Bun as the package manager. Use this skill when initializing code quality tooling for a new project or adding linting to an existing one.
 ---
 
 # Linter Formatter Init
 
-Set up comprehensive linting and formatting for JavaScript/TypeScript projects using **Biome** (default) and **Bun**.
+Set up comprehensive linting, formatting, and testing for JavaScript/TypeScript projects using **Biome** (default), **Vitest**, and **Bun**.
 
 ## Purpose
 
 This skill automates the setup of:
 - **Biome** for linting + formatting (default, recommended)
+- **Vitest** for testing with coverage (use `--vitest` flag)
 - ESLint + Prettier (legacy, use `--eslint` flag)
 - Husky + lint-staged for pre-commit hooks
 - VS Code/Cursor settings for auto-format on save
-- bun scripts for manual linting and formatting
+- bun scripts for manual linting, formatting, and testing
 
 ## When to Use
 
@@ -46,6 +47,17 @@ python3 ~/.claude/skills/linter-formatter-init/scripts/setup.py \
 python3 ~/.claude/skills/linter-formatter-init/scripts/setup.py \
   --root /path/to/project \
   --no-hooks
+
+# Add Vitest testing with 80% coverage threshold
+python3 ~/.claude/skills/linter-formatter-init/scripts/setup.py \
+  --root /path/to/project \
+  --vitest
+
+# Full setup: Biome + Vitest + Husky
+python3 ~/.claude/skills/linter-formatter-init/scripts/setup.py \
+  --root /path/to/project \
+  --vitest \
+  --coverage 80
 ```
 
 ## What Gets Installed
@@ -54,6 +66,10 @@ python3 ~/.claude/skills/linter-formatter-init/scripts/setup.py \
 
 **Biome (default):**
 - @biomejs/biome
+
+**Vitest (with --vitest):**
+- vitest
+- @vitest/coverage-v8
 
 **ESLint + Prettier (legacy, with --eslint):**
 - eslint
@@ -105,6 +121,19 @@ project/
     "format:check": "biome format .",
     "check": "biome check .",
     "check:fix": "biome check --write ."
+  }
+}
+```
+
+### Bun Scripts Added (Vitest)
+
+```json
+{
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui"
   }
 }
 ```
@@ -165,6 +194,62 @@ After setup, customize `biome.json` to adjust:
 - Linting rules
 - Formatting preferences
 - File ignore patterns
+
+## Vitest Configuration (with --vitest)
+
+When you use the `--vitest` flag, this skill creates a `vitest.config.ts`:
+
+```typescript
+import { defineConfig } from "vitest/config";
+
+export default defineConfig({
+  test: {
+    globals: true,
+    environment: "node", // or "jsdom" for frontend
+    include: ["src/**/*.{test,spec}.{ts,tsx}", "**/*.{test,spec}.{ts,tsx}"],
+    exclude: ["node_modules", "dist", ".next", "build"],
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "json", "html", "lcov"],
+      include: ["src/**/*.ts", "src/**/*.tsx"],
+      exclude: ["src/**/*.test.ts", "src/**/*.spec.ts", "src/**/*.d.ts"],
+      thresholds: {
+        lines: 80,
+        functions: 80,
+        branches: 75,
+        statements: 80,
+      },
+    },
+    mockReset: true,
+    restoreMocks: true,
+  },
+});
+```
+
+### Coverage Thresholds
+
+Default threshold is 80%. Customize with:
+
+```bash
+python3 ~/.claude/skills/linter-formatter-init/scripts/setup.py \
+  --root /path/to/project \
+  --vitest \
+  --coverage 90  # Set to 90%
+```
+
+### Test Setup File
+
+Creates `src/test/setup.ts` for global test configuration:
+
+```typescript
+import { expect, afterEach } from "vitest";
+import { cleanup } from "@testing-library/react"; // For React projects
+
+// Cleanup after each test
+afterEach(() => {
+  cleanup();
+});
+```
 
 ## Pre-commit Hooks
 

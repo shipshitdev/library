@@ -50,6 +50,30 @@ def ask_yes_no(prompt: str, default: bool = False) -> bool:
     return answer in ("y", "yes")
 
 
+def is_git_initialized(root: Path) -> bool:
+    """Check if git is already initialized in the project."""
+    return (root / ".git").exists()
+
+
+def init_git_repository(root: Path) -> None:
+    """Initialize git repository if not already initialized."""
+    if is_git_initialized(root):
+        print("ℹ️  Git repository already initialized. Skipping.")
+        return
+    
+    try:
+        # Check if git is available
+        subprocess.run(["git", "--version"], check=True, capture_output=True)
+        
+        # Initialize git
+        subprocess.run(["git", "init"], cwd=root, check=True)
+        print("✅ Initialized git repository")
+    except subprocess.CalledProcessError:
+        print("⚠️  Warning: Could not initialize git repository (git may not be installed)")
+    except FileNotFoundError:
+        print("⚠️  Warning: Git not found. Skipping git initialization.")
+
+
 def scaffold_agent_folder(root: Path, project_name: str, tech_stack: str = "", allow_outside: bool = False) -> None:
     """Scaffold .agent folder structure."""
     agent_init_script = Path.home() / ".cursor" / "skills" / "agent-folder-init" / "scripts" / "scaffold.py"
@@ -366,9 +390,74 @@ def create_frontend_structure(root: Path, name: str, org: str, is_monorepo: bool
     # next.config.ts
     next_config = dedent("""\
         import type { NextConfig } from "next";
+        import path from "path";
 
         const nextConfig: NextConfig = {
           reactStrictMode: true,
+          // Empty turbopack config to acknowledge we have webpack config but want Turbopack
+          turbopack: {},
+          webpack: (config) => {
+            // Configure sass-loader for SCSS support with proper deprecation handling
+            const rules = config.module.rules;
+            const scssRule = rules.find(
+              (rule: unknown) =>
+                rule &&
+                typeof rule === "object" &&
+                rule !== null &&
+                "test" in rule &&
+                rule.test &&
+                typeof rule.test === "object" &&
+                "toString" in rule.test &&
+                rule.test.toString().includes("scss"),
+            );
+
+            if (
+              scssRule &&
+              typeof scssRule === "object" &&
+              scssRule !== null &&
+              "oneOf" in scssRule &&
+              Array.isArray(scssRule.oneOf)
+            ) {
+              scssRule.oneOf.forEach((oneOf: unknown) => {
+                if (
+                  oneOf &&
+                  typeof oneOf === "object" &&
+                  oneOf !== null &&
+                  "use" in oneOf &&
+                  Array.isArray(oneOf.use)
+                ) {
+                  oneOf.use.forEach((loader: unknown) => {
+                    if (
+                      loader &&
+                      typeof loader === "object" &&
+                      loader !== null &&
+                      "loader" in loader &&
+                      typeof loader.loader === "string" &&
+                      loader.loader.includes("sass-loader")
+                    ) {
+                      const loaderWithOptions = loader as {
+                        options?: {
+                          api?: string;
+                          sassOptions?: Record<string, unknown>;
+                        };
+                      };
+                      loaderWithOptions.options = {
+                        ...loaderWithOptions.options,
+                        api: "modern-compiler",
+                        sassOptions: {
+                          ...loaderWithOptions.options?.sassOptions,
+                          includePaths: [path.join(__dirname, "node_modules")],
+                          silenceDeprecations: ["legacy-js-api"],
+                        },
+                      };
+                    }
+                  });
+                }
+              });
+            }
+
+            return config;
+          },
         };
 
         export default nextConfig;
@@ -1016,6 +1105,9 @@ def interactive_scaffold() -> None:
     # Create monorepo root files
     if is_monorepo and not is_existing:
         create_monorepo_root(root, project_name, components)
+    
+    # Initialize git repository if not already initialized
+    init_git_repository(root)
     
     print(f"\n✅ Scaffolding complete!")
     print(f"\nNext steps:")

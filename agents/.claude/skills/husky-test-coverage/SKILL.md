@@ -286,9 +286,31 @@ When using this skill:
 ## Integration with Other Skills
 
 This skill works alongside:
-- **linter-formatter-init**: Both configure Husky; this skill focuses on test coverage, linter-formatter-init focuses on linting/formatting
-- **testing-expert**: Uses testing patterns and coverage targets from testing-expert skill
-- Existing Husky setups: Safely adds test coverage hook without breaking existing hooks
+
+| Skill | How It Works Together |
+|-------|----------------------|
+| **fullstack-workspace-init** | Automatically invoked after scaffolding to set up 80% coverage threshold |
+| **linter-formatter-init** | Both configure Husky; this skill focuses on test coverage, linter-formatter-init focuses on linting/formatting |
+| **testing-expert** | Uses testing patterns and coverage targets from testing-expert skill |
+
+### Automatic Setup with fullstack-workspace-init
+
+When using `fullstack-workspace-init` to scaffold a new project, this skill is automatically applied with:
+- Vitest as the test runner
+- 80% coverage threshold
+- Pre-commit hooks enabled
+- GitHub Actions CI/CD integration
+
+You don't need to run this skill separately if you used `fullstack-workspace-init`.
+
+### Manual Integration
+
+If adding to an existing project:
+```bash
+python3 ~/.claude/skills/husky-test-coverage/scripts/setup-husky-coverage.py \
+  --root /path/to/project \
+  --threshold 80
+```
 
 ## Troubleshooting
 

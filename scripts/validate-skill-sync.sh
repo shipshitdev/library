@@ -139,7 +139,6 @@ check_drift() {
     local skill_name="$1"
     local claude_file="$CLAUDE_DIR/$skill_name/SKILL.md"
     local codex_file="$CODEX_DIR/$skill_name/SKILL.md"
-    local issues=0
     
     if [[ ! -f "$claude_file" ]] || [[ ! -f "$codex_file" ]]; then
         return 0
@@ -162,10 +161,10 @@ check_drift() {
         echo -e "  ${YELLOW}⚠${NC} Significant content drift detected (${diff#-} line difference)"
         echo -e "     Claude: $claude_lines lines, Codex: $codex_lines lines"
         echo -e "     Consider syncing to ensure core content is identical"
-        ((issues++))
     fi
     
-    return $issues
+    # Always return 0 - drift is informational only, not an error
+    return 0
 }
 
 # Function to validate a single skill

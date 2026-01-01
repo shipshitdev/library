@@ -224,10 +224,10 @@ for item in "$SOURCE_DIR"/*; do
     fi
     
     if [[ -f "$item" ]]; then
-        local filename=$(basename "$item")
+        filename=$(basename "$item")
         sync_file "$item" "$TARGET_DIR/$filename"
     elif [[ -d "$item" ]]; then
-        local dirname=$(basename "$item")
+        dirname=$(basename "$item")
         sync_directory "$item" "$TARGET_DIR/$dirname"
     fi
 done

@@ -2,6 +2,7 @@
 name: fundraise-advisor
 description: Use when users need to raise funding, create a pitch deck, prepare for investor meetings, understand fundraising process, or navigate seed/pre-seed rounds. Activates for "how do I raise money," "pitch deck," "investors," or fundraising questions.
 ---
+
 # Fundraise Advisor - Seed Round Strategy
 
 ## Overview

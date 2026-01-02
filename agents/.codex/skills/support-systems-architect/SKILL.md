@@ -2,6 +2,7 @@
 name: support-systems-architect
 description: Use when users need to set up customer support systems, create help docs/FAQs, implement ticketing, build self-service resources, or optimize support operations. Activates for "too many support requests," customer support setup, or scaling support without hiring.
 ---
+
 # Support Systems Architect - Scalable Customer Support
 
 ## Overview

@@ -1,27 +1,28 @@
 ---
 name: search-domain-validator
-description: Guide for validating domain name format, checking domain availability, and searching for available domain names. Use when users need domain validation, availability checking, or domain search functionality.
+description: Use when users need to validate domain name format, check domain availability, or search for available domain names. It activates when users ask about domain validation, domain availability checking, domain search, or domain name verification.
 ---
+
 # Search Domain Name Validator
 
 ## Overview
 
-To validate domain name formats, check domain availability status, and search for available domain names based on keywords. Codex determines when this skill is needed based on domain-related tasks.
+This skill enables Codex to validate domain name formats, check domain availability status, and search for available domain names based on keywords. Codex will use this skill to implement domain validation logic, integrate with domain availability APIs, and provide domain search functionality.
 
 ## When to Use This Skill
 
-Use when users need:
+Use when users:
 
-- Domain name format validation or syntax checking
-- Domain availability checking for registration
-- Domain search based on keywords
-- Domain validation in forms or applications
-- Domain name RFC compliance verification
-- Domain suggestion features
+- Need to validate domain name format or syntax
+- Want to check if a domain is available for registration
+- Need to search for available domain names based on keywords
+- Require domain validation in forms or applications
+- Need to verify domain name compliance with RFC standards
+- Want to implement domain suggestion features
 
 ## Project Context Discovery
 
-Before implementing domain validation:
+**Before providing domain validation guidance, discover the project's context:**
 
 1. **Scan Project Documentation:**
    - Check for existing domain validation logic
@@ -44,7 +45,7 @@ Before implementing domain validation:
 
 ### 1. Domain Format Validation
 
-To validate domain names according to RFC 1035 and RFC 1123 standards.
+Validate domain names according to RFC 1035 and RFC 1123 standards.
 
 **Domain Name Rules:**
 - Length: 1-253 characters total
@@ -134,7 +135,7 @@ export class DomainDto {
 
 ### 2. Domain Availability Checking
 
-To check if a domain is available for registration using domain availability APIs.
+Check if a domain is available for registration using domain availability APIs.
 
 **Common Domain Availability APIs:**
 - Namecheap API
@@ -229,7 +230,7 @@ export class DomainService {
 
 ### 3. Domain Search Functionality
 
-To search for available domain names based on keywords, generating suggestions and alternatives.
+Search for available domain names based on keywords, generating suggestions and alternatives.
 
 **Domain Suggestion Algorithm:**
 
@@ -317,6 +318,27 @@ async function searchAvailableDomains(keyword: string): Promise<string[]> {
 - Use HTTPS for all API communications
 - Follow API provider's security guidelines
 
+## Example User Requests
+
+**Example 1: "Validate this domain: example.com"**
+- Use format validation to check if the domain follows RFC standards
+- Return validation result with specific error details if invalid
+
+**Example 2: "Check if example.com is available"**
+- Validate domain format first
+- Call domain availability API
+- Return availability status
+
+**Example 3: "Search for available domains with keyword 'techstartup'"**
+- Generate domain suggestions based on keyword
+- Check availability for each suggestion
+- Return list of available domains with pricing if available
+
+**Example 4: "Implement domain validation in this form"**
+- Add domain validation to form component
+- Integrate real-time validation
+- Provide user feedback for invalid domains
+
 ## Common Domain TLDs
 
 **Generic TLDs:**
@@ -328,4 +350,4 @@ async function searchAvailableDomains(keyword: string): Promise<string[]> {
 **Country Code TLDs:**
 - .us, .uk, .ca, .au, .de, .fr, .jp
 
-When implementing domain search, include popular TLDs relevant to the user's context or industry.
+When implementing domain search, consider including popular TLDs relevant to the user's context or industry.

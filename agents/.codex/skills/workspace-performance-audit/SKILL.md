@@ -2,6 +2,7 @@
 name: workspace-performance-audit
 description: Orchestrates comprehensive performance audits across full-stack monorepos. Coordinates performance-expert, design-consistency-auditor, accessibility, security-expert, and qa-reviewer skills to audit frontend, backend, database, browser extensions, and shared packages. Use for projects like GenFeedAI.
 ---
+
 # Workspace Performance Audit
 
 ## Overview

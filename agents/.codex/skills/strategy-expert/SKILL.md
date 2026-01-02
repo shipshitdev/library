@@ -2,6 +2,7 @@
 name: strategy-expert
 description: Use when users need help with content strategy, persona building, competitive analysis, content planning, or brand voice consistency. It activates when users ask about content strategy, building personas or target audiences, competitive analysis requests, content planning and ideation, or brand voice questions.
 ---
+
 # Content Strategy Expert
 
 ## Overview

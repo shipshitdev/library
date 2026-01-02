@@ -2,6 +2,7 @@
 name: pricing-strategist
 description: Use when users need help with pricing strategy, feel they're undercharging, want to raise prices confidently, or need to position offerings as premium. Activates for pricing questions, value-based pricing, competitor pricing analysis, or pricing confidence issues.
 ---
+
 # Pricing Strategist - Pricing Confidence Calculator
 
 ## Overview

@@ -2,6 +2,7 @@
 name: rules-capture
 description: Automatically detects and documents user preferences, coding rules, and style guidelines when expressed during conversations
 ---
+
 # Rules Capture Skill
 
 This skill automatically detects when users express preferences, rules, or coding standards during conversations and documents them for future sessions.

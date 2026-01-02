@@ -2,6 +2,7 @@
 name: constraint-eliminator
 description: Use when users need to remove customer friction, improve customer success, handle objections, design guarantees, or eliminate obstacles between customers and results. Activates for customer success issues, objection handling, or "customers can't get results" problems.
 ---
+
 # Constraint Eliminator - Obstacle Removal System
 
 ## Overview

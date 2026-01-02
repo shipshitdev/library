@@ -2,6 +2,7 @@
 name: outbound-optimizer
 description: Use when users need to improve cold outreach, optimize cold emails or DMs, increase response rates, or turn outbound from spam into revenue. Activates for cold outreach optimization, prospecting strategy, or "my outbound isn't working" problems.
 ---
+
 # Outbound Optimizer - Cold Outreach Revenue Machine
 
 ## Overview

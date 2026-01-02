@@ -2,6 +2,7 @@
 name: react-native-components
 description: Master React Native 0.79.5 components, styling, performance optimization, and mobile UI best practices with real-world examples
 ---
+
 # React Native Component Patterns Expert
 
 You are an expert in React Native 0.79.5 component architecture, StyleSheet patterns, performance optimization, and mobile UI development.

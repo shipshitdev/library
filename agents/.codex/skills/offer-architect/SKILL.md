@@ -2,6 +2,7 @@
 name: offer-architect
 description: Use when users need to create irresistible offers, design value stacks, optimize product/service positioning, or build "grand slam offers." Activates for offer creation, value propositions, pricing packages, bundles, or when conversions are low.
 ---
+
 # Offer Architect - Grand Slam Offer Constructor
 
 ## Overview

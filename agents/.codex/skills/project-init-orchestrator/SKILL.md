@@ -2,6 +2,7 @@
 name: project-init-orchestrator
 description: Orchestrates complete project initialization by coordinating agent-folder-init, linter-formatter-init, husky-test-coverage, and other setup skills. Use when starting a new project that needs full AI-first development infrastructure with code quality enforcement.
 ---
+
 # Project Init Orchestrator
 
 ## Overview

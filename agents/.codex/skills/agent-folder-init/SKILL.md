@@ -1,8 +1,6 @@
 ---
 name: agent-folder-init
-description: Initialize a comprehensive .agent/ folder structure for AI-first development. Use this skill when starting a new project that needs AI agent documentation, session tracking, task management, and coding standards. Generates full structure based on proven patterns from production projects.
-metadata:
-  short-description: agent folder init
+description: Initialize a comprehensive .agent/ folder structure for AI-first development. Use when starting a new project that needs AI agent documentation, session tracking, task management, and coding standards. Generates full structure based on proven patterns from production projects.
 ---
 
 # Agent Folder Init
@@ -23,7 +21,7 @@ This skill scaffolds a complete AI agent documentation system including:
 
 ## When to Use
 
-Use this skill when:
+Use when:
 
 - Starting a new project that will use AI coding assistants
 - Setting up AI-first development workflows
@@ -119,7 +117,7 @@ python3 ~/.codex/skills/agent-folder-init/scripts/scaffold.py \
 └── commands/
 ```
 
-**Note:** Agent configs (agents/, commands/) are copied from the library root (e.g., `~/.claude/agents/`) to ensure projects get the latest version. Rules are NOT copied because they're inherited from `~/.claude/rules/` at the library/personal level - this prevents duplication and ensures all projects use consistent rules.
+**Note:** Agent configs (agents/, commands/) are copied from the library root (e.g., `~/.claude/`, `~/.codex/`, `~/.cursor/`) to ensure projects get the latest version. Rules are NOT copied because they're inherited from library-level rules (e.g., `~/.claude/rules/`) to prevent duplication and keep standards centralized.
 
 ### Root Files
 
@@ -151,7 +149,7 @@ After scaffolding, customize:
 5. `SYSTEM/critical/CRITICAL-NEVER-DO.md` - Add project-specific violations
 6. `SOP/` - Add your standard operating procedures
 7. `.claude/rules/` - Add project-specific rules
-8. `.claude/commands/` - Add project-specific commands
+8. `.claude/commands/`, `.codex/commands/`, `.cursor/commands/` - Add project-specific commands
 
 ## Integration with Other Skills
 

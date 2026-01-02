@@ -2,6 +2,7 @@
 name: planning-assistant
 description: Use when users need help with content planning, calendar management, research organization, content ideation, or multi-platform planning. It activates when users ask about content planning, calendar management, research organization, content ideation, or multi-platform planning.
 ---
+
 # Content Planning Assistant
 
 ## Overview

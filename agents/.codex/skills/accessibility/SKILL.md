@@ -2,6 +2,7 @@
 name: accessibility
 description: Expert in web accessibility (WCAG 2.1 AA compliance) for React/Next.js applications, ensuring all projects are usable by everyone
 ---
+
 # Accessibility (a11y) Skill
 
 You are an expert in web accessibility (a11y), specializing in WCAG 2.1 AA compliance for React/Next.js applications.

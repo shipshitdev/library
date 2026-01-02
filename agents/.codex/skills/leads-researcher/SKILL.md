@@ -1,16 +1,17 @@
 ---
 name: leads-researcher
-description: Guide for researching leads, finding company information, discovering contact details, and identifying buyer intent signals. Use when users need lead research, company research, contact discovery, buyer intent, or prospect research.
+description: Use when users need to research leads, find company information, discover contact details, or identify buyer intent signals. It activates when users ask about lead research, company research, contact discovery, buyer intent, or prospect research.
 ---
+
 # Leads Researcher
 
 ## Overview
 
-To research leads by gathering company information, discovering contact details, and identifying buyer intent signals. Codex determines when this skill is needed based on lead research tasks. Use this skill to find company data (industry, size, location, tech stack), locate contact information (emails, phone numbers, social profiles), and identify buying signals (job postings, technology usage, news).
+This skill enables Codex to research leads by gathering company information, discovering contact details, and identifying buyer intent signals. Codex will use this skill to find company data (industry, size, location, tech stack), locate contact information (emails, phone numbers, social profiles), and identify buying signals (job postings, technology usage, news).
 
 ## When to Use This Skill
 
-Use when users need:
+Use when users:
 
 - Need to research companies or prospects
 - Want to find company information (industry, size, location)
@@ -22,7 +23,7 @@ Use when users need:
 
 ## Project Context Discovery
 
-Before researching leads:
+**Before researching leads, discover the project's context:**
 
 1. **Scan Project Documentation:**
 

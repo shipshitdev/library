@@ -2,6 +2,7 @@
 name: market-sizer
 description: Use when users need to calculate market size (TAM/SAM/SOM), assess market opportunity, validate market potential, or determine if a market is big enough to pursue. Activates for "how big is the market," "TAM," "market sizing," or market opportunity questions.
 ---
+
 # Market Sizer - TAM/SAM/SOM Calculator
 
 ## Overview

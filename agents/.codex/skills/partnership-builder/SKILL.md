@@ -2,6 +2,7 @@
 name: partnership-builder
 description: Use when users need to build partnerships, create affiliate programs, develop integration partnerships, set up reseller programs, or design co-marketing strategies. Activates for "how do I get partners," affiliate setup, or revenue through partnerships.
 ---
+
 # Partnership Builder - Revenue Through Partnerships
 
 ## Overview

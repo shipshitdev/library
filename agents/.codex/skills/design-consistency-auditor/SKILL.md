@@ -2,6 +2,7 @@
 name: design-consistency-auditor
 description: Audit and maintain design system consistency, UX/UI patterns, color palettes, and design best practices across frontend applications
 ---
+
 # Design Consistency Auditor
 
 ## Purpose

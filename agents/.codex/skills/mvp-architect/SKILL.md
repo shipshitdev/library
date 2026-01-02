@@ -2,6 +2,7 @@
 name: mvp-architect
 description: Use when users need to scope an MVP, define minimum viable features, plan early product development, or determine what to build first. Activates for "what should my MVP include," "scope my MVP," "what to build first," or product scoping questions.
 ---
+
 # MVP Architect - Minimum Viable Product Scoping
 
 ## Overview

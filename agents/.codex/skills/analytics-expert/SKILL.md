@@ -1,19 +1,17 @@
 ---
 name: analytics-expert
-description: This skill should be used when users need help analyzing content analytics data, creating reports, identifying trends, calculating ROI, or providing content optimization recommendations. It activates when users ask analytics questions, request reports, need performance analysis, ROI calculations, trend identification, or content optimization recommendations.
-metadata:
-  short-description: analytics expert
+description: Use when users need help analyzing content analytics data, creating reports, identifying trends, calculating ROI, or providing content optimization recommendations. It activates when users ask analytics questions, request reports, need performance analysis, ROI calculations, trend identification, or content optimization recommendations.
 ---
 
 # Content Analytics Expert
 
 ## Overview
 
-This skill enables Claude to analyze content analytics data, generate comprehensive reports, identify performance trends, calculate ROI and revenue attribution, and provide actionable insights for content optimization.
+This skill enables Codex to analyze content analytics data, generate comprehensive reports, identify performance trends, calculate ROI and revenue attribution, and provide actionable insights for content optimization.
 
 ## When to Use This Skill
 
-This skill activates automatically when users:
+Use when users:
 
 - Ask analytics questions or request performance reports
 - Need help analyzing content performance data

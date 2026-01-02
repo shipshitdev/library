@@ -2,6 +2,7 @@
 name: idea-validator
 description: Use when users need to validate a startup idea, assess problem-solution fit, evaluate market opportunity, or determine if an idea is worth pursuing. Activates for "is this a good idea," "should I build this," "validate my idea," or idea assessment questions.
 ---
+
 # Idea Validator - Startup Idea Assessment Framework
 
 ## Overview

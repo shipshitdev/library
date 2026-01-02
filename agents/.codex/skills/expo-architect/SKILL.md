@@ -1,9 +1,8 @@
 ---
 name: expo-architect
 description: Scaffold a production-ready Expo React Native app with working screens, navigation, and optional Clerk auth. Generates complete mobile app structure that runs immediately with `bun start`.
-metadata:
-  short-description: Scaffold production-ready Expo React Native apps with navigation, auth, and quality tooling
 ---
+
 # Expo Architect
 
 Create a **production-ready** Expo React Native app with:

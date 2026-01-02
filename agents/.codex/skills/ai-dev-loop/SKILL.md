@@ -1,12 +1,11 @@
 ---
 name: ai-dev-loop
 description: Orchestrate autonomous AI development with task-based workflow and QA gates
-auto_trigger: false
 ---
 
 # AI Development Loop
 
-Autonomous task execution with QA gates across multiple AI platforms.
+Autonomous task execution with QA gates across agent sessions.
 
 ## Overview
 
@@ -14,8 +13,8 @@ The AI Development Loop enables fully autonomous feature development where:
 
 - AI agents pick up and implement tasks from a queue
 - You do QA only (approve or reject in Testing column)
-- Multiple platforms (Claude CLI, Cursor, Codex) can work in parallel
-- Rate limits are maximized by switching between platforms
+- Multiple agent sessions can work in parallel
+- Rate limits are managed by pausing and resuming work
 
 ## Architecture
 
@@ -28,10 +27,9 @@ The AI Development Loop enables fully autonomous feature development where:
 └─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘
                           │                   │
                     ┌─────┴─────┐       ┌─────┴─────┐
-                    │  Claude   │       │  Reject   │
-                    │  Cursor   │       │  → To Do  │
-                    │  Codex    │       └───────────┘
-                    └───────────┘
+                    │  Agent    │       │  Reject   │
+                    │ Sessions  │       │  → To Do  │
+                    └───────────┘       └───────────┘
 ```
 
 ## Task Lifecycle
@@ -125,15 +123,11 @@ When rejected:
 3. Rejection note added to history
 4. Next `/loop` picks up with full context
 
-## Multi-Platform Strategy
+## Multi-Session Strategy
 
-### Platform Strengths
+### Session Focus
 
-| Platform   | Best For                             |
-| ---------- | ------------------------------------ |
-| Claude CLI | Complex logic, backend, architecture |
-| Cursor     | UI components, styling, visual work  |
-| Codex      | Bulk refactoring, migrations, docs   |
+- Use separate sessions for backend, frontend, and docs to keep context tight
 
 ### Parallel Execution
 
@@ -149,8 +143,8 @@ When rate limited:
 
 1. Agent saves progress to `Agent-Notes`
 2. Releases claim (clears `Claimed-By`)
-3. Suggests switching platform
-4. User continues with different platform
+3. Suggests switching tasks or pausing
+4. Resume in a fresh session when available
 
 ## Daily Workflow
 
@@ -164,19 +158,19 @@ When rate limited:
 ### Throughout Day
 
 ```bash
-# Claude CLI
-claude
+# Codex CLI
+codex
 > /loop   # Process task
 > /loop   # Next task
-# Rate limited? Switch to Cursor
+# Rate limited? Save progress and resume later
 ```
 
 ### Rate Limit Strategy
 
 ```
-Claude limit? → Switch to Cursor
-Cursor limit? → Switch to Codex
-All limited? → QA time (review Testing)
+Rate limited? → Save progress + pause
+Resume later → Continue /loop
+Blocked? → QA time (review Testing)
 ```
 
 ## Integration Points

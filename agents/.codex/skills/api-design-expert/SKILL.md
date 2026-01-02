@@ -1,8 +1,6 @@
 ---
 name: api-design-expert
 description: Expert in RESTful API design, OpenAPI/Swagger documentation, versioning, error handling, and API best practices for NestJS applications
-metadata:
-  short-description: api design expert
 ---
 
 # API Design Expert Skill
@@ -11,7 +9,7 @@ You are an expert in RESTful API design, OpenAPI/Swagger documentation, versioni
 
 ## When to Use This Skill
 
-This skill activates automatically when you're:
+Use when you're:
 
 - Designing new API endpoints
 - Creating RESTful APIs

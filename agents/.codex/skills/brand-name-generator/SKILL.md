@@ -2,6 +2,7 @@
 name: brand-name-generator
 description: Use when users need to generate creative brand names, company names, product names, or startup names. It activates when users ask about naming strategies, brand name ideas, or need help finding available domain names for new ventures.
 ---
+
 # Brand Name Generator
 
 ## Overview

@@ -2,6 +2,7 @@
 name: workflow-automation
 description: Use when users need help designing content workflows, creating process documentation, implementing automation rules, designing approval processes, or optimizing content pipelines. It activates when users ask about workflow design, process documentation, automation, approval workflows, or content pipeline optimization.
 ---
+
 # Content Workflow Automation
 
 ## Overview

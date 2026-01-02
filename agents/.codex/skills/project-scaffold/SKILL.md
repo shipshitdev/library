@@ -2,6 +2,7 @@
 name: project-scaffold
 description: Unified project scaffolder that works across all platforms. Scaffold .agent folders, backend (NestJS), frontend (NextJS), mobile (Expo), and browser extensions (Plasmo) with interactive prompts. Supports both monorepo and separate repository structures, and can add components to existing projects.
 ---
+
 # Project Scaffold
 
 Unified project scaffolder for creating new projects or adding components to existing ones.
@@ -21,7 +22,7 @@ Use when:
 - Starting a new project from scratch
 - Adding components to an existing project
 - Setting up a monorepo or separate repositories
-- Need a unified scaffolding experience across Claude, Codex, and Cursor when setting up agent configs
+- Need a unified scaffolding experience across Claude, Codex, and Cursor
 
 ## Usage
 
@@ -43,6 +44,16 @@ The script will ask you:
    - Extension (Plasmo)
 5. Organization name (for monorepo packages)
 
+### From Codex
+
+When user requests scaffolding, activate this skill and run:
+
+```bash
+python3 ~/.codex/skills/project-scaffold/scripts/scaffold.py
+```
+
+The script handles all interactive prompts.
+
 ## Features
 
 ### Flexible Structure
@@ -60,6 +71,12 @@ All components are optional - scaffold only what you need:
 
 ### Agent Configs
 When `.agent/` is included, agent-folder-init can also scaffold `.claude/`, `.codex/`, and `.cursor/` config folders when available.
+
+### Cross-Platform
+Works from:
+- Claude Code
+- Codex
+- Cursor
 
 ## Generated Structure
 

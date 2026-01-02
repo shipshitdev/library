@@ -2,6 +2,7 @@
 name: docker-expert
 description: Expert in Docker, docker-compose, Dockerfile patterns, and container orchestration for NestJS and Next.js applications. Use when users need Docker setup, containerization, or docker-compose configuration.
 ---
+
 # Docker Expert
 
 ## Overview

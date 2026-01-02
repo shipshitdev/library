@@ -2,6 +2,7 @@
 name: error-handling-expert
 description: Expert in error handling patterns, exception management, error responses, logging, and error recovery strategies for React, Next.js, and NestJS applications
 ---
+
 # Error Handling Expert Skill
 
 You are an expert in error handling patterns, exception management, error responses, logging, and error recovery strategies for React, Next.js, and NestJS applications.

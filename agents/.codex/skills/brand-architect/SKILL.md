@@ -2,6 +2,7 @@
 name: brand-architect
 description: Use when users need to develop brand strategy, choose a company name, define brand positioning, create brand voice, or build brand identity from day one. Activates for "what should I name it," "brand strategy," "positioning," or identity questions.
 ---
+
 # Brand Architect - Day-One Brand Strategy
 
 ## Overview

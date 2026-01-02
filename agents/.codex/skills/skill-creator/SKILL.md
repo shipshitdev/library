@@ -1,9 +1,8 @@
 ---
 name: skill-creator
 description: Guide for creating effective skills. Use when users want to create a new skill (or update an existing skill) that extends Codex's capabilities with specialized knowledge, workflows, or tool integrations.
-metadata:
-  short-description: Create or update a skill
 ---
+
 # Skill Creator
 
 This skill provides guidance for creating effective skills.
@@ -41,10 +40,7 @@ skill-name/
 
 #### SKILL.md (required)
 
-Every SKILL.md consists of:
-
-- **Frontmatter** (YAML): Contains `name` and `description` fields. These are the only fields that Codex reads to determine when the skill gets used, thus it is very important to be clear and comprehensive in describing what the skill is, and when it should be used.
-- **Body** (Markdown): Instructions and guidance for using the skill. Only loaded AFTER the skill triggers (if at all).
+**Metadata Quality:** The `name` and `description` in YAML frontmatter determine when Codex will use the skill. Be specific about what the skill does and when to use it. Use the third-person (e.g. "Use when..." instead of "Use when...").
 
 #### Bundled Resources (optional)
 
@@ -83,8 +79,9 @@ Skills use a three-level loading system to manage context efficiently:
 
 1. **Metadata (name + description)** - Always in context (~100 words)
 2. **SKILL.md body** - When skill triggers (<5k words)
-3. **Bundled resources** - As needed by Codex (Unlimited because scripts can be executed without reading into context window)
+3. **Bundled resources** - As needed by Codex (Unlimited*)
 
+*Unlimited because scripts can be executed without reading into context window.
 
 ## Skill Creation Process
 
@@ -156,7 +153,7 @@ After initialization, customize or remove the generated SKILL.md and example fil
 
 ### Step 4: Edit the Skill
 
-When editing the (newly-generated or existing) skill, remember that the skill is being created for another instance of Codex to use. Include information that would be beneficial and non-obvious to Codex. Consider what procedural knowledge, domain-specific details, or reusable assets would help another Codex instance execute these tasks more effectively.
+When editing the (newly-generated or existing) skill, remember that the skill is being created for another instance of Codex to use. Focus on including information that would be beneficial and non-obvious to Codex. Consider what procedural knowledge, domain-specific details, or reusable assets would help another Codex instance execute these tasks more effectively.
 
 #### Start with Reusable Skill Contents
 

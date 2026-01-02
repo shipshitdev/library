@@ -2,6 +2,7 @@
 name: competitive-intelligence-analyst
 description: Use when users need to analyze competitors, monitor market movements, benchmark features/pricing, identify market gaps, or understand competitive positioning. Activates for "what are competitors doing," market analysis, or differentiation strategy.
 ---
+
 # Competitive Intelligence Analyst - Market & Competitor Tracking
 
 ## Overview

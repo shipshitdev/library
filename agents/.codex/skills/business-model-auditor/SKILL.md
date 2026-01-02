@@ -2,6 +2,7 @@
 name: business-model-auditor
 description: Use when users need to stress test their business model, identify scale limitations, find bottlenecks, determine if they're trading time for money, or evaluate unit economics. Activates for "can this scale," "what breaks at 10x," or business model viability questions.
 ---
+
 # Business Model Auditor - Scale Stress Test
 
 ## Overview

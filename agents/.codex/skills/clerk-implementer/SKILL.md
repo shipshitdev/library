@@ -1,16 +1,17 @@
 ---
 name: clerk-implementer
-description: Guide for implementing Clerk authentication, user management, and organization features in Next.js or NestJS applications. Use when users need Clerk integration, authentication setup, user management, organizations, or Clerk API implementation.
+description: Use when users need to implement Clerk authentication, user management, or organization features in Next.js or NestJS applications. It activates when users ask about Clerk integration, authentication setup, user management, organizations, or Clerk API implementation.
 ---
+
 # Clerk Implementer
 
 ## Overview
 
-To implement comprehensive Clerk authentication integrations including user authentication, user management, organization/team features, and route protection for Next.js and NestJS applications. Codex determines when this skill is needed based on Clerk-related implementation tasks.
+This skill enables Codex to implement comprehensive Clerk authentication integrations including user authentication, user management, organization/team features, and route protection for Next.js and NestJS applications. Codex will use this skill to set up Clerk, implement authentication flows, manage users and organizations, and secure routes with middleware and guards.
 
 ## When to Use This Skill
 
-Use when users need:
+Use when users:
 
 - Need to integrate Clerk authentication into their application
 - Want to implement user sign up and sign in
@@ -22,17 +23,15 @@ Use when users need:
 
 ## Project Context Discovery
 
-Before implementing Clerk integration:
+**Before implementing Clerk integration, discover the project's context:**
 
 1. **Scan Project Documentation:**
-
    - Check `.agent/SYSTEM/ARCHITECTURE.md` for authentication architecture
    - Review existing authentication patterns
    - Look for environment variable usage
    - Check for existing Clerk integration
 
 2. **Identify Framework:**
-
    - Determine if using Next.js (App Router or Pages Router)
    - Check if using NestJS backend
    - Review existing middleware patterns
@@ -70,7 +69,6 @@ Before implementing Clerk integration:
 ### 1. Install Clerk SDK
 
 **Next.js:**
-
 ```bash
 bun add @clerk/nextjs@latest
 ```
@@ -78,7 +76,6 @@ bun add @clerk/nextjs@latest
 This ensures the application is using the latest Clerk Next.js SDK.
 
 **NestJS:**
-
 ```bash
 bun add @clerk/clerk-sdk-node
 ```
@@ -196,9 +193,9 @@ import { redirect } from "next/navigation";
 
 export default async function DashboardPage() {
   const { userId } = await auth();
-
+  
   if (!userId) {
-    redirect("/sign-in");
+    redirect('/sign-in');
   }
 
   const user = await currentUser();
@@ -206,9 +203,7 @@ export default async function DashboardPage() {
   return (
     <div>
       <h1>Dashboard</h1>
-      <p>
-        Welcome, {user?.firstName} {user?.lastName}
-      </p>
+      <p>Welcome, {user?.firstName} {user?.lastName}</p>
       <p>Email: {user?.emailAddresses[0]?.emailAddress}</p>
     </div>
   );
@@ -221,9 +216,9 @@ export default async function DashboardPage() {
 
 ```typescript
 // components/sign-in.tsx
-"use client";
+'use client';
 
-import { SignIn } from "@clerk/nextjs";
+import { SignIn } from '@clerk/nextjs';
 
 export default function SignInPage() {
   return (
@@ -238,9 +233,9 @@ export default function SignInPage() {
 
 ```typescript
 // components/sign-up.tsx
-"use client";
+'use client';
 
-import { SignUp } from "@clerk/nextjs";
+import { SignUp } from '@clerk/nextjs';
 
 export default function SignUpPage() {
   return (
@@ -255,9 +250,9 @@ export default function SignUpPage() {
 
 ```typescript
 // components/user-button.tsx
-"use client";
+'use client';
 
-import { UserButton } from "@clerk/nextjs";
+import { UserButton } from '@clerk/nextjs';
 
 export default function UserButtonComponent() {
   return <UserButton afterSignOutUrl="/" />;
@@ -268,9 +263,9 @@ export default function UserButtonComponent() {
 
 ```typescript
 // components/protected-content.tsx
-"use client";
+'use client';
 
-import { useAuth, useUser } from "@clerk/nextjs";
+import { useAuth, useUser } from '@clerk/nextjs';
 
 export default function ProtectedContent() {
   const { isSignedIn, userId } = useAuth();
@@ -303,9 +298,12 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   const { userId } = await auth();
-
+  
   if (!userId) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return NextResponse.json(
+      { error: "Unauthorized" },
+      { status: 401 }
+    );
   }
 
   const user = await currentUser();
@@ -329,7 +327,10 @@ export async function GET() {
   const user = await currentUser();
 
   if (!user) {
-    return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+    return NextResponse.json(
+      { error: "Not authenticated" },
+      { status: 401 }
+    );
   }
 
   return NextResponse.json({
@@ -371,8 +372,8 @@ function MyApp({ Component, pageProps }) {
 
 ```typescript
 // src/clerk/clerk.module.ts
-import { Module, Global } from "@nestjs/common";
-import { ClerkService } from "./clerk.service";
+import { Module, Global } from '@nestjs/common';
+import { ClerkService } from './clerk.service';
 
 @Global()
 @Module({
@@ -386,8 +387,8 @@ export class ClerkModule {}
 
 ```typescript
 // src/clerk/clerk.service.ts
-import { Injectable } from "@nestjs/common";
-import { clerkClient } from "@clerk/clerk-sdk-node";
+import { Injectable } from '@nestjs/common';
+import { clerkClient } from '@clerk/clerk-sdk-node';
 
 @Injectable()
 export class ClerkService {
@@ -420,8 +421,8 @@ import {
   CanActivate,
   ExecutionContext,
   UnauthorizedException,
-} from "@nestjs/common";
-import { clerkClient } from "@clerk/clerk-sdk-node";
+} from '@nestjs/common';
+import { clerkClient } from '@clerk/clerk-sdk-node';
 
 @Injectable()
 export class ClerkGuard implements CanActivate {
@@ -430,26 +431,26 @@ export class ClerkGuard implements CanActivate {
     const token = this.extractTokenFromHeader(request);
 
     if (!token) {
-      throw new UnauthorizedException("No token provided");
+      throw new UnauthorizedException('No token provided');
     }
 
     try {
       const { userId } = await clerkClient.verifyToken(token);
       request.userId = userId;
-
+      
       // Optionally fetch full user object
       const user = await clerkClient.users.getUser(userId);
       request.user = user;
-
+      
       return true;
     } catch (error) {
-      throw new UnauthorizedException("Invalid token");
+      throw new UnauthorizedException('Invalid token');
     }
   }
 
   private extractTokenFromHeader(request: any): string | undefined {
-    const [type, token] = request.headers.authorization?.split(" ") ?? [];
-    return type === "Bearer" ? token : undefined;
+    const [type, token] = request.headers.authorization?.split(' ') ?? [];
+    return type === 'Bearer' ? token : undefined;
   }
 }
 ```
@@ -458,20 +459,20 @@ export class ClerkGuard implements CanActivate {
 
 ```typescript
 // src/clerk/current-user.decorator.ts
-import { createParamDecorator, ExecutionContext } from "@nestjs/common";
+import { createParamDecorator, ExecutionContext } from '@nestjs/common';
 
 export const CurrentUser = createParamDecorator(
   (data: unknown, ctx: ExecutionContext) => {
     const request = ctx.switchToHttp().getRequest();
     return request.user;
-  }
+  },
 );
 
 export const CurrentUserId = createParamDecorator(
   (data: unknown, ctx: ExecutionContext) => {
     const request = ctx.switchToHttp().getRequest();
     return request.userId;
-  }
+  },
 );
 ```
 
@@ -479,22 +480,22 @@ export const CurrentUserId = createParamDecorator(
 
 ```typescript
 // src/users/users.controller.ts
-import { Controller, Get, UseGuards } from "@nestjs/common";
-import { ClerkGuard } from "../clerk/clerk.guard";
-import { CurrentUser, CurrentUserId } from "../clerk/current-user.decorator";
-import { ClerkService } from "../clerk/clerk.service";
+import { Controller, Get, UseGuards } from '@nestjs/common';
+import { ClerkGuard } from '../clerk/clerk.guard';
+import { CurrentUser, CurrentUserId } from '../clerk/current-user.decorator';
+import { ClerkService } from '../clerk/clerk.service';
 
-@Controller("users")
+@Controller('users')
 @UseGuards(ClerkGuard)
 export class UsersController {
   constructor(private clerkService: ClerkService) {}
 
-  @Get("me")
+  @Get('me')
   async getCurrentUser(@CurrentUserId() userId: string) {
     return await this.clerkService.getUser(userId);
   }
 
-  @Get("profile")
+  @Get('profile')
   async getProfile(@CurrentUser() user: any) {
     return {
       id: user.id,
@@ -510,26 +511,19 @@ export class UsersController {
 
 ```typescript
 // src/clerk/clerk.webhook.controller.ts
-import {
-  Controller,
-  Post,
-  Body,
-  Headers,
-  HttpCode,
-  HttpStatus,
-} from "@nestjs/common";
-import { Webhook } from "svix";
-import { clerkClient } from "@clerk/clerk-sdk-node";
+import { Controller, Post, Body, Headers, HttpCode, HttpStatus } from '@nestjs/common';
+import { Webhook } from 'svix';
+import { clerkClient } from '@clerk/clerk-sdk-node';
 
-@Controller("webhooks/clerk")
+@Controller('webhooks/clerk')
 export class ClerkWebhookController {
   @Post()
   @HttpCode(HttpStatus.OK)
   async handleWebhook(
     @Body() body: any,
-    @Headers("svix-id") svixId: string,
-    @Headers("svix-timestamp") svixTimestamp: string,
-    @Headers("svix-signature") svixSignature: string
+    @Headers('svix-id') svixId: string,
+    @Headers('svix-timestamp') svixTimestamp: string,
+    @Headers('svix-signature') svixSignature: string,
   ) {
     const webhookSecret = process.env.CLERK_WEBHOOK_SECRET!;
 
@@ -539,31 +533,31 @@ export class ClerkWebhookController {
 
     try {
       evt = wh.verify(JSON.stringify(body), {
-        "svix-id": svixId,
-        "svix-timestamp": svixTimestamp,
-        "svix-signature": svixSignature,
+        'svix-id': svixId,
+        'svix-timestamp': svixTimestamp,
+        'svix-signature': svixSignature,
       });
     } catch (err) {
-      throw new Error("Webhook verification failed");
+      throw new Error('Webhook verification failed');
     }
 
     const { id, ...attributes } = evt.data;
     const eventType = evt.type;
 
     switch (eventType) {
-      case "user.created":
+      case 'user.created':
         // Handle user creation
-        console.log("User created:", id);
+        console.log('User created:', id);
         break;
 
-      case "user.updated":
+      case 'user.updated':
         // Handle user update
-        console.log("User updated:", id);
+        console.log('User updated:', id);
         break;
 
-      case "user.deleted":
+      case 'user.deleted':
         // Handle user deletion
-        console.log("User deleted:", id);
+        console.log('User deleted:', id);
         break;
 
       default:
@@ -587,9 +581,12 @@ import { clerkClient } from "@clerk/clerk-sdk-node";
 
 export async function POST(request: Request) {
   const { userId } = await auth();
-
+  
   if (!userId) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return NextResponse.json(
+      { error: "Unauthorized" },
+      { status: 401 }
+    );
   }
 
   const { name } = await request.json();
@@ -607,9 +604,9 @@ export async function POST(request: Request) {
 
 ```typescript
 // components/organization-switcher.tsx
-"use client";
+'use client';
 
-import { OrganizationSwitcher } from "@clerk/nextjs";
+import { OrganizationSwitcher } from '@clerk/nextjs';
 
 export default function OrganizationSwitcherComponent() {
   return (
@@ -630,19 +627,18 @@ import {
   CanActivate,
   ExecutionContext,
   ForbiddenException,
-} from "@nestjs/common";
-import { clerkClient } from "@clerk/clerk-sdk-node";
+} from '@nestjs/common';
+import { clerkClient } from '@clerk/clerk-sdk-node';
 
 @Injectable()
 export class OrganizationGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
     const userId = request.userId;
-    const organizationId =
-      request.params.organizationId || request.body.organizationId;
+    const organizationId = request.params.organizationId || request.body.organizationId;
 
     if (!organizationId) {
-      throw new ForbiddenException("Organization ID required");
+      throw new ForbiddenException('Organization ID required');
     }
 
     const memberships = await clerkClient.users.getOrganizationMembershipList({
@@ -654,7 +650,7 @@ export class OrganizationGuard implements CanActivate {
     );
 
     if (!hasAccess) {
-      throw new ForbiddenException("Not a member of this organization");
+      throw new ForbiddenException('Not a member of this organization');
     }
 
     request.organizationId = organizationId;
@@ -666,7 +662,6 @@ export class OrganizationGuard implements CanActivate {
 ## Best Practices
 
 ### Security
-
 - Always verify tokens on the server side
 - Use HTTPS for all authentication flows
 - Store secrets in environment variables
@@ -674,28 +669,24 @@ export class OrganizationGuard implements CanActivate {
 - Validate user permissions before actions
 
 ### Session Management
-
 - Use Clerk's built-in session management
 - Implement proper logout flows
 - Handle token refresh automatically
 - Use middleware for route protection
 
 ### User Management
-
 - Sync user data with your database when needed
 - Handle webhooks for user lifecycle events
 - Implement proper user data validation
 - Respect user privacy and data protection
 
 ### Organization Management
-
 - Implement proper organization access controls
 - Use organization guards for multi-tenant features
 - Handle organization membership changes via webhooks
 - Implement proper organization data isolation
 
 ### Error Handling
-
 - Provide clear error messages
 - Handle authentication failures gracefully
 - Implement proper logging for security events
@@ -715,7 +706,6 @@ export class OrganizationGuard implements CanActivate {
 ## Example User Requests
 
 **Example 1: "Add Clerk authentication to my Next.js app"**
-
 - Install `@clerk/nextjs@latest`
 - Create `proxy.ts` file using `clerkMiddleware()` from `@clerk/nextjs/server`
 - Wrap app with `<ClerkProvider>` in `app/layout.tsx`
@@ -723,7 +713,6 @@ export class OrganizationGuard implements CanActivate {
 - Import `auth()` from `@clerk/nextjs/server` with `async/await` for server-side code
 
 **Example 2: "Protect API routes with Clerk in NestJS"**
-
 - Set up Clerk module and service
 - Create authentication guard
 - Add CurrentUser decorator
@@ -731,7 +720,6 @@ export class OrganizationGuard implements CanActivate {
 - Handle authentication errors
 
 **Example 3: "Implement organization/team features"**
-
 - Set up organization creation
 - Add organization switcher component
 - Implement organization guards

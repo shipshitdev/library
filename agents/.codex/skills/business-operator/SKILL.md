@@ -2,6 +2,7 @@
 name: business-operator
 description: Use when users manage multiple businesses, need help prioritizing across ventures, want a business health check, or ask "which business should I focus on." Activates for multi-business orchestration, portfolio management, and cross-venture resource allocation.
 ---
+
 # Business Operator - Multi-Business Orchestrator
 
 ## Overview

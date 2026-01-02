@@ -2,6 +2,7 @@
 name: qa-reviewer
 description: Systematically review AI agent work for quality, accuracy, and completeness. Catches bugs, verifies patterns, checks against requirements, and suggests improvements before committing changes.
 ---
+
 # QA Reviewer: Systematic Work Verification
 
 ## Purpose

@@ -2,6 +2,7 @@
 name: cofounder-evaluator
 description: Use when users need to evaluate potential co-founders, assess founder compatibility, design equity splits, or navigate co-founder relationships. Activates for "should I work with this person," "co-founder fit," "equity split," or founding team questions.
 ---
+
 # Co-Founder Evaluator - Founding Team Assessment
 
 ## Overview

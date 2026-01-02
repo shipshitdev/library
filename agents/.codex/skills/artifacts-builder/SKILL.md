@@ -1,13 +1,11 @@
 ---
 name: artifacts-builder
-description: Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, @agenticindiedev/ui). Use for complex artifacts requiring state management or shared UI components - not for simple single-file HTML/JSX artifacts.
-metadata:
-  short-description: artifacts uuilder
+description: Suite of tools for creating elaborate, multi-component artifact UI HTML artifacts using modern frontend web technologies (React, Tailwind CSS, @agenticindiedev/ui). Use for complex artifacts requiring state management or shared UI components - not for simple single-file HTML/JSX artifacts.
 ---
 
 # Artifacts Builder
 
-To build powerful frontend claude.ai artifacts, follow these steps:
+To build powerful frontend artifact UI artifacts, follow these steps:
 
 1. Initialize the frontend repo using `scripts/init-artifact.sh`
 2. Develop your artifact by editing the generated code
@@ -53,7 +51,7 @@ To bundle the React app into a single HTML artifact:
 bash scripts/bundle-artifact.sh
 ```
 
-This creates `bundle.html` - a self-contained artifact with all JavaScript, CSS, and dependencies inlined. This file can be directly shared in Claude conversations as an artifact.
+This creates `bundle.html` - a self-contained artifact with all JavaScript, CSS, and dependencies inlined. This file can be directly shared in Codex conversations as an artifact.
 
 **Requirements**: Your project must have an `index.html` in the root directory.
 

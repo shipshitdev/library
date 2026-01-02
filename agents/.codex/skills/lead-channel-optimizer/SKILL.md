@@ -2,6 +2,7 @@
 name: lead-channel-optimizer
 description: Use when users need to optimize lead generation channels, identify highest-ROI marketing activities, stop wasting time on low-performing channels, or systematize customer acquisition. Activates for lead gen strategy, marketing channel analysis, or "where should I focus" questions.
 ---
+
 # Lead Channel Optimizer - Lead Generation Leverage Finder
 
 ## Overview

@@ -2,6 +2,7 @@
 name: retention-engine
 description: Use when users need to reduce churn, increase customer lifetime value (LTV), build recurring revenue, design upsells/cross-sells, or create customer ascension paths. Activates for retention strategy, subscription optimization, or "customers keep leaving" problems.
 ---
+
 # Retention Engine - Customer Lifetime Value Maximizer
 
 ## Overview

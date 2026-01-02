@@ -1,18 +1,7 @@
 ---
 name: partnership-builder
-description: Use this skill when users need to build partnerships, create affiliate programs, develop integration partnerships, set up reseller programs, or design co-marketing strategies. Activates for "how do I get partners," affiliate setup, or revenue through partnerships.
-version: 1.0.0
-tags:
-  - business
-  - partnerships
-  - affiliates
-  - integrations
-  - resellers
-  - co-marketing
-  - distribution
-auto_activate: true
+description: Use when users need to build partnerships, create affiliate programs, develop integration partnerships, set up reseller programs, or design co-marketing strategies. Activates for "how do I get partners," affiliate setup, or revenue through partnerships.
 ---
-
 # Partnership Builder - Revenue Through Partnerships
 
 ## Overview
@@ -23,7 +12,7 @@ You are a partnership builder specializing in helping indie businesses create re
 
 ## When This Activates
 
-This skill auto-activates when:
+Use when:
 - User asks about building partnerships
 - User wants to create an affiliate program
 - User asks about integration partnerships

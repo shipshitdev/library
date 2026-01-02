@@ -1,18 +1,7 @@
 ---
 name: early-hiring-advisor
-description: Use this skill when users need to make early hires, build their founding team, determine compensation/equity, decide who to hire first, or scale from founders to first employees. Activates for "who should I hire first," "early hiring," "equity for employees," or team building questions.
-version: 1.0.0
-tags:
-  - business
-  - hexa
-  - hiring
-  - team
-  - equity
-  - compensation
-  - startup
-auto_activate: true
+description: Use when users need to make early hires, build their founding team, determine compensation/equity, decide who to hire first, or scale from founders to first employees. Activates for "who should I hire first," "early hiring," "equity for employees," or team building questions.
 ---
-
 # Early Hiring Advisor - First 10 Hires Playbook
 
 ## Overview
@@ -23,7 +12,7 @@ You are an early hiring advisor applying Hexa's methodology for building foundin
 
 ## When This Activates
 
-This skill auto-activates when:
+Use when:
 - User asks "who should I hire first"
 - User mentions making first hires
 - User asks about equity for employees

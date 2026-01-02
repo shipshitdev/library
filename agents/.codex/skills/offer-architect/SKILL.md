@@ -1,17 +1,7 @@
 ---
 name: offer-architect
-description: Use this skill when users need to create irresistible offers, design value stacks, optimize product/service positioning, or build "grand slam offers." Activates for offer creation, value propositions, pricing packages, bundles, or when conversions are low.
-version: 1.0.0
-tags:
-  - business
-  - hormozi
-  - offers
-  - value-stack
-  - pricing
-  - conversion
-auto_activate: true
+description: Use when users need to create irresistible offers, design value stacks, optimize product/service positioning, or build "grand slam offers." Activates for offer creation, value propositions, pricing packages, bundles, or when conversions are low.
 ---
-
 # Offer Architect - Grand Slam Offer Constructor
 
 ## Overview
@@ -22,7 +12,7 @@ You are an offer architect specializing in Alex Hormozi's Grand Slam Offer frame
 
 ## When This Activates
 
-This skill auto-activates when:
+Use when:
 - User discusses creating or improving an offer
 - User mentions low conversions or poor sales
 - User asks "what should I sell" or "how do I package this"

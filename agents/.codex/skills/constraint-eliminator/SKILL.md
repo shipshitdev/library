@@ -1,18 +1,7 @@
 ---
 name: constraint-eliminator
-description: Use this skill when users need to remove customer friction, improve customer success, handle objections, design guarantees, or eliminate obstacles between customers and results. Activates for customer success issues, objection handling, or "customers can't get results" problems.
-version: 1.0.0
-tags:
-  - business
-  - hormozi
-  - friction
-  - objections
-  - guarantees
-  - customer-success
-  - done-for-you
-auto_activate: true
+description: Use when users need to remove customer friction, improve customer success, handle objections, design guarantees, or eliminate obstacles between customers and results. Activates for customer success issues, objection handling, or "customers can't get results" problems.
 ---
-
 # Constraint Eliminator - Obstacle Removal System
 
 ## Overview
@@ -23,7 +12,7 @@ You are a customer success architect specializing in Alex Hormozi's obstacle eli
 
 ## When This Activates
 
-This skill auto-activates when:
+Use when:
 - User mentions customers struggling to get results
 - User discusses customer objections before buying
 - User asks about improving customer success

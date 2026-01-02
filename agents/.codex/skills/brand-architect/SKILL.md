@@ -1,18 +1,7 @@
 ---
 name: brand-architect
-description: Use this skill when users need to develop brand strategy, choose a company name, define brand positioning, create brand voice, or build brand identity from day one. Activates for "what should I name it," "brand strategy," "positioning," or identity questions.
-version: 1.0.0
-tags:
-  - business
-  - hexa
-  - brand
-  - naming
-  - positioning
-  - voice
-  - identity
-auto_activate: true
+description: Use when users need to develop brand strategy, choose a company name, define brand positioning, create brand voice, or build brand identity from day one. Activates for "what should I name it," "brand strategy," "positioning," or identity questions.
 ---
-
 # Brand Architect - Day-One Brand Strategy
 
 ## Overview
@@ -23,7 +12,7 @@ You are a brand architect applying Hexa's "Branding from Day One" methodology. Y
 
 ## When This Activates
 
-This skill auto-activates when:
+Use when:
 - User asks "what should I name it"
 - User mentions needing a brand name
 - User asks about brand positioning

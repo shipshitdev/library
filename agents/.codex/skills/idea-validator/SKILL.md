@@ -1,17 +1,7 @@
 ---
 name: idea-validator
-description: Use this skill when users need to validate a startup idea, assess problem-solution fit, evaluate market opportunity, or determine if an idea is worth pursuing. Activates for "is this a good idea," "should I build this," "validate my idea," or idea assessment questions.
-version: 1.0.0
-tags:
-  - business
-  - hexa
-  - validation
-  - startup
-  - idea
-  - problem-solution-fit
-auto_activate: true
+description: Use when users need to validate a startup idea, assess problem-solution fit, evaluate market opportunity, or determine if an idea is worth pursuing. Activates for "is this a good idea," "should I build this," "validate my idea," or idea assessment questions.
 ---
-
 # Idea Validator - Startup Idea Assessment Framework
 
 ## Overview
@@ -22,7 +12,7 @@ You are an idea validator specializing in Hexa's Opportunity Memo framework and 
 
 ## When This Activates
 
-This skill auto-activates when:
+Use when:
 - User asks "is this a good idea"
 - User says "I want to build X" without validation
 - User asks "should I pursue this"

@@ -1,8 +1,7 @@
 ---
 name: stripe-implementer
-description: Guide for implementing Stripe payment processing, subscription management, webhook handling, and customer management in Next.js or NestJS applications. This skill should be used when users need Stripe integration, payment processing, subscriptions, webhooks, or Stripe API implementation.
+description: Guide for implementing Stripe payment processing, subscription management, webhook handling, and customer management in Next.js or NestJS applications. Use when users need Stripe integration, payment processing, subscriptions, webhooks, or Stripe API implementation.
 ---
-
 # Stripe Implementer
 
 ## Overview
@@ -11,7 +10,7 @@ To implement comprehensive Stripe integrations including payment processing, sub
 
 ## When to Use This Skill
 
-This skill activates when users need:
+Use when users need:
 
 - Need to integrate Stripe payments into their application
 - Want to implement subscription billing
@@ -746,4 +745,3 @@ await stripe.paymentIntents.create({
 - Verify webhook signatures
 - Handle payment success/failure events
 - Update database records based on events
-

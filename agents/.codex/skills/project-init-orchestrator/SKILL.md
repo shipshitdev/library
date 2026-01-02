@@ -1,8 +1,7 @@
 ---
 name: project-init-orchestrator
-description: Orchestrates complete project initialization by coordinating agent-folder-init, linter-formatter-init, husky-test-coverage, and other setup skills. Use this skill when starting a new project that needs full AI-first development infrastructure with code quality enforcement.
+description: Orchestrates complete project initialization by coordinating agent-folder-init, linter-formatter-init, husky-test-coverage, and other setup skills. Use when starting a new project that needs full AI-first development infrastructure with code quality enforcement.
 ---
-
 # Project Init Orchestrator
 
 ## Overview
@@ -11,7 +10,7 @@ This skill orchestrates multiple initialization skills to set up a complete, pro
 
 ## When to Use This Skill
 
-This skill activates automatically when users:
+Use when users:
 
 - Start a new project from scratch
 - Want full project setup with one command
@@ -209,10 +208,17 @@ project-root/
 │   │   └── RULES.md
 │   └── README.md
 │
-├── .claude/                         # Claude Code configs
+├── .claude/                         # Claude configs
 │   ├── commands/
 │   ├── rules/
 │   └── skills/
+│
+├── .codex/                          # Codex configs
+│   ├── commands/
+│   └── skills/
+│
+├── .cursor/                         # Cursor configs
+│   └── commands/
 │
 ├── .husky/                          # Git hooks
 │   └── pre-commit                   # Runs lint-staged + tests

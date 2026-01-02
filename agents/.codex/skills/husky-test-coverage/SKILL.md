@@ -1,17 +1,16 @@
 ---
 name: husky-test-coverage
-description: Set up or verify Husky git hooks to ensure all tests run and coverage stays above 80% (configurable) for Node.js/TypeScript projects. This skill should be used when users want to enforce test coverage through pre-commit hooks, verify existing Husky/test setup, or configure coverage thresholds for Jest, Vitest, or Mocha test runners.
+description: Set up or verify Husky git hooks to ensure all tests run and coverage stays above 80% (configurable) for Node.js/TypeScript projects. Use when users want to enforce test coverage through pre-commit hooks, verify existing Husky/test setup, or configure coverage thresholds for Jest, Vitest, or Mocha test runners.
 metadata:
   short-description: Set up Husky git hooks for test coverage enforcement
 ---
-
 # Husky Test Coverage
 
 To set up or verify Husky git hooks that run tests and enforce coverage thresholds on every commit.
 
 ## When to Use
 
-This skill activates when setting up test coverage enforcement, verifying existing Husky/test setup, or configuring coverage thresholds for Jest, Vitest, or Mocha.
+Use when setting up test coverage enforcement, verifying existing Husky/test setup, or configuring coverage thresholds for Jest, Vitest, or Mocha.
 
 ## Workflow
 

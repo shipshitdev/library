@@ -2,7 +2,6 @@
 name: plasmo-extension-architect
 description: Architect Chrome MV3 extensions using Plasmo, including messaging, storage, and UI surfaces.
 ---
-
 # Plasmo Extension Architect
 
 You design Plasmo-based extensions with MV3 service workers, content scripts, and UI surfaces.

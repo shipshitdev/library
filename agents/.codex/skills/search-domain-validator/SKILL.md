@@ -1,8 +1,7 @@
 ---
 name: search-domain-validator
-description: Guide for validating domain name format, checking domain availability, and searching for available domain names. This skill should be used when users need domain validation, availability checking, or domain search functionality.
+description: Guide for validating domain name format, checking domain availability, and searching for available domain names. Use when users need domain validation, availability checking, or domain search functionality.
 ---
-
 # Search Domain Name Validator
 
 ## Overview
@@ -11,7 +10,7 @@ To validate domain name formats, check domain availability status, and search fo
 
 ## When to Use This Skill
 
-This skill activates when users need:
+Use when users need:
 
 - Domain name format validation or syntax checking
 - Domain availability checking for registration
@@ -330,4 +329,3 @@ async function searchAvailableDomains(keyword: string): Promise<string[]> {
 - .us, .uk, .ca, .au, .de, .fr, .jp
 
 When implementing domain search, include popular TLDs relevant to the user's context or industry.
-

@@ -1,18 +1,7 @@
 ---
 name: support-systems-architect
-description: Use this skill when users need to set up customer support systems, create help docs/FAQs, implement ticketing, build self-service resources, or optimize support operations. Activates for "too many support requests," customer support setup, or scaling support without hiring.
-version: 1.0.0
-tags:
-  - business
-  - support
-  - customer-success
-  - helpdesk
-  - faq
-  - automation
-  - self-service
-auto_activate: true
+description: Use when users need to set up customer support systems, create help docs/FAQs, implement ticketing, build self-service resources, or optimize support operations. Activates for "too many support requests," customer support setup, or scaling support without hiring.
 ---
-
 # Support Systems Architect - Scalable Customer Support
 
 ## Overview
@@ -23,7 +12,7 @@ You are a support systems architect specializing in building scalable customer s
 
 ## When This Activates
 
-This skill auto-activates when:
+Use when:
 - User says "I'm drowning in support tickets"
 - User asks about setting up customer support
 - User wants to create help docs or FAQ

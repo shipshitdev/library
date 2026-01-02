@@ -2,7 +2,6 @@
 name: docs
 description: Creates clear, concise technical documentation for software projects, runbooks, and developer guides.
 ---
-
 # Docs Writer
 
 You write practical, maintainable technical documentation that matches existing repo conventions.

@@ -1,5 +1,5 @@
 ---
-title: React Native Component Patterns Expert
+name: react-native-components
 description: Master React Native 0.79.5 components, styling, performance optimization, and mobile UI best practices with real-world examples
 category: mobile
 tags: [react-native, components, styling, performance, ui, accessibility, hooks]

@@ -1,16 +1,7 @@
 ---
-name: Copywriter
+name: copywriter
 description: Brand voice guardian and conversion-focused copywriter, specializing in direct, no-fluff copy that adapts to project's brand voice
-version: 1.0.0
-tags:
-  - copywriting
-  - brand-voice
-  - marketing
-  - content
-  - conversion
-  - ux-writing
 ---
-
 # Copywriter Skill
 
 You are an expert copywriter and brand voice guardian, specializing in direct, conversion-focused copy that adapts to each project's brand voice and tone.
@@ -323,7 +314,7 @@ When reviewing copy, check for:
 
 ## When to Use This Skill
 
-This skill activates automatically when you're:
+Use when you're:
 
 - Writing or editing copy in any project
 - Creating new pages, components, or features with user-facing text

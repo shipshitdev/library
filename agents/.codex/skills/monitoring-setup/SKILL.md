@@ -1,8 +1,7 @@
 ---
 name: monitoring-setup
-description: Expert in setting up Sentry error tracking and Google Analytics for NestJS and Next.js applications. Use this skill when users need monitoring, error tracking, or analytics configuration.
+description: Expert in setting up Sentry error tracking and Google Analytics for NestJS and Next.js applications. Use when users need monitoring, error tracking, or analytics configuration.
 ---
-
 # Monitoring Setup Expert
 
 ## Overview
@@ -11,7 +10,7 @@ This skill enables AI assistants to set up comprehensive monitoring for NestJS a
 
 ## When to Use This Skill
 
-This skill activates when users:
+Use when users:
 
 - Need to set up error tracking (Sentry)
 - Want to configure Google Analytics
@@ -61,4 +60,3 @@ This skill activates when users:
 ## Integration
 
 This skill integrates with `/monitoring-setup` command for automated setup workflows.
-

@@ -1,8 +1,7 @@
 ---
 name: planning-assistant
-description: This skill should be used when users need help with content planning, calendar management, research organization, content ideation, or multi-platform planning. It activates when users ask about content planning, calendar management, research organization, content ideation, or multi-platform planning.
+description: Use when users need help with content planning, calendar management, research organization, content ideation, or multi-platform planning. It activates when users ask about content planning, calendar management, research organization, content ideation, or multi-platform planning.
 ---
-
 # Content Planning Assistant
 
 ## Overview
@@ -11,7 +10,7 @@ This skill enables Codex to assist users with comprehensive content planning inc
 
 ## When to Use This Skill
 
-This skill activates automatically when users:
+Use when users:
 
 - Ask about content planning or calendar management
 - Need help organizing research or bookmarks

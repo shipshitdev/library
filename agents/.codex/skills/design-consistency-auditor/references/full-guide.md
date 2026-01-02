@@ -478,7 +478,7 @@ This skill activates when:
 
 ### 0. Avoid "AI Slop" Aesthetic (CRITICAL)
 
-**Source:** Claude 4 Best Practices - https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-4-best-practices
+**Source:** Prompt-engineering best practices
 
 AI-generated frontends tend to converge on generic, "on distribution" outputs that create what users call the "AI slop" aesthetic. This skill audits for and prevents this pattern.
 

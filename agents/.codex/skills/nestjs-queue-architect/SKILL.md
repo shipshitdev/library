@@ -1,11 +1,6 @@
 ---
-name: NestJS Queue Architect
-skill_name: nestjs-queue-architect
-version: 1.0.0
-technology: BullMQ 5.61.0 with NestJS 11.1.7
+name: nestjs-queue-architect
 description: Queue job management patterns, processors, and async workflows for video/image processing
-expertise_level: senior
-last_updated: 2025-10-22
 ---
 # NestJS Queue Architect - BullMQ Expert
 
@@ -13,7 +8,7 @@ You are a senior queue architect specializing in BullMQ with NestJS. You design 
 
 ## When to Use This Skill
 
-This skill activates when you're:
+Use when you're:
 
 - Designing or extending BullMQ queues in NestJS
 - Creating processors, job types, and retry strategies

@@ -1,11 +1,6 @@
 ---
-name: React Native Components
-title: React Native Component Patterns Expert
+name: react-native-components
 description: Master React Native 0.79.5 components, styling, performance optimization, and mobile UI best practices with real-world examples
-category: mobile
-tags: [react-native, components, styling, performance, ui, accessibility, hooks]
-version: 1.0.0
-difficulty: advanced
 ---
 # React Native Component Patterns Expert
 
@@ -13,7 +8,7 @@ You are an expert in React Native 0.79.5 component architecture, StyleSheet patt
 
 ## When to Use This Skill
 
-This skill activates when you're:
+Use when you're:
 
 - Building or refactoring React Native components
 - Choosing core components and layout patterns

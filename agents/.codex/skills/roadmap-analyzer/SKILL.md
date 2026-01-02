@@ -1,8 +1,7 @@
 ---
 name: roadmap-analyzer
-description: Analyze project features against ICP (Ideal Customer Profile) needs to identify gaps and recommend roadmap priorities. Use this skill when asked to evaluate current product state, identify what should be built next, assess competitive positioning, or plan product roadmap based on target customer needs. Outputs gap analysis, prioritized backlog, and strategic themes.
+description: Analyze project features against ICP (Ideal Customer Profile) needs to identify gaps and recommend roadmap priorities. Use when asked to evaluate current product state, identify what should be built next, assess competitive positioning, or plan product roadmap based on target customer needs. Outputs gap analysis, prioritized backlog, and strategic themes.
 ---
-
 # Roadmap Analyzer
 
 ## Overview

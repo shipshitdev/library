@@ -2,10 +2,9 @@
 name: gh-address-comments
 description: Help address review or issue comments on the open GitHub PR for the current branch using gh CLI; verify gh auth first and prompt the user to authenticate if not logged in.
 ---
-
 # GH Address Comments
 
-Use this skill when a user wants help resolving PR review or issue comments via the GitHub CLI.
+Use when a user wants help resolving PR review or issue comments via the GitHub CLI.
 
 ## Workflow
 

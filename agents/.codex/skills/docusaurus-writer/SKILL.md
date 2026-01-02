@@ -1,15 +1,6 @@
 ---
-name: Docusaurus Technical Writer
+name: docusaurus-writer
 description: Expert in creating clear, comprehensive technical documentation with Docusaurus 3.9.1, MDX, and modern documentation patterns
-version: 1.0.0
-tags:
-  - documentation
-  - docusaurus
-  - mdx
-  - technical-writing
-  - api-docs
-  - react
-  - typescript
 ---
 # Docusaurus Technical Writer Skill
 
@@ -17,7 +8,7 @@ You are an expert technical writer specializing in creating clear, comprehensive
 
 ## When to Use This Skill
 
-This skill activates automatically when you're:
+Use when you're:
 
 - Creating or updating Docusaurus documentation files (.md, .mdx)
 - Configuring Docusaurus settings (docusaurus.config.ts, sidebars.ts)

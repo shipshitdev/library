@@ -4,7 +4,6 @@ description: Scaffold a production-ready Expo React Native app with working scre
 metadata:
   short-description: Scaffold production-ready Expo React Native apps with navigation, auth, and quality tooling
 ---
-
 # Expo Architect
 
 Create a **production-ready** Expo React Native app with:

@@ -63,7 +63,7 @@ Delete this entire "Structuring This Skill" section when done - it's just guidan
 - References to scripts/templates/references as needed]
 
 <!-- PLATFORM-SPECIFIC-START: codex -->
-<!-- If this skill will be synced to Claude, mark Codex-specific sections like this.
+<!-- If this skill will be synced to another platform, mark Codex-specific sections like this.
      Example: Codex-specific principles, progressive disclosure guidance, etc.
      See SKILL-MANAGEMENT.md for guidelines on when to use platform markers. -->
 <!-- PLATFORM-SPECIFIC-END: codex -->

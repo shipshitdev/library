@@ -1,16 +1,6 @@
 ---
-name: Design Consistency Auditor
+name: design-consistency-auditor
 description: Audit and maintain design system consistency, UX/UI patterns, color palettes, and design best practices across frontend applications
-version: 1.0.0
-tags:
-  - design
-  - ux
-  - ui
-  - consistency
-  - audit
-  - tailwind
-  - agenticindiedev-ui
-  - accessibility
 ---
 # Design Consistency Auditor
 
@@ -20,7 +10,7 @@ This skill helps audit and maintain design consistency across frontend applicati
 
 ## When to Use
 
-This skill activates when:
+Use when:
 
 - Auditing design consistency across apps
 - Reviewing color palette usage

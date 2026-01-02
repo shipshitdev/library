@@ -1,13 +1,15 @@
 ---
 name: analytics-expert
 description: This skill should be used when users need help analyzing content analytics data, creating reports, identifying trends, calculating ROI, or providing content optimization recommendations. It activates when users ask analytics questions, request reports, need performance analysis, ROI calculations, trend identification, or content optimization recommendations.
+metadata:
+  short-description: analytics expert
 ---
 
 # Content Analytics Expert
 
 ## Overview
 
-This skill enables Codex to analyze content analytics data, generate comprehensive reports, identify performance trends, calculate ROI and revenue attribution, and provide actionable insights for content optimization.
+This skill enables Claude to analyze content analytics data, generate comprehensive reports, identify performance trends, calculate ROI and revenue attribution, and provide actionable insights for content optimization.
 
 ## When to Use This Skill
 
@@ -188,11 +190,13 @@ To identify trends from analytics data:
 **Before analyzing analytics, discover the project's context:**
 
 1. **Scan Project Documentation:**
+
    - Check `.agent/SYSTEM/ARCHITECTURE.md` for analytics platform details
    - Review `.agent/SYSTEM/SUMMARY.md` for analytics capabilities
    - Look for analytics-related documentation
 
 2. **Identify Analytics Platform:**
+
    - Check for analytics service integrations in codebase
    - Look for analytics API endpoints or SDKs
    - Review environment variables for analytics services

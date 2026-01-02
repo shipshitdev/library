@@ -1,8 +1,7 @@
 ---
 name: workflow-automation
-description: This skill should be used when users need help designing content workflows, creating process documentation, implementing automation rules, designing approval processes, or optimizing content pipelines. It activates when users ask about workflow design, process documentation, automation, approval workflows, or content pipeline optimization.
+description: Use when users need help designing content workflows, creating process documentation, implementing automation rules, designing approval processes, or optimizing content pipelines. It activates when users ask about workflow design, process documentation, automation, approval workflows, or content pipeline optimization.
 ---
-
 # Content Workflow Automation
 
 ## Overview
@@ -11,7 +10,7 @@ This skill enables Codex to help users design and implement content workflows, c
 
 ## When to Use This Skill
 
-This skill activates automatically when users:
+Use when users:
 
 - Ask about workflow design or content processes
 - Need help documenting content workflows

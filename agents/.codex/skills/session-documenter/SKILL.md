@@ -1,14 +1,12 @@
 ---
 name: session-documenter
 description: Automatically document session work after each task completion. Tracks decisions, file changes, flowcharts, and context for session continuity. Use this skill proactively throughout sessions to maintain comprehensive documentation in `.agent/SESSIONS/`.
-location: project
-auto_activate: true
 ---
 # Session Documenter Skill
 
 **Purpose:** Automatically document all work, decisions, and context throughout the session for continuity.
 
-**Auto-activation:** This skill activates automatically when you complete tasks to ensure documentation is not skipped.
+**Auto-activation:** Use when you complete tasks to ensure documentation is not skipped.
 
 ## When This Skill Activates
 

@@ -1,17 +1,7 @@
 ---
 name: pricing-strategist
-description: Use this skill when users need help with pricing strategy, feel they're undercharging, want to raise prices confidently, or need to position offerings as premium. Activates for pricing questions, value-based pricing, competitor pricing analysis, or pricing confidence issues.
-version: 1.0.0
-tags:
-  - business
-  - hormozi
-  - pricing
-  - value
-  - premium
-  - positioning
-auto_activate: true
+description: Use when users need help with pricing strategy, feel they're undercharging, want to raise prices confidently, or need to position offerings as premium. Activates for pricing questions, value-based pricing, competitor pricing analysis, or pricing confidence issues.
 ---
-
 # Pricing Strategist - Pricing Confidence Calculator
 
 ## Overview
@@ -22,7 +12,7 @@ You are a pricing strategist specializing in premium pricing and value-based pos
 
 ## When This Activates
 
-This skill auto-activates when:
+Use when:
 - User mentions feeling "too cheap" or "underpriced"
 - User asks "what should I charge"
 - User is scared to raise prices

@@ -1304,7 +1304,7 @@ curl -X POST https://api.example.com/v1/generate/video \
 | Rollover credits | ❌ | ✅ | ✅ |
 | **Models** |
 | GPT-4o | ✅ | ✅ | ✅ |
-| Claude Opus | ❌ | ✅ | ✅ |
+| Premium model | ❌ | ✅ | ✅ |
 | Custom models | ❌ | ❌ | ✅ |
 | **Features** |
 | Social publishing | ✅ | ✅ | ✅ |

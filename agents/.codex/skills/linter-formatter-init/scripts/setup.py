@@ -481,7 +481,7 @@ def setup_husky(root: Path, dry_run: bool):
 
 
 def setup_vscode(root: Path, biome: bool, dry_run: bool):
-    """Set up VS Code / Cursor settings."""
+    """Set up VS Code settings."""
     print("\n⚙️  Setting up editor configuration...")
     
     vscode_dir = root / ".vscode"

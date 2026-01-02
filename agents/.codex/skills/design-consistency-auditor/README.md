@@ -1,6 +1,6 @@
 # Design Consistency Auditor Skill
 
-A comprehensive Claude Code skill for auditing and maintaining design system consistency across frontend applications. Discovers project structure from documentation.
+A comprehensive Codex skill for auditing and maintaining design system consistency across frontend applications. Discovers project structure from documentation.
 
 ## Quick Start
 
@@ -308,4 +308,4 @@ This skill works well with:
 **Version**: 1.0.0
 **Maintained by**: Project Design Team
 
-Need help? Ask Claude: "How do I use the Design Consistency Auditor skill?"
+Need help? Ask Codex: "How do I use the Design Consistency Auditor skill?"

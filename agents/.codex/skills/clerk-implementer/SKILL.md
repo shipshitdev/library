@@ -1,8 +1,7 @@
 ---
 name: clerk-implementer
-description: Guide for implementing Clerk authentication, user management, and organization features in Next.js or NestJS applications. This skill should be used when users need Clerk integration, authentication setup, user management, organizations, or Clerk API implementation.
+description: Guide for implementing Clerk authentication, user management, and organization features in Next.js or NestJS applications. Use when users need Clerk integration, authentication setup, user management, organizations, or Clerk API implementation.
 ---
-
 # Clerk Implementer
 
 ## Overview
@@ -11,7 +10,7 @@ To implement comprehensive Clerk authentication integrations including user auth
 
 ## When to Use This Skill
 
-This skill activates when users need:
+Use when users need:
 
 - Need to integrate Clerk authentication into their application
 - Want to implement user sign up and sign in

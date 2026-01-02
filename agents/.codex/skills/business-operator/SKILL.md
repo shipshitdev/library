@@ -1,17 +1,7 @@
 ---
 name: business-operator
-description: Use this skill when users manage multiple businesses, need help prioritizing across ventures, want a business health check, or ask "which business should I focus on." Activates for multi-business orchestration, portfolio management, and cross-venture resource allocation.
-version: 1.0.0
-tags:
-  - business
-  - hormozi
-  - orchestration
-  - portfolio
-  - multi-business
-  - prioritization
-auto_activate: true
+description: Use when users manage multiple businesses, need help prioritizing across ventures, want a business health check, or ask "which business should I focus on." Activates for multi-business orchestration, portfolio management, and cross-venture resource allocation.
 ---
-
 # Business Operator - Multi-Business Orchestrator
 
 ## Overview
@@ -22,7 +12,7 @@ This is the **meta-skill** that coordinates: offer-architect, pricing-strategist
 
 ## When This Activates
 
-This skill auto-activates when:
+Use when:
 - User mentions managing multiple products or businesses
 - User asks "which business should I focus on"
 - User needs help prioritizing across ventures

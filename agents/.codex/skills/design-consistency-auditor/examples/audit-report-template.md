@@ -2,7 +2,7 @@
 
 **Date**: [YYYY-MM-DD]
 **Scope**: [App names or "Full Workspace"]
-**Auditor**: Claude Code + Design Consistency Auditor Skill
+**Auditor**: Codex + Design Consistency Auditor Skill
 
 ## Executive Summary
 

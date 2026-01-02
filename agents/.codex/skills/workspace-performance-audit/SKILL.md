@@ -2,7 +2,6 @@
 name: workspace-performance-audit
 description: Orchestrates comprehensive performance audits across full-stack monorepos. Coordinates performance-expert, design-consistency-auditor, accessibility, security-expert, and qa-reviewer skills to audit frontend, backend, database, browser extensions, and shared packages. Use for projects like GenFeedAI.
 ---
-
 # Workspace Performance Audit
 
 ## Overview
@@ -11,7 +10,7 @@ This skill orchestrates a comprehensive performance audit across an entire monor
 
 ## When to Use This Skill
 
-This skill activates automatically when users:
+Use when users:
 
 - Need a full workspace performance review
 - Want to audit a monorepo like GenFeedAI
@@ -397,7 +396,7 @@ npx depcheck
 # Workspace Performance Audit Report
 **Project:** GenFeedAI
 **Date:** YYYY-MM-DD
-**Auditor:** Claude
+**Auditor:** Codex
 
 ## Executive Summary
 - Overall Health Score: X/10

@@ -1,8 +1,7 @@
 ---
 name: docker-expert
-description: Expert in Docker, docker-compose, Dockerfile patterns, and container orchestration for NestJS and Next.js applications. Use this skill when users need Docker setup, containerization, or docker-compose configuration.
+description: Expert in Docker, docker-compose, Dockerfile patterns, and container orchestration for NestJS and Next.js applications. Use when users need Docker setup, containerization, or docker-compose configuration.
 ---
-
 # Docker Expert
 
 ## Overview
@@ -11,7 +10,7 @@ This skill enables AI assistants to help with Docker containerization, docker-co
 
 ## When to Use This Skill
 
-This skill activates when users need:
+Use when users need:
 
 - Dockerfile creation for NestJS/Next.js
 - docker-compose configuration

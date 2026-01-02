@@ -1,14 +1,7 @@
 ---
 name: rules-capture
 description: Automatically detects and documents user preferences, coding rules, and style guidelines when expressed during conversations
-version: 1.0.0
-tags:
-  - preferences
-  - rules
-  - documentation
-  - automation
 ---
-
 # Rules Capture Skill
 
 This skill automatically detects when users express preferences, rules, or coding standards during conversations and documents them for future sessions.
@@ -212,7 +205,7 @@ When user says "clean up rules" or "process captured rules":
 
 **User**: "stop using console.log for debugging, use the logger service"
 
-**Claude**:
+**Codex**:
 
 ```
 I noticed a new rule. Let me capture it:

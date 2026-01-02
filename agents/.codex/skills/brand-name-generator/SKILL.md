@@ -1,17 +1,16 @@
 ---
 name: brand-name-generator
-description: This skill should be used when users need to generate creative brand names, company names, product names, or startup names. It activates when users ask about naming strategies, brand name ideas, or need help finding available domain names for new ventures.
+description: Use when users need to generate creative brand names, company names, product names, or startup names. It activates when users ask about naming strategies, brand name ideas, or need help finding available domain names for new ventures.
 ---
-
 # Brand Name Generator
 
 ## Overview
 
-This skill enables Claude to generate creative, memorable, and brandable names for companies, products, apps, and startups. It combines naming strategies with brandability scoring and integrates with domain availability checking to deliver actionable naming suggestions.
+Use this skill to generate creative, memorable, and brandable names for companies, products, apps, and startups. It combines naming strategies with brandability scoring and integrates with domain availability checking to deliver actionable naming suggestions.
 
 ## When to Use This Skill
 
-This skill activates automatically when users:
+Use when users:
 
 - Need creative brand name ideas for a new company or startup
 - Want product or app naming suggestions

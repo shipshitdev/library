@@ -1,8 +1,7 @@
 ---
 name: linter-formatter-init
-description: Set up ESLint, Prettier, and pre-commit hooks for any JavaScript/TypeScript project. Use this skill when initializing code quality tooling for a new project or adding linting to an existing one. Supports ESLint + Prettier or Biome as alternatives.
+description: Set up ESLint, Prettier, and pre-commit hooks for any JavaScript/TypeScript project. Use when initializing code quality tooling for a new project or adding linting to an existing one. Supports ESLint + Prettier or Biome as alternatives.
 ---
-
 # Linter Formatter Init
 
 Set up comprehensive linting and formatting for JavaScript/TypeScript projects.
@@ -13,12 +12,12 @@ This skill automates the setup of:
 - ESLint for code linting
 - Prettier for code formatting
 - Husky + lint-staged for pre-commit hooks
-- VS Code/Cursor settings for auto-format on save
+- VS Code settings (or compatible editor) for auto-format on save
 - npm scripts for manual linting and formatting
 
 ## When to Use
 
-Use this skill when:
+Use when:
 - Starting a new JS/TS project
 - Adding linting to an existing project without tooling
 - Standardizing code quality across a team
@@ -143,7 +142,7 @@ This ensures:
 - All committed code is formatted
 - No broken code enters the repo
 
-## VS Code / Cursor Integration
+## VS Code Integration
 
 The skill creates `.vscode/settings.json`:
 
@@ -229,7 +228,7 @@ chmod +x .husky/pre-commit
 
 ### Format on save not working
 
-1. Install the Prettier extension in VS Code/Cursor
+1. Install the Prettier extension in VS Code (or compatible editor)
 2. Set Prettier as default formatter
 3. Enable "Format on Save" in settings
 

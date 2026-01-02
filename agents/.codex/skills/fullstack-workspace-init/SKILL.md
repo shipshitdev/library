@@ -4,7 +4,6 @@ description: Scaffold a production-ready full-stack monorepo with working MVP fe
 metadata:
   short-description: fullstack workspace init
 ---
-
 # Full Stack Workspace Init
 
 Create a **production-ready** monorepo with working MVP features:

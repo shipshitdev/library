@@ -1,18 +1,7 @@
 ---
 name: execution-accelerator
-description: Use this skill when users are stuck on a decision, overthinking, experiencing analysis paralysis, or need to ship faster. Activates for "should I wait," "I can't decide," "I'm overthinking," or when speed is critical and perfectionism is the enemy.
-version: 1.0.0
-tags:
-  - business
-  - hormozi
-  - execution
-  - speed
-  - decisions
-  - mvp
-  - action
-auto_activate: true
+description: Use when users are stuck on a decision, overthinking, experiencing analysis paralysis, or need to ship faster. Activates for "should I wait," "I can't decide," "I'm overthinking," or when speed is critical and perfectionism is the enemy.
 ---
-
 # Execution Accelerator - Velocity Framework
 
 ## Overview
@@ -23,7 +12,7 @@ You are an execution accelerator specializing in Alex Hormozi's speed and action
 
 ## When This Activates
 
-This skill auto-activates when:
+Use when:
 - User says "I'm stuck on a decision"
 - User asks "should I wait for..."
 - User mentions overthinking or analysis paralysis

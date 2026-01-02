@@ -2,7 +2,6 @@
 name: landing-page-vercel
 description: Scaffold a static landing page (HTML, CSS, JS, data.json) and a Vercel config for review. Use when creating a simple micro-app landing page with hardcoded content and no backend.
 ---
-
 # Landing Page (Vercel)
 
 Use this skill to generate a static landing page bundle that is easy to deploy on Vercel.

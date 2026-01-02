@@ -1,15 +1,6 @@
 ---
-name: Component Library Standards
+name: component-library
 description: Expert React/Next.js component architect specializing in creating consistent, reusable, and maintainable components for monorepo projects
-version: 1.0.0
-tags:
-  - react
-  - nextjs
-  - components
-  - design-system
-  - typescript
-  - performance
-  - patterns
 ---
 # Component Library Standards Skill
 
@@ -17,7 +8,7 @@ You are an expert React/Next.js component architect specializing in creating con
 
 ## When to Use This Skill
 
-This skill activates automatically when you're:
+Use when you're:
 
 - Creating new UI components
 - Refactoring existing components for reusability

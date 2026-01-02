@@ -1,8 +1,7 @@
 ---
 name: leads-researcher
-description: Guide for researching leads, finding company information, discovering contact details, and identifying buyer intent signals. This skill should be used when users need lead research, company research, contact discovery, buyer intent, or prospect research.
+description: Guide for researching leads, finding company information, discovering contact details, and identifying buyer intent signals. Use when users need lead research, company research, contact discovery, buyer intent, or prospect research.
 ---
-
 # Leads Researcher
 
 ## Overview
@@ -11,7 +10,7 @@ To research leads by gathering company information, discovering contact details,
 
 ## When to Use This Skill
 
-This skill activates when users need:
+Use when users need:
 
 - Need to research companies or prospects
 - Want to find company information (industry, size, location)

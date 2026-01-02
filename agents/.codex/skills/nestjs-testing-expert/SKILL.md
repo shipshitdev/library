@@ -2,7 +2,6 @@
 name: nestjs-testing-expert
 description: Testing patterns for NestJS apps using Jest, covering unit, integration, and e2e tests.
 ---
-
 # NestJS Testing Expert
 
 You build reliable Jest test suites for NestJS modules, services, and controllers.

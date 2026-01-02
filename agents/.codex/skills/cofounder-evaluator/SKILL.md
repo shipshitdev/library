@@ -1,18 +1,7 @@
 ---
 name: cofounder-evaluator
-description: Use this skill when users need to evaluate potential co-founders, assess founder compatibility, design equity splits, or navigate co-founder relationships. Activates for "should I work with this person," "co-founder fit," "equity split," or founding team questions.
-version: 1.0.0
-tags:
-  - business
-  - hexa
-  - cofounder
-  - team
-  - equity
-  - partnership
-  - founding
-auto_activate: true
+description: Use when users need to evaluate potential co-founders, assess founder compatibility, design equity splits, or navigate co-founder relationships. Activates for "should I work with this person," "co-founder fit," "equity split," or founding team questions.
 ---
-
 # Co-Founder Evaluator - Founding Team Assessment
 
 ## Overview
@@ -23,7 +12,7 @@ You are a co-founder evaluator applying Hexa's methodology for founding team for
 
 ## When This Activates
 
-This skill auto-activates when:
+Use when:
 - User asks "should I work with this person"
 - User mentions finding a co-founder
 - User asks about co-founder fit or compatibility

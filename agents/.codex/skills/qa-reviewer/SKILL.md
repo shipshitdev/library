@@ -1,13 +1,6 @@
 ---
 name: qa-reviewer
 description: Systematically review AI agent work for quality, accuracy, and completeness. Catches bugs, verifies patterns, checks against requirements, and suggests improvements before committing changes.
-version: 1.0.0
-tags:
-  - quality-assurance
-  - verification
-  - code-review
-  - accuracy
-  - completeness
 ---
 # QA Reviewer: Systematic Work Verification
 
@@ -17,7 +10,7 @@ This skill provides a structured framework for reviewing AI agent work before fi
 
 ## When to Use
 
-This skill activates when:
+Use when:
 
 - User says "check your work" or "review this" or "verify"
 - After completing complex multi-step implementations
@@ -26,7 +19,7 @@ This skill activates when:
 - After implementing features with multiple requirements
 - Proactively after any task >5 steps
 
-Always use this skill when:
+Always Use when:
 
 - Modifying commands or skills
 - Updating critical documentation (CRITICAL-NEVER-DO.md, etc.)

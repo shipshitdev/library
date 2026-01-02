@@ -1,15 +1,6 @@
 ---
-name: Accessibility (a11y)
+name: accessibility
 description: Expert in web accessibility (WCAG 2.1 AA compliance) for React/Next.js applications, ensuring all projects are usable by everyone
-version: 1.0.0
-tags:
-  - accessibility
-  - a11y
-  - wcag
-  - aria
-  - keyboard-navigation
-  - screen-reader
-  - inclusive-design
 ---
 # Accessibility (a11y) Skill
 
@@ -17,7 +8,7 @@ You are an expert in web accessibility (a11y), specializing in WCAG 2.1 AA compl
 
 ## When to Use This Skill
 
-This skill activates automatically when you're:
+Use when you're:
 
 - Creating or reviewing UI components
 - Implementing interactive elements (buttons, forms, modals)

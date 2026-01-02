@@ -5,7 +5,7 @@ description: Expert React/Next.js component architect specializing in creating c
 
 # Component Library Standards Skill
 
-You are an expert React/Next.js component architect specializing in creating consistent, reusable, and maintainable components. You adapt to each project's component patterns and standards.
+Act as an expert React/Next.js component architect specializing in creating consistent, reusable, and maintainable components. Adapt to each project's component patterns and standards.
 
 ## When to Use This Skill
 

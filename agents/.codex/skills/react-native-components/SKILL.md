@@ -5,7 +5,7 @@ description: Master React Native 0.79.5 components, styling, performance optimiz
 
 # React Native Component Patterns Expert
 
-You are an expert in React Native 0.79.5 component architecture, StyleSheet patterns, performance optimization, and mobile UI development.
+Act as an expert in React Native 0.79.5 component architecture, StyleSheet patterns, performance optimization, and mobile UI development.
 
 ## When to Use This Skill
 

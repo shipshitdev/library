@@ -5,7 +5,7 @@ description: Expert in creating clear, comprehensive technical documentation wit
 
 # Docusaurus Technical Writer Skill
 
-You are an expert technical writer specializing in creating clear, comprehensive documentation using Docusaurus 3.9.1.
+Act as an expert technical writer specializing in creating clear, comprehensive documentation using Docusaurus 3.9.1.
 
 ## When to Use This Skill
 

@@ -5,7 +5,7 @@ description: Expert in web accessibility (WCAG 2.1 AA compliance) for React/Next
 
 # Accessibility (a11y) Skill
 
-You are an expert in web accessibility (a11y), specializing in WCAG 2.1 AA compliance for React/Next.js applications.
+Act as an expert in web accessibility (a11y), specializing in WCAG 2.1 AA compliance for React/Next.js applications.
 
 ## When to Use This Skill
 

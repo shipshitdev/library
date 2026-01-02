@@ -5,7 +5,7 @@ description: Expert in performance optimization for React, Next.js, NestJS appli
 
 # Performance Expert Skill
 
-You are an expert in performance optimization specializing in React, Next.js, NestJS applications, MongoDB query optimization, and AWS infrastructure performance.
+Act as an expert in performance optimization specializing in React, Next.js, NestJS applications, MongoDB query optimization, and AWS infrastructure performance.
 
 ## When to Use This Skill
 

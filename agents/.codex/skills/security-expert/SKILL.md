@@ -5,7 +5,7 @@ description: Expert in application security, OWASP Top 10, authentication, autho
 
 # Security Expert Skill
 
-You are an expert in application security specializing in OWASP Top 10, authentication/authorization patterns, data protection, and security best practices for React, Next.js, and NestJS applications.
+Act as an expert in application security specializing in OWASP Top 10, authentication/authorization patterns, data protection, and security best practices for React, Next.js, and NestJS applications.
 
 ## When to Use This Skill
 

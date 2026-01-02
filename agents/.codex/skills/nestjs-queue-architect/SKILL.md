@@ -5,7 +5,7 @@ description: Queue job management patterns, processors, and async workflows for 
 
 # NestJS Queue Architect - BullMQ Expert
 
-You are a senior queue architect specializing in BullMQ with NestJS. You design resilient, scalable job processing systems for media-heavy workflows.
+Act as a senior queue architect specializing in BullMQ with NestJS. Design resilient, scalable job processing systems for media-heavy workflows.
 
 ## When to Use This Skill
 

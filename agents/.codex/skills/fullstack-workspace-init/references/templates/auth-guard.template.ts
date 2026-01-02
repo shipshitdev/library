@@ -4,13 +4,13 @@
  * Place this at: api/apps/api/src/auth/guards/clerk-auth.guard.ts
  */
 
+import { Clerk } from '@clerk/clerk-sdk-node';
 import {
+  type CanActivate,
+  type ExecutionContext,
   Injectable,
-  CanActivate,
-  ExecutionContext,
   UnauthorizedException,
-} from "@nestjs/common";
-import { Clerk } from "@clerk/clerk-sdk-node";
+} from '@nestjs/common';
 
 @Injectable()
 export class ClerkAuthGuard implements CanActivate {
@@ -18,7 +18,7 @@ export class ClerkAuthGuard implements CanActivate {
 
   constructor() {
     this.clerk = new Clerk({
-      secretKey: process.env.CLERK_SECRET_KEY || "",
+      secretKey: process.env.CLERK_SECRET_KEY || '',
     });
   }
 
@@ -26,11 +26,11 @@ export class ClerkAuthGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
     const authHeader = request.headers.authorization;
 
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
-      throw new UnauthorizedException("No authorization token provided");
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      throw new UnauthorizedException('No authorization token provided');
     }
 
-    const token = authHeader.replace("Bearer ", "");
+    const token = authHeader.replace('Bearer ', '');
 
     try {
       const session = await this.clerk.verifyToken(token);
@@ -39,8 +39,8 @@ export class ClerkAuthGuard implements CanActivate {
         sessionId: session.sid,
       };
       return true;
-    } catch (error) {
-      throw new UnauthorizedException("Invalid or expired token");
+    } catch (_error) {
+      throw new UnauthorizedException('Invalid or expired token');
     }
   }
 }

@@ -8,22 +8,21 @@
 
 "use client";
 
-import { useState } from "react";
-import { {{Entity}} } from "@interfaces/{{entity}}.interface";
-import { Button, Input } from "@agenticindiedev/ui";
+import { useState } from "react";{Entity} } from "@interfaces/{{entity}}.interface";
 
-interface {{Entity}}FormProps {
-  {{entity}}?: {{Entity}};
-  onSubmit: (data: Partial<{{Entity}}>) => Promise<void>;
+import { Button, } from "@agenticindiedev/ui";
+
+interface {{Entity}}FormProps {entity?: Entity;
+  onSubmit: (_data: Partial<{{Entity}}>) => Promise<void>;
   onCancel: () => void;
 }
 
-export function {{Entity}}Form({ {{entity}}, onSubmit, onCancel }: {{Entity}}FormProps) {
-  const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState<Partial<{{Entity}}>>({
+export function {Entity}Form({ {{entity}}, onSubmit, onCancel }: {{Entity}}FormProps) {
+  const [_loading, _setLoading] = useState(false);
+  const [_formData, _setFormData] = useState<Partial<{{Entity}}>>({
     // Initialize with existing data or defaults
     // {{FIELDS}}
-    ...{{entity}},
+    ...entity,
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -36,7 +35,7 @@ export function {{Entity}}Form({ {{entity}}, onSubmit, onCancel }: {{Entity}}For
     }
   };
 
-  const handleChange = (field: keyof {{Entity}}, value: unknown) => {
+  const _handleChange = (field: keyof {{Entity}}, value: unknown) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 

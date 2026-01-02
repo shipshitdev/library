@@ -7,15 +7,6 @@
 
 // === create-{{entity}}.dto.ts ===
 
-import {
-  IsString,
-  IsOptional,
-  IsEnum,
-  IsArray,
-  IsDateString,
-  IsBoolean,
-  IsNumber,
-} from "class-validator";
 
 /**
  * FIELD EXAMPLES - Replace with actual fields:
@@ -61,8 +52,6 @@ export class Create{{Entity}}Dto {
 }
 
 // === update-{{entity}}.dto.ts ===
+{Entity}Dto } from "./create-{{entity}}.dto";
 
-import { PartialType } from "@nestjs/swagger";
-import { Create{{Entity}}Dto } from "./create-{{entity}}.dto";
-
-export class Update{{Entity}}Dto extends PartialType(Create{{Entity}}Dto) {}
+export class Update{{Entity}}Dto extends PartialType(Create{Entity}Dto) {}

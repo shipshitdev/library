@@ -1,5 +1,7 @@
 # Agentic Indie Library
 
+![Project Type](https://img.shields.io/badge/Project-Library-blue)
+
 Centralized **global** skills and commands for Claude Code, OpenAI Codex, and Cursor.
 
 ## Directory Structure

@@ -5,8 +5,7 @@
  * Replace {{entity}} with camelCase entity name (e.g., task)
  * Replace {{entities}} with plural camelCase (e.g., tasks)
  */
-
-import { {{Entity}} } from "@interfaces/{{entity}}.interface";
+{Entity} } from "@interfaces/{{entity}}.interface";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
 
@@ -33,27 +32,27 @@ async function handleResponse<T>(response: Response): Promise<T> {
 }
 
 export const {{Entity}}Service = {
-  async getAll(options?: RequestOptions): Promise<{{Entity}}[]> {
+  async getAll(options?: RequestOptions): Promise<Entity[]> {
     const headers = await getAuthHeaders();
-    const response = await fetch(`${API_URL}/{{entities}}`, {
+    const _response = await fetch(`${API_URL}/{{entities}}`, {
       headers,
       signal: options?.signal,
     });
     return handleResponse<{{Entity}}[]>(response);
   },
 
-  async getById(id: string, options?: RequestOptions): Promise<{{Entity}}> {
+  async getById(id: string, options?: RequestOptions): Promise<{Entity}> {
     const headers = await getAuthHeaders();
-    const response = await fetch(`${API_URL}/{{entities}}/${id}`, {
+    const _response = await fetch(`${API_URL}/{{entities}}/${id}`, {
       headers,
       signal: options?.signal,
     });
     return handleResponse<{{Entity}}>(response);
   },
 
-  async create(data: Partial<{{Entity}}>): Promise<{{Entity}}> {
+  async create(data: Partial<{Entity}>): Promise<{Entity}> {
     const headers = await getAuthHeaders();
-    const response = await fetch(`${API_URL}/{{entities}}`, {
+    const _response = await fetch(`${API_URL}/{{entities}}`, {
       method: "POST",
       headers,
       body: JSON.stringify(data),
@@ -61,9 +60,9 @@ export const {{Entity}}Service = {
     return handleResponse<{{Entity}}>(response);
   },
 
-  async update(id: string, data: Partial<{{Entity}}>): Promise<{{Entity}}> {
+  async update(id: string, data: Partial<{Entity}>): Promise<{Entity}> {
     const headers = await getAuthHeaders();
-    const response = await fetch(`${API_URL}/{{entities}}/${id}`, {
+    const _response = await fetch(`${API_URL}/{{entities}}/${id}`, {
       method: "PATCH",
       headers,
       body: JSON.stringify(data),

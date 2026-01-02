@@ -7,10 +7,7 @@
  */
 
 import { Module } from "@nestjs/common";
-import { MongooseModule } from "@nestjs/mongoose";
-import { {{Entity}}sController } from "./{{entities}}.controller";
-import { {{Entity}}sService } from "./{{entities}}.service";
-import { {{Entity}}, {{Entity}}Schema } from "./schemas/{{entity}}.schema";
+import { MongooseModule } from "@nestjs/mongoose";{Entity}sController } from "./{{entities}}.controller";{Entity}sService } from "./{{entities}}.service";{Entity}, {Entity}Schema } from "./schemas/{{entity}}.schema";
 
 @Module({
   imports: [

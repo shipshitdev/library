@@ -5,10 +5,7 @@
  * Replace {{FIELDS}} with actual field definitions
  */
 
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
-
-export type {{Entity}}Document = {{Entity}} & Document;
+import { Prop, Schema, } from "@nestjs/mongoose";{Entity}}Document = {Entity} & Document;
 
 @Schema({ timestamps: true })
 export class {{Entity}} {
@@ -51,8 +48,8 @@ export class {{Entity}} {
   userId: string;
 }
 
-export const {{Entity}}Schema = SchemaFactory.createForClass({{Entity}});
+export const {{Entity}}Schema = SchemaFactory.createForClass({Entity});
 
 // Add indexes for common queries
-{{Entity}}Schema.index({ userId: 1 });
-{{Entity}}Schema.index({ userId: 1, createdAt: -1 });
+{Entity}Schema.index({ userId: 1 });
+{Entity}Schema.index({ userId: 1, createdAt: -1 });

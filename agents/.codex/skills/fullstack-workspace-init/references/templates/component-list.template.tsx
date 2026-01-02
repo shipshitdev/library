@@ -8,25 +8,22 @@
 
 "use client";
 
-import { useEffect, useState } from "react";
-import { {{Entity}}Service } from "@services/{{entity}}.service";
-import { {{Entity}} } from "@interfaces/{{entity}}.interface";
-import { {{Entity}}Item } from "./{{entity}}-item";
-import { {{Entity}}Form } from "./{{entity}}-form";
+import { useEffect, useState } from "react";{Entity}Service } from "@services/{{entity}}.service";{Entity} } from "@interfaces/{{entity}}.interface";{Entity}Item } from "./{{entity}}-item";{Entity}Form } from "./{{entity}}-form";
+
 import { Button } from "@agenticindiedev/ui";
 
-export function {{Entity}}List() {
+export function {Entity}List() {
   const [{{entities}}, set{{Entity}}s] = useState<{{Entity}}[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
 
-  const fetch{{Entity}}s = async () => {
+  const _fetch{Entity}s = async () => {
     try {
       setLoading(true);
-      const controller = new AbortController();
-      const data = await {{Entity}}Service.getAll({ signal: controller.signal });
-      set{{Entity}}s(data);
+      const _controller = new AbortController();
+      const _data = await {{Entity}}Service.getAll({ signal: controller.signal });
+      setEntitys(data);
       setError(null);
     } catch (err) {
       if (err instanceof Error && err.name !== "AbortError") {
@@ -38,9 +35,7 @@ export function {{Entity}}List() {
   };
 
   useEffect(() => {
-    const controller = new AbortController();
-
-    {{Entity}}Service.getAll({ signal: controller.signal })
+    const controller = new AbortController();EntityService.getAll({ signal: controller.signal })
       .then(set{{Entity}}s)
       .catch((err) => {
         if (err.name !== "AbortError") {
@@ -56,7 +51,7 @@ export function {{Entity}}List() {
     try {
       await {{Entity}}Service.create(data);
       setShowForm(false);
-      fetch{{Entity}}s();
+      _fetchEntitys();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to create");
     }
@@ -65,7 +60,7 @@ export function {{Entity}}List() {
   const handleUpdate = async (id: string, data: Partial<{{Entity}}>) => {
     try {
       await {{Entity}}Service.update(id, data);
-      fetch{{Entity}}s();
+      _fetchEntitys();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to update");
     }
@@ -74,7 +69,7 @@ export function {{Entity}}List() {
   const handleDelete = async (id: string) => {
     try {
       await {{Entity}}Service.delete(id);
-      fetch{{Entity}}s();
+      _fetchEntitys();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to delete");
     }

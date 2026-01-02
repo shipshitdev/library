@@ -6,19 +6,16 @@
  * Replace {{entities}} with plural camelCase (e.g., tasks)
  */
 
-import { describe, it, expect, beforeEach, vi } from "vitest";
-import { Test, TestingModule } from "@nestjs/testing";
-import { getModelToken } from "@nestjs/mongoose";
 import { NotFoundException } from "@nestjs/common";
-import { {{Entity}}sService } from "./{{entities}}.service";
-import { {{Entity}} } from "./schemas/{{entity}}.schema";
+import { Test, type TestingModule } from "@nestjs/testing";
+import { beforeEach, describe, expect, it, vi } from "vitest";{Entity}sService } from "./{{entities}}.service";{Entity} } from "./schemas/{{entity}}.schema";
 
 describe("{{Entity}}sService", () => {
-  let service: {{Entity}}sService;
+  let _service: {{Entity}}sService;
   let mockModel: any;
 
   const mockUserId = "user-123";
-  const mock{{Entity}} = {
+  const mock{Entity} = {
     _id: "{{entity}}-123",
     title: "Test {{Entity}}",
     userId: mockUserId,
@@ -39,7 +36,7 @@ describe("{{Entity}}sService", () => {
     // Mock the constructor behavior
     mockModel.mockImplementation = vi.fn().mockReturnValue(mock{{Entity}});
 
-    const module: TestingModule = await Test.createTestingModule({
+    const _module: TestingModule = await Test.createTestingModule({
       providers: [
         {{Entity}}sService,
         {
@@ -55,7 +52,7 @@ describe("{{Entity}}sService", () => {
       ],
     }).compile();
 
-    service = module.get<{{Entity}}sService>({{Entity}}sService);
+    service = module.get<{{Entity}}sService>({Entity}sService);
   });
 
   it("should be defined", () => {
@@ -64,7 +61,7 @@ describe("{{Entity}}sService", () => {
 
   describe("findAll", () => {
     it("should return all {{entities}} for a user", async () => {
-      const mock{{Entity}}s = [mock{{Entity}}];
+      const mockEntitys = [mock{{Entity}}];
       mockModel.find.mockReturnValue({
         sort: vi.fn().mockReturnValue({
           exec: vi.fn().mockResolvedValue(mock{{Entity}}s),
@@ -106,7 +103,7 @@ describe("{{Entity}}sService", () => {
 
   describe("update", () => {
     it("should update a {{entity}}", async () => {
-      const updated{{Entity}} = { ...mock{{Entity}}, title: "Updated" };
+      const updatedEntity= ...mockEntity, title: "Updated" ;
       mockModel.findOneAndUpdate.mockReturnValue({
         exec: vi.fn().mockResolvedValue(updated{{Entity}}),
       });

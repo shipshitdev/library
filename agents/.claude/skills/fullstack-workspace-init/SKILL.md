@@ -71,34 +71,50 @@ Generate Clerk authentication:
 
 ### Phase 3: Entity Generation
 
-For each extracted entity, generate complete CRUD:
+For each extracted entity, generate complete CRUD **with tests**:
 
 **Backend (NestJS):**
 ```
 api/apps/api/src/collections/{entity}/
 ├── {entity}.module.ts
-├── {entity}.controller.ts      # Full CRUD + Swagger + ClerkAuthGuard
-├── {entity}.service.ts         # Business logic
-├── {entity}.service.spec.ts    # Vitest tests
+├── {entity}.controller.ts         # Full CRUD + Swagger + ClerkAuthGuard
+├── {entity}.controller.spec.ts    # Controller unit tests
+├── {entity}.service.ts            # Business logic
+├── {entity}.service.spec.ts       # Service unit tests
 ├── schemas/
-│   └── {entity}.schema.ts      # Mongoose schema with userId
+│   └── {entity}.schema.ts         # Mongoose schema with userId
 └── dto/
-    ├── create-{entity}.dto.ts  # class-validator decorators
-    └── update-{entity}.dto.ts  # PartialType of create
+    ├── create-{entity}.dto.ts     # class-validator decorators
+    └── update-{entity}.dto.ts     # PartialType of create
+
+api/apps/api/test/
+├── {entity}.e2e-spec.ts           # E2E tests with supertest
+└── setup.ts                       # Test setup with MongoDB Memory Server
 ```
 
 **Frontend (NextJS):**
 ```
 frontend/apps/dashboard/
 ├── app/{entity}/
-│   ├── page.tsx                # List view (protected)
-│   └── [id]/page.tsx           # Detail view (protected)
-└── packages/components/
-    ├── {entity}-list.tsx
-    ├── {entity}-form.tsx
-    └── {entity}-item.tsx
+│   ├── page.tsx                   # List view (protected)
+│   └── [id]/page.tsx              # Detail view (protected)
+├── src/test/
+│   └── setup.ts                   # Test setup with Clerk mocks
+└── vitest.config.ts               # Frontend test config (jsdom)
+
+frontend/packages/components/
+├── {entity}-list.tsx
+├── {entity}-list.spec.tsx         # Component tests
+├── {entity}-form.tsx
+├── {entity}-form.spec.tsx         # Component tests
+└── {entity}-item.tsx
+
+frontend/packages/hooks/
+├── use-{entities}.ts              # React hook for state management
+└── use-{entities}.spec.ts         # Hook tests
+
 frontend/packages/services/
-    └── {entity}.service.ts     # API client with auth headers
+└── {entity}.service.ts            # API client with auth headers
 ```
 
 ### Phase 4: Quality Setup
@@ -180,9 +196,17 @@ myproject/
 │   │   ├── app.module.ts
 │   │   ├── auth/
 │   │   │   ├── guards/clerk-auth.guard.ts
+│   │   │   ├── guards/clerk-auth.guard.spec.ts  # Auth guard tests
 │   │   │   └── decorators/current-user.decorator.ts
 │   │   └── collections/
-│   │       └── {entity}/       # Generated per entity
+│   │       └── {entity}/
+│   │           ├── {entity}.controller.ts
+│   │           ├── {entity}.controller.spec.ts  # Controller tests
+│   │           ├── {entity}.service.ts
+│   │           └── {entity}.service.spec.ts     # Service tests
+│   ├── apps/api/test/
+│   │   ├── {entity}.e2e-spec.ts                 # E2E tests
+│   │   └── setup.ts                             # E2E test setup
 │   ├── vitest.config.ts
 │   ├── package.json
 │   └── .env.example
@@ -195,15 +219,23 @@ myproject/
 │   │   │   ├── sign-in/[[...sign-in]]/page.tsx
 │   │   │   ├── sign-up/[[...sign-up]]/page.tsx
 │   │   │   └── {entity}/       # Generated per entity
+│   │   ├── src/test/
+│   │   │   └── setup.ts        # Test setup with Clerk mocks
 │   │   ├── middleware.ts       # Clerk route protection
 │   │   └── providers/
 │   │       └── clerk-provider.tsx
 │   ├── packages/
-│   │   ├── components/         # Generated components
-│   │   ├── services/           # API clients
+│   │   ├── components/
+│   │   │   ├── {entity}-list.tsx
+│   │   │   ├── {entity}-list.spec.tsx   # Component tests
+│   │   │   ├── {entity}-form.tsx
+│   │   │   └── {entity}-form.spec.tsx   # Component tests
 │   │   ├── hooks/
+│   │   │   ├── use-{entities}.ts
+│   │   │   └── use-{entities}.spec.ts   # Hook tests
+│   │   ├── services/           # API clients
 │   │   └── interfaces/
-│   ├── vitest.config.ts
+│   ├── vitest.config.ts        # Frontend test config (jsdom)
 │   └── package.json
 │
 ├── mobile/                     # React Native + Expo (optional)
@@ -353,7 +385,14 @@ NEXT_PUBLIC_API_URL=http://localhost:3001
 ## References
 
 - `references/templates/` - Code generation templates
+  - `service.spec.template.ts` - NestJS service unit test template
+  - `controller.spec.template.ts` - NestJS controller unit test template
+  - `e2e.spec.template.ts` - E2E test template with supertest + MongoDB Memory Server
+  - `component.spec.template.tsx` - React component test template
+  - `hook.spec.template.ts` - React hook test template
+  - `test-setup.template.ts` - Frontend test setup with Clerk mocks
+- `references/vitest.config.ts` - Backend Vitest configuration (80% coverage)
+- `references/vitest.config.frontend.ts` - Frontend Vitest configuration (jsdom)
 - `references/github-actions/ci.yml` - CI/CD workflow
-- `references/vitest.config.ts` - Test configuration
 - `references/architecture-guide.md` - Architectural decisions
 - `references/coding-standards.md` - Coding rules

@@ -221,13 +221,34 @@ health() {
 
 ## Database
 
-### MongoDB Atlas
+### MongoDB Atlas (Recommended)
 
-1. Create cluster
-2. Add IP whitelist (or 0.0.0.0/0 for all)
-3. Create database user
-4. Get connection string
-5. Add to environment variables
+1. **Create Account & Cluster**
+   - Go to [MongoDB Atlas](https://cloud.mongodb.com)
+   - Create free M0 cluster (or paid tier for production)
+   - Select region closest to your deployment
+
+2. **Network Access**
+   - Go to Security → Network Access
+   - Add IP: `0.0.0.0/0` (allows all - for serverless/dynamic IPs)
+   - Or add specific IPs for better security
+
+3. **Database User**
+   - Go to Security → Database Access
+   - Create user with "Read and write to any database"
+   - Save username and password securely
+
+4. **Get Connection String**
+   - Go to Database → Connect
+   - Choose "Connect your application"
+   - Select Node.js driver
+   - Copy connection string (mongodb+srv://...)
+
+5. **Configure Environment**
+   ```env
+   MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<database>?retryWrites=true&w=majority
+   ```
+   Replace `<username>`, `<password>`, `<cluster>`, and `<database>` with your values
 
 ### Redis (Upstash)
 

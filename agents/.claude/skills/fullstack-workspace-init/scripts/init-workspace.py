@@ -1689,8 +1689,10 @@ def generate_github_actions_ci() -> str:
 def generate_env_example() -> str:
     """Generate .env.example file."""
     return dedent("""\
-        # Database
-        MONGODB_URI=mongodb://localhost:27017/myapp
+        # Database - MongoDB Atlas (recommended for production)
+        # Get your connection string from: https://cloud.mongodb.com
+        # Format: mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<database>?retryWrites=true&w=majority
+        MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/myapp?retryWrites=true&w=majority
 
         # Clerk Authentication
         CLERK_SECRET_KEY=sk_test_xxxxx

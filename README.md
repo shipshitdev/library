@@ -2,7 +2,7 @@
 
 ![Project Type](https://img.shields.io/badge/Project-Library-blue)
 
-Centralized **global** skills and commands for Claude Code, OpenAI Codex, and Cursor.
+A comprehensive collection of agent capabilities—skills, commands, and workflows—for Claude Code, OpenAI Codex, and Cursor. Centralized and globally distributed via symlinks.
 
 ## Directory Structure
 
@@ -33,6 +33,13 @@ library/
 | **Skills** | 43 | 43 | 48 | Base parity + Cursor extras |
 | **Commands** | 1 | 0 | 30 | Cursor-focused |
 
+## What's Included
+
+- **Skills**: Specialized agent capabilities for specific domains (e.g., `stripe-implementer`, `mongodb-migration-expert`)
+- **Commands**: Workflow commands for structured tasks (e.g., `code-review`, `deploy`, `mvp-plan`)
+- **Documentation**: Platform-specific adaptations and management guides
+- **Scripts**: Tooling for syncing, validation, and generation
+
 ## How It Works
 
 This repo is symlinked from each agent's home directory:
@@ -45,7 +52,7 @@ This repo is symlinked from each agent's home directory:
 ~/.cursor/commands -> library/agents/.cursor/commands
 ```
 
-Edit skills/commands in `agents/`, changes are immediately available to all agents.
+Edit capabilities in `agents/`, changes are immediately available to all agents.
 
 See `docs/SYMLINK-CONFIG.md` for full configuration details.
 

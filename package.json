@@ -21,7 +21,7 @@
   "license": "MIT",
   "lint-staged": {
     "*.md": [
-      "markdownlint --fix"
+      "bunx markdownlint --fix"
     ],
     "*.sh": [
       "bash scripts/lint-shellcheck.sh"

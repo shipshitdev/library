@@ -1,5 +1,7 @@
 node_modules/
 
+# Agent sessions (ignored for open source projects)
+.agent/SESSIONS/
 
 # macOS
 .DS_Store

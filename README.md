@@ -103,6 +103,7 @@ touch agents/.claude/skills/my-skill/SKILL.md
 | analyze-codebase | Codebase analysis | [Link](agents/.cursor/commands/analyze-codebase.md) |
 | api-test | API test generation | [Link](agents/.cursor/commands/api-test.md) |
 | bug | Bug capture workflow | [Link](agents/.cursor/commands/bug.md) |
+| check-domain | Domain name generator & availability checker | [Link](agents/.cursor/commands/check-domain.md) |
 | clean | Cleanup workflow | [Link](agents/.cursor/commands/clean.md) |
 | code-review | Code review | [Link](agents/.cursor/commands/code-review.md) |
 | db-setup | MongoDB/Redis setup | [Link](agents/.cursor/commands/db-setup.md) |

@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "agentic-indie-dev-library",
+      "name": "ship-shit-dev-library",
       "devDependencies": {
         "husky": "9.1.7",
         "lint-staged": "16.2.7",

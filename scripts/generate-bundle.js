@@ -118,7 +118,7 @@ function generateBundlePlugin(bundleId, platform = 'cursor') {
     tags: bundle.tags || [],
     homepage: `https://skillhub.com/bundles/${bundleId}`,
     author: {
-      name: 'Agentic Indie Dev'
+      name: 'Ship Shit Dev'
     }
   });
   

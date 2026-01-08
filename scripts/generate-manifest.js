@@ -58,11 +58,11 @@ function generateManifest(options) {
     skillName,
     commandName,
     homepage,
-    repository = 'https://github.com/agenticindiedev/library',
+    repository = 'https://github.com/shipshitdev/library',
     license = 'MIT',
     tags = [],
     author = {
-      name: 'Agentic Indie Dev'
+      name: 'Ship Shit Dev'
     }
   } = options;
   
@@ -72,7 +72,7 @@ function generateManifest(options) {
   
   const manifest = {
     name: pluginName,
-    description: description || `Agentic Indie Dev ${type}: ${skillName || commandName}`,
+    description: description || `Ship Shit Dev ${type}: ${skillName || commandName}`,
     version: version,
     author: author,
     homepage: homepage || `https://skillhub.com/plugins/${skillName || commandName}`,

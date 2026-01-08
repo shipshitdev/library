@@ -27,7 +27,7 @@
       "bash scripts/lint-shellcheck.sh"
     ]
   },
-  "name": "agentic-indie-dev-library",
+  "name": "ship-shit-dev-library",
   "private": true,
   "scripts": {
     "check-symlinks": "bash -c 'for link in ~/.claude/skills ~/.codex/skills ~/.cursor/commands ~/.cursor/skills; do if [[ -L \"$link\" ]]; then echo \"✓ $link -> $(readlink \"$link\")\"; else echo \"✗ $link (not a symlink)\"; fi; done'",

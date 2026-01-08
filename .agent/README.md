@@ -1,4 +1,4 @@
-# Agentic Indie Library - Agent Workspace
+# Ship Shit Dev - Agent Workspace
 
 This is the **library repository** containing skills and commands for distribution to Claude, Codex, and Cursor agents.
 

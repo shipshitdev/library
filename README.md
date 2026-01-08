@@ -1,4 +1,4 @@
-# Agentic Indie Library
+# Ship Shit Dev Library
 
 ![Project Type](https://img.shields.io/badge/Project-Library-blue)
 
@@ -11,13 +11,13 @@ library/
 ├── .agent/              # Library management (sessions, tasks)
 ├── agents/              # DISTRIBUTABLE SKILLS & COMMANDS
 │   ├── .claude/
-│   │   ├── skills/      # 42 skills
+│   │   ├── skills/      # 44 skills
 │   │   └── commands/
 │   ├── .codex/
-│   │   ├── skills/      # 42 skills
+│   │   ├── skills/      # 44 skills
 │   │   └── commands/
 │   └── .cursor/
-│       ├── skills/      # 47 skills
+│       ├── skills/      # 49 skills
 │       └── commands/    # 30 commands
 ├── docs/                # Library documentation
 │   ├── PLATFORM-ADAPTATIONS.md
@@ -30,7 +30,7 @@ library/
 
 | Category | Claude | Codex | Cursor | Status |
 |----------|--------|-------|--------|--------|
-| **Skills** | 43 | 43 | 48 | Base parity + Cursor extras |
+| **Skills** | 44 | 44 | 49 | Base parity + Cursor extras |
 | **Commands** | 1 | 0 | 30 | Cursor-focused |
 
 ## What's Included
@@ -60,7 +60,7 @@ See `docs/SYMLINK-CONFIG.md` for full configuration details.
 
 ```bash
 # Clone repository
-git clone <repo-url> ~/www/agenticindiedev/library
+git clone <repo-url> ~/www/shipshitdev/library
 
 # Create symlinks (adjust path as needed)
 ln -s /path/to/library/agents/.claude/skills ~/.claude/skills
@@ -183,6 +183,7 @@ touch agents/.claude/skills/my-skill/SKILL.md
 | skill-creator | Skill creation | Yes | Yes | Yes |
 | strategy-expert | Content strategy | Yes | Yes | Yes |
 | stripe-implementer | Stripe payments | Yes | Yes | Yes |
+| task-prd-creator | Task & PRD creation workflow | Yes | Yes | Yes |
 | testing-expert | Testing strategies | Yes | Yes | Yes |
 | webapp-testing | Web app testing | Yes | Yes | Yes |
 | workflow-automation | Workflow automation | Yes | Yes | Yes |

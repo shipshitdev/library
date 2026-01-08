@@ -1,5 +1,5 @@
 /**
- * Standard webpack config for Sass with @agenticindiedev/ui support
+ * Standard webpack config for Sass with @shipshitdev/ui support
  * Use this in all Next.js apps to configure sass-loader properly
  */
 

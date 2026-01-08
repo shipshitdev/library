@@ -12,7 +12,6 @@
 ### Step 1: Document Session Immediately
 
 When user types /end, activate session-documenter skill to:
-
 - Document all tasks completed
 - Save decisions made with rationale
 - Record files created/modified/deleted

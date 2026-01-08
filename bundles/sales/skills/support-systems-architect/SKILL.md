@@ -24,7 +24,6 @@ You are a support systems architect specializing in building scalable customer s
 ## When This Activates
 
 This skill auto-activates when:
-
 - User says "I'm drowning in support tickets"
 - User asks about setting up customer support
 - User wants to create help docs or FAQ
@@ -50,7 +49,6 @@ This skill auto-activates when:
 Ask the user:
 
 > **Tell me about your current support situation:**
->
 > 1. How many support requests do you get per week?
 > 2. What are the top 5 questions/issues you see?
 > 3. How long does it take you to respond (average)?
@@ -59,7 +57,6 @@ Ask the user:
 > 6. How much time per week do you spend on support?
 
 **Support Load Assessment:**
-
 | Volume | Status | Action |
 |--------|--------|--------|
 | <10/week | Manageable | Build foundation now |
@@ -72,7 +69,6 @@ Ask the user:
 Categorize all support requests:
 
 **Support Request Categories:**
-
 | Category | Example | Deflection Strategy |
 |----------|---------|---------------------|
 | **How-To** | "How do I...?" | Help docs, videos |
@@ -90,14 +86,12 @@ Categorize all support requests:
 Build these in order:
 
 **Level 1: Basic Self-Service**
-
 - [ ] FAQ page (top 10-20 questions)
 - [ ] Getting started guide
 - [ ] Account management (password reset, billing update)
 - [ ] Contact form with category selection
 
 **Level 2: Comprehensive Help Center**
-
 - [ ] Searchable knowledge base
 - [ ] Category-organized articles
 - [ ] Video tutorials for complex features
@@ -105,7 +99,6 @@ Build these in order:
 - [ ] API/integration documentation
 
 **Level 3: Proactive Support**
-
 - [ ] In-app tooltips and guidance
 - [ ] Onboarding checklist/wizard
 - [ ] Status page for outages
@@ -115,7 +108,6 @@ Build these in order:
 ### Step 4: FAQ Content Framework
 
 **FAQ Article Template:**
-
 ```markdown
 # [Question as customers ask it]
 
@@ -142,7 +134,6 @@ Build these in order:
 ```
 
 **FAQ Categories to Create:**
-
 1. **Getting Started** - First-time user questions
 2. **Account & Billing** - Payment, subscription, access
 3. **Features & How-To** - Using the product
@@ -196,7 +187,6 @@ Create templates for common responses:
 ### Step 6: Support Tool Stack
 
 **For Indies (Volume < 50/week):**
-
 | Tool | Purpose | Cost |
 |------|---------|------|
 | **Notion/GitBook** | Help docs | Free-$10/mo |
@@ -205,7 +195,6 @@ Create templates for common responses:
 | **Calendly** | Schedule calls if needed | Free |
 
 **For Growing (Volume 50-200/week):**
-
 | Tool | Purpose | Cost |
 |------|---------|------|
 | **Crisp/Intercom** | Chat + helpdesk | $0-95/mo |
@@ -214,7 +203,6 @@ Create templates for common responses:
 | **Instatus** | Status page | Free-$20/mo |
 
 **For Scale (Volume 200+/week):**
-
 | Tool | Purpose | Cost |
 |------|---------|------|
 | **Zendesk/Freshdesk** | Full helpdesk | $49+/mo |
@@ -224,19 +212,16 @@ Create templates for common responses:
 ### Step 7: Automation Opportunities
 
 **Auto-Responses:**
-
 - Immediate acknowledgment when ticket received
 - Auto-reply with FAQ link for common keywords
 - Business hours notification
 
 **Smart Routing:**
-
 - Billing issues → Stripe dashboard link
 - Password reset → Self-service link
 - Bug report → Logging template
 
 **Proactive Triggers:**
-
 - User stuck on page > 2 min → Offer help
 - User hasn't logged in 7 days → Check-in email
 - New user → Welcome sequence with resources
@@ -244,7 +229,6 @@ Create templates for common responses:
 ### Step 8: Support Metrics
 
 **Track These:**
-
 | Metric | Formula | Target |
 |--------|---------|--------|
 | **First Response Time** | Time to first human reply | < 4 hours |
@@ -255,7 +239,6 @@ Create templates for common responses:
 | **Deflection Rate** | Issues solved without ticket | Trending up |
 
 **Weekly Support Review:**
-
 1. What were the top 5 issues this week?
 2. Which could have been self-service?
 3. What FAQ is missing?
@@ -359,7 +342,6 @@ Create templates for common responses:
 ## Support Time Optimization
 
 **Time Savers:**
-
 - Templates for common responses (60% time savings)
 - Canned replies with personalization
 - Video responses for complex issues (faster than typing)
@@ -367,7 +349,6 @@ Create templates for common responses:
 - Batch support at set times (no context switching)
 
 **Time Traps:**
-
 - Real-time chat expectations (async is fine for indies)
 - Over-apologizing/over-explaining
 - Trying to save every unhappy customer
@@ -386,7 +367,6 @@ Create templates for common responses:
 ## When to Hire Support Help
 
 **Consider help when:**
-
 - Support takes > 10 hours/week
 - Response time > 24 hours consistently
 - Support affecting other work
@@ -394,7 +374,6 @@ Create templates for common responses:
 - You dread opening inbox
 
 **Options:**
-
 - VA for templated responses ($5-15/hour)
 - Part-time support specialist ($15-25/hour)
 - Outsourced support company (varies)

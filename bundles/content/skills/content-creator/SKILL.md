@@ -268,7 +268,7 @@ When users request a content lineup, generate a comprehensive content plan for t
 
 ## Content Creation Workflow
 
-### For Newsletters
+### For Newsletters:
 
 1. **Discover Context:**
 
@@ -296,7 +296,7 @@ When users request a content lineup, generate a comprehensive content plan for t
    - Verify project-specific details
    - Confirm brand alignment
 
-### For Tweets
+### For Tweets:
 
 1. **Discover Context:**
 

@@ -35,6 +35,6 @@
     "sync:marketplace": "bun scripts/sync-marketplace.js",
     "validate": "bash scripts/validate-skill-sync.sh",
     "validate:skill": "bash scripts/validate-skill-sync.sh",
-    "marketplace:generate": "bun scripts/generate-marketplace-bundles.js"
+    "marketplace:generate": "bun scripts/generate-marketplace-bundles.js && bun scripts/generate-marketplace-json.js"
   }
 }

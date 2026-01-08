@@ -6,7 +6,6 @@ description: Scaffold a production-ready Expo React Native app with working scre
 # Expo Architect
 
 Create a **production-ready** Expo React Native app with:
-
 - **Framework:** Expo SDK 54 + React Native 0.83 + TypeScript
 - **Navigation:** Expo Router (file-based routing)
 - **Auth:** Clerk authentication (optional)
@@ -17,7 +16,6 @@ Create a **production-ready** Expo React Native app with:
 ## What Makes This Different
 
 This skill generates **working mobile apps**, not empty scaffolds:
-
 - Complete navigation structure with working screens
 - Optional Clerk authentication flow
 - Real UI components with proper styling
@@ -58,14 +56,12 @@ Is this correct? Any adjustments?
 Generate Clerk authentication for mobile:
 
 **Files:**
-
 - `providers/clerk-provider.tsx` - ClerkProvider wrapper
 - `app/(auth)/sign-in.tsx` - Sign in screen
 - `app/(auth)/sign-up.tsx` - Sign up screen
 - `lib/auth.ts` - Auth utilities
 
 **Environment:**
-
 - `.env` with `EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY`
 
 ### Phase 3: Screen Generation
@@ -73,7 +69,6 @@ Generate Clerk authentication for mobile:
 For each extracted screen, generate:
 
 **Tab-based App:**
-
 ```
 app/
 ├── _layout.tsx              # Root layout with providers
@@ -90,7 +85,6 @@ app/
 ```
 
 **Stack-based App:**
-
 ```
 app/
 ├── _layout.tsx              # Root layout with providers
@@ -102,7 +96,6 @@ app/
 ### Phase 4: Component Generation
 
 **Generated Components:**
-
 ```
 components/
 ├── ui/
@@ -122,13 +115,11 @@ components/
 ### Phase 5: Quality Setup
 
 **Biome Configuration:**
-
 - `biome.json` with React Native rules
 - Import organization
 - 100 character line width
 
 **TypeScript:**
-
 - Strict mode enabled
 - Path aliases configured
 - Expo types included

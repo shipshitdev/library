@@ -73,19 +73,16 @@
 ## Technical Requirements
 
 ### Authentication
-
 - [ ] Clerk authentication
 - [ ] Protected routes
 - [ ] User context in API
 
 ### Database
-
 - [ ] MongoDB with Mongoose
 - [ ] User-scoped queries (multi-tenancy)
 - [ ] Soft deletes (if applicable)
 
 ### Quality
-
 - [ ] 80% test coverage
 - [ ] Biome linting
 - [ ] TypeScript strict mode

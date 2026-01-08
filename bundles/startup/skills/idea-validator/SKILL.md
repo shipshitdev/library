@@ -23,7 +23,6 @@ You are an idea validator specializing in Hexa's Opportunity Memo framework and 
 ## When This Activates
 
 This skill auto-activates when:
-
 - User asks "is this a good idea"
 - User says "I want to build X" without validation
 - User asks "should I pursue this"
@@ -38,7 +37,6 @@ This skill auto-activates when:
 **Validation = Opportunity Memo Assessment + Perceived Created Value Score**
 
 The goal is to produce:
-
 1. A structured Opportunity Memo covering 7 key sections
 2. A PCV score (7+ = green light to proceed)
 
@@ -49,7 +47,6 @@ The goal is to produce:
 Ask the user:
 
 > **Describe your idea in one sentence:**
->
 > 1. What problem are you solving?
 > 2. Who has this problem?
 > 3. What's your proposed solution?
@@ -63,7 +60,6 @@ Ask the user:
 Ask the user:
 
 > **Tell me about the problem:**
->
 > 1. What is the specific pain point(s) your ICP feels?
 > 2. How do they currently solve this problem? (Current alternatives)
 > 3. What's wrong with the current solutions? (Gaps/frustrations)
@@ -86,7 +82,6 @@ Ask the user:
 Ask the user:
 
 > **Why is NOW the right time for this solution?**
->
 > 1. What has changed recently that makes this possible/necessary?
 > 2. What barriers existed before that are now gone?
 > 3. What trends support this idea?
@@ -108,7 +103,6 @@ Ask the user:
 Ask the user:
 
 > **Who exactly is your ideal customer?**
->
 > 1. Company type: [Industry, size, stage]
 > 2. Role/title of the buyer
 > 3. Role/title of the user (if different)
@@ -135,7 +129,6 @@ Ask the user:
 Ask the user:
 
 > **Describe your solution:**
->
 > 1. What are the core features (3-5 max)?
 > 2. What transformation does the customer experience?
 > 3. What specific, measurable outcome do they get?
@@ -158,7 +151,6 @@ Ask the user:
 Ask the user:
 
 > **Who else solves this problem?**
->
 > 1. Direct competitors (same solution, same market)
 > 2. Indirect competitors (different solution, same problem)
 > 3. DIY/Manual alternatives (spreadsheets, manual processes)
@@ -178,7 +170,6 @@ Ask the user:
 **The PCV Framework** (Hexa's validation scoring system)
 
 **Phase 1: Interview 20 potential customers**
-
 - Ask open-ended questions about their problem
 - Understand their current solutions
 - Don't pitch your solution—listen
@@ -204,7 +195,6 @@ Ask the user:
 **Phase 4: Calculate PCV Score:**
 
 Scoring:
-
 - a-answers = 0 points
 - b-answers = 1 point
 - c-answers = 3 points
@@ -224,7 +214,6 @@ Scoring:
 Ask the user:
 
 > **Do you have design partners lined up?**
->
 > 1. Have you identified 3-5 potential early adopters?
 > 2. Would they use an early, imperfect version?
 > 3. Would they give weekly feedback?

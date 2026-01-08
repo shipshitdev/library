@@ -872,7 +872,6 @@ Links to related guides.
    ```
 
 5. **Alt Text for Images**: Always include descriptive alt text
-
    ```markdown
    ![Screenshot of the [Project] interface](/img/interface.png)
    ```

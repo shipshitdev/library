@@ -69,7 +69,6 @@ This skill activates automatically when users:
 ### 1. Install Clerk SDK
 
 **Next.js:**
-
 ```bash
 bun add @clerk/nextjs@latest
 ```
@@ -77,7 +76,6 @@ bun add @clerk/nextjs@latest
 This ensures the application is using the latest Clerk Next.js SDK.
 
 **NestJS:**
-
 ```bash
 bun add @clerk/clerk-sdk-node
 ```
@@ -364,7 +362,6 @@ function MyApp({ Component, pageProps }) {
 ```
 
 **For App Router projects, always use:**
-
 - `clerkMiddleware()` in `proxy.ts` (not `authMiddleware()` in `middleware.ts`)
 - `<ClerkProvider>` in `app/layout.tsx` (not `pages/_app.tsx`)
 - Import `auth()` from `@clerk/nextjs/server` with `async/await`
@@ -665,7 +662,6 @@ export class OrganizationGuard implements CanActivate {
 ## Best Practices
 
 ### Security
-
 - Always verify tokens on the server side
 - Use HTTPS for all authentication flows
 - Store secrets in environment variables
@@ -673,28 +669,24 @@ export class OrganizationGuard implements CanActivate {
 - Validate user permissions before actions
 
 ### Session Management
-
 - Use Clerk's built-in session management
 - Implement proper logout flows
 - Handle token refresh automatically
 - Use middleware for route protection
 
 ### User Management
-
 - Sync user data with your database when needed
 - Handle webhooks for user lifecycle events
 - Implement proper user data validation
 - Respect user privacy and data protection
 
 ### Organization Management
-
 - Implement proper organization access controls
 - Use organization guards for multi-tenant features
 - Handle organization membership changes via webhooks
 - Implement proper organization data isolation
 
 ### Error Handling
-
 - Provide clear error messages
 - Handle authentication failures gracefully
 - Implement proper logging for security events
@@ -714,7 +706,6 @@ export class OrganizationGuard implements CanActivate {
 ## Example User Requests
 
 **Example 1: "Add Clerk authentication to my Next.js app"**
-
 - Install `@clerk/nextjs@latest`
 - Create `proxy.ts` file using `clerkMiddleware()` from `@clerk/nextjs/server`
 - Wrap app with `<ClerkProvider>` in `app/layout.tsx`
@@ -722,7 +713,6 @@ export class OrganizationGuard implements CanActivate {
 - Import `auth()` from `@clerk/nextjs/server` with `async/await` for server-side code
 
 **Example 2: "Protect API routes with Clerk in NestJS"**
-
 - Set up Clerk module and service
 - Create authentication guard
 - Add CurrentUser decorator
@@ -730,9 +720,9 @@ export class OrganizationGuard implements CanActivate {
 - Handle authentication errors
 
 **Example 3: "Implement organization/team features"**
-
 - Set up organization creation
 - Add organization switcher component
 - Implement organization guards
 - Handle organization webhooks
 - Enforce organization-based data access
+

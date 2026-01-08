@@ -9,7 +9,6 @@ This document describes all data entities in the system, their relationships, an
 ## Entity: [EntityName]
 
 ### Description
-
 [What this entity represents and its purpose in the system]
 
 ### Schema

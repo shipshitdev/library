@@ -24,7 +24,6 @@ You are a retention strategist specializing in Alex Hormozi's retention and asce
 ## When This Activates
 
 This skill auto-activates when:
-
 - User mentions customers leaving or canceling
 - User asks about reducing churn
 - User wants to increase LTV or recurring revenue
@@ -40,7 +39,6 @@ LTV = (Average Revenue Per Customer × Average Customer Lifespan) - CAC
 ```
 
 **To maximize LTV:**
-
 - **INCREASE** Revenue Per Customer (upsells, cross-sells, price increases)
 - **INCREASE** Customer Lifespan (reduce churn, increase retention)
 - **DECREASE** CAC (get referrals, improve conversion)
@@ -52,7 +50,6 @@ LTV = (Average Revenue Per Customer × Average Customer Lifespan) - CAC
 Ask the user:
 
 > **Tell me about your customer journey after purchase:**
->
 > 1. What happens immediately after they buy? (First hour, first day)
 > 2. What's the experience in the first week?
 > 3. What happens at 30 days? 90 days? 1 year?
@@ -60,7 +57,6 @@ Ask the user:
 > 5. Do they buy anything else from you? What?
 
 **Journey Assessment:**
-
 | Stage | Question to Answer |
 |-------|-------------------|
 | Immediate (0-1 day) | Do they feel excited and confident? |
@@ -74,7 +70,6 @@ Ask the user:
 Ask the user:
 
 > **Why do customers leave?**
->
 > 1. What are the top 3 reasons people cancel or don't return?
 > 2. When do most customers leave? (After 1 month? 3 months? 1 purchase?)
 > 3. What do customers who stay have in common?
@@ -82,7 +77,6 @@ Ask the user:
 > 5. Do you ask for feedback when they leave? What do they say?
 
 **Churn Cause Framework:**
-
 | Symptom | Likely Cause | Solution |
 |---------|--------------|----------|
 | Leave within 30 days | Never got value | Better onboarding |
@@ -96,7 +90,6 @@ Ask the user:
 Ask the user:
 
 > **What's the natural next step for successful customers?**
->
 > 1. What do customers want after they succeed with your current offer?
 > 2. What related problems do they have?
 > 3. What would a "premium" or "advanced" version look like?
@@ -104,7 +97,6 @@ Ask the user:
 > 5. What would a "done-for-you" tier look like?
 
 **Ascension Ladder Framework:**
-
 ```
 Level 1: Entry Offer → Solves first problem
     ↓
@@ -118,7 +110,6 @@ Level 5: Ongoing Relationship → Retainer/subscription
 ```
 
 **Example Ascension Paths:**
-
 | Business Type | L1 | L2 | L3 | L4 | L5 |
 |--------------|-----|-----|-----|-----|-----|
 | Course Creator | Free Workshop | Core Course | Mastermind | 1:1 Coaching | Annual Membership |
@@ -175,7 +166,6 @@ Design systems for each retention lever:
 Design early warning systems:
 
 **Warning Signs to Track:**
-
 | Signal | What It Means | Action |
 |--------|--------------|--------|
 | Login frequency drops | Disengagement | Re-engagement email |
@@ -186,7 +176,6 @@ Design early warning systems:
 
 **Cancellation Prevention:**
 > When someone tries to cancel:
->
 > 1. **Understand:** "Can you share what's not working?"
 > 2. **Solve:** "We can fix that. Here's how..."
 > 3. **Offer alternative:** "Would a pause or downgrade help?"
@@ -196,25 +185,21 @@ Design early warning systems:
 ### Step 6: LTV Multiplication Tactics
 
 **Tactic 1: Upsells (More of Same)**
-
 - Premium tier with more features
 - More capacity/usage
 - Faster/priority service
 
 **Tactic 2: Cross-Sells (Complementary)**
-
 - Related products/services
 - Bundled offerings
 - Partner products
 
 **Tactic 3: Referrals (Multiplied)**
-
 - Referral incentives
 - Affiliate programs
 - Case study features
 
 **Tactic 4: Expansion (New Segments)**
-
 - Add team members
 - Expand to other departments
 - Additional use cases
@@ -317,7 +302,6 @@ Design early warning systems:
 Ask: "What would a 3-year relationship with a customer look like?"
 
 **Design backwards:**
-
 - Year 3: They're [status/outcome]. Paying $X/year.
 - Year 2: They've achieved [milestone]. Ready for [next level].
 - Year 1: They've completed [core offer]. Seeing [results].
@@ -345,13 +329,11 @@ Ask: "What would a 3-year relationship with a customer look like?"
 ## The Retention Math
 
 **Why retention matters:**
-
 - 5% reduction in churn = 25-125% increase in profit
 - Repeat customers spend 67% more than new ones
 - Cost to retain = 1/5 cost to acquire
 
 **Example:**
-
 - 100 customers at $100/month = $10,000 MRR
 - 5% monthly churn = 5 customers lost = $500 lost
 - Reduce to 3% churn = 2 customers saved = $200/month

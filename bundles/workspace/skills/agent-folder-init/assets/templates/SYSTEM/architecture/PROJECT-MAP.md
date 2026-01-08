@@ -25,22 +25,18 @@
 ## Key Directories
 
 ### `/src/components/`
-
 **Purpose:** UI components
 **Patterns:** React components, Tailwind styling
 
 ### `/src/services/`
-
 **Purpose:** Business logic and API calls
 **Patterns:** Service classes, async operations
 
 ### `/src/utils/`
-
 **Purpose:** Utility functions
 **Patterns:** Pure functions, helpers
 
 ### `/src/types/`
-
 **Purpose:** TypeScript type definitions
 **Patterns:** Interfaces, type aliases
 

@@ -9,7 +9,6 @@ Standards that apply across all projects regardless of tech stack.
 ### Never Use `any` Types
 
 **WRONG:**
-
 ```typescript
 function processData(data: any) {
   return data.map((item: any) => item.name);
@@ -17,7 +16,6 @@ function processData(data: any) {
 ```
 
 **CORRECT:**
-
 ```typescript
 interface DataItem {
   name: string;
@@ -34,21 +32,18 @@ function processData(data: DataItem[]): string[] {
 ### Use Path Aliases, Not Relative Paths
 
 **WRONG:**
-
 ```typescript
 import { Button } from "../../../components/ui/Button";
 import { utils } from "../../lib/utils";
 ```
 
 **CORRECT:**
-
 ```typescript
 import { Button } from "@components/ui/Button";
 import { utils } from "@lib/utils";
 ```
 
 **WHY:** Path aliases:
-
 - Make imports consistent and readable
 - Prevent breakage when files are moved
 - Enable better IDE autocomplete
@@ -58,14 +53,12 @@ import { utils } from "@lib/utils";
 ### Never Use console.log in Production Code
 
 **WRONG:**
-
 ```typescript
 console.log("User created:", user);
 console.error("Error:", error);
 ```
 
 **CORRECT:**
-
 ```typescript
 // Use project's logging service
 logger.info("User created", { userId: user.id });
@@ -77,7 +70,6 @@ logger.error("Operation failed", { error });
 ### Never Create Inline Interfaces
 
 **WRONG:**
-
 ```typescript
 function Component({ title }: { title: string }) {}
 
@@ -85,7 +77,6 @@ interface LocalState { count: number; }
 ```
 
 **CORRECT:**
-
 ```typescript
 // In a dedicated types/interfaces file
 export interface ComponentProps {
@@ -107,14 +98,12 @@ function Component({ title }: ComponentProps) {}
 ### Always Handle Async Errors
 
 **WRONG:**
-
 ```typescript
 const result = await operation();
 return result;
 ```
 
 **CORRECT:**
-
 ```typescript
 try {
   const result = await operation();
@@ -130,7 +119,6 @@ try {
 ### Use AbortController for Async React Effects
 
 **WRONG:**
-
 ```typescript
 useEffect(() => {
   const fetchData = async () => {
@@ -142,7 +130,6 @@ useEffect(() => {
 ```
 
 **CORRECT:**
-
 ```typescript
 useEffect(() => {
   const controller = new AbortController();
@@ -174,7 +161,6 @@ useEffect(() => {
 **WRONG:** Creating `feature-service-new.ts` instead of editing `feature.service.ts`
 
 **CORRECT:**
-
 1. Search for existing implementations first
 2. Edit existing files
 3. Only create new files when explicitly needed
@@ -184,7 +170,6 @@ useEffect(() => {
 ### Use Consistent Import Styles
 
 Follow the project's established import order:
-
 1. External packages (react, next, etc.)
 2. Internal packages (@company/*)
 3. Path aliases (@components/*, @lib/*)
@@ -197,7 +182,6 @@ Follow the project's established import order:
 ### Never Create Root-Level Markdown Files
 
 **ALLOWED at project root:**
-
 - `README.md`
 - `CHANGELOG.md`
 - `CONTRIBUTING.md`
@@ -210,7 +194,6 @@ Follow the project's established import order:
 ### Don't Add Comments for Obvious Code
 
 **WRONG:**
-
 ```typescript
 // Increment the counter
 counter++;
@@ -220,7 +203,6 @@ return result;
 ```
 
 **CORRECT:**
-
 ```typescript
 // Calculate compound interest using the formula A = P(1 + r/n)^(nt)
 // This handles edge cases where rate or time could be zero
@@ -236,7 +218,6 @@ Only add comments for non-obvious logic or business rules.
 ### Never Force Push to Main/Master
 
 **FORBIDDEN:**
-
 ```bash
 git push --force origin main
 git push -f origin master
@@ -247,7 +228,6 @@ git push -f origin master
 ### Never Skip Pre-commit Hooks
 
 **FORBIDDEN:**
-
 ```bash
 git commit --no-verify
 git commit -n
@@ -258,7 +238,6 @@ git commit -n
 ### Use Descriptive Commit Messages
 
 **WRONG:**
-
 ```
 fix
 update
@@ -266,7 +245,6 @@ wip
 ```
 
 **CORRECT:**
-
 ```
 fix: resolve null pointer in user authentication flow
 feat: add dark mode toggle to settings page
@@ -280,7 +258,6 @@ refactor: extract validation logic into shared utility
 ### Never Commit Secrets
 
 **FORBIDDEN in git:**
-
 - `.env` files with real values
 - API keys
 - Database credentials
@@ -294,7 +271,6 @@ refactor: extract validation logic into shared utility
 ### Validate All External Input
 
 Always validate:
-
 - User input from forms
 - Query parameters
 - Request bodies
@@ -310,7 +286,6 @@ Never trust data from external sources.
 ### Don't Premature Optimize
 
 Focus on:
-
 1. Correctness first
 2. Readability second
 3. Performance when measured
@@ -322,7 +297,6 @@ Only optimize when you have evidence of a bottleneck.
 ### Avoid N+1 Queries
 
 **WRONG:**
-
 ```typescript
 const users = await getUsers();
 for (const user of users) {
@@ -331,7 +305,6 @@ for (const user of users) {
 ```
 
 **CORRECT:**
-
 ```typescript
 const users = await getUsers();
 const userIds = users.map(u => u.id);

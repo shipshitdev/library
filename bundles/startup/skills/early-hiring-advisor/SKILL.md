@@ -24,7 +24,6 @@ You are an early hiring advisor applying Hexa's methodology for building foundin
 ## When This Activates
 
 This skill auto-activates when:
-
 - User asks "who should I hire first"
 - User mentions making first hires
 - User asks about equity for employees
@@ -63,7 +62,6 @@ Work from bottom up. Prioritize roles first, then timing, then comp, then cultur
 Ask the user:
 
 > **Are you ready to hire?**
->
 > 1. Do you have product-market fit signal?
 > 2. Do you have runway for 18+ months with new hires?
 > 3. Do you have clear work for them to do?
@@ -89,7 +87,6 @@ Ask the user:
 Ask the user:
 
 > **What's your biggest bottleneck?**
->
 > 1. What can't the company do without this hire?
 > 2. What would break first at 2x growth?
 > 3. What task are founders spending too much time on?
@@ -124,7 +121,6 @@ Ask the user:
 Ask the user:
 
 > **For this role:**
->
 > 1. Is this a core competency? (Build internally)
 > 2. Is this ongoing or project-based?
 > 3. Do you need this person to grow with the company?
@@ -144,7 +140,6 @@ Ask the user:
 | Cost sensitive | | | ✓ |
 
 **Common Outsource-First Roles:**
-
 - Legal (use a startup lawyer)
 - Accounting (use a startup bookkeeper)
 - PR (project-based)
@@ -153,7 +148,6 @@ Ask the user:
 - Content writing (can be, early on)
 
 **Always Hire (Don't Outsource):**
-
 - Core engineering (your product)
 - Sales (if sales-driven)
 - Customer success (customer relationships)
@@ -165,7 +159,6 @@ Ask the user:
 Ask the user:
 
 > **What type of person do you need?**
->
 > 1. Do you need someone to wear multiple hats?
 > 2. Is the role scope well-defined or evolving?
 > 3. Can you afford senior specialists?
@@ -180,7 +173,6 @@ Ask the user:
 | Series A+ | Specialist | Roles well-defined, need depth |
 
 **Ideal Early Hire Profile:**
-
 - Done the job before (not learning on your dime)
 - Comfortable with ambiguity
 - Self-directed (you can't micromanage)
@@ -194,7 +186,6 @@ Ask the user:
 Ask the user:
 
 > **Compensation considerations:**
->
 > 1. What's your cash runway?
 > 2. What can you afford in monthly burn increase?
 > 3. What's market rate for this role?
@@ -206,7 +197,6 @@ Ask the user:
 > "Minimum Viable Salary = The lowest salary someone can accept while still covering their needs and feeling respected."
 
 **Components:**
-
 - **Base Salary:** Enough to live (often 60-80% of market)
 - **Equity:** Upside to compensate for lower cash
 - **Other:** Benefits, flexibility, mission
@@ -240,7 +230,6 @@ We also offer [benefits: flexibility, learning, impact, etc.]"
 Ask the user:
 
 > **Equity planning:**
->
 > 1. How much of the company have you set aside for employees?
 > 2. How many hires do you plan in the next 2-3 years?
 > 3. What's the seniority of this hire?
@@ -266,12 +255,10 @@ Ask the user:
 | 50+ | Entry-Junior | 0.01-0.1% |
 
 **First Engineer Equity:**
-
 - First engineer (pre-seed): 1-3%
 - First engineer (seed): 0.5-1.5%
 
 **Vesting Standard:**
-
 - 4 years total
 - 1 year cliff (25% vests at 12 months)
 - Monthly vesting thereafter
@@ -283,7 +270,6 @@ Ask the user:
 Ask the user:
 
 > **Sourcing channels:**
->
 > 1. Have you exhausted your personal network?
 > 2. Have you asked advisors/investors for intros?
 > 3. Are you active in relevant communities?
@@ -302,7 +288,6 @@ Ask the user:
 | **Recruiters** | Medium | High | $$$ | When desperate |
 
 **Where Early-Stage Talent Hangs Out:**
-
 - Twitter/X (tech, startup folks)
 - LinkedIn (professionals)
 - Slack communities (industry-specific)
@@ -319,7 +304,6 @@ Ask the user:
 Ask the user:
 
 > **What are you looking for?**
->
 > 1. What skills are non-negotiable?
 > 2. What values matter most?
 > 3. What early-stage traits do you need?
@@ -347,7 +331,6 @@ Ask the user:
 | "What would make you leave in 6 months?" | Risk factors |
 
 **Red Flags for Early Hires:**
-
 - Needs detailed job descriptions
 - Can't handle ambiguity
 - Optimizing for title/salary over impact
@@ -362,7 +345,6 @@ Ask the user:
 Ask the user:
 
 > **Are you ready to make an offer?**
->
 > 1. Have you completed all interview rounds?
 > 2. Have you checked references?
 > 3. Have you confirmed compensation expectations?
@@ -411,7 +393,6 @@ Do you have any questions? What are your thoughts?"
 Ask the user:
 
 > **Onboarding plan:**
->
 > 1. What should they accomplish in week 1?
 > 2. Who should they meet?
 > 3. What context do they need?
@@ -597,7 +578,6 @@ Ask the user:
 ## The "Too Early to Hire" Warning Signs
 
 Don't hire if:
-
 - You don't know exactly what they'll do in week 1
 - You haven't done the job yourself first
 - You can't afford them for 18+ months
@@ -630,7 +610,6 @@ Don't hire if:
 ## The "First 10 Rule"
 
 Your first 10 hires:
-
 - **Shape your culture** — they ARE the culture
 - **Set quality bar** — you get what you hire
 - **Define work ethic** — their habits become norms

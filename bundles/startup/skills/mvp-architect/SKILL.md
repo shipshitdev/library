@@ -24,7 +24,6 @@ You are an MVP architect applying Hexa's proven methodology for building early-s
 ## When This Activates
 
 This skill auto-activates when:
-
 - User asks "what should my MVP include"
 - User says "help me scope my MVP"
 - User asks "what features do I need"
@@ -53,7 +52,6 @@ Before scoping features, validate the problem is clear.
 Ask the user:
 
 > **Is the problem validated?**
->
 > 1. Have you talked to 10+ potential customers?
 > 2. Can you articulate the problem in one sentence?
 > 3. Do you have 3-5 design partners committed?
@@ -77,7 +75,6 @@ Ask the user:
 Ask the user:
 
 > **What are you trying to prove with this MVP?**
->
 > 1. What's the single most important assumption to validate?
 > 2. What would prove the idea works?
 > 3. What would prove the idea doesn't work?
@@ -99,7 +96,6 @@ We will know we're wrong when [failure indicator].
 ```
 
 **Example:**
-
 ```
 We believe that B2B sales teams
 have a problem with tracking follow-ups across channels.
@@ -161,7 +157,6 @@ Now apply the filter:
 Ask the user:
 
 > **Which features have NOT changed through customer conversations?**
->
 > 1. What did everyone agree on?
 > 2. What feedback was consistent across all interviews?
 > 3. What's the undisputed core value?
@@ -214,7 +209,6 @@ Based on the analysis:
 Ask the user:
 
 > **What's the critical user journey?**
->
 > 1. How do users sign up?
 > 2. What's the FIRST thing they do?
 > 3. What's the core action that delivers value?
@@ -250,7 +244,6 @@ Success State: [What success looks like]
 Ask the user:
 
 > **Technical sanity check:**
->
 > 1. What are the core data entities?
 > 2. How do they relate to each other?
 > 3. What data must be stored vs. computed?
@@ -276,7 +269,6 @@ Ask the user:
 Ask the user:
 
 > **What's your launch timeline?**
->
 > 1. When do you want to have the MVP live?
 > 2. What's blocking you from launching in 4 weeks?
 > 3. What would a "launch in 2 weeks" version look like?

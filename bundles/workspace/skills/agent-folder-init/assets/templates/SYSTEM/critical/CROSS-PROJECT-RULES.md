@@ -8,7 +8,6 @@
 ## AI Entry Files
 
 Every project MUST have these files at its root:
-
 - `AGENTS.md` - AI agent entry point
 - `CLAUDE.md` - Claude-specific entry
 - `CODEX.md` - Codex-specific entry
@@ -47,12 +46,10 @@ Every project follows:
 ## Naming Conventions
 
 ### Directories
-
 - Top-level `.agent/` dirs: ALL-CAPS (`SYSTEM/`, `TASKS/`)
 - Subdirectories: lowercase with hyphens (`user-management/`)
 
 ### Files
-
 - Critical files: ALL-CAPS (`README.md`, `RULES.md`)
 - Regular files: kebab-case (`api-development.md`)
 

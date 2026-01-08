@@ -70,7 +70,6 @@ Use for comparing automated evaluation with human judgment.
 ```
 
 **Interpretation**: Agreement adjusted for chance
-
 - κ > 0.8: Almost perfect agreement
 - κ 0.6-0.8: Substantial agreement
 - κ 0.4-0.6: Moderate agreement
@@ -103,7 +102,6 @@ Use for ordinal/continuous scores.
 #### Spearman's Rank Correlation (ρ)
 
 **Interpretation**: Correlation between rankings, not absolute values
-
 - ρ > 0.9: Very strong correlation
 - ρ 0.7-0.9: Strong correlation
 - ρ 0.5-0.7: Moderate correlation
@@ -202,7 +200,6 @@ What type of evaluation task?
 **Goal**: Ensure automated evaluation correlates with human judgment
 
 **Recommended Metrics**:
-
 1. Primary: Spearman's ρ (for ordinal scales) or Cohen's κ (for categorical)
 2. Secondary: Per-criterion agreement
 3. Diagnostic: Confusion matrix for systematic errors
@@ -228,7 +225,6 @@ def validate_automated_eval(automated_scores, human_scores, criteria):
 **Goal**: Determine which model produces better outputs
 
 **Recommended Metrics**:
-
 1. Primary: Win rate (from pairwise comparison)
 2. Secondary: Position consistency (bias check)
 3. Diagnostic: Per-criterion breakdown
@@ -253,7 +249,6 @@ def compare_models(model_a_outputs, model_b_outputs, prompts):
 **Goal**: Track evaluation quality over time
 
 **Recommended Metrics**:
-
 1. Primary: Rolling agreement with human spot-checks
 2. Secondary: Score distribution stability
 3. Diagnostic: Bias indicators (position, length)
@@ -333,3 +328,4 @@ class QualityMonitor:
 - All metrics within acceptable ranges
 - Monitor "Clarity" criterion - lower agreement may indicate need for rubric refinement
 ```
+

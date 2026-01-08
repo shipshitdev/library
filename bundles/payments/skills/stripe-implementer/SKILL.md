@@ -47,7 +47,6 @@ This skill activates automatically when users:
 ### 1. Install Stripe SDK
 
 **Next.js:**
-
 ```bash
 npm install stripe @stripe/stripe-js
 # or
@@ -55,7 +54,6 @@ yarn add stripe @stripe/stripe-js
 ```
 
 **NestJS:**
-
 ```bash
 npm install stripe
 # or
@@ -677,7 +675,6 @@ export class StripeModule implements NestModule {
 ## Best Practices
 
 ### Security
-
 - Never expose secret keys in client-side code
 - Always verify webhook signatures
 - Use HTTPS for all API calls
@@ -685,7 +682,6 @@ export class StripeModule implements NestModule {
 - Implement idempotency keys for critical operations
 
 ### Error Handling
-
 - Always handle Stripe API errors gracefully
 - Use try-catch blocks for all Stripe operations
 - Provide meaningful error messages to users
@@ -693,7 +689,6 @@ export class StripeModule implements NestModule {
 - Implement retry logic for transient failures
 
 ### Idempotency
-
 - Use idempotency keys for payment and subscription creation
 - Prevent duplicate charges or subscriptions
 - Store idempotency keys with operations
@@ -708,14 +703,12 @@ await stripe.paymentIntents.create({
 ```
 
 ### Testing
-
 - Use Stripe test mode keys for development
 - Test webhook handling with Stripe CLI
 - Use test card numbers from Stripe documentation
 - Test failure scenarios (declined cards, insufficient funds)
 
 ### Performance
-
 - Cache product and price data when possible
 - Use Stripe's expand parameter to reduce API calls
 - Implement pagination for list operations
@@ -737,22 +730,20 @@ await stripe.paymentIntents.create({
 ## Example User Requests
 
 **Example 1: "Add Stripe checkout to my Next.js app"**
-
 - Set up Stripe SDK and environment variables
 - Create checkout session API route
 - Implement checkout button component
 - Handle success/cancel pages
 
 **Example 2: "Implement subscription billing in NestJS"**
-
 - Set up Stripe service and module
 - Create products and prices
 - Implement subscription creation endpoint
 - Set up webhook handling for subscription events
 
 **Example 3: "Handle Stripe webhooks for payment status"**
-
 - Create webhook endpoint
 - Verify webhook signatures
 - Handle payment success/failure events
 - Update database records based on events
+

@@ -7,7 +7,6 @@ This reference details specific techniques for mitigating known biases in LLM-as
 ### The Problem
 
 In pairwise comparison, LLMs systematically prefer responses in certain positions. Research shows:
-
 - GPT has mild first-position bias (~55% preference for first position in ties)
 - Claude shows similar patterns
 - Smaller models often show stronger bias
@@ -77,7 +76,6 @@ async def multi_shuffle_comparison(response_a, response_b, prompt, criteria, n_s
 ### The Problem
 
 LLMs tend to rate longer responses higher, regardless of quality. This manifests as:
-
 - Verbose responses receiving inflated scores
 - Concise but complete responses penalized
 - Padding and repetition being rewarded
@@ -287,3 +285,4 @@ class BiasMonitor:
 | Self-enhancement | Cross-model evaluation | Anonymization | Model comparison study |
 | Verbosity | Relevance weighting | Rubric penalties | Relevance scoring |
 | Authority | Evidence requirement | Fact-checking layer | Confidence-accuracy correlation |
+

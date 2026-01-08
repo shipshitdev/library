@@ -10,7 +10,6 @@ Context is the complete state available to a language model at inference time. I
 ## When to Activate
 
 Activate this skill when:
-
 - Designing new agent systems or modifying existing architectures
 - Debugging unexpected agent behavior that may relate to context
 - Optimizing context usage to reduce token costs or improve performance
@@ -106,7 +105,6 @@ Effective context budgeting requires understanding not just raw token counts but
 ## Examples
 
 **Example 1: Organizing System Prompts**
-
 ```markdown
 <BACKGROUND_INFORMATION>
 You are a Python expert helping a development team.
@@ -132,7 +130,6 @@ Explain non-obvious decisions in comments.
 ```
 
 **Example 2: Progressive Document Loading**
-
 ```markdown
 # Instead of loading all documentation at once:
 
@@ -167,16 +164,13 @@ This skill provides foundational context that all other skills build upon. It sh
 ## References
 
 Internal reference:
-
 - [Context Components Reference](./references/context-components.md) - Detailed technical reference
 
 Related skills in this collection:
-
 - context-degradation - Understanding context failure patterns
 - context-optimization - Techniques for efficient context use
 
 External resources:
-
 - Research on transformer attention mechanisms
 - Production engineering guides from leading AI labs
 - Framework documentation on context window management

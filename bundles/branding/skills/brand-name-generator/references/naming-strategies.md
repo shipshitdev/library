@@ -9,13 +9,11 @@ A comprehensive guide to naming strategies with real-world examples and linguist
 **Definition:** Blending two words to create a new word that carries meaning from both sources.
 
 **Technique:**
-
 - Identify overlap in sounds between words
 - Cut at syllable boundaries for natural flow
 - Preserve recognizable elements from each source
 
 **Examples:**
-
 | Brand | Origin | Industry |
 |-------|--------|----------|
 | Pinterest | Pin + Interest | Social Media |
@@ -29,7 +27,6 @@ A comprehensive guide to naming strategies with real-world examples and linguist
 **Best For:** Apps, social platforms, consumer products where you want to hint at functionality.
 
 **Creation Process:**
-
 ```
 Word 1: [CONCEPT A] → Break into syllables → Find overlap point
 Word 2: [CONCEPT B] → Break into syllables → Find joining point
@@ -48,13 +45,11 @@ Example:
 **Definition:** Creating entirely new words that have no prior meaning but sound appealing.
 
 **Technique:**
-
 - Use pleasing phonetic combinations
 - Blend familiar phonemes in new ways
 - Consider international pronunciation
 
 **Phonetic Guidelines:**
-
 | Sound Type | Effect | Examples |
 |------------|--------|----------|
 | Open vowels (a, o) | Friendly, approachable | Asana, Sonos |
@@ -64,7 +59,6 @@ Example:
 | -ify endings | Action-oriented | Spotify, Shopify |
 
 **Famous Invented Names:**
-
 | Brand | Origin Story | Industry |
 |-------|--------------|----------|
 | Kodak | Founder liked letter K, created short punchy word | Photography |
@@ -85,7 +79,6 @@ Example:
 **Categories:**
 
 **Nature:**
-
 | Brand | Meaning/Association | Industry |
 |-------|---------------------|----------|
 | Amazon | Vast, flowing, everything | E-commerce |
@@ -95,7 +88,6 @@ Example:
 | Dove | Gentle, pure | Personal Care |
 
 **Mythology/Literature:**
-
 | Brand | Origin | Industry |
 |-------|--------|----------|
 | Nike | Greek goddess of victory | Sportswear |
@@ -105,7 +97,6 @@ Example:
 | Hermes | Greek messenger god | Fashion |
 
 **Actions/Concepts:**
-
 | Brand | Association | Industry |
 |-------|-------------|----------|
 | Uber | German for "above/super" | Transportation |
@@ -123,13 +114,11 @@ Example:
 **Definition:** Joining two complete words to form a descriptive name.
 
 **Types:**
-
 - **Descriptive:** Facebook, YouTube, LinkedIn
 - **Benefit-focused:** PayPal, QuickBooks, Salesforce
 - **Action-based:** Snapchat, Kickstarter, Dropbox
 
 **Examples:**
-
 | Brand | Components | Why It Works |
 |-------|------------|--------------|
 | Facebook | Face + Book | Directory concept |
@@ -149,7 +138,6 @@ Example:
 **Definition:** Using initials or shortened forms of longer names.
 
 **Famous Acronyms:**
-
 | Acronym | Full Name | Industry |
 |---------|-----------|----------|
 | IBM | International Business Machines | Technology |
@@ -160,7 +148,6 @@ Example:
 | GEICO | Government Employees Insurance Co | Insurance |
 
 **Considerations:**
-
 - Works best when acronym is pronounceable (NASA vs IBM)
 - May lose meaning without marketing investment
 - Harder to trademark single letters
@@ -175,14 +162,12 @@ Example:
 **Definition:** Intentionally altering spelling for uniqueness or domain availability.
 
 **Techniques:**
-
 - Drop vowels: Flickr, Tumblr, Grindr
 - Swap letters: Lyft (Lift), Dribbble
 - Add letters: Reddit (Read it), Digg
 - Phonetic spelling: Krispy Kreme, Dunkin'
 
 **Examples:**
-
 | Brand | Origin | Change |
 |-------|--------|--------|
 | Flickr | Flicker | Dropped 'e' |
@@ -193,7 +178,6 @@ Example:
 | Scribd | Scribed | Dropped 'e' |
 
 **Risks:**
-
 - Spelling confusion in word-of-mouth
 - May appear gimmicky
 - SEO challenges with misspellings
@@ -240,7 +224,6 @@ Example:
 **Definition:** Using founder names or personal names as brand identity.
 
 **Examples:**
-
 | Brand | Founder(s) | Industry |
 |-------|------------|----------|
 | Ford | Henry Ford | Automotive |
@@ -253,7 +236,6 @@ Example:
 | Hewlett-Packard | Bill Hewlett & Dave Packard | Technology |
 
 **Considerations:**
-
 - Creates personal connection and accountability
 - May limit company's ability to evolve beyond founder
 - Succession challenges if founder leaves
@@ -264,32 +246,27 @@ Example:
 ## Industry-Specific Patterns
 
 ### Tech/SaaS
-
 - Short, punchy (Slack, Zoom, Figma)
 - Invented words ending in -a (Asana, Jira, Mira)
 - Abstract single words (Notion, Linear, Craft)
 - -ify suffix (Spotify, Shopify, Calendly)
 
 ### Fintech
-
 - Trust/stability words (Stripe, Square, Plaid)
 - Compound with "Pay" (PayPal, Afterpay, Razorpay)
 - Short invented (Klarna, Monzo, Chime)
 
 ### Health/Wellness
-
 - Nature references (Calm, Headspace)
 - Growth/life metaphors (Noom, Hims)
 - Clean, simple sounds (Peloton, Whoop)
 
 ### E-commerce/Retail
-
 - Marketplace metaphors (Amazon, eBay, Etsy)
 - Product focus (Warby Parker, Casper)
 - Quirky/memorable (Zappos, Chewy)
 
 ### AI/ML
-
 - Intelligence references (DeepMind, OpenAI)
 - -ai suffix (Clarifai, Copy.ai)
 - Scientific terms (Anthropic, Cohere)
@@ -301,13 +278,11 @@ Example:
 ### Phonetic Appeal
 
 **Pleasing Sound Combinations:**
-
 - Liquid consonants (l, r): Lyra, Lumen
 - Nasal consonants (m, n): Nimbus, Mono
 - Open vowels (a, o): Sonos, Asana
 
 **Sounds to Avoid:**
-
 - Difficult clusters: str-, scr-, thr-
 - Harsh stops at end: -ck, -tch
 - Ambiguous pronunciation: "gh", "ough"
@@ -315,14 +290,12 @@ Example:
 ### International Considerations
 
 **Check for:**
-
 - Negative meanings in target markets
 - Pronunciation difficulties (Chinese speakers, Spanish speakers)
 - Cultural taboos or associations
 - Existing trademarks in expansion markets
 
 **Famous Fails:**
-
 - Chevy Nova in Spanish ("no va" = "doesn't go")
 - IKEA product names (Fartfull, Gosa Ransen)
 - Mitsubishi Pajero in Spanish (slang for inappropriate term)
@@ -342,7 +315,7 @@ Example:
 
 ## Trademark & Legal Considerations
 
-### Before Finalizing
+### Before Finalizing:
 
 1. **USPTO Search:** Check US trademark database
 2. **State Registrations:** Check state-level marks
@@ -351,7 +324,7 @@ Example:
 5. **International Marks:** If expanding globally
 6. **Common Law Search:** Unregistered but established uses
 
-### Protectable Names
+### Protectable Names:
 
 - **Strongest:** Invented words (Xerox, Kodak)
 - **Strong:** Arbitrary (Apple for computers)
@@ -364,21 +337,18 @@ Example:
 ## Quick Reference: Naming Checklist
 
 ### Generation Phase
-
 - [ ] Explored 3+ naming strategies
 - [ ] Generated 20+ candidates
 - [ ] Considered multiple languages
 - [ ] Tested pronunciation aloud
 
 ### Evaluation Phase
-
 - [ ] Scored brandability (memorability, pronounceability, spellability)
 - [ ] Checked .com domain availability
 - [ ] Verified social media handles
 - [ ] Searched trademark databases
 
 ### Validation Phase
-
 - [ ] No negative meanings in target markets
 - [ ] Easy to spell when heard
 - [ ] Easy to say when read

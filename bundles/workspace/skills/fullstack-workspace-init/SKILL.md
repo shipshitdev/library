@@ -6,7 +6,6 @@ description: Scaffold a production-ready full-stack monorepo with working MVP fe
 # Full Stack Workspace Init
 
 Create a **production-ready** monorepo with working MVP features:
-
 - **Frontend:** NextJS 16 + React 19 + TypeScript + Tailwind + @agenticindiedev/ui
 - **Backend:** NestJS 11 + MongoDB + Clerk Auth + Swagger
 - **Mobile:** React Native + Expo (optional)
@@ -16,7 +15,6 @@ Create a **production-ready** monorepo with working MVP features:
 ## What Makes This Different
 
 This skill generates **working applications**, not empty scaffolds:
-
 - Complete CRUD operations for your main entities
 - Clerk authentication configured and working
 - Tests with 80% coverage threshold
@@ -59,19 +57,16 @@ Is this correct? Any adjustments?
 Generate Clerk authentication:
 
 **Backend:**
-
 - `auth/guards/clerk-auth.guard.ts` - Token verification guard
 - `auth/decorators/current-user.decorator.ts` - User extraction decorator
 
 **Frontend:**
-
 - `providers/clerk-provider.tsx` - ClerkProvider wrapper
 - `app/sign-in/[[...sign-in]]/page.tsx` - Sign in page
 - `app/sign-up/[[...sign-up]]/page.tsx` - Sign up page
 - `middleware.ts` - Protected route middleware
 
 **Environment:**
-
 - `.env.example` with all required variables
 
 ### Phase 3: Entity Generation
@@ -79,7 +74,6 @@ Generate Clerk authentication:
 For each extracted entity, generate complete CRUD **with tests**:
 
 **Backend (NestJS):**
-
 ```
 api/apps/api/src/collections/{entity}/
 ├── {entity}.module.ts
@@ -99,7 +93,6 @@ api/apps/api/test/
 ```
 
 **Frontend (NextJS):**
-
 ```
 frontend/apps/dashboard/
 ├── app/{entity}/
@@ -127,24 +120,20 @@ frontend/packages/services/
 ### Phase 4: Quality Setup
 
 **Vitest Configuration:**
-
 - `vitest.config.ts` in each project
 - 80% coverage threshold for lines, functions, branches
 - `@vitest/coverage-v8` provider
 
 **GitHub Actions:**
-
 - `.github/workflows/ci.yml`
 - Runs on push to main and PRs
 - Steps: install → lint → test → build
 
 **Husky Hooks:**
-
 - Pre-commit: `lint-staged` (Biome check)
 - Pre-push: `bun run typecheck`
 
 **Biome:**
-
 - `biome.json` in each project
 - 100 character line width
 - Double quotes, semicolons
@@ -379,7 +368,6 @@ bun run typecheck    # Type checking
 Create `.env` files based on `.env.example`:
 
 **API (.env):**
-
 ```
 PORT=3001
 MONGODB_URI=mongodb://localhost:27017/myproject
@@ -387,7 +375,6 @@ CLERK_SECRET_KEY=sk_test_...
 ```
 
 **Frontend (.env.local):**
-
 ```
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
 NEXT_PUBLIC_API_URL=http://localhost:3001

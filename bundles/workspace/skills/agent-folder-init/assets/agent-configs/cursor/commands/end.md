@@ -16,7 +16,6 @@
 When user types `/end`, you MUST:
 
 1. **Activate session-documenter skill:**
-
    ```
    Use the Skill tool to activate session-documenter
    ```
@@ -30,7 +29,6 @@ When user types `/end`, you MUST:
    - Write everything to `.agent/SESSIONS/YYYY-MM-DD.md`
 
 3. **Confirm documentation saved:**
-
    ```
    ✅ Session documented to .agent/SESSIONS/YYYY-MM-DD.md
    ```
@@ -54,14 +52,12 @@ Next time you run /start, it will load this documented session.
 ## Why This Matters
 
 **WITHOUT documentation before /clear:**
-
 - All context is lost forever
 - Next `/start` has no idea what was done
 - You repeat work or make conflicting changes
 - User gets frustrated
 
 **WITH documentation before /clear:**
-
 - Context preserved in `.agent/SESSIONS/YYYY-MM-DD.md`
 - Next `/start` reads the session file
 - Continuity maintained across clear boundaries
@@ -72,7 +68,6 @@ Next time you run /start, it will load this documented session.
 **User types:** `/end`
 
 **AI responds:**
-
 ```
 🔄 Documenting session...
 
@@ -104,7 +99,6 @@ Your session is safely preserved and will be loaded when you run /start again.
 5. User runs `/clear` to clear conversation context
 
 **This is a TWO-STEP process:**
-
 - `/end` = document session
 - `/clear` = clear context (built-in Claude Code command)
 

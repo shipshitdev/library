@@ -10,7 +10,6 @@ Automatically sets up comprehensive test infrastructure for TypeScript projects 
 ## When to Use
 
 This skill should be used when:
-
 - Adding tests to a project without test coverage
 - Setting up GitHub Actions CI/CD for the first time
 - Configuring Vitest with coverage thresholds
@@ -30,7 +29,6 @@ This skill should be used when:
 ## Project Type Detection
 
 The skill detects project type by scanning:
-
 - `package.json` dependencies (next, @nestjs/core, react, etc.)
 - Config files (next.config.*, nest-cli.json, etc.)
 - Directory structure (app/, src/, pages/, etc.)
@@ -38,13 +36,11 @@ The skill detects project type by scanning:
 ## Quick Start
 
 Ask Claude to:
-
 ```
 Add testing and CI/CD to this project
 ```
 
 Or be specific:
-
 ```
 Set up Vitest with 80% coverage and GitHub Actions for this Next.js project
 ```
@@ -54,13 +50,11 @@ Set up Vitest with 80% coverage and GitHub Actions for this Next.js project
 ### Next.js Projects
 
 **Dependencies installed:**
-
 ```bash
 bun add -D vitest @vitest/coverage-v8 @vitejs/plugin-react @testing-library/react @testing-library/jest-dom jsdom
 ```
 
 **Files created:**
-
 - `vitest.config.ts` - Vitest with jsdom environment
 - `src/test/setup.ts` - Test setup with RTL matchers
 - `.github/workflows/ci.yml` - CI pipeline
@@ -70,13 +64,11 @@ bun add -D vitest @vitest/coverage-v8 @vitejs/plugin-react @testing-library/reac
 ### NestJS Projects
 
 **Dependencies installed:**
-
 ```bash
 bun add -D vitest @vitest/coverage-v8 supertest @types/supertest
 ```
 
 **Files created:**
-
 - `vitest.config.ts` - Vitest with node environment
 - `test/setup.ts` - Test setup for NestJS
 - `.github/workflows/ci.yml` - CI with MongoDB service
@@ -90,21 +82,18 @@ Follows similar patterns based on detected framework.
 ## Coverage Configuration
 
 Default thresholds (configurable):
-
 - Lines: 80%
 - Functions: 80%
 - Branches: 75%
 - Statements: 80%
 
 Coverage is enforced:
-
 1. In pre-commit hooks (via Husky)
 2. In CI/CD pipeline (GitHub Actions)
 
 ## GitHub Actions Features
 
 The generated CI workflow includes:
-
 - Bun setup with caching
 - Dependency installation
 - Lint/format checking (Biome)
@@ -129,7 +118,6 @@ Templates are located in the `templates/` directory:
 ## Monorepo Support
 
 For monorepos (detected by workspaces in package.json):
-
 1. Creates `vitest.workspace.ts` at root
 2. Creates individual `vitest.config.ts` per package
 3. Creates root-level GitHub Actions workflow
@@ -179,7 +167,6 @@ Claude:
 ### Tests not finding modules
 
 Ensure path aliases in `vitest.config.ts` match `tsconfig.json`:
-
 ```typescript
 resolve: {
   alias: {
@@ -209,7 +196,6 @@ Ensure `bunx tsc --noEmit` passes locally before pushing.
 ---
 
 **When this skill is active**, Claude will:
-
 1. Detect the project type automatically
 2. Install appropriate testing dependencies
 3. Create properly configured test files

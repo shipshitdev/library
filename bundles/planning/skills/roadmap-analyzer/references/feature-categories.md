@@ -11,7 +11,6 @@ Features are organized into strategic categories that align with the customer jo
 **Purpose**: How users initiate content creation
 
 ### Features
-
 - **Text-to-video**: Describe content, AI generates video
 - **Script input**: Paste/write script, AI produces video
 - **Template selection**: Choose from pre-built templates
@@ -24,7 +23,6 @@ Features are organized into strategic categories that align with the customer jo
 - **Batch creation**: Generate multiple videos from single input
 
 ### ICP Alignment
-
 - Critical for SMBs who need speed and volume
 - Lowers barrier for non-experts to start creating
 - Multiple input methods = team flexibility
@@ -36,7 +34,6 @@ Features are organized into strategic categories that align with the customer jo
 **Purpose**: Create and manage virtual presenters/characters
 
 ### Features
-
 - **Avatar builder**: Create custom avatars (appearance, voice, style)
 - **Avatar library**: Save and organize created avatars
 - **Voice cloning**: Clone real voices for avatars
@@ -51,7 +48,6 @@ Features are organized into strategic categories that align with the customer jo
 - **Avatar analytics**: Track which avatars perform best
 
 ### ICP Alignment
-
 - **CRITICAL**: Core to "AI army of avatars" vision
 - Enables brand consistency at scale
 - Allows team to create without being on camera
@@ -64,7 +60,6 @@ Features are organized into strategic categories that align with the customer jo
 **Purpose**: Edit, refine, and customize generated content
 
 ### Features
-
 - **Timeline editor**: Traditional editing interface
 - **Scene reordering**: Drag-and-drop scene arrangement
 - **Trim & cut**: Edit video length and sections
@@ -79,7 +74,6 @@ Features are organized into strategic categories that align with the customer jo
 - **Auto-edit**: AI suggests/applies edits
 
 ### ICP Alignment
-
 - Empowers users to customize AI-generated content
 - Necessary for brand-specific adjustments
 - Balances automation with creative control
@@ -91,7 +85,6 @@ Features are organized into strategic categories that align with the customer jo
 **Purpose**: Improve visual quality and style
 
 ### Features
-
 - **Color correction**: Brightness, contrast, saturation
 - **Filters & presets**: Cinematic looks, styles
 - **Visual effects**: Zoom, pan, Ken Burns
@@ -106,7 +99,6 @@ Features are organized into strategic categories that align with the customer jo
 - **Custom effects**: User-created effects
 
 ### ICP Alignment
-
 - Ensures professional quality without expertise
 - Brand consistency through presets
 - Makes UGC look polished yet authentic
@@ -118,7 +110,6 @@ Features are organized into strategic categories that align with the customer jo
 **Purpose**: Add text elements to videos
 
 ### Features
-
 - **Auto-captions**: AI-generated subtitles
 - **Caption editing**: Manual caption correction
 - **Caption styling**: Fonts, colors, animations
@@ -133,7 +124,6 @@ Features are organized into strategic categories that align with the customer jo
 - **Brand fonts**: Custom font uploads
 
 ### ICP Alignment
-
 - Critical for silent autoplay on social platforms
 - Accessibility requirement
 - Key engagement driver on social media
@@ -145,7 +135,6 @@ Features are organized into strategic categories that align with the customer jo
 **Purpose**: Manage audio elements
 
 ### Features
-
 - **Text-to-speech**: AI voiceover from text
 - **Voice cloning**: Custom AI voices
 - **Music library**: Royalty-free background music
@@ -161,7 +150,6 @@ Features are organized into strategic categories that align with the customer jo
 - **Audio effects**: Echo, reverb, filters
 
 ### ICP Alignment
-
 - AI voiceover reduces need for talent
 - Music library avoids copyright issues
 - Professional audio without audio engineer
@@ -173,7 +161,6 @@ Features are organized into strategic categories that align with the customer jo
 **Purpose**: Prepare content for specific platforms
 
 ### Features
-
 - **Multi-format export**: All social platform formats (9:16, 1:1, 16:9, etc.)
 - **Auto-reframe**: Smart crop for different formats
 - **Batch export**: Export multiple formats simultaneously
@@ -188,7 +175,6 @@ Features are organized into strategic categories that align with the customer jo
 - **Format preview**: See how video looks on each platform
 
 ### ICP Alignment
-
 - **CRITICAL**: Saves massive time on reformatting
 - Enables true multi-platform strategy
 - Key productivity driver for SMBs
@@ -200,7 +186,6 @@ Features are organized into strategic categories that align with the customer jo
 **Purpose**: Ensure consistency and speed up creation
 
 ### Features
-
 - **Template library**: Pre-built video templates
 - **Custom templates**: Save user-created templates
 - **Brand kit**: Store logos, colors, fonts, assets
@@ -215,7 +200,6 @@ Features are organized into strategic categories that align with the customer jo
 - **Version control**: Track template changes
 
 ### ICP Alignment
-
 - **CRITICAL**: Enables team to create consistently
 - Maintains brand while democratizing creation
 - Key to "empower users" value prop
@@ -227,7 +211,6 @@ Features are organized into strategic categories that align with the customer jo
 **Purpose**: Enable team-based content creation
 
 ### Features
-
 - **Multi-user access**: Team accounts
 - **Role permissions**: Editor, viewer, admin roles
 - **Comments**: Feedback on timeline
@@ -242,7 +225,6 @@ Features are organized into strategic categories that align with the customer jo
 - **Analytics sharing**: Share performance data
 
 ### ICP Alignment
-
 - Essential for SMB teams (multiple stakeholders)
 - Maintains quality control while scaling
 - Supports "empower users" without chaos
@@ -254,7 +236,6 @@ Features are organized into strategic categories that align with the customer jo
 **Purpose**: Organize and access content assets
 
 ### Features
-
 - **Media library**: Centralized asset storage
 - **Search & filter**: Find assets quickly
 - **Collections**: Organize into folders/tags
@@ -269,7 +250,6 @@ Features are organized into strategic categories that align with the customer jo
 - **Smart organization**: AI-suggested organization
 
 ### ICP Alignment
-
 - Scales with content volume
 - Enables reuse of brand assets
 - Reduces time searching for files
@@ -281,7 +261,6 @@ Features are organized into strategic categories that align with the customer jo
 **Purpose**: Reduce manual work through AI
 
 ### Features
-
 - **Auto-editing**: AI creates full edit from raw footage
 - **Smart crop**: AI reframes for different formats
 - **Scene detection**: Auto-identify scene breaks
@@ -297,7 +276,6 @@ Features are organized into strategic categories that align with the customer jo
 - **Optimization suggestions**: AI recommends improvements
 
 ### ICP Alignment
-
 - **CRITICAL**: Core value prop (AI-powered creation)
 - Enables non-experts to create quality content
 - Time savings = ROI justification
@@ -309,7 +287,6 @@ Features are organized into strategic categories that align with the customer jo
 **Purpose**: Measure content effectiveness
 
 ### Features
-
 - **Engagement metrics**: Views, likes, shares, comments
 - **Performance dashboard**: Aggregate analytics
 - **A/B testing**: Compare video variations
@@ -324,7 +301,6 @@ Features are organized into strategic categories that align with the customer jo
 - **Custom metrics**: Track specific KPIs
 
 ### ICP Alignment
-
 - SMBs need ROI proof
 - Data-driven content improvement
 - Justifies platform investment
@@ -336,7 +312,6 @@ Features are organized into strategic categories that align with the customer jo
 **Purpose**: Help users succeed with platform
 
 ### Features
-
 - **Tutorial library**: Video guides
 - **Interactive onboarding**: Guided first project
 - **Help center**: Documentation
@@ -351,7 +326,6 @@ Features are organized into strategic categories that align with the customer jo
 - **Success metrics**: Track user progress
 
 ### ICP Alignment
-
 - Reduces onboarding time
 - Enables self-service (user empowerment)
 - Drives product adoption
@@ -363,7 +337,6 @@ Features are organized into strategic categories that align with the customer jo
 **Purpose**: Connect with other tools
 
 ### Features
-
 - **Social media integrations**: Direct posting to platforms
 - **Calendar integrations**: Sync with Google Calendar, etc.
 - **Storage integrations**: Dropbox, Google Drive, etc.
@@ -378,7 +351,6 @@ Features are organized into strategic categories that align with the customer jo
 - **Desktop app**: Offline creation capability
 
 ### ICP Alignment
-
 - Fits into existing workflows
 - Reduces tool switching
 - Enterprise readiness
@@ -390,7 +362,6 @@ Features are organized into strategic categories that align with the customer jo
 **Purpose**: Drive business outcomes from content
 
 ### Features
-
 - **Product tagging**: Tag products in videos
 - **Shoppable videos**: Click-to-buy functionality
 - **Affiliate links**: Integrate affiliate URLs
@@ -405,7 +376,6 @@ Features are organized into strategic categories that align with the customer jo
 - **Dynamic product**: Swap products in template
 
 ### ICP Alignment
-
 - Direct ROI for e-commerce brands
 - Makes content actionable
 - Justifies platform cost with revenue

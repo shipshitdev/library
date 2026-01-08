@@ -19,10 +19,8 @@ Quick task capture and expansion. Backlog only - no status tracking here.
 **When:** `/inbox` or `/inbox list`
 
 **Steps:**
-
 1. Read `.agent/TASKS/INBOX.md`
 2. Display tasks from "Backlog" section:
-
    ```
    📥 Inbox (5 tasks)
 
@@ -40,16 +38,13 @@ Quick task capture and expansion. Backlog only - no status tracking here.
 **When:** `/inbox Add dark mode toggle`
 
 **Steps:**
-
 1. Extract task title from arguments
 2. Ask: "Brief context? (1-2 sentences)"
 3. Add to "Backlog" section:
-
    ```markdown
    - [ ] **[TASK_TITLE]** ([TODAY_DATE])
      - [USER_CONTEXT]
    ```
-
 4. Confirm: "✅ Added: [TASK_TITLE]"
 
 ### Mode 3: Expand to PRD/TASK
@@ -57,7 +52,6 @@ Quick task capture and expansion. Backlog only - no status tracking here.
 **When:** `/inbox expand`
 
 **Steps:**
-
 1. Show numbered list of backlog tasks
 2. Ask: "Which task? (number)"
 3. Ask clarifying questions:

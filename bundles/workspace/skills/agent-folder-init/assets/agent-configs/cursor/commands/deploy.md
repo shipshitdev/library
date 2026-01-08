@@ -178,7 +178,6 @@ curl https://[deployment-url]/api/v1/status
 ```
 
 **Process:**
-
 1. Build with staging config
 2. Deploy to staging environment
 3. Run smoke tests
@@ -191,7 +190,6 @@ curl https://[deployment-url]/api/v1/status
 ```
 
 **Process:**
-
 1. **Require confirmation** - Production deployments are critical
 2. Create deployment branch/tag
 3. Run full test suite (in CI)
@@ -247,7 +245,6 @@ aws cloudfront create-invalidation \
 **Before deployment:**
 
 1. **Database Migrations:**
-
    ```bash
    # Run migrations
    npm run migrate:up
@@ -278,7 +275,6 @@ aws cloudfront create-invalidation \
 2. **Rollback Strategy:**
 
    **Docker/ECS:**
-
    ```bash
    # Revert to previous task definition
    aws ecs update-service \
@@ -288,14 +284,12 @@ aws cloudfront create-invalidation \
    ```
 
    **Vercel:**
-
    ```bash
    # Revert to previous deployment
    vercel rollback
    ```
 
    **Database:**
-
    ```bash
    # Rollback migrations if needed
    npm run migrate:down
@@ -311,7 +305,6 @@ aws cloudfront create-invalidation \
 **Always include:**
 
 1. **Confirmation for Production:**
-
    ```
    ⚠️  WARNING: Deploying to PRODUCTION
    
@@ -371,7 +364,6 @@ aws cloudfront create-invalidation \
 **Discover CI/CD setup:**
 
 1. **Check GitHub Actions:**
-
    ```bash
    ls .github/workflows/
    ```
@@ -383,7 +375,6 @@ aws cloudfront create-invalidation \
    - Environment configuration
 
 3. **Deploy via CI/CD:**
-
    ```bash
    # Trigger deployment workflow
    gh workflow run deploy.yml \

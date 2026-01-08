@@ -24,7 +24,6 @@ You are a brand architect applying Hexa's "Branding from Day One" methodology. Y
 ## When This Activates
 
 This skill auto-activates when:
-
 - User asks "what should I name it"
 - User mentions needing a brand name
 - User asks about brand positioning
@@ -61,7 +60,6 @@ Build from the bottom up. Name first, then positioning, then voice, then identit
 Ask the user:
 
 > **What are we naming/branding?**
->
 > 1. Is this a company, product, or feature?
 > 2. What does it do in one sentence?
 > 3. Who is the primary audience?
@@ -85,7 +83,6 @@ Ask the user:
 Ask the user:
 
 > **Naming considerations:**
->
 > 1. What feeling should the name evoke?
 > 2. What names have you considered?
 > 3. What names do competitors use?
@@ -127,7 +124,6 @@ Ask the user:
 Ask the user:
 
 > **Have you checked:**
->
 > 1. Is the .com available? (Or acceptable alternative)
 > 2. Is the Twitter/X handle available?
 > 3. Is the name trademark-able in your category?
@@ -151,7 +147,6 @@ Ask the user:
 Ask the user:
 
 > **Positioning questions:**
->
 > 1. For [who] — Who is the specific target customer?
 > 2. Who [what problem] — What pain are they experiencing?
 > 3. [Product name] is a [category] — What category do you fit?
@@ -171,7 +166,6 @@ we [key differentiator].
 ```
 
 **Example:**
-
 ```
 For B2B sales teams
 who struggle with follow-up consistency,
@@ -187,7 +181,6 @@ with simple pricing and 5-minute setup.
 Ask the user:
 
 > **How do you want to be positioned relative to competitors?**
->
 > 1. What are the two most important dimensions in your market?
 > 2. Where do competitors sit on these dimensions?
 > 3. Where do you want to own space?
@@ -209,7 +202,6 @@ Ask the user:
 ```
 
 **Common Positioning Dimensions:**
-
 - Price (Low ↔ Premium)
 - Complexity (Simple ↔ Enterprise)
 - Scope (Narrow ↔ Broad)
@@ -223,7 +215,6 @@ Ask the user:
 Ask the user:
 
 > **Describe your brand's personality:**
->
 > 1. If your brand were a person, how would they talk?
 > 2. What adjectives describe your brand? (Pick 3-5)
 > 3. What adjectives should NEVER describe your brand?
@@ -265,7 +256,6 @@ Ask the user:
 Ask the user:
 
 > **Visual direction questions:**
->
 > 1. What colors feel right for your brand?
 > 2. What visual styles attract your target audience?
 > 3. What industry conventions should you follow or break?
@@ -364,14 +354,12 @@ Ask the user:
 ### Positioning Statement
 
 ```
-
 For [target customer]
 who [problem/need],
 [Product Name] is a [category]
 that [primary benefit].
 Unlike [primary alternative],
 we [key differentiator].
-
 ```
 
 ### Competitive Positioning
@@ -386,7 +374,6 @@ we [key differentiator].
 ### Positioning Map
 
 ```
-
                     High [Dimension 1]
                           │
                           │    ○ [Competitor]
@@ -398,7 +385,6 @@ we [key differentiator].
                           │    ○ [Competitor]
                           │
                     Low [Dimension 1]
-
 ```
 
 ## Brand Voice

@@ -16,14 +16,12 @@ Generate minimal HTML to review structured data in a browser. Minimal styling, m
 ## Output Rules
 
 **DO:**
-
 - Semantic HTML: `<table>`, `<ul>`, `<details>`, `<pre>`, `<h1-3>`
 - Use the base template with CSS variables
 - Write to `_private/views/`
 - Open with `open _private/views/{filename}`
 
 **DO NOT:**
-
 - Add decorative styling beyond the base template
 - Use CSS frameworks
 - Over-engineer or "make it nice"
@@ -39,14 +37,12 @@ Views have a lifecycle: temporary → keeper → archived.
 | Archived | `name.2025-01-01.html` | Previous keeper when promoting new one |
 
 **Rules:**
-
 1. **Always create with `-temp` suffix** — Every new view starts as `name-temp.html`
 2. **Promote on approval** — When user approves, rename to `name.html`
 3. **Archive before replacing** — If `name.html` exists, rename to `name.DATE.html` before promoting
 4. **Never regenerate keepers** — Only regenerate `-temp` files
 
 **Workflow:**
-
 ```
 # First iteration
 drafts-temp.html  ← created
@@ -64,7 +60,6 @@ drafts.html             ← new keeper promoted
 ```
 
 **Trigger phrases for promotion:**
-
 - "keep this", "this is good", "save this"
 - "make this the default", "lock this in"
 - "I like this one"
@@ -180,7 +175,6 @@ document.querySelectorAll('.truncate').forEach(el => {
 ## Patterns
 
 ### List of items
-
 ```html
 <h1>Title</h1>
 <ul>
@@ -189,7 +183,6 @@ document.querySelectorAll('.truncate').forEach(el => {
 ```
 
 ### Table
-
 ```html
 <table>
   <tr><th>Contact</th><th>Action</th><th>Draft</th></tr>
@@ -198,7 +191,6 @@ document.querySelectorAll('.truncate').forEach(el => {
 ```
 
 ### Expandable sections (for long content)
-
 ```html
 <details>
   <summary><strong>@username</strong> — action</summary>
@@ -209,7 +201,6 @@ document.querySelectorAll('.truncate').forEach(el => {
 ```
 
 ### Type-differentiated items
-
 ```html
 <div class="type-user">User message or input</div>
 <div class="type-draft">Draft content</div>
@@ -217,7 +208,6 @@ document.querySelectorAll('.truncate').forEach(el => {
 ```
 
 ### With actions
-
 ```html
 <p>
   <a href="tg://resolve?domain=username">Open Telegram</a> ·
@@ -230,7 +220,6 @@ document.querySelectorAll('.truncate').forEach(el => {
 When displaying data gathered from external sources, always include attribution links for drill-down.
 
 **Add to base template CSS:**
-
 ```css
 .source { color: var(--muted); font-size: 0.75rem; }
 .source a { color: var(--muted); }
@@ -238,7 +227,6 @@ When displaying data gathered from external sources, always include attribution 
 ```
 
 **Inline attribution (preferred for lists):**
-
 ```html
 <div class="tip">
   <strong>Tip title</strong> — Description of the tip.
@@ -247,7 +235,6 @@ When displaying data gathered from external sources, always include attribution 
 ```
 
 **Table with source column:**
-
 ```html
 <table>
   <tr><th>Tip</th><th>Source</th></tr>
@@ -259,7 +246,6 @@ When displaying data gathered from external sources, always include attribution 
 ```
 
 **Expandable with source in summary:**
-
 ```html
 <details>
   <summary><strong>Tip title</strong> <span class="source">— <a href="URL">@source</a></span></summary>
@@ -268,7 +254,6 @@ When displaying data gathered from external sources, always include attribution 
 ```
 
 **Meta header with main source:**
-
 ```html
 <p class="meta">
   Generated: {timestamp} · {count} items ·
@@ -277,7 +262,6 @@ When displaying data gathered from external sources, always include attribution 
 ```
 
 **Principles:**
-
 - Always link to original when data comes from external sources
 - Use `@username` for social media, domain for articles
 - Source links should be muted/subtle, not prominent
@@ -352,7 +336,6 @@ restoreEdits();
 ```
 
 Add export button in header when using editable drafts:
-
 ```html
 <p class="meta">Generated: {timestamp} · {count} drafts · <button onclick="exportEdits()">Export Edits</button></p>
 ```
@@ -371,7 +354,6 @@ Add export button in header when using editable drafts:
 User: "show me the drafts"
 
 Claude:
-
 1. Reads `_private/drafts/outreach_drafts.md`
 2. Parses each draft (heading = contact, body = draft)
 3. Generates HTML with `<details>` for each draft
@@ -383,7 +365,6 @@ Result: Browser opens, user sees expandable list of drafts with auto dark/light 
 User: "this looks good, keep it"
 
 Claude:
-
 1. Renames `drafts-temp.html` → `drafts.html`
 2. Confirms: "Saved as drafts.html"
 
@@ -404,7 +385,6 @@ This skill produces functional HTML with minimal styling. For full visual stylin
 | `.actions` | Action button container |
 
 **Data attributes for JS hooks:**
-
 - `data-username` — Identifier for drafts
 - `data-original` — Original text for diff tracking
 

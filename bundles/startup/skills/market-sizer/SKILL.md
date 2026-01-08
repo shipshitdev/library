@@ -25,7 +25,6 @@ You are a market sizing specialist applying Hexa's practical market assessment m
 ## When This Activates
 
 This skill auto-activates when:
-
 - User asks "how big is the market"
 - User mentions TAM, SAM, or SOM
 - User asks "is the market big enough"
@@ -40,7 +39,6 @@ This skill auto-activates when:
 **Market Size = Bottom-Up Analysis + Top-Down Analysis + Timing Assessment**
 
 The goal is to produce:
-
 1. TAM/SAM/SOM with both methodologies
 2. Sanity check between bottom-up and top-down
 3. Timing analysis (why now?)
@@ -54,7 +52,6 @@ The goal is to produce:
 | **SOM** | Serviceable Obtainable Market | What you can realistically capture in 3-5 years |
 
 **Visual:**
-
 ```
 ┌─────────────────────────────────────────┐
 │                  TAM                     │
@@ -74,7 +71,6 @@ The goal is to produce:
 Ask the user:
 
 > **What market are you sizing?**
->
 > 1. What product/service are you offering?
 > 2. Who is the target customer? (Company type, size, role)
 > 3. What problem does it solve?
@@ -98,7 +94,6 @@ Ask the user:
 Ask the user:
 
 > **Let's build from the ground up:**
->
 > 1. How many potential customers exist in your target segment?
 > 2. What's your expected annual revenue per customer?
 > 3. What percentage can you realistically reach?
@@ -141,14 +136,12 @@ SOM = SAM × Realistic Market Share (usually 1-5% in years 1-3)
 Ask the user:
 
 > **Let's validate from the top:**
->
 > 1. What industry category does this fall into?
 > 2. What's the total industry market size? (Look up reports)
 > 3. What percentage is your specific segment?
 > 4. What percentage is your geography?
 
 **Common Data Sources:**
-
 - Gartner, Forrester, IDC (enterprise software)
 - Statista (general statistics)
 - IBISWorld (industry reports)
@@ -192,7 +185,6 @@ Ask the user:
 | > 200% | Major misalignment | One method is wrong—investigate |
 
 **Common Reasons for Variance:**
-
 - Bottom-up overcounts potential customers
 - Top-down industry definition too broad
 - Pricing assumptions differ
@@ -203,7 +195,6 @@ Ask the user:
 Ask the user:
 
 > **What's happening in this market?**
->
 > 1. Is the market growing, stable, or shrinking?
 > 2. What's the annual growth rate?
 > 3. What's driving growth or decline?
@@ -233,7 +224,6 @@ Ask the user:
 Ask the user:
 
 > **Why is NOW the right time?**
->
 > 1. What barriers existed before that are now gone?
 > 2. What technology enables this now?
 > 3. What behavior has changed?
@@ -264,7 +254,6 @@ Ask the user:
 
 **The 10% Rule:**
 If you captured 10% of your SAM, would that be an interesting business?
-
 - **If yes:** Market is big enough
 - **If no:** Market too small or SAM definition too narrow
 

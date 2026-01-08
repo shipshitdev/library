@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
 ```
 
 **Key Properties**:
-
 - Flexbox by default (`display: 'flex'` implicit)
 - No `gap` support on older RN versions (0.79+ has it)
 - Use `pointerEvents` to control touch handling
@@ -96,7 +95,6 @@ const styles = StyleSheet.create({
 ```
 
 **Key Properties**:
-
 - `numberOfLines` - Truncate with ellipsis
 - `ellipsizeMode` - 'head' | 'middle' | 'tail' | 'clip'
 - `selectable` - Allow text selection
@@ -146,7 +144,6 @@ const styles = StyleSheet.create({
 ```
 
 **expo-image Benefits**:
-
 - Better performance than RN Image
 - Built-in caching (`memory`, `disk`, `memory-disk`)
 - Smooth transitions
@@ -182,7 +179,6 @@ const styles = StyleSheet.create({
 ```
 
 **Key Properties**:
-
 - `style` - Applied to container
 - `contentContainerStyle` - Applied to scrollable content
 - `showsVerticalScrollIndicator` - Hide scroll indicator
@@ -231,7 +227,6 @@ const styles = StyleSheet.create({
 ```
 
 **Benefits**:
-
 - Validates style properties at creation
 - Better performance (styles are stored by ID)
 - Works with React DevTools
@@ -293,7 +288,6 @@ const styles = StyleSheet.create({
 ```
 
 **Array Syntax**:
-
 - Styles are applied left to right
 - Later styles override earlier ones
 - `false` | `null` | `undefined` are ignored
@@ -430,7 +424,6 @@ const styles = StyleSheet.create({
 ```
 
 **Key Patterns**:
-
 - `flexDirection: 'row'` for horizontal layout
 - `flex: 1` on cardBody to fill remaining space
 - `gap` for consistent spacing (RN 0.79+)
@@ -479,7 +472,6 @@ const styles = StyleSheet.create({
 ```
 
 **Key Properties**:
-
 - `placeholderTextColor` - Always set (default is invisible on dark backgrounds)
 - `autoCapitalize` - 'none' | 'sentences' | 'words' | 'characters'
 - `autoCorrect` - Disable for usernames, emails
@@ -535,7 +527,6 @@ const styles = StyleSheet.create({
 ```
 
 **Touchable Components**:
-
 - `TouchableOpacity` - Reduces opacity on press
 - `TouchableHighlight` - Shows highlight color
 - `TouchableWithoutFeedback` - No visual feedback
@@ -626,7 +617,6 @@ const styles = StyleSheet.create({
 ```
 
 **Key Properties**:
-
 - `initialNumToRender` - Number of items to render initially
 - `maxToRenderPerBatch` - Batch size for rendering
 - `windowSize` - Number of screen heights to render
@@ -779,7 +769,6 @@ function AccessibleButton() {
 ```
 
 **Key Properties**:
-
 - `accessible` - Enable accessibility
 - `accessibilityLabel` - Screen reader description
 - `accessibilityHint` - Additional context
@@ -789,7 +778,6 @@ function AccessibleButton() {
 ### 2. Accessibility Roles
 
 Common roles:
-
 - `button` - Buttons
 - `header` - Section headers
 - `link` - Links
@@ -946,14 +934,12 @@ function Loading<T>({ isLoading, data, error, children }: LoadingProps<T>) {
 ## Best Practices
 
 ### 1. Component Structure
-
 - Keep components small and focused
 - Extract reusable components early
 - Use TypeScript for all props
 - Colocate styles with components
 
 ### 2. Performance
-
 - Use `FlatList` for lists > 50 items
 - Memoize expensive computations with `useMemo`
 - Memoize callbacks with `useCallback`
@@ -961,21 +947,18 @@ function Loading<T>({ isLoading, data, error, children }: LoadingProps<T>) {
 - Avoid inline functions in render
 
 ### 3. Styling
-
 - Use `StyleSheet.create` for better performance
 - Define styles outside component (unless dynamic)
 - Use semantic color variables
 - Keep platform-specific code minimal
 
 ### 4. Accessibility
-
 - Add `accessibilityLabel` to all interactive elements
 - Use correct `accessibilityRole`
 - Support screen readers
 - Test with VoiceOver (iOS) and TalkBack (Android)
 
 ### 5. TypeScript
-
 - Define interfaces for all component props
 - Use discriminated unions for variants
 - Avoid `any` type
@@ -984,7 +967,6 @@ function Loading<T>({ isLoading, data, error, children }: LoadingProps<T>) {
 ## Summary
 
 You are now equipped to:
-
 - Build performant React Native components
 - Style with StyleSheet and handle platform differences
 - Optimize rendering with FlatList, memo, useMemo
@@ -994,7 +976,6 @@ You are now equipped to:
 - Follow mobile-first best practices
 
 Always prioritize:
-
 1. Performance (FlatList, memoization)
 2. Accessibility (screen readers, semantic HTML)
 3. Type safety (TypeScript strict mode)

@@ -60,42 +60,20 @@ See `docs/SYMLINK-CONFIG.md` for full configuration details.
 
 ### Claude Code
 
-**Via npm (recommended):**
-
-```bash
-claude plugin add claude-plugin-shipshitdev
-```
-
-**Via GitHub marketplace:**
-
 ```bash
 # Add the marketplace
 /plugin marketplace add shipshitdev/library
 
-# Install the skills
-/plugin install shipshitdev-skills@shipshitdev
+# Install all skills
+/plugin install shipshitdev-full@shipshitdev
+
+# Or install specific bundles
+/plugin install shipshitdev-startup@shipshitdev
+/plugin install shipshitdev-testing@shipshitdev
+/plugin install shipshitdev-frontend@shipshitdev
 ```
 
-### OpenAI Codex
-
-Use the built-in `$skill-installer` skill:
-
-```
-Install skills from: github.com/shipshitdev/library
-```
-
-### Cursor
-
-Copy skills to your Cursor config:
-
-```bash
-# Clone and copy
-git clone https://github.com/shipshitdev/library.git
-cp -r library/agents/.cursor/skills/* ~/.cursor/skills/
-cp -r library/agents/.cursor/commands/* ~/.cursor/commands/
-```
-
-### Manual Installation (All Platforms)
+### Manual Installation (Symlinks)
 
 ```bash
 # Clone repository
@@ -104,9 +82,6 @@ git clone https://github.com/shipshitdev/library.git ~/shipshitdev-library
 # Create symlinks
 ln -s ~/shipshitdev-library/agents/.claude/skills ~/.claude/skills
 ln -s ~/shipshitdev-library/agents/.claude/commands ~/.claude/commands
-ln -s ~/shipshitdev-library/agents/.codex/skills ~/.codex/skills
-ln -s ~/shipshitdev-library/agents/.cursor/skills ~/.cursor/skills
-ln -s ~/shipshitdev-library/agents/.cursor/commands ~/.cursor/commands
 ```
 
 ## Adding Skills & Commands

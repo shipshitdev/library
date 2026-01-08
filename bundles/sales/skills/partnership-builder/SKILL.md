@@ -24,7 +24,6 @@ You are a partnership builder specializing in helping indie businesses create re
 ## When This Activates
 
 This skill auto-activates when:
-
 - User asks about building partnerships
 - User wants to create an affiliate program
 - User asks about integration partnerships
@@ -52,7 +51,6 @@ This skill auto-activates when:
 Ask the user:
 
 > **Tell me about your partnership goals:**
->
 > 1. What do you sell and who's your customer?
 > 2. What partnership type interests you most?
 > 3. What would make someone want to partner with you?
@@ -60,7 +58,6 @@ Ask the user:
 > 5. What margin/commission can you afford to share?
 
 **Readiness Checklist:**
-
 - [ ] Product is stable and delivering value
 - [ ] You can track referrals/conversions
 - [ ] You have margin to share (20-50%)
@@ -72,7 +69,6 @@ Ask the user:
 **Affiliate Program Components:**
 
 **Commission Structure:**
-
 | Model | How It Works | Best For |
 |-------|--------------|----------|
 | **One-time %** | 20-50% of first purchase | One-time products |
@@ -81,7 +77,6 @@ Ask the user:
 | **Flat fee** | Fixed $ per conversion | High-volume, low-ticket |
 
 **Program Elements:**
-
 | Element | Decision | Your Choice |
 |---------|----------|-------------|
 | Commission rate | X% or $X | |
@@ -91,7 +86,6 @@ Ask the user:
 | Attribution | First click/last click | |
 
 **Affiliate Tiers (Optional):**
-
 | Tier | Requirement | Commission |
 |------|-------------|------------|
 | Standard | 0+ referrals | 20% |
@@ -104,7 +98,6 @@ Ask the user:
 **Integration Opportunity Finder:**
 
 > **Identify potential integrations:**
->
 > 1. What tools do your customers already use?
 > 2. What data flows into/out of your product?
 > 3. What would make your product more valuable if connected?
@@ -112,7 +105,6 @@ Ask the user:
 > 5. What marketplaces/directories exist in your space?
 
 **Integration Types:**
-
 | Type | Description | Effort | Value |
 |------|-------------|--------|-------|
 | **Native** | Built-in integration | High | Highest |
@@ -121,7 +113,6 @@ Ask the user:
 | **Embed** | Your widget in their product | Medium | High |
 
 **Integration Partnership Structure:**
-
 | Element | Options |
 |---------|---------|
 | Revenue share | 10-30% of referred revenue |
@@ -143,7 +134,6 @@ Ask the user:
 | Support | Who handles customer support |
 
 **White-Label Options:**
-
 | Level | What Changes | Typical Pricing |
 |-------|--------------|-----------------|
 | **Co-branded** | Partner logo added | 20-30% margin |
@@ -164,7 +154,6 @@ Ask the user:
 | **Event sponsorship** | Co-sponsor together | Varies |
 
 **Finding Co-Marketing Partners:**
-
 - Same customer, different product
 - Same values, complementary offering
 - Similar size (balanced partnership)
@@ -185,7 +174,6 @@ Ask the user:
 | **Competitors' partners** | Already partner in your space |
 
 **Partner Criteria:**
-
 | Criteria | Score (1-5) |
 |----------|-------------|
 | Audience overlap with your ICP | |
@@ -211,12 +199,10 @@ Ask the user:
 > **The idea:** [Specific partnership proposal]
 >
 > **Why this works for you:**
->
 > - [Benefit 1 for them]
 > - [Benefit 2 for them]
 >
 > **Why this works for us:**
->
 > - [Brief mention of your benefit]
 >
 > I'd love to chat for 15 minutes to explore this. Open to a quick call this week?
@@ -224,7 +210,6 @@ Ask the user:
 > [Your name]
 
 **Outreach Best Practices:**
-
 - Lead with their benefit
 - Be specific about the opportunity
 - Show you've done research
@@ -247,7 +232,6 @@ Ask the user:
 | **Contact** | Someone to reach |
 
 **Partner Portal (Simple Version):**
-
 1. Landing page with program details
 2. Sign-up form
 3. Email sequence with assets
@@ -384,7 +368,6 @@ Ask the user:
 ## Partnership Red Flags
 
 **Avoid partners who:**
-
 - Want upfront payment to promote you
 - Have misaligned audience
 - Have reputation issues
@@ -393,7 +376,6 @@ Ask the user:
 - Have unrealistic expectations
 
 **Protect yourself:**
-
 - Clear written agreements
 - Performance-based compensation
 - Cancellation terms

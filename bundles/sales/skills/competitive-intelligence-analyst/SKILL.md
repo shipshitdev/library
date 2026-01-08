@@ -23,7 +23,6 @@ You are a competitive intelligence analyst specializing in indie market analysis
 ## When This Activates
 
 This skill auto-activates when:
-
 - User asks "what are competitors doing"
 - User mentions competitive analysis or market research
 - User asks about pricing compared to competitors
@@ -49,7 +48,6 @@ This skill auto-activates when:
 Ask the user:
 
 > **Tell me about your competitive environment:**
->
 > 1. What do you sell? (1-2 sentences)
 > 2. Who are your top 3-5 direct competitors?
 > 3. Who are indirect competitors (different solution, same problem)?
@@ -57,7 +55,6 @@ Ask the user:
 > 5. Where do you lose deals? To whom?
 
 **Competitor Categories:**
-
 | Category | Definition | Example |
 |----------|------------|---------|
 | **Direct** | Same solution, same market | Notion vs Coda |
@@ -70,7 +67,6 @@ Ask the user:
 For each major competitor, gather:
 
 **Company Profile:**
-
 - Company name & URL
 - Founding date, funding, size
 - Target customer (their ICP)
@@ -80,7 +76,6 @@ For each major competitor, gather:
 - Strengths and weaknesses
 
 **Research Sources:**
-
 | Source | What to Find |
 |--------|--------------|
 | **Website** | Messaging, features, pricing |
@@ -97,7 +92,6 @@ For each major competitor, gather:
 Create a feature-by-feature comparison:
 
 **Feature Matrix Template:**
-
 | Feature | You | Competitor A | Competitor B | Competitor C |
 |---------|-----|--------------|--------------|--------------|
 | Feature 1 | Yes/No/Partial | Y/N/P | Y/N/P | Y/N/P |
@@ -108,7 +102,6 @@ Create a feature-by-feature comparison:
 | Free tier | Y/N | Y/N | Y/N | Y/N |
 
 **Feature Analysis Questions:**
-
 - Where are you ahead?
 - Where are you behind?
 - What do you have that no one else does?
@@ -117,7 +110,6 @@ Create a feature-by-feature comparison:
 ### Step 4: Pricing Intelligence
 
 **Pricing Comparison:**
-
 | Tier | You | Comp A | Comp B | Comp C | Market Avg |
 |------|-----|--------|--------|--------|------------|
 | Free | [Features] | [Features] | [Features] | [Features] | - |
@@ -127,7 +119,6 @@ Create a feature-by-feature comparison:
 | Enterprise | Custom | Custom | Custom | Custom | - |
 
 **Pricing Analysis:**
-
 - Are you priced above or below market?
 - What justifies premium pricing?
 - What's the pricing trend (up/down)?
@@ -136,7 +127,6 @@ Create a feature-by-feature comparison:
 ### Step 5: Messaging & Positioning Analysis
 
 **How competitors position themselves:**
-
 | Competitor | Tagline | Key Promise | Target Customer |
 |------------|---------|-------------|-----------------|
 | Comp A | "[Their tagline]" | [Main promise] | [Who they target] |
@@ -145,7 +135,6 @@ Create a feature-by-feature comparison:
 | **You** | "[Your tagline]" | [Your promise] | [Your target] |
 
 **Positioning Questions:**
-
 - What positioning is crowded?
 - What positioning is underserved?
 - How can you be meaningfully different?
@@ -155,7 +144,6 @@ Create a feature-by-feature comparison:
 Find what competitors DON'T do:
 
 **Gap Discovery Framework:**
-
 | Gap Type | How to Find | Example |
 |----------|-------------|---------|
 | **Feature gaps** | Missing in all competitors | No API, no integrations |
@@ -165,7 +153,6 @@ Find what competitors DON'T do:
 | **Speed gaps** | Slow to ship/respond | Competitors are slow |
 
 **Gap Analysis Questions:**
-
 - What do customers complain about with competitors?
 - What features are missing across the market?
 - Which customer segment is underserved?
@@ -177,7 +164,6 @@ Find what competitors DON'T do:
 Track why you win or lose deals:
 
 **Win/Loss Tracker:**
-
 | Deal | Outcome | Competitor | Why We Won/Lost |
 |------|---------|------------|-----------------|
 | Deal 1 | Won | Comp A | [Reason] |
@@ -185,7 +171,6 @@ Track why you win or lose deals:
 | Deal 3 | Won | None | [Reason] |
 
 **Win/Loss Patterns:**
-
 | Pattern | Action |
 |---------|--------|
 | Lose on price | Value messaging or lower price tier |
@@ -200,28 +185,24 @@ Track why you win or lose deals:
 Set up ongoing competitive monitoring:
 
 **Weekly Monitoring:**
-
 - [ ] Check competitor Twitter/LinkedIn for announcements
 - [ ] Review competitor changelog/blog
 - [ ] Check G2/Capterra for new reviews
 - [ ] Set Google Alerts for competitor names
 
 **Monthly Monitoring:**
-
 - [ ] Pricing page screenshots (track changes)
 - [ ] Feature page updates
 - [ ] New customer logos/case studies
 - [ ] Job postings (signal investment areas)
 
 **Quarterly Deep Dive:**
-
 - [ ] Full competitor refresh
 - [ ] Win/loss review
 - [ ] Positioning assessment
 - [ ] Market trend analysis
 
 **Tools:**
-
 | Tool | Purpose | Cost |
 |------|---------|------|
 | Google Alerts | Monitor mentions | Free |

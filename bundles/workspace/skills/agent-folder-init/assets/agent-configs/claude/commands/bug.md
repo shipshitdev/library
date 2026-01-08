@@ -14,7 +14,6 @@ Quick bug capture for later triage and fixing.
 ### Step 1: Minimal Questions
 
 Ask only the essentials:
-
 - Which app/area is affected?
 - Whats broken? (brief description)
 
@@ -23,7 +22,6 @@ Keep it fast.
 ### Step 2: Determine File Location
 
 Bug file location (adjust paths for your project):
-
 - Frontend bugs: <project>/.agent/TASKS/bug-[short-name].md
 - Backend bugs: <project>/.agent/TASKS/bug-[short-name].md
 - Cross-project: .agent/TASKS/bug-[short-name].md
@@ -48,20 +46,16 @@ Use structured format:
 ## Bug Details
 
 ### Whats Wrong
-
 [User description of the problem]
 
 ### Steps to Reproduce
-
 1. [Step 1]
 2. [Step 2]
 
 ### Expected Behavior
-
 [What should happen]
 
 ### Actual Behavior
-
 [What actually happens]
 
 ### Step 4: Inform User
@@ -77,26 +71,22 @@ You can add more details later when ready to fix.
 Format: bug-[short-descriptive-name].md
 
 Good names:
-
 - bug-login-redirect-loop.md
 - bug-video-upload-fails.md
 - bug-missing-captions.md
 
 Bad names:
-
 - bug.md (too generic)
 - bug-1.md (use description)
 
 ## Quick Capture vs Full Task
 
 Use /bug when:
-
 - Dont have time for full analysis
 - Just need to track it
 - Will investigate later
 
 Use /task when:
-
 - Ready to fix now
 - Have full context
 - Need implementation plan

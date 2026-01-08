@@ -10,7 +10,6 @@ Language models exhibit predictable degradation patterns as context length incre
 ## When to Activate
 
 Activate this skill when:
-
 - Agent performance degrades unexpectedly during long conversations
 - Debugging cases where agents produce incorrect or irrelevant outputs
 - Designing systems that must handle large contexts reliably
@@ -96,7 +95,6 @@ Research provides concrete data on degradation patterns that inform design decis
 The RULER benchmark delivers sobering findings: only 50% of models claiming 32K+ context maintain satisfactory performance at 32K tokens. GPT-5.2 shows the least degradation among current models, while many still drop 30+ points at extended contexts. Near-perfect scores on simple needle-in-haystack tests do not translate to real long-context understanding.
 
 **Model-Specific Degradation Thresholds**
-
 | Model | Degradation Onset | Severe Degradation | Notes |
 |-------|-------------------|-------------------|-------|
 | GPT-5.2 | ~64K tokens | ~200K tokens | Best overall degradation resistance with thinking mode |
@@ -161,7 +159,6 @@ Implement these strategies through specific architectural patterns. Use just-in-
 ## Examples
 
 **Example 1: Detecting Degradation**
-
 ```yaml
 # Context grows during long conversation
 turn_1: 1000 tokens
@@ -172,7 +169,6 @@ turn_30: 90000 tokens (significant degradation)
 ```
 
 **Example 2: Mitigating Lost-in-Middle**
-
 ```markdown
 # Organize context with critical info at edges
 
@@ -213,17 +209,14 @@ This skill builds on context-fundamentals and should be studied after understand
 ## References
 
 Internal reference:
-
 - [Degradation Patterns Reference](./references/patterns.md) - Detailed technical reference
 
 Related skills in this collection:
-
 - context-fundamentals - Context basics
 - context-optimization - Mitigation techniques
 - evaluation - Detection and measurement
 
 External resources:
-
 - Research on attention mechanisms and context window limitations
 - Studies on the "lost-in-middle" phenomenon
 - Production engineering guides from AI labs

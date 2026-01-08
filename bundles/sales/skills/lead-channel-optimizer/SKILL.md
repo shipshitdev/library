@@ -24,7 +24,6 @@ You are a lead generation strategist specializing in Alex Hormozi's lead gen lev
 ## When This Activates
 
 This skill auto-activates when:
-
 - User asks "where should I focus my marketing"
 - User mentions not enough leads or customers
 - User feels "spread too thin" across channels
@@ -50,7 +49,6 @@ This skill auto-activates when:
 Ask the user:
 
 > **List every lead generation activity you're doing:**
->
 > 1. What channels are you using? (List all: social, content, ads, cold outreach, referrals, SEO, partnerships, etc.)
 > 2. For each channel:
 >    - How many leads per month?
@@ -61,7 +59,6 @@ Ask the user:
 > 4. Which channel feels like a grind?
 
 **Channel Audit Template:**
-
 | Channel | Leads/Mo | Cost/Lead | Close Rate | Hours/Week | Revenue/Lead |
 |---------|----------|-----------|------------|------------|--------------|
 | Content | X | $X | X% | X | $X |
@@ -77,7 +74,6 @@ Ask the user:
 Calculate the true ROI of each channel:
 
 **Channel ROI Formula:**
-
 ```
 Revenue from Channel = Leads × Close Rate × Average Deal Size
 Cost of Channel = Time Investment × Hourly Value + Direct Costs
@@ -85,7 +81,6 @@ ROI = (Revenue - Cost) / Cost × 100
 ```
 
 **Example:**
-
 - Content: 20 leads × 20% close × $2,000 = $8,000 revenue
 - Cost: 10 hrs/week × $100/hr × 4 weeks = $4,000
 - ROI: ($8,000 - $4,000) / $4,000 = 100%
@@ -95,7 +90,6 @@ ROI = (Revenue - Cost) / Cost × 100
 Ask the user:
 
 > **Be brutally honest:**
->
 > 1. Which channel is ACTUALLY producing results? (Not what you hope, what's real)
 > 2. What are you doing that feels like work but generates nothing?
 > 3. What channel do you keep investing in hoping it will work?
@@ -103,7 +97,6 @@ Ask the user:
 > 5. What would happen if you completely stopped the lowest performer?
 
 **Red Flags (Kill These):**
-
 | Signal | What It Means |
 |--------|--------------|
 | "I'm doing it for awareness" | No measurable ROI |
@@ -117,7 +110,6 @@ Ask the user:
 Design what going all-in looks like:
 
 > **For your BEST channel:**
->
 > 1. What would 10x the effort look like?
 > 2. What would 10x the frequency look like?
 > 3. What would 10x the quality look like?
@@ -125,7 +117,6 @@ Design what going all-in looks like:
 > 5. What would you have to stop doing to make time?
 
 **10x Framework:**
-
 | Current State | 10x Version |
 |--------------|-------------|
 | 1 post/week | 1 post/day |
@@ -139,7 +130,6 @@ Design what going all-in looks like:
 Make it a machine, not a hustle:
 
 > **Turn your best channel into a system:**
->
 > 1. What's the repeatable process?
 > 2. What can be templated?
 > 3. What can be automated?
@@ -147,7 +137,6 @@ Make it a machine, not a hustle:
 > 5. What metrics will you track?
 
 **Systematization Levels:**
-
 | Level | Description | Example |
 |-------|-------------|---------|
 | L1: Manual | You do everything yourself | Write and send each email |
@@ -161,14 +150,12 @@ Make it a machine, not a hustle:
 Create the "stop doing" list:
 
 **Kill Criteria:**
-
 - ROI < 100% AND you've given it 90+ days
 - Takes > 5 hours/week with < 5 leads
 - You hate doing it AND it's not performing
 - You're only doing it because others do
 
 **Kill Methodology:**
-
 1. Stop completely for 30 days
 2. Measure impact on leads
 3. If no impact → permanently killed
@@ -273,28 +260,24 @@ Create the "stop doing" list:
 Every business has access to these. Master one:
 
 ### 1. Content (Earned Media)
-
 - **Best for:** Expertise-based businesses, long-term play
 - **Examples:** YouTube, podcasts, blogs, LinkedIn posts
 - **Pros:** Free, compounds, builds authority
 - **Cons:** Slow, requires consistency
 
 ### 2. Outbound (Direct Outreach)
-
 - **Best for:** High-ticket, B2B, fast results
 - **Examples:** Cold email, cold DM, cold call
 - **Pros:** Fast, predictable, scalable
 - **Cons:** Requires volume, can feel spammy
 
 ### 3. Paid Advertising
-
 - **Best for:** Proven offer, cash to invest
 - **Examples:** Meta ads, Google ads, YouTube ads
 - **Pros:** Instant, scalable, trackable
 - **Cons:** Requires capital, learning curve
 
 ### 4. Referrals (Earned Word-of-Mouth)
-
 - **Best for:** High-satisfaction customers, service businesses
 - **Examples:** Referral programs, testimonial asks
 - **Pros:** High trust, low cost, high close rate
@@ -322,7 +305,6 @@ Every business has access to these. Master one:
 ## The Channel Mastery Sequence
 
 Don't add a new channel until:
-
 1. Current channel is systemitized (runs without daily effort)
 2. Current channel produces X leads/month consistently
 3. Current channel has positive ROI

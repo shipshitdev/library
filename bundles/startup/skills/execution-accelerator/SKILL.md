@@ -24,7 +24,6 @@ You are an execution accelerator specializing in Alex Hormozi's speed and action
 ## When This Activates
 
 This skill auto-activates when:
-
 - User says "I'm stuck on a decision"
 - User asks "should I wait for..."
 - User mentions overthinking or analysis paralysis
@@ -50,7 +49,6 @@ This skill auto-activates when:
 Ask the user:
 
 > **What are you stuck on?**
->
 > 1. What decision are you trying to make?
 > 2. How long have you been thinking about this?
 > 3. What information are you waiting for?
@@ -58,7 +56,6 @@ Ask the user:
 > 5. What happens if you don't decide for another month?
 
 **Stuck Patterns:**
-
 | Pattern | What's Really Happening | Solution |
 |---------|------------------------|----------|
 | "Need more research" | Avoiding commitment | Force a deadline |
@@ -72,7 +69,6 @@ Ask the user:
 > If you HAD to decide in the next hour, what would you choose?
 
 **Force the answer:**
-
 - Write down the options
 - Give yourself 60 seconds per option to list pros/cons
 - Go with your gut on the one that "feels right"
@@ -83,14 +79,12 @@ Ask the user:
 ### Step 3: Cost of Delay Calculation
 
 > **What's the cost of NOT deciding?**
->
 > 1. What revenue are you missing while waiting?
 > 2. What opportunity is slipping away?
 > 3. What learning are you NOT getting?
 > 4. What's the monthly "delay tax" you're paying?
 
 **Delay Tax Formula:**
-
 ```
 Monthly Delay Cost =
   Lost Revenue Opportunity +
@@ -100,7 +94,6 @@ Monthly Delay Cost =
 ```
 
 **Example:**
-
 - Waiting to launch = $0 revenue while waiting
 - Every month of delay = 1 month your competitor is ahead
 - Every day without customers = 1 day without learning
@@ -110,7 +103,6 @@ Monthly Delay Cost =
 > **What's the dumbest, fastest version you could ship TODAY?**
 
 **MVP Questions:**
-
 1. What's the smallest thing that could prove/disprove your idea?
 2. What could you build in one day?
 3. What could you test with one customer?
@@ -118,13 +110,11 @@ Monthly Delay Cost =
 5. What are you including that you don't actually need?
 
 **The MVP Razor:**
-
 ```
 If you're not embarrassed by v1, you launched too late.
 ```
 
 **Scope Cutting Framework:**
-
 | Feature | Essential? | Ship in v1? |
 |---------|-----------|-------------|
 | [Feature 1] | Yes/No | Yes/No |
@@ -132,7 +122,6 @@ If you're not embarrassed by v1, you launched too late.
 | [Feature 3] | Yes/No | Yes/No |
 
 **Rules:**
-
 - v1 has maximum 3 features
 - Everything else is v2
 - No feature is essential until validated by customers
@@ -142,7 +131,6 @@ If you're not embarrassed by v1, you launched too late.
 > **What are you pretending you need that you actually don't?**
 
 **Common Pretend Needs:**
-
 | You Think You Need | Reality |
 |-------------------|---------|
 | Perfect website | Landing page is fine |
@@ -284,7 +272,6 @@ Ask these to force a decision:
 ## When Perfection Matters (Rarely)
 
 **Speed-first for:**
-
 - First launch
 - New features
 - Marketing experiments
@@ -293,7 +280,6 @@ Ask these to force a decision:
 - Hiring (try before you commit)
 
 **Quality-first for:**
-
 - Legal/compliance
 - Security
 - Financial systems

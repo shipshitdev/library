@@ -24,7 +24,6 @@ You are a customer success architect specializing in Alex Hormozi's obstacle eli
 ## When This Activates
 
 This skill auto-activates when:
-
 - User mentions customers struggling to get results
 - User discusses customer objections before buying
 - User asks about improving customer success
@@ -50,7 +49,6 @@ This skill auto-activates when:
 Ask the user:
 
 > **What must customers DO to succeed with your offer?**
->
 > 1. List every step they must take (from purchase to result)
 > 2. Where do they typically get stuck?
 > 3. What are you asking them to "figure out" on their own?
@@ -58,7 +56,6 @@ Ask the user:
 > 5. What do unsuccessful customers have in common?
 
 **Obstacle Mapping Template:**
-
 | Stage | Required Action | Where They Get Stuck | Current Solution |
 |-------|-----------------|---------------------|------------------|
 | Onboarding | [Action] | [Friction point] | [What you do now] |
@@ -72,7 +69,6 @@ Ask the user:
 Ask the user:
 
 > **What do people say BEFORE buying?**
->
 > 1. What are the top 3 objections you hear?
 > 2. What are they really afraid of? (The fear behind the objection)
 > 3. What would make them feel 100% safe?
@@ -80,7 +76,6 @@ Ask the user:
 > 5. What have you tried that doesn't work?
 
 **Objection → Fear Framework:**
-
 | Objection They Say | What They Really Mean | Solution Type |
 |-------------------|----------------------|---------------|
 | "It's too expensive" | "I'm not sure I'll get ROI" | Guarantee |
@@ -94,14 +89,12 @@ Ask the user:
 Design levels of service:
 
 **Spectrum:**
-
 ```
 DIY ───────────────────────────────────────────────────── DFY
 You teach    You guide    You help    You do together    You do it
 ```
 
 **Level Analysis:**
-
 | Level | What Customer Does | What You Do | Price Multiple |
 |-------|-------------------|-------------|----------------|
 | **DIY** | Everything | Provide materials | 1x |
@@ -124,7 +117,6 @@ You teach    You guide    You help    You do together    You do it
 | **Outcome** | Promise specific result | "Or we work free until you do" | Service businesses |
 
 **Guarantee Design Questions:**
->
 > 1. What specific result can you guarantee?
 > 2. What would happen if you offered this guarantee?
 > 3. How many people would abuse it? (Usually < 5%)
@@ -136,7 +128,6 @@ You teach    You guide    You help    You do together    You do it
 For each obstacle, design a solution:
 
 **Solution Framework:**
-
 | Obstacle | DIY Solution | DWY Solution | DFY Solution |
 |----------|--------------|--------------|--------------|
 | [Obstacle 1] | [Template/guide] | [Review/feedback] | [You do it] |
@@ -144,7 +135,6 @@ For each obstacle, design a solution:
 | [Obstacle 3] | [Template/guide] | [Review/feedback] | [You do it] |
 
 **Solution Categories:**
-
 - **Templates:** Pre-built starting points
 - **Checklists:** Step-by-step processes
 - **Tools:** Software/apps that do the work
@@ -157,7 +147,6 @@ For each obstacle, design a solution:
 Create content/copy that addresses objections BEFORE they arise:
 
 **Pre-Objection Content:**
-
 | Objection | Where to Address | How to Address |
 |-----------|------------------|----------------|
 | Price | Sales page | Value stack + ROI calculation |
@@ -284,7 +273,6 @@ Create content/copy that addresses objections BEFORE they arise:
 ## The "Impossible to Fail" Test
 
 For each customer, ask:
-
 1. Could even the WORST customer get results with this?
 2. What would I need to add to make failure impossible?
 3. If I guaranteed this outcome, would I be confident?
@@ -324,7 +312,6 @@ For each customer, ask:
 ## The Friction Audit Checklist
 
 Run this monthly:
-
 - [ ] What are customers complaining about?
 - [ ] Where do customers get stuck?
 - [ ] What questions do we keep answering?

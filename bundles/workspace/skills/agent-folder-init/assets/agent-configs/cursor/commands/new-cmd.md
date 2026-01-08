@@ -13,14 +13,12 @@ When a user requests a new command, follow these 5 steps:
 ### Step 1: Understand Purpose & Users
 
 **Ask clarifying questions:**
-
 - What task should this command automate?
 - Who will use it? (just you, team, open source)
 - What's the expected frequency? (daily, weekly, rarely)
 - What's the primary goal? (speed, consistency, learning)
 
 **Example:**
-
 ```
 User: "I want a command to sync our staging database"
 
@@ -34,7 +32,6 @@ Questions to ask:
 ### Step 2: Research Similar Commands
 
 **Check existing commands:**
-
 ```bash
 # List current commands
 ls .cursor/commands/
@@ -44,14 +41,12 @@ cat .cursor/commands/*.md
 ```
 
 **Identify patterns to reuse:**
-
 - Command structure (phases, workflows)
 - Safety checks (confirmations, validations)
 - Error handling approaches
 - Output formatting
 
 **Common patterns found:**
-
 - GitHub commands start with `gh-`
 - Multi-phase workflows (Fetch → Analyze → Execute → Report)
 - Interactive selection menus
@@ -62,14 +57,12 @@ cat .cursor/commands/*.md
 **Choose between project or user directory:**
 
 **Project Directory** (`.cursor/commands/`)
-
 - Codebase-specific commands
 - Team collaboration features
 - Project workflow automation
 - Examples: project setup, deploy, test
 
 **User Directory** (`~/.cursor/commands/`)
-
 - General-purpose utilities
 - Personal workflow tools
 - Cross-project functionality
@@ -77,13 +70,11 @@ cat .cursor/commands/*.md
 
 **Project Context:**
 Most commands should go in `.cursor/commands/` because:
-
 - Team uses the same monorepo
 - Consistent workflows across developers
 - Project-specific patterns (NestJS, monorepo, etc.)
 
 **Use user directory only for:**
-
 - Personal productivity scripts
 - Cross-project tools
 - Experimental commands
@@ -115,13 +106,10 @@ One-line summary of what this command does.
 ```
 
 ## Safety & Error Handling
-
 [Warnings, confirmations, edge cases]
 
 ## Output Format
-
 [What the user will see]
-
 ```
 
 **For GitHub commands specifically:**
@@ -151,7 +139,6 @@ One-line summary of what this command does.
 ### Step 5: Generate, Test & Validate
 
 **Create the command:**
-
 1. Write the command file
 2. Include usage examples
 3. Document all options
@@ -159,7 +146,6 @@ One-line summary of what this command does.
 5. Show expected output
 
 **Test immediately:**
-
 ```bash
 # Try the command
 /new-command
@@ -170,7 +156,6 @@ One-line summary of what this command does.
 ```
 
 **Iterate based on feedback:**
-
 - Did it do what you expected?
 - Is the output clear?
 - Are there missing edge cases?
@@ -181,20 +166,17 @@ One-line summary of what this command does.
 ### Naming Conventions
 
 **Prefix patterns:**
-
 - `gh-*` - GitHub operations (gh-review-pr, gh-fix-ci)
 - `db-*` - Database operations (db-sync, db-backup)
 - `deploy-*` - Deployment tasks (deploy-staging, deploy-prod)
 - `test-*` - Testing helpers (test-coverage, test-e2e)
 
 **Verb-first naming:**
-
 - `make-tests` - Create tests
 - `fix-ci` - Fix CI issues
 - `review-pr` - Review pull request
 
 **Avoid:**
-
 - Generic names (run, do, execute)
 - Unclear abbreviations (mk, fx, rv)
 - Overly long names (create-comprehensive-test-suite-with-coverage)
@@ -202,7 +184,6 @@ One-line summary of what this command does.
 ### Workflow Structures
 
 **Single-Phase (Simple Commands):**
-
 ```markdown
 ## Workflow
 1. Validate input
@@ -211,7 +192,6 @@ One-line summary of what this command does.
 ```
 
 **Multi-Phase (Complex Commands):**
-
 ```markdown
 ## Phase 1: Setup
 [Gather information, validate prerequisites]
@@ -227,7 +207,6 @@ One-line summary of what this command does.
 ```
 
 **Interactive Workflows:**
-
 ```markdown
 ## Workflow
 1. Present options
@@ -242,7 +221,6 @@ One-line summary of what this command does.
 **Always include:**
 
 **1. Confirmation for Destructive Actions:**
-
 ```markdown
 ⚠️  Warning: This will delete 15 files
 
@@ -255,7 +233,6 @@ Continue? (y/n)
 ```
 
 **2. Branch Protection:**
-
 ```markdown
 ⚠️  Warning: You're on the main branch
 
@@ -264,7 +241,6 @@ Create one now? (y/n)
 ```
 
 **3. Uncommitted Changes Check:**
-
 ```markdown
 ⚠️  Uncommitted changes detected
 
@@ -275,7 +251,6 @@ Options:
 ```
 
 **4. Dry Run Mode:**
-
 ```markdown
 ## Safety Features
 - Always dry run first (show what would change)
@@ -286,7 +261,6 @@ Options:
 ### Output Standards
 
 **Structured Sections:**
-
 ```markdown
 📋 SECTION NAME
 [Content here]
@@ -299,7 +273,6 @@ Options:
 ```
 
 **Status Indicators:**
-
 - ✅ Success / Completed
 - ❌ Error / Failed
 - ⚠️ Warning / Attention needed
@@ -309,7 +282,6 @@ Options:
 - 🔍 Analysis / Review
 
 **Progress Tracking:**
-
 ```markdown
 Processing items... [3/10]
 
@@ -320,7 +292,6 @@ Processing items... [3/10]
 ```
 
 **Clear Next Steps:**
-
 ```markdown
 💡 Next Steps:
 1. Review changes with: git diff
@@ -332,7 +303,6 @@ Processing items... [3/10]
 ### Code Examples
 
 **Bash Commands:**
-
 ```markdown
 ## Implementation
 
@@ -347,7 +317,6 @@ gh pr diff <number>
 # Check status
 gh pr checks <number>
 ```
-
 ```
 
 **Error Handling:**
@@ -356,27 +325,21 @@ gh pr checks <number>
 
 **Authentication Failed:**
 ```
-
 ❌ Error: GitHub authentication required
 Run: gh auth login
-
 ```
 
 **Invalid Input:**
 ```
-
 ❌ Error: Invalid PR number
 Usage: /command <pr-number>
 Example: /command 123
-
 ```
 
 **Not in Git Repo:**
 ```
-
 ❌ Error: Not a git repository
 Run this command from inside a git repo
-
 ```
 ```
 
@@ -387,7 +350,6 @@ Run this command from inside a git repo
 When creating commands for monorepo projects:
 
 **Package-Aware:**
-
 ```markdown
 ## Workflow
 1. Detect which packages changed
@@ -397,7 +359,6 @@ When creating commands for monorepo projects:
 ```
 
 **Example:**
-
 ```bash
 # Build specific package
 /build @[project]/api
@@ -412,14 +373,12 @@ When creating commands for monorepo projects:
 ### NestJS Commands
 
 **Service Generation:**
-
 ```bash
 /generate-service users
 # Creates: service, controller, module, DTO, tests
 ```
 
 **API Testing:**
-
 ```bash
 /test-api /users
 # Runs integration tests for specific endpoint
@@ -429,7 +388,6 @@ When creating commands for monorepo projects:
 ### Documentation Commands
 
 **Update PRDs:**
-
 ```bash
 /update-prd "feature-name"
 # Syncs code changes with .agent/TASKS/ PRDs
@@ -437,7 +395,6 @@ When creating commands for monorepo projects:
 ```
 
 **Architecture Sync:**
-
 ```bash
 /sync-arch
 # Updates .agent/SYSTEM/WORKSPACE-ARCHITECTURE.md
@@ -447,7 +404,6 @@ When creating commands for monorepo projects:
 ### Compliance Commands
 
 **Check Critical Rules:**
-
 ```bash
 /check-rules
 # Validates against .agent/SYSTEM/CRITICAL-NEVER-DO.md
@@ -459,7 +415,6 @@ When creating commands for monorepo projects:
 When creating ANY command for a project, ALWAYS include these patterns:
 
 **1. Reference Critical Rules First:**
-
 ```markdown
 ## Before Execution
 
@@ -470,7 +425,6 @@ cat .agent/SYSTEM/critical/CROSS-PROJECT-RULES.md
 ```
 
 Ensure command doesn't violate:
-
 - ❌ No console.log (use logger service)
 - ❌ No `any` types (strict TypeScript)
 - ❌ No inline interfaces (use shared packages)
@@ -478,7 +432,6 @@ Ensure command doesn't violate:
 - ❌ No deletedAt (use isDeleted: boolean)
 - ❌ No serializers in API repo
 - ✅ Multi-tenancy always enforced
-
 ```
 
 **2. Never Run Tests Locally:**
@@ -495,7 +448,6 @@ vitest run
 ```
 
 ✅ CORRECT:
-
 ```bash
 # Write tests, commit, push to GitHub
 git add .
@@ -505,7 +457,6 @@ git push origin feature-branch
 # Monitor on GitHub Actions
 gh run watch
 ```
-
 ```
 
 **3. Monorepo Structure Awareness:**
@@ -527,7 +478,6 @@ Projects:
 ```
 
 **4. GitHub Actions Integration:**
-
 ```markdown
 ## CI/CD Commands
 
@@ -548,13 +498,11 @@ gh run rerun <run-id> --failed
 ```
 
 Common workflows (in project directories):
-
 - `[api-project]/.github/workflows/deploy-production.yml`
 - `[api-project]/.github/workflows/quality-gates.yml`
 - `[frontend-project]/.github/workflows/staging.yml`
 - `[frontend-project]/.github/workflows/ci.yml`
 - `[packages-project]/.github/workflows/build.yml`
-
 ```
 
 **5. Package Location Rules:**
@@ -563,17 +511,13 @@ Common workflows (in project directories):
 
 Serializers location:
 ```
-
 [packages-project]/packages/common/serializers/
-
 ```
 
 Interfaces location:
 ```
-
 [packages-project]/packages/*/interfaces/
 [packages-project]/packages/*/props/
-
 ```
 
 Database patterns:
@@ -585,7 +529,6 @@ Database patterns:
 ### Existing Command Patterns
 
 Reference these commands for patterns:
-
 ```bash
 ls .cursor/commands/
 
@@ -596,7 +539,6 @@ ls .cursor/commands/
 ```
 
 **Common patterns used:**
-
 1. **Check CRITICAL rules first** - Always reference `.agent/SYSTEM/critical/`
 2. **Never run tests locally** - Push to GitHub Actions instead
 3. **Monorepo-aware** - Handle multiple packages correctly
@@ -635,7 +577,6 @@ fi
 ```
 
 **Confirm action:**
-
 ```
 ⚠️  Warning: This will update staging database schema
 
@@ -653,7 +594,6 @@ Continue? (y/n)
 ### Phase 2: Backup
 
 **Create backup:**
-
 ```bash
 # Backup staging database
 pg_dump $STAGING_DB_URL > backup-$(date +%Y%m%d-%H%M%S).sql
@@ -665,7 +605,6 @@ ls -lh backup-*.sql
 ### Phase 3: Sync Schema
 
 **Run migrations:**
-
 ```bash
 # Run Prisma migrations
 npx prisma migrate deploy
@@ -675,7 +614,6 @@ npm run migrate:staging
 ```
 
 **Show progress:**
-
 ```
 Running migrations...
 
@@ -689,7 +627,6 @@ Running migrations...
 ### Phase 4: Verification
 
 **Test database:**
-
 ```bash
 # Run smoke tests
 npm run test:db
@@ -699,7 +636,6 @@ psql $STAGING_DB_URL -c "\dt"
 ```
 
 **Summary:**
-
 ```
 ✅ DATABASE SYNC COMPLETE
 
@@ -734,7 +670,6 @@ Staging schema: v1.2.3 → v1.3.0
 ## Error Handling
 
 **Wrong Environment:**
-
 ```
 ❌ Error: Cannot sync production database
 This command only works in staging environment
@@ -742,7 +677,6 @@ Current: production
 ```
 
 **Backup Failed:**
-
 ```
 ❌ Error: Backup creation failed
 Cannot proceed without backup
@@ -750,7 +684,6 @@ Check disk space and permissions
 ```
 
 **Migration Failed:**
-
 ```
 ❌ Error: Migration failed at step 3/5
 
@@ -763,7 +696,6 @@ Rollback? (y/n)
 ## Rollback Procedure
 
 If sync fails:
-
 ```bash
 # Automatic rollback triggered
 🔄 Rolling back to previous state...
@@ -774,7 +706,6 @@ psql $STAGING_DB_URL < backup-20241026-143022.sql
 ✅ Rollback complete
 Database restored to previous state
 ```
-
 ```
 
 ## Usage
@@ -830,7 +761,6 @@ Try it now? (y/n)
 ## Best Practices Summary
 
 **DO:**
-
 - ✅ Use clear, descriptive names
 - ✅ Include safety confirmations
 - ✅ Show examples
@@ -840,7 +770,6 @@ Try it now? (y/n)
 - ✅ Follow existing patterns
 
 **DON'T:**
-
 - ❌ Skip error handling
 - ❌ Make destructive changes without confirmation
 - ❌ Use unclear abbreviations

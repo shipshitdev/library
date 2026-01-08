@@ -862,7 +862,6 @@ Before ending session, ensure these are documented:
    ```
 
 4. `/.agent/TASKS/mobile/TODO.md`:
-
    ```markdown
    - [x] Integrate Clerk authentication
    - [x] Create auth context provider

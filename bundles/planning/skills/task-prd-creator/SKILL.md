@@ -23,7 +23,6 @@ You are a task and PRD creation specialist. When users request new features, enh
 ## When This Activates
 
 This skill auto-activates when:
-
 - User says "I want to add [feature]"
 - User says "implement [feature]"
 - User says "create a task for [feature]"
@@ -36,7 +35,6 @@ This skill auto-activates when:
 - User requests any new work
 
 **Examples:**
-
 - "I want to add multi-platform analytics"
 - "Can you implement a thread composer for Twitter?"
 - "Create a task for video generation with captions"
@@ -73,7 +71,6 @@ This skill auto-activates when:
 **Your Actions:**
 
 1. Read relevant architecture docs:
-
    ```bash
    # For API features
    cat [api-project]/.agent/SYSTEM/ARCHITECTURE.md
@@ -85,13 +82,11 @@ This skill auto-activates when:
    ```
 
 2. Search for similar implementations:
-
    ```bash
    grep -r "similar_pattern" [project]/
    ```
 
 3. Check examples:
-
    ```bash
    cat .agent/EXAMPLES/[category]/[example-name].md
    ```
@@ -101,7 +96,6 @@ This skill auto-activates when:
 **Your Actions:**
 
 1. Use Context7 MCP for all relevant libraries:
-
    ```typescript
    // Example for Next.js feature
    await mcp_context7_resolve_library_id("nextjs");
@@ -411,7 +405,6 @@ db.collection.createIndex({ field: 1 });
 **Implementation Notes:**
 
 [Any additional notes, gotchas, or things to watch out for during implementation]
-
 ```
 
 ## Naming Conventions
@@ -498,7 +491,6 @@ When user says:
 **Your Response:**
 
 ```
-
 Great! Let me create a proper task and PRD for this.
 
 A few quick questions:
@@ -526,7 +518,6 @@ This task includes:
 The PRD includes detailed implementation steps, files to create/modify, and testing requirements.
 
 Review the files and let me know if you'd like to proceed with implementation or make changes!
-
 ```
 
 ## Quick Reference

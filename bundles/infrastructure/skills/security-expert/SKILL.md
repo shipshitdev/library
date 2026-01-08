@@ -52,7 +52,6 @@ This skill activates automatically when you're:
 ### 1. Authentication & Authorization
 
 **Authentication (Who you are):**
-
 - ✅ Secure password hashing (bcrypt, argon2)
 - ✅ JWT token management
 - ✅ Session security
@@ -60,7 +59,6 @@ This skill activates automatically when you're:
 - ✅ OAuth/SSO integration
 
 **Authorization (What you can do):**
-
 - ✅ Role-based access control (RBAC)
 - ✅ Permission checks on all endpoints
 - ✅ Resource-level authorization
@@ -139,21 +137,18 @@ db.query(query, [email]);
 ### 3. Data Protection
 
 **Encryption:**
-
 - ✅ Encryption at rest (database)
 - ✅ Encryption in transit (HTTPS/TLS)
 - ✅ Sensitive fields encrypted
 - ✅ Key management secure
 
 **Hashing:**
-
 - ✅ Passwords hashed (never plaintext)
 - ✅ Use bcrypt or argon2
 - ✅ Salt included
 - ✅ Appropriate cost factor
 
 **Secrets Management:**
-
 - ✅ Environment variables for secrets
 - ✅ No secrets in code
 - ✅ `.env` in `.gitignore`
@@ -224,7 +219,6 @@ async getData() {
 ### 1. Broken Access Control
 
 **Prevention:**
-
 - ✅ Verify authorization on all endpoints
 - ✅ Enforce multi-tenancy
 - ✅ Test for privilege escalation
@@ -233,7 +227,6 @@ async getData() {
 ### 2. Cryptographic Failures
 
 **Prevention:**
-
 - ✅ Use strong encryption algorithms
 - ✅ Hash passwords properly
 - ✅ Protect sensitive data
@@ -242,7 +235,6 @@ async getData() {
 ### 3. Injection
 
 **Prevention:**
-
 - ✅ Parameterized queries
 - ✅ Input validation
 - ✅ Output encoding
@@ -251,7 +243,6 @@ async getData() {
 ### 4. Insecure Design
 
 **Prevention:**
-
 - ✅ Threat modeling
 - ✅ Security by design
 - ✅ Security requirements
@@ -260,7 +251,6 @@ async getData() {
 ### 5. Security Misconfiguration
 
 **Prevention:**
-
 - ✅ Secure defaults
 - ✅ Remove unnecessary features
 - ✅ Security headers configured
@@ -269,7 +259,6 @@ async getData() {
 ### 6. Vulnerable Components
 
 **Prevention:**
-
 - ✅ Keep dependencies updated
 - ✅ Regular security audits
 - ✅ Remove unused dependencies
@@ -278,7 +267,6 @@ async getData() {
 ### 7. Authentication Failures
 
 **Prevention:**
-
 - ✅ Strong password policies
 - ✅ Secure session management
 - ✅ MFA where possible
@@ -287,7 +275,6 @@ async getData() {
 ### 8. Software and Data Integrity
 
 **Prevention:**
-
 - ✅ Secure CI/CD pipeline
 - ✅ Code signing
 - ✅ Dependency verification
@@ -296,7 +283,6 @@ async getData() {
 ### 9. Security Logging Failures
 
 **Prevention:**
-
 - ✅ Comprehensive logging
 - ✅ Log security events
 - ✅ Monitor logs
@@ -305,7 +291,6 @@ async getData() {
 ### 10. Server-Side Request Forgery (SSRF)
 
 **Prevention:**
-
 - ✅ Validate URLs
 - ✅ Whitelist allowed domains
 - ✅ Use URL parsing libraries
@@ -316,21 +301,18 @@ async getData() {
 ### React/Next.js Security
 
 **XSS Prevention:**
-
 - ✅ React automatically escapes
 - ✅ Avoid `dangerouslySetInnerHTML`
 - ✅ Sanitize if needed
 - ✅ Content Security Policy
 
 **Authentication:**
-
 - ✅ Secure token storage
 - ✅ HttpOnly cookies preferred
 - ✅ Token expiration
 - ✅ Refresh token rotation
 
 **API Security:**
-
 - ✅ Never expose API keys in frontend
 - ✅ Validate all inputs
 - ✅ Use HTTPS
@@ -339,21 +321,18 @@ async getData() {
 ### NestJS Security
 
 **Guards:**
-
 - ✅ Authentication guards
 - ✅ Authorization guards
 - ✅ Role-based guards
 - ✅ Custom guards for complex logic
 
 **Validation:**
-
 - ✅ DTOs with class-validator
 - ✅ Pipes for transformation
 - ✅ Custom validators
 - ✅ Global validation pipe
 
 **Error Handling:**
-
 - ✅ Generic error messages
 - ✅ No stack traces in production
 - ✅ Proper HTTP status codes
@@ -362,21 +341,18 @@ async getData() {
 ## MongoDB Security
 
 **Connection Security:**
-
 - ✅ Use connection strings (not hardcoded)
 - ✅ Database user with minimal privileges
 - ✅ Network access restricted
 - ✅ Encryption at rest enabled
 
 **Query Security:**
-
 - ✅ Validate all inputs
 - ✅ Use parameterized queries
 - ✅ Prevent NoSQL injection
 - ✅ Enforce multi-tenancy
 
 **Index Security:**
-
 - ✅ Indexes for performance
 - ✅ Unique indexes for constraints
 - ✅ Compound indexes for queries
@@ -385,28 +361,24 @@ async getData() {
 ## AWS Security
 
 **IAM:**
-
 - ✅ Least privilege principle
 - ✅ Role-based access
 - ✅ Regular access reviews
 - ✅ MFA for console access
 
 **Network Security:**
-
 - ✅ Security groups configured
 - ✅ VPC isolation
 - ✅ Private subnets for databases
 - ✅ Network ACLs
 
 **Secrets Management:**
-
 - ✅ AWS Secrets Manager
 - ✅ Parameter Store for config
 - ✅ Encrypted at rest
 - ✅ Rotation enabled
 
 **Monitoring:**
-
 - ✅ CloudTrail logging
 - ✅ CloudWatch monitoring
 - ✅ Security alerts
@@ -415,7 +387,6 @@ async getData() {
 ## Security Checklist
 
 ### Authentication
-
 - [ ] Passwords hashed (bcrypt/argon2)
 - [ ] JWT tokens secure
 - [ ] Session management secure
@@ -423,7 +394,6 @@ async getData() {
 - [ ] Password policies enforced
 
 ### Authorization
-
 - [ ] All endpoints protected
 - [ ] Role-based access control
 - [ ] Multi-tenancy enforced
@@ -431,7 +401,6 @@ async getData() {
 - [ ] Permission checks present
 
 ### Input Validation
-
 - [ ] All inputs validated
 - [ ] DTOs with validation
 - [ ] Injection prevention
@@ -439,7 +408,6 @@ async getData() {
 - [ ] CSRF protection
 
 ### Data Protection
-
 - [ ] Encryption at rest
 - [ ] Encryption in transit
 - [ ] Secrets in environment variables
@@ -447,7 +415,6 @@ async getData() {
 - [ ] Secure key management
 
 ### Configuration
-
 - [ ] Security headers configured
 - [ ] CORS properly configured
 - [ ] Rate limiting enabled
@@ -455,7 +422,6 @@ async getData() {
 - [ ] Logging configured
 
 ### Dependencies
-
 - [ ] Dependencies up to date
 - [ ] Security audits run
 - [ ] Vulnerabilities addressed
@@ -475,13 +441,11 @@ async getData() {
 ## Resources
 
 ### OWASP Resources
-
 - OWASP Top 10: https://owasp.org/www-project-top-ten/
 - OWASP Cheat Sheets: https://cheatsheetseries.owasp.org/
 - OWASP Testing Guide: https://owasp.org/www-project-web-security-testing-guide/
 
 ### Framework Security
-
 - NestJS Security: https://docs.nestjs.com/security/authentication
 - Next.js Security: https://nextjs.org/docs/app/building-your-application/configuring/security-headers
 - React Security: https://react.dev/learn/escape-hatches
@@ -489,7 +453,6 @@ async getData() {
 ---
 
 **When this skill is active**, you will provide security guidance that:
-
 1. Discovers project's security patterns from documentation
 2. Adapts to project's authentication/authorization system
 3. Follows OWASP Top 10 best practices

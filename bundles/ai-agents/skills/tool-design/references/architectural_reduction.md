@@ -9,7 +9,6 @@ A production text-to-SQL agent was rebuilt using architectural reduction princip
 ### Original Architecture (Many Specialized Tools)
 
 The original system included:
-
 - GetEntityJoins: Find relationships between entities
 - LoadCatalog: Load data catalog information
 - RecallContext: Retrieve previous context
@@ -33,7 +32,6 @@ Each tool solved a specific problem the team anticipated the model would face. T
 ### Reduced Architecture (Two Primitive Tools)
 
 The reduced system included:
-
 - ExecuteCommand: Run arbitrary bash commands in a sandbox
 - ExecuteSQL: Run SQL queries against the database
 
@@ -77,7 +75,6 @@ File systems have 50+ years of refinement. Standard Unix tools like `grep` are w
 ### Tools Were Constraining Reasoning
 
 The specialized tools were solving problems the model could handle on its own:
-
 - Pre-filtering context the model could navigate
 - Constraining options the model could evaluate
 - Wrapping interactions in validation logic the model didn't need
@@ -87,7 +84,6 @@ Each guardrail became a maintenance burden. Each model update required recalibra
 ### Good Documentation Replaces Tool Sophistication
 
 The semantic layer was already well-documented:
-
 - Dimension definitions in structured YAML
 - Measure calculations with clear naming
 - Join relationships in navigable files
@@ -175,7 +171,6 @@ Modern models can handle complexity. Constraining reasoning because you don't tr
 ### Invest in Context, Not Tooling
 
 The foundation matters more than clever tooling:
-
 - Clear file naming conventions
 - Well-structured documentation
 - Consistent data organization
@@ -208,3 +203,4 @@ Architectural reduction is not universally applicable, but the principle challen
 - Vercel Engineering: "We removed 80% of our agent's tools" (December 2025)
 - AI SDK ToolLoopAgent documentation
 - Vercel Sandbox documentation
+

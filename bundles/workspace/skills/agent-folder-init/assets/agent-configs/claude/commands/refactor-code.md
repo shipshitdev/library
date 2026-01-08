@@ -15,7 +15,6 @@ Systematic approach to refactoring code safely.
 ### Step 1: Identify the Problem
 
 Common Refactoring Triggers:
-
 - Function > 50 lines
 - File > 300 lines
 - Duplicate code (3+ instances)
@@ -37,7 +36,6 @@ Find similar patterns in the codebase before refactoring.
 ### Step 4: Make Small Changes
 
 Refactor incrementally:
-
 1. Extract Function - Break large functions into smaller ones
 2. Extract Constants - Replace magic numbers
 3. Replace any with Types - Add proper TypeScript types
@@ -61,21 +59,18 @@ After EVERY change, run tests to verify behavior unchanged.
 ### Step 8: Refactoring Checklist
 
 Before starting:
-
 - All tests passing
 - Understanding what the code does
 - Have example pattern to follow
 - Committed current working code
 
 During refactoring:
-
 - Make one change at a time
 - Run tests after each change
 - Keep same public API
 - Document why (not just what)
 
 After refactoring:
-
 - All tests still passing
 - No behavior changes
 - Code is more readable
@@ -94,7 +89,6 @@ After refactoring:
 ## Quick Wins
 
 Low-risk, high-value refactorings:
-
 1. Replace any with proper types
 2. Extract magic numbers to constants
 3. Extract duplicate code to functions

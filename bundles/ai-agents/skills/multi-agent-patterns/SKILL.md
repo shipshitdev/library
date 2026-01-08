@@ -10,7 +10,6 @@ Multi-agent architectures distribute work across multiple language model instanc
 ## When to Activate
 
 Activate this skill when:
-
 - Single-agent context limits constrain task complexity
 - Tasks decompose naturally into parallel subtasks
 - Different subtasks require different tool sets or system prompts
@@ -190,7 +189,6 @@ Mitigation: Validate agent outputs before passing to consumers. Implement retry 
 ## Examples
 
 **Example 1: Research Team Architecture**
-
 ```text
 Supervisor
 ├── Researcher (web search, document retrieval)
@@ -200,7 +198,6 @@ Supervisor
 ```
 
 **Example 2: Handoff Protocol**
-
 ```python
 def handle_customer_request(request):
     if request.type == "billing":
@@ -235,17 +232,14 @@ This skill builds on context-fundamentals and context-degradation. It connects t
 ## References
 
 Internal reference:
-
 - [Frameworks Reference](./references/frameworks.md) - Detailed framework implementation patterns
 
 Related skills in this collection:
-
 - context-fundamentals - Context basics
 - memory-systems - Cross-agent memory
 - context-optimization - Partitioning strategies
 
 External resources:
-
 - [LangGraph Documentation](https://langchain-ai.github.io/langgraph/) - Multi-agent patterns and state management
 - [AutoGen Framework](https://microsoft.github.io/autogen/) - GroupChat and conversational patterns
 - [CrewAI Documentation](https://docs.crewai.com/) - Hierarchical agent processes

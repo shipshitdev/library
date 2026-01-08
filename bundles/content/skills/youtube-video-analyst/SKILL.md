@@ -39,7 +39,6 @@ The script outputs the full transcript text ready for analysis.
 ### Method 2: Manual Paste
 
 User can paste the transcript directly. Common sources:
-
 - YouTube's built-in transcript feature (click "..." → "Show transcript")
 - Services like ytscribe.ai, youtubetotranscript.com
 - Any other transcript extraction tool
@@ -244,7 +243,6 @@ Structure your analysis with these sections:
 ## Integration with Other Skills
 
 After analysis, use the **content-creator** skill to:
-
 - Generate new video scripts using the extracted templates
 - Create social media content promoting the new video
 - Build a content lineup based on the viral formula

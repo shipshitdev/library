@@ -77,7 +77,6 @@ This skill activates automatically when you're:
 2. **General Guidelines (adapt to project):**
 
 **When to create in shared location:**
-
 - ✅ Used in 2+ apps (discover from project structure)
 - ✅ Generic UI patterns (buttons, modals, cards)
 - ✅ Design system components
@@ -85,14 +84,12 @@ This skill activates automatically when you're:
 - ✅ Layout components (headers, footers, grids)
 
 **When to create in app-specific location:**
-
 - ✅ App-specific business logic
 - ✅ Used only in one app
 - ✅ Features tightly coupled to app context
 - ✅ One-off specialized components
 
 **Example** (adapt paths to project structure):
-
 ```
 ✅ [shared-location]/components/buttons/Button.tsx (shared, generic)
 ✅ [app-location]/components/[Feature]Component.tsx (app-specific)
@@ -857,14 +854,12 @@ Before creating or updating a component, verify:
 ## Resources
 
 **Discover from project:**
-
 - **Design System**: Discover location from project structure
 - **Shared Components**: Discover location from project structure
 - **Shared Props**: Discover location from project structure
 - **Project Documentation**: Check `.agent/SYSTEM/ARCHITECTURE.md`
 
 **External Resources:**
-
 - **@agenticindiedev/ui**: Check the package README/docs
 - **Tailwind Docs**: https://tailwindcss.com/
 - **Next.js Docs**: https://nextjs.org/docs

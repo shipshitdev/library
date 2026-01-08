@@ -24,7 +24,6 @@ You are an outbound sales strategist specializing in Alex Hormozi's outbound pri
 ## When This Activates
 
 This skill auto-activates when:
-
 - User mentions cold email or cold DM performance
 - User asks about improving response rates
 - User says "outbound isn't working" or feels "spammy"
@@ -50,7 +49,6 @@ This skill auto-activates when:
 Ask the user:
 
 > **Who exactly are you reaching out to?**
->
 > 1. What's their job title/role?
 > 2. What company size/type?
 > 3. What industry or vertical?
@@ -59,7 +57,6 @@ Ask the user:
 > 6. What would make them say "this person actually gets my situation"?
 
 **ICP Framework:**
-
 | Element | Question | Example |
 |---------|----------|---------|
 | Title | Who decides? | Marketing Directors |
@@ -73,7 +70,6 @@ Ask the user:
 Ask the user:
 
 > **Share your current outreach message(s):**
->
 > 1. What's your current cold email or DM?
 > 2. What's your subject line?
 > 3. What's your response rate? (Be honest)
@@ -81,7 +77,6 @@ Ask the user:
 > 5. How many do you send per day/week?
 
 **Common Problems to Diagnose:**
-
 | Issue | Symptom | Fix |
 |-------|---------|-----|
 | Too long | Wall of text | Under 100 words |
@@ -94,7 +89,6 @@ Ask the user:
 ### Step 3: The Value-First Rewrite
 
 **Formula:**
-
 ```
 [Personalized opener showing research]
 [Observation/insight about their situation]
@@ -103,7 +97,6 @@ Ask the user:
 ```
 
 **First Sentence Test:**
-
 - Does it prove you researched THEM specifically?
 - Would this apply to 100 other people? (If yes, it's not personalized)
 - Does it make them want to read more?
@@ -114,14 +107,12 @@ Ask the user:
 > Make it impossible to ignore. Prove you know them.
 
 **Good Examples:**
-
 - "Saw your post about [specific thing] — made me think of [insight]"
 - "Noticed you're hiring [role] — usually means [pain point]"
 - "[Mutual connection] mentioned you're working on [project]"
 - "Your [blog/podcast/talk] on [topic] was [specific reaction]"
 
 **Bad Examples:**
-
 - "Hope this email finds you well"
 - "I'm reaching out because..."
 - "My name is X and I work at Y"
@@ -131,7 +122,6 @@ Ask the user:
 > Show you understand their world.
 
 **Good Examples:**
-
 - "Companies at your stage usually struggle with [problem]"
 - "Saw you're scaling — that usually creates [challenge]"
 - "Most [role] I talk to are dealing with [pain]"
@@ -140,7 +130,6 @@ Ask the user:
 > Give before you ask.
 
 **Zero-commitment offers:**
-
 - "Made you a quick [audit/video/analysis]"
 - "Put together [resource] that might help"
 - "Happy to share how we solved this for [similar company]"
@@ -150,14 +139,12 @@ Ask the user:
 > Make it natural and low-friction.
 
 **Good CTAs:**
-
 - "Worth a look?"
 - "Interested?"
 - "Want me to send it over?"
 - "Open to a quick look?"
 
 **Bad CTAs:**
-
 - "Let's book a 30-minute call"
 - "When are you free to chat?"
 - "I'd love to pick your brain"
@@ -166,7 +153,6 @@ Ask the user:
 ### Step 5: Follow-Up Sequence
 
 **Sequence Framework:**
-
 | Email | Timing | Purpose |
 |-------|--------|---------|
 | #1 | Day 0 | Initial value offer |
@@ -192,7 +178,6 @@ Ask the user:
 ### Step 6: Response Handling
 
 **When They Respond Positively:**
-
 1. Thank them briefly
 2. Deliver the promised value
 3. Ask ONE qualifying question
@@ -375,7 +360,6 @@ For each prospect, find:
 ## The Outbound Math
 
 **Example:**
-
 - 100 emails/day × 5 days = 500 emails/week
 - 5% response rate = 25 responses
 - 50% positive responses = 12-13 interested

@@ -1,7 +1,6 @@
 # Style Guide Reference
 
 ## Table of Contents
-
 1. [Base Layout](#base-layout)
 2. [Colors](#colors)
 3. [Typography](#typography)
@@ -31,7 +30,6 @@ body {
 ```
 
 **Width tiers:**
-
 - `900px` - content pages (outreach, drafts)
 - `1000px` - table-heavy pages
 - `1400px` - two-panel dashboards
@@ -41,7 +39,6 @@ body {
 ## Colors
 
 ### CSS Variables
-
 ```css
 :root {
     /* Semantic backgrounds */
@@ -70,7 +67,6 @@ body {
 ```
 
 ### Status Text (inline)
-
 ```css
 .stale { color: #c00; font-weight: bold; }
 .warm { color: #080; }
@@ -78,7 +74,6 @@ body {
 ```
 
 ### Trend Colors
-
 ```css
 .trend-up { color: #22c55e; }
 .trend-up::after { content: ' ↑'; }
@@ -115,7 +110,6 @@ pre {
 ## Tables
 
 ### Default (minimal)
-
 ```css
 table { border-collapse: collapse; width: 100%; margin: 16px 0; }
 th, td { padding: 8px; text-align: left; border-bottom: 1px solid #e5e5e5; }
@@ -123,7 +117,6 @@ th { font-weight: 600; color: #666; font-size: 14px; }
 ```
 
 ### Sortable Headers
-
 ```css
 th.sortable a {
     cursor: pointer;
@@ -135,7 +128,6 @@ th.sorted { font-weight: bold; }
 ```
 
 ### Styled Table (opt-in)
-
 ```css
 .table-styled td.positive { color: var(--success-accent); }
 .table-styled td.negative { color: var(--error-accent); }
@@ -148,9 +140,7 @@ th.sorted { font-weight: bold; }
 ## Tags & Pills
 
 ### Category Tags
-
 For categorizing items (group, DM, money, etc.)
-
 ```css
 .tag {
     display: inline-block;
@@ -165,9 +155,7 @@ For categorizing items (group, DM, money, etc.)
 ```
 
 ### Status Pills
-
 For state indicators (Paid, Failed, Pending)
-
 ```css
 .status {
     display: inline-flex;
@@ -185,9 +173,7 @@ For state indicators (Paid, Failed, Pending)
 ```
 
 ### Filter Pills
-
 For toggleable filters
-
 ```css
 .filter {
     display: inline-block;
@@ -207,7 +193,6 @@ For toggleable filters
 ```
 
 ### Time Filter Pills
-
 ```css
 .pill {
     padding: 6px 12px;
@@ -226,7 +211,6 @@ For toggleable filters
 ## Status Indicators
 
 ### Inline Status Text
-
 ```html
 <span class="stale">STALE: needs response</span>
 <span class="warm">Active conversation</span>
@@ -234,7 +218,6 @@ For toggleable filters
 ```
 
 ### Status Cards (full-width)
-
 ```css
 .card-success {
     background: var(--success-bg);
@@ -271,7 +254,6 @@ For toggleable filters
 ```
 
 **Usage:**
-
 ```html
 <div class="stat">
     <div class="stat-value">8,017</div>
@@ -284,7 +266,6 @@ For toggleable filters
 ## Interactive Elements
 
 ### Collapsible Sections
-
 ```css
 details {
     margin: 20px 0;
@@ -299,7 +280,6 @@ summary {
 ```
 
 ### Contenteditable Drafts
-
 ```html
 <pre contenteditable="true"
      data-thread-id="tg:dm:username"
@@ -321,7 +301,6 @@ document.addEventListener('DOMContentLoaded', restoreDrafts);
 ```
 
 ### Copy Button
-
 ```javascript
 function copyToClipboard(text, btn) {
     navigator.clipboard.writeText(text).then(() => {
@@ -345,7 +324,6 @@ button:hover, .btn:hover {
 ```
 
 ### Deep Links
-
 ```html
 <a href="tg://resolve?domain=username">Open Telegram</a>
 <a href="sms:+14155551234">Send SMS</a>
@@ -366,7 +344,6 @@ button:hover, .btn:hover {
 ```
 
 **Usage with emoji prefix:**
-
 ```html
 <div class="section-header">🔴 URGENT - Needs Action</div>
 <div class="section-header">🟠 PENDING - Follow Up</div>

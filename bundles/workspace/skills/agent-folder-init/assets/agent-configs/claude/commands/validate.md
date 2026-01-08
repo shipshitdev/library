@@ -22,14 +22,12 @@ Checks required files and broken links.
 ### Files to Check
 
 Workspace level:
-
 - .agent/README.md
 - .agent/SYSTEM/ directory
 - .agent/TASKS/ directory
 - .agent/SESSIONS/ directory
 
 Project level:
-
 - <project>/.agent/README.md
 - <project>/.agent/SYSTEM/SUMMARY.md
 
@@ -74,7 +72,6 @@ Priority: High, Medium, Low, CRITICAL
 ## Option 4: Validate All
 
 Runs all validation checks and provides comprehensive report:
-
 1. Documentation validation
 2. Session validation
 3. Task validation
@@ -83,7 +80,6 @@ Runs all validation checks and provides comprehensive report:
 ## Error Handling
 
 If validation fails:
-
 - Report specific errors
 - Provide fix suggestions
 - Offer auto-fix where possible

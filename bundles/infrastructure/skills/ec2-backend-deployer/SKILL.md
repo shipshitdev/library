@@ -174,7 +174,6 @@ CMD ["node", "dist/main.js"]
 ### GitHub Container Registry (ghcr.io) - Recommended
 
 **Advantages:**
-
 - Integrated with GitHub
 - Free for public repos, included with GitHub plans
 - Automatic authentication via GitHub tokens
@@ -187,7 +186,6 @@ CMD ["node", "dist/main.js"]
    - Container registry is automatically enabled
 
 2. **Image Naming Convention:**
-
    ```
    ghcr.io/[owner]/[service-name]:[tag]
    ```
@@ -221,20 +219,17 @@ echo "$GITHUB_TOKEN" | docker login ghcr.io -u USERNAME --password-stdin
 **Setup:**
 
 1. **Create ECR Repository:**
-
    ```bash
    aws ecr create-repository --repository-name [service-name]
    ```
 
 2. **Get Login Token:**
-
    ```bash
    aws ecr get-login-password --region [region] | \
      docker login --username AWS --password-stdin [account-id].dkr.ecr.[region].amazonaws.com
    ```
 
 3. **Push Image:**
-
    ```bash
    docker tag [image]:[tag] [account-id].dkr.ecr.[region].amazonaws.com/[service-name]:[tag]
    docker push [account-id].dkr.ecr.[region].amazonaws.com/[service-name]:[tag]
@@ -515,7 +510,6 @@ jobs:
 ### Tailscale Integration (Recommended)
 
 **Why Tailscale:**
-
 - Secure access without public IPs
 - No need to manage security groups for SSH
 - Easy connectivity from CI/CD runners
@@ -524,14 +518,12 @@ jobs:
 **Setup:**
 
 1. **Install Tailscale on EC2:**
-
    ```bash
    curl -fsSL https://tailscale.com/install.sh | sh
    sudo tailscale up
    ```
 
 2. **Get Tailscale IP:**
-
    ```bash
    tailscale ip -4
    ```
@@ -542,7 +534,6 @@ jobs:
    - `TAILSCALE_INSTANCE_IP` - Tailscale IP of EC2 instance
 
 4. **Use in GitHub Actions:**
-
    ```yaml
    - name: Setup Tailscale
      uses: tailscale/github-action@v2
@@ -557,20 +548,17 @@ jobs:
 If not using Tailscale, use direct SSH:
 
 **GitHub Secrets Required:**
-
 - `EC2_USER` - SSH username (e.g., `ubuntu`, `ec2-user`)
 - `EC2_SSH_KEY` - Private SSH key
 - `EC2_IP` - Public IP or hostname
 
 **Security Group Configuration:**
-
 - Allow SSH (port 22) from GitHub Actions IPs
 - Or use a bastion host for additional security
 
 ### Docker Compose Deployment
 
 **Requirements on EC2:**
-
 - Docker installed
 - Docker Compose v2 (not v1)
 - Sufficient disk space
@@ -581,13 +569,11 @@ If not using Tailscale, use direct SSH:
 1. **SSH to EC2 instance**
 
 2. **Login to container registry:**
-
    ```bash
    echo "$GITHUB_TOKEN" | docker login ghcr.io -u USERNAME --password-stdin
    ```
 
 3. **Create/update docker-compose.yml:**
-
    ```yaml
    version: '3.8'
    services:
@@ -607,19 +593,16 @@ If not using Tailscale, use direct SSH:
    ```
 
 4. **Pull latest images:**
-
    ```bash
    docker compose pull
    ```
 
 5. **Deploy services:**
-
    ```bash
    docker compose up -d --force-recreate
    ```
 
 6. **Verify health:**
-
    ```bash
    docker compose ps
    docker inspect --format='{{.State.Health.Status}}' [container-name]
@@ -628,7 +611,6 @@ If not using Tailscale, use direct SSH:
 ### Multi-Service Deployment
 
 **Deployment Order:**
-
 1. Dependencies first (Redis, databases)
 2. Independent services
 3. Dependent services (API)
@@ -662,7 +644,6 @@ services:
 ### GitHub Secrets Management
 
 **Required Secrets:**
-
 - `TAILSCALE_CLIENT_ID` / `TAILSCALE_CLIENT_SECRET` - For Tailscale access
 - `EC2_USER` / `EC2_SSH_KEY` - For SSH access (if not using Tailscale)
 - `NPM_TOKEN` - For private npm packages
@@ -670,7 +651,6 @@ services:
 - `GITHUB_TOKEN` - Automatically provided, for registry access
 
 **Setting Secrets:**
-
 1. Go to repository Settings → Secrets and variables → Actions
 2. Click "New repository secret"
 3. Add each secret with appropriate values
@@ -686,7 +666,6 @@ RUN --mount=type=secret,id=NPM_TOKEN \
 ```
 
 **In GitHub Actions:**
-
 ```yaml
 secrets: |
   NPM_TOKEN=${{ secrets.NPM_TOKEN }}
@@ -715,7 +694,6 @@ secrets: |
 **Implement health check endpoint in your application:**
 
 **NestJS:**
-
 ```typescript
 // health.controller.ts
 @Controller('v1/health')
@@ -728,7 +706,6 @@ export class HealthController {
 ```
 
 **Express:**
-
 ```typescript
 app.get('/v1/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
@@ -738,14 +715,12 @@ app.get('/v1/health', (req, res) => {
 ### Docker Health Checks
 
 **In Dockerfile:**
-
 ```dockerfile
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
   CMD curl -f http://localhost:3001/v1/health || exit 1
 ```
 
 **In docker-compose:**
-
 ```yaml
 healthcheck:
   test: ['CMD', 'curl', '-f', 'http://localhost:3001/v1/health']
@@ -758,7 +733,6 @@ healthcheck:
 ### Deployment Verification
 
 **Check service health after deployment:**
-
 ```bash
 # Check container status
 docker compose ps
@@ -776,7 +750,6 @@ curl http://localhost:3001/v1/health
 ### Post-Deployment Verification
 
 **In GitHub Actions:**
-
 ```yaml
 - name: Verify deployment
   run: |
@@ -798,13 +771,11 @@ curl http://localhost:3001/v1/health
 ### Manual Rollback
 
 **1. Find previous image tag:**
-
 - Check GitHub Container Registry
 - Look for tags like `master-<commit-sha>`
 - Or use semantic version tags
 
 **2. Update docker-compose.yml:**
-
 ```yaml
 services:
   api:
@@ -812,14 +783,12 @@ services:
 ```
 
 **3. Deploy previous version:**
-
 ```bash
 docker compose pull
 docker compose up -d --force-recreate
 ```
 
 **4. Verify rollback:**
-
 ```bash
 docker compose ps
 curl http://localhost:3001/v1/health
@@ -908,7 +877,6 @@ echo "✅ Docker cleanup complete!"
 ```
 
 **Run cleanup after deployments:**
-
 ```yaml
 - name: Docker cleanup
   run: |
@@ -920,7 +888,6 @@ echo "✅ Docker cleanup complete!"
 ### Common Issues
 
 **1. Docker Compose v2 not found:**
-
 ```bash
 # Install Docker Compose v2
 sudo apt-get update
@@ -928,26 +895,22 @@ sudo apt-get install docker-compose-plugin
 ```
 
 **2. Health check failures:**
-
 - Verify health endpoint is accessible
 - Check container logs: `docker compose logs [service]`
 - Ensure health check command is correct
 - Increase `start_period` for slow-starting services
 
 **3. Image pull failures:**
-
 - Verify registry authentication
 - Check image tag exists
 - Verify network connectivity
 
 **4. Deployment timeouts:**
-
 - Increase timeout in workflow
 - Check EC2 instance resources (CPU, memory)
 - Verify Tailscale connectivity
 
 **5. Service not starting:**
-
 - Check environment variables
 - Verify dependencies are healthy
 - Review application logs
@@ -979,3 +942,4 @@ After initial deployment:
 5. Implement blue-green deployments (optional)
 6. Configure log aggregation
 7. Set up backup procedures
+

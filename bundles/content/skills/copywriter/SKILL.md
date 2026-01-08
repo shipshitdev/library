@@ -212,7 +212,6 @@ When reviewing copy, check for:
 ## Common Copy Patterns
 
 **Discover project-specific patterns from:**
-
 - Existing UI copy in codebase
 - Project documentation
 - Brand guidelines
@@ -221,28 +220,24 @@ When reviewing copy, check for:
 **Common patterns (adapt to project):**
 
 **Marketing Pages:**
-
 - Hero: Bold transformation statement matching project's value prop
 - Features: Action + Outcome format
 - Social proof: Specific results, not testimonials
 - CTA: Match project's CTA style
 
 **App Interfaces:**
-
 - Instructions: Direct, step-by-step
 - Tooltips: Explain constraints and limits
 - Empty states: Show what's possible + CTA to create
 - Success states: Specific achievement + next action
 
 **Data Dashboards:**
-
 - Metrics: Always labeled with units
 - Insights: Actionable recommendations
 - Empty states: Clear, helpful messages
 - Filters: Clear, specific options
 
 **Forms & Settings:**
-
 - Labels: Clear, descriptive
 - Help text: Why this matters + recommended settings
 - Warnings: Specific impacts of changes
@@ -338,7 +333,6 @@ This skill activates automatically when you're:
 - Creating error messages, tooltips, or microcopy
 
 **Before writing, always:**
-
 1. Discover project's brand voice from documentation
 2. Check for project-specific copywriting skills
 3. Review existing copy examples

@@ -47,7 +47,6 @@
 ```
 
 **Process:**
-
 1. Identify what changed:
    - New collections/tables
    - Modified schemas
@@ -55,7 +54,6 @@
    - Data transformations needed
 
 2. **For MongoDB:**
-
    ```javascript
    // migrations/[timestamp]-add-user-indexes.js
    module.exports = {
@@ -166,7 +164,6 @@ Continue? (y/n)
 ### Schema Changes
 
 **Adding Fields:**
-
 ```javascript
 async up(db) {
   await db.collection('users').updateMany(
@@ -177,7 +174,6 @@ async up(db) {
 ```
 
 **Removing Fields:**
-
 ```javascript
 async up(db) {
   await db.collection('users').updateMany(
@@ -188,7 +184,6 @@ async up(db) {
 ```
 
 **Changing Field Types:**
-
 ```javascript
 async up(db) {
   const users = await db.collection('users').find({}).toArray();
@@ -205,7 +200,6 @@ async up(db) {
 ### Index Management
 
 **Create Indexes:**
-
 ```javascript
 async up(db) {
   // Single field index
@@ -223,7 +217,6 @@ async up(db) {
 ```
 
 **Drop Indexes:**
-
 ```javascript
 async down(db) {
   await db.collection('users').dropIndex('email_1');
@@ -234,7 +227,6 @@ async down(db) {
 ### Data Migrations
 
 **Transform Data:**
-
 ```javascript
 async up(db) {
   const cursor = db.collection('users').find({});
@@ -258,7 +250,6 @@ async up(db) {
 ```
 
 **Bulk Operations:**
-
 ```javascript
 async up(db) {
   const bulkOps = [];
@@ -394,7 +385,6 @@ async down(db) {
 ```
 
 **Test rollback:**
-
 ```bash
 # Run migration
 npm run migrate:up
@@ -481,21 +471,18 @@ async down(db) {
 **Always include:**
 
 1. **Backup Before Production:**
-
    ```bash
    # Create backup
    mongodump --uri="[connection-string]" --out=backup-[date]
    ```
 
 2. **Dry Run Mode:**
-
    ```bash
    # Test migration without applying
    npm run migrate:up --dry-run
    ```
 
 3. **Confirmation for Production:**
-
    ```
    ⚠️  WARNING: Running migration on PRODUCTION database
    

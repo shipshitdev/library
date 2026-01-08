@@ -10,7 +10,6 @@ Sets up Playwright for end-to-end testing in Next.js and React applications.
 ## When to Use
 
 This skill should be used when:
-
 - Adding E2E tests to a Next.js project
 - Setting up browser automation testing
 - Creating user flow tests for critical paths
@@ -28,13 +27,11 @@ This skill should be used when:
 ## Quick Start
 
 Ask Claude to:
-
 ```
 Add Playwright E2E tests to this project
 ```
 
 Or be specific:
-
 ```
 Set up E2E tests for the authentication flow
 ```
@@ -202,7 +199,6 @@ Add to your CI workflow:
 ### 1. Test Critical User Flows
 
 Focus on:
-
 - Authentication (login, logout, signup)
 - Core features (main value proposition)
 - Payment/checkout flows
@@ -242,7 +238,6 @@ await page.click('[data-testid="submit-button"]');
 ### 4. Keep Tests Independent
 
 Each test should:
-
 - Set up its own state
 - Not depend on other tests
 - Clean up after itself
@@ -268,7 +263,6 @@ const test = base.extend({
 ### Tests timing out
 
 Increase timeout in config:
-
 ```typescript
 timeout: 60000, // 60 seconds
 ```
@@ -276,7 +270,6 @@ timeout: 60000, // 60 seconds
 ### Elements not found
 
 Use `waitFor`:
-
 ```typescript
 await page.waitForSelector('[data-testid="element"]');
 ```
@@ -284,7 +277,6 @@ await page.waitForSelector('[data-testid="element"]');
 ### Flaky tests
 
 Add retries and use `toPass`:
-
 ```typescript
 await expect(async () => {
   await expect(page.locator("text=Success")).toBeVisible();
@@ -302,7 +294,6 @@ await expect(async () => {
 ---
 
 **When this skill is active**, Claude will:
-
 1. Install Playwright and browsers
 2. Create configuration file
 3. Set up e2e/ directory

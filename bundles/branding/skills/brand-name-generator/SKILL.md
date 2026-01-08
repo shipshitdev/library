@@ -49,7 +49,6 @@ This skill activates automatically when users:
 Use structured prompts to generate creative names. Here are proven prompt templates:
 
 **Basic Generation Prompt:**
-
 ```
 Generate 20 brand name ideas for a [INDUSTRY] company that [CORE_VALUE_PROPOSITION].
 
@@ -72,7 +71,6 @@ For each name, provide:
 **Strategy-Specific Prompts:**
 
 **Portmanteau Names (Pinterest, Instagram):**
-
 ```
 Create 10 portmanteau brand names by creatively combining these concept pairs:
 - [WORD1] + [WORD2]
@@ -85,7 +83,6 @@ Rules:
 ```
 
 **Invented Words (Spotify, Kodak):**
-
 ```
 Invent 10 completely new words that could work as brand names for a [INDUSTRY] company.
 
@@ -99,7 +96,6 @@ For each, explain the phonetic appeal.
 ```
 
 **Abstract/Metaphorical Names (Amazon, Apple, Uber):**
-
 ```
 Generate 10 abstract or metaphorical brand names for a [INDUSTRY] company.
 
@@ -113,7 +109,6 @@ Each name should evoke: [DESIRED_EMOTIONS]
 ```
 
 **Modern Tech Names (Stripe, Slack, Notion):**
-
 ```
 Generate 10 single-word brand names with a modern tech feel for a [PRODUCT_TYPE].
 
@@ -143,7 +138,6 @@ Characteristics:
 #### Suffix/Prefix Patterns
 
 **Popular Suffixes:**
-
 - `-ify` / `-fy`: Spotify, Shopify, Testify
 - `-ly`: Grammarly, Bitly, Weekly
 - `-io`: Figma.io, Notion, Studio
@@ -153,7 +147,6 @@ Characteristics:
 - `-eo` / `-ia`:Ideo, Nvidia, Expedia
 
 **Popular Prefixes:**
-
 - `get-`: GetResponse, Getaround
 - `try-`: TryNow, Trymata
 - `go-`: GoFundMe, GoDaddy
@@ -377,7 +370,6 @@ async function generateWithDomainCheck(
 **User Request:** "Generate brand names for a productivity app for remote teams"
 
 **Step 1: Gather Context**
-
 ```
 Industry: SaaS / Productivity
 Target: Remote workers, distributed teams
@@ -387,7 +379,6 @@ Style: Modern, professional, approachable
 ```
 
 **Step 2: Generate Names (AI Prompt)**
-
 ```
 Generate 15 brand names for a productivity app targeting remote teams.
 
@@ -406,7 +397,6 @@ Styles to explore:
 ```
 
 **Step 3: Evaluate Results**
-
 | Name | Memorability | Pronounce | Spell | Unique | Score | .com |
 |------|--------------|-----------|-------|--------|-------|------|
 | Flowly | 9 | 9 | 9 | 7 | 8.4 | No |
@@ -416,7 +406,6 @@ Styles to explore:
 | Remoto | 8 | 9 | 8 | 7 | 7.9 | Yes |
 
 **Step 4: Final Recommendations**
-
 1. **Syntra** - Invented word, .com available, strong tech feel
 2. **Flowly** - Descriptive suffix pattern, memorable
 3. **Teamo** - Playful portmanteau (Team + amigo/o)
@@ -424,7 +413,6 @@ Styles to explore:
 ## Best Practices
 
 ### Name Generation
-
 - Generate 20-30 candidates before filtering
 - Use multiple naming strategies for variety
 - Check trademark databases before finalizing
@@ -432,14 +420,12 @@ Styles to explore:
 - Verify no negative meanings in other languages
 
 ### Domain Strategy
-
 - Prioritize .com for maximum credibility
 - Consider .io for developer tools, .ai for AI products
 - Check social media handle availability simultaneously
 - Avoid hyphens and numbers in domains
 
 ### Validation Checklist
-
 - [ ] Easy to spell when heard
 - [ ] Easy to pronounce when read
 - [ ] No trademark conflicts
@@ -451,19 +437,16 @@ Styles to explore:
 ## Example User Requests
 
 **Example 1: "Generate names for a fintech startup"**
-
 - Gather: target audience, specific fintech area (payments, lending, investing)
 - Generate using: abstract names, invented words, -fy/-ly suffixes
 - Check: .com, .io, .co availability
 
 **Example 2: "I need a name for my AI writing tool"**
-
 - Gather: target users (writers, marketers, students), key differentiator
 - Generate using: compound words, invented words, -ai suffix
 - Check: .ai, .com availability
 
 **Example 3: "Find available domains for brand name 'Nexify'"**
-
 - Validate format using search-domain-validator
 - Check availability across TLDs
 - Suggest alternatives if unavailable: Nexifyr, Nexifly, GetNexify

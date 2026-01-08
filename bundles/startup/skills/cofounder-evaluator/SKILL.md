@@ -24,7 +24,6 @@ You are a co-founder evaluator applying Hexa's methodology for founding team for
 ## When This Activates
 
 This skill auto-activates when:
-
 - User asks "should I work with this person"
 - User mentions finding a co-founder
 - User asks about co-founder fit or compatibility
@@ -63,7 +62,6 @@ Evaluate from bottom up. Skills first, then vision, then values, then working st
 Ask the user:
 
 > **Solo vs. Co-founder assessment:**
->
 > 1. What skills do you bring? (Technical, business, domain)
 > 2. What critical skills are you missing?
 > 3. How long would it take you to learn them?
@@ -84,7 +82,6 @@ Ask the user:
 | Capital | Bootstrapping | Raising (investors like teams) |
 
 **Recommendation:**
-
 - **5+ factors favor solo:** Consider going alone
 - **5+ favor co-founder:** Find the right partner
 - **Split:** Either works—go with your gut
@@ -96,7 +93,6 @@ Ask the user:
 Ask the user:
 
 > **Map your skills and gaps:**
->
 > 1. What are your top 3 strengths?
 > 2. What are your biggest weaknesses?
 > 3. What does the company need in Year 1?
@@ -117,7 +113,6 @@ Ask the user:
 | **Recruiting** | [1-5] | [1-5] | [Gap/Overlap/Covered] |
 
 **Ideal:**
-
 - **Zero overlaps > 4:** No wasted overlap
 - **Zero gaps < 2:** All critical areas covered
 - **Complementary strengths:** Each leads different areas
@@ -139,7 +134,6 @@ Ask the user:
 Ask the user:
 
 > **Discuss with your potential co-founder:**
->
 > 1. What does success look like in 5 years?
 > 2. How big do you want to build this? (Lifestyle vs. unicorn)
 > 3. Would you sell for $10M? $50M? $500M?
@@ -158,7 +152,6 @@ Ask the user:
 | Work-life balance | [Answer] | [Answer] | [Y/N/Discuss] |
 
 **Red Flags:**
-
 - One wants $10M exit, other wants $1B
 - Different commitment levels (full-time vs. part-time)
 - Disagreement on company culture/values
@@ -171,7 +164,6 @@ Ask the user:
 Ask the user:
 
 > **Explore values with your potential co-founder:**
->
 > 1. What matters most to you in work?
 > 2. What would you never compromise on?
 > 3. How do you handle disagreements?
@@ -210,7 +202,6 @@ Ask the user:
 Ask the user:
 
 > **How do you each work?**
->
 > 1. When do you do your best work? (Morning vs. night)
 > 2. Remote, hybrid, or office?
 > 3. How do you prefer to communicate?
@@ -231,7 +222,6 @@ Ask the user:
 | Stress response | [Response] | [Response] | [Y/N/Flex] |
 
 **Critical Compatibility:**
-
 - Decision-making style
 - Conflict resolution approach
 - Communication frequency
@@ -243,7 +233,6 @@ Ask the user:
 Ask the user:
 
 > **Have you worked together before?**
->
 > 1. Have you done a project together?
 > 2. Have you seen them under stress?
 > 3. Have you disagreed and resolved it?
@@ -278,7 +267,6 @@ Ask the user:
 Ask the user:
 
 > **Have you talked to:**
->
 > 1. A former co-worker?
 > 2. A former manager?
 > 3. A former direct report (if applicable)?
@@ -303,7 +291,6 @@ Ask the user:
 Ask the user:
 
 > **Equity considerations:**
->
 > 1. What's each person contributing? (Time, money, IP)
 > 2. Who has more risk? (Leaving job, etc.)
 > 3. Whose idea was it?
@@ -332,7 +319,6 @@ Ask the user:
 | Significant capital contribution | Adjust 5-15% |
 
 **Rules of Thumb:**
-
 - When in doubt, go 50/50
 - Small differences (55/45) often cause more resentment than they're worth
 - Vesting solves the "what if they leave" problem
@@ -344,7 +330,6 @@ Ask the user:
 Ask the user:
 
 > **Vesting terms:**
->
 > 1. What vesting schedule? (Standard: 4 years)
 > 2. What cliff period? (Standard: 1 year)
 > 3. What happens if someone leaves?
@@ -577,7 +562,6 @@ Year 4: 75% → 100% (monthly vesting)
 ## Red Flags Checklist
 
 **Stop if you see:**
-
 - [ ] History of co-founder disputes
 - [ ] Different commitment levels (full vs. part-time)
 - [ ] Vastly different exit expectations

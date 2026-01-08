@@ -58,7 +58,6 @@ This skill uses a hybrid approach: **free methods first**, then **API methods** 
 Scan the domain's website pages to extract email addresses from publicly available content.
 
 **Target Pages:**
-
 - Contact page (`/contact`, `/contact-us`)
 - About page (`/about`, `/about-us`, `/team`)
 - Team page (`/team`, `/people`)
@@ -111,7 +110,6 @@ async function scrapeDomainForEmails(domain: string): Promise<string[]> {
 ```
 
 **Best Practices:**
-
 - Respect robots.txt
 - Implement rate limiting (delay between requests)
 - Handle errors gracefully
@@ -157,7 +155,6 @@ def get_whois_emails(domain: str) -> list[str]:
 Generate potential email addresses based on common patterns and names found on the website.
 
 **Common Patterns:**
-
 - `firstname.lastname@domain.com`
 - `firstnamelastname@domain.com`
 - `firstname@domain.com`
@@ -207,7 +204,6 @@ async function guessEmailsFromWebsite(domain: string): Promise<string[]> {
 Extract emails from social media profiles (when publicly available).
 
 **Sources:**
-
 - LinkedIn company page employee profiles
 - GitHub organization member profiles
 - Twitter/X bios and profiles
@@ -221,7 +217,6 @@ Extract emails from social media profiles (when publicly available).
 Hunter.io provides domain search and email verification.
 
 **Setup:**
-
 1. Sign up at https://hunter.io
 2. Get API key from dashboard
 3. Add to environment: `HUNTER_API_KEY=...`
@@ -273,7 +268,6 @@ async function verifyEmailWithHunter(email: string): Promise<boolean> {
 Apollo.io provides comprehensive contact discovery.
 
 **Setup:**
-
 1. Sign up at https://www.apollo.io
 2. Get API key from settings
 3. Add to environment: `APOLLO_API_KEY=...`
@@ -319,7 +313,6 @@ async function findEmailsWithApollo(domain: string): Promise<any[]> {
 Snov.io provides email finder and verification.
 
 **Setup:**
-
 1. Sign up at https://snov.io
 2. Get client ID and client secret
 3. Add to environment: `SNOV_CLIENT_ID=...`, `SNOV_CLIENT_SECRET=...`
@@ -369,7 +362,6 @@ async function findEmailsWithSnov(domain: string): Promise<any[]> {
 Clearbit provides company and contact enrichment.
 
 **Setup:**
-
 1. Sign up at https://clearbit.com
 2. Get API key
 3. Add to environment: `CLEARBIT_API_KEY=...`
@@ -689,7 +681,7 @@ async function checkRobotsTxt(domain: string, path: string): Promise<boolean> {
 ## Integration with Other Skills
 
 This skill works well with:
-
 - **leads-researcher:** Use email-finder to discover contact emails after researching companies
 - **copywriter:** Use found emails for outreach campaigns
 - Project-specific lead generation workflows
+

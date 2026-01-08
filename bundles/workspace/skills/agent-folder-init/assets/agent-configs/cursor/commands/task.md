@@ -96,7 +96,6 @@ Ask these questions if not clear from request:
    ```
 
 3. Check examples:
-
    ```bash
    cat .agent/EXAMPLES/[category]/[example-name].md
    ```
@@ -240,7 +239,6 @@ Create companion PRD with implementation details (see PRD Template section below
    - [Tenant/organization] isolation (if multi-tenant)
 
 3. Run test suite:
-
    ```bash
    npm test
    ```

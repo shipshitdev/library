@@ -49,7 +49,6 @@ ANALYZE=true npm run build
 ```
 
 **Check for:**
-
 - ✅ Bundle size under thresholds
 - ✅ Code splitting implemented
 - ✅ Tree shaking working
@@ -67,7 +66,6 @@ npm run lighthouse:ci
 ```
 
 **Metrics to check:**
-
 - **LCP (Largest Contentful Paint)**: < 2.5s
 - **FID (First Input Delay)**: < 100ms
 - **CLS (Cumulative Layout Shift)**: < 0.1
@@ -77,7 +75,6 @@ npm run lighthouse:ci
 **1.3 React Performance**
 
 **Check for:**
-
 - ✅ Memoization used appropriately (`useMemo`, `useCallback`)
 - ✅ Components split to prevent re-renders
 - ✅ Virtualization for long lists
@@ -106,7 +103,6 @@ function Component({ data }) {
 **1.4 Next.js Performance**
 
 **Check for:**
-
 - ✅ Server Components used where appropriate
 - ✅ Static generation (SSG) for static content
 - ✅ ISR (Incremental Static Regeneration) configured
@@ -117,7 +113,6 @@ function Component({ data }) {
 **1.5 Asset Optimization**
 
 **Check for:**
-
 - ✅ Images optimized (WebP, compression)
 - ✅ Fonts subset and preloaded
 - ✅ CSS minified and purged
@@ -129,7 +124,6 @@ function Component({ data }) {
 **2.1 API Response Times**
 
 **Check for:**
-
 - ✅ Response times < 200ms (p95)
 - ✅ Database queries optimized
 - ✅ Caching implemented
@@ -168,7 +162,6 @@ async findAll() {
 **2.3 Caching Strategy**
 
 **Check for:**
-
 - ✅ Redis caching for frequently accessed data
 - ✅ Cache invalidation strategy
 - ✅ Cache TTL configured
@@ -177,7 +170,6 @@ async findAll() {
 **2.4 Background Jobs**
 
 **Check for:**
-
 - ✅ Heavy operations in queues (BullMQ)
 - ✅ Async processing for non-critical tasks
 - ✅ WebSocket for real-time updates
@@ -196,7 +188,6 @@ db.collection.explain('executionStats').find({ organization: 'org123' })
 ```
 
 **Check for:**
-
 - ✅ Indexes on frequently queried fields
 - ✅ Compound indexes for multi-field queries
 - ✅ Indexes on foreign keys
@@ -229,7 +220,6 @@ const posts = await this.postModel.find({})
 **3.3 Aggregation Pipeline Optimization**
 
 **Check for:**
-
 - ✅ Early filtering (`$match` early)
 - ✅ Projection before expensive operations
 - ✅ Index usage in aggregations
@@ -240,7 +230,6 @@ const posts = await this.postModel.find({})
 **4.1 CDN Configuration**
 
 **Check for:**
-
 - ✅ CloudFront caching configured
 - ✅ Cache headers set correctly
 - ✅ Static assets on CDN
@@ -249,7 +238,6 @@ const posts = await this.postModel.find({})
 **4.2 Lambda Performance**
 
 **Check for:**
-
 - ✅ Cold start optimization
 - ✅ Memory allocation optimized
 - ✅ Connection pooling
@@ -258,7 +246,6 @@ const posts = await this.postModel.find({})
 **4.3 Database Performance**
 
 **Check for:**
-
 - ✅ MongoDB Atlas performance tier
 - ✅ Read replicas configured
 - ✅ Connection pooling
@@ -267,7 +254,6 @@ const posts = await this.postModel.find({})
 **4.4 Auto-Scaling**
 
 **Check for:**
-
 - ✅ Auto-scaling configured
 - ✅ Scaling policies optimized
 - ✅ Resource limits set

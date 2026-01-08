@@ -5,9 +5,7 @@ Load all critical preferences and instructions at the start of each session or a
 ## Workflow
 
 ### 1. Read Session Quick Start
-
 Read the primary entry point document:
-
 ```bash
 cat .agent/SYSTEM/ai/SESSION-QUICK-START.md
 ```
@@ -15,30 +13,24 @@ cat .agent/SYSTEM/ai/SESSION-QUICK-START.md
 This document will guide you to any other necessary documentation.
 
 ### 2. Read User Preferences (CRITICAL)
-
 Read the user's non-negotiable preferences:
-
 ```bash
 cat .agent/SYSTEM/ai/USER-PREFERENCES.md
 ```
 
 This file contains:
-
 - Critical rules (NEVER build/test locally, check recent sessions, follow codebase patterns)
 - Quality standards
 - Communication preferences
 - Past corrections and lessons learned
 
 ### 3. Read Today's Session File
-
 Read today's session to understand what was already done before `/clear`:
-
 ```bash
 cat .agent/SESSIONS/$(date +%Y-%m-%d).md
 ```
 
 If the file exists, this shows:
-
 - What tasks were completed earlier today
 - What decisions were made
 - What files were changed
@@ -47,9 +39,7 @@ If the file exists, this shows:
 If the file doesn't exist yet, this is a fresh session day.
 
 ### 4. Activate Session Documenter (Claude Code only)
-
 The `session-documenter` skill will automatically activate and track:
-
 - All tasks completed
 - Decisions made with rationale
 - Files created/modified/deleted
@@ -63,30 +53,24 @@ Documentation is written to `.agent/SESSIONS/YYYY-MM-DD.md` after each task comp
 **CRITICAL:** When user types `/clear`, IMMEDIATELY use `session-documenter` skill BEFORE clearing to save all context.
 
 ### 5. Display Inbox Tasks
-
 Show the current inbox backlog. The inbox location depends on where you're running:
 
 **If running from workspace root:**
-
 ```bash
 cat .agent/TASKS/INBOX.md
 ```
 
 **If running from a project subdirectory:**
-
 ```bash
 cat ../.agent/TASKS/INBOX.md
 ```
 
 Display inbox in two categories:
-
 1. **Human QA (Blocking Production)** - Tasks requiring manual testing before production build
 2. **Features to Prompt** - Tasks ready for AI implementation
 
 ### 6. Confirmation
-
 After reading all files and displaying inbox, provide a brief confirmation that you've loaded:
-
 - Critical rules understood (no background processes, no builds/tests, document before /clear)
 - Today's session context loaded (if exists)
 - Ready to follow codebase-specific patterns
@@ -110,7 +94,6 @@ Keep confirmation concise (5-7 bullet points max).
 ## Purpose
 
 This command ensures consistent behavior across sessions by:
-
 - Loading user-specific preferences that override default behavior
 - Preventing repeated mistakes from previous sessions
 - Ensuring awareness of critical "never do" rules
@@ -134,7 +117,6 @@ This command ensures consistent behavior across sessions by:
 ## Output Format
 
 Simple confirmation checklist:
-
 - ✅ Session quick start loaded
 - ✅ User preferences understood
 - ✅ Critical rules active (no background processes, no builds, document before /clear)
@@ -142,7 +124,6 @@ Simple confirmation checklist:
 - ✅ Session documenter active (Claude Code)
 
 **📥 Inbox:**
-
 - 🚨 Human QA (X) - blocking production
 - 📋 Features (X) - ready to prompt
 

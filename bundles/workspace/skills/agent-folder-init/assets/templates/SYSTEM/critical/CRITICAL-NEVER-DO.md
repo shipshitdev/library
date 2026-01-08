@@ -11,7 +11,6 @@
 ### Never Delete Required Files
 
 These files MUST exist at project root:
-
 - `AGENTS.md`
 - `CLAUDE.md`
 - `CODEX.md`
@@ -20,7 +19,6 @@ These files MUST exist at project root:
 ### Never Create Root-Level .md Files
 
 Only these 4 `.md` files allowed at project root:
-
 1. `AGENTS.md`
 2. `CLAUDE.md`
 3. `CODEX.md`
@@ -35,13 +33,11 @@ Everything else goes in `.agent/`.
 ### One File Per Day
 
 **Correct:**
-
 ```
 .agent/SESSIONS/2025-01-15.md
 ```
 
 **Wrong:**
-
 ```
 .agent/SESSIONS/2025-01-15-feature.md  ❌
 .agent/SESSIONS/FEATURE-2025-01-15.md  ❌

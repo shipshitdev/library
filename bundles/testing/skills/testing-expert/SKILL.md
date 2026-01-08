@@ -52,13 +52,11 @@ This skill activates automatically when you're:
 ### 1. Testing Pyramid
 
 **Structure:**
-
 - **Unit Tests** (70%): Fast, isolated, test individual functions/components
 - **Integration Tests** (20%): Test component interactions
 - **E2E Tests** (10%): Test full user flows
 
 **Coverage Targets:**
-
 - Line coverage: > 80%
 - Branch coverage: > 75%
 - Function coverage: > 85%
@@ -67,7 +65,6 @@ This skill activates automatically when you're:
 ### 2. Test Organization
 
 **File Structure:**
-
 ```
 src/
   users/
@@ -84,7 +81,6 @@ src/
 ```
 
 **Naming Conventions:**
-
 - Test files: `*.spec.ts` or `*.test.ts`
 - Describe blocks: Describe what is being tested
 - Test cases: Use "should" or "it" statements
@@ -92,7 +88,6 @@ src/
 ### 3. Test Quality
 
 **Good Tests:**
-
 - ✅ Independent (no test dependencies)
 - ✅ Fast (< 100ms each)
 - ✅ Repeatable (same result every time)
@@ -100,7 +95,6 @@ src/
 - ✅ Maintainable (easy to update)
 
 **Test Structure (AAA Pattern):**
-
 ```typescript
 it('should return users filtered by organization', async () => {
   // Arrange: Set up test data
@@ -120,7 +114,6 @@ it('should return users filtered by organization', async () => {
 ### Component Testing
 
 **React Testing Library:**
-
 ```typescript
 import { render, screen, fireEvent } from '@testing-library/react';
 import { UserList } from './UserList';
@@ -150,7 +143,6 @@ describe('UserList', () => {
 ```
 
 **Testing Hooks:**
-
 ```typescript
 import { renderHook, act } from '@testing-library/react';
 import { useUsers } from './useUsers';
@@ -172,7 +164,6 @@ describe('useUsers', () => {
 ### Next.js Testing
 
 **Page Testing:**
-
 ```typescript
 import { render, screen } from '@testing-library/react';
 import HomePage from '@/pages/index';
@@ -186,7 +177,6 @@ describe('HomePage', () => {
 ```
 
 **API Route Testing:**
-
 ```typescript
 import { createMocks } from 'node-mocks-http';
 import handler from '@/pages/api/users';
@@ -211,7 +201,6 @@ describe('/api/users', () => {
 ### Unit Tests
 
 **Service Testing:**
-
 ```typescript
 describe('UsersService', () => {
   let service: UsersService;
@@ -250,7 +239,6 @@ describe('UsersService', () => {
 ```
 
 **Controller Testing:**
-
 ```typescript
 describe('UsersController', () => {
   let controller: UsersController;
@@ -285,7 +273,6 @@ describe('UsersController', () => {
 ### Integration Tests
 
 **Controller + Service + Database:**
-
 ```typescript
 describe('UsersController Integration', () => {
   let app: INestApplication;
@@ -331,7 +318,6 @@ describe('UsersController Integration', () => {
 ### E2E Tests
 
 **Full Request/Response Cycle:**
-
 ```typescript
 describe('Users API (e2e)', () => {
   let app: INestApplication;
@@ -427,35 +413,30 @@ mockUserModel.find.mockResolvedValue([
 ## Testing Best Practices
 
 ### 1. Test Isolation
-
 - ✅ Each test should be independent
 - ✅ Clean up after each test
 - ✅ Use `beforeEach`/`afterEach` for setup/teardown
 - ✅ Don't rely on test execution order
 
 ### 2. Meaningful Tests
-
 - ✅ Test behavior, not implementation
 - ✅ Use descriptive test names
 - ✅ Test edge cases
 - ✅ Test error cases
 
 ### 3. Mocking Strategy
-
 - ✅ Mock external dependencies
 - ✅ Mock database operations
 - ✅ Mock API calls
 - ✅ Don't mock what you're testing
 
 ### 4. Test Data
-
 - ✅ Use factories for test data
 - ✅ Keep test data minimal
 - ✅ Use realistic data
 - ✅ Clean up test data
 
 ### 5. Coverage
-
 - ✅ Aim for high coverage
 - ✅ Focus on critical paths
 - ✅ Don't sacrifice quality for coverage
@@ -518,7 +499,6 @@ export const userFixtures = {
 ---
 
 **When this skill is active**, you will provide testing guidance that:
-
 1. Follows testing pyramid structure
 2. Uses appropriate testing tools
 3. Implements proper test organization

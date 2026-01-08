@@ -16,7 +16,6 @@ auto_activate: true
 ## When This Skill Activates
 
 **Trigger conditions:**
-
 1. ✅ When a task from TodoList is marked as completed
 2. ✅ When files are modified/created/deleted
 3. ✅ When architectural decisions are made
@@ -34,13 +33,11 @@ auto_activate: true
 **ONE FILE PER DAY - NOT MULTIPLE FILES**
 
 **✅ CORRECT:**
-
 ```
 .agent/SESSIONS/2025-11-15.md  ← Today's file with ALL sessions
 ```
 
 **❌ FORBIDDEN:**
-
 ```
 .agent/SESSIONS/2025-11-15-feature-name.md
 .agent/SESSIONS/2025-11-15-bugfix.md
@@ -52,7 +49,6 @@ auto_activate: true
 ### 2. Required Protocols
 
 **MUST follow these protocols:**
-
 - `.agent/SYSTEM/ai/SESSION-DOCUMENTATION-PROTOCOL.md` - Complete documentation requirements
 - `.agent/SESSIONS/TEMPLATE.md` - Session entry format
 - `.agent/SESSIONS/README.md` - Session organization
@@ -60,14 +56,12 @@ auto_activate: true
 ### 3. Flowcharts (MANDATORY for features)
 
 **ALWAYS include flowchart for:**
-
 - ✅ New features
 - ✅ Feature modifications
 - ✅ Bug fixes affecting multiple components
 - ✅ Performance optimizations
 
 **Skip for:**
-
 - ❌ Typo fixes
 - ❌ Documentation-only changes
 
@@ -78,7 +72,6 @@ auto_activate: true
 **At the START of every session:**
 
 1. **Check if today's session file exists:**
-
    ```bash
    scripts/sh/validate-session-start.sh
    ```
@@ -95,7 +88,6 @@ auto_activate: true
    - Auto-fills date and project name
 
 **Output to user:**
-
 ```
 📋 Session Start: Read today's session file
 ✅ Found: .agent/SESSIONS/2025-11-15.md with 2 previous sessions
@@ -288,7 +280,6 @@ graph TD
 **If adding another task to existing session (same session continues):**
 
 Update the existing Session entry with:
-
 - Add completed task to "What was done"
 - Add any new files to "Files changed"
 - Add any new decisions to "Key decisions"
@@ -391,7 +382,6 @@ Document reusable patterns with examples.
 ## User-Facing Messages
 
 **At session start:**
-
 ```
 📋 Session Start Checklist:
 ✅ Read today's session file: .agent/SESSIONS/2025-11-15.md
@@ -400,7 +390,6 @@ Document reusable patterns with examples.
 ```
 
 **After task completion:**
-
 ```
 ✅ Task completed: [Task name]
 📝 Documenting in session file...
@@ -410,7 +399,6 @@ Document reusable patterns with examples.
 ```
 
 **At session end:**
-
 ```
 📋 Session End Summary:
 ✅ Session 1 documented
@@ -476,14 +464,12 @@ scripts/sh/validate-sessions.sh  # Auto-consolidates into single file
 ### When to Include
 
 **ALWAYS for:**
-
 - New features
 - Feature modifications
 - Multi-component bug fixes
 - Performance optimizations
 
 **NEVER for:**
-
 - Typo fixes
 - Doc-only changes
 - Single-line changes
@@ -672,7 +658,6 @@ interface SessionMemory {
 **Bash scripts:** `scripts/sh/new-session.sh`, `scripts/sh/validate-sessions.sh`
 
 **When in doubt:**
-
 - Document more rather than less
 - Include flowcharts for features
 - Note decisions with rationale
@@ -684,20 +669,17 @@ interface SessionMemory {
 ## Checklist for Auto-Documentation
 
 **At session start:**
-
 - [ ] Check/create today's session file
 - [ ] Read existing sessions (if any)
 - [ ] Note incomplete work from previous sessions
 
 **During session (auto-track):**
-
 - [ ] Track all decisions made
 - [ ] Note all files changed
 - [ ] Document patterns used
 - [ ] Record mistakes and fixes
 
 **After task completion (auto-write):**
-
 - [ ] Add session entry to today's file
 - [ ] Include flowchart (for features)
 - [ ] Include all required sections
@@ -708,7 +690,6 @@ interface SessionMemory {
 - [ ] Update SOP/*.md (if patterns)
 
 **At session end (validate):**
-
 - [ ] Verify ONE FILE PER DAY rule
 - [ ] Verify all tasks documented
 - [ ] Verify all decisions noted

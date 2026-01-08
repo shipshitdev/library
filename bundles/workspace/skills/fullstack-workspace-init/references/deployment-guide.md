@@ -245,11 +245,9 @@ health() {
    - Copy connection string (mongodb+srv://...)
 
 5. **Configure Environment**
-
    ```env
    MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<database>?retryWrites=true&w=majority
    ```
-
    Replace `<username>`, `<password>`, `<cluster>`, and `<database>` with your values
 
 ### Redis (Upstash)

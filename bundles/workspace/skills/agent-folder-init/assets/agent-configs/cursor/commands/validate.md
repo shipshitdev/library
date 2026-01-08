@@ -485,7 +485,6 @@ node .agent/scripts/fix-tasks.js
 ```
 
 This will automatically fix:
-
 - Invalid status values (e.g., "Completed" → "Complete")
 - Invalid type values (e.g., "Integration" → "Feature")
 - Invalid priority values (e.g., "P1-High" → "High")
@@ -496,7 +495,6 @@ This will automatically fix:
 ### Validation Standards
 
 **Valid Status Values:**
-
 - Backlog
 - To Do
 - Testing
@@ -508,7 +506,6 @@ This will automatically fix:
 - Cancelled
 
 **Valid Type Values:**
-
 - Feature
 - Bug
 - Enhancement
@@ -518,14 +515,12 @@ This will automatically fix:
 - Planning
 
 **Valid Priority Values:**
-
 - High
 - Medium
 - Low
 - CRITICAL
 
 **Quality Standards:**
-
 - Minimum 30-character descriptions
 - All tasks must have PRD links
 - PRD files must exist and be accessible
@@ -548,7 +543,6 @@ Total Tasks:       227
 ### Reports
 
 Detailed validation report saved to:
-
 ```
 .agent/REPORTS/task-validation-YYYY-MM-DD.md
 ```
@@ -607,13 +601,11 @@ When user runs `/validate all`:
 ## Safety Checks
 
 **Before validation:**
-
 - ✅ Verify directories exist
 - ✅ Check read permissions
 - ✅ Create backups if auto-fixing
 
 **After validation:**
-
 - ✅ Report all issues found
 - ✅ Provide fix suggestions
 - ✅ Update session documentation
@@ -621,19 +613,16 @@ When user runs `/validate all`:
 ## Error Handling
 
 **If validation fails:**
-
 - Report specific errors
 - Provide fix suggestions
 - Offer auto-fix options
 
 **If auto-fix fails:**
-
 - Report which files couldn't be fixed
 - Suggest manual intervention
 - Provide rollback instructions
 
 **If permissions denied:**
-
 - Report inaccessible files
 - Suggest permission fixes
 

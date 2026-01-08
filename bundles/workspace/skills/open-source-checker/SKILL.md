@@ -24,7 +24,6 @@ This skill activates automatically when you're:
 ### 1. API Keys and Tokens
 
 **Common patterns:**
-
 - API keys (OpenAI, Stripe, AWS, Google, etc.)
 - Authentication tokens
 - OAuth tokens
@@ -33,7 +32,6 @@ This skill activates automatically when you're:
 - Webhook secrets
 
 **Patterns to detect:**
-
 ```typescript
 // ❌ BAD: Hardcoded API keys
 const apiKey = 'sk-1234567890abcdef';
@@ -46,7 +44,6 @@ const stripeKey = process.env.STRIPE_SECRET_KEY;
 ```
 
 **Common locations:**
-
 - Configuration files
 - Source code files
 - Environment files (`.env` files that might be committed)
@@ -57,7 +54,6 @@ const stripeKey = process.env.STRIPE_SECRET_KEY;
 ### 2. Database Credentials
 
 **Check for:**
-
 - Database connection strings
 - Usernames and passwords
 - MongoDB URIs
@@ -66,7 +62,6 @@ const stripeKey = process.env.STRIPE_SECRET_KEY;
 - Database host addresses
 
 **Patterns:**
-
 ```typescript
 // ❌ BAD: Hardcoded credentials
 const mongoUri = 'mongodb://user:password@host:27017/db';
@@ -79,7 +74,6 @@ const mongoUri = process.env.MONGODB_URI;
 ### 3. Private Keys and Certificates
 
 **Check for:**
-
 - SSH private keys
 - SSL/TLS certificates
 - Private key files (`.pem`, `.key`, `.p12`)
@@ -87,7 +81,6 @@ const mongoUri = process.env.MONGODB_URI;
 - Signing keys
 
 **Files to check:**
-
 - `*.pem`, `*.key`, `*.p12`, `*.pfx`
 - `id_rsa`, `id_dsa`, `id_ecdsa`
 - `*.crt`, `*.cer`, `*.cert`
@@ -95,7 +88,6 @@ const mongoUri = process.env.MONGODB_URI;
 ### 4. Personal Information
 
 **Check for:**
-
 - Email addresses
 - Phone numbers
 - Physical addresses
@@ -105,7 +97,6 @@ const mongoUri = process.env.MONGODB_URI;
 - Bank account numbers
 
 **Patterns:**
-
 ```typescript
 // ❌ BAD: Personal information
 const adminEmail = 'john.doe@example.com';
@@ -118,13 +109,11 @@ const adminEmail = process.env.ADMIN_EMAIL;
 ### 5. Environment Files
 
 **Check for:**
-
 - `.env` files (should be in `.gitignore`)
 - `.env.local`, `.env.production`
 - Files containing actual secrets (not `.env.example`)
 
 **Verify:**
-
 - `.env` is in `.gitignore`
 - Only `.env.example` is committed (with placeholder values)
 - No actual secrets in any committed `.env` files
@@ -132,7 +121,6 @@ const adminEmail = process.env.ADMIN_EMAIL;
 ### 6. Configuration Files with Secrets
 
 **Check:**
-
 - `config.json`, `config.js`, `config.ts`
 - `settings.json`, `settings.js`
 - `secrets.json`, `secrets.js`
@@ -141,7 +129,6 @@ const adminEmail = process.env.ADMIN_EMAIL;
 ### 7. Comments and Documentation
 
 **Check for:**
-
 - Secrets in code comments
 - API keys in README files
 - Credentials in documentation
@@ -150,13 +137,11 @@ const adminEmail = process.env.ADMIN_EMAIL;
 ### 8. Git History
 
 **Check for:**
-
 - Secrets in git history (even if removed)
 - Committed `.env` files in history
 - Secrets in old commits
 
 **Commands to check:**
-
 ```bash
 # Search git history for secrets
 git log --all --full-history --source -S "sk-" -- "*.ts" "*.js" "*.json"
@@ -197,7 +182,6 @@ grep -r "sk_live_" --include="*.ts" --include="*.js"
 **2.1 Search for Hardcoded Secrets**
 
 Look for:
-
 - String literals that look like API keys
 - Hardcoded passwords
 - Connection strings with credentials
@@ -206,7 +190,6 @@ Look for:
 **2.2 Check Configuration Files**
 
 Review:
-
 - All config files for hardcoded values
 - Environment variable usage (should use `process.env`)
 - Default values that might be secrets
@@ -214,7 +197,6 @@ Review:
 **2.3 Review Test Files**
 
 Check:
-
 - Test credentials (should be mocks, not real)
 - Test API keys (should be fake/test keys)
 - Test database connections
@@ -435,7 +417,6 @@ bfg --replace-text secrets-replacements.txt
 **Option 3: Fresh Repository (If History Too Contaminated)**
 
 If the history is too contaminated, consider:
-
 1. Create a fresh repository
 2. Copy current clean state
 3. Start fresh history
@@ -536,7 +517,6 @@ redis://[^:]+:[^@]+@
 ### Recommended Tools
 
 **1. git-secrets**
-
 ```bash
 # Install
 brew install git-secrets
@@ -550,7 +530,6 @@ git secrets --scan
 ```
 
 **2. truffleHog**
-
 ```bash
 # Install
 pip install truffleHog
@@ -560,7 +539,6 @@ trufflehog --regex --entropy=False .
 ```
 
 **3. detect-secrets**
-
 ```bash
 # Install
 pip install detect-secrets
@@ -570,7 +548,6 @@ detect-secrets scan --all-files
 ```
 
 **4. gitleaks**
-
 ```bash
 # Install
 brew install gitleaks
@@ -705,7 +682,6 @@ exit 0
 ```
 
 Make it executable:
-
 ```bash
 chmod +x .git/hooks/pre-commit
 ```
@@ -917,14 +893,12 @@ Scanner: [tool/agent]
 ## Resources
 
 ### Tools
-
 - git-secrets: https://github.com/awslabs/git-secrets
 - truffleHog: https://github.com/trufflesecurity/trufflehog
 - detect-secrets: https://github.com/Yelp/detect-secrets
 - gitleaks: https://github.com/gitleaks/gitleaks
 
 ### Guides
-
 - GitHub: Removing sensitive data from a repository
 - OWASP: Secrets Management Cheat Sheet
 - Git: Rewriting History
@@ -932,7 +906,6 @@ Scanner: [tool/agent]
 ---
 
 **When this skill is active**, you will:
-
 1. Scan the codebase for private information patterns
 2. Check for hardcoded secrets and credentials
 3. Verify .gitignore includes sensitive files
@@ -940,3 +913,4 @@ Scanner: [tool/agent]
 5. Provide actionable recommendations
 6. Generate a comprehensive report
 7. Help clean up any found issues before open sourcing
+

@@ -49,7 +49,6 @@ interface ThemeConfig {
 ```
 
 **Recommended fonts:**
-
 - Headings: `Fraunces`, `Playfair Display`, `Clash Display`
 - Body: `Space Grotesk`, `Inter`, `DM Sans`
 

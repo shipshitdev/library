@@ -83,7 +83,6 @@ const mongoUri = process.env.MONGODB_URI;
 ### 2. Connection String Format
 
 **MongoDB Atlas connection strings must:**
-
 - Use `mongodb+srv://` protocol (not `mongodb://`)
 - Include username and password
 - Include cluster hostname (e.g., `cluster0.xxxxx.mongodb.net`)
@@ -91,13 +90,11 @@ const mongoUri = process.env.MONGODB_URI;
 - Include query parameters for production readiness
 
 **Valid Format:**
-
 ```
 mongodb+srv://<username>:<password>@<cluster-host>/<database>?retryWrites=true&w=majority
 ```
 
 **Check for:**
-
 - [ ] Protocol is `mongodb+srv://`
 - [ ] Username and password are URL-encoded if they contain special characters
 - [ ] Cluster hostname is correct (from Atlas dashboard)
@@ -107,7 +104,6 @@ mongodb+srv://<username>:<password>@<cluster-host>/<database>?retryWrites=true&w
 - [ ] Optional: `maxPoolSize` for connection pooling
 
 **Example with all parameters:**
-
 ```
 mongodb+srv://user:pass@cluster0.xxxxx.mongodb.net/mydb?retryWrites=true&w=majority&appName=MyApp&maxPoolSize=10
 ```
@@ -117,7 +113,6 @@ mongodb+srv://user:pass@cluster0.xxxxx.mongodb.net/mydb?retryWrites=true&w=major
 **Check if MongoDB driver is installed:**
 
 **For Mongoose (ODM):**
-
 ```bash
 # Check package.json
 npm list mongoose
@@ -126,13 +121,11 @@ pnpm list mongoose
 ```
 
 **For Native MongoDB Driver:**
-
 ```bash
 npm list mongodb
 ```
 
 **Verification:**
-
 - [ ] `mongoose` or `mongodb` package is installed
 - [ ] Version is compatible with MongoDB Atlas
 - [ ] Package is listed in `package.json` dependencies (not devDependencies for production)
@@ -198,7 +191,6 @@ export default connectDB;
 ```
 
 **Verification:**
-
 - [ ] Connection uses singleton pattern (prevents multiple connections in Next.js)
 - [ ] Connection is cached globally (for Next.js serverless functions)
 - [ ] Error handling is implemented
@@ -239,7 +231,6 @@ MongooseModule.forRoot(process.env.MONGODB_URI, {
 ```
 
 **Verification:**
-
 - [ ] `@nestjs/mongoose` package is installed
 - [ ] `MongooseModule.forRoot()` is configured in root module
 - [ ] Connection string comes from environment variable
@@ -264,7 +255,6 @@ MongooseModule.forRoot(process.env.MONGODB_URI, {
 ```
 
 **Verification:**
-
 - [ ] `retryWrites: true` is set (required for Atlas)
 - [ ] `w: 'majority'` is set (write concern)
 - [ ] Connection pool size is appropriate for your use case
@@ -288,7 +278,6 @@ try {
 ```
 
 **Verification:**
-
 - [ ] Connection errors are caught and handled
 - [ ] Error messages are logged appropriately
 - [ ] Application doesn't crash on connection failure
@@ -338,7 +327,6 @@ try {
 **Problem:** `MONGODB_URI` environment variable is missing
 
 **Solution:**
-
 ```bash
 # Add to .env.local (Next.js) or .env (NestJS)
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database?retryWrites=true&w=majority
@@ -361,7 +349,6 @@ MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database?retryWr
 **Problem:** Connection times out
 
 **Solution:**
-
 - Check network access in Atlas dashboard
 - Verify IP whitelist
 - Increase `connectTimeoutMS` and `serverSelectionTimeoutMS`
@@ -372,7 +359,6 @@ MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database?retryWr
 **Problem:** Username/password incorrect
 
 **Solution:**
-
 - Verify credentials in Atlas dashboard
 - Check if password contains special characters (needs URL encoding)
 - Verify database user exists and has permissions
@@ -418,7 +404,6 @@ testConnection();
 ```
 
 **Run the test:**
-
 ```bash
 # Load environment variables and run
 node -r dotenv/config scripts/test-mongodb-connection.ts
@@ -445,10 +430,10 @@ Before considering MongoDB Atlas setup complete, verify:
 ## Next Steps
 
 After verifying setup:
-
 1. Test connection with verification script
 2. Create initial database schema/models
 3. Set up database indexes
 4. Configure connection pooling for production
 5. Set up monitoring and alerts in Atlas dashboard
 6. Document connection setup in project documentation
+

@@ -24,7 +24,6 @@ You are a fundraising advisor applying Hexa's proven seed-stage methodology. You
 ## When This Activates
 
 This skill auto-activates when:
-
 - User asks "how do I raise money"
 - User mentions pitch deck or investor deck
 - User asks about investors or VCs
@@ -70,7 +69,6 @@ This skill auto-activates when:
 Ask the user:
 
 > **Are you ready to raise?**
->
 > 1. Do you have a product/MVP?
 > 2. Do you have traction? (Users, revenue, waitlist)
 > 3. Do you have a clear story of why now?
@@ -94,7 +92,6 @@ Ask the user:
 Ask the user:
 
 > **Define your raise:**
->
 > 1. How much do you need to raise?
 > 2. What will you use the money for?
 > 3. What milestones will this capital achieve?
@@ -146,7 +143,6 @@ Ask the user to provide information for each section:
 
 **Slide 1: Title**
 > **What goes here:**
->
 > - Company name and logo
 > - One-line description
 > - Your name/role
@@ -154,7 +150,6 @@ Ask the user to provide information for each section:
 
 **Slide 2: Problem**
 > **What goes here:**
->
 > - Specific pain point (not vague)
 > - Who experiences it
 > - Why it matters
@@ -164,7 +159,6 @@ Ask: *What's the problem? Who has it? What does it cost them?*
 
 **Slide 3: Solution**
 > **What goes here:**
->
 > - Your approach in simple terms
 > - The transformation you deliver
 > - Key insight/innovation
@@ -174,7 +168,6 @@ Ask: *What's your solution? What's the insight competitors miss?*
 
 **Slide 4: Product/Demo**
 > **What goes here:**
->
 > - Screenshots or demo video
 > - Key features (3-5 max)
 > - User workflow
@@ -184,7 +177,6 @@ Ask: *Show me the product. What's the magic moment?*
 
 **Slide 5: Market**
 > **What goes here:**
->
 > - TAM / SAM / SOM
 > - Market growth rate
 > - Why now (timing)
@@ -194,7 +186,6 @@ Ask: *How big is the market? Use `market-sizer` if needed.*
 
 **Slide 6: Business Model**
 > **What goes here:**
->
 > - Pricing model
 > - Unit economics (LTV, CAC, margins)
 > - Revenue streams
@@ -204,7 +195,6 @@ Ask: *How do you make money? What are your unit economics?*
 
 **Slide 7: Traction**
 > **What goes here:**
->
 > - Key metrics (up and to the right)
 > - User/revenue growth
 > - Key milestones achieved
@@ -214,7 +204,6 @@ Ask: *What traction do you have? Revenue, users, growth rate?*
 
 **Slide 8: Competition**
 > **What goes here:**
->
 > - Competitive landscape
 > - Your positioning
 > - Sustainable advantages
@@ -224,7 +213,6 @@ Ask: *Who are competitors? Why will you win?*
 
 **Slide 9: Team**
 > **What goes here:**
->
 > - Founders + key team
 > - Relevant experience
 > - Why this team for this problem
@@ -234,7 +222,6 @@ Ask: *Why is this team uniquely qualified?*
 
 **Slide 10: Ask**
 > **What goes here:**
->
 > - Amount raising
 > - Use of funds (high level)
 > - Key milestones this achieves
@@ -249,7 +236,6 @@ Ask: *How much are you raising and what will you achieve?*
 Ask the user:
 
 > **Who should you target?**
->
 > 1. What stage investors do you need? (Pre-seed, seed)
 > 2. What check sizes match your raise?
 > 3. What sectors/verticals do they invest in?
@@ -284,7 +270,6 @@ Ask the user:
 Ask the user:
 
 > **How will you reach investors?**
->
 > 1. Who in your network knows investors?
 > 2. Have you mapped second-degree connections?
 > 3. Are you willing to do cold outreach?
@@ -326,7 +311,6 @@ Would love 20 minutes to share what we're building.
 Ask the user:
 
 > **For each meeting:**
->
 > 1. What do you know about this investor?
 > 2. What portfolio companies are relevant?
 > 3. What's their thesis?
@@ -362,7 +346,6 @@ Ask the user:
 Ask the user:
 
 > **Process design:**
->
 > 1. How many investors are you reaching out to per week?
 > 2. Are you batching similar investors together?
 > 3. How are you tracking conversations?
@@ -419,7 +402,6 @@ Key Terms to Understand:
 Ask the user:
 
 > **For closing:**
->
 > 1. Do you have a lawyer for closing?
 > 2. Is your cap table clean?
 > 3. Have you incorporated properly (C-Corp for US)?
@@ -640,7 +622,6 @@ Ask yourself:
 ## The "First 48 Hours" Rule
 
 After every investor meeting:
-
 1. **Within 2 hours:** Send thank you email
 2. **Within 24 hours:** Send any requested materials
 3. **Within 48 hours:** Follow up with next steps

@@ -1,6 +1,8 @@
 {
-  "author": "",
-  "description": "Global skills and commands repository for Claude, Codex, and Cursor AI agents",
+  "name": "ship-shit-dev-library",
+  "version": "1.0.0",
+  "description": "100+ AI agent skills for indie developers - works with Claude Code, OpenAI Codex, and Cursor",
+  "private": true,
   "devDependencies": {
     "husky": "9.1.7",
     "lint-staged": "16.2.7",
@@ -9,26 +11,15 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "keywords": [
-    "ai",
-    "claude",
-    "codex",
-    "cursor",
-    "skills",
-    "commands",
-    "agent"
-  ],
   "license": "MIT",
   "lint-staged": {
     "*.md": [
-      "bunx markdownlint --fix"
+      "bunx markdownlint --fix --ignore bundles --ignore dist"
     ],
     "*.sh": [
       "bash scripts/lint-shellcheck.sh"
     ]
   },
-  "name": "ship-shit-dev-library",
-  "private": true,
   "scripts": {
     "check-symlinks": "bash -c 'for link in ~/.claude/skills ~/.codex/skills ~/.cursor/commands ~/.cursor/skills; do if [[ -L \"$link\" ]]; then echo \"✓ $link -> $(readlink \"$link\")\"; else echo \"✗ $link (not a symlink)\"; fi; done'",
     "count": "bash -c 'echo \"Claude skills: $(ls -1 agents/.claude/skills 2>/dev/null | wc -l | tr -d \" \")\"; echo \"Codex skills: $(ls -1 agents/.codex/skills 2>/dev/null | wc -l | tr -d \" \")\"; echo \"Cursor commands: $(ls -1 agents/.cursor/commands 2>/dev/null | wc -l | tr -d \" \")\"; echo \"Cursor skills: $(ls -1 agents/.cursor/skills 2>/dev/null | wc -l | tr -d \" \")\"'",
@@ -36,14 +27,14 @@
     "generate:bundle": "bun scripts/generate-bundle.js",
     "generate:manifest": "bun scripts/generate-manifest.js",
     "generate:plugin": "bun scripts/generate-plugin.js",
-    "lint": "markdownlint '**/*.md' --ignore node_modules",
+    "lint": "markdownlint '**/*.md' --ignore node_modules --ignore bundles --ignore dist",
     "lint:docs": "markdownlint '*.md' '**/*.md' --ignore node_modules --ignore '.claude/**' --ignore '.codex/**' --ignore '.cursor/**'",
-    "lint:fix": "markdownlint '**/*.md' --ignore node_modules --fix",
+    "lint:fix": "markdownlint '**/*.md' --ignore node_modules --ignore bundles --ignore dist --fix",
     "lint:sh": "bash -c 'if command -v shellcheck >/dev/null 2>&1; then find scripts -name \"*.sh\" -exec shellcheck {} +; else echo \"⚠ shellcheck not installed, skipping shell script linting\"; fi'",
     "prepare": "husky",
     "sync:marketplace": "bun scripts/sync-marketplace.js",
     "validate": "bash scripts/validate-skill-sync.sh",
-    "validate:skill": "bash scripts/validate-skill-sync.sh"
-  },
-  "version": "1.0.0"
+    "validate:skill": "bash scripts/validate-skill-sync.sh",
+    "marketplace:generate": "bun scripts/generate-marketplace-bundles.js"
+  }
 }

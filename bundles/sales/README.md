@@ -1,0 +1,21 @@
+# Ship Shit Dev - Sales Bundle
+
+Sales, leads, and outreach skills
+
+## Installation
+
+```bash
+/plugin marketplace add shipshitdev/library
+/plugin install shipshitdev-sales@shipshitdev
+```
+
+## Included Skills
+
+- `leads-researcher`
+- `email-finder`
+- `lead-channel-optimizer`
+- `outbound-optimizer`
+- `competitive-intelligence-analyst`
+- `partnership-builder`
+- `retention-engine`
+- `support-systems-architect`

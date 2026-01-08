@@ -1,0 +1,10 @@
+{
+  "name": "shipshitdev-sales",
+  "version": "1.0.0",
+  "description": "Sales, leads, and outreach skills",
+  "author": "Ship Shit Dev",
+  "license": "MIT",
+  "skills": {
+    "path": "./skills"
+  }
+}

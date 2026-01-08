@@ -1,0 +1,10 @@
+{
+  "name": "shipshitdev-startup",
+  "version": "1.0.0",
+  "description": "Skills for validating ideas, planning MVPs, and launching startups",
+  "author": "Ship Shit Dev",
+  "license": "MIT",
+  "skills": {
+    "path": "./skills"
+  }
+}

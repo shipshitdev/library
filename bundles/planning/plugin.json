@@ -1,0 +1,10 @@
+{
+  "name": "shipshitdev-planning",
+  "version": "1.0.0",
+  "description": "Strategy, planning, and analysis skills",
+  "author": "Ship Shit Dev",
+  "license": "MIT",
+  "skills": {
+    "path": "./skills"
+  }
+}

@@ -1,0 +1,189 @@
+{
+  "bundles": {
+    "startup": {
+      "description": "Skills for validating ideas, planning MVPs, and launching startups",
+      "skills": [
+        "idea-validator",
+        "mvp-architect",
+        "market-sizer",
+        "pricing-strategist",
+        "business-model-auditor",
+        "cofounder-evaluator",
+        "startup-icp-definer",
+        "fundraise-advisor",
+        "early-hiring-advisor",
+        "offer-architect",
+        "constraint-eliminator",
+        "execution-accelerator"
+      ]
+    },
+    "testing": {
+      "description": "Testing, QA, and CI/CD automation skills",
+      "skills": [
+        "playwright-e2e-init",
+        "testing-expert",
+        "testing-cicd-init",
+        "webapp-testing",
+        "nestjs-testing-expert",
+        "qa-reviewer",
+        "husky-test-coverage"
+      ]
+    },
+    "payments": {
+      "description": "Payment processing and financial integrations",
+      "skills": [
+        "stripe-implementer",
+        "financial-operations-expert"
+      ]
+    },
+    "infrastructure": {
+      "description": "DevOps, cloud, and infrastructure skills",
+      "skills": [
+        "docker-expert",
+        "aws-infrastructure",
+        "ec2-backend-deployer",
+        "mongodb-migration-expert",
+        "mongodb-atlas-checker",
+        "monitoring-setup",
+        "nestjs-queue-architect",
+        "performance-expert",
+        "security-expert",
+        "workflow-automation"
+      ]
+    },
+    "frontend": {
+      "description": "Frontend development and design skills",
+      "skills": [
+        "frontend-design",
+        "component-library",
+        "accessibility",
+        "design-consistency-auditor",
+        "html-style",
+        "theme-factory",
+        "react-native-components",
+        "expo-architect",
+        "landing-page-vercel",
+        "micro-landing-builder",
+        "ai-loading-ux",
+        "table-filters",
+        "quick-view"
+      ]
+    },
+    "backend": {
+      "description": "Backend development and API skills",
+      "skills": [
+        "api-design-expert",
+        "error-handling-expert",
+        "serializer-specialist",
+        "incremental-fetch"
+      ]
+    },
+    "content": {
+      "description": "Content creation and documentation skills",
+      "skills": [
+        "copywriter",
+        "content-creator",
+        "docusaurus-writer",
+        "docs",
+        "changelog-generator",
+        "internal-comms",
+        "youtube-video-analyst"
+      ]
+    },
+    "sales": {
+      "description": "Sales, leads, and outreach skills",
+      "skills": [
+        "leads-researcher",
+        "email-finder",
+        "lead-channel-optimizer",
+        "outbound-optimizer",
+        "competitive-intelligence-analyst",
+        "partnership-builder",
+        "retention-engine",
+        "support-systems-architect"
+      ]
+    },
+    "branding": {
+      "description": "Brand strategy and naming skills",
+      "skills": [
+        "brand-architect",
+        "brand-name-generator",
+        "search-domain-validator"
+      ]
+    },
+    "ai-agents": {
+      "description": "AI agent development and prompt engineering",
+      "skills": [
+        "prompt-engineer",
+        "mcp-builder",
+        "skill-creator",
+        "context-fundamentals",
+        "context-optimization",
+        "context-degradation",
+        "memory-systems",
+        "multi-agent-patterns",
+        "tool-design",
+        "evaluation",
+        "advanced-evaluation",
+        "comment-mode",
+        "spec-first"
+      ]
+    },
+    "workspace": {
+      "description": "Project setup and workspace initialization",
+      "skills": [
+        "fullstack-workspace-init",
+        "project-scaffold",
+        "project-init-orchestrator",
+        "agent-folder-init",
+        "linter-formatter-init",
+        "clerk-implementer",
+        "plasmo-extension-architect",
+        "content-script-developer",
+        "package-architect",
+        "artifacts-builder",
+        "open-source-checker"
+      ]
+    },
+    "planning": {
+      "description": "Strategy, planning, and analysis skills",
+      "skills": [
+        "planning-assistant",
+        "roadmap-analyzer",
+        "strategy-expert",
+        "analytics-expert",
+        "cto-advisor",
+        "business-operator",
+        "task-prd-creator",
+        "rules-capture"
+      ]
+    },
+    "github": {
+      "description": "GitHub workflow and automation skills",
+      "skills": [
+        "gh-address-comments",
+        "gh-fix-ci"
+      ]
+    },
+    "session": {
+      "description": "Session management and documentation",
+      "skills": [
+        "session-documenter",
+        "ai-dev-loop",
+        "workspace-performance-audit"
+      ]
+    }
+  },
+  "standalone": [
+    "accessibility",
+    "api-design-expert",
+    "stripe-implementer",
+    "playwright-e2e-init",
+    "docker-expert",
+    "mongodb-migration-expert",
+    "frontend-design",
+    "prompt-engineer",
+    "mcp-builder",
+    "testing-expert"
+  ]
+}

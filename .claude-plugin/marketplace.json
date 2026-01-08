@@ -1,0 +1,39 @@
+{
+  "name": "shipshitdev",
+  "owner": {
+    "name": "Ship Shit Dev"
+  },
+  "description": "100+ AI agent skills for indie developers building startups",
+  "plugins": [
+    {
+      "name": "shipshitdev-full",
+      "source": "./agents/.claude",
+      "description": "Complete skill library - all 100+ skills for indie developers"
+    },
+    {
+      "name": "shipshitdev-startup",
+      "source": "./bundles/startup",
+      "description": "Startup skills: idea validation, MVP planning, pricing, fundraising"
+    },
+    {
+      "name": "shipshitdev-testing",
+      "source": "./bundles/testing",
+      "description": "Testing skills: Playwright, CI/CD, QA, test coverage"
+    },
+    {
+      "name": "shipshitdev-frontend",
+      "source": "./bundles/frontend",
+      "description": "Frontend skills: React, accessibility, design systems, landing pages"
+    },
+    {
+      "name": "shipshitdev-infrastructure",
+      "source": "./bundles/infrastructure",
+      "description": "Infrastructure skills: Docker, AWS, MongoDB, monitoring"
+    },
+    {
+      "name": "shipshitdev-ai-agents",
+      "source": "./bundles/ai-agents",
+      "description": "AI agent skills: prompt engineering, MCP, context management"
+    }
+  ]
+}

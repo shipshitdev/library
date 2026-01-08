@@ -2,7 +2,7 @@
 
 ![Project Type](https://img.shields.io/badge/Project-Library-blue)
 
-A comprehensive collection of agent capabilities—skills, commands, and workflows—for Claude Code, OpenAI Codex, and Cursor. Centralized and globally distributed via symlinks.
+100+ AI agent skills for indie developers. Works with Claude Code, OpenAI Codex, and Cursor.
 
 ## Directory Structure
 
@@ -58,16 +58,55 @@ See `docs/SYMLINK-CONFIG.md` for full configuration details.
 
 ## Installation
 
+### Claude Code
+
+**Via npm (recommended):**
+
+```bash
+claude plugin add claude-plugin-shipshitdev
+```
+
+**Via GitHub marketplace:**
+
+```bash
+# Add the marketplace
+/plugin marketplace add shipshitdev/library
+
+# Install the skills
+/plugin install shipshitdev-skills@shipshitdev
+```
+
+### OpenAI Codex
+
+Use the built-in `$skill-installer` skill:
+
+```
+Install skills from: github.com/shipshitdev/library
+```
+
+### Cursor
+
+Copy skills to your Cursor config:
+
+```bash
+# Clone and copy
+git clone https://github.com/shipshitdev/library.git
+cp -r library/agents/.cursor/skills/* ~/.cursor/skills/
+cp -r library/agents/.cursor/commands/* ~/.cursor/commands/
+```
+
+### Manual Installation (All Platforms)
+
 ```bash
 # Clone repository
-git clone <repo-url> ~/www/shipshitdev/library
+git clone https://github.com/shipshitdev/library.git ~/shipshitdev-library
 
-# Create symlinks (adjust path as needed)
-ln -s /path/to/library/agents/.claude/skills ~/.claude/skills
-ln -s /path/to/library/agents/.claude/commands ~/.claude/commands
-ln -s /path/to/library/agents/.codex/skills ~/.codex/skills
-ln -s /path/to/library/agents/.cursor/skills ~/.cursor/skills
-ln -s /path/to/library/agents/.cursor/commands ~/.cursor/commands
+# Create symlinks
+ln -s ~/shipshitdev-library/agents/.claude/skills ~/.claude/skills
+ln -s ~/shipshitdev-library/agents/.claude/commands ~/.claude/commands
+ln -s ~/shipshitdev-library/agents/.codex/skills ~/.codex/skills
+ln -s ~/shipshitdev-library/agents/.cursor/skills ~/.cursor/skills
+ln -s ~/shipshitdev-library/agents/.cursor/commands ~/.cursor/commands
 ```
 
 ## Adding Skills & Commands
@@ -198,3 +237,24 @@ Skills are **adaptive** - they scan project documentation to understand:
 - Terminology and style
 
 If a project has its own skill, the generic skill will collaborate with or defer to it.
+
+## Publishing & CI/CD
+
+When you push to `master`, GitHub Actions automatically regenerates the `bundles/` directory to keep marketplace plugins in sync with skills.
+
+### Claude Marketplace
+
+Users install directly from GitHub:
+
+```bash
+# Add the marketplace
+/plugin marketplace add shipshitdev/library
+
+# Install full library
+/plugin install shipshitdev-full@shipshitdev
+
+# Or install specific bundles
+/plugin install shipshitdev-startup@shipshitdev
+/plugin install shipshitdev-testing@shipshitdev
+/plugin install shipshitdev-frontend@shipshitdev
+```

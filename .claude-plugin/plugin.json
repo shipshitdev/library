@@ -1,0 +1,20 @@
+{
+  "name": "shipshitdev-skills",
+  "version": "1.0.0",
+  "description": "90+ AI agent skills for indie developers - startup, dev, design, and business capabilities",
+  "author": "Ship Shit Dev",
+  "license": "MIT",
+  "keywords": [
+    "claude-plugin",
+    "agent-skills",
+    "indie-dev",
+    "startup",
+    "ai-coding"
+  ],
+  "skills": {
+    "path": "../agents/.claude/skills"
+  },
+  "commands": {
+    "path": "../agents/.claude/commands"
+  }
+}

@@ -1,0 +1,16 @@
+# Ship Shit Dev - Session Bundle
+
+Session management and documentation
+
+## Installation
+
+```bash
+/plugin marketplace add shipshitdev/library
+/plugin install shipshitdev-session@shipshitdev
+```
+
+## Included Skills
+
+- `session-documenter`
+- `ai-dev-loop`
+- `workspace-performance-audit`

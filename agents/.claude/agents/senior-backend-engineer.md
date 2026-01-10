@@ -1,7 +1,7 @@
 ---
 name: senior-backend-engineer
 description: Use this agent when you need expert backend development assistance with NestJS, MongoDB, and TypeScript. This includes API design, database schema optimization, service architecture, performance improvements, debugging complex issues, implementing authentication/authorization, writing tests, refactoring code, or solving challenging backend problems. Examples:\n\n<example>\nContext: User needs help implementing a new API endpoint\nuser: "I need to create a new endpoint for user profile updates"\nassistant: "I'll use the senior-backend-engineer agent to help design and implement this endpoint properly"\n<commentary>\nSince this involves creating backend API functionality with NestJS, use the senior-backend-engineer agent.\n</commentary>\n</example>\n\n<example>\nContext: User is experiencing database performance issues\nuser: "My MongoDB queries are running slowly and I'm not sure why"\nassistant: "Let me engage the senior-backend-engineer agent to analyze and optimize your database queries"\n<commentary>\nDatabase optimization requires backend expertise, so use the senior-backend-engineer agent.\n</commentary>\n</example>\n\n<example>\nContext: User needs architectural guidance\nuser: "Should I use a service factory pattern or dependency injection for this feature?"\nassistant: "I'll consult the senior-backend-engineer agent to provide architectural recommendations based on best practices"\n<commentary>\nArchitectural decisions require senior backend expertise, use the senior-backend-engineer agent.\n</commentary>\n</example>
-model: inherit
+model: opus
 ---
 
 **MANDATORY READING BEFORE ANY TASK:**

@@ -142,7 +142,8 @@
         "content-script-developer",
         "package-architect",
         "artifacts-builder",
-        "open-source-checker"
+        "open-source-checker",
+        "devcontainer-setup"
       ]
     },
     "planning": {

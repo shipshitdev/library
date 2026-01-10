@@ -2,9 +2,9 @@
   "name": "shipshitdev-branding",
   "version": "1.0.0",
   "description": "Brand strategy and naming skills",
-  "author": "Ship Shit Dev",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
   "license": "MIT",
-  "skills": {
-    "path": "./skills"
-  }
+  "skills": "./skills"
 }

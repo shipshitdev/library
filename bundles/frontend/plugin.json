@@ -2,9 +2,9 @@
   "name": "shipshitdev-frontend",
   "version": "1.0.0",
   "description": "Frontend development and design skills",
-  "author": "Ship Shit Dev",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
   "license": "MIT",
-  "skills": {
-    "path": "./skills"
-  }
+  "skills": "./skills"
 }

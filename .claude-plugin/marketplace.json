@@ -6,11 +6,6 @@
   "description": "100+ AI agent skills for indie developers building startups",
   "plugins": [
     {
-      "name": "shipshitdev-full",
-      "source": "./agents/.claude",
-      "description": "Complete skill library - all 100+ skills for indie developers"
-    },
-    {
       "name": "shipshitdev-startup",
       "source": "./bundles/startup",
       "description": "Skills for validating ideas, planning MVPs, and launching startups"
@@ -528,7 +523,7 @@
     {
       "name": "spec-first",
       "source": "./agents/.claude/skills/spec-first",
-      "description": "Use when building anything non-trivial. Enforces a spec → plan → execute → verify loop that prevents"
+      "description": "Use when building anything non-trivial. Enforces a spec \u2192 plan \u2192 execute \u2192 verify loop that prevents"
     },
     {
       "name": "startup-icp-definer",

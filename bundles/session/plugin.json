@@ -2,10 +2,10 @@
   "name": "shipshitdev-session",
   "version": "1.0.0",
   "description": "Session management and documentation with /start, /end, /inbox commands",
-  "author": "Ship Shit Dev",
-  "license": "MIT",
-  "skills": {
-    "path": "./skills"
+  "author": {
+    "name": "Ship Shit Dev"
   },
+  "license": "MIT",
+  "skills": "./skills",
   "commands": "./commands"
 }

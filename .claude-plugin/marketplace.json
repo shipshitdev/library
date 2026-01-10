@@ -72,7 +72,7 @@
     },
     {
       "name": "shipshitdev-session",
-      "description": "Session management and documentation",
+      "description": "Session management with /start, /end, /inbox commands",
       "source": "./bundles/session"
     },
     {

@@ -2,10 +2,9 @@
   "name": "shipshitdev-ai-agents",
   "version": "1.0.0",
   "description": "AI agent development and prompt engineering",
-  "author": {
-    "name": "Ship Shit Dev"
-  },
+  "author": "Ship Shit Dev",
   "license": "MIT",
-  "skills": "./skills",
-  "commands": "./commands"
+  "skills": {
+    "path": "./skills"
+  }
 }

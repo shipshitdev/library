@@ -1,0 +1,10 @@
+{
+  "name": "context-optimization",
+  "version": "1.0.0",
+  "description": "Apply optimization techniques to extend effective context capacity. Use when context limits constrai",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

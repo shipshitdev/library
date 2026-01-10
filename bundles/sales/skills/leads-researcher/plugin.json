@@ -1,0 +1,10 @@
+{
+  "name": "leads-researcher",
+  "version": "1.0.0",
+  "description": "This skill should be used when users need to research leads, find company information, discover cont",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

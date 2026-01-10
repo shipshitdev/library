@@ -22,3 +22,4 @@ Project setup and workspace initialization
 - `package-architect`
 - `artifacts-builder`
 - `open-source-checker`
+- `devcontainer-setup`

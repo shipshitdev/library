@@ -1,0 +1,10 @@
+{
+  "name": "support-systems-architect",
+  "version": "1.0.0",
+  "description": "Use this skill when users need to set up customer support systems, create help docs/FAQs, implement ",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

@@ -1,0 +1,10 @@
+{
+  "name": "idea-validator",
+  "version": "1.0.0",
+  "description": "Use this skill when users need to validate a startup idea, assess problem-solution fit, evaluate mar",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

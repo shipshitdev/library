@@ -1,0 +1,10 @@
+{
+  "name": "mvp-architect",
+  "version": "1.0.0",
+  "description": "Use this skill when users need to scope an MVP, define minimum viable features, plan early product d",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

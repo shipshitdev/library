@@ -1,0 +1,10 @@
+{
+  "name": "constraint-eliminator",
+  "version": "1.0.0",
+  "description": "Use this skill when users need to remove customer friction, improve customer success, handle objecti",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

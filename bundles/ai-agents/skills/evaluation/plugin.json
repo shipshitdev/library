@@ -1,0 +1,10 @@
+{
+  "name": "evaluation",
+  "version": "1.0.0",
+  "description": "Build evaluation frameworks for agent systems. Use when testing agent performance, validating contex",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

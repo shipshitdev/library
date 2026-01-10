@@ -1,0 +1,10 @@
+{
+  "name": "cofounder-evaluator",
+  "version": "1.0.0",
+  "description": "Use this skill when users need to evaluate potential co-founders, assess founder compatibility, desi",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

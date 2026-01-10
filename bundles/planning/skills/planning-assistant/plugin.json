@@ -1,0 +1,10 @@
+{
+  "name": "planning-assistant",
+  "version": "1.0.0",
+  "description": "This skill should be used when users need help with content planning, calendar management, research ",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

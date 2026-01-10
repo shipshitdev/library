@@ -1,0 +1,10 @@
+{
+  "name": "project-scaffold",
+  "version": "1.0.0",
+  "description": "Unified project scaffolder that works across all platforms. Scaffold .agent folders, backend (NestJS",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

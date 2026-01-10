@@ -1,0 +1,10 @@
+{
+  "name": "prompt-engineer",
+  "version": "1.0.0",
+  "description": "Expert prompt engineer specializing in content generation and social media optimization",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

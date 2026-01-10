@@ -1,0 +1,10 @@
+{
+  "name": "expo-architect",
+  "version": "1.0.0",
+  "description": "Scaffold a production-ready Expo React Native app with working screens, navigation, and optional Cle",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

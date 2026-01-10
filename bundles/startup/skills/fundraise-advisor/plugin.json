@@ -1,0 +1,10 @@
+{
+  "name": "fundraise-advisor",
+  "version": "1.0.0",
+  "description": "Use this skill when users need to raise funding, create a pitch deck, prepare for investor meetings,",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

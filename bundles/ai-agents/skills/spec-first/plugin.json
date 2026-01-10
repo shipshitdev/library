@@ -1,0 +1,10 @@
+{
+  "name": "spec-first",
+  "version": "1.0.0",
+  "description": "Use when building anything non-trivial. Enforces a spec → plan → execute → verify loop that pr",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

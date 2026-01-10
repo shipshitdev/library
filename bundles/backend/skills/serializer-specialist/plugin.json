@@ -1,0 +1,10 @@
+{
+  "name": "serializer-specialist",
+  "version": "1.0.0",
+  "description": "Expert in JSON:API serialization patterns using ts-jsonapi or similar libraries.",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

@@ -1,0 +1,10 @@
+{
+  "name": "early-hiring-advisor",
+  "version": "1.0.0",
+  "description": "Use this skill when users need to make early hires, build their founding team, determine compensatio",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

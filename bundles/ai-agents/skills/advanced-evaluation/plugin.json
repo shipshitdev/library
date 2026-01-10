@@ -1,0 +1,10 @@
+{
+  "name": "advanced-evaluation",
+  "version": "1.0.0",
+  "description": "Master LLM-as-a-Judge evaluation techniques including direct scoring, pairwise comparison, rubric ge",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

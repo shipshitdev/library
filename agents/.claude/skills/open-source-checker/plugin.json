@@ -1,0 +1,10 @@
+{
+  "name": "open-source-checker",
+  "version": "1.0.0",
+  "description": "Expert in detecting private information, secrets, API keys, credentials, and sensitive data in codeb",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

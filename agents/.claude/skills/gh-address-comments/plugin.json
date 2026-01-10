@@ -1,0 +1,10 @@
+{
+  "name": "gh-address-comments",
+  "version": "1.0.0",
+  "description": "Help address review or issue comments on the open GitHub PR for the current branch using gh CLI; ver",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

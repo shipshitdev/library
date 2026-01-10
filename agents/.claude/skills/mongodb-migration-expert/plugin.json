@@ -1,0 +1,10 @@
+{
+  "name": "mongodb-migration-expert",
+  "version": "1.0.0",
+  "description": "Database schema design, indexing, and migration guidance for MongoDB-based applications.",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

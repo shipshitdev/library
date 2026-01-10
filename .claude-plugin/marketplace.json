@@ -1,0 +1,599 @@
+{
+  "name": "shipshitdev",
+  "description": "100+ AI agent skills for indie developers building startups",
+  "owner": {
+    "name": "Ship Shit Dev"
+  },
+  "plugins": [
+    {
+      "name": "shipshitdev-startup",
+      "description": "Skills for validating ideas, planning MVPs, and launching startups",
+      "source": "./bundles/startup"
+    },
+    {
+      "name": "shipshitdev-testing",
+      "description": "Testing, QA, and CI/CD automation skills",
+      "source": "./bundles/testing"
+    },
+    {
+      "name": "shipshitdev-payments",
+      "description": "Payment processing and financial integrations",
+      "source": "./bundles/payments"
+    },
+    {
+      "name": "shipshitdev-infrastructure",
+      "description": "DevOps, cloud, and infrastructure skills",
+      "source": "./bundles/infrastructure"
+    },
+    {
+      "name": "shipshitdev-frontend",
+      "description": "Frontend development and design skills",
+      "source": "./bundles/frontend"
+    },
+    {
+      "name": "shipshitdev-backend",
+      "description": "Backend development and API skills",
+      "source": "./bundles/backend"
+    },
+    {
+      "name": "shipshitdev-content",
+      "description": "Content creation and documentation skills",
+      "source": "./bundles/content"
+    },
+    {
+      "name": "shipshitdev-sales",
+      "description": "Sales, leads, and outreach skills",
+      "source": "./bundles/sales"
+    },
+    {
+      "name": "shipshitdev-branding",
+      "description": "Brand strategy and naming skills",
+      "source": "./bundles/branding"
+    },
+    {
+      "name": "shipshitdev-ai-agents",
+      "description": "AI agent development and prompt engineering",
+      "source": "./bundles/ai-agents"
+    },
+    {
+      "name": "shipshitdev-workspace",
+      "description": "Project setup and workspace initialization",
+      "source": "./bundles/workspace"
+    },
+    {
+      "name": "shipshitdev-planning",
+      "description": "Strategy, planning, and analysis skills",
+      "source": "./bundles/planning"
+    },
+    {
+      "name": "shipshitdev-github",
+      "description": "GitHub workflow and automation skills",
+      "source": "./bundles/github"
+    },
+    {
+      "name": "shipshitdev-session",
+      "description": "Session management and documentation",
+      "source": "./bundles/session"
+    },
+    {
+      "name": "accessibility",
+      "description": "Expert in web accessibility (WCAG 2.1 AA compliance) for React/Next.js applications, ensuring all pr",
+      "source": "./agents/.claude/skills/accessibility"
+    },
+    {
+      "name": "advanced-evaluation",
+      "description": "Master LLM-as-a-Judge evaluation techniques including direct scoring, pairwise comparison, rubric ge",
+      "source": "./agents/.claude/skills/advanced-evaluation"
+    },
+    {
+      "name": "agent-folder-init",
+      "description": "Initialize a comprehensive .agent/ folder structure for AI-first development. Use this skill when st",
+      "source": "./agents/.claude/skills/agent-folder-init"
+    },
+    {
+      "name": "ai-dev-loop",
+      "description": "Orchestrate autonomous AI development with task-based workflow and QA gates",
+      "source": "./agents/.claude/skills/ai-dev-loop"
+    },
+    {
+      "name": "ai-loading-ux",
+      "description": "Design AI loading, thinking, and progress indicator UX. Use when explicitly asked to improve AI wait",
+      "source": "./agents/.claude/skills/ai-loading-ux"
+    },
+    {
+      "name": "analytics-expert",
+      "description": "This skill should be used when users need help analyzing content analytics data, creating reports, i",
+      "source": "./agents/.claude/skills/analytics-expert"
+    },
+    {
+      "name": "api-design-expert",
+      "description": "Expert in RESTful API design, OpenAPI/Swagger documentation, versioning, error handling, and API bes",
+      "source": "./agents/.claude/skills/api-design-expert"
+    },
+    {
+      "name": "artifacts-builder",
+      "description": "Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern fronten",
+      "source": "./agents/.claude/skills/artifacts-builder"
+    },
+    {
+      "name": "aws-infrastructure",
+      "description": "Expert in AWS infrastructure setup including EC2, VPC, security groups, Application Load Balancers, ",
+      "source": "./agents/.claude/skills/aws-infrastructure"
+    },
+    {
+      "name": "brand-architect",
+      "description": "Use this skill when users need to develop brand strategy, choose a company name, define brand positi",
+      "source": "./agents/.claude/skills/brand-architect"
+    },
+    {
+      "name": "brand-name-generator",
+      "description": "This skill should be used when users need to generate creative brand names, company names, product n",
+      "source": "./agents/.claude/skills/brand-name-generator"
+    },
+    {
+      "name": "business-model-auditor",
+      "description": "Use this skill when users need to stress test their business model, identify scale limitations, find",
+      "source": "./agents/.claude/skills/business-model-auditor"
+    },
+    {
+      "name": "business-operator",
+      "description": "Use this skill when users manage multiple businesses, need help prioritizing across ventures, want a",
+      "source": "./agents/.claude/skills/business-operator"
+    },
+    {
+      "name": "changelog-generator",
+      "description": "Automatically creates user-facing changelogs from git commits by analyzing commit history, categoriz",
+      "source": "./agents/.claude/skills/changelog-generator"
+    },
+    {
+      "name": "clerk-implementer",
+      "description": "This skill should be used when users need to implement Clerk authentication, user management, or org",
+      "source": "./agents/.claude/skills/clerk-implementer"
+    },
+    {
+      "name": "cofounder-evaluator",
+      "description": "Use this skill when users need to evaluate potential co-founders, assess founder compatibility, desi",
+      "source": "./agents/.claude/skills/cofounder-evaluator"
+    },
+    {
+      "name": "comment-mode",
+      "description": "Granular feedback on drafts without rewriting. Generates highlighted HTML with click-to-reveal inlin",
+      "source": "./agents/.claude/skills/comment-mode"
+    },
+    {
+      "name": "competitive-intelligence-analyst",
+      "description": "Use this skill when users need to analyze competitors, monitor market movements, benchmark features/",
+      "source": "./agents/.claude/skills/competitive-intelligence-analyst"
+    },
+    {
+      "name": "component-library",
+      "description": "Expert React/Next.js component architect specializing in creating consistent, reusable, and maintain",
+      "source": "./agents/.claude/skills/component-library"
+    },
+    {
+      "name": "constraint-eliminator",
+      "description": "Use this skill when users need to remove customer friction, improve customer success, handle objecti",
+      "source": "./agents/.claude/skills/constraint-eliminator"
+    },
+    {
+      "name": "content-creator",
+      "description": "Expert content creator specializing in newsletters and tweets that capture your authentic voice. Cre",
+      "source": "./agents/.claude/skills/content-creator"
+    },
+    {
+      "name": "content-script-developer",
+      "description": "Expert in browser extension content scripts, DOM integration, and safe page augmentation across mode",
+      "source": "./agents/.claude/skills/content-script-developer"
+    },
+    {
+      "name": "context-degradation",
+      "description": "Recognize, diagnose, and mitigate patterns of context degradation in agent systems. Use when context",
+      "source": "./agents/.claude/skills/context-degradation"
+    },
+    {
+      "name": "context-fundamentals",
+      "description": "Understand the components, mechanics, and constraints of context in agent systems. Use when designin",
+      "source": "./agents/.claude/skills/context-fundamentals"
+    },
+    {
+      "name": "context-optimization",
+      "description": "Apply optimization techniques to extend effective context capacity. Use when context limits constrai",
+      "source": "./agents/.claude/skills/context-optimization"
+    },
+    {
+      "name": "copywriter",
+      "description": "Brand voice guardian and conversion-focused copywriter, specializing in direct, no-fluff copy that a",
+      "source": "./agents/.claude/skills/copywriter"
+    },
+    {
+      "name": "cto-advisor",
+      "description": "Technical leadership guidance for engineering teams, architecture decisions, and technology strategy",
+      "source": "./agents/.claude/skills/cto-advisor"
+    },
+    {
+      "name": "design-consistency-auditor",
+      "description": "Audit and maintain design system consistency, UX/UI patterns, color palettes, and design best practi",
+      "source": "./agents/.claude/skills/design-consistency-auditor"
+    },
+    {
+      "name": "devcontainer-setup",
+      "description": "Set up a .devcontainer for VS Code with Docker, Claude Code CLI support, and configurable options. U",
+      "source": "./agents/.claude/skills/devcontainer-setup"
+    },
+    {
+      "name": "docker-expert",
+      "description": "Expert in Docker, docker-compose, Dockerfile patterns, and container orchestration for NestJS and Ne",
+      "source": "./agents/.claude/skills/docker-expert"
+    },
+    {
+      "name": "docs",
+      "description": "Creates clear, concise technical documentation for software projects, runbooks, and developer guides",
+      "source": "./agents/.claude/skills/docs"
+    },
+    {
+      "name": "docusaurus-writer",
+      "description": "Expert in creating clear, comprehensive technical documentation with Docusaurus 3.9.1, MDX, and mode",
+      "source": "./agents/.claude/skills/docusaurus-writer"
+    },
+    {
+      "name": "early-hiring-advisor",
+      "description": "Use this skill when users need to make early hires, build their founding team, determine compensatio",
+      "source": "./agents/.claude/skills/early-hiring-advisor"
+    },
+    {
+      "name": "ec2-backend-deployer",
+      "description": "Expert in deploying backends to EC2 instances using CI/CD pipelines, Docker containers, and GitHub A",
+      "source": "./agents/.claude/skills/ec2-backend-deployer"
+    },
+    {
+      "name": "email-finder",
+      "description": "This skill should be used when users need to find email addresses associated with a domain. It activ",
+      "source": "./agents/.claude/skills/email-finder"
+    },
+    {
+      "name": "error-handling-expert",
+      "description": "Expert in error handling patterns, exception management, error responses, logging, and error recover",
+      "source": "./agents/.claude/skills/error-handling-expert"
+    },
+    {
+      "name": "evaluation",
+      "description": "Build evaluation frameworks for agent systems. Use when testing agent performance, validating contex",
+      "source": "./agents/.claude/skills/evaluation"
+    },
+    {
+      "name": "execution-accelerator",
+      "description": "Use this skill when users are stuck on a decision, overthinking, experiencing analysis paralysis, or",
+      "source": "./agents/.claude/skills/execution-accelerator"
+    },
+    {
+      "name": "expo-architect",
+      "description": "Scaffold a production-ready Expo React Native app with working screens, navigation, and optional Cle",
+      "source": "./agents/.claude/skills/expo-architect"
+    },
+    {
+      "name": "financial-operations-expert",
+      "description": "Use this skill when users need help with business finances, tax planning, bookkeeping, profit/loss a",
+      "source": "./agents/.claude/skills/financial-operations-expert"
+    },
+    {
+      "name": "frontend-design",
+      "description": "Create distinctive, production-grade frontend interfaces with high design quality. Use this skill wh",
+      "source": "./agents/.claude/skills/frontend-design"
+    },
+    {
+      "name": "fullstack-workspace-init",
+      "description": "Scaffold a production-ready full-stack monorepo with working MVP features, tests, and CI/CD. Generat",
+      "source": "./agents/.claude/skills/fullstack-workspace-init"
+    },
+    {
+      "name": "fundraise-advisor",
+      "description": "Use this skill when users need to raise funding, create a pitch deck, prepare for investor meetings,",
+      "source": "./agents/.claude/skills/fundraise-advisor"
+    },
+    {
+      "name": "gh-address-comments",
+      "description": "Help address review or issue comments on the open GitHub PR for the current branch using gh CLI; ver",
+      "source": "./agents/.claude/skills/gh-address-comments"
+    },
+    {
+      "name": "gh-fix-ci",
+      "description": "Inspect GitHub PR checks with gh, pull failing GitHub Actions logs, summarize failure context, then ",
+      "source": "./agents/.claude/skills/gh-fix-ci"
+    },
+    {
+      "name": "html-style",
+      "description": ">",
+      "source": "./agents/.claude/skills/html-style"
+    },
+    {
+      "name": "husky-test-coverage",
+      "description": "Set up or verify Husky git hooks to ensure all tests run and coverage stays above 80% (configurable)",
+      "source": "./agents/.claude/skills/husky-test-coverage"
+    },
+    {
+      "name": "idea-validator",
+      "description": "Use this skill when users need to validate a startup idea, assess problem-solution fit, evaluate mar",
+      "source": "./agents/.claude/skills/idea-validator"
+    },
+    {
+      "name": "incremental-fetch",
+      "description": "\"Build resilient data ingestion pipelines from APIs. Use when creating scripts that fetch paginated ",
+      "source": "./agents/.claude/skills/incremental-fetch"
+    },
+    {
+      "name": "internal-comms",
+      "description": "A set of resources to help me write all kinds of internal communications, using the formats that my ",
+      "source": "./agents/.claude/skills/internal-comms"
+    },
+    {
+      "name": "landing-page-vercel",
+      "description": "Scaffold a production-ready static landing page with working email capture form, analytics, and resp",
+      "source": "./agents/.claude/skills/landing-page-vercel"
+    },
+    {
+      "name": "lead-channel-optimizer",
+      "description": "Use this skill when users need to optimize lead generation channels, identify highest-ROI marketing ",
+      "source": "./agents/.claude/skills/lead-channel-optimizer"
+    },
+    {
+      "name": "leads-researcher",
+      "description": "This skill should be used when users need to research leads, find company information, discover cont",
+      "source": "./agents/.claude/skills/leads-researcher"
+    },
+    {
+      "name": "linter-formatter-init",
+      "description": "Set up Biome (default) or ESLint + Prettier, Vitest testing, and pre-commit hooks for any JavaScript",
+      "source": "./agents/.claude/skills/linter-formatter-init"
+    },
+    {
+      "name": "market-sizer",
+      "description": "Use this skill when users need to calculate market size (TAM/SAM/SOM), assess market opportunity, va",
+      "source": "./agents/.claude/skills/market-sizer"
+    },
+    {
+      "name": "mcp-builder",
+      "description": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact wi",
+      "source": "./agents/.claude/skills/mcp-builder"
+    },
+    {
+      "name": "memory-systems",
+      "description": "Design and implement memory architectures for agent systems. Use when building agents that need to p",
+      "source": "./agents/.claude/skills/memory-systems"
+    },
+    {
+      "name": "micro-landing-builder",
+      "description": "Scaffold, clone, and deploy config-driven NextJS landing pages that use a shared UI components packa",
+      "source": "./agents/.claude/skills/micro-landing-builder"
+    },
+    {
+      "name": "mongodb-atlas-checker",
+      "description": "Expert in verifying MongoDB Atlas setup and configuration for backend applications. Checks connectio",
+      "source": "./agents/.claude/skills/mongodb-atlas-checker"
+    },
+    {
+      "name": "mongodb-migration-expert",
+      "description": "Database schema design, indexing, and migration guidance for MongoDB-based applications.",
+      "source": "./agents/.claude/skills/mongodb-migration-expert"
+    },
+    {
+      "name": "monitoring-setup",
+      "description": "Expert in setting up Sentry error tracking and Google Analytics for NestJS and Next.js applications.",
+      "source": "./agents/.claude/skills/monitoring-setup"
+    },
+    {
+      "name": "multi-agent-patterns",
+      "description": "Design multi-agent architectures for complex tasks. Use when single-agent context limits are exceede",
+      "source": "./agents/.claude/skills/multi-agent-patterns"
+    },
+    {
+      "name": "mvp-architect",
+      "description": "Use this skill when users need to scope an MVP, define minimum viable features, plan early product d",
+      "source": "./agents/.claude/skills/mvp-architect"
+    },
+    {
+      "name": "nestjs-queue-architect",
+      "description": "Queue job management patterns, processors, and async workflows for video/image processing",
+      "source": "./agents/.claude/skills/nestjs-queue-architect"
+    },
+    {
+      "name": "nestjs-testing-expert",
+      "description": "Testing patterns for NestJS apps using Jest, covering unit, integration, and e2e tests.",
+      "source": "./agents/.claude/skills/nestjs-testing-expert"
+    },
+    {
+      "name": "offer-architect",
+      "description": "Use this skill when users need to create irresistible offers, design value stacks, optimize product/",
+      "source": "./agents/.claude/skills/offer-architect"
+    },
+    {
+      "name": "open-source-checker",
+      "description": "Expert in detecting private information, secrets, API keys, credentials, and sensitive data in codeb",
+      "source": "./agents/.claude/skills/open-source-checker"
+    },
+    {
+      "name": "outbound-optimizer",
+      "description": "Use this skill when users need to improve cold outreach, optimize cold emails or DMs, increase respo",
+      "source": "./agents/.claude/skills/outbound-optimizer"
+    },
+    {
+      "name": "package-architect",
+      "description": "Design and maintain TypeScript packages in a monorepo, including exports and build configuration.",
+      "source": "./agents/.claude/skills/package-architect"
+    },
+    {
+      "name": "partnership-builder",
+      "description": "Use this skill when users need to build partnerships, create affiliate programs, develop integration",
+      "source": "./agents/.claude/skills/partnership-builder"
+    },
+    {
+      "name": "performance-expert",
+      "description": "Expert in performance optimization for React, Next.js, NestJS applications covering frontend renderi",
+      "source": "./agents/.claude/skills/performance-expert"
+    },
+    {
+      "name": "planning-assistant",
+      "description": "This skill should be used when users need help with content planning, calendar management, research ",
+      "source": "./agents/.claude/skills/planning-assistant"
+    },
+    {
+      "name": "plasmo-extension-architect",
+      "description": "Architect Chrome MV3 extensions using Plasmo, including messaging, storage, and UI surfaces.",
+      "source": "./agents/.claude/skills/plasmo-extension-architect"
+    },
+    {
+      "name": "playwright-e2e-init",
+      "description": "Initialize Playwright end-to-end testing for Next.js and React projects. Sets up configuration, crea",
+      "source": "./agents/.claude/skills/playwright-e2e-init"
+    },
+    {
+      "name": "pricing-strategist",
+      "description": "Use this skill when users need help with pricing strategy, feel they're undercharging, want to raise",
+      "source": "./agents/.claude/skills/pricing-strategist"
+    },
+    {
+      "name": "project-init-orchestrator",
+      "description": "Orchestrates complete project initialization by coordinating agent-folder-init, linter-formatter-ini",
+      "source": "./agents/.claude/skills/project-init-orchestrator"
+    },
+    {
+      "name": "project-scaffold",
+      "description": "Unified project scaffolder that works across all platforms. Scaffold .agent folders, backend (NestJS",
+      "source": "./agents/.claude/skills/project-scaffold"
+    },
+    {
+      "name": "prompt-engineer",
+      "description": "Expert prompt engineer specializing in content generation and social media optimization",
+      "source": "./agents/.claude/skills/prompt-engineer"
+    },
+    {
+      "name": "qa-reviewer",
+      "description": "Systematically review AI agent work for quality, accuracy, and completeness. Catches bugs, verifies ",
+      "source": "./agents/.claude/skills/qa-reviewer"
+    },
+    {
+      "name": "quick-view",
+      "description": "Generate minimal HTML pages to review Claude Code output in a browser. Use when terminal output is h",
+      "source": "./agents/.claude/skills/quick-view"
+    },
+    {
+      "name": "react-native-components",
+      "description": "Master React Native 0.79.5 components, styling, performance optimization, and mobile UI best practic",
+      "source": "./agents/.claude/skills/react-native-components"
+    },
+    {
+      "name": "retention-engine",
+      "description": "Use this skill when users need to reduce churn, increase customer lifetime value (LTV), build recurr",
+      "source": "./agents/.claude/skills/retention-engine"
+    },
+    {
+      "name": "roadmap-analyzer",
+      "description": "Analyze project features against ICP (Ideal Customer Profile) needs to identify gaps and recommend r",
+      "source": "./agents/.claude/skills/roadmap-analyzer"
+    },
+    {
+      "name": "rules-capture",
+      "description": "Automatically detects and documents user preferences, coding rules, and style guidelines when expres",
+      "source": "./agents/.claude/skills/rules-capture"
+    },
+    {
+      "name": "search-domain-validator",
+      "description": "This skill should be used when users need to validate domain name format, check domain availability,",
+      "source": "./agents/.claude/skills/search-domain-validator"
+    },
+    {
+      "name": "security-expert",
+      "description": "Expert in application security, OWASP Top 10, authentication, authorization, data protection, and se",
+      "source": "./agents/.claude/skills/security-expert"
+    },
+    {
+      "name": "serializer-specialist",
+      "description": "Expert in JSON:API serialization patterns using ts-jsonapi or similar libraries.",
+      "source": "./agents/.claude/skills/serializer-specialist"
+    },
+    {
+      "name": "session-documenter",
+      "description": "Automatically document session work after each task completion. Tracks decisions, file changes, flow",
+      "source": "./agents/.claude/skills/session-documenter"
+    },
+    {
+      "name": "skill-creator",
+      "description": "Guide for creating effective skills. This skill should be used when users want to create a new skill",
+      "source": "./agents/.claude/skills/skill-creator"
+    },
+    {
+      "name": "spec-first",
+      "description": "Use when building anything non-trivial. Enforces a spec \u2192 plan \u2192 execute \u2192 verify loop that prevents",
+      "source": "./agents/.claude/skills/spec-first"
+    },
+    {
+      "name": "startup-icp-definer",
+      "description": "Use this skill when users need to define their ideal customer profile, identify target personas, map",
+      "source": "./agents/.claude/skills/startup-icp-definer"
+    },
+    {
+      "name": "strategy-expert",
+      "description": "This skill should be used when users need help with content strategy, persona building, competitive ",
+      "source": "./agents/.claude/skills/strategy-expert"
+    },
+    {
+      "name": "stripe-implementer",
+      "description": "This skill should be used when users need to implement Stripe payment processing, subscription manag",
+      "source": "./agents/.claude/skills/stripe-implementer"
+    },
+    {
+      "name": "support-systems-architect",
+      "description": "Use this skill when users need to set up customer support systems, create help docs/FAQs, implement ",
+      "source": "./agents/.claude/skills/support-systems-architect"
+    },
+    {
+      "name": "table-filters",
+      "description": "Designs optimal filtering UX for data tables. Use when building a table that needs filters - analyze",
+      "source": "./agents/.claude/skills/table-filters"
+    },
+    {
+      "name": "task-prd-creator",
+      "description": "Use this skill when users request new features, enhancements, bug fixes, or any work that needs plan",
+      "source": "./agents/.claude/skills/task-prd-creator"
+    },
+    {
+      "name": "testing-cicd-init",
+      "description": "Add Vitest testing infrastructure and GitHub Actions CI/CD to any TypeScript project. Supports Next.",
+      "source": "./agents/.claude/skills/testing-cicd-init"
+    },
+    {
+      "name": "testing-expert",
+      "description": "Expert in testing strategies for React, Next.js, and NestJS applications covering unit tests, integr",
+      "source": "./agents/.claude/skills/testing-expert"
+    },
+    {
+      "name": "theme-factory",
+      "description": "Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML la",
+      "source": "./agents/.claude/skills/theme-factory"
+    },
+    {
+      "name": "tool-design",
+      "description": "Design tools that agents can use effectively, including when to reduce tool complexity. Use when cre",
+      "source": "./agents/.claude/skills/tool-design"
+    },
+    {
+      "name": "webapp-testing",
+      "description": "Toolkit for interacting with and testing local web applications using Playwright. Supports verifying",
+      "source": "./agents/.claude/skills/webapp-testing"
+    },
+    {
+      "name": "workflow-automation",
+      "description": "This skill should be used when users need help designing content workflows, creating process documen",
+      "source": "./agents/.claude/skills/workflow-automation"
+    },
+    {
+      "name": "workspace-performance-audit",
+      "description": "Orchestrates comprehensive performance audits across full-stack monorepos. Coordinates performance-e",
+      "source": "./agents/.claude/skills/workspace-performance-audit"
+    },
+    {
+      "name": "youtube-video-analyst",
+      "description": "Forensic-level deconstruction of YouTube videos to extract viral formulas, hooks, retention mechanic",
+      "source": "./agents/.claude/skills/youtube-video-analyst"
+    }
+  ]
+}

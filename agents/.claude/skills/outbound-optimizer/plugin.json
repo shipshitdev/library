@@ -1,0 +1,10 @@
+{
+  "name": "outbound-optimizer",
+  "version": "1.0.0",
+  "description": "Use this skill when users need to improve cold outreach, optimize cold emails or DMs, increase respo",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

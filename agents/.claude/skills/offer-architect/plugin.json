@@ -1,0 +1,10 @@
+{
+  "name": "offer-architect",
+  "version": "1.0.0",
+  "description": "Use this skill when users need to create irresistible offers, design value stacks, optimize product/",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

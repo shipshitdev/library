@@ -1,0 +1,10 @@
+{
+  "name": "agent-folder-init",
+  "version": "1.0.0",
+  "description": "Initialize a comprehensive .agent/ folder structure for AI-first development. Use this skill when st",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

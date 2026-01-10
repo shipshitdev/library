@@ -1,0 +1,10 @@
+{
+  "name": "roadmap-analyzer",
+  "version": "1.0.0",
+  "description": "Analyze project features against ICP (Ideal Customer Profile) needs to identify gaps and recommend r",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

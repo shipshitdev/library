@@ -1,0 +1,10 @@
+{
+  "name": "email-finder",
+  "version": "1.0.0",
+  "description": "This skill should be used when users need to find email addresses associated with a domain. It activ",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

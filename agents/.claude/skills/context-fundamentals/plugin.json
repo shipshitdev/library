@@ -1,0 +1,10 @@
+{
+  "name": "context-fundamentals",
+  "version": "1.0.0",
+  "description": "Understand the components, mechanics, and constraints of context in agent systems. Use when designin",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

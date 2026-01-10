@@ -1,0 +1,10 @@
+{
+  "name": "execution-accelerator",
+  "version": "1.0.0",
+  "description": "Use this skill when users are stuck on a decision, overthinking, experiencing analysis paralysis, or",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

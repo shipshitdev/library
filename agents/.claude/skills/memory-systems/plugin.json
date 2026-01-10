@@ -1,0 +1,10 @@
+{
+  "name": "memory-systems",
+  "version": "1.0.0",
+  "description": "Design and implement memory architectures for agent systems. Use when building agents that need to p",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

@@ -1,0 +1,10 @@
+{
+  "name": "design-consistency-auditor",
+  "version": "1.0.0",
+  "description": "Audit and maintain design system consistency, UX/UI patterns, color palettes, and design best practi",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

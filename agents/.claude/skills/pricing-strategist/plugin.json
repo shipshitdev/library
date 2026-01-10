@@ -1,0 +1,10 @@
+{
+  "name": "pricing-strategist",
+  "version": "1.0.0",
+  "description": "Use this skill when users need help with pricing strategy, feel they're undercharging, want to raise",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

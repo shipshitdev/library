@@ -1,0 +1,9 @@
+{
+  "name": "shipshitdev-marketplace",
+  "version": "1.0.0",
+  "description": "Marketplace index for Ship Shit Dev skills",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT"
+}

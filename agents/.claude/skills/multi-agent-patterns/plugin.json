@@ -1,0 +1,10 @@
+{
+  "name": "multi-agent-patterns",
+  "version": "1.0.0",
+  "description": "Design multi-agent architectures for complex tasks. Use when single-agent context limits are exceede",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

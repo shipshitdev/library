@@ -1,0 +1,10 @@
+{
+  "name": "aws-infrastructure",
+  "version": "1.0.0",
+  "description": "Expert in AWS infrastructure setup including EC2, VPC, security groups, Application Load Balancers, ",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

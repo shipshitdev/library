@@ -1,0 +1,10 @@
+{
+  "name": "business-operator",
+  "version": "1.0.0",
+  "description": "Use this skill when users manage multiple businesses, need help prioritizing across ventures, want a",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

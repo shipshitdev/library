@@ -1,0 +1,10 @@
+{
+  "name": "analytics-expert",
+  "version": "1.0.0",
+  "description": "This skill should be used when users need help analyzing content analytics data, creating reports, i",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

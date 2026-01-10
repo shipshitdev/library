@@ -1,0 +1,10 @@
+{
+  "name": "market-sizer",
+  "version": "1.0.0",
+  "description": "Use this skill when users need to calculate market size (TAM/SAM/SOM), assess market opportunity, va",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

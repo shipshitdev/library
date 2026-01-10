@@ -1,0 +1,10 @@
+{
+  "name": "strategy-expert",
+  "version": "1.0.0",
+  "description": "This skill should be used when users need help with content strategy, persona building, competitive ",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

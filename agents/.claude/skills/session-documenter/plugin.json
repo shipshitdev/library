@@ -1,0 +1,10 @@
+{
+  "name": "session-documenter",
+  "version": "1.0.0",
+  "description": "Automatically document session work after each task completion. Tracks decisions, file changes, flow",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

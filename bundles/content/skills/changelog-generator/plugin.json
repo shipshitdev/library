@@ -1,0 +1,10 @@
+{
+  "name": "changelog-generator",
+  "version": "1.0.0",
+  "description": "Automatically creates user-facing changelogs from git commits by analyzing commit history, categoriz",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

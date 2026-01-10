@@ -1,0 +1,10 @@
+{
+  "name": "nestjs-testing-expert",
+  "version": "1.0.0",
+  "description": "Testing patterns for NestJS apps using Jest, covering unit, integration, and e2e tests.",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

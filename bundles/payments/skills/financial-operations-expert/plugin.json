@@ -1,0 +1,10 @@
+{
+  "name": "financial-operations-expert",
+  "version": "1.0.0",
+  "description": "Use this skill when users need help with business finances, tax planning, bookkeeping, profit/loss a",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

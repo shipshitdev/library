@@ -1,0 +1,10 @@
+{
+  "name": "fullstack-workspace-init",
+  "version": "1.0.0",
+  "description": "Scaffold a production-ready full-stack monorepo with working MVP features, tests, and CI/CD. Generat",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

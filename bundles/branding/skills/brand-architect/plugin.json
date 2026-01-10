@@ -1,0 +1,10 @@
+{
+  "name": "brand-architect",
+  "version": "1.0.0",
+  "description": "Use this skill when users need to develop brand strategy, choose a company name, define brand positi",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

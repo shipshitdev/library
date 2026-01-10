@@ -1,0 +1,10 @@
+{
+  "name": "business-model-auditor",
+  "version": "1.0.0",
+  "description": "Use this skill when users need to stress test their business model, identify scale limitations, find",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

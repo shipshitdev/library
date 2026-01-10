@@ -1,0 +1,10 @@
+{
+  "name": "rules-capture",
+  "version": "1.0.0",
+  "description": "Automatically detects and documents user preferences, coding rules, and style guidelines when expres",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

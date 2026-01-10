@@ -1,0 +1,10 @@
+{
+  "name": "brand-name-generator",
+  "version": "1.0.0",
+  "description": "This skill should be used when users need to generate creative brand names, company names, product n",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

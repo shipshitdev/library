@@ -1,0 +1,10 @@
+{
+  "name": "context-degradation",
+  "version": "1.0.0",
+  "description": "Recognize, diagnose, and mitigate patterns of context degradation in agent systems. Use when context",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

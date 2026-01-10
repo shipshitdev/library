@@ -1,0 +1,10 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "Creates clear, concise technical documentation for software projects, runbooks, and developer guides",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

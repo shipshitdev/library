@@ -1,0 +1,10 @@
+{
+  "name": "gh-fix-ci",
+  "version": "1.0.0",
+  "description": "Inspect GitHub PR checks with gh, pull failing GitHub Actions logs, summarize failure context, then ",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

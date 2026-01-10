@@ -1,0 +1,10 @@
+{
+  "name": "lead-channel-optimizer",
+  "version": "1.0.0",
+  "description": "Use this skill when users need to optimize lead generation channels, identify highest-ROI marketing ",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

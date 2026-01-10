@@ -1,0 +1,10 @@
+{
+  "name": "project-init-orchestrator",
+  "version": "1.0.0",
+  "description": "Orchestrates complete project initialization by coordinating agent-folder-init, linter-formatter-ini",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

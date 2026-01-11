@@ -21,7 +21,8 @@
     ]
   },
   "scripts": {
-    "check-symlinks": "bash -c 'for link in ~/.claude/skills ~/.codex/skills ~/.cursor/commands ~/.cursor/skills; do if [[ -L \"$link\" ]]; then echo \"✓ $link -> $(readlink \"$link\")\"; else echo \"✗ $link (not a symlink)\"; fi; done'",
+    "check-symlinks": "bash -c 'for link in ~/.claude/skills ~/.claude/commands ~/.claude/agents ~/.claude/rules ~/.codex/skills ~/.cursor/commands ~/.cursor/skills; do if [[ -L \"$link\" ]]; then echo \"✓ $link -> $(readlink \"$link\")\"; else echo \"✗ $link (not a symlink)\"; fi; done'",
+    "setup:symlinks": "bash scripts/setup-symlinks.sh",
     "count": "bash -c 'echo \"Claude skills: $(ls -1 agents/.claude/skills 2>/dev/null | wc -l | tr -d \" \")\"; echo \"Codex skills: $(ls -1 agents/.codex/skills 2>/dev/null | wc -l | tr -d \" \")\"; echo \"Cursor commands: $(ls -1 agents/.cursor/commands 2>/dev/null | wc -l | tr -d \" \")\"; echo \"Cursor skills: $(ls -1 agents/.cursor/skills 2>/dev/null | wc -l | tr -d \" \")\"'",
     "generate:all": "bun scripts/generate-plugin.js all cursor",
     "generate:bundle": "bun scripts/generate-bundle.js",

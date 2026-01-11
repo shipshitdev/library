@@ -1,60 +1,92 @@
 # Symlink Configuration
 
-Current symlink configuration for the Ship Shit Dev Library.
+Configure symlinks to use Ship Shit Dev Library skills and commands globally.
 
-## Active Symlinks
+## Quick Setup
 
-| Source | Target |
-|--------|--------|
-| `~/.claude/skills` | `/Users/decod3rs/www/shipshitdev/library/agents/.claude/skills` |
-| `~/.claude/commands` | `/Users/decod3rs/www/shipshitdev/library/agents/.claude/commands` |
-| `~/.codex/skills` | `/Users/decod3rs/www/shipshitdev/library/agents/.codex/skills` |
-| `~/.cursor/skills` | `/Users/decod3rs/www/shipshitdev/library/agents/.cursor/skills` |
-| `~/.cursor/commands` | `/Users/decod3rs/www/shipshitdev/library/agents/.cursor/commands` |
-
-## Setup Commands
-
-To recreate these symlinks:
+Run the setup script from anywhere:
 
 ```bash
-# Claude
-rm -f ~/.claude/skills ~/.claude/commands
-ln -s /Users/decod3rs/www/shipshitdev/library/agents/.claude/skills ~/.claude/skills
-ln -s /Users/decod3rs/www/shipshitdev/library/agents/.claude/commands ~/.claude/commands
+# From the library directory
+./scripts/setup-symlinks.sh
 
-# Codex
-rm -f ~/.codex/skills
-ln -s /Users/decod3rs/www/shipshitdev/library/agents/.codex/skills ~/.codex/skills
+# Or with npm
+npm run setup:symlinks
 
-# Cursor
-rm -f ~/.cursor/skills ~/.cursor/commands
-ln -s /Users/decod3rs/www/shipshitdev/library/agents/.cursor/skills ~/.cursor/skills
-ln -s /Users/decod3rs/www/shipshitdev/library/agents/.cursor/commands ~/.cursor/commands
+# Preview changes without applying
+./scripts/setup-symlinks.sh --dry-run
+
+# Force replace existing files/directories
+./scripts/setup-symlinks.sh --force
 ```
+
+## What Gets Linked
+
+| Target | Source |
+|--------|--------|
+| `~/.claude/skills` | `<library>/agents/.claude/skills` |
+| `~/.claude/commands` | `<library>/agents/.claude/commands` |
+| `~/.claude/agents` | `<library>/agents/.claude/agents` |
+| `~/.claude/rules` | `<library>/agents/.claude/rules` |
+| `~/.codex/skills` | `<library>/agents/.codex/skills` |
+| `~/.cursor/skills` | `<library>/agents/.cursor/skills` |
+| `~/.cursor/commands` | `<library>/agents/.cursor/commands` |
+
+The script automatically detects the library location - no hardcoded paths needed.
 
 ## Verification
 
 Check symlinks are working:
 
 ```bash
-ls -la ~/.claude/skills ~/.claude/commands ~/.codex/skills ~/.cursor/skills ~/.cursor/commands
+npm run check-symlinks
+```
+
+Or manually:
+
+```bash
+ls -la ~/.claude/skills ~/.claude/commands
 ```
 
 ## Directory Structure
 
 ```
 library/
-├── agents/                    # Symlink targets
+├── scripts/
+│   └── setup-symlinks.sh    # Setup script
+├── agents/                   # Symlink targets
 │   ├── .claude/
-│   │   ├── skills/           # <- ~/.claude/skills
-│   │   └── commands/         # <- ~/.claude/commands
+│   │   ├── skills/          # <- ~/.claude/skills
+│   │   ├── commands/        # <- ~/.claude/commands
+│   │   ├── agents/          # <- ~/.claude/agents
+│   │   └── rules/           # <- ~/.claude/rules
 │   ├── .codex/
-│   │   └── skills/           # <- ~/.codex/skills
+│   │   └── skills/          # <- ~/.codex/skills
 │   └── .cursor/
-│       ├── skills/           # <- ~/.cursor/skills
-│       └── commands/         # <- ~/.cursor/commands
+│       ├── skills/          # <- ~/.cursor/skills
+│       └── commands/        # <- ~/.cursor/commands
 ```
 
-## Last Updated
+## Devcontainer Note
 
-2026-01-08
+When using devcontainers, the setup script in `.devcontainer/setup.sh` automatically fixes symlinks to use container paths (`/workspace/...`) instead of host paths.
+
+## Troubleshooting
+
+**Symlinks point to wrong path:**
+
+```bash
+./scripts/setup-symlinks.sh
+```
+
+**Target exists and is not a symlink:**
+
+```bash
+./scripts/setup-symlinks.sh --force
+```
+
+**Commands not showing in Claude Code:**
+
+1. Run `./scripts/setup-symlinks.sh`
+2. Restart Claude Code
+3. Run `/help` to see available commands

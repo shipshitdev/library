@@ -212,10 +212,38 @@ npm install -g @anthropic-ai/claude-code
 # Fix Claude config symlinks to point to container paths
 # The host symlinks point to /Users/... which don't exist in container
 CLAUDE_DIR="/root/.claude"
-LIBRARY_CLAUDE="/workspace/library/agents/.claude"
 
-if [ -d "$CLAUDE_DIR" ] && [ -d "$LIBRARY_CLAUDE" ]; then
+# Find the library directory dynamically
+# Check common locations: sibling directory, parent directory, or LIBRARY_PATH env var
+find_library() {
+    # Check environment variable first
+    if [ -n "$LIBRARY_PATH" ] && [ -d "$LIBRARY_PATH/agents/.claude" ]; then
+        echo "$LIBRARY_PATH/agents/.claude"
+        return
+    fi
+
+    # Check /workspace/library (common devcontainer mount)
+    if [ -d "/workspace/library/agents/.claude" ]; then
+        echo "/workspace/library/agents/.claude"
+        return
+    fi
+
+    # Check sibling directories for a library folder
+    for dir in /workspace/*/agents/.claude; do
+        if [ -d "$dir" ]; then
+            echo "$dir"
+            return
+        fi
+    done
+
+    echo ""
+}
+
+LIBRARY_CLAUDE=$(find_library)
+
+if [ -d "$CLAUDE_DIR" ] && [ -n "$LIBRARY_CLAUDE" ] && [ -d "$LIBRARY_CLAUDE" ]; then
     echo "Fixing Claude config symlinks..."
+    echo "Library found at: $LIBRARY_CLAUDE"
 
     # Remove broken symlinks and create new ones
     for item in rules commands agents skills; do
@@ -227,6 +255,9 @@ if [ -d "$CLAUDE_DIR" ] && [ -d "$LIBRARY_CLAUDE" ]; then
             echo "  Linked $item -> $LIBRARY_CLAUDE/$item"
         fi
     done
+else
+    echo "Note: Ship Shit Dev Library not found. Symlinks not configured."
+    echo "Set LIBRARY_PATH environment variable to the library root if needed."
 fi
 {{/if}}
 

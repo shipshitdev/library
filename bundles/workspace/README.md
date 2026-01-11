@@ -14,7 +14,6 @@ Project setup and workspace initialization
 - `fullstack-workspace-init`
 - `project-scaffold`
 - `project-init-orchestrator`
-- `agent-folder-init`
 - `linter-formatter-init`
 - `clerk-implementer`
 - `plasmo-extension-architect`

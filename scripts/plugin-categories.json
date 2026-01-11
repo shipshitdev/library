@@ -135,7 +135,6 @@
         "fullstack-workspace-init",
         "project-scaffold",
         "project-init-orchestrator",
-        "agent-folder-init",
         "linter-formatter-init",
         "clerk-implementer",
         "plasmo-extension-architect",
@@ -169,6 +168,7 @@
     "session": {
       "description": "Session management and documentation",
       "skills": [
+        "agent-folder-init",
         "session-documenter",
         "ai-dev-loop",
         "workspace-performance-audit"

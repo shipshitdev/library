@@ -14,7 +14,7 @@
   "license": "MIT",
   "lint-staged": {
     "*.md": [
-      "bunx markdownlint --fix --ignore bundles --ignore dist"
+      "bunx markdownlint-cli --fix --ignore bundles --ignore dist"
     ],
     "*.sh": [
       "bash scripts/lint-shellcheck.sh"

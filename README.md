@@ -28,10 +28,10 @@ library/
 
 ## Current Status
 
-| Category | Claude | Codex | Cursor | Status |
-|----------|--------|-------|--------|--------|
-| **Skills** | 44 | 44 | 49 | Base parity + Cursor extras |
-| **Commands** | 1 | 0 | 30 | Cursor-focused |
+| Category   | Claude | Codex | Cursor | Status                        |
+|------------|--------|-------|--------|-------------------------------|
+| **Skills** | 44     | 44    | 49     | Base parity + Cursor extras   |
+| **Commands** | 1     | 0     | 30     | Cursor-focused                |
 
 ## What's Included
 
@@ -112,95 +112,96 @@ touch agents/.claude/skills/my-skill/SKILL.md
 
 ## Commands
 
-| Command | Description | Cursor |
-|---------|-------------|--------|
-| analyze-codebase | Codebase analysis | [Link](agents/.cursor/commands/analyze-codebase.md) |
-| api-test | API test generation | [Link](agents/.cursor/commands/api-test.md) |
-| bug | Bug capture workflow | [Link](agents/.cursor/commands/bug.md) |
-| check-domain | Domain name generator & availability checker | [Link](agents/.cursor/commands/check-domain.md) |
-| clean | Cleanup workflow | [Link](agents/.cursor/commands/clean.md) |
-| code-review | Code review | [Link](agents/.cursor/commands/code-review.md) |
-| db-setup | MongoDB/Redis setup | [Link](agents/.cursor/commands/db-setup.md) |
-| de-slop | Clean AI code artifacts | [Link](agents/.cursor/commands/de-slop.md) |
-| deploy | Deployment workflows | [Link](agents/.cursor/commands/deploy.md) |
-| docs-generate | Documentation generation | [Link](agents/.cursor/commands/docs-generate.md) |
-| docs-update | Documentation updates | [Link](agents/.cursor/commands/docs-update.md) |
-| end | End session | [Link](agents/.cursor/commands/end.md) |
-| env-setup | Environment variables | [Link](agents/.cursor/commands/env-setup.md) |
-| inbox | Process inbox items | [Link](agents/.cursor/commands/inbox.md) |
-| launch | Launch workflow | [Link](agents/.cursor/commands/launch.md) |
-| migrate | Database migrations | [Link](agents/.cursor/commands/migrate.md) |
-| monitoring-setup | Sentry/Analytics setup | [Link](agents/.cursor/commands/monitoring-setup.md) |
-| mvp-plan | MVP planning | [Link](agents/.cursor/commands/mvp-plan.md) |
-| new-cmd | Create new commands | [Link](agents/.cursor/commands/new-cmd.md) |
-| new-session | Create session files | [Link](agents/.cursor/commands/new-session.md) |
-| optimize-prompt | Prompt optimization | [Link](agents/.cursor/commands/optimize-prompt.md) |
-| performance | Performance analysis | [Link](agents/.cursor/commands/performance.md) |
-| quick-fix | Quick fixes | [Link](agents/.cursor/commands/quick-fix.md) |
-| refactor-code | Code refactoring | [Link](agents/.cursor/commands/refactor-code.md) |
-| review-pr | PR review | [Link](agents/.cursor/commands/review-pr.md) |
-| scaffold | Project scaffolding | [Link](agents/.cursor/commands/scaffold.md) |
-| security-audit | Security audit | [Link](agents/.cursor/commands/security-audit.md) |
-| start | Start session | [Link](agents/.cursor/commands/start.md) |
-| task | Task management | [Link](agents/.cursor/commands/task.md) |
-| test | Test tracking | [Link](agents/.cursor/commands/test.md) |
-| validate | Validation workflow | [Link](agents/.cursor/commands/validate.md) |
+| Command          | Description                                    | Cursor                                                      |
+|------------------|------------------------------------------------|-------------------------------------------------------------|
+| analyze-codebase | Codebase analysis                               | [analyze-codebase](agents/.cursor/commands/analyze-codebase.md) |
+| api-test         | API test generation                            | [api-test](agents/.cursor/commands/api-test.md)             |
+| bug              | Bug capture workflow                            | [bug](agents/.cursor/commands/bug.md)                       |
+| check-domain     | Domain name generator & availability checker   | [check-domain](agents/.cursor/commands/check-domain.md)       |
+| clean            | Cleanup workflow                                | [clean](agents/.cursor/commands/clean.md)                     |
+| code-review      | Code review                                     | [code-review](agents/.cursor/commands/code-review.md)        |
+| db-setup         | MongoDB/Redis setup                             | [db-setup](agents/.cursor/commands/db-setup.md)              |
+| de-slop          | Clean AI code artifacts                         | [de-slop](agents/.cursor/commands/de-slop.md)                |
+| deploy           | Deployment workflows                            | [deploy](agents/.cursor/commands/deploy.md)                   |
+| docs-generate    | Documentation generation                        | [docs-generate](agents/.cursor/commands/docs-generate.md)     |
+| docs-update      | Documentation updates                           | [docs-update](agents/.cursor/commands/docs-update.md)        |
+| end              | End session                                     | [end](agents/.cursor/commands/end.md)                         |
+| env-setup        | Environment variables                           | [env-setup](agents/.cursor/commands/env-setup.md)            |
+| inbox            | Process inbox items                             | [inbox](agents/.cursor/commands/inbox.md)                     |
+| launch           | Launch workflow                                 | [launch](agents/.cursor/commands/launch.md)                    |
+| migrate          | Database migrations                             | [migrate](agents/.cursor/commands/migrate.md)                 |
+| monitoring-setup| Sentry/Analytics setup                         | [monitoring-setup](agents/.cursor/commands/monitoring-setup.md) |
+| mvp-plan         | MVP planning                                    | [mvp-plan](agents/.cursor/commands/mvp-plan.md)               |
+| new-cmd          | Create new commands                             | [new-cmd](agents/.cursor/commands/new-cmd.md)                 |
+| new-session      | Create session files                            | [new-session](agents/.cursor/commands/new-session.md)         |
+| optimize-prompt  | Prompt optimization                             | [optimize-prompt](agents/.cursor/commands/optimize-prompt.md)  |
+| performance      | Performance analysis                            | [performance](agents/.cursor/commands/performance.md)           |
+| quick-fix        | Quick fixes                                     | [quick-fix](agents/.cursor/commands/quick-fix.md)              |
+| refactor-code    | Code refactoring                                | [refactor-code](agents/.cursor/commands/refactor-code.md)     |
+| review-pr        | PR review                                       | [review-pr](agents/.cursor/commands/review-pr.md)              |
+| scaffold         | Project scaffolding                             | [scaffold](agents/.cursor/commands/scaffold.md)                |
+| security-audit   | Security audit                                  | [security-audit](agents/.cursor/commands/security-audit.md)   |
+| start            | Start session                                   | [start](agents/.cursor/commands/start.md)                      |
+| task             | Task management                                 | [task](agents/.cursor/commands/task.md)                         |
+| test             | Test tracking                                   | [test](agents/.cursor/commands/test.md)                        |
+| validate         | Validation workflow                             | [validate](agents/.cursor/commands/validate.md)                 |
 
 ## Skills
 
-| Skill | Description | Claude | Codex | Cursor |
-|-------|-------------|--------|-------|--------|
-| accessibility | WCAG 2.1 AA compliance | Yes | Yes | Yes |
-| agent-folder-init | Initialize .agent/ folder | Yes | Yes | Yes |
-| analytics-expert | Content analytics | Yes | Yes | Yes |
-| api-design-expert | RESTful API design | Yes | Yes | Yes |
-| artifacts-builder | Project artifacts | Yes | Yes | Yes |
-| aws-infrastructure | AWS EC2/VPC/ALB setup | - | - | Yes |
-| changelog-generator | Git changelogs | Yes | Yes | Yes |
-| clerk-implementer | Clerk auth | Yes | Yes | - |
-| component-library | Component standards | Yes | Yes | Yes |
-| content-creator | Newsletters & tweets with your voice | Yes | Yes | Yes |
-| content-script-developer | Browser extensions | Yes | Yes | Yes |
-| copywriter | Brand copywriting | Yes | Yes | Yes |
-| design-consistency-auditor | Design system | Yes | Yes | Yes |
-| docker-expert | Docker/compose | - | - | Yes |
-| docs | Documentation | Yes | Yes | Yes |
-| docusaurus-writer | Docusaurus sites | Yes | Yes | Yes |
-| error-handling-expert | Error patterns | Yes | Yes | Yes |
-| expo-architect | Expo/React Native | Yes | Yes | Yes |
-| fullstack-workspace-init | Monorepo setup | Yes | Yes | Yes |
-| gh-address-comments | GitHub comments | Yes | Yes | Yes |
-| gh-fix-ci | Fix CI/CD | Yes | Yes | Yes |
-| internal-comms | Internal comms | Yes | Yes | Yes |
-| landing-page-vercel | Vercel landing pages | Yes | Yes | Yes |
-| leads-researcher | Lead research | Yes | Yes | - |
-| mcp-builder | MCP servers | Yes | Yes | Yes |
-| micro-landing-builder | Micro landing pages | Yes | Yes | Yes |
-| mongodb-migration-expert | MongoDB migrations | Yes | Yes | Yes |
-| monitoring-setup | Sentry/Analytics | - | - | Yes |
-| nestjs-queue-architect | BullMQ queues | Yes | Yes | Yes |
-| nestjs-testing-expert | NestJS testing | Yes | Yes | Yes |
-| package-architect | npm packages | Yes | Yes | Yes |
-| performance-expert | Performance | Yes | Yes | Yes |
-| planning-assistant | Content planning | Yes | Yes | Yes |
-| plasmo-extension-architect | Plasmo extensions | Yes | Yes | Yes |
-| project-scaffold | Project scaffolding | Yes | Yes | Yes |
-| prompt-engineer | Prompt engineering | Yes | Yes | Yes |
-| qa-reviewer | QA review | Yes | Yes | Yes |
-| react-native-components | RN components | Yes | Yes | Yes |
-| roadmap-analyzer | Product roadmap | Yes | Yes | Yes |
-| rules-capture | Coding rules | Yes | Yes | Yes |
-| search-domain-validator | Domain validation | Yes | Yes | - |
-| security-expert | App security | Yes | Yes | Yes |
-| serializer-specialist | Data serialization | Yes | Yes | Yes |
-| session-documenter | Session docs | Yes | Yes | Yes |
-| skill-creator | Skill creation | Yes | Yes | Yes |
-| strategy-expert | Content strategy | Yes | Yes | Yes |
-| stripe-implementer | Stripe payments | Yes | Yes | Yes |
-| task-prd-creator | Task & PRD creation workflow | Yes | Yes | Yes |
-| testing-expert | Testing strategies | Yes | Yes | Yes |
-| webapp-testing | Web app testing | Yes | Yes | Yes |
-| workflow-automation | Workflow automation | Yes | Yes | Yes |
+| Skill                      | Description                    | Claude | Codex | Cursor |
+|----------------------------|--------------------------------|--------|-------|--------|
+| accessibility              | WCAG 2.1 AA compliance         | Yes    | Yes   | Yes    |
+| agent-folder-init          | Initialize .agent/ folder       | Yes    | Yes   | Yes    |
+| analytics-expert            | Content analytics              | Yes    | Yes   | Yes    |
+| api-design-expert          | RESTful API design             | Yes    | Yes   | Yes    |
+| artifacts-builder          | Project artifacts              | Yes    | Yes   | Yes    |
+| aws-infrastructure         | AWS EC2/VPC/ALB setup          | -      | -     | Yes    |
+| changelog-generator       | Git changelogs                 | Yes    | Yes   | Yes    |
+| clerk-implementer          | Clerk auth                    | Yes    | Yes   | -      |
+| component-library          | Component standards            | Yes    | Yes   | Yes    |
+| content-creator            | Newsletters & tweets with your voice | Yes | Yes | Yes |
+| content-script-developer  | Browser extensions             | Yes    | Yes   | Yes    |
+| copywriter                 | Brand copywriting              | Yes    | Yes   | Yes    |
+| design-consistency-auditor | Design system                 | Yes    | Yes   | Yes    |
+| docker-expert              | Docker/compose                 | -      | -     | Yes    |
+| docs                      | Documentation                  | Yes    | Yes   | Yes    |
+| docusaurus-writer         | Docusaurus sites               | Yes    | Yes   | Yes    |
+| error-handling-expert      | Error patterns                 | Yes    | Yes   | Yes    |
+| expo-architect             | Expo/React Native              | Yes    | Yes   | Yes    |
+| fullstack-workspace-init   | Monorepo setup                 | Yes    | Yes   | Yes    |
+| gh-address-comments       | GitHub comments                | Yes    | Yes   | Yes    |
+| gh-fix-ci                 | Fix CI/CD                      | Yes    | Yes   | Yes    |
+| internal-comms            | Internal comms                 | Yes    | Yes   | Yes    |
+| landing-page-vercel        | Vercel landing pages           | Yes    | Yes   | Yes    |
+| leads-researcher           | Lead research                  | Yes    | Yes   | -      |
+| mcp-builder                | MCP servers                    | Yes    | Yes   | Yes    |
+| micro-landing-builder      | Micro landing pages            | Yes    | Yes   | Yes    |
+| mongodb-migration-expert   | MongoDB migrations             | Yes    | Yes   | Yes    |
+| monitoring-setup          | Sentry/Analytics               | -      | -     | Yes    |
+| nestjs-queue-architect     | BullMQ queues                 | Yes    | Yes   | Yes    |
+| nestjs-testing-expert      | NestJS testing                 | Yes    | Yes   | Yes    |
+| package-architect          | npm packages                   | Yes    | Yes   | Yes    |
+| performance-expert         | Performance                    | Yes    | Yes   | Yes    |
+| planning-assistant         | Content planning               | Yes    | Yes   | Yes    |
+| plasmo-extension-architect | Plasmo extensions             | Yes    | Yes   | Yes    |
+| project-scaffold           | Project scaffolding            | Yes    | Yes   | Yes    |
+| prompt-engineer             | Prompt engineering             | Yes    | Yes   | Yes    |
+| qa-reviewer                | QA review                      | Yes    | Yes   | Yes    |
+| react-native-components    | RN components                  | Yes    | Yes   | Yes    |
+| roadmap-analyzer           | Product roadmap                | Yes    | Yes   | Yes    |
+| rules-capture              | Coding rules                   | Yes    | Yes   | Yes    |
+| search-domain-validator    | Domain validation              | Yes    | Yes   | -      |
+| security-expert            | App security                   | Yes    | Yes   | Yes    |
+| serializer-specialist      | Data serialization             | Yes    | Yes   | Yes    |
+| session-documenter         | Session docs                  | Yes    | Yes   | Yes    |
+| skill-creator              | Skill creation                | Yes    | Yes   | Yes    |
+| strategy-expert            | Content strategy               | Yes    | Yes   | Yes    |
+| stripe-implementer         | Stripe payments               | Yes    | Yes   | Yes    |
+| task-prd-creator           | Task & PRD creation workflow   | Yes    | Yes   | Yes    |
+| testing-expert             | Testing strategies             | Yes    | Yes   | Yes    |
+| vibe-coder-idea-rater      | Rate ideas before vibe coding  | Yes    | Yes   | Yes    |
+| webapp-testing             | Web app testing                | Yes    | Yes   | Yes    |
+| workflow-automation        | Workflow automation            | Yes    | Yes   | Yes    |
 
 ## How Skills Adapt to Projects
 

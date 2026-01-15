@@ -54,8 +54,9 @@ This skill activates automatically when users:
 │  • Copy agent configs (.claude/, .codex/, .cursor/)        │
 │  ──────────────────────────────────────────────────────────│
 │  Invocation:                                                │
-│  python3 ~/.claude/skills/agent-folder-init/scripts/       │
-│          scaffold.py --root /path/to/project               │
+│  python3 ~/.claude/skills/agent-folder-init/               │
+│          agent-folder-init/scripts/scaffold.py             │
+│          --root /path/to/project                           │
 └─────────────────────────────────────────────────────────────┘
                            │
                            ▼
@@ -92,8 +93,8 @@ This skill activates automatically when users:
 │    - Extension (Plasmo)                                     │
 │  ──────────────────────────────────────────────────────────│
 │  Invocation:                                                │
-│  python3 ~/.claude/skills/project-scaffold/scripts/        │
-│          scaffold.py                                        │
+│  python3 ~/.claude/skills/project-scaffold/                │
+│          project-scaffold/scripts/scaffold.py              │
 └─────────────────────────────────────────────────────────────┘
                            │
                            ▼
@@ -130,7 +131,7 @@ If you need to run phases individually:
 
 **Phase 2: Agent Folder Init**
 ```bash
-python3 ~/.claude/skills/agent-folder-init/scripts/scaffold.py --root /path/to/project
+python3 ~/.claude/skills/agent-folder-init/agent-folder-init/scripts/scaffold.py --root /path/to/project
 ```
 
 **Phase 3: Linter Formatter**
@@ -148,7 +149,7 @@ Follow the `husky-test-coverage` skill to:
 
 **Phase 5: Project Scaffold (optional)**
 ```bash
-python3 ~/.claude/skills/project-scaffold/scripts/scaffold.py
+python3 ~/.claude/skills/project-scaffold/project-scaffold/scripts/scaffold.py
 ```
 
 ## Configuration Presets

@@ -73,7 +73,15 @@ auto_activate: true
 
 1. **Check if today's session file exists:**
    ```bash
-   scripts/sh/validate-session-start.sh
+   # Check for today's session file
+   TODAY=$(date +%Y-%m-%d)
+   SESSION_FILE=".agent/SESSIONS/${TODAY}.md"
+
+   if [ -f "$SESSION_FILE" ]; then
+     echo "✅ Found: $SESSION_FILE"
+   else
+     echo "📝 No session file for today"
+   fi
    ```
 
 2. **If exists:**
@@ -83,9 +91,23 @@ auto_activate: true
    - Note decisions already made
 
 3. **If not exists:**
-   - Run `scripts/sh/new-session.sh` to create file
-   - Uses template from `.agent/SESSIONS/TEMPLATE.md`
-   - Auto-fills date and project name
+   - Create new session file from template:
+   ```bash
+   TODAY=$(date +%Y-%m-%d)
+   SESSION_FILE=".agent/SESSIONS/${TODAY}.md"
+
+   # Create from template if it exists, otherwise create minimal header
+   if [ -f ".agent/SESSIONS/TEMPLATE.md" ]; then
+     sed "s/YYYY-MM-DD/${TODAY}/g" .agent/SESSIONS/TEMPLATE.md > "$SESSION_FILE"
+   else
+     echo "# Sessions: ${TODAY}" > "$SESSION_FILE"
+     echo "" >> "$SESSION_FILE"
+     echo "**Summary:** [Brief summary]" >> "$SESSION_FILE"
+     echo "" >> "$SESSION_FILE"
+     echo "---" >> "$SESSION_FILE"
+   fi
+   echo "✅ Created: $SESSION_FILE"
+   ```
 
 **Output to user:**
 ```
@@ -430,32 +452,51 @@ Document reusable patterns with examples.
 If multiple files exist for today (e.g., `2025-11-15-feature.md`, `2025-11-15-bugfix.md`):
 
 ```bash
-scripts/sh/validate-sessions.sh  # Auto-consolidates into single file
+# Find and list any incorrectly named session files for today
+TODAY=$(date +%Y-%m-%d)
+ls -la .agent/SESSIONS/ | grep "$TODAY"
+
+# If multiple files found, manually consolidate them:
+# 1. Read all files for today
+# 2. Merge content into single YYYY-MM-DD.md file
+# 3. Delete the incorrectly named files
 ```
 
 ---
 
-## Integration with Existing Scripts
+## Inline Commands Reference
 
-**Use these existing bash scripts:**
+**Use these inline bash commands (no external scripts required):**
 
-1. **`scripts/sh/new-session.sh`**
-   - Creates today's session file from template
-   - Auto-fills date and project
+1. **Create new session file:**
+   ```bash
+   TODAY=$(date +%Y-%m-%d)
+   SESSION_FILE=".agent/SESSIONS/${TODAY}.md"
+   if [ -f ".agent/SESSIONS/TEMPLATE.md" ]; then
+     sed "s/YYYY-MM-DD/${TODAY}/g" .agent/SESSIONS/TEMPLATE.md > "$SESSION_FILE"
+   else
+     echo "# Sessions: ${TODAY}\n\n**Summary:** [Brief summary]\n\n---" > "$SESSION_FILE"
+   fi
+   ```
 
-2. **`scripts/sh/validate-session-start.sh`**
-   - Checks if today's file exists
-   - Validates content
+2. **Check if today's file exists:**
+   ```bash
+   TODAY=$(date +%Y-%m-%d)
+   [ -f ".agent/SESSIONS/${TODAY}.md" ] && echo "✅ Exists" || echo "❌ Not found"
+   ```
 
-3. **`scripts/sh/validate-sessions.sh`**
-   - Finds naming violations
-   - Auto-consolidates multiple files into one
+3. **Count sessions in today's file:**
+   ```bash
+   TODAY=$(date +%Y-%m-%d)
+   grep -c "^## Session" ".agent/SESSIONS/${TODAY}.md" 2>/dev/null || echo "0"
+   ```
 
-4. **`scripts/sh/sessions-clean.sh`**
-   - Consolidates daily → monthly → yearly
-   - Creates backups
+4. **List all session files:**
+   ```bash
+   ls -la .agent/SESSIONS/*.md 2>/dev/null | grep -v TEMPLATE | grep -v README
+   ```
 
-**Call these scripts via Bash tool as needed.**
+**Execute these commands via Bash tool as needed.**
 
 ---
 
@@ -655,7 +696,7 @@ interface SessionMemory {
 **Naming rule:** ONE FILE PER DAY (not multiple)
 **Format reference:** `.agent/SESSIONS/TEMPLATE.md`
 **Protocol:** `.agent/SYSTEM/ai/SESSION-DOCUMENTATION-PROTOCOL.md`
-**Bash scripts:** `scripts/sh/new-session.sh`, `scripts/sh/validate-sessions.sh`
+**Commands:** Use inline bash commands from "Inline Commands Reference" section above
 
 **When in doubt:**
 - Document more rather than less

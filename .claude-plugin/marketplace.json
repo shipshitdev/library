@@ -341,6 +341,11 @@
       "description": "gh-fix-ci skill"
     },
     {
+      "name": "git-safety",
+      "source": "./agents/.claude/skills/git-safety",
+      "description": "Scan git history for sensitive files, clean leaked credentials, and set up prevention measures. Use "
+    },
+    {
       "name": "html-style",
       "source": "./agents/.claude/skills/html-style",
       "description": "html-style skill"

@@ -151,6 +151,11 @@
       "description": "changelog-generator skill"
     },
     {
+      "name": "channel-validator",
+      "source": "./agents/.claude/skills/channel-validator",
+      "description": "channel-validator skill"
+    },
+    {
       "name": "clerk-implementer",
       "source": "./agents/.claude/skills/clerk-implementer",
       "description": "clerk-implementer skill"
@@ -204,6 +209,11 @@
       "name": "context-optimization",
       "source": "./agents/.claude/skills/context-optimization",
       "description": "context-optimization skill"
+    },
+    {
+      "name": "copy-validator",
+      "source": "./agents/.claude/skills/copy-validator",
+      "description": "copy-validator skill"
     },
     {
       "name": "copywriter",
@@ -271,6 +281,21 @@
       "description": "execution-accelerator skill"
     },
     {
+      "name": "execution-validator",
+      "source": "./agents/.claude/skills/execution-validator",
+      "description": "execution-validator skill"
+    },
+    {
+      "name": "expert-architect",
+      "source": "./agents/.claude/skills/expert-architect",
+      "description": "expert-architect skill"
+    },
+    {
+      "name": "expert-validator",
+      "source": "./agents/.claude/skills/expert-validator",
+      "description": "expert-validator skill"
+    },
+    {
       "name": "expo-architect",
       "source": "./agents/.claude/skills/expo-architect",
       "description": "expo-architect skill"
@@ -294,6 +319,16 @@
       "name": "fundraise-advisor",
       "source": "./agents/.claude/skills/fundraise-advisor",
       "description": "fundraise-advisor skill"
+    },
+    {
+      "name": "funnel-architect",
+      "source": "./agents/.claude/skills/funnel-architect",
+      "description": "funnel-architect skill"
+    },
+    {
+      "name": "funnel-validator",
+      "source": "./agents/.claude/skills/funnel-validator",
+      "description": "funnel-validator skill"
     },
     {
       "name": "gh-address-comments",
@@ -411,6 +446,11 @@
       "description": "offer-architect skill"
     },
     {
+      "name": "offer-validator",
+      "source": "./agents/.claude/skills/offer-validator",
+      "description": "offer-validator skill"
+    },
+    {
       "name": "open-source-checker",
       "source": "./agents/.claude/skills/open-source-checker",
       "description": "open-source-checker skill"
@@ -501,6 +541,11 @@
       "description": "rules-capture skill"
     },
     {
+      "name": "scale-validator",
+      "source": "./agents/.claude/skills/scale-validator",
+      "description": "scale-validator skill"
+    },
+    {
       "name": "search-domain-validator",
       "source": "./agents/.claude/skills/search-domain-validator",
       "description": "search-domain-validator skill"
@@ -579,6 +624,26 @@
       "name": "tool-design",
       "source": "./agents/.claude/skills/tool-design",
       "description": "tool-design skill"
+    },
+    {
+      "name": "traffic-architect",
+      "source": "./agents/.claude/skills/traffic-architect",
+      "description": "traffic-architect skill"
+    },
+    {
+      "name": "traffic-validator",
+      "source": "./agents/.claude/skills/traffic-validator",
+      "description": "traffic-validator skill"
+    },
+    {
+      "name": "vercel-react-best-practices",
+      "source": "./agents/.claude/skills/vercel-react-best-practices",
+      "description": "React and Next.js performance optimization guidelines from Vercel Engineering. This skill should be "
+    },
+    {
+      "name": "web-design-guidelines",
+      "source": "./agents/.claude/skills/web-design-guidelines",
+      "description": "Review UI code for Web Interface Guidelines compliance. Use when asked to \"review my UI\", \"check acc"
     },
     {
       "name": "webapp-testing",

@@ -11,13 +11,13 @@ library/
 ├── .agent/              # Library management (sessions, tasks)
 ├── agents/              # DISTRIBUTABLE SKILLS & COMMANDS
 │   ├── .claude/
-│   │   ├── skills/      # 44 skills
+│   │   ├── skills/      # 116 skills
 │   │   └── commands/
 │   ├── .codex/
-│   │   ├── skills/      # 44 skills
+│   │   ├── skills/      # 116 skills
 │   │   └── commands/
 │   └── .cursor/
-│       ├── skills/      # 49 skills
+│       ├── skills/      # 103 skills
 │       └── commands/    # 30 commands
 ├── docs/                # Library documentation
 │   ├── PLATFORM-ADAPTATIONS.md
@@ -30,7 +30,7 @@ library/
 
 | Category   | Claude | Codex | Cursor | Status                        |
 |------------|--------|-------|--------|-------------------------------|
-| **Skills** | 44     | 44    | 49     | Base parity + Cursor extras   |
+| **Skills** | 116    | 116   | 103    | Claude/Codex parity           |
 | **Commands** | 1     | 0     | 30     | Cursor-focused                |
 
 ## What's Included
@@ -199,9 +199,53 @@ touch agents/.claude/skills/my-skill/SKILL.md
 | stripe-implementer         | Stripe payments               | Yes    | Yes   | Yes    |
 | task-prd-creator           | Task & PRD creation workflow   | Yes    | Yes   | Yes    |
 | testing-expert             | Testing strategies             | Yes    | Yes   | Yes    |
-| vibe-coder-idea-rater      | Rate ideas before vibe coding  | Yes    | Yes   | Yes    |
 | webapp-testing             | Web app testing                | Yes    | Yes   | Yes    |
 | workflow-automation        | Workflow automation            | Yes    | Yes   | Yes    |
+
+## Complementary Skills (External)
+
+These external skill repositories complement this library. Install them separately when needed.
+
+| Category | Skill | Description | Source |
+|----------|-------|-------------|--------|
+| **Audit Lifecycle** | fix-review | Verify fix commits address audit findings | trailofbits |
+| **Code Auditing** | audit-context-building | Deep architectural context analysis | trailofbits |
+| | burpsuite-project-parser | Search and extract data from Burp Suite files | trailofbits |
+| | differential-review | Security-focused code change review | trailofbits |
+| | semgrep-rule-creator | Custom Semgrep rule creation | trailofbits |
+| | sharp-edges | Identify error-prone APIs and footgun designs | trailofbits |
+| | static-analysis | CodeQL, Semgrep, SARIF toolkit | trailofbits |
+| | testing-handbook-skills | Fuzzers, sanitizers, coverage tools | trailofbits |
+| | variant-analysis | Find similar vulnerabilities across codebases | trailofbits |
+| **Development** | ask-questions-if-underspecified | Clarify requirements before implementing | trailofbits |
+| | culture-index | Interpret Culture Index survey results | trailofbits |
+| **Frontend** | react-best-practices | React/Next.js performance optimization patterns | vercel-labs |
+| | web-design-guidelines | Review UI for Web Interface Guidelines compliance | vercel-labs |
+| **Reverse Engineering** | dwarf-expert | DWARF debugging format expertise | trailofbits |
+| **Smart Contracts** | building-secure-contracts | Security toolkit for 6 blockchains | trailofbits |
+| | entry-point-analyzer | Identify state-changing entry points | trailofbits |
+| **Verification** | constant-time-analysis | Detect timing side-channels in crypto code | trailofbits |
+| | property-based-testing | Property-based testing for multiple languages | trailofbits |
+| | spec-to-code-compliance | Specification compliance checker | trailofbits |
+
+### Installation
+
+```bash
+# vercel-labs/agent-skills (Frontend)
+claude plugin marketplace add vercel-labs --source github --owner vercel-labs --repo agent-skills
+claude plugin install <skill-name>@vercel-labs
+
+# trailofbits/skills (Security)
+claude plugin marketplace add trailofbits --source github --owner trailofbits --repo skills
+claude plugin install <skill-name>@trailofbits
+```
+
+**Repositories:**
+
+- https://github.com/vercel-labs/agent-skills
+- https://github.com/trailofbits/skills
+
+---
 
 ## How Skills Adapt to Projects
 

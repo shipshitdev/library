@@ -13,7 +13,7 @@ Content creation and documentation skills
 
 - `copywriter`
 - `content-creator`
-- `docusaurus-writer`
+- `nextra-writer`
 - `docs`
 - `changelog-generator`
 - `internal-comms`

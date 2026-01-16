@@ -641,16 +641,6 @@
       "description": "Validate traffic strategy against Traffic Secrets principles. Assess Dream 100, Work In vs. Buy In, "
     },
     {
-      "name": "vercel-react-best-practices",
-      "source": "./agents/.claude/skills/vercel-react-best-practices",
-      "description": "React and Next.js performance optimization guidelines from Vercel Engineering. This skill should be "
-    },
-    {
-      "name": "web-design-guidelines",
-      "source": "./agents/.claude/skills/web-design-guidelines",
-      "description": "Review UI code for Web Interface Guidelines compliance. Use when asked to \"review my UI\", \"check acc"
-    },
-    {
       "name": "webapp-testing",
       "source": "./agents/.claude/skills/webapp-testing",
       "description": "Toolkit for interacting with and testing local web applications using Playwright. Supports verifying"

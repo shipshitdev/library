@@ -206,44 +206,60 @@ touch agents/.claude/skills/my-skill/SKILL.md
 
 These external skill repositories complement this library. Install them separately when needed.
 
-| Category | Skill | Description | Source |
-|----------|-------|-------------|--------|
-| **Audit Lifecycle** | fix-review | Verify fix commits address audit findings | trailofbits |
-| **Code Auditing** | audit-context-building | Deep architectural context analysis | trailofbits |
-| | burpsuite-project-parser | Search and extract data from Burp Suite files | trailofbits |
-| | differential-review | Security-focused code change review | trailofbits |
-| | semgrep-rule-creator | Custom Semgrep rule creation | trailofbits |
-| | sharp-edges | Identify error-prone APIs and footgun designs | trailofbits |
-| | static-analysis | CodeQL, Semgrep, SARIF toolkit | trailofbits |
-| | testing-handbook-skills | Fuzzers, sanitizers, coverage tools | trailofbits |
-| | variant-analysis | Find similar vulnerabilities across codebases | trailofbits |
-| **Development** | ask-questions-if-underspecified | Clarify requirements before implementing | trailofbits |
-| | culture-index | Interpret Culture Index survey results | trailofbits |
-| **Frontend** | react-best-practices | React/Next.js performance optimization patterns | vercel-labs |
-| | web-design-guidelines | Review UI for Web Interface Guidelines compliance | vercel-labs |
-| **Reverse Engineering** | dwarf-expert | DWARF debugging format expertise | trailofbits |
-| **Smart Contracts** | building-secure-contracts | Security toolkit for 6 blockchains | trailofbits |
-| | entry-point-analyzer | Identify state-changing entry points | trailofbits |
-| **Verification** | constant-time-analysis | Detect timing side-channels in crypto code | trailofbits |
-| | property-based-testing | Property-based testing for multiple languages | trailofbits |
-| | spec-to-code-compliance | Specification compliance checker | trailofbits |
+> **Note:** Skills can be enabled or disabled per project via `.claude/settings.json`:
+>
+> ```json
+> {
+>   "enabledPlugins": {
+>     "web-design-guidelines@vercel-labs": true,
+>     "static-analysis@trailofbits": true
+>   }
+> }
+> ```
+>
+> Use `/plugin menu` to browse and toggle skills interactively.
 
-### Installation
+### [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)
+
+Frontend development and design guidelines.
+
+| Category | Skill | Description |
+|----------|-------|-------------|
+| **Frontend** | react-best-practices | React/Next.js performance optimization patterns |
+| | web-design-guidelines | Review UI for Web Interface Guidelines compliance |
 
 ```bash
-# vercel-labs/agent-skills (Frontend)
-claude plugin marketplace add vercel-labs --source github --owner vercel-labs --repo agent-skills
-claude plugin install <skill-name>@vercel-labs
-
-# trailofbits/skills (Security)
-claude plugin marketplace add trailofbits --source github --owner trailofbits --repo skills
-claude plugin install <skill-name>@trailofbits
+npx add-skill vercel-labs/agent-skills
 ```
 
-**Repositories:**
+### [trailofbits/skills](https://github.com/trailofbits/skills)
 
-- https://github.com/vercel-labs/agent-skills
-- https://github.com/trailofbits/skills
+Security auditing, smart contracts, and vulnerability analysis.
+
+| Category | Skill | Description |
+|----------|-------|-------------|
+| **Audit Lifecycle** | fix-review | Verify fix commits address audit findings |
+| **Code Auditing** | audit-context-building | Deep architectural context analysis |
+| | burpsuite-project-parser | Search and extract data from Burp Suite files |
+| | differential-review | Security-focused code change review |
+| | semgrep-rule-creator | Custom Semgrep rule creation |
+| | sharp-edges | Identify error-prone APIs and footgun designs |
+| | static-analysis | CodeQL, Semgrep, SARIF toolkit |
+| | testing-handbook-skills | Fuzzers, sanitizers, coverage tools |
+| | variant-analysis | Find similar vulnerabilities across codebases |
+| **Development** | ask-questions-if-underspecified | Clarify requirements before implementing |
+| | culture-index | Interpret Culture Index survey results |
+| **Reverse Engineering** | dwarf-expert | DWARF debugging format expertise |
+| **Smart Contracts** | building-secure-contracts | Security toolkit for 6 blockchains |
+| | entry-point-analyzer | Identify state-changing entry points |
+| **Verification** | constant-time-analysis | Detect timing side-channels in crypto code |
+| | property-based-testing | Property-based testing for multiple languages |
+| | spec-to-code-compliance | Specification compliance checker |
+
+```bash
+/plugin marketplace add trailofbits/skills
+/plugin menu  # Browse and select individual skills
+```
 
 ---
 

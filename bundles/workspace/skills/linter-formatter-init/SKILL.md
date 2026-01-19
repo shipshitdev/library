@@ -5,7 +5,9 @@ description: Set up Biome (default) or ESLint + Prettier, Vitest testing, and pr
 
 # Linter Formatter Init
 
-Set up comprehensive linting, formatting, and testing for JavaScript/TypeScript projects using **Biome** (default), **Vitest**, and **Bun**.
+Set up comprehensive linting, formatting, and testing for JavaScript/TypeScript projects using **Biome 2.3+** (default), **Vitest**, and **Bun**.
+
+**IMPORTANT**: Always uses Biome 2.3+ (latest) - never older versions.
 
 ## Purpose
 
@@ -64,8 +66,8 @@ python3 ~/.claude/skills/linter-formatter-init/scripts/setup.py \
 
 ### Dependencies
 
-**Biome (default):**
-- @biomejs/biome
+**Biome 2.3+ (default):**
+- @biomejs/biome@latest (always latest, minimum 2.3+)
 
 **Vitest (with --vitest):**
 - vitest
@@ -157,7 +159,7 @@ Biome is a fast, all-in-one linter and formatter. The default config includes:
 
 ```json
 {
-  "$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
   "assist": {
     "actions": {
       "source": { "organizeImports": "on" }

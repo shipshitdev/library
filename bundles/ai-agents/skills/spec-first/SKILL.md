@@ -43,14 +43,16 @@ Prompts that work:
 - "What assumptions are you making? Which ones are risky?"
 - "Propose a minimal version that can be deleted later without regret."
 
-**Output:** Decision notes for `decisions.md`
+**Output:** Decision notes for `.agent/DECISIONS/[feature-name].md`
 
 ### Stage B: Write spec.md (freeze decisions)
 
 **Goal:** Turn decisions into unambiguous requirements.
 
+**File:** `.agent/SPECS/[feature-name].md`
+
 ```markdown
-# spec.md
+# [Feature Name] Spec
 
 ## Purpose
 One paragraph: what this is for.
@@ -79,8 +81,10 @@ Unit/integration boundaries, fixtures, golden files, what must be mocked.
 
 **Goal:** Stepwise checklist where each step has a verification command.
 
+**File:** `.agent/TODOS/[feature-name].md`
+
 ```markdown
-# todo.md
+# [Feature Name] TODO
 
 - [ ] Add project scaffolding (build/run/test commands)
   Verify: `npm run build && npm test`
@@ -134,13 +138,25 @@ Heuristics:
 
 ## The Three-File Convention
 
-Keep at the root of every project:
+Keep in the `.agent/` folder (not project root):
 
 ```
-spec.md      # what/why/constraints
-todo.md      # steps + verification commands
-decisions.md # tradeoffs, rejected options, assumptions
+.agent/
+├── SPECS/
+│   └── [feature-name].md    # what/why/constraints
+├── TODOS/
+│   └── [feature-name].md    # steps + verification commands
+└── DECISIONS/
+    └── [feature-name].md    # tradeoffs, rejected options, assumptions
 ```
+
+**Naming:** Use the feature/task name as the filename (e.g., `user-auth.md`, `api-refactor.md`).
+
+**Why .agent folder:**
+- Keeps project root clean
+- Groups all AI-assisted planning artifacts
+- Works with task-prd-creator and ai-dev-loop skills
+- Persists across sessions
 
 ## Agent Readiness Checklist (IMPACT)
 

@@ -126,6 +126,11 @@
       "description": "Expert in AWS infrastructure setup including EC2, VPC, security groups, Application Load Balancers, "
     },
     {
+      "name": "biome-validator",
+      "source": "./agents/.claude/skills/biome-validator",
+      "description": "Validate Biome 2.3+ configuration and detect outdated patterns. Ensures proper schema version, domai"
+    },
+    {
       "name": "brand-architect",
       "source": "./agents/.claude/skills/brand-architect",
       "description": "Use this skill when users need to develop brand strategy, choose a company name, define brand positi"
@@ -134,6 +139,11 @@
       "name": "brand-name-generator",
       "source": "./agents/.claude/skills/brand-name-generator",
       "description": "Generate creative brand names, company names, product names, or startup names. Includes naming strat"
+    },
+    {
+      "name": "bun-validator",
+      "source": "./agents/.claude/skills/bun-validator",
+      "description": "Validate Bun workspace configuration and detect common monorepo issues. Ensures proper workspace set"
     },
     {
       "name": "business-model-auditor",
@@ -156,9 +166,9 @@
       "description": "Use this skill when users need to validate their marketing channel strategy, assess channel focus, o"
     },
     {
-      "name": "clerk-implementer",
-      "source": "./agents/.claude/skills/clerk-implementer",
-      "description": "This skill should be used when users need to implement Clerk authentication, user management, or org"
+      "name": "clerk-validator",
+      "source": "./agents/.claude/skills/clerk-validator",
+      "description": "Validate Clerk authentication configuration and detect deprecated patterns. Ensures proper proxy.ts "
     },
     {
       "name": "cofounder-evaluator",
@@ -346,6 +356,11 @@
       "description": ">"
     },
     {
+      "name": "humanizer",
+      "source": "./agents/.claude/skills/humanizer",
+      "description": "Identify and remove AI writing patterns to make text sound more natural and human. Based on Wikipedi"
+    },
+    {
       "name": "husky-test-coverage",
       "source": "./agents/.claude/skills/husky-test-coverage",
       "description": "Set up or verify Husky git hooks to ensure all tests run and coverage stays above 80% (configurable)"
@@ -439,6 +454,11 @@
       "name": "nestjs-testing-expert",
       "source": "./agents/.claude/skills/nestjs-testing-expert",
       "description": "Testing patterns for NestJS apps using Jest, covering unit, integration, and e2e tests."
+    },
+    {
+      "name": "nextjs-validator",
+      "source": "./agents/.claude/skills/nextjs-validator",
+      "description": "Validate Next.js 16 configuration and detect/prevent deprecated patterns. Ensures proxy.ts usage, Tu"
     },
     {
       "name": "nextra-writer",
@@ -571,6 +591,11 @@
       "description": "Automatically document session work after each task completion. Tracks decisions, file changes, flow"
     },
     {
+      "name": "shadcn-setup",
+      "source": "./agents/.claude/skills/shadcn-setup",
+      "description": "Set up shadcn/ui component library with Tailwind CSS v4 configuration. Handles installation, initial"
+    },
+    {
       "name": "skill-creator",
       "source": "./agents/.claude/skills/skill-creator",
       "description": "Guide for creating effective skills. This skill should be used when users want to create a new skill"
@@ -604,6 +629,11 @@
       "name": "table-filters",
       "source": "./agents/.claude/skills/table-filters",
       "description": "Designs optimal filtering UX for data tables. Use when building a table that needs filters - analyze"
+    },
+    {
+      "name": "tailwind-validator",
+      "source": "./agents/.claude/skills/tailwind-validator",
+      "description": "Validate Tailwind CSS v4 configuration and detect/prevent Tailwind v3 patterns. Use this skill when "
     },
     {
       "name": "task-prd-creator",

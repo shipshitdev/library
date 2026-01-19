@@ -33,7 +33,7 @@ from pathlib import Path
 # ============================================================================
 
 BIOME_CONFIG = {
-    "$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
+    "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
     "assist": {
         "actions": {
             "source": {
@@ -403,7 +403,8 @@ def setup_biome(root: Path, dry_run: bool):
         "npm": ["npm", "install", "-D"]
     }[pm]
 
-    run_command(install_cmd + ["@biomejs/biome"], root, dry_run)
+    # Always install Biome 2.3+ (latest)
+    run_command(install_cmd + ["@biomejs/biome@latest"], root, dry_run)
 
     print("\n Creating configuration files...")
 

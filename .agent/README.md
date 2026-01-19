@@ -1,39 +1,39 @@
 # Ship Shit Dev - Agent Workspace
 
-This is the **library repository** containing skills and commands for distribution to Claude, Codex, and Cursor agents.
+You are working **ON the library**, not in a project that uses it.
 
-## Important Context
+## Quick Start
 
-**You are working ON the library, not IN a project that uses it.**
-
-- `agents/` - Contains distributable skills/commands (symlinked from `~/.claude/`, `~/.codex/`, `~/.cursor/`)
-- `.agent/` - This folder, for managing work on the library itself
+| Need to... | Look at... |
+|------------|------------|
+| Find tasks | `TASKS/` |
+| Check past context | `SESSIONS/` |
+| Read docs | `SYSTEM/` |
 
 ## Structure
 
 ```
+.agent/
+├── README.md          # You are here
+├── SESSIONS/          # Context preservation
+├── TASKS/             # Task queue
+└── SYSTEM/            # All documentation
+    ├── ARCHITECTURE.md         # .agent/ folder explained
+    ├── AI-DEV-LOOP.md          # The /loop workflow
+    ├── PLATFORM-ADAPTATIONS.md # Claude vs Codex differences
+    ├── SKILL-MANAGEMENT.md     # Sync workflow
+    └── SYMLINK-CONFIG.md       # Symlink setup
+```
+
+## This Repository
+
+```
 library/
 ├── .agent/              # Library management (you are here)
-│   ├── README.md
-│   ├── SESSIONS/        # Session documentation
-│   ├── TASKS/           # Library tasks
-│   └── SYSTEM/          # Library-specific rules
-│
 ├── agents/              # DISTRIBUTABLE CONTENT
-│   ├── .claude/
-│   │   ├── skills/      # 42 skills
-│   │   └── commands/    # Commands
-│   ├── .codex/
-│   │   ├── skills/      # 42 skills
-│   │   └── commands/
-│   └── .cursor/
-│       ├── skills/      # 42 skills
-│       └── commands/    # 24 commands
-│
-├── docs/                # Library documentation
-│   ├── PLATFORM-ADAPTATIONS.md
-│   └── SKILL-MANAGEMENT.md
-│
+│   ├── .claude/skills/  # Skills for Claude
+│   ├── .codex/skills/   # Skills for Codex
+│   └── .cursor/skills/  # Skills for Cursor
 └── scripts/             # Scaffolding, sync scripts
 ```
 
@@ -42,17 +42,26 @@ library/
 ### Adding a New Skill
 
 1. Create in `agents/.claude/skills/skill-name/SKILL.md`
-2. Sync to other platforms using patterns in `docs/PLATFORM-ADAPTATIONS.md`
-3. Update README.md skill table
+2. Sync to other platforms (see `SYSTEM/PLATFORM-ADAPTATIONS.md`)
+3. Update main README.md skill table
 
-### Syncing Skills Between Platforms
+### Syncing Skills
 
-See `docs/SKILL-MANAGEMENT.md` for workflow.
+See `SYSTEM/SKILL-MANAGEMENT.md`
 
-### Updating Symlinks
+### Setting Up Symlinks
 
-See `docs/SYMLINK-CONFIG.md` for current symlink configuration.
+See `SYSTEM/SYMLINK-CONFIG.md`
+
+### Running the Dev Loop
+
+See `SYSTEM/AI-DEV-LOOP.md`
 
 ## Session Documentation
 
-Document sessions in `.agent/SESSIONS/YYYY-MM-DD.md`
+Before ending a session, document in `SESSIONS/YYYY-MM-DD.md`:
+
+- Files changed
+- Decisions made
+- Incomplete work
+- Next steps

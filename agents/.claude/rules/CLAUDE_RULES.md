@@ -20,6 +20,7 @@
 - Document before `/clear`: files changed, decisions, incomplete work
 - Save to `.agent/SESSIONS/YYYY-MM-DD.md`
 - Check previous sessions before implementing
+- **NEVER save secrets to session files**: If user shares .env values, API keys, tokens, passwords, or any sensitive data in conversation, DO NOT include them in session documentation. Redact or omit entirely.
 
 ## Code Standards
 

@@ -258,7 +258,7 @@ def create_api_package_json(org: str) -> str:
             "@types/express": "5.0.6",
             "@types/node": "25.0.3",
             "typescript": "5.9.3",
-            "@biomejs/biome": "2.3.10",
+            "@biomejs/biome": "2.3.11",
             "vitest": "3.0.7",
             "@vitest/coverage-v8": "3.0.7"
         }
@@ -438,7 +438,7 @@ def create_frontend_package_json(org: str) -> str:
             "typescript": "5.9.3",
             "tailwindcss": "4.1.18",
             "@tailwindcss/postcss": "4.1.18",
-            "@biomejs/biome": "2.3.10",
+            "@biomejs/biome": "2.3.11",
             "sass": "1.97.1",
             "vitest": "3.0.7",
             "@vitest/coverage-v8": "3.0.7",
@@ -639,7 +639,7 @@ def create_frontend_globals_scss() -> str:
 
 def create_biome_config() -> str:
     return json.dumps({
-        "$schema": "https://biomejs.dev/schemas/2.3.10/schema.json",
+        "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
         "assist": {
             "actions": {
                 "source": {

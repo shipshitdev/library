@@ -1,11 +1,13 @@
 ---
 name: linter-formatter-init
-description: Set up Biome (default) or ESLint + Prettier, Vitest testing, and pre-commit hooks for any JavaScript/TypeScript project. Uses Bun as the package manager. Use when initializing code quality tooling for a new project or adding linting to an existing one.
+description: Set up Biome (default) or ESLint + Prettier, Vitest testing, and pre-commit hooks for any JavaScript/TypeScript project. Uses Bun as the package manager. Use this skill when initializing code quality tooling for a new project or adding linting to an existing one.
 ---
 
 # Linter Formatter Init
 
-Set up comprehensive linting, formatting, and testing for JavaScript/TypeScript projects using **Biome** (default), **Vitest**, and **Bun**.
+Set up comprehensive linting, formatting, and testing for JavaScript/TypeScript projects using **Biome 2.3+** (default), **Vitest**, and **Bun**.
+
+**IMPORTANT**: Always uses Biome 2.3+ (latest) - never older versions.
 
 ## Purpose
 
@@ -14,12 +16,12 @@ This skill automates the setup of:
 - **Vitest** for testing with coverage (use `--vitest` flag)
 - ESLint + Prettier (legacy, use `--eslint` flag)
 - Husky + lint-staged for pre-commit hooks
-- VS Code settings for auto-format on save
+- VS Code/Cursor settings for auto-format on save
 - bun scripts for manual linting, formatting, and testing
 
 ## When to Use
 
-Use when:
+Use this skill when:
 - Starting a new JS/TS project
 - Adding linting to an existing project without tooling
 - Standardizing code quality across a team
@@ -64,8 +66,8 @@ python3 ~/.codex/skills/linter-formatter-init/scripts/setup.py \
 
 ### Dependencies
 
-**Biome (default):**
-- @biomejs/biome
+**Biome 2.3+ (default):**
+- @biomejs/biome@latest (always latest, minimum 2.3+)
 
 **Vitest (with --vitest):**
 - vitest
@@ -157,7 +159,7 @@ Biome is a fast, all-in-one linter and formatter. The default config includes:
 
 ```json
 {
-  "$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
   "assist": {
     "actions": {
       "source": { "organizeImports": "on" }
@@ -279,7 +281,7 @@ This ensures:
 - All committed code is formatted
 - No broken code enters the repo
 
-## VS Code Integration
+## VS Code / Cursor Integration
 
 The skill creates `.vscode/settings.json`:
 
@@ -340,13 +342,13 @@ chmod +x .husky/pre-commit
 
 ### Format on save not working (Biome)
 
-1. Install the Biome extension in VS Code
+1. Install the Biome extension in VS Code/Cursor
 2. Set Biome as default formatter
 3. Enable "Format on Save" in settings
 
 ### Format on save not working (ESLint + Prettier)
 
-1. Install the Prettier extension in VS Code
+1. Install the Prettier extension in VS Code/Cursor
 2. Set Prettier as default formatter
 3. Enable "Format on Save" in settings
 

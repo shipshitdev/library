@@ -19,7 +19,9 @@ library/
 │   └── .cursor/
 │       ├── skills/      # 103 skills
 │       └── commands/    # 30 commands
-├── docs/                # Library documentation
+├── .agent/SYSTEM/       # Library documentation
+│   ├── ARCHITECTURE.md
+│   ├── AI-DEV-LOOP.md
 │   ├── PLATFORM-ADAPTATIONS.md
 │   ├── SKILL-MANAGEMENT.md
 │   └── SYMLINK-CONFIG.md
@@ -54,7 +56,7 @@ This repo is symlinked from each agent's home directory:
 
 Edit capabilities in `agents/`, changes are immediately available to all agents.
 
-See `docs/SYMLINK-CONFIG.md` for full configuration details.
+See `.agent/SYSTEM/SYMLINK-CONFIG.md` for full configuration details.
 
 ## Installation
 
@@ -90,7 +92,7 @@ ln -s ~/shipshitdev-library/agents/.claude/commands ~/.claude/commands
 
 1. Create directory in `agents/.claude/skills/skill-name/`
 2. Add `SKILL.md` with YAML frontmatter
-3. Sync to other platforms (see `docs/PLATFORM-ADAPTATIONS.md`)
+3. Sync to other platforms (see `.agent/SYSTEM/PLATFORM-ADAPTATIONS.md`)
 4. Update this README
 
 ```bash
@@ -106,9 +108,11 @@ touch agents/.claude/skills/my-skill/SKILL.md
 
 ## Documentation
 
-- `docs/PLATFORM-ADAPTATIONS.md` - Claude vs Codex vs Cursor differences
-- `docs/SKILL-MANAGEMENT.md` - Syncing skills across platforms
-- `docs/SYMLINK-CONFIG.md` - Current symlink configuration
+- `.agent/SYSTEM/ARCHITECTURE.md` - .agent folder structure explained
+- `.agent/SYSTEM/AI-DEV-LOOP.md` - The /loop autonomous workflow
+- `.agent/SYSTEM/PLATFORM-ADAPTATIONS.md` - Claude vs Codex vs Cursor differences
+- `.agent/SYSTEM/SKILL-MANAGEMENT.md` - Syncing skills across platforms
+- `.agent/SYSTEM/SYMLINK-CONFIG.md` - Symlink configuration
 
 ## Commands
 

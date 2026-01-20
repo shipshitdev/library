@@ -75,6 +75,18 @@ Create revenue-generating partnerships for indie businesses: affiliate programs,
 | `offer-architect` | Partner-specific offers |
 | `analytics-expert` | Track performance |
 
+## Complementary Skills (External)
+
+For referral program mechanics, pair with [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills):
+
+```
+/plugin marketplace add coreyhaines31/marketingskills
+```
+
+| Skill | Why |
+|-------|-----|
+| `referral-program` | Tactical referral program setup and optimization |
+
 ---
 
 **For detailed program design, outreach templates, and implementation guides:** `references/full-guide.md`

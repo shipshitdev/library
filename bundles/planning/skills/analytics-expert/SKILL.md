@@ -240,3 +240,16 @@ To identify trends from analytics data:
 - `analytics-report-template.md`: Template for analytics reports
 - `roi-report-template.md`: Template for ROI analysis reports
 - `trend-analysis-template.md`: Template for trend identification reports
+
+## Complementary Skills (External)
+
+For A/B testing and analytics tracking, pair with [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills):
+
+```
+/plugin marketplace add coreyhaines31/marketingskills
+```
+
+| Skill | Why |
+|-------|-----|
+| `analytics-tracking` | Tracking setup and event configuration |
+| `ab-test-setup` | A/B test design and implementation |

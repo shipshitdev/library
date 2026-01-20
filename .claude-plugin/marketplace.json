@@ -91,6 +91,11 @@
       "description": "Master LLM-as-a-Judge evaluation techniques including direct scoring, pairwise comparison, rubric ge"
     },
     {
+      "name": "agent-browser",
+      "source": "./agents/.claude/skills/agent-browser",
+      "description": "Automates browser interactions for web testing, form filling, screenshots, and data extraction. Use "
+    },
+    {
       "name": "agent-folder-init",
       "source": "./agents/.claude/skills/agent-folder-init",
       "description": "Initialize a comprehensive .agent/ folder structure for AI-first development. Use this skill when st"
@@ -516,6 +521,11 @@
       "description": "Initialize Playwright end-to-end testing for Next.js and React projects. Sets up configuration, crea"
     },
     {
+      "name": "positioning-angles",
+      "source": "./agents/.claude/skills/positioning-angles",
+      "description": "Use this skill when users need to find their unique marketing angle, differentiate from competitors,"
+    },
+    {
       "name": "pricing-strategist",
       "source": "./agents/.claude/skills/pricing-strategist",
       "description": "Use this skill when users need help with pricing strategy, feel they're undercharging, want to raise"
@@ -669,11 +679,6 @@
       "name": "traffic-validator",
       "source": "./agents/.claude/skills/traffic-validator",
       "description": "Validate traffic strategy against Traffic Secrets principles. Assess Dream 100, Work In vs. Buy In, "
-    },
-    {
-      "name": "webapp-testing",
-      "source": "./agents/.claude/skills/webapp-testing",
-      "description": "Toolkit for interacting with and testing local web applications using Playwright. Supports verifying"
     },
     {
       "name": "workflow-automation",

@@ -81,6 +81,18 @@ Expert content creator specializing in newsletters and tweets that authentically
 | `strategy-expert` | Content strategy planning |
 | `planning-assistant` | Content calendar management |
 
+## Complementary Skills (External)
+
+For social media tactics and templates, pair with [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills):
+
+```
+/plugin marketplace add coreyhaines31/marketingskills
+```
+
+| Skill | Why |
+|-------|-----|
+| `social-content` | Social media content templates and tactics |
+
 ---
 
 **For detailed workflows, examples, and content lineup generation:** `references/full-guide.md`

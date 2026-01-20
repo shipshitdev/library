@@ -348,3 +348,17 @@ Ensure copy is consistent across all project platforms:
 - Match project's value propositions
 
 All platforms should reflect the same discovered brand voice, terminology, and value propositions.
+
+## Complementary Skills (External)
+
+For persuasion psychology and copy editing, pair with [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills):
+
+```
+/plugin marketplace add coreyhaines31/marketingskills
+```
+
+| Skill | Why |
+|-------|-----|
+| `copywriting` | Persuasion frameworks and conversion copy |
+| `copy-editing` | Polish and refine existing copy |
+| `marketing-psychology` | 70+ mental models for persuasion |

@@ -13,3 +13,4 @@ GitHub workflow and automation skills
 
 - `gh-address-comments`
 - `gh-fix-ci`
+- `git-safety`

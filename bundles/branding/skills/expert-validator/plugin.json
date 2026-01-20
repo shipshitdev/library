@@ -1,0 +1,10 @@
+{
+  "name": "expert-validator",
+  "version": "1.0.0",
+  "description": "Use this skill when users need to validate their positioning, authority, or messaging strategy. Activates for 'validate my positioning,' 'is my messaging right,' 'how do I position myself,' or when assessing expert authority and attractive character.",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

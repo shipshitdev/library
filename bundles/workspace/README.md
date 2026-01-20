@@ -15,10 +15,12 @@ Project setup and workspace initialization
 - `project-scaffold`
 - `project-init-orchestrator`
 - `linter-formatter-init`
-- `clerk-implementer`
+- `clerk-validator`
 - `plasmo-extension-architect`
 - `content-script-developer`
 - `package-architect`
 - `artifacts-builder`
 - `open-source-checker`
 - `devcontainer-setup`
+- `biome-validator`
+- `bun-validator`

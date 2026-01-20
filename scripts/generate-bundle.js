@@ -74,7 +74,7 @@ function generateBundlePlugin(bundleId, platform = 'cursor') {
   fs.mkdirSync(pluginCommandsDir, { recursive: true });
   
   // Copy skills
-  const skillsDir = path.join(LIBRARY_ROOT, 'agents', `.${platform}`, 'skills');
+  const skillsDir = path.join(LIBRARY_ROOT, 'skills');
   const includedSkills = [];
   
   if (bundle.skills && bundle.skills.length > 0) {
@@ -93,7 +93,7 @@ function generateBundlePlugin(bundleId, platform = 'cursor') {
   }
   
   // Copy commands
-  const commandsDir = path.join(LIBRARY_ROOT, 'agents', `.${platform}`, 'commands');
+  const commandsDir = path.join(LIBRARY_ROOT, 'commands');
   const includedCommands = [];
   
   if (bundle.commands && bundle.commands.length > 0) {

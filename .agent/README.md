@@ -29,25 +29,19 @@ You are working **ON the library**, not in a project that uses it.
 
 ```
 library/
+├── skills/              # All skills (single source)
+├── commands/            # All commands
+├── bundles/             # Generated marketplace bundles
 ├── .agent/              # Library management (you are here)
-├── agents/              # DISTRIBUTABLE CONTENT
-│   ├── .claude/skills/  # Skills for Claude
-│   ├── .codex/skills/   # Skills for Codex
-│   └── .cursor/skills/  # Skills for Cursor
-└── scripts/             # Scaffolding, sync scripts
+└── scripts/             # Scaffolding, validation scripts
 ```
 
 ## Common Tasks
 
 ### Adding a New Skill
 
-1. Create in `agents/.claude/skills/skill-name/SKILL.md`
-2. Sync to other platforms (see `SYSTEM/PLATFORM-ADAPTATIONS.md`)
-3. Update main README.md skill table
-
-### Syncing Skills
-
-See `SYSTEM/SKILL-MANAGEMENT.md`
+1. Create in `skills/skill-name/SKILL.md`
+2. Update main README.md skill table
 
 ### Setting Up Symlinks
 

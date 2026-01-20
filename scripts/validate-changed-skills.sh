@@ -6,16 +6,17 @@
 
 set -euo pipefail
 
-# Get list of changed SKILL.md files
-CHANGED_SKILLS=$(git diff --cached --name-only --diff-filter=ACMR | grep -E 'agents/\.(claude|codex)/skills/[^/]+/SKILL\.md$' || true)
+# Get list of changed SKILL.md files in the main skills/ directory only
+# Skip bundles/ as those are generated/derived from skills/
+CHANGED_SKILLS=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '^skills/[^/]+/SKILL\.md$' || true)
 
 if [[ -z "$CHANGED_SKILLS" ]]; then
   # No skill files changed, skip validation
   exit 0
 fi
 
-# Extract unique skill names
-SKILL_NAMES=$(echo "$CHANGED_SKILLS" | sed -E 's|agents/\.(claude\|codex)/skills/([^/]+)/SKILL\.md|\2|' | sort -u)
+# Extract unique skill names (from paths like skills/foo/SKILL.md -> foo)
+SKILL_NAMES=$(echo "$CHANGED_SKILLS" | sed -E 's|^skills/([^/]+)/SKILL\.md$|\1|' | sort -u)
 
 echo "🔍 Validating changed skills..."
 echo

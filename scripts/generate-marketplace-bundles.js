@@ -20,7 +20,7 @@ import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
-const SKILLS_DIR = join(ROOT, "agents/.claude/skills");
+const SKILLS_DIR = join(ROOT, "skills");
 const BUNDLES_DIR = join(ROOT, "bundles");
 const CATEGORIES = JSON.parse(
 	readFileSync(join(__dirname, "plugin-categories.json"), "utf-8"),

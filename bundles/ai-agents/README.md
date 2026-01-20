@@ -24,3 +24,4 @@ AI agent development and prompt engineering
 - `advanced-evaluation`
 - `comment-mode`
 - `spec-first`
+- `agent-browser`

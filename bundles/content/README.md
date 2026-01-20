@@ -18,3 +18,5 @@ Content creation and documentation skills
 - `changelog-generator`
 - `internal-comms`
 - `youtube-video-analyst`
+- `copy-validator`
+- `humanizer`

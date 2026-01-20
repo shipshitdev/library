@@ -9,7 +9,7 @@ import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
-const SKILLS_DIR = join(ROOT, "agents/.claude/skills");
+const SKILLS_DIR = join(ROOT, "skills");
 const BUNDLES_DIR = join(ROOT, "bundles");
 const CATEGORIES = JSON.parse(
 	readFileSync(join(__dirname, "plugin-categories.json"), "utf-8"),
@@ -33,7 +33,7 @@ const plugins = [];
 // 1. Add full bundle first
 plugins.push({
 	name: "shipshitdev-full",
-	source: "./agents/.claude",
+	source: ".",
 	description: "Complete skill library - all 100+ skills for indie developers",
 });
 
@@ -56,7 +56,7 @@ for (const skillName of skills) {
 	const description = getSkillDescription(skillName);
 	plugins.push({
 		name: skillName,
-		source: `./agents/.claude/skills/${skillName}`,
+		source: `./skills/${skillName}`,
 		description: description.slice(0, 100), // Truncate long descriptions
 	});
 }

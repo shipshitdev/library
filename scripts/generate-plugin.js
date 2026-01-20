@@ -42,7 +42,7 @@ function copyDir(src, dest) {
  * Generate plugin from skill
  */
 function generateSkillPlugin(skillName, platform = 'cursor') {
-  const skillPath = path.join(LIBRARY_ROOT, 'agents', `.${platform}`, 'skills', skillName);
+  const skillPath = path.join(LIBRARY_ROOT, 'skills', skillName);
   
   if (!fs.existsSync(skillPath)) {
     throw new Error(`Skill not found: ${skillPath}`);
@@ -82,7 +82,7 @@ function generateSkillPlugin(skillName, platform = 'cursor') {
  * Generate plugin from command
  */
 function generateCommandPlugin(commandName, platform = 'cursor') {
-  const commandPath = path.join(LIBRARY_ROOT, 'agents', `.${platform}`, 'commands', `${commandName}.md`);
+  const commandPath = path.join(LIBRARY_ROOT, 'commands', `${commandName}.md`);
   
   if (!fs.existsSync(commandPath)) {
     throw new Error(`Command not found: ${commandPath}`);
@@ -122,8 +122,8 @@ function generateCommandPlugin(commandName, platform = 'cursor') {
  * Generate all plugins for a platform
  */
 function generateAllPlugins(platform = 'cursor') {
-  const skillsDir = path.join(LIBRARY_ROOT, 'agents', `.${platform}`, 'skills');
-  const commandsDir = path.join(LIBRARY_ROOT, 'agents', `.${platform}`, 'commands');
+  const skillsDir = path.join(LIBRARY_ROOT, 'skills');
+  const commandsDir = path.join(LIBRARY_ROOT, 'commands');
   
   const plugins = [];
   

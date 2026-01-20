@@ -1,0 +1,10 @@
+{
+  "name": "traffic-validator",
+  "version": "1.0.0",
+  "description": "Use this skill when users need to validate their traffic strategy, Dream 100 approach, or audience-building plan. Activates for 'validate my traffic plan,' 'is my audience strategy right,' 'am I reaching the right people,' or when assessing traffic acquisition.",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

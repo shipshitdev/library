@@ -35,7 +35,10 @@ done
 # Works whether script is called from anywhere
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LIBRARY_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
-AGENTS_DIR="$LIBRARY_DIR/agents"
+SKILLS_DIR="$LIBRARY_DIR/skills"
+COMMANDS_DIR="$LIBRARY_DIR/commands"
+AGENTS_DIR="$LIBRARY_DIR/.claude/agents"
+RULES_DIR="$LIBRARY_DIR/.claude/rules"
 
 echo -e "${BLUE}Ship Shit Dev Library - Symlink Setup${NC}"
 echo "========================================"
@@ -48,9 +51,9 @@ if $DRY_RUN; then
     echo ""
 fi
 
-# Verify agents directory exists
-if [[ ! -d "$AGENTS_DIR" ]]; then
-    echo -e "${RED}Error: agents directory not found at $AGENTS_DIR${NC}"
+# Verify skills directory exists
+if [[ ! -d "$SKILLS_DIR" ]]; then
+    echo -e "${RED}Error: skills directory not found at $SKILLS_DIR${NC}"
     exit 1
 fi
 
@@ -120,19 +123,19 @@ create_symlink() {
 
 # Define symlinks to create
 echo "Setting up Claude Code symlinks..."
-create_symlink "$AGENTS_DIR/.claude/skills" "$HOME/.claude/skills" "skills"
-create_symlink "$AGENTS_DIR/.claude/commands" "$HOME/.claude/commands" "commands"
-create_symlink "$AGENTS_DIR/.claude/agents" "$HOME/.claude/agents" "agents"
-create_symlink "$AGENTS_DIR/.claude/rules" "$HOME/.claude/rules" "rules"
+create_symlink "$SKILLS_DIR" "$HOME/.claude/skills" "skills"
+create_symlink "$COMMANDS_DIR" "$HOME/.claude/commands" "commands"
+create_symlink "$AGENTS_DIR" "$HOME/.claude/agents" "agents"
+create_symlink "$RULES_DIR" "$HOME/.claude/rules" "rules"
 
 echo ""
 echo "Setting up Codex symlinks..."
-create_symlink "$AGENTS_DIR/.codex/skills" "$HOME/.codex/skills" "skills"
+create_symlink "$SKILLS_DIR" "$HOME/.codex/skills" "skills"
 
 echo ""
 echo "Setting up Cursor symlinks..."
-create_symlink "$AGENTS_DIR/.cursor/skills" "$HOME/.cursor/skills" "skills"
-create_symlink "$AGENTS_DIR/.cursor/commands" "$HOME/.cursor/commands" "commands"
+create_symlink "$SKILLS_DIR" "$HOME/.cursor/skills" "skills"
+create_symlink "$COMMANDS_DIR" "$HOME/.cursor/commands" "commands"
 
 echo ""
 echo "========================================"

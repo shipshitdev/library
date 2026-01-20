@@ -19,3 +19,8 @@ Sales, leads, and outreach skills
 - `partnership-builder`
 - `retention-engine`
 - `support-systems-architect`
+- `channel-validator`
+- `funnel-architect`
+- `funnel-validator`
+- `traffic-architect`
+- `traffic-validator`

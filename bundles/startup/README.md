@@ -21,5 +21,8 @@ Skills for validating ideas, planning MVPs, and launching startups
 - `fundraise-advisor`
 - `early-hiring-advisor`
 - `offer-architect`
+- `offer-validator`
 - `constraint-eliminator`
 - `execution-accelerator`
+- `execution-validator`
+- `scale-validator`

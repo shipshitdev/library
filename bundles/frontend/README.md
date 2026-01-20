@@ -24,3 +24,6 @@ Frontend development and design skills
 - `ai-loading-ux`
 - `table-filters`
 - `quick-view`
+- `nextjs-validator`
+- `shadcn-setup`
+- `tailwind-validator`

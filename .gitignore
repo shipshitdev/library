@@ -5,3 +5,6 @@ node_modules/
 
 # macOS
 .DS_Store
+
+# Local settings (personal profiles)
+.claude/settings.local.json

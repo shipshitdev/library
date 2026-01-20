@@ -13,8 +13,11 @@
         "fundraise-advisor",
         "early-hiring-advisor",
         "offer-architect",
+        "offer-validator",
         "constraint-eliminator",
-        "execution-accelerator"
+        "execution-accelerator",
+        "execution-validator",
+        "scale-validator"
       ]
     },
     "testing": {
@@ -23,7 +26,6 @@
         "playwright-e2e-init",
         "testing-expert",
         "testing-cicd-init",
-        "webapp-testing",
         "nestjs-testing-expert",
         "qa-reviewer",
         "husky-test-coverage"
@@ -31,10 +33,7 @@
     },
     "payments": {
       "description": "Payment processing and financial integrations",
-      "skills": [
-        "stripe-implementer",
-        "financial-operations-expert"
-      ]
+      "skills": ["stripe-implementer", "financial-operations-expert"]
     },
     "infrastructure": {
       "description": "DevOps, cloud, and infrastructure skills",
@@ -66,7 +65,10 @@
         "micro-landing-builder",
         "ai-loading-ux",
         "table-filters",
-        "quick-view"
+        "quick-view",
+        "nextjs-validator",
+        "shadcn-setup",
+        "tailwind-validator"
       ]
     },
     "backend": {
@@ -87,7 +89,9 @@
         "docs",
         "changelog-generator",
         "internal-comms",
-        "youtube-video-analyst"
+        "youtube-video-analyst",
+        "copy-validator",
+        "humanizer"
       ]
     },
     "sales": {
@@ -100,7 +104,12 @@
         "competitive-intelligence-analyst",
         "partnership-builder",
         "retention-engine",
-        "support-systems-architect"
+        "support-systems-architect",
+        "channel-validator",
+        "funnel-architect",
+        "funnel-validator",
+        "traffic-architect",
+        "traffic-validator"
       ]
     },
     "branding": {
@@ -108,7 +117,10 @@
       "skills": [
         "brand-architect",
         "brand-name-generator",
-        "search-domain-validator"
+        "search-domain-validator",
+        "expert-architect",
+        "expert-validator",
+        "positioning-angles"
       ]
     },
     "ai-agents": {
@@ -126,7 +138,8 @@
         "evaluation",
         "advanced-evaluation",
         "comment-mode",
-        "spec-first"
+        "spec-first",
+        "agent-browser"
       ]
     },
     "workspace": {
@@ -136,13 +149,15 @@
         "project-scaffold",
         "project-init-orchestrator",
         "linter-formatter-init",
-        "clerk-implementer",
+        "clerk-validator",
         "plasmo-extension-architect",
         "content-script-developer",
         "package-architect",
         "artifacts-builder",
         "open-source-checker",
-        "devcontainer-setup"
+        "devcontainer-setup",
+        "biome-validator",
+        "bun-validator"
       ]
     },
     "planning": {
@@ -160,10 +175,7 @@
     },
     "github": {
       "description": "GitHub workflow and automation skills",
-      "skills": [
-        "gh-address-comments",
-        "gh-fix-ci"
-      ]
+      "skills": ["gh-address-comments", "gh-fix-ci", "git-safety"]
     },
     "session": {
       "description": "Session management and documentation",

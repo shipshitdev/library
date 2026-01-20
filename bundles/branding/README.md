@@ -14,3 +14,6 @@ Brand strategy and naming skills
 - `brand-architect`
 - `brand-name-generator`
 - `search-domain-validator`
+- `expert-architect`
+- `expert-validator`
+- `positioning-angles`

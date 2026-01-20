@@ -14,7 +14,6 @@ Testing, QA, and CI/CD automation skills
 - `playwright-e2e-init`
 - `testing-expert`
 - `testing-cicd-init`
-- `webapp-testing`
 - `nestjs-testing-expert`
 - `qa-reviewer`
 - `husky-test-coverage`

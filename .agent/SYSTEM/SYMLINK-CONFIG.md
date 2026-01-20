@@ -24,13 +24,13 @@ npm run setup:symlinks
 
 | Target | Source |
 |--------|--------|
-| `~/.claude/skills` | `<library>/agents/.claude/skills` |
-| `~/.claude/commands` | `<library>/agents/.claude/commands` |
-| `~/.claude/agents` | `<library>/agents/.claude/agents` |
-| `~/.claude/rules` | `<library>/agents/.claude/rules` |
-| `~/.codex/skills` | `<library>/agents/.codex/skills` |
-| `~/.cursor/skills` | `<library>/agents/.cursor/skills` |
-| `~/.cursor/commands` | `<library>/agents/.cursor/commands` |
+| `~/.claude/skills` | `<library>/skills` |
+| `~/.claude/commands` | `<library>/commands` |
+| `~/.claude/agents` | `<library>/.claude/agents` |
+| `~/.claude/rules` | `<library>/.claude/rules` |
+| `~/.codex/skills` | `<library>/skills` |
+| `~/.cursor/skills` | `<library>/skills` |
+| `~/.cursor/commands` | `<library>/commands` |
 
 The script automatically detects the library location - no hardcoded paths needed.
 
@@ -54,17 +54,9 @@ ls -la ~/.claude/skills ~/.claude/commands
 library/
 ├── scripts/
 │   └── setup-symlinks.sh    # Setup script
-├── agents/                   # Symlink targets
-│   ├── .claude/
-│   │   ├── skills/          # <- ~/.claude/skills
-│   │   ├── commands/        # <- ~/.claude/commands
-│   │   ├── agents/          # <- ~/.claude/agents
-│   │   └── rules/           # <- ~/.claude/rules
-│   ├── .codex/
-│   │   └── skills/          # <- ~/.codex/skills
-│   └── .cursor/
-│       ├── skills/          # <- ~/.cursor/skills
-│       └── commands/        # <- ~/.cursor/commands
+├── skills/                  # <- all platforms symlink here
+├── commands/                # <- all platforms symlink here
+└── bundles/                 # Generated marketplace bundles
 ```
 
 ## Devcontainer Note

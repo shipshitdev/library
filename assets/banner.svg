@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 320" width="1280" height="320">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Outer background -->
+  <rect width="1280" height="320" fill="#1a1b26"/>
+
+  <!-- Terminal window -->
+  <g filter="url(#shadow)">
+    <!-- Terminal frame -->
+    <rect x="60" y="20" width="1160" height="280" rx="10" fill="#0d1117"/>
+
+    <!-- Title bar -->
+    <rect x="60" y="20" width="1160" height="36" rx="10" fill="#161b22"/>
+    <rect x="60" y="46" width="1160" height="10" fill="#161b22"/>
+
+    <!-- Traffic lights -->
+    <circle cx="90" cy="38" r="7" fill="#ff5f56"/>
+    <circle cx="114" cy="38" r="7" fill="#ffbd2e"/>
+    <circle cx="138" cy="38" r="7" fill="#27ca40"/>
+
+    <!-- Window title -->
+    <text x="640" y="43" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#6e7681">shipshitdev - library - zsh</text>
+  </g>
+
+  <!-- Terminal content -->
+  <g font-family="Monaco, 'SF Mono', 'Fira Code', 'Consolas', monospace">
+
+    <!-- Line 1: Command -->
+    <text x="90" y="85" font-size="15">
+      <tspan fill="#7ee787">~</tspan>
+      <tspan fill="#c9d1d9">/library</tspan>
+      <tspan fill="#6e7681" dx="12">$</tspan>
+      <tspan fill="#c9d1d9" dx="8">neofetch</tspan>
+    </text>
+
+    <!-- Main title - big and bold -->
+    <text x="140" y="145" font-size="52" font-weight="bold" fill="#00d4ff" filter="url(#glow)">shipshit.dev</text>
+
+    <!-- Subtitle -->
+    <text x="140" y="185" font-size="28" fill="#8b949e">library</text>
+
+    <!-- Info block on the right side -->
+    <g font-size="14" fill="#c9d1d9">
+      <text x="680" y="120">
+        <tspan fill="#7ee787">skills</tspan>
+        <tspan fill="#6e7681">:</tspan>
+        <tspan fill="#c9d1d9" dx="4">123</tspan>
+      </text>
+      <text x="680" y="142">
+        <tspan fill="#f0883e">commands</tspan>
+        <tspan fill="#6e7681">:</tspan>
+        <tspan fill="#c9d1d9" dx="4">35</tspan>
+      </text>
+      <text x="680" y="164">
+        <tspan fill="#a5d6ff">platforms</tspan>
+        <tspan fill="#6e7681">:</tspan>
+        <tspan fill="#c9d1d9" dx="4">Claude, Cursor, Codex</tspan>
+      </text>
+      <text x="680" y="186">
+        <tspan fill="#d2a8ff">type</tspan>
+        <tspan fill="#6e7681">:</tspan>
+        <tspan fill="#c9d1d9" dx="4">AI agent skills</tspan>
+      </text>
+    </g>
+
+    <!-- Separator line -->
+    <line x1="90" y1="210" x2="1180" y2="210" stroke="#30363d" stroke-width="1"/>
+
+    <!-- Install command -->
+    <text x="90" y="245" font-size="15">
+      <tspan fill="#7ee787">~</tspan>
+      <tspan fill="#c9d1d9">/library</tspan>
+      <tspan fill="#6e7681" dx="12">$</tspan>
+      <tspan fill="#c9d1d9" dx="8">npx add-skill shipshitdev/library -g</tspan>
+    </text>
+
+    <!-- Output line -->
+    <text x="90" y="275" font-size="14">
+      <tspan fill="#7ee787">✓</tspan>
+      <tspan fill="#8b949e" dx="8">Installed 123 skills globally</tspan>
+    </text>
+
+  </g>
+</svg>

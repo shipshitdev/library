@@ -1,12 +1,10 @@
 {
-  "name": "ship-shit-dev-library",
-  "version": "1.0.0",
   "description": "100+ AI agent skills for indie developers - works with Claude Code, OpenAI Codex, and Cursor",
-  "private": true,
   "devDependencies": {
+    "@biomejs/biome": "2.3.11",
     "husky": "9.1.7",
     "lint-staged": "16.2.7",
-    "markdownlint-cli": "0.42.0"
+    "markdownlint-cli": "0.47.0"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -14,31 +12,35 @@
   "license": "MIT",
   "lint-staged": {
     "*.json": [
-      "bunx biome check --write --no-errors-on-unmatched"
+      "biome check --write --no-errors-on-unmatched"
     ],
     "*.md": [
-      "bunx markdownlint-cli --fix --ignore bundles --ignore dist"
+      "markdownlint --fix --ignore bundles --ignore dist"
     ],
     "*.sh": [
       "bash scripts/lint-shellcheck.sh"
     ]
   },
+  "name": "ship-shit-dev-library",
+  "private": true,
   "scripts": {
-    "check-symlinks": "bash -c 'for link in ~/.claude/skills ~/.claude/commands ~/.claude/agents ~/.claude/rules ~/.codex/skills ~/.cursor/commands ~/.cursor/skills; do if [[ -L \"$link\" ]]; then echo \"✓ $link -> $(readlink \"$link\")\"; else echo \"✗ $link (not a symlink)\"; fi; done'",
-    "setup:symlinks": "bash scripts/setup-symlinks.sh",
-    "count": "bash -c 'echo \"Claude skills: $(ls -1 agents/.claude/skills 2>/dev/null | wc -l | tr -d \" \")\"; echo \"Codex skills: $(ls -1 agents/.codex/skills 2>/dev/null | wc -l | tr -d \" \")\"; echo \"Cursor commands: $(ls -1 agents/.cursor/commands 2>/dev/null | wc -l | tr -d \" \")\"; echo \"Cursor skills: $(ls -1 agents/.cursor/skills 2>/dev/null | wc -l | tr -d \" \")\"'",
+    "check-symlinks": "bash -c 'for link in ~/.claude/skills ~/.claude/commands ~/.claude/agents ~/.claude/rules ~/.codex/skills ~/.cursor/skills ~/.cursor/commands; do if [[ -L \"$link\" ]]; then echo \"✓ $link -> $(readlink \"$link\")\"; else echo \"✗ $link (not a symlink)\"; fi; done'",
+    "count": "bash -c 'echo \"Skills: $(ls -1 skills 2>/dev/null | wc -l | tr -d \" \")\"; echo \"Commands: $(ls -1 commands 2>/dev/null | wc -l | tr -d \" \")\"'",
     "generate:all": "bun scripts/generate-plugin.js all cursor",
     "generate:bundle": "bun scripts/generate-bundle.js",
     "generate:manifest": "bun scripts/generate-manifest.js",
+    "deps:update": "bunx npm-check-updates -u && bun install",
     "generate:plugin": "bun scripts/generate-plugin.js",
     "lint": "markdownlint '**/*.md' --ignore node_modules --ignore bundles --ignore dist",
-    "lint:docs": "markdownlint '*.md' '**/*.md' --ignore node_modules --ignore '.claude/**' --ignore '.codex/**' --ignore '.cursor/**'",
+    "lint:docs": "markdownlint '*.md' '**/*.md' --ignore node_modules --ignore '.claude/**'",
     "lint:fix": "markdownlint '**/*.md' --ignore node_modules --ignore bundles --ignore dist --fix",
     "lint:sh": "bash -c 'if command -v shellcheck >/dev/null 2>&1; then find scripts -name \"*.sh\" -exec shellcheck {} +; else echo \"⚠ shellcheck not installed, skipping shell script linting\"; fi'",
+    "marketplace:generate": "bun scripts/generate-marketplace-bundles.js && bun scripts/generate-marketplace-json.js",
     "prepare": "husky",
+    "setup:symlinks": "bash scripts/setup-symlinks.sh",
     "sync:marketplace": "bun scripts/sync-marketplace.js",
     "validate": "bash scripts/validate-skill-sync.sh",
-    "validate:skill": "bash scripts/validate-skill-sync.sh",
-    "marketplace:generate": "bun scripts/generate-marketplace-bundles.js && bun scripts/generate-marketplace-json.js"
-  }
+    "validate:skill": "bash scripts/validate-skill-sync.sh"
+  },
+  "version": "1.0.0"
 }

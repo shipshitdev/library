@@ -61,4 +61,3 @@ This skill activates when users:
 ## Integration
 
 This skill integrates with `/monitoring-setup` command for automated setup workflows.
-

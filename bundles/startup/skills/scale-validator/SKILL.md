@@ -31,6 +31,7 @@ Stress-test business models by imagining 10x growth and asking: "What breaks?"
 ## The Framework
 
 **Core Question:**
+
 ```
 If you 10x'd your business tomorrow, what breaks first?
 ```

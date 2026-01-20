@@ -347,6 +347,7 @@ Thumbs.db
 ### GitHub Container Registry (ghcr.io) - Recommended
 
 **Advantages**:
+
 - Free for public repos
 - Integrated with GitHub Actions
 - No separate authentication setup
@@ -357,6 +358,7 @@ Thumbs.db
 2. Ensure `GITHUB_TOKEN` has `packages: write` permission
 
 **Image naming**:
+
 ```
 ghcr.io/<owner>/<repo>:<tag>
 ghcr.io/myorg/api:latest
@@ -396,6 +398,7 @@ aws ecr get-login-password --region us-east-1 | \
 ```
 
 **Image naming**:
+
 ```
 <account-id>.dkr.ecr.<region>.amazonaws.com/<repo>:<tag>
 123456789012.dkr.ecr.us-east-1.amazonaws.com/my-api:latest
@@ -414,6 +417,7 @@ aws ecr get-login-password --region us-east-1 | \
 ```
 
 **Image naming**:
+
 ```
 <username>/<repo>:<tag>
 myuser/my-api:latest

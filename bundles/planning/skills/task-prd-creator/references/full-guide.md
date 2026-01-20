@@ -27,6 +27,7 @@ Ask these questions if not clear from request:
 ### Step 3: Check Existing System
 
 1. Read relevant architecture docs:
+
    ```bash
    # For API features
    cat [api-project]/.agent/SYSTEM/ARCHITECTURE.md
@@ -37,11 +38,13 @@ Ask these questions if not clear from request:
    ```
 
 2. Search for similar implementations:
+
    ```bash
    grep -r "similar_pattern" [project]/
    ```
 
 3. Check examples:
+
    ```bash
    cat .agent/EXAMPLES/[category]/[example-name].md
    ```
@@ -49,6 +52,7 @@ Ask these questions if not clear from request:
 ### Step 4: Fetch Latest Library Docs (MANDATORY)
 
 Use Context7 MCP for all relevant libraries:
+
 ```typescript
 // Example for Next.js feature
 await mcp_context7_resolve_library_id("nextjs");
@@ -293,6 +297,7 @@ db.collection.createIndex({ field: 1 });
 **Implementation Notes:**
 
 [Any additional notes, gotchas, or things to watch out for during implementation]
+
 ```
 
 ## Naming Conventions
@@ -340,6 +345,7 @@ When user says:
 **Your Response:**
 
 ```
+
 Great! Let me create a proper task and PRD for this.
 
 A few quick questions:
@@ -367,6 +373,7 @@ This task includes:
 The PRD includes detailed implementation steps, files to create/modify, and testing requirements.
 
 Review the files and let me know if you'd like to proceed with implementation or make changes!
+
 ```
 
 ## Quick Reference

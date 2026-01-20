@@ -7,6 +7,7 @@ Load all critical preferences and instructions at the start of each session or a
 ### 1. Read Session Quick Start (if exists)
 
 Check for project entry point documentation:
+
 ```bash
 cat .agent/SYSTEM/ai/SESSION-QUICK-START.md 2>/dev/null || cat .agent/SYSTEM/SESSION-QUICK-START.md 2>/dev/null || echo "No session quick start found"
 ```
@@ -16,11 +17,13 @@ This document will guide you to any other necessary documentation.
 ### 2. Read User Preferences (CRITICAL)
 
 Read the user's non-negotiable preferences:
+
 ```bash
 cat .agent/SYSTEM/ai/USER-PREFERENCES.md 2>/dev/null || cat .claude/rules/user-preferences.md 2>/dev/null || echo "No user preferences found"
 ```
 
 This file contains:
+
 - Critical rules (NEVER build/test locally, check recent sessions, follow codebase patterns)
 - Quality standards
 - Communication preferences
@@ -29,12 +32,14 @@ This file contains:
 ### 3. Read Today's Session File
 
 Read today's session to understand what was already done before `/clear`:
+
 ```bash
 TODAY=$(date +%Y-%m-%d)
 cat .agent/SESSIONS/$TODAY.md 2>/dev/null || echo "No session file for today yet"
 ```
 
 If the file exists, this shows:
+
 - What tasks were completed earlier today
 - What decisions were made
 - What files were changed
@@ -45,6 +50,7 @@ If the file doesn't exist yet, this is a fresh session day.
 ### 4. Activate Session Documenter (if available)
 
 The `session-documenter` skill will automatically activate and track:
+
 - All tasks completed
 - Decisions made with rationale
 - Files created/modified/deleted
@@ -60,17 +66,20 @@ Documentation is written to `.agent/SESSIONS/YYYY-MM-DD.md` after each task comp
 ### 5. Display Inbox Tasks (if exists)
 
 Show the current inbox backlog:
+
 ```bash
 cat .agent/TASKS/INBOX.md 2>/dev/null || echo "No inbox found"
 ```
 
 Display inbox in two categories:
+
 1. **Human QA (Blocking Production)** - Tasks requiring manual testing before production build
 2. **Features to Prompt** - Tasks ready for AI implementation
 
 ### 6. Confirmation
 
 After reading all files and displaying inbox, provide a brief confirmation that you've loaded:
+
 - Critical rules understood (no background processes, no builds/tests, document before /clear)
 - Today's session context loaded (if exists)
 - Ready to follow codebase-specific patterns
@@ -94,6 +103,7 @@ Keep confirmation concise (5-7 bullet points max).
 ## Purpose
 
 This command ensures consistent behavior across sessions by:
+
 - Loading user-specific preferences that override default behavior
 - Preventing repeated mistakes from previous sessions
 - Ensuring awareness of critical "never do" rules
@@ -117,6 +127,7 @@ This command ensures consistent behavior across sessions by:
 ## Output Format
 
 Simple confirmation checklist:
+
 - ✅ Session quick start loaded (if exists)
 - ✅ User preferences understood
 - ✅ Critical rules active (no background processes, no builds, document before /clear)
@@ -124,6 +135,7 @@ Simple confirmation checklist:
 - ✅ Session documenter active (if available)
 
 **📥 Inbox:**
+
 - 🚨 Human QA (X) - blocking production
 - 📋 Features (X) - ready to prompt
 

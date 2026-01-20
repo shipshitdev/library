@@ -6,6 +6,7 @@ description: Scaffold a production-ready static landing page with working email 
 # Landing Page (Vercel)
 
 Create a **production-ready** static landing page with:
+
 - **Structure:** Semantic HTML5 + Modern CSS + Vanilla JS
 - **Form:** Working email capture (Formspree or custom endpoint)
 - **Analytics:** Plausible/Fathom ready
@@ -15,6 +16,7 @@ Create a **production-ready** static landing page with:
 ## What Makes This Different
 
 This skill generates **working landing pages**, not empty templates:
+
 - Real email capture form that actually submits
 - Analytics integration ready to activate
 - Responsive design tested on mobile
@@ -57,6 +59,7 @@ Is this correct? Any adjustments?
 Generate complete landing page content:
 
 **Sections:**
+
 1. **Hero** - Headline, subheadline, CTA button, optional hero image
 2. **Features** - 3-5 feature cards with icons
 3. **How It Works** - 3-step process (optional)
@@ -87,6 +90,7 @@ Generate complete landing page content:
 ### Phase 4: Quality Verification
 
 Verify before handoff:
+
 - HTML validates (W3C)
 - Responsive on mobile
 - Form submits successfully

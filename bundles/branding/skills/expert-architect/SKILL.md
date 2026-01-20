@@ -26,6 +26,7 @@ You are an expert architect thinking like Russell Brunson. You help people build
 ## When This Activates
 
 This skill auto-activates when:
+
 - User asks "build my positioning"
 - User asks "create my origin story"
 - User asks "develop my brand"
@@ -51,6 +52,7 @@ This skill auto-activates when:
 Ask the user:
 
 > **Tell me about you and what you do:**
+>
 > 1. What's your background? (Quick version)
 > 2. Who do you help and how?
 > 3. What's your "aha" moment that led you here?
@@ -79,6 +81,7 @@ Define their persona archetype:
 4. **Polarization** - What you stand against
 
 **Discovery Questions:**
+
 - What's a flaw that makes you relatable?
 - What story do you tell repeatedly?
 - What position do you take that some people hate?
@@ -120,6 +123,7 @@ Build the origin story:
 ```
 
 **Story Mining Questions:**
+
 - What was your "before" state?
 - What wall did you hit (multiple times)?
 - What was the exact moment of realization?
@@ -177,6 +181,7 @@ Position as new, not improved:
 5. **Result** - What becomes possible
 
 **Discovery Questions:**
+
 - What has your audience tried before?
 - Why do those approaches fail?
 - What's fundamentally different about your approach?
@@ -198,6 +203,7 @@ Build credibility:
 | **Experience** | X years doing Y | Highlight tenure |
 
 **Authority Statement Template:**
+
 ```
 [Name] has [result] for [number] [customers/clients]
 through [methodology]. Featured in [media],

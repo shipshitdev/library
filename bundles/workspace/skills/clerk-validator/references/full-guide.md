@@ -5,11 +5,13 @@
 ### 1. Install Clerk SDK
 
 **Next.js:**
+
 ```bash
 bun add @clerk/nextjs@latest
 ```
 
 **NestJS:**
+
 ```bash
 bun add @clerk/clerk-sdk-node
 ```
@@ -585,6 +587,7 @@ export class OrganizationGuard implements CanActivate {
 ## Best Practices
 
 ### Security
+
 - Always verify tokens on the server side
 - Use HTTPS for all authentication flows
 - Store secrets in environment variables
@@ -592,24 +595,28 @@ export class OrganizationGuard implements CanActivate {
 - Validate user permissions before actions
 
 ### Session Management
+
 - Use Clerk's built-in session management
 - Implement proper logout flows
 - Handle token refresh automatically
 - Use middleware for route protection
 
 ### User Management
+
 - Sync user data with your database when needed
 - Handle webhooks for user lifecycle events
 - Implement proper user data validation
 - Respect user privacy and data protection
 
 ### Organization Management
+
 - Implement proper organization access controls
 - Use organization guards for multi-tenant features
 - Handle organization membership changes via webhooks
 - Implement proper organization data isolation
 
 ### Error Handling
+
 - Provide clear error messages
 - Handle authentication failures gracefully
 - Implement proper logging for security events

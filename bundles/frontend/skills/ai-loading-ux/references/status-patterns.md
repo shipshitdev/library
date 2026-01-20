@@ -3,6 +3,7 @@
 For AI interfaces with background processing or polling states.
 
 ## Table of Contents
+
 - [When to Use](#when-to-use)
 - [Indicator Types](#indicator-types)
 - [Placement Strategies](#placement-strategies)
@@ -13,12 +14,14 @@ For AI interfaces with background processing or polling states.
 ## When to Use
 
 Use status indicators when:
+
 - Work happens in the background
 - User can continue other tasks while waiting
 - Process duration is unpredictable
 - User needs awareness without blocking interaction
 
 Examples:
+
 - "Syncing your data..."
 - "Indexing files in background"
 - "Waiting for API response"
@@ -27,48 +30,59 @@ Examples:
 ## Indicator Types
 
 ### Spinner / Loader
+
 ```
 ⟳ Processing...
 ```
+
 - Simple, universally understood
 - No progress information
 - Best for: Unknown duration, quick tasks
 
 ### Pulsing Dot
+
 ```
 ● Syncing
 ```
+
 - Subtle, non-intrusive
 - Shows activity without demanding attention
 - Best for: Ambient background status
 
 ### Progress Ring / Bar
+
 ```
 ◐ 45% complete
 ━━━━━━━━░░░░░░░░
 ```
+
 - Shows measurable progress
 - Best for: Known duration/size, file uploads
 
 ### Status Badge
+
 ```
 [Processing] Document.pdf
 ```
+
 - Inline with content
 - Best for: Per-item status in lists
 
 ### Toast / Banner
+
 ```
 ┌──────────────────────────────────┐
 │ ● Background sync in progress... │
 └──────────────────────────────────┘
 ```
+
 - Temporary, dismissible
 - Best for: Temporary states, notifications
 
 ## Placement Strategies
 
 ### Global Status Bar
+
 ```
 ┌────────────────────────────────────────┐
 │  App Header                    ● Sync  │ ← Top-right badge
@@ -78,11 +92,13 @@ Examples:
 │                                        │
 └────────────────────────────────────────┘
 ```
+
 - Always visible
 - Doesn't interrupt flow
 - Click to expand details
 
 ### Contextual Inline
+
 ```
 ┌─ Files ────────────────────────────────┐
 │  📄 Report.pdf           ✓ Ready       │
@@ -90,11 +106,13 @@ Examples:
 │  📄 Summary.doc          ✓ Ready       │
 └────────────────────────────────────────┘
 ```
+
 - Status next to affected item
 - Clear relationship
 - Good for lists/tables
 
 ### Floating Indicator
+
 ```
                     ┌───────────────────┐
                     │ ● 3 tasks running │
@@ -102,11 +120,13 @@ Examples:
                     └───────────────────┘
 Main Content
 ```
+
 - Doesn't take layout space
 - Can be minimized
 - Good for non-blocking background tasks
 
 ### Full-Screen Overlay (Use Sparingly)
+
 ```
 ┌────────────────────────────────────────┐
 │                                        │
@@ -116,6 +136,7 @@ Main Content
 │                                        │
 └────────────────────────────────────────┘
 ```
+
 - Blocks interaction
 - Only for critical initialization
 - Must have timeout/escape
@@ -123,6 +144,7 @@ Main Content
 ## Implementation Patterns
 
 ### Pattern A: Background Task Manager
+
 ```
 // Pseudocode
 
@@ -162,6 +184,7 @@ TaskManager:
 ```
 
 ### Pattern B: Polling Status
+
 ```
 // For async operations that require polling
 
@@ -201,6 +224,7 @@ PollingStatus:
 ```
 
 ### Pattern C: Optimistic UI with Background Sync
+
 ```
 // Show immediate feedback, sync in background
 
@@ -231,6 +255,7 @@ OptimisticAction:
 ## Notification Patterns
 
 ### Completion Notifications
+
 ```
 // When background task completes
 
@@ -247,6 +272,7 @@ onTaskComplete(task):
 ```
 
 ### Error Notifications
+
 ```
 // Errors need more attention than success
 
@@ -267,6 +293,7 @@ onTaskError(task, error):
 ## Edge Cases
 
 ### Multiple Concurrent Tasks
+
 ```
 <StatusBar>
   {tasks.length === 1 ? (
@@ -278,6 +305,7 @@ onTaskError(task, error):
 ```
 
 ### Stale Status
+
 ```
 // Detect stuck states
 
@@ -293,6 +321,7 @@ if (task.status === "running" && now() - task.lastUpdate > STALE_THRESHOLD):
 ```
 
 ### Reconnection
+
 ```
 // After connection loss
 
@@ -311,6 +340,7 @@ if (task.status === "running" && now() - task.lastUpdate > STALE_THRESHOLD):
 ```
 
 ### Long-Running Background Tasks
+
 ```
 // Tasks that take minutes/hours
 

@@ -168,15 +168,18 @@ Organization: {{organizationId}}
 ## Output Locations
 
 ### Code Documentation
+
 - **Inline:** JSDoc comments in code
 - **README:** Feature overview in module folder
 
 ### API Documentation
+
 - **Swagger:** Auto-generated from decorators
 - **.http files:** Co-located with controllers
 - **External:** API docs site (if exists)
 
 ### Feature Documentation
+
 - **Session Files:** `.agent/SESSIONS/YYYY-MM-DD.md` (includes flowchart)
 - **Architecture:** `.agent/SYSTEM/ARCHITECTURE.md` (major decisions)
 - **SOPs:** `.agent/SOP/*.md` (patterns and procedures)

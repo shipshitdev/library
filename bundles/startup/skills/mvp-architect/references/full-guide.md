@@ -36,6 +36,7 @@ We will know we're wrong when [failure indicator].
 ```
 
 **Example:**
+
 ```
 We believe that B2B sales teams
 have a problem with tracking follow-ups across channels.

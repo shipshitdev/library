@@ -27,6 +27,7 @@ Discover email addresses associated with a domain using a hybrid approach: free 
 ## Project Context Discovery
 
 Before finding emails:
+
 1. Check for existing email discovery tools
 2. Review available API keys (Hunter.io, Apollo.io)
 3. Check compliance/privacy requirements
@@ -85,6 +86,7 @@ interface EmailResult {
 ## Integration
 
 Works well with:
+
 - `leads-researcher` - Discover contact emails after researching companies
 - `copywriter` - Use found emails for outreach campaigns
 

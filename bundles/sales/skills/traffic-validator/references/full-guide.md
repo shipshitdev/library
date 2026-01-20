@@ -25,6 +25,7 @@ Complete guide to validating traffic strategy against Traffic Secrets principles
 | Platforms | Specific hashtags, topics, channels |
 
 **Questions to Ask:**
+
 - Name 10 influencers your ideal customer follows
 - Name 5 communities where they hang out
 - Name 3 publications they read
@@ -88,6 +89,7 @@ Complete guide to validating traffic strategy against Traffic Secrets principles
 | Hot | Ready to buy | Sales page, checkout, booking |
 
 **Red Flags:**
+
 - Sending cold traffic to sales page
 - Long-form sales to brand new audience
 - No warming sequence
@@ -122,6 +124,7 @@ Complete guide to validating traffic strategy against Traffic Secrets principles
 | 0-2 | No conversion path, traffic goes nowhere |
 
 **Conversion Path Elements:**
+
 - Traffic source → Landing page
 - Landing page → Lead capture
 - Lead capture → Nurture sequence

@@ -7,6 +7,7 @@ Complete guide to validating channel strategy using the One Channel Rule framewo
 Ask the user:
 
 > **Tell me about your marketing channels:**
+>
 > 1. What channels are you currently using to get customers?
 > 2. How long have you been on each channel?
 > 3. Which channel brings the most customers/revenue?
@@ -35,6 +36,7 @@ Evaluate if they're **focused or spread thin**:
 | 0-2 | Everywhere, scattered, no focus at all |
 
 **Channel Sprawl Signs:**
+
 - Active on 5+ platforms
 - Adding new channels before mastering any
 - "Repurposing content everywhere"
@@ -74,6 +76,7 @@ Evaluate if they've **mastered their primary channel**:
 | Hoping for results | Some predictability | Predictable outcome |
 
 **Mastery Questions:**
+
 - What's your average engagement rate?
 - What's your conversion rate from channel?
 - What content type performs best?
@@ -102,6 +105,7 @@ Evaluate if they **know their customer**:
 > Describe your ideal customer in one sentence with specific demographics and psychographics.
 
 **Red Flags:**
+
 - "Anyone who needs X"
 - Multiple very different avatars
 - Haven't talked to actual customers
@@ -136,6 +140,7 @@ Evaluate if they **know what's working**:
 | Content performance | What resonates |
 
 **Red Flags:**
+
 - "I think this is working"
 - No UTM parameters or tracking
 - Don't know where customers came from
@@ -160,6 +165,7 @@ Evaluate if they're **ready for channel #2**:
 | 0-2 | Not even close to ready |
 
 **Expansion Checklist:**
+
 - [ ] Primary channel generating consistent leads
 - [ ] Process documented
 - [ ] Could be delegated

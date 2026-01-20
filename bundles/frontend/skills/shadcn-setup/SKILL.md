@@ -18,6 +18,7 @@ Sets up shadcn/ui with proper Tailwind CSS v4 configuration. This skill ensures 
 ## Purpose
 
 **IMPORTANT**: shadcn/ui CLI and AI assistants often generate Tailwind v3 configs by default. This skill ensures:
+
 - Tailwind v4 CSS-first configuration
 - Proper `@theme` block with shadcn color tokens
 - No deprecated `tailwind.config.js` files
@@ -349,6 +350,7 @@ Update CSS to use class-based dark mode:
 ### "tailwind.config.js created by shadcn CLI"
 
 Delete it. The CLI sometimes generates v3 configs. Run:
+
 ```bash
 rm tailwind.config.js tailwind.config.ts
 ```
@@ -362,6 +364,7 @@ rm tailwind.config.js tailwind.config.ts
 ### Type errors with components
 
 Run:
+
 ```bash
 bun add -D @types/react @types/react-dom
 ```
@@ -369,6 +372,7 @@ bun add -D @types/react @types/react-dom
 ### cn() utility not found
 
 Create `src/lib/utils.ts`:
+
 ```typescript
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';

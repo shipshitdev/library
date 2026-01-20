@@ -158,21 +158,25 @@ Hey [Audience],
 ### Tweet Example Types
 
 **Update Tweet:**
+
 ```
 [Project update with context and value]
 ```
 
 **Insight Tweet:**
+
 ```
 [Learning or observation with project context]
 ```
 
 **Question Tweet:**
+
 ```
 [Engaging question related to project/industry]
 ```
 
 **Resource Tweet:**
+
 ```
 [Resource or tool recommendation with context]
 ```

@@ -22,6 +22,7 @@ Choose metrics based on the evaluation task structure:
 Direct scoring requires three components: clear criteria, a calibrated scale, and structured output format.
 
 **Criteria Definition Pattern**:
+
 ```
 Criterion: [Name]
 Description: [What this criterion measures]
@@ -29,11 +30,13 @@ Weight: [Relative importance, 0-1]
 ```
 
 **Scale Calibration**:
+
 - 1-3 scales: Binary with neutral option, lowest cognitive load
 - 1-5 scales: Standard Likert, good balance of granularity and reliability
 - 1-10 scales: High granularity but harder to calibrate, use only with detailed rubrics
 
 **Prompt Structure for Direct Scoring**:
+
 ```
 You are an expert evaluator assessing response quality.
 
@@ -67,12 +70,14 @@ Respond with structured JSON containing scores, justifications, and summary.
 Pairwise comparison is inherently more reliable for preference-based evaluation but requires bias mitigation.
 
 **Position Bias Mitigation Protocol**:
+
 1. First pass: Response A in first position, Response B in second
 2. Second pass: Response B in first position, Response A in second
 3. Consistency check: If passes disagree, return TIE with reduced confidence
 4. Final verdict: Consistent winner with averaged confidence
 
 **Prompt Structure for Pairwise Comparison**:
+
 ```
 You are an expert evaluator comparing two AI responses.
 
@@ -104,6 +109,7 @@ JSON with per-criterion comparison, overall winner, confidence (0-1), and reason
 ```
 
 **Confidence Calibration**: Confidence scores should reflect position consistency:
+
 - Both passes agree: confidence = average of individual confidences
 - Passes disagree: confidence = 0.5, verdict = TIE
 
@@ -112,6 +118,7 @@ JSON with per-criterion comparison, overall winner, confidence (0-1), and reason
 Well-defined rubrics reduce evaluation variance by 40-60% compared to open-ended scoring.
 
 **Rubric Components**:
+
 1. **Level descriptions**: Clear boundaries for each score level
 2. **Characteristics**: Observable features that define each level
 3. **Examples**: Representative text for each level (optional but valuable)
@@ -119,6 +126,7 @@ Well-defined rubrics reduce evaluation variance by 40-60% compared to open-ended
 5. **Scoring guidelines**: General principles for consistent application
 
 **Strictness Calibration**:
+
 - **Lenient**: Lower bar for passing scores, appropriate for encouraging iteration
 - **Balanced**: Fair, typical expectations for production use
 - **Strict**: High standards, appropriate for safety-critical or high-stakes evaluation
@@ -165,22 +173,27 @@ Production evaluation systems require multiple layers:
 ## Common Anti-Patterns
 
 **Anti-pattern: Scoring without justification**
+
 - Problem: Scores lack grounding, difficult to debug or improve
 - Solution: Always require evidence-based justification before score
 
 **Anti-pattern: Single-pass pairwise comparison**
+
 - Problem: Position bias corrupts results
 - Solution: Always swap positions and check consistency
 
 **Anti-pattern: Overloaded criteria**
+
 - Problem: Criteria measuring multiple things are unreliable
 - Solution: One criterion = one measurable aspect
 
 **Anti-pattern: Missing edge case guidance**
+
 - Problem: Evaluators handle ambiguous cases inconsistently
 - Solution: Include edge cases in rubrics with explicit guidance
 
 **Anti-pattern: Ignoring confidence calibration**
+
 - Problem: High-confidence wrong judgments are worse than low-confidence
 - Solution: Calibrate confidence to position consistency and evidence strength
 
@@ -205,6 +218,7 @@ For high-volume evaluation:
 ### Example 1: Direct Scoring for Accuracy
 
 **Input**:
+
 ```
 Prompt: "What causes seasons on Earth?"
 Response: "Seasons are caused by Earth's tilted axis. As Earth orbits the Sun,
@@ -214,6 +228,7 @@ Scale: 1-5
 ```
 
 **Output**:
+
 ```json
 {
   "criterion": "Factual Accuracy",
@@ -233,6 +248,7 @@ are correctly described.",
 ### Example 2: Pairwise Comparison with Position Swap
 
 **Input**:
+
 ```
 Prompt: "Explain machine learning to a beginner"
 Response A: [Technical explanation with jargon]
@@ -241,22 +257,27 @@ Criteria: ["clarity", "accessibility"]
 ```
 
 **First Pass (A first)**:
+
 ```json
 { "winner": "B", "confidence": 0.8 }
 ```
 
 **Second Pass (B first)**:
+
 ```json
 { "winner": "A", "confidence": 0.6 }
 ```
+
 (Note: Winner is A because B was in first position)
 
 **Mapped Second Pass**:
+
 ```json
 { "winner": "B", "confidence": 0.6 }
 ```
 
 **Final Result**:
+
 ```json
 {
   "winner": "B",
@@ -272,6 +293,7 @@ Criteria: ["clarity", "accessibility"]
 ### Example 3: Rubric Generation
 
 **Input**:
+
 ```
 criterionName: "Code Readability"
 criterionDescription: "How easy the code is to understand and maintain"
@@ -281,6 +303,7 @@ strictness: "balanced"
 ```
 
 **Output** (abbreviated):
+
 ```json
 {
   "levels": [
@@ -349,6 +372,7 @@ strictness: "balanced"
 ## References
 
 External research:
+
 - [Eugene Yan: Evaluating the Effectiveness of LLM-Evaluators](https://eugeneyan.com/writing/llm-evaluators/)
 - [Judging LLM-as-a-Judge (Zheng et al., 2023)](https://arxiv.org/abs/2306.05685)
 - [G-Eval: NLG Evaluation using GPT-4 (Liu et al., 2023)](https://arxiv.org/abs/2303.16634)

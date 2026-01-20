@@ -402,7 +402,7 @@ Before updating files, answer these questions:
    **Files changed:**
    - `path/file.ts` - [what changed]
 
-   ***
+   ---
 
    **Total sessions today:** 1
 
@@ -862,6 +862,7 @@ Before ending session, ensure these are documented:
    ```
 
 4. `/.agent/TASKS/mobile/TODO.md`:
+
    ```markdown
    - [x] Integrate Clerk authentication
    - [x] Create auth context provider

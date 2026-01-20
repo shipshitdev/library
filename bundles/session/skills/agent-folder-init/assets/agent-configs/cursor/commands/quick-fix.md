@@ -32,13 +32,13 @@
 DATE=$(date +%Y-%m-%d)
 ```
 
-2. **Create task file:**
+1. **Create task file:**
 
 ```bash
 TASK_FILE=".agent/SESSIONS/${DATE}-tasks.md"
 ```
 
-3. **Use simple template:**
+1. **Use simple template:**
 
 ```markdown
 # Daily Tasks - 2025-01-15

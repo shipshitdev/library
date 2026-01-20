@@ -58,12 +58,14 @@ Expert in performance optimization for React, Next.js, NestJS applications, Mong
 ## Performance Metrics
 
 ### Frontend (Core Web Vitals)
+
 - **LCP:** < 2.5s
 - **FID:** < 100ms
 - **CLS:** < 0.1
 - **FCP:** < 1.8s
 
 ### Backend
+
 - **API p50:** < 100ms
 - **API p95:** < 200ms
 - **DB Query p95:** < 50ms
@@ -72,12 +74,14 @@ Expert in performance optimization for React, Next.js, NestJS applications, Mong
 ## Quick Checklist
 
 ### Frontend
+
 - [ ] Bundle size < 200KB initial
 - [ ] Code splitting implemented
 - [ ] Images optimized and lazy loaded
 - [ ] React components memoized
 
 ### Backend
+
 - [ ] Database queries optimized
 - [ ] Indexes created and used
 - [ ] Caching implemented

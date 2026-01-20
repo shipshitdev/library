@@ -17,6 +17,7 @@ Track TWO cursors to support both forward and backward fetching:
 | `oldest_id` | Backfill older data | `until_id` |
 
 A single watermark only fetches forward. Two watermarks enable:
+
 - Regular runs: fetch NEW data (since `newest_id`)
 - Backfill runs: fetch OLD data (until `oldest_id`)
 - No overlap, no gaps

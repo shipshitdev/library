@@ -3,6 +3,7 @@
 For AI interfaces that display content as it generates token-by-token.
 
 ## Table of Contents
+
 - [When to Use](#when-to-use)
 - [Streaming Behaviors](#streaming-behaviors)
 - [Visual Indicators](#visual-indicators)
@@ -13,12 +14,14 @@ For AI interfaces that display content as it generates token-by-token.
 ## When to Use
 
 Use streaming display when:
+
 - Content generates incrementally (LLM token streaming)
 - Showing progress reduces perceived wait time
 - Users can start reading before generation completes
 - Response length is unpredictable
 
 Skip streaming when:
+
 - Response is very short (<50 tokens)
 - Content needs validation before display
 - Structured output must be complete to render (JSON, tables)
@@ -26,15 +29,18 @@ Skip streaming when:
 ## Streaming Behaviors
 
 ### Text Streaming
+
 ```
 The quick brown fox jum|
 The quick brown fox jumps over|
 The quick brown fox jumps over the lazy dog.|
 ```
+
 - Append tokens as received
 - Cursor indicates active generation
 
 ### Block Streaming
+
 ```
 ┌──────────────────────────┐
 │ Generating...            │
@@ -47,10 +53,12 @@ The quick brown fox jumps over the lazy dog.|
 │ The document discusses...│
 └──────────────────────────┘
 ```
+
 - Show placeholder until enough content
 - Reveal in chunks for smoother reading
 
 ### Skeleton → Content
+
 ```
 ┌──────────────────────────┐     ┌──────────────────────────┐
 │ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ │     │ Introduction             │
@@ -58,6 +66,7 @@ The quick brown fox jumps over the lazy dog.|
 │ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓    │     │ Key findings include:    │
 └──────────────────────────┘     └──────────────────────────┘
 ```
+
 - Pre-render expected shape
 - Replace skeleton with real content
 - Reduces layout shift
@@ -65,6 +74,7 @@ The quick brown fox jumps over the lazy dog.|
 ## Visual Indicators
 
 ### Cursor Styles
+
 ```
 █  Block cursor (classic terminal)
 |  Line cursor (text editor)
@@ -73,12 +83,14 @@ The quick brown fox jumps over the lazy dog.|
 ```
 
 ### Animation States
+
 - **Typing**: Cursor visible, blinking or solid
 - **Paused**: Cursor visible, no blink, "paused" indicator
 - **Complete**: Cursor hidden, content stable
 - **Error**: Red indicator, error message appended
 
 ### Container Indicators
+
 ```
 ┌─ Generating ─────────────────┐
 │ Content streams here...      │
@@ -89,6 +101,7 @@ The quick brown fox jumps over the lazy dog.|
 ## Implementation Patterns
 
 ### Pattern A: Simple Token Append
+
 ```
 // Pseudocode
 
@@ -107,6 +120,7 @@ StreamingText:
 ```
 
 ### Pattern B: Smooth Token Rendering
+
 ```
 // Batch tokens to reduce render frequency
 
@@ -130,6 +144,7 @@ StreamingText:
 ```
 
 ### Pattern C: Markdown Streaming
+
 ```
 // Handle markdown as it streams
 
@@ -151,6 +166,7 @@ MarkdownStream:
 ```
 
 ### Pattern D: Code Block Streaming
+
 ```
 // Special handling for code blocks
 
@@ -176,7 +192,9 @@ CodeStream:
 ## Performance Considerations
 
 ### Token Batching
+
 Don't render on every single token—batch updates:
+
 ```
 // Bad: renders 100 times for 100 tokens
 tokens.forEach(token => setContent(c => c + token))
@@ -194,7 +212,9 @@ setInterval(() => {
 ```
 
 ### Virtual Scrolling
+
 For very long outputs:
+
 ```
 // Only render visible portion
 <VirtualList
@@ -205,7 +225,9 @@ For very long outputs:
 ```
 
 ### Debounced Parsing
+
 For rich content (markdown, code highlighting):
+
 ```
 // Don't re-parse on every token
 const parsedContent = useDebouncedMemo(
@@ -218,6 +240,7 @@ const parsedContent = useDebouncedMemo(
 ## Edge Cases
 
 ### Stop Generation
+
 ```
 <Container>
   <StreamingContent content={content} />
@@ -228,10 +251,12 @@ const parsedContent = useDebouncedMemo(
   )}
 </Container>
 ```
+
 - Always provide escape hatch
 - Clearly indicate what will happen (content preserved)
 
 ### Connection Loss
+
 ```
 <Container>
   <Text>{content}</Text>
@@ -244,10 +269,12 @@ const parsedContent = useDebouncedMemo(
   )}
 </Container>
 ```
+
 - Preserve partial content
 - Offer resume if possible
 
 ### Rate Limiting
+
 ```
 <Container>
   <Text>{content}</Text>
@@ -258,10 +285,12 @@ const parsedContent = useDebouncedMemo(
   )}
 </Container>
 ```
+
 - Don't lose content on rate limit
 - Show clear status and countdown
 
 ### Empty Response
+
 ```
 if (isComplete && !content) {
   <EmptyState>

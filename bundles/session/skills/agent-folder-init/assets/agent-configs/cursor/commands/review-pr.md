@@ -200,6 +200,7 @@
    ```
 
 4. **Missing Error Handling**
+
    ```typescript
    // BAD
    const result = await externalAPI.call(); // ❌ No try/catch
@@ -225,6 +226,7 @@
    ```
 
 3. **Consistency**
+
    ```typescript
    // Warning - Inconsistent with codebase patterns
    export default MyComponent; // We use named exports

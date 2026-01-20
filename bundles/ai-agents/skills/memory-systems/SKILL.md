@@ -10,6 +10,7 @@ Memory provides the persistence layer that allows agents to maintain continuity 
 ## When to Activate
 
 Activate this skill when:
+
 - Building agents that must persist across sessions
 - Needing to maintain entity consistency across conversations
 - Implementing reasoning over accumulated knowledge
@@ -143,6 +144,7 @@ Memories must integrate with context systems to be useful. Use just-in-time memo
 ### Memory System Selection
 
 Choose memory architecture based on requirements:
+
 - Simple persistence needs: File-system memory
 - Semantic search needs: Vector RAG with metadata
 - Relationship reasoning needs: Knowledge graph
@@ -151,6 +153,7 @@ Choose memory architecture based on requirements:
 ## Examples
 
 **Example 1: Entity Tracking**
+
 ```python
 # Track entity across conversations
 def remember_entity(entity_id, properties):
@@ -166,6 +169,7 @@ def get_entity(entity_id):
 ```
 
 **Example 2: Temporal Query**
+
 ```python
 # What was the user's address on January 15, 2024?
 def query_address_at_time(user_id, query_time):
@@ -200,13 +204,16 @@ This skill builds on context-fundamentals. It connects to:
 ## References
 
 Internal reference:
+
 - [Implementation Reference](./references/implementation.md) - Detailed implementation patterns
 
 Related skills in this collection:
+
 - context-fundamentals - Context basics
 - multi-agent-patterns - Cross-agent memory
 
 External resources:
+
 - Graph database documentation (Neo4j, etc.)
 - Vector store documentation (Pinecone, Weaviate, etc.)
 - Research on knowledge graphs and reasoning

@@ -15,6 +15,7 @@ Complete guide to validating offers against Hormozi's Value Equation.
 | 0-2 | No clear outcome, just a list of deliverables |
 
 **Red Flags:**
+
 - "Get access to..." (feature, not outcome)
 - "Learn how to..." (process, not result)
 - Vague superlatives ("the best", "amazing results")
@@ -31,6 +32,7 @@ Complete guide to validating offers against Hormozi's Value Equation.
 | 0-2 | No proof: just promises with nothing to back them up |
 
 **Red Flags:**
+
 - "Results may vary" (without context)
 - Stock photo testimonials
 - No specific numbers in case studies
@@ -47,6 +49,7 @@ Complete guide to validating offers against Hormozi's Value Equation.
 | 0-2 | No timeline given, or results take 6+ months with no quick wins |
 
 **Red Flags:**
+
 - No timeline mentioned
 - "Results take time" without specifics
 - No quick wins or early milestones
@@ -62,6 +65,7 @@ Complete guide to validating offers against Hormozi's Value Equation.
 | 0-2 | High effort, steep learning curve, they do everything themselves |
 
 **Red Flags:**
+
 - "You'll learn how to..." (implies effort)
 - No templates or done-for-you elements
 - "Self-paced" without support
@@ -77,6 +81,7 @@ Complete guide to validating offers against Hormozi's Value Equation.
 | 0-2 | No bonuses, or bonuses that are obviously padding |
 
 **Red Flags:**
+
 - Bonuses that feel like padding
 - Inflated bonus values ("$997 value" for a PDF)
 - Bonuses that duplicate the core offer
@@ -92,6 +97,7 @@ Complete guide to validating offers against Hormozi's Value Equation.
 | 0-2 | No guarantee, or "all sales final" |
 
 **Red Flags:**
+
 - "Satisfaction guaranteed" (meaningless)
 - Hidden conditions to claim guarantee
 - 7-day or very short guarantee window
@@ -172,6 +178,7 @@ TOTAL = ___ / 100
 
 **User's Offer:**
 "Social Media Management - $500/month
+
 - 3 posts per week
 - Monthly report
 - Email support"
@@ -186,6 +193,7 @@ TOTAL = ___ / 100
 | Guarantee | 1/10 | No guarantee mentioned |
 
 **Priority Fixes:**
+
 1. **Add Dream Outcome:** "Book 5+ sales calls from social media in 90 days"
 2. **Add Proof:** Show case studies with specific numbers
 3. **Add Guarantee:** "5 calls in 90 days or we work free until you get them"
@@ -194,6 +202,7 @@ TOTAL = ___ / 100
 
 **User's Offer:**
 "Revenue Machine: Done-For-You Social That Sells - $1,997/mo
+
 - For service businesses stuck under $50K/mo
 - 90 days of done-for-you content
 - Weekly lead intelligence report
@@ -211,6 +220,7 @@ TOTAL = ___ / 100
 | Guarantee | 9/10 | Performance guarantee, clear and strong |
 
 **Minor Optimizations:**
+
 1. Add 2-3 case studies with specific numbers
 2. Add one more "certainty" bonus (community access?)
 

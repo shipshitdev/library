@@ -116,6 +116,7 @@ export class AppModule {}
 **Problem:** `MONGODB_URI` environment variable is missing
 
 **Solution:**
+
 ```bash
 # Add to .env.local (Next.js) or .env (NestJS)
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database?retryWrites=true&w=majority
@@ -138,6 +139,7 @@ MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database?retryWr
 **Problem:** Connection times out
 
 **Solution:**
+
 - Check network access in Atlas dashboard
 - Verify IP whitelist
 - Increase `connectTimeoutMS` and `serverSelectionTimeoutMS`
@@ -148,6 +150,7 @@ MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database?retryWr
 **Problem:** Username/password incorrect
 
 **Solution:**
+
 - Verify credentials in Atlas dashboard
 - Check if password contains special characters (needs URL encoding)
 - Verify database user exists and has permissions
@@ -191,6 +194,7 @@ testConnection();
 ```
 
 **Run the test:**
+
 ```bash
 node -r dotenv/config scripts/test-mongodb-connection.ts
 # or
@@ -243,6 +247,7 @@ ts-node scripts/test-mongodb-connection.ts
 ## Next Steps
 
 After verifying setup:
+
 1. Test connection with verification script
 2. Create initial database schema/models
 3. Set up database indexes

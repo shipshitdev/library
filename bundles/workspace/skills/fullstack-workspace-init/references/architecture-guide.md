@@ -40,12 +40,14 @@ collections/users/
 ### Database Patterns
 
 **Soft Deletes:**
+
 ```typescript
 @Prop({ default: false, index: true })
 isDeleted: boolean;
 ```
 
 **Multi-Tenancy:**
+
 ```typescript
 // Always filter by organization
 async findAll(organizationId: string) {
@@ -57,6 +59,7 @@ async findAll(organizationId: string) {
 ```
 
 **Indexes:**
+
 - Simple indexes: In schema via `@Prop({ index: true })`
 - Compound indexes: In module's `useFactory`
 

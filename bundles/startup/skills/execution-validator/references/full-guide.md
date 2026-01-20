@@ -7,6 +7,7 @@
 Ask the user:
 
 > **Tell me about your plan:**
+>
 > 1. What are you building/launching?
 > 2. How long have you been working on this?
 > 3. What's left before you can launch/sell?
@@ -35,6 +36,7 @@ Evaluate if they're **taking action or just planning**:
 | 0-2 | All planning, no action, months of "preparation" |
 
 **Red Flags:**
+
 - "I've been working on this for X months" (with nothing shipped)
 - "I just need to finish [one more thing]"
 - "I'm doing market research" (for months)
@@ -62,6 +64,7 @@ Evaluate if the **scope is tight or bloated**:
 | 0-2 | Massive scope, feature creep, "someday" launch |
 
 **Red Flags:**
+
 - "I also want to add..."
 - "It needs to have X, Y, Z before launch"
 - Feature list longer than customer list
@@ -89,6 +92,7 @@ Evaluate if **decisions are made or pending**:
 | 0-2 | Paralyzed by decisions, waiting for certainty |
 
 **Red Flags:**
+
 - "I can't decide between..."
 - "I need to figure out..."
 - "I'm waiting to hear back from..."
@@ -124,6 +128,7 @@ Evaluate **how fast they can deliver value to first customer**:
 | 0-2 | 6+ months, or no clear path to first customer |
 
 **Red Flags:**
+
 - "After I finish building..."
 - No customer conversations yet
 - Building complex tech before validation
@@ -131,6 +136,7 @@ Evaluate **how fast they can deliver value to first customer**:
 - "I'll find customers after launch"
 
 **First Value Framework:**
+
 ```
 Manual First → Validate → Semi-Automate → Automate
 ```
@@ -263,6 +269,7 @@ If you had to launch in one week, here's exactly what to do:
 ### Example: Analysis Paralysis
 
 **User's Situation:**
+
 - Working on SaaS idea for 4 months
 - Has "almost finished" the product
 - Hasn't talked to customers yet
@@ -281,6 +288,7 @@ If you had to launch in one week, here's exactly what to do:
 **Total: 27/100 - Analysis Paralysis**
 
 **Prescription:**
+
 1. STOP building immediately
 2. List 10 potential customers
 3. Call 5 of them THIS WEEK
@@ -290,6 +298,7 @@ If you had to launch in one week, here's exactly what to do:
 ### Example: Almost Ready
 
 **User's Situation:**
+
 - MVP built in 2 weeks
 - Has talked to 10 potential customers
 - 3 people interested in paying
@@ -308,6 +317,7 @@ If you had to launch in one week, here's exactly what to do:
 **Total: 73/100 - Almost Ready**
 
 **Prescription:**
+
 1. Cut "one more feature" - launch without it
 2. Convert 3 interested people to paid THIS WEEK
 3. Add feature after first revenue

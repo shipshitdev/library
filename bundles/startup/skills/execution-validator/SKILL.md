@@ -34,6 +34,7 @@ Assess whether someone is ready to take action, if their scope is appropriate, a
 ## The Framework: Speed Scorecard
 
 **Core Questions:**
+
 1. What's the fastest path to first customer?
 2. What can you cut and still test the core assumption?
 3. What are you waiting for that doesn't matter?
@@ -63,9 +64,9 @@ Assess whether someone is ready to take action, if their scope is appropriate, a
 ## Hormozi Gut Checks
 
 > If you had a gun to your head and had to make money from this in 7 days, what would you do?
-
+>
 > If you could only build ONE thing and charge for it tomorrow, what would it be?
-
+>
 > If someone offered you $1M to launch in 7 days, could you do it? If yes, your "blockers" are excuses.
 
 ## Common Excuses Disguised as Blockers

@@ -35,6 +35,7 @@ Evaluate from bottom up. Skills first, then vision, then values, then working st
 | Capital | Bootstrapping | Raising (investors like teams) |
 
 **Recommendation:**
+
 - **5+ factors favor solo:** Consider going alone
 - **5+ favor co-founder:** Find the right partner
 - **Split:** Either works—go with your gut
@@ -53,6 +54,7 @@ Evaluate from bottom up. Skills first, then vision, then values, then working st
 | **Recruiting** | [1-5] | [1-5] | [Gap/Overlap/Covered] |
 
 **Ideal:**
+
 - **Zero overlaps > 4:** No wasted overlap
 - **Zero gaps < 2:** All critical areas covered
 - **Complementary strengths:** Each leads different areas
@@ -79,6 +81,7 @@ Evaluate from bottom up. Skills first, then vision, then values, then working st
 | Work-life balance | [Answer] | [Answer] | [Y/N/Discuss] |
 
 **Red Flags:**
+
 - One wants $10M exit, other wants $1B
 - Different commitment levels (full-time vs. part-time)
 - Disagreement on company culture/values
@@ -122,6 +125,7 @@ Evaluate from bottom up. Skills first, then vision, then values, then working st
 | Stress response | [Response] | [Response] | [Y/N/Flex] |
 
 **Critical Compatibility:**
+
 - Decision-making style
 - Conflict resolution approach
 - Communication frequency
@@ -182,6 +186,7 @@ Evaluate from bottom up. Skills first, then vision, then values, then working st
 | Significant capital contribution | Adjust 5-15% |
 
 **Rules of Thumb:**
+
 - When in doubt, go 50/50
 - Small differences (55/45) often cause more resentment than they're worth
 - Vesting solves the "what if they leave" problem
@@ -224,6 +229,7 @@ Year 4: 75% -> 100% (monthly vesting)
 ## Red Flags Checklist
 
 **Stop if you see:**
+
 - [ ] History of co-founder disputes
 - [ ] Different commitment levels (full vs. part-time)
 - [ ] Vastly different exit expectations

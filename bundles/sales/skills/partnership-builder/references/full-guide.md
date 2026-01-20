@@ -7,6 +7,7 @@ Complete guide to building revenue-generating partnerships for indie businesses.
 Ask the user:
 
 > **Tell me about your partnership goals:**
+>
 > 1. What do you sell and who's your customer?
 > 2. What partnership type interests you most?
 > 3. What would make someone want to partner with you?
@@ -152,10 +153,12 @@ Ask the user:
 > **The idea:** [Specific partnership proposal]
 >
 > **Why this works for you:**
+>
 > - [Benefit 1 for them]
 > - [Benefit 2 for them]
 >
 > **Why this works for us:**
+>
 > - [Brief mention of your benefit]
 >
 > I'd love to chat for 15 minutes to explore this. Open to a quick call this week?
@@ -206,6 +209,7 @@ Ask the user:
 ## Partnership Red Flags
 
 **Avoid partners who:**
+
 - Want upfront payment to promote you
 - Have misaligned audience
 - Have reputation issues
@@ -214,6 +218,7 @@ Ask the user:
 - Have unrealistic expectations
 
 **Protect yourself:**
+
 - Clear written agreements
 - Performance-based compensation
 - Cancellation terms

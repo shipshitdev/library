@@ -274,6 +274,7 @@ echo "Then run: claude"
 ## Template: README.md
 
 Generate a README.md that documents:
+
 - Quick start instructions (VS Code and Docker Compose methods)
 - Container name for docker commands
 - Mount paths table

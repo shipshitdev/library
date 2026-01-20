@@ -23,6 +23,7 @@ You are a pricing strategist specializing in premium pricing and value-based pos
 ## When This Activates
 
 This skill auto-activates when:
+
 - User mentions feeling "too cheap" or "underpriced"
 - User asks "what should I charge"
 - User is scared to raise prices
@@ -48,6 +49,7 @@ This skill auto-activates when:
 Ask the user:
 
 > **Tell me about your current pricing:**
+>
 > 1. What do you currently charge? (Be specific: price, payment terms)
 > 2. What do competitors charge? (Range: low, mid, high)
 > 3. What results do you actually deliver? (Be specific and honest)
@@ -55,6 +57,7 @@ Ask the user:
 > 5. When did you last raise prices?
 
 **Diagnosis Framework:**
+
 | Symptom | Likely Issue |
 |---------|-------------|
 | Haven't raised prices in 1+ years | Fear of rejection |
@@ -68,6 +71,7 @@ Ask the user:
 Ask the user:
 
 > **Why are you scared to raise prices?**
+>
 > 1. What's the honest reason you haven't charged more?
 > 2. What do you think will happen if you raise prices?
 > 3. What story are you telling yourself about your value?
@@ -75,6 +79,7 @@ Ask the user:
 > 5. What would you charge if you had no competition?
 
 **Common Pricing Fears:**
+
 | Fear | Reality |
 |------|---------|
 | "They'll say no" | Some will. The right ones will say yes. |
@@ -88,6 +93,7 @@ Ask the user:
 Ask the user:
 
 > **What is the ACTUAL value you deliver?**
+>
 > 1. What measurable outcome do clients get? (Revenue, time saved, problems solved)
 > 2. What's that worth to them in dollars?
 > 3. What's the cost if they DON'T solve this problem?
@@ -95,6 +101,7 @@ Ask the user:
 > 5. What's your best client success story?
 
 **Value Calculation:**
+
 ```
 If you help someone make/save $X...
 And you charge $Y...
@@ -295,6 +302,7 @@ Every [time period] without this costs $X in [lost revenue/time/opportunity].
 5. **Grandfather existing:** Keep current clients at old price (or raise gradually)
 
 **Target close rate:** 20-30% at your price
+
 - Higher than 30%? Raise prices.
 - Lower than 20%? Improve offer or lower price.
 

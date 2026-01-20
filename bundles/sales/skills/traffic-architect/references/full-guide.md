@@ -7,6 +7,7 @@ Complete guide to designing traffic strategies using Traffic Secrets principles.
 Ask the user:
 
 > **Tell me about your audience:**
+>
 > 1. Who is your ideal customer? (Be specific)
 > 2. What problem do they have?
 > 3. Where do they currently spend time online?
@@ -43,12 +44,14 @@ Ask the user:
 ## Step 3: Work In vs. Buy In
 
 **Work In (Organic):**
+
 - Time investment, not money
 - Build relationships
 - Create content
 - Slower but more sustainable
 
 **Work In Tactics:**
+
 - Guest on podcasts
 - Collaborate with influencers
 - Contribute to communities
@@ -56,12 +59,14 @@ Ask the user:
 - Comment and engage
 
 **Buy In (Paid):**
+
 - Money investment
 - Sponsor content
 - Run ads
 - Faster results
 
 **Buy In Tactics:**
+
 - Sponsor newsletters
 - Sponsor podcasts
 - Run platform ads (Meta, Google, YouTube)
@@ -123,17 +128,20 @@ Ask the user:
 ## Step 6: Plan Audience Ownership
 
 **Priority 1: Email List**
+
 - Lead magnet → Email capture
 - Content upgrades
 - Exit intent popups
 - Gated content
 
 **Priority 2: SMS (if applicable)**
+
 - High engagement
 - Time-sensitive offers
 - Local businesses
 
 **Priority 3: Community**
+
 - Slack, Discord, Circle
 - Higher engagement
 - Relationship building
@@ -152,15 +160,18 @@ Ask the user:
 ## Step 7: Create 90-Day Plan
 
 **Month 1: Foundation**
+
 - Week 1-2: Complete Dream 100 list
 - Week 3-4: Set up tracking, create lead magnet
 
 **Month 2: Work In**
+
 - Reach out to 10 Dream 100 per week
 - Create 2-3 pieces of content per week
 - Engage in 5 communities daily
 
 **Month 3: Optimize + Scale**
+
 - Double down on what's working
 - Test Buy In on proven content
 - Analyze and adjust

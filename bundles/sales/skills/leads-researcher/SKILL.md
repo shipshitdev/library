@@ -29,6 +29,7 @@ Research leads by gathering company information, discovering contact details, an
 ## Research Workflows
 
 ### 1. Company Information
+
 - Company name and legal name
 - Industry and vertical
 - Employee count and revenue
@@ -38,7 +39,9 @@ Research leads by gathering company information, discovering contact details, an
 - Recent news or funding
 
 ### 2. Contact Discovery
+
 **Key Contacts to Find:**
+
 - CEO/Founder
 - CTO/Technical decision makers
 - Head of Sales/Marketing
@@ -46,6 +49,7 @@ Research leads by gathering company information, discovering contact details, an
 - Procurement/Finance contacts
 
 ### 3. Buyer Intent Signals
+
 - **Job Postings:** Hiring for relevant roles
 - **Technology Usage:** Tools on website/job posts
 - **Company News:** Funding, acquisitions, expansion

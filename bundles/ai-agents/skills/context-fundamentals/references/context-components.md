@@ -33,6 +33,7 @@ This structure allows agents to locate relevant information quickly and enables 
 The "altitude" of instructions refers to the level of abstraction. Consider these examples:
 
 **Too Low (Brittle):**
+
 ```
 If the user asks about pricing, check the pricing table in docs/pricing.md.
 If the table shows USD, convert to EUR using the exchange rate in
@@ -42,11 +43,13 @@ the currency symbol, two decimal places, and a note about VAT.
 ```
 
 **Too High (Vague):**
+
 ```
 Help users with pricing questions. Be helpful and accurate.
 ```
 
 **Optimal (Heuristic-Driven):**
+
 ```
 For pricing inquiries:
 1. Retrieve current rates from docs/pricing.md
@@ -92,11 +95,13 @@ Each tool should define:
 Tool descriptions should answer: what the tool does, when to use it, and what it produces. Include usage context, examples, and edge cases.
 
 **Weak Description:**
+
 ```
 Search the database for customer information.
 ```
 
 **Strong Description:**
+
 ```
 Retrieve customer information by ID or email.
 
@@ -119,11 +124,13 @@ Returns null if customer not found. Returns error if database unreachable.
 Design identifiers that convey meaning and enable efficient retrieval:
 
 **Poor identifiers:**
+
 - `data/file1.json`
 - `ref/ref.md`
 - `2024/q3/report`
 
 **Strong identifiers:**
+
 - `customer_pricing_rates.json`
 - `engineering_onboarding_checklist.md`
 - `2024_q3_revenue_report.pdf`
@@ -280,4 +287,3 @@ def get_reference(file_reference):
 ```
 
 This pattern ensures files are loaded once and cached for the session.
-

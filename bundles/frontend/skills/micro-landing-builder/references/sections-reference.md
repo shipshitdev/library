@@ -37,6 +37,7 @@ The main hero section at the top of the page.
 ```
 
 **Tips:**
+
 - Keep headline under 10 words
 - Subheadline should explain the "how"
 - Include social proof badges if available
@@ -60,6 +61,7 @@ Key metrics that build credibility.
 ```
 
 **Tips:**
+
 - Use 3-4 stats maximum
 - Include units in value (K, M, %)
 - Focus on impressive numbers
@@ -96,6 +98,7 @@ Showcase product capabilities.
 ```
 
 **Available icons:**
+
 - `zap` - Speed/performance
 - `shield` - Security
 - `trending-up` - Growth/analytics
@@ -108,6 +111,7 @@ Showcase product capabilities.
 - `settings` - Customization
 
 **Tips:**
+
 - Use 3, 6, or 9 features for best grid layout
 - Keep descriptions under 15 words
 
@@ -143,6 +147,7 @@ Display pricing plans.
 ```
 
 **Tips:**
+
 - Always include a free tier
 - Highlight the recommended plan
 - Keep feature lists scannable (5-7 items)
@@ -169,6 +174,7 @@ Social proof from customers.
 ```
 
 **Tips:**
+
 - Include real names and roles
 - Keep quotes under 30 words
 - Use avatars when available
@@ -197,6 +203,7 @@ Address common questions and objections.
 ```
 
 **Tips:**
+
 - Address pricing objections
 - Include technical questions
 - Keep answers concise
@@ -232,6 +239,7 @@ Final call to action.
 ```
 
 **Tips:**
+
 - Create urgency in headline
 - Email capture for waitlists
 - Direct CTA for live products

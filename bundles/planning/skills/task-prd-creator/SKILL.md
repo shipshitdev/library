@@ -32,15 +32,18 @@ Create structured task files and PRDs before implementing features. This ensures
 ## The Workflow
 
 ### Step 1: Understand Request
+
 - **Simple task:** <1 hour, few files
 - **Complex feature:** >1 hour, multiple files/systems
 
 ### Step 2: Gather Requirements
+
 - Which app/project?
 - Priority? (CRITICAL/High/Medium/Low)
 - Dependencies?
 
 ### Step 3: Check Existing System
+
 - Read architecture docs
 - Search for similar implementations
 
@@ -50,6 +53,7 @@ Create structured task files and PRDs before implementing features. This ensures
 **PRD file:** `[project]/.agent/PRDS/[task-name].md`
 
 ### Step 5: Get Approval
+
 Present files, explain approach, **WAIT for user approval**.
 
 ## Task File Format

@@ -44,6 +44,7 @@ bun --version  # 1.2.x
 ### 2. Root package.json
 
 **GOOD - Monorepo root:**
+
 ```json
 {
   "name": "my-monorepo",
@@ -53,6 +54,7 @@ bun --version  # 1.2.x
 ```
 
 **BAD - Dependencies in root:**
+
 ```json
 {
   "workspaces": ["apps/*"],
@@ -65,6 +67,7 @@ bun --version  # 1.2.x
 ### 3. Workspace Structure
 
 **GOOD:**
+
 ```
 my-monorepo/
 ├── package.json          # Root with workspaces, private: true
@@ -82,6 +85,7 @@ my-monorepo/
 ```
 
 **BAD:**
+
 ```
 my-monorepo/
 ├── package.json
@@ -94,6 +98,7 @@ my-monorepo/
 ### 4. Workspace Dependencies
 
 **GOOD - Using workspace protocol:**
+
 ```json
 {
   "dependencies": {
@@ -104,6 +109,7 @@ my-monorepo/
 ```
 
 **BAD - Hardcoded versions:**
+
 ```json
 {
   "dependencies": {
@@ -115,6 +121,7 @@ my-monorepo/
 ### 5. Dependency Catalogs (Bun 1.3+)
 
 **GOOD - Centralized versions:**
+
 ```json
 // Root package.json
 {
@@ -141,6 +148,7 @@ my-monorepo/
 Packages can only access dependencies they explicitly declare.
 
 **BAD - Hoisted dependencies:**
+
 ```json
 // Don't disable isolation
 {
@@ -154,7 +162,9 @@ Packages can only access dependencies they explicitly declare.
 ## Bun 1.3+ Features
 
 ### Dependency Catalogs
+
 Centralize version management:
+
 ```json
 // Root package.json
 {
@@ -167,16 +177,19 @@ Centralize version management:
 ```
 
 ### Interactive Updates
+
 ```bash
 bun update --interactive  # Selectively update deps
 ```
 
 ### Dependency Chains
+
 ```bash
 bun why react  # Explain why a package is installed
 ```
 
 ### Workspace Commands
+
 ```bash
 # Install in specific workspace
 bun add express --cwd apps/api
@@ -195,6 +208,7 @@ bun run --filter '*' build
 **Cause:** Dependency not declared in workspace package.json
 
 **Fix:**
+
 ```bash
 bun add <package> --cwd <workspace>
 ```
@@ -204,6 +218,7 @@ bun add <package> --cwd <workspace>
 **Cause:** Running `bun install` in workspace directory
 
 **Fix:**
+
 ```bash
 rm apps/*/bun.lockb packages/*/bun.lockb
 bun install  # From root only
@@ -214,6 +229,7 @@ bun install  # From root only
 **Cause:** Same package with different versions across workspaces
 
 **Fix:** Use dependency catalogs:
+
 ```json
 {
   "catalog": {
@@ -253,22 +269,26 @@ Summary: 3 issues found
 ## Best Practices
 
 ### 1. Always use workspace protocol
+
 ```json
 "@myorg/shared": "workspace:*"
 ```
 
 ### 2. Use --cwd for workspace operations
+
 ```bash
 bun add lodash --cwd apps/web  # NOT: cd apps/web && bun add
 ```
 
 ### 3. Single lockfile at root
+
 ```bash
 # Only run bun install from root
 bun install
 ```
 
 ### 4. Use catalogs for shared dependencies
+
 ```json
 {
   "catalog": {
@@ -279,6 +299,7 @@ bun install
 ```
 
 ### 5. Declare all dependencies explicitly
+
 Each workspace should list all its dependencies - don't rely on hoisting.
 
 ## CI/CD Integration

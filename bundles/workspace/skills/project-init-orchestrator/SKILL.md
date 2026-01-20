@@ -130,12 +130,14 @@ When user says "initialize my project" or "set up new project":
 If you need to run phases individually:
 
 **Phase 2: Agent Folder Init**
+
 ```bash
 python3 ~/.claude/skills/agent-folder-init/agent-folder-init/scripts/scaffold.py --root /path/to/project
 ```
 
 **Phase 3: Linter Formatter**
 Follow the `linter-formatter-init` skill to:
+
 - Install dependencies based on detected stack
 - Configure ESLint rules
 - Set up Prettier
@@ -143,11 +145,13 @@ Follow the `linter-formatter-init` skill to:
 
 **Phase 4: Test Coverage**
 Follow the `husky-test-coverage` skill to:
+
 - Detect test runner
 - Configure coverage thresholds
 - Add pre-commit hook
 
 **Phase 5: Project Scaffold (optional)**
+
 ```bash
 python3 ~/.claude/skills/project-scaffold/project-scaffold/scripts/scaffold.py
 ```
@@ -155,6 +159,7 @@ python3 ~/.claude/skills/project-scaffold/project-scaffold/scripts/scaffold.py
 ## Configuration Presets
 
 ### Minimal (AI docs + linting)
+
 ```
 Phases: 2, 3
 Output:
@@ -166,6 +171,7 @@ Output:
 ```
 
 ### Standard (+ test coverage)
+
 ```
 Phases: 2, 3, 4
 Output:
@@ -178,6 +184,7 @@ Output:
 ```
 
 ### Full Stack (+ scaffolding)
+
 ```
 Phases: 2, 3, 4, 5
 Output:
@@ -231,17 +238,21 @@ project-root/
 ## Best Practices
 
 ### Sequencing
+
 - Always run agent-folder-init FIRST (establishes standards)
 - Run linter-formatter-init BEFORE husky-test-coverage (both use Husky)
 - Run project-scaffold LAST (depends on base setup)
 
 ### Customization
+
 - Each phase can be skipped if already configured
 - Phases are idempotent (safe to re-run)
 - Configuration can be customized after orchestration
 
 ### Verification Checklist
+
 After orchestration, verify:
+
 - [ ] `.agent/` folder exists with proper structure
 - [ ] `npm run lint` or `bun lint` works
 - [ ] `npm run format` or `bun format` works
@@ -253,6 +264,7 @@ After orchestration, verify:
 **User:** "Set up my new project at ~/projects/my-saas"
 
 **Orchestrator Response:**
+
 ```
 I'll initialize your project with full AI-first infrastructure.
 
@@ -291,16 +303,19 @@ Project initialized successfully!
 ## Troubleshooting
 
 ### Phase fails to complete
+
 - Check if dependencies are installed (`node`, `python3`)
 - Verify write permissions to project directory
 - Check if conflicting configs exist
 
 ### Linting errors after setup
+
 - Run `npm run lint:fix` to auto-fix
 - Check `.eslintrc.js` matches your stack
 - Verify TypeScript config if using TS
 
 ### Pre-commit hook not running
+
 - Run `npx husky install` manually
 - Check `.husky/pre-commit` exists and is executable
 - Verify `prepare` script in package.json

@@ -17,6 +17,7 @@ Failed (0.0): Fundamental factual errors that invalidate output
 ```
 
 Calculation approach:
+
 - Extract claims from output
 - Verify each claim against ground truth
 - Weight claims by importance (major claims more weight)
@@ -336,4 +337,3 @@ class ProductionMonitor:
         else:
             return "healthy"
 ```
-

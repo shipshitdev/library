@@ -312,4 +312,3 @@ async def test_position_bias_mitigation():
     assert result.winner == "TIE"
     assert result.consistent == True
 ```
-

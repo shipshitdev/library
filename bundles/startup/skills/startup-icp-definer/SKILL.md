@@ -53,6 +53,7 @@ Build from bottom up: Company → Buyer → User → Buying Center.
 ## Quick Workflow
 
 ### Step 1: Company Profile
+
 - Industry/vertical
 - Company size (employees/revenue)
 - Stage (startup, growth, enterprise)
@@ -60,27 +61,32 @@ Build from bottom up: Company → Buyer → User → Buying Center.
 - Tech stack
 
 ### Step 2: Buyer Persona
+
 - Title/role, seniority
 - Goals and KPIs
 - Decision authority
 - What they care about (cost, time, risk)
 
 ### Step 3: User Persona
+
 - Daily workflow
 - Pain points
 - Tech savviness
 
 ### Step 4: Buying Center Map
+
 - Champion, Economic Buyer, Technical Evaluator
 - End User, Influencer, Blocker
 
 ### Step 5: Pain Hierarchy
+
 Score: Urgency + Cost + Frequency + Actively Solving
 **Focus on pains scoring 8+**
 
 ## The 50-Company Test
 
 Before finalizing ICP:
+
 1. List 50 specific companies that fit
 2. Find buyer's name at 20 of them
 3. Reach out to 10

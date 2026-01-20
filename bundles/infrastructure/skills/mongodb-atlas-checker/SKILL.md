@@ -26,6 +26,7 @@ Verify MongoDB Atlas setup and configuration. Identifies configuration issues, m
 ## Quick Checklist
 
 ### 1. Environment Variables
+
 - [ ] `MONGODB_URI` exists (not hardcoded)
 - [ ] Uses `mongodb+srv://` protocol (required for Atlas)
 - [ ] Includes database name
@@ -33,20 +34,24 @@ Verify MongoDB Atlas setup and configuration. Identifies configuration issues, m
 - [ ] No credentials in `.env.example`
 
 ### 2. Connection String Format
+
 ```
 mongodb+srv://<username>:<password>@<cluster-host>/<database>?retryWrites=true&w=majority
 ```
 
 ### 3. Driver Installation
+
 - [ ] `mongoose` or `mongodb` package installed
 - [ ] In dependencies (not devDependencies)
 
 ### 4. Connection Setup
+
 - [ ] Singleton pattern (Next.js)
 - [ ] `MongooseModule.forRoot()` (NestJS)
 - [ ] Error handling implemented
 
 ### 5. Atlas Configuration
+
 - [ ] IP whitelist configured
 - [ ] Database user exists with permissions
 - [ ] SSL/TLS enabled (default with `mongodb+srv://`)

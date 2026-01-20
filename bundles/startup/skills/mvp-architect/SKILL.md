@@ -42,11 +42,13 @@ Help indie founders scope the smallest possible product that validates their cor
 ## Quick Workflow
 
 ### Step 1: Problem Clarity Check
+
 - 10+ customer interviews?
 - One-sentence problem?
 - 3-5 design partners?
 
 ### Step 2: Core Hypothesis
+
 ```
 We believe that [customer] has a problem with [pain point].
 We believe that [solution] will solve this.
@@ -54,7 +56,9 @@ We will know we're right when [success metric].
 ```
 
 ### Step 3: Feature Prioritization
+
 For each feature ask:
+
 - Tests core hypothesis? → Keep
 - Users explicitly asked? → Maybe
 - Critical path? → Keep
@@ -63,9 +67,11 @@ For each feature ask:
 **Target: 3-5 features maximum.**
 
 ### Step 4: Dry Elements Test
+
 Only build features that remained stable through ALL design partner feedback.
 
 ### Step 5: User Journey (3-4 Screens)
+
 - How do users sign up?
 - First action?
 - Core value delivery?
@@ -74,6 +80,7 @@ Only build features that remained stable through ALL design partner feedback.
 ## Anti-Scope Creep Checklist
 
 Before adding ANY feature:
+
 1. Does this test our core hypothesis? → If no, cut it
 2. Have 3+ design partners asked? → If no, defer it
 3. Can we launch without this? → If yes, defer it

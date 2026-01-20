@@ -26,6 +26,7 @@ agent-browser close             # Close browser
 ## Commands
 
 ### Navigation
+
 ```bash
 agent-browser open <url>      # Navigate to URL
 agent-browser back            # Go back
@@ -35,6 +36,7 @@ agent-browser close           # Close browser
 ```
 
 ### Snapshot (page analysis)
+
 ```bash
 agent-browser snapshot            # Full accessibility tree
 agent-browser snapshot -i         # Interactive elements only (recommended)
@@ -44,6 +46,7 @@ agent-browser snapshot -s "#main" # Scope to CSS selector
 ```
 
 ### Interactions (use @refs from snapshot)
+
 ```bash
 agent-browser click @e1           # Click
 agent-browser dblclick @e1        # Double-click
@@ -65,6 +68,7 @@ agent-browser upload @e1 file.pdf # Upload files
 ```
 
 ### Get information
+
 ```bash
 agent-browser get text @e1        # Get element text
 agent-browser get html @e1        # Get innerHTML
@@ -77,6 +81,7 @@ agent-browser get box @e1         # Get bounding box
 ```
 
 ### Check state
+
 ```bash
 agent-browser is visible @e1      # Check if visible
 agent-browser is enabled @e1      # Check if enabled
@@ -84,6 +89,7 @@ agent-browser is checked @e1      # Check if checked
 ```
 
 ### Screenshots & PDF
+
 ```bash
 agent-browser screenshot          # Screenshot to stdout
 agent-browser screenshot path.png # Save to file
@@ -92,6 +98,7 @@ agent-browser pdf output.pdf      # Save as PDF
 ```
 
 ### Video recording
+
 ```bash
 agent-browser record start ./demo.webm    # Start recording
 agent-browser click @e1                   # Perform actions
@@ -100,6 +107,7 @@ agent-browser record restart ./take2.webm # Stop current + start new
 ```
 
 ### Wait
+
 ```bash
 agent-browser wait @e1                     # Wait for element
 agent-browser wait 2000                    # Wait milliseconds
@@ -110,6 +118,7 @@ agent-browser wait --fn "window.ready"     # Wait for JS condition
 ```
 
 ### Mouse control
+
 ```bash
 agent-browser mouse move 100 200      # Move mouse
 agent-browser mouse down left         # Press button
@@ -118,6 +127,7 @@ agent-browser mouse wheel 100         # Scroll wheel
 ```
 
 ### Semantic locators (alternative to refs)
+
 ```bash
 agent-browser find role button click --name "Submit"
 agent-browser find text "Sign In" click
@@ -127,6 +137,7 @@ agent-browser find nth 2 "a" text
 ```
 
 ### Browser settings
+
 ```bash
 agent-browser set viewport 1920 1080      # Set viewport size
 agent-browser set device "iPhone 14"      # Emulate device
@@ -138,6 +149,7 @@ agent-browser set media dark              # Emulate color scheme
 ```
 
 ### Cookies & Storage
+
 ```bash
 agent-browser cookies                     # Get all cookies
 agent-browser cookies set name value      # Set cookie
@@ -149,6 +161,7 @@ agent-browser storage local clear         # Clear all
 ```
 
 ### Network
+
 ```bash
 agent-browser network route <url>              # Intercept requests
 agent-browser network route <url> --abort      # Block requests
@@ -159,6 +172,7 @@ agent-browser network requests --filter api    # Filter requests
 ```
 
 ### Tabs & Windows
+
 ```bash
 agent-browser tab                 # List tabs
 agent-browser tab new [url]       # New tab
@@ -168,18 +182,21 @@ agent-browser window new          # New window
 ```
 
 ### Frames
+
 ```bash
 agent-browser frame "#iframe"     # Switch to iframe
 agent-browser frame main          # Back to main frame
 ```
 
 ### Dialogs
+
 ```bash
 agent-browser dialog accept [text]  # Accept dialog
 agent-browser dialog dismiss        # Dismiss dialog
 ```
 
 ### JavaScript
+
 ```bash
 agent-browser eval "document.title"   # Run JavaScript
 ```
@@ -195,6 +212,7 @@ agent-browser session list
 ## JSON output (for parsing)
 
 Add `--json` for machine-readable output:
+
 ```bash
 agent-browser snapshot -i --json
 agent-browser get text @e1 --json
@@ -219,6 +237,7 @@ agent-browser --cdp 9222 snapshot         # Connect via CDP
 ## QA Testing Examples
 
 ### Form Validation Testing
+
 ```bash
 agent-browser open https://app.example.com/signup
 agent-browser snapshot -i
@@ -240,6 +259,7 @@ agent-browser wait --url "**/dashboard"
 ```
 
 ### Visual Regression Testing
+
 ```bash
 agent-browser open https://app.example.com
 agent-browser set viewport 1920 1080
@@ -251,6 +271,7 @@ agent-browser screenshot mobile.png --full
 ```
 
 ### Authentication Flow Testing
+
 ```bash
 # Login
 agent-browser open https://app.example.com/login
@@ -269,6 +290,7 @@ agent-browser open https://app.example.com/protected
 ```
 
 ### Multi-Step Checkout Testing
+
 ```bash
 agent-browser open https://shop.example.com/cart
 agent-browser snapshot -i
@@ -298,6 +320,7 @@ agent-browser screenshot order-confirmation.png
 ```
 
 ### API Response Mocking
+
 ```bash
 # Mock slow API response
 agent-browser network route "**/api/data" --body '{"items":[]}'

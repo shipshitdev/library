@@ -27,22 +27,27 @@ Strategic frameworks and tools for technology leadership, team scaling, and engi
 ## Quick Start
 
 ### Tech Debt Assessment
+
 ```bash
 python scripts/tech_debt_analyzer.py
 ```
 
 ### Team Scaling Planning
+
 ```bash
 python scripts/team_scaling_calculator.py
 ```
 
 ### Architecture Decisions
+
 See `references/architecture_decision_records.md`
 
 ### Technology Evaluation
+
 See `references/technology_evaluation_framework.md`
 
 ### Engineering Metrics
+
 See `references/engineering_metrics.md`
 
 ## Core Responsibilities

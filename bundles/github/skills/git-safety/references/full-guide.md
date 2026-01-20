@@ -56,6 +56,7 @@ kubeconfig
 ### Scan Commands
 
 **Step 1: Check current working directory**
+
 ```bash
 # List potentially sensitive files in current state
 find . -type f \( \
@@ -74,6 +75,7 @@ find . -type f \( \
 ```
 
 **Step 2: Check git history for sensitive files**
+
 ```bash
 # Search all commits for sensitive filenames
 git log --all --full-history --diff-filter=A -- \
@@ -88,6 +90,7 @@ git log --all --pretty=format: --name-only --diff-filter=A | sort -u | grep -E '
 ```
 
 **Step 3: Search for secrets in file contents**
+
 ```bash
 # Search for common secret patterns in tracked files
 git grep -E "(api[_-]?key|apikey|secret[_-]?key|password|passwd|pwd|token|auth[_-]?token|access[_-]?token|private[_-]?key|client[_-]?secret)" --cached -- ':!*.lock' ':!package-lock.json' ':!yarn.lock' 2>/dev/null | head -50
@@ -97,6 +100,7 @@ git log -p --all -S 'API_KEY' --source -- ':(exclude)*.lock' 2>/dev/null | head 
 ```
 
 **Step 4: Check .gitignore coverage**
+
 ```bash
 # Verify sensitive patterns are in .gitignore
 for pattern in ".env" ".env.*" "*.pem" "*.key" "credentials.json" "secrets.*"; do
@@ -166,17 +170,20 @@ brew install bfg
 ### Cleaning Process
 
 **IMPORTANT: Before cleaning, ensure:**
+
 1. All team members have pushed their changes
 2. You have a backup of the repository
 3. You understand this rewrites history (force push required)
 
 **Step 1: Create backup**
+
 ```bash
 # Clone a backup
 git clone --mirror . ../repo-backup-$(date +%Y%m%d)
 ```
 
 **Step 2: Remove specific files with git-filter-repo**
+
 ```bash
 # Remove a single file from all history
 git filter-repo --path .env --invert-paths
@@ -190,6 +197,7 @@ git filter-repo --path-glob '*.pem' --invert-paths
 ```
 
 **Step 3: Alternative - BFG Repo Cleaner**
+
 ```bash
 # Remove specific file
 bfg --delete-files .env
@@ -202,6 +210,7 @@ bfg --replace-text passwords.txt  # File containing patterns to remove
 ```
 
 **Step 4: Clean up and force push**
+
 ```bash
 # Expire old references
 git reflog expire --expire=now --all
@@ -215,6 +224,7 @@ git push origin --force --tags
 
 **Step 5: Notify team**
 All collaborators must:
+
 ```bash
 # Delete local repo and re-clone
 rm -rf local-repo
@@ -375,6 +385,7 @@ exit 0
 ```
 
 Make executable:
+
 ```bash
 chmod +x .git/hooks/pre-commit
 ```
@@ -418,15 +429,18 @@ SESSION_SECRET=generate_another_secure_string
 ## Handling Specific Platforms
 
 ### GitHub
+
 - Enable secret scanning in repository settings
 - Use GitHub Actions secrets for CI/CD
 - Consider using GitHub's push protection
 
 ### GitLab
+
 - Enable Secret Detection CI/CD component
 - Use CI/CD variables for secrets
 
 ### Vercel/Netlify
+
 - Use environment variables in dashboard
 - Never commit production secrets
 

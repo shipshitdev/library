@@ -1715,6 +1715,7 @@ await Promise.all(
 ## 7. Common Stripe Events
 
 ### Payment Events
+
 | Event | Description |
 |-------|-------------|
 | `payment_intent.created` | Payment intent created |
@@ -1724,6 +1725,7 @@ await Promise.all(
 | `payment_intent.requires_action` | Payment requires customer action (3D Secure) |
 
 ### Checkout Events
+
 | Event | Description |
 |-------|-------------|
 | `checkout.session.completed` | Checkout session completed successfully |
@@ -1732,6 +1734,7 @@ await Promise.all(
 | `checkout.session.async_payment_failed` | Async payment failed |
 
 ### Subscription Events
+
 | Event | Description |
 |-------|-------------|
 | `customer.subscription.created` | Subscription created |
@@ -1742,6 +1745,7 @@ await Promise.all(
 | `customer.subscription.resumed` | Subscription resumed |
 
 ### Invoice Events
+
 | Event | Description |
 |-------|-------------|
 | `invoice.created` | Invoice created |
@@ -1753,6 +1757,7 @@ await Promise.all(
 | `invoice.marked_uncollectible` | Invoice marked as uncollectible |
 
 ### Customer Events
+
 | Event | Description |
 |-------|-------------|
 | `customer.created` | Customer created |
@@ -1762,6 +1767,7 @@ await Promise.all(
 | `customer.source.updated` | Payment source updated |
 
 ### Charge Events
+
 | Event | Description |
 |-------|-------------|
 | `charge.succeeded` | Charge succeeded |

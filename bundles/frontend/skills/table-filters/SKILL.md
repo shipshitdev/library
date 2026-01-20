@@ -34,6 +34,7 @@ For each column in the table, determine the filter type:
 ```
 
 **Key layout rules:**
+
 - Filter field spans table width, contains chips + search input + clear button
 - Sort dropdown next to filter field (not in headers)
 - Each header is clickable and opens its filter menu
@@ -42,6 +43,7 @@ For each column in the table, determine the filter type:
 ## Step 3: Build Each Filter Component
 
 ### Contains Filter (text)
+
 ```
 ┌─ Product Name ──────────── ✕ ─┐
 │ ┌────────────────────────────┐│
@@ -49,9 +51,11 @@ For each column in the table, determine the filter type:
 │ └────────────────────────────┘│
 └───────────────────────────────┘
 ```
+
 Chip result: `Product Name: system`
 
 ### Checkbox Filter (categories)
+
 ```
 ┌─ Status ──────────────── ✕ ─┐
 │ ☑ Active                     │
@@ -61,9 +65,11 @@ Chip result: `Product Name: system`
 │            [Clear] [Apply]   │
 └──────────────────────────────┘
 ```
+
 Chip result: `Status: Active, Pending` or `Status: Active, +2`
 
 ### Range Filter (numeric)
+
 ```
 ┌─ Price ─────────────────── ✕ ─┐
 │  Min         Max              │
@@ -74,9 +80,11 @@ Chip result: `Status: Active, Pending` or `Status: Active, +2`
 │              [Apply]          │
 └───────────────────────────────┘
 ```
+
 Chip result: `Price: $0 - $100`
 
 ### Date Range Filter
+
 ```
 ┌─ Created ─────────────────── ✕ ─┐
 │  From           To              │
@@ -87,6 +95,7 @@ Chip result: `Price: $0 - $100`
 │                [Apply]          │
 └─────────────────────────────────┘
 ```
+
 Chip result: `Created: Jan 1 - Dec 31, 2025`
 
 ## Chip Design Rules
@@ -99,6 +108,7 @@ Chip result: `Created: Jan 1 - Dec 31, 2025`
 ## Empty State
 
 When filters return no results:
+
 ```
      ┌─────────────┐
      │   (╯°□°)╯   │
@@ -113,6 +123,7 @@ When filters return no results:
 ## Quick Checklist
 
 When implementing, verify:
+
 - [ ] Each column has appropriate filter type assigned
 - [ ] Filter field contains chips (not separate row above)
 - [ ] Sort is dropdown, not toggle icons in headers
@@ -137,6 +148,7 @@ Use these classes for styling compatibility with `html-style`:
 | Empty state | `.empty-state` | No results container |
 
 **Data attributes:**
+
 - `data-column` — Column identifier on chips
 - `data-filter-type` — Filter type (contains/checkbox/range/date)
 

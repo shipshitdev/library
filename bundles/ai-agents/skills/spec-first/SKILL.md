@@ -39,6 +39,7 @@ A structured workflow for LLM-assisted coding that delays implementation until d
 **Goal:** Decide before you implement.
 
 Prompts that work:
+
 - "List 3 viable approaches. Compare on: complexity, failure modes, testability, future change, time to first demo."
 - "What assumptions are you making? Which ones are risky?"
 - "Propose a minimal version that can be deleted later without regret."
@@ -109,12 +110,14 @@ Each item must be independently checkable. This prevents "looks right" progress.
 **Goal:** Small diffs, frequent verification, controlled context.
 
 Rules:
+
 - One logical change per step
 - Keep focus on one interface at a time
 - After each change: run verification command, paste actual output back
 - Commit early and often
 
 For large codebases:
+
 - Provide only relevant files plus spec/todo
 - If summarizing repo, do it once and keep as reusable artifact
 
@@ -123,6 +126,7 @@ For large codebases:
 **Goal:** Force the model to try to break its own work.
 
 Prompts:
+
 - "Act as a hostile reviewer. Find correctness bugs, not style nits. List concrete failing scenarios."
 - "Given these acceptance criteria, which are not actually satisfied? Be specific."
 - "Propose 5 tests that would fail if the implementation is wrong."
@@ -132,6 +136,7 @@ Prompts:
 **Goal:** Keep the system easy to delete and rewrite.
 
 Heuristics:
+
 - Keep "policy" (business rules) separate from "mechanism" (I/O, DB, HTTP)
 - Prefer shallow abstractions that can be removed without cascade
 - Invest in tests and fixtures more than clever architecture
@@ -153,6 +158,7 @@ Keep in the `.agent/` folder (not project root):
 **Naming:** Use the feature/task name as the filename (e.g., `user-auth.md`, `api-refactor.md`).
 
 **Why .agent folder:**
+
 - Keeps project root clean
 - Groups all AI-assisted planning artifacts
 - Works with task-prd-creator and ai-dev-loop skills
@@ -176,6 +182,7 @@ Approve at meaningful checkpoints (end of todo item, after test suite passes), n
 ## Prompt Patterns
 
 **Authoritarian (for correctness):**
+
 ```
 Edit these files: [paths]
 Interface: [exact signatures]
@@ -185,18 +192,21 @@ Don't change anything else.
 ```
 
 **Options and tradeoffs (for design):**
+
 ```
 Give me 3 options and a recommendation.
 Make the recommendation conditional on constraints A/B/C.
 ```
 
 **Context discipline (for large codebases):**
+
 ```
 Only use the files I provided.
 If you need more context, ask for a specific file and explain why.
 ```
 
 **Make it provable:**
+
 ```
 Add a test that fails on the buggy version and passes on the correct one.
 ```

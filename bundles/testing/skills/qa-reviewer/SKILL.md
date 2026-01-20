@@ -30,31 +30,37 @@ Structured framework for reviewing AI agent work before finalizing changes. Catc
 ## QA Workflow Phases
 
 ### 1. Context Gathering
+
 - Review original task and requirements
 - List all deliverables (files created/modified/deleted)
 - Check critical rules (CRITICAL-NEVER-DO.md)
 
 ### 2. Requirement Verification
+
 - Create checklist of all requirements
 - Verify solution alignment
 - Check for edge cases
 
 ### 3. Accuracy Verification
+
 - Verify file paths exist
 - Confirm patterns match codebase
 - Cross-reference citations
 
 ### 4. Bug Detection
+
 - Check syntax (markdown, code, paths)
 - Look for logic errors
 - Verify project-specific rules
 
 ### 5. Completeness Audit
+
 - Reconcile todo list
 - Verify all mentioned files changed
 - Check for side effects
 
 ### 6. Optimization Review
+
 - Evaluate solution quality
 - Check pattern consistency
 - Consider alternatives

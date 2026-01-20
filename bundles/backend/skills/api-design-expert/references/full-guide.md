@@ -363,24 +363,28 @@ async search(@Query() query: SearchUsersDto) {
 ## Best Practices
 
 ### 1. Consistency
+
 - Consistent naming conventions
 - Consistent response formats
 - Consistent error handling
 - Consistent status codes
 
 ### 2. Validation
+
 - Validate all inputs
 - Use DTOs with validation decorators
 - Return clear validation errors
 - Validate at controller level
 
 ### 3. Documentation
+
 - OpenAPI/Swagger documentation
 - Clear endpoint descriptions
 - Example requests/responses
 - Authentication requirements documented
 
 ### 4. Security
+
 - Authentication on all endpoints
 - Authorization checks
 - Input validation
@@ -388,12 +392,14 @@ async search(@Query() query: SearchUsersDto) {
 - CORS configured
 
 ### 5. Performance
+
 - Pagination for lists
 - Filtering and sorting
 - Caching where appropriate
 - Database query optimization
 
 ### 6. Versioning
+
 - Version APIs from the start
 - Maintain backward compatibility
 - Deprecation strategy
@@ -402,6 +408,7 @@ async search(@Query() query: SearchUsersDto) {
 ## Common Anti-Patterns to Avoid
 
 ### 1. Verb-Based URLs
+
 ```typescript
 // BAD
 GET /api/getUsers
@@ -413,6 +420,7 @@ POST /api/users
 ```
 
 ### 2. Inconsistent Response Formats
+
 ```typescript
 // BAD: Inconsistent
 { users: [...] }
@@ -424,6 +432,7 @@ POST /api/users
 ```
 
 ### 3. Poor Error Messages
+
 ```typescript
 // BAD
 { error: "Error" }
@@ -439,6 +448,7 @@ POST /api/users
 ```
 
 ### 4. No Pagination
+
 ```typescript
 // BAD: Returns all records
 GET /api/users

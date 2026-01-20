@@ -10,6 +10,7 @@ Evaluation of agent systems requires different approaches than traditional softw
 ## When to Activate
 
 Activate this skill when:
+
 - Testing agent performance systematically
 - Validating context engineering choices
 - Measuring improvements over time
@@ -34,6 +35,7 @@ Research on the BrowseComp evaluation (which tests browsing agents' ability to l
 | Model choice | ~5% | Better models multiply efficiency |
 
 This finding has significant implications for evaluation design:
+
 - **Token budgets matter**: Evaluate agents with realistic token budgets, not unlimited resources
 - **Model upgrades beat token increases**: Upgrading to Claude Sonnet 4.5 or GPT-5.2 provides larger gains than doubling token budgets on previous versions
 - **Multi-agent validation**: The finding validates architectures that distribute work across agents with separate context windows
@@ -140,6 +142,7 @@ Skipping human evaluation: Automated evaluation misses subtle issues.
 ## Examples
 
 **Example 1: Simple Evaluation**
+
 ```python
 def evaluate_agent_response(response, expected):
     rubric = load_rubric()
@@ -209,14 +212,15 @@ This skill connects to all other skills as a cross-cutting concern:
 ## References
 
 Internal reference:
+
 - [Metrics Reference](./references/metrics.md) - Detailed evaluation metrics and implementation
 
-## References
-
 Internal skills:
+
 - All other skills connect to evaluation for quality measurement
 
 External resources:
+
 - LLM evaluation benchmarks
 - Agent evaluation research papers
 - Production monitoring practices

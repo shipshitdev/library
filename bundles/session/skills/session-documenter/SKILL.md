@@ -12,6 +12,7 @@ Automatically document all work, decisions, and context throughout the session f
 ## When This Skill Activates
 
 Trigger conditions:
+
 1. When a task from TodoList is marked completed
 2. When files are modified/created/deleted
 3. When architectural decisions are made
@@ -32,6 +33,7 @@ Multiple sessions same day → Same file, Session 1, Session 2, etc.
 ### Flowcharts (MANDATORY for features)
 
 Include flowchart for:
+
 - New features
 - Feature modifications
 - Multi-component bug fixes

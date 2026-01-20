@@ -5,6 +5,7 @@
 ### Component Testing
 
 **React Testing Library:**
+
 ```typescript
 import { render, screen, fireEvent } from '@testing-library/react';
 import { UserList } from './UserList';
@@ -34,6 +35,7 @@ describe('UserList', () => {
 ```
 
 **Testing Hooks:**
+
 ```typescript
 import { renderHook, act } from '@testing-library/react';
 import { useUsers } from './useUsers';
@@ -55,6 +57,7 @@ describe('useUsers', () => {
 ### Next.js Testing
 
 **Page Testing:**
+
 ```typescript
 import { render, screen } from '@testing-library/react';
 import HomePage from '@/pages/index';
@@ -68,6 +71,7 @@ describe('HomePage', () => {
 ```
 
 **API Route Testing:**
+
 ```typescript
 import { createMocks } from 'node-mocks-http';
 import handler from '@/pages/api/users';
@@ -92,6 +96,7 @@ describe('/api/users', () => {
 ### Unit Tests
 
 **Service Testing:**
+
 ```typescript
 describe('UsersService', () => {
   let service: UsersService;
@@ -130,6 +135,7 @@ describe('UsersService', () => {
 ```
 
 **Controller Testing:**
+
 ```typescript
 describe('UsersController', () => {
   let controller: UsersController;
@@ -164,6 +170,7 @@ describe('UsersController', () => {
 ### Integration Tests
 
 **Controller + Service + Database:**
+
 ```typescript
 describe('UsersController Integration', () => {
   let app: INestApplication;
@@ -209,6 +216,7 @@ describe('UsersController Integration', () => {
 ### E2E Tests
 
 **Full Request/Response Cycle:**
+
 ```typescript
 describe('Users API (e2e)', () => {
   let app: INestApplication;
@@ -304,30 +312,35 @@ mockUserModel.find.mockResolvedValue([
 ## Testing Best Practices
 
 ### 1. Test Isolation
+
 - Each test should be independent
 - Clean up after each test
 - Use `beforeEach`/`afterEach` for setup/teardown
 - Don't rely on test execution order
 
 ### 2. Meaningful Tests
+
 - Test behavior, not implementation
 - Use descriptive test names
 - Test edge cases
 - Test error cases
 
 ### 3. Mocking Strategy
+
 - Mock external dependencies
 - Mock database operations
 - Mock API calls
 - Don't mock what you're testing
 
 ### 4. Test Data
+
 - Use factories for test data
 - Keep test data minimal
 - Use realistic data
 - Clean up test data
 
 ### 5. Coverage
+
 - Aim for high coverage
 - Focus on critical paths
 - Don't sacrifice quality for coverage

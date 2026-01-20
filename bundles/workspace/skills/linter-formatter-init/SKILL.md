@@ -12,6 +12,7 @@ Set up comprehensive linting, formatting, and testing for JavaScript/TypeScript 
 ## Purpose
 
 This skill automates the setup of:
+
 - **Biome** for linting + formatting (default, recommended)
 - **Vitest** for testing with coverage (use `--vitest` flag)
 - ESLint + Prettier (legacy, use `--eslint` flag)
@@ -22,6 +23,7 @@ This skill automates the setup of:
 ## When to Use
 
 Use this skill when:
+
 - Starting a new JS/TS project
 - Adding linting to an existing project without tooling
 - Standardizing code quality across a team
@@ -67,13 +69,16 @@ python3 ~/.claude/skills/linter-formatter-init/scripts/setup.py \
 ### Dependencies
 
 **Biome 2.3+ (default):**
+
 - @biomejs/biome@latest (always latest, minimum 2.3+)
 
 **Vitest (with --vitest):**
+
 - vitest
 - @vitest/coverage-v8
 
 **ESLint + Prettier (legacy, with --eslint):**
+
 - eslint
 - prettier
 - eslint-config-prettier
@@ -82,6 +87,7 @@ python3 ~/.claude/skills/linter-formatter-init/scripts/setup.py \
 - @typescript-eslint/eslint-plugin (if --typescript)
 
 **Pre-commit hooks:**
+
 - husky
 - lint-staged
 
@@ -193,6 +199,7 @@ Biome is a fast, all-in-one linter and formatter. The default config includes:
 ### Customization
 
 After setup, customize `biome.json` to adjust:
+
 - Linting rules
 - Formatting preferences
 - File ignore patterns
@@ -258,6 +265,7 @@ afterEach(() => {
 When enabled (default), lint-staged runs on every commit:
 
 **Biome (default):**
+
 ```json
 {
   "lint-staged": {
@@ -267,6 +275,7 @@ When enabled (default), lint-staged runs on every commit:
 ```
 
 **ESLint + Prettier (legacy):**
+
 ```json
 {
   "lint-staged": {
@@ -277,6 +286,7 @@ When enabled (default), lint-staged runs on every commit:
 ```
 
 This ensures:
+
 - All committed code passes linting
 - All committed code is formatted
 - No broken code enters the repo
@@ -286,6 +296,7 @@ This ensures:
 The skill creates `.vscode/settings.json`:
 
 **Biome (default):**
+
 ```json
 {
   "editor.formatOnSave": true,
@@ -301,6 +312,7 @@ The skill creates `.vscode/settings.json`:
 ```
 
 **ESLint + Prettier (legacy):**
+
 ```json
 {
   "editor.formatOnSave": true,
@@ -365,6 +377,7 @@ When using `--eslint`, the skill detects common frameworks and adjusts config:
 If you prefer manual setup over the script:
 
 **Biome:**
+
 ```bash
 bun add -D @biomejs/biome husky lint-staged
 bunx biome init
@@ -372,6 +385,7 @@ bunx husky
 ```
 
 **ESLint + Prettier:**
+
 ```bash
 bun add -D eslint prettier eslint-config-prettier eslint-plugin-prettier husky lint-staged
 bun add -D @typescript-eslint/parser @typescript-eslint/eslint-plugin

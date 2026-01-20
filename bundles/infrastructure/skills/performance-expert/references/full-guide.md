@@ -5,6 +5,7 @@
 ### 1. Frontend Performance (React/Next.js)
 
 **Bundle Optimization:**
+
 - Code splitting by route
 - Dynamic imports for heavy components
 - Tree shaking enabled
@@ -12,6 +13,7 @@
 - Optimize large dependencies
 
 **React Optimization:**
+
 - Memoization (`useMemo`, `useCallback`)
 - Component splitting to prevent re-renders
 - Virtualization for long lists
@@ -19,6 +21,7 @@
 - React.memo for expensive components
 
 **Next.js Optimization:**
+
 - Server Components where appropriate
 - Static generation (SSG) for static content
 - ISR (Incremental Static Regeneration)
@@ -27,6 +30,7 @@
 - Script optimization
 
 **Asset Optimization:**
+
 - Images optimized (WebP, compression)
 - Fonts subset and preloaded
 - CSS minified and purged
@@ -36,6 +40,7 @@
 ### 2. Backend Performance (NestJS)
 
 **API Response Times:**
+
 - Target: < 200ms (p95)
 - Database queries optimized
 - Caching implemented
@@ -43,6 +48,7 @@
 - Connection pooling configured
 
 **Query Optimization:**
+
 - Indexes on frequently queried fields
 - Compound indexes for multi-field queries
 - Projections to limit fields
@@ -50,12 +56,14 @@
 - Aggregation pipelines optimized
 
 **Caching Strategy:**
+
 - Redis caching for frequently accessed data
 - Cache invalidation strategy
 - Cache TTL configured
 - Cache warming for critical data
 
 **Background Processing:**
+
 - Heavy operations in queues (BullMQ)
 - Async processing for non-critical tasks
 - WebSocket for real-time updates
@@ -64,6 +72,7 @@
 ### 3. Database Performance (MongoDB)
 
 **Index Strategy:**
+
 - Indexes on frequently queried fields
 - Compound indexes for multi-field queries
 - Indexes on foreign keys
@@ -71,6 +80,7 @@
 - Index usage monitored
 
 **Query Optimization:**
+
 - Early filtering (`$match` early in aggregation)
 - Projection before expensive operations
 - Limit and skip for pagination
@@ -78,6 +88,7 @@
 - Avoid full collection scans
 
 **Aggregation Pipeline:**
+
 - `$match` early in pipeline
 - `$project` before expensive operations
 - Index usage in aggregations
@@ -85,6 +96,7 @@
 - Use `$lookup` efficiently
 
 **Connection Management:**
+
 - Connection pooling configured
 - Connection limits set
 - Idle connections closed
@@ -93,6 +105,7 @@
 ### 4. Infrastructure Performance (AWS)
 
 **CDN Configuration:**
+
 - CloudFront caching configured
 - Cache headers set correctly
 - Static assets on CDN
@@ -100,6 +113,7 @@
 - Cache invalidation strategy
 
 **Lambda Optimization:**
+
 - Cold start optimization
 - Memory allocation optimized
 - Connection pooling
@@ -107,6 +121,7 @@
 - Function size minimized
 
 **Database Performance:**
+
 - MongoDB Atlas performance tier appropriate
 - Read replicas configured (if needed)
 - Connection pooling optimized
@@ -147,6 +162,7 @@
 **Problem:** Multiple database queries in loops
 
 **Solution:**
+
 ```typescript
 // BAD: N+1 queries
 async findAll() {
@@ -177,6 +193,7 @@ async findAll() {
 **Problem:** JavaScript bundle too large
 
 **Solution:**
+
 - Code splitting by route
 - Dynamic imports for heavy components
 - Remove unused dependencies
@@ -188,6 +205,7 @@ async findAll() {
 **Problem:** Slow database queries
 
 **Solution:**
+
 ```typescript
 // Create indexes
 await db.collection('users').createIndex({ email: 1 });
@@ -201,6 +219,7 @@ await db.collection('posts').createIndex(
 **Problem:** React components re-rendering too often
 
 **Solution:**
+
 ```typescript
 // Memoized
 const processed = useMemo(
@@ -218,6 +237,7 @@ const handleClick = useCallback(() => {
 **Problem:** Heavy operations blocking request handlers
 
 **Solution:**
+
 - Move to background jobs
 - Use queues (BullMQ)
 - Async processing
@@ -310,6 +330,7 @@ async findAll(organizationId: string) {
 ## Performance Testing
 
 **Load Testing:**
+
 ```bash
 # Using k6
 k6 run load-test.js
@@ -322,6 +343,7 @@ k6 run load-test.js
 ```
 
 **Profiling:**
+
 ```bash
 # Node.js profiling
 node --prof app.js
@@ -329,6 +351,7 @@ node --prof-process isolate-*.log
 ```
 
 **Bundle Analysis:**
+
 ```bash
 # Analyze bundle
 npm run build
@@ -341,6 +364,7 @@ ANALYZE=true npm run build
 ## Performance Checklist
 
 ### Frontend
+
 - [ ] Bundle size optimized (< 200KB initial)
 - [ ] Code splitting implemented
 - [ ] Images optimized and lazy loaded
@@ -353,6 +377,7 @@ ANALYZE=true npm run build
 - [ ] Virtualization for long lists
 
 ### Backend
+
 - [ ] Database queries optimized
 - [ ] Indexes created and used
 - [ ] Caching implemented
@@ -363,6 +388,7 @@ ANALYZE=true npm run build
 - [ ] Monitoring enabled
 
 ### Database
+
 - [ ] Indexes on frequently queried fields
 - [ ] Compound indexes for multi-field queries
 - [ ] Query projections used
@@ -372,6 +398,7 @@ ANALYZE=true npm run build
 - [ ] Read replicas configured (if needed)
 
 ### Infrastructure
+
 - [ ] CDN configured
 - [ ] Caching strategy implemented
 - [ ] Auto-scaling configured

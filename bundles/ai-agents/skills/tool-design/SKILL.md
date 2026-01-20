@@ -10,6 +10,7 @@ Tools are the primary mechanism through which agents interact with the world. Th
 ## When to Activate
 
 Activate this skill when:
+
 - Creating new tools for agent systems
 - Debugging tool-related failures or misuse
 - Optimizing existing tool sets for better agent performance
@@ -65,6 +66,7 @@ The consolidation principle, taken to its logical extreme, leads to architectura
 Instead of building custom tools for data exploration, schema lookup, and query validation, provide direct file system access through a single command execution tool. The agent uses standard Unix utilities (grep, cat, find, ls) to explore, understand, and operate on your system.
 
 This works because:
+
 1. File systems are a proven abstraction that models understand deeply
 2. Standard tools have predictable, well-documented behavior
 3. The agent can chain primitives flexibly rather than being constrained to predefined workflows
@@ -72,12 +74,14 @@ This works because:
 
 **When Reduction Outperforms Complexity**
 Reduction works when:
+
 - Your data layer is well-documented and consistently structured
 - The model has sufficient reasoning capability to navigate complexity
 - Your specialized tools were constraining rather than enabling the model
 - You're spending more time maintaining scaffolding than improving outcomes
 
 Reduction fails when:
+
 - Your underlying data is messy, inconsistent, or poorly documented
 - The domain requires specialized knowledge the model lacks
 - Safety constraints require limiting what the agent can do
@@ -207,6 +211,7 @@ Inconsistent naming: Using id in some tools, identifier in others, and customer_
 ### Tool Selection Framework
 
 When designing tool collections:
+
 1. Identify distinct workflows agents must accomplish
 2. Group related actions into comprehensive tools
 3. Ensure each tool has a clear, unambiguous purpose
@@ -216,6 +221,7 @@ When designing tool collections:
 ## Examples
 
 **Example 1: Well-Designed Tool**
+
 ```python
 def get_customer(customer_id: str, format: str = "concise"):
     """
@@ -258,6 +264,7 @@ def search(query):
 5. **No error handling**: What happens if the database is unavailable?
 
 **Failure modes:**
+
 - Agents may call this tool when they should use a more specific tool
 - Agents cannot determine correct query format
 - Agents cannot interpret results
@@ -281,6 +288,7 @@ def search(query):
 ## Integration
 
 This skill connects to:
+
 - context-fundamentals - How tools interact with context
 - multi-agent-patterns - Specialized tools per agent
 - evaluation - Evaluating tool effectiveness
@@ -288,14 +296,17 @@ This skill connects to:
 ## References
 
 Internal references:
+
 - [Best Practices Reference](./references/best_practices.md) - Detailed tool design guidelines
 - [Architectural Reduction Case Study](./references/architectural_reduction.md) - Production evidence for tool minimalism
 
 Related skills in this collection:
+
 - context-fundamentals - Tool context interactions
 - evaluation - Tool testing patterns
 
 External resources:
+
 - MCP (Model Context Protocol) documentation
 - Framework tool conventions
 - API design best practices for agents

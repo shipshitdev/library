@@ -29,17 +29,20 @@ Use when you're:
 ## Key Components
 
 ### Docker
+
 - Multi-stage builds for smaller images
 - Non-root user for security
 - HEALTHCHECK for container orchestration
 - BuildKit secrets for sensitive data
 
 ### GitHub Actions
+
 - `docker/build-push-action` for image building
 - `tailscale/github-action` for secure access
 - `appleboy/ssh-action` for deployment
 
 ### EC2
+
 - Docker Compose v2 required
 - Health check verification
 - Rollback procedures

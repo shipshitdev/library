@@ -271,30 +271,35 @@ async function identifyBuyerIntent(companyName: string, domain: string) {
 ### Company Data APIs
 
 **Clearbit Enrichment:**
+
 - Company and domain enrichment
 - Employee count, revenue, industry
 - Technology stack
 - Social media profiles
 
 **ZoomInfo:**
+
 - Comprehensive B2B database
 - Company information
 - Contact data
 - Intent signals
 
 **Apollo.io:**
+
 - Company and contact database
 - Email finder
 - Intent data
 - Technology tracking
 
 **Crunchbase:**
+
 - Company funding information
 - Investor data
 - Acquisition data
 - Company profiles
 
 **LinkedIn Sales Navigator:**
+
 - Professional contacts
 - Company information
 - Employee data
@@ -303,16 +308,19 @@ async function identifyBuyerIntent(companyName: string, domain: string) {
 ### Contact Discovery APIs
 
 **Hunter.io:**
+
 - Email finder and verifier
 - Domain search
 - Email verification
 
 **RocketReach:**
+
 - Contact discovery
 - Email and phone finder
 - Social profile links
 
 **Lusha:**
+
 - Contact data enrichment
 - Email and phone numbers
 - Company information
@@ -320,18 +328,21 @@ async function identifyBuyerIntent(companyName: string, domain: string) {
 ### Intent Signal Sources
 
 **Job Postings:**
+
 - LinkedIn Jobs API
 - Indeed API
 - Glassdoor API
 - Company careers pages
 
 **Technology Stack:**
+
 - BuiltWith API
 - Wappalyzer
 - StackShare
 - GitHub
 
 **News and Funding:**
+
 - News API
 - Crunchbase API
 - Google News
@@ -382,6 +393,7 @@ async function identifyBuyerIntent(companyName: string, domain: string) {
 ## Example User Requests
 
 **Example 1: "Research company information for Acme Corp"**
+
 - Gather basic company data (industry, size, location)
 - Find company website and social profiles
 - Research technology stack
@@ -389,6 +401,7 @@ async function identifyBuyerIntent(companyName: string, domain: string) {
 - Compile comprehensive company profile
 
 **Example 2: "Find email addresses for decision makers at tech companies"**
+
 - Identify target companies
 - Find contacts with relevant job titles
 - Discover email addresses using APIs
@@ -396,6 +409,7 @@ async function identifyBuyerIntent(companyName: string, domain: string) {
 - Compile contact list with metadata
 
 **Example 3: "Identify companies with buyer intent for our solution"**
+
 - Search for job postings indicating need
 - Check technology stack for competitors
 - Look for funding or growth signals
@@ -403,6 +417,7 @@ async function identifyBuyerIntent(companyName: string, domain: string) {
 - Generate prioritized lead list
 
 **Example 4: "Enrich existing lead data with additional information"**
+
 - Match leads to company records
 - Fill in missing company data
 - Find additional contacts

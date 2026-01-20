@@ -18,16 +18,19 @@ Generate highlighted HTML with click-to-reveal comments for granular feedback on
 Use AskUserQuestion to clarify scope when the request is ambiguous. Avoid over-commenting (overwhelming) or under-commenting (missing the point).
 
 **Clarify when:**
+
 - No lens specified → ask what angle they want
 - Long document → ask if they want full coverage or just key sections
 - Unclear audience → ask who the recipient is (affects POV comments)
 
 **Skip clarification when:**
+
 - Lens is explicit ("comment on word choice only")
 - Document is short (<500 words)
 - Context is obvious from conversation
 
 **Example clarification:**
+
 ```
 User: "comment on this"
 [long doc, no lens specified]
@@ -58,12 +61,14 @@ User: "comment on this"
 ## Output Rules
 
 **DO:**
+
 - Write to `_private/views/{name}-comments-temp.html`
 - Open with `open _private/views/{name}-comments-temp.html`
 - Use highlight colors matching the lens
 - Keep comments sparse and high-signal
 
 **DO NOT:**
+
 - Comment on everything—only where there's an obvious edit or insight
 - Over-explain in comments—keep them punchy
 - Mix lenses in one output—pick one and stick to it
@@ -168,6 +173,7 @@ document.querySelectorAll('.highlight').forEach(el => {
 ### Color Reference
 
 **Editor lens (yellow):**
+
 ```css
 .highlight { background: #fff3cd; border-bottom: 2px solid #ffc107; }
 .highlight:hover, .highlight.active { background: #ffe69c; }
@@ -175,6 +181,7 @@ document.querySelectorAll('.highlight').forEach(el => {
 ```
 
 **POV lens (blue):**
+
 ```css
 .highlight { background: #e3f2fd; border-bottom: 2px solid #2196f3; }
 .highlight:hover, .highlight.active { background: #bbdefb; }
@@ -193,24 +200,28 @@ document.querySelectorAll('.highlight').forEach(el => {
 ## Examples
 
 **Editor lens:**
+
 ```
 User: "comment on this, focus on word choice"
 → Yellow highlights, suggestions like "vague, try 'specifically'" or "jargon, simplify"
 ```
 
 **POV lens:**
+
 ```
 User: "comment on this as brian would react"
 → Blue highlights, reactions like "i already know this" or "legal would push back here"
 ```
 
 **Focused lens:**
+
 ```
 User: "leave comments on this, only flag weak arguments"
 → Yellow highlights on weak claims, comments like "needs evidence" or "assumes too much"
 ```
 
 **Sparse/sharp lens:**
+
 ```
 User: "comment only where there's an obvious fix"
 → Minimal highlights, only typos, missing words, or clear improvements

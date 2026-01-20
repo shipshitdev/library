@@ -70,7 +70,7 @@ HOOK (Stop + Engage) → STORY (Connect + Believe) → OFFER (Desire + Act)
 | 40-54 | Weak Copy | Major issues. Rewrite key sections. |
 | 0-39 | Broken Copy | Start over. Fundamental problems. |
 
-## For Dimensions Below 7, Provide:
+## For Dimensions Below 7, Provide
 
 1. **What's wrong** (specific diagnosis)
 2. **Why it hurts** (impact on conversion)

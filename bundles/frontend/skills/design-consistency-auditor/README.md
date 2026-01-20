@@ -273,14 +273,14 @@ This skill works well with:
 
 ## Maintenance
 
-### Update This Skill When:
+### Update This Skill When
 
 - New theme colors are added
 - Custom classes are created
 - Design patterns change
 - New apps are added
 
-### Regular Schedule:
+### Regular Schedule
 
 - **Weekly**: Quick audits of new features
 - **Monthly**: Full audit of one app

@@ -85,60 +85,70 @@
 ### Step 4: Slide-by-Slide Content
 
 **Slide 1: Title**
+
 - Company name and logo
 - One-line description
 - Your name/role
 - Contact info
 
 **Slide 2: Problem**
+
 - Specific pain point (not vague)
 - Who experiences it
 - Why it matters
 - Current state (how bad it is)
 
 **Slide 3: Solution**
+
 - Your approach in simple terms
 - The transformation you deliver
 - Key insight/innovation
 - Why this works
 
 **Slide 4: Product/Demo**
+
 - Screenshots or demo video
 - Key features (3-5 max)
 - User workflow
 - "Aha" moment
 
 **Slide 5: Market**
+
 - TAM / SAM / SOM
 - Market growth rate
 - Why now (timing)
 - Your wedge/entry point
 
 **Slide 6: Business Model**
+
 - Pricing model
 - Unit economics (LTV, CAC, margins)
 - Revenue streams
 - Path to profitability
 
 **Slide 7: Traction**
+
 - Key metrics (up and to the right)
 - User/revenue growth
 - Key milestones achieved
 - Notable customers/logos
 
 **Slide 8: Competition**
+
 - Competitive landscape
 - Your positioning
 - Sustainable advantages
 - Why you win
 
 **Slide 9: Team**
+
 - Founders + key team
 - Relevant experience
 - Why this team for this problem
 - Key advisors/backers
 
 **Slide 10: Ask**
+
 - Amount raising
 - Use of funds (high level)
 - Key milestones this achieves
@@ -396,6 +406,7 @@ Would love 20 minutes to share what we're building.
 ## The "First 48 Hours" Rule
 
 After every investor meeting:
+
 1. **Within 2 hours:** Send thank you email
 2. **Within 24 hours:** Send any requested materials
 3. **Within 48 hours:** Follow up with next steps

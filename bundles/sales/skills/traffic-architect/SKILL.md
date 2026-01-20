@@ -30,6 +30,7 @@ Design traffic strategies using Traffic Secrets principles: Dream 100, Work In v
 ## The Framework: Traffic Secrets
 
 **Core Components:**
+
 1. **Dream 100** - Where your audience congregates
 2. **Work In vs. Buy In** - Organic or paid approach
 3. **Hook Strategy** - Interrupting the scroll
@@ -69,6 +70,7 @@ Design traffic strategies using Traffic Secrets principles: Dream 100, Work In v
 ## Discovery Questions
 
 Ask:
+
 1. Who is your ideal customer?
 2. What problem do they have?
 3. Where do they spend time online?

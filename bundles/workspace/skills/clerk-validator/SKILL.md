@@ -44,6 +44,7 @@ python3 ~/.claude/skills/clerk-validator/scripts/validate.py --root . --strict
 ### 2. Proxy vs Middleware (Next.js 16)
 
 **GOOD - Next.js 16:**
+
 ```typescript
 // proxy.ts
 import { clerkMiddleware } from "@clerk/nextjs/server";
@@ -51,6 +52,7 @@ export default clerkMiddleware();
 ```
 
 **BAD - Deprecated:**
+
 ```typescript
 // middleware.ts (deprecated in Next.js 16)
 import { authMiddleware } from "@clerk/nextjs";  // DEPRECATED
@@ -60,6 +62,7 @@ export default authMiddleware();
 ### 3. ClerkProvider Setup
 
 **GOOD:**
+
 ```typescript
 // app/layout.tsx
 import { ClerkProvider } from "@clerk/nextjs";
@@ -76,6 +79,7 @@ export default function RootLayout({ children }) {
 ```
 
 **BAD - Missing or wrong location:**
+
 ```typescript
 // Don't put in _app.tsx (Pages Router deprecated)
 // Don't forget to wrap the entire app
@@ -84,6 +88,7 @@ export default function RootLayout({ children }) {
 ### 4. Auth Import Patterns
 
 **GOOD - Server-side:**
+
 ```typescript
 import { auth } from "@clerk/nextjs/server";
 
@@ -94,6 +99,7 @@ export default async function Page() {
 ```
 
 **BAD - Old patterns:**
+
 ```typescript
 // Don't use
 import { getAuth } from "@clerk/nextjs/server";  // OLD
@@ -103,12 +109,14 @@ import { currentUser } from "@clerk/nextjs";     // Check version
 ### 5. Environment Variables
 
 **Required:**
+
 ```env
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_...
 CLERK_SECRET_KEY=sk_...
 ```
 
 **Optional but recommended:**
+
 ```env
 NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
 NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
@@ -150,6 +158,7 @@ Summary: 2 issues found
 ## Modern Clerk Patterns
 
 ### Protected Routes (Server Component)
+
 ```typescript
 // app/dashboard/page.tsx
 import { auth } from "@clerk/nextjs/server";
@@ -167,6 +176,7 @@ export default async function DashboardPage() {
 ```
 
 ### Protected Routes (Client Component)
+
 ```typescript
 "use client";
 import { useAuth } from "@clerk/nextjs";
@@ -182,6 +192,7 @@ export default function ProtectedComponent() {
 ```
 
 ### API Routes
+
 ```typescript
 // app/api/protected/route.ts
 import { auth } from "@clerk/nextjs/server";
@@ -199,6 +210,7 @@ export async function GET() {
 ```
 
 ### NestJS Guard
+
 ```typescript
 // auth/clerk.guard.ts
 import { Injectable, CanActivate, ExecutionContext } from "@nestjs/common";

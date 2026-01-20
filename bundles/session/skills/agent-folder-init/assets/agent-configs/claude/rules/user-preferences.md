@@ -9,6 +9,7 @@ This file contains specific preferences and instructions that override or supple
 ## 1. NEVER RUN BACKGROUND PROCESSES
 
 **FORBIDDEN:**
+
 ```bash
 # NEVER use run_in_background parameter
 Bash(command: "any command", run_in_background: true)
@@ -20,6 +21,7 @@ any-long-running-command &
 ```
 
 **ALLOWED:**
+
 - Run commands in foreground ONLY
 - User must see exactly what is running
 - User must know when processes start and stop
@@ -31,6 +33,7 @@ any-long-running-command &
 ## 2. NEVER BUILD/TEST LOCALLY AFTER CODE CHANGES
 
 **FORBIDDEN:**
+
 ```bash
 pnpm run build
 pnpm run test
@@ -39,6 +42,7 @@ npm test
 ```
 
 **ALLOWED:**
+
 - Make code changes
 - Commit and push to GitHub
 - Let CI/CD handle builds and tests
@@ -82,12 +86,14 @@ npm test
 ## 5. QUALITY OVER SPEED
 
 **STOP:**
+
 - Rushing through implementations
 - Giving half-assed explanations
 - Suggesting generic solutions without checking codebase first
 - Assuming anything - verify by reading actual code
 
 **DO:**
+
 1. Read the actual codebase for every question/task
 2. Find real examples of similar code
 3. Think through the implementation before writing
@@ -99,12 +105,14 @@ npm test
 ## 6. ALWAYS DOCUMENT BEFORE /clear
 
 **FORBIDDEN:**
+
 ```bash
 # User types /clear
 # AI does nothing and loses all context
 ```
 
 **MANDATORY:**
+
 1. IMMEDIATELY document the session when user types /clear
 2. Wait for documentation to complete before clearing
 3. Confirm documentation is saved
@@ -117,6 +125,7 @@ npm test
 ## 7. NEVER WORK OUTSIDE WORKSPACE DIRECTORY
 
 **FORBIDDEN:**
+
 ```bash
 # NEVER use /tmp or any directory outside workspace
 python3 /tmp/validation_script.py
@@ -130,6 +139,7 @@ cat /private/tmp/data.json
 ```
 
 **ALLOWED:**
+
 - ALL operations within the current workspace directory
 - If temp files needed, use a temp directory within workspace
 - All scripts, validation, and operations stay in workspace
@@ -141,6 +151,7 @@ cat /private/tmp/data.json
 ## 8. NEVER COMMIT/PUSH WITHOUT EXPLICIT REQUEST
 
 **FORBIDDEN:**
+
 ```bash
 # NEVER commit without explicit user request
 git add .
@@ -151,6 +162,7 @@ git push origin branch
 ```
 
 **ALLOWED:**
+
 - Make code changes
 - Show user what changed (git diff, git status)
 - WAIT for user to review and approve
@@ -172,6 +184,7 @@ git push origin branch
 ## Session Start Checklist
 
 Before EVERY response, verify:
+
 - [ ] Read this file
 - [ ] Checked for user-specific preferences on this topic
 - [ ] Following user's preferred patterns
@@ -182,6 +195,7 @@ Before EVERY response, verify:
 ## Feedback Loop
 
 When user corrects me or expresses frustration:
+
 1. **STOP** - acknowledge the correction
 2. **UPDATE** preferences immediately
 3. **CONFIRM** understanding with user

@@ -455,4 +455,3 @@ class MemoryContextIntegrator:
         
         return " ".join(truncated)
 ```
-

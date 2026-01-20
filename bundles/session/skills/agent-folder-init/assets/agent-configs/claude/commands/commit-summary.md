@@ -13,6 +13,7 @@ Generate meaningful commit messages based on staged changes.
 ### Step 1: Review Changes
 
 Check what has changed:
+
 - git status - see modified files
 - git diff --staged - see staged changes
 - git log --oneline -5 - see recent commits for style
@@ -20,6 +21,7 @@ Check what has changed:
 ### Step 2: Analyze Changes
 
 Categorize the changes:
+
 - feat: New feature
 - fix: Bug fix
 - refactor: Code restructuring
@@ -40,6 +42,7 @@ type(scope): short description
 ### Step 4: Review
 
 Ensure message:
+
 - Accurately describes changes
 - Follows project conventions
 - Is concise but complete
@@ -47,6 +50,7 @@ Ensure message:
 ## Commit Message Guidelines
 
 Good commit messages:
+
 - Start with type (feat, fix, refactor, etc.)
 - Include scope if applicable
 - Use imperative mood (Add not Added)
@@ -54,6 +58,7 @@ Good commit messages:
 - Explain why, not just what
 
 Examples:
+
 - feat(auth): add password reset flow
 - fix(api): handle null response from external service
 - refactor(utils): extract date formatting to shared helper

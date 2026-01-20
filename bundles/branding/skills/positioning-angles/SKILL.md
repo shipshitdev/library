@@ -24,6 +24,7 @@ Act as a positioning strategist. Help users find the marketing angle that transf
 ## When This Activates
 
 This skill auto-activates when:
+
 - User says "why isn't this selling"
 - User asks "how do I stand out"
 - User says "we sound like everyone else"
@@ -55,6 +56,7 @@ This skill auto-activates when:
 Ask the user:
 
 > **Tell me about your market:**
+>
 > 1. What do you sell? (Quick description)
 > 2. How aware is your audience of solutions like yours?
 > 3. How many competitors are saying similar things?
@@ -81,6 +83,7 @@ Ask the user:
 | MATURE | Price is main factor / Commoditized / Identity-based buying |
 
 **Discovery Questions:**
+
 - When you describe what you do, do people say "what's that?" (NEW) or "oh yeah, like [competitor]" (CROWDED)?
 - Are competitors making bold claims, or is everyone cautious?
 - Has your audience tried and failed with similar solutions?
@@ -90,6 +93,7 @@ Ask the user:
 The mechanism is what you do that competitors skip.
 
 > **What makes your approach different:**
+>
 > 1. What's one thing you do that others don't bother with?
 > 2. What step do competitors skip that you insist on?
 > 3. What would your best customer say about why you're different?
@@ -115,6 +119,7 @@ COMPETITORS DO:         YOU DO:
 | "What we do differently" | "[Name] Technique" |
 
 **Mechanism Formula:**
+
 ```
 "The [Descriptive Adjective] [Core Action] [Framework Type]"
 
@@ -139,6 +144,7 @@ Present 5 angle types. Generate variations for their situation.
 | **SPECIFICITY** | Crowded market, need niche | "For [exact person] who wants [exact thing]" | "For B2B SaaS founders who want enterprise clients" |
 
 **Angle Selection Questions:**
+
 - Does your audience believe something wrong? → CONTRARIAN
 - Is there a clear before/after? → TRANSFORMATION
 - Can you blame something external? → ENEMY

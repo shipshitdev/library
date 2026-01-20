@@ -7,6 +7,7 @@ Complete guide to validating startup ideas using Hexa's Opportunity Memo framewo
 Ask the user:
 
 > **Describe your idea in one sentence:**
+>
 > 1. What problem are you solving?
 > 2. Who has this problem?
 > 3. What's your proposed solution?
@@ -20,6 +21,7 @@ Ask the user:
 Ask the user:
 
 > **Tell me about the problem:**
+>
 > 1. What is the specific pain point(s) your ICP feels?
 > 2. How do they currently solve this problem?
 > 3. What's wrong with the current solutions?
@@ -42,6 +44,7 @@ Ask the user:
 Ask the user:
 
 > **Why is NOW the right time for this solution?**
+>
 > 1. What has changed recently that makes this possible/necessary?
 > 2. What barriers existed before that are now gone?
 > 3. What trends support this idea?
@@ -102,6 +105,7 @@ Ask the user:
 ## Step 7: Perceived Created Value (PCV) Scoring
 
 ### Phase 1: Interview 20 potential customers
+
 - Ask open-ended questions about their problem
 - Understand their current solutions
 - Don't pitch your solution—listen

@@ -20,6 +20,7 @@ tags:
 Audit and maintain design consistency across frontend applications. Before auditing, discover the project's frontend structure from documentation.
 
 Ensures:
+
 - Color palettes are used consistently
 - UI/UX patterns follow best practices
 - Components maintain visual harmony
@@ -80,6 +81,7 @@ Ensures:
 ## AI Slop Prevention
 
 Audit for generic "AI-generated" aesthetics:
+
 - Generic fonts (Inter, Roboto everywhere)
 - Purple gradients on white
 - Predictable layouts without character

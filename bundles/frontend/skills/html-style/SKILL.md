@@ -40,24 +40,30 @@ Transform barebones HTML into styled output using a specific design system.
 ## Element Styling Rules
 
 ### Tables
+
 - Default: minimal borders, no hover
 - Add `.table-styled` for: hover effect, `.positive`/`.negative` cell colors, `.highlight` rows
 - Sortable: add `th.sortable` with `<a href="?sort=col">Col ▼</a>`
 
 ### Status Indicators
+
 - **Text status** (`.stale`/`.warm`/`.pending`): Use for inline status in sentences
 - **Status pills** (`.status-*`): Use for badge-style indicators, typically with icon (✓ ✗ ◷)
 - **Trends** (`.trend-up`/`.trend-down`): Use for numeric changes, adds arrow automatically
 
 ### Sections
+
 Use `.section-header` with emoji prefix for visual breaks:
+
 ```html
 <div class="section-header">🔴 URGENT</div>
 <div class="section-header">🟠 PENDING</div>
 ```
 
 ### Interactive Elements
+
 When HTML has drafts or copy buttons, add this JS:
+
 ```javascript
 function saveDraft(el) {
     localStorage.setItem('draft:' + el.dataset.threadId, el.textContent);
@@ -71,7 +77,9 @@ function copyToClipboard(text, btn) {
 ```
 
 ### Deep Links
+
 Convert URLs to native app links:
+
 - Telegram: `tg://resolve?domain=username`
 - SMS: `sms:+14155551234`
 

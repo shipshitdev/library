@@ -48,6 +48,7 @@ This skill activates automatically when users:
 Validate domain names according to RFC 1035 and RFC 1123 standards.
 
 **Domain Name Rules:**
+
 - Length: 1-253 characters total
 - Labels: Up to 63 characters each
 - Characters: Letters (a-z, A-Z), digits (0-9), hyphens (-)
@@ -138,6 +139,7 @@ export class DomainDto {
 Check if a domain is available for registration using domain availability APIs.
 
 **Common Domain Availability APIs:**
+
 - Namecheap API
 - GoDaddy API
 - Name.com API
@@ -292,12 +294,14 @@ async function searchAvailableDomains(keyword: string): Promise<string[]> {
 ## Best Practices
 
 ### Validation
+
 - Always validate domain format before checking availability
 - Handle edge cases (internationalized domain names, subdomains)
 - Provide clear error messages for invalid domains
 - Consider validating TLD separately if needed
 
 ### API Integration
+
 - Store API credentials in environment variables
 - Implement rate limiting to avoid API throttling
 - Handle API errors gracefully
@@ -305,6 +309,7 @@ async function searchAvailableDomains(keyword: string): Promise<string[]> {
 - Use appropriate timeouts for API calls
 
 ### User Experience
+
 - Provide real-time validation feedback
 - Show domain suggestions as user types
 - Display availability status clearly
@@ -312,6 +317,7 @@ async function searchAvailableDomains(keyword: string): Promise<string[]> {
 - Handle loading states during availability checks
 
 ### Security
+
 - Never expose API keys in client-side code
 - Validate and sanitize all user input
 - Implement proper error handling
@@ -321,20 +327,24 @@ async function searchAvailableDomains(keyword: string): Promise<string[]> {
 ## Example User Requests
 
 **Example 1: "Validate this domain: example.com"**
+
 - Use format validation to check if the domain follows RFC standards
 - Return validation result with specific error details if invalid
 
 **Example 2: "Check if example.com is available"**
+
 - Validate domain format first
 - Call domain availability API
 - Return availability status
 
 **Example 3: "Search for available domains with keyword 'techstartup'"**
+
 - Generate domain suggestions based on keyword
 - Check availability for each suggestion
 - Return list of available domains with pricing if available
 
 **Example 4: "Implement domain validation in this form"**
+
 - Add domain validation to form component
 - Integrate real-time validation
 - Provide user feedback for invalid domains
@@ -342,13 +352,15 @@ async function searchAvailableDomains(keyword: string): Promise<string[]> {
 ## Common Domain TLDs
 
 **Generic TLDs:**
+
 - .com, .net, .org, .info, .biz
 
 **New gTLDs:**
+
 - .app, .dev, .io, .ai, .tech, .online, .xyz
 
 **Country Code TLDs:**
+
 - .us, .uk, .ca, .au, .de, .fr, .jp
 
 When implementing domain search, consider including popular TLDs relevant to the user's context or industry.
-

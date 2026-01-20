@@ -70,7 +70,7 @@ it('should return users filtered by organization', async () => {
 });
 ```
 
-## Good Tests Are:
+## Good Tests Are
 
 - Independent (no test dependencies)
 - Fast (< 100ms each)

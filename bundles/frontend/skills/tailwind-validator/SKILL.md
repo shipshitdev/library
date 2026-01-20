@@ -17,6 +17,7 @@ Validates that a project uses Tailwind CSS v4 with proper CSS-first configuratio
 ## Purpose
 
 **CRITICAL**: Claude and other AI assistants often default to Tailwind v3 patterns. This skill ensures:
+
 - Projects use Tailwind v4 CSS-first configuration
 - Old `tailwind.config.js` patterns are detected and flagged
 - Proper `@theme` blocks are used instead of JS config
@@ -46,6 +47,7 @@ python3 ~/.claude/skills/tailwind-validator/scripts/validate.py --root . --stric
 ## What Gets Checked
 
 ### 1. Package Version
+
 ```json
 // GOOD: v4+
 "tailwindcss": "^4.0.0"
@@ -57,6 +59,7 @@ python3 ~/.claude/skills/tailwind-validator/scripts/validate.py --root . --stric
 ### 2. CSS Configuration (v4 CSS-first)
 
 **GOOD - Tailwind v4:**
+
 ```css
 /* app.css or globals.css */
 @import "tailwindcss";
@@ -70,6 +73,7 @@ python3 ~/.claude/skills/tailwind-validator/scripts/validate.py --root . --stric
 ```
 
 **BAD - Tailwind v3:**
+
 ```css
 /* Old v3 directives */
 @tailwind base;
@@ -80,6 +84,7 @@ python3 ~/.claude/skills/tailwind-validator/scripts/validate.py --root . --stric
 ### 3. Config Files
 
 **BAD - Should not exist in v4:**
+
 - `tailwind.config.js`
 - `tailwind.config.ts`
 - `tailwind.config.mjs`
@@ -90,6 +95,7 @@ python3 ~/.claude/skills/tailwind-validator/scripts/validate.py --root . --stric
 ### 4. PostCSS Configuration
 
 **GOOD - v4:**
+
 ```js
 // postcss.config.js (minimal or not needed)
 export default {
@@ -100,6 +106,7 @@ export default {
 ```
 
 **BAD - v3:**
+
 ```js
 // postcss.config.js
 module.exports = {
@@ -113,6 +120,7 @@ module.exports = {
 ### 5. Import Patterns
 
 **GOOD:**
+
 ```css
 @import "tailwindcss";
 @import "tailwindcss/preflight";
@@ -120,6 +128,7 @@ module.exports = {
 ```
 
 **BAD:**
+
 ```css
 @tailwind base;
 @tailwind components;
@@ -154,12 +163,14 @@ Summary: 2 issues found
 ### From Tailwind v3 to v4
 
 1. **Update package.json:**
+
 ```bash
 bun remove tailwindcss autoprefixer
 bun add tailwindcss@latest @tailwindcss/postcss
 ```
 
-2. **Update postcss.config.js:**
+1. **Update postcss.config.js:**
+
 ```js
 export default {
   plugins: {
@@ -168,9 +179,10 @@ export default {
 };
 ```
 
-3. **Convert tailwind.config.js to CSS @theme:**
+1. **Convert tailwind.config.js to CSS @theme:**
 
 **Before (v3):**
+
 ```js
 // tailwind.config.js
 module.exports = {
@@ -189,6 +201,7 @@ module.exports = {
 ```
 
 **After (v4):**
+
 ```css
 /* globals.css */
 @import "tailwindcss";
@@ -200,9 +213,10 @@ module.exports = {
 }
 ```
 
-4. **Replace @tailwind directives:**
+1. **Replace @tailwind directives:**
 
 **Before:**
+
 ```css
 @tailwind base;
 @tailwind components;
@@ -210,11 +224,13 @@ module.exports = {
 ```
 
 **After:**
+
 ```css
 @import "tailwindcss";
 ```
 
-5. **Delete old config files:**
+1. **Delete old config files:**
+
 ```bash
 rm tailwind.config.js tailwind.config.ts
 ```

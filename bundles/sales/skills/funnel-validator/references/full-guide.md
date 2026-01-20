@@ -7,6 +7,7 @@
 Ask the user:
 
 > **Show me your funnel. I need to see:**
+>
 > 1. What's the funnel URL or can you describe each step?
 > 2. What's the entry point? (Ad, email, content, etc.)
 > 3. What are you selling? (Free offer, low-ticket, high-ticket?)
@@ -15,6 +16,7 @@ Ask the user:
 > 6. What's your current conversion rate? (If known)
 
 **Funnel Types (Reference):**
+
 - **Lead Funnel:** Free offer → Opt-in → Thank you + Upsell
 - **Tripwire Funnel:** Low-ticket offer ($7-47) → Order form → OTO
 - **Webinar Funnel:** Registration → Webinar → Application/Sale
@@ -42,6 +44,7 @@ Evaluate the **first 3 seconds** of the funnel experience:
 | 0-2 | No hook, boring headline, immediate bounce |
 
 **Red Flags:**
+
 - Generic headlines ("Welcome to our page")
 - No headline above the fold
 - Hook doesn't match the traffic source
@@ -49,6 +52,7 @@ Evaluate the **first 3 seconds** of the funnel experience:
 - Wall of text before the hook
 
 **Hook Formula:**
+
 ```
 [End Result] + [Time Period] + [Address Objection]
 "How to [Result] in [Time] Without [Objection]"
@@ -75,6 +79,7 @@ Evaluate the **emotional journey**:
 | 0-2 | No story, just features and claims |
 
 **Red Flags:**
+
 - No story at all
 - Story about the company, not the customer
 - Story too long (loses attention)
@@ -82,6 +87,7 @@ Evaluate the **emotional journey**:
 - No transformation shown
 
 **Epiphany Bridge Framework:**
+
 ```
 1. Backstory (where you were)
 2. Wall (the problem you hit)
@@ -112,6 +118,7 @@ Evaluate the **offer presentation**:
 | 0-2 | No clear offer, or buried below the fold |
 
 **Red Flags:**
+
 - Offer buried below the fold
 - Confusing pricing or options
 - No value stack
@@ -142,6 +149,7 @@ Evaluate **funnel positioning** in the ascension path:
 | 0-2 | No value ladder, dead-end funnel |
 
 **Red Flags:**
+
 - High-ticket offer to cold traffic
 - No upsell or next step after purchase
 - Pricing jump too large between steps
@@ -168,6 +176,7 @@ Evaluate **traffic-to-funnel alignment**:
 | 0-2 | Complete mismatch, traffic bouncing immediately |
 
 **Red Flags:**
+
 - Selling high-ticket to cold traffic
 - Long-form sales page for hot traffic
 - No scent trail from ad to page
@@ -195,6 +204,7 @@ Evaluate the **path to conversion**:
 | 0-2 | No clear CTA, or buried, major friction |
 
 **Red Flags:**
+
 - Multiple CTAs on the page
 - Long forms with unnecessary fields
 - No CTA above the fold
@@ -202,6 +212,7 @@ Evaluate the **path to conversion**:
 - Exit popups before they've read anything
 
 **CTA Best Practices:**
+
 - One primary CTA per page
 - Button text = outcome ("Get Instant Access")
 - CTA above the fold AND at the end
@@ -322,6 +333,7 @@ For each dimension scoring **below 7**, provide:
 **User's Funnel:** Lead magnet opt-in page
 
 **Issues Found:**
+
 - Generic headline: "Download Our Free Guide"
 - No story, just bullet points
 - Form asks for phone number (unnecessary friction)
@@ -341,6 +353,7 @@ For each dimension scoring **below 7**, provide:
 **Total: 46/100 - Broken Funnel**
 
 **Priority Fixes:**
+
 1. **Hook:** Rewrite to "How I Got 50 Clients in 30 Days Without Paid Ads"
 2. **Story:** Add 2-3 sentence epiphany bridge about discovery
 3. **Traffic Match:** Match headline to exact ad copy
@@ -351,6 +364,7 @@ For each dimension scoring **below 7**, provide:
 **User's Funnel:** Webinar registration
 
 **Strengths:**
+
 - Scroll-stopping hook with specific result
 - Strong origin story video
 - Clear value stack for attending
@@ -371,6 +385,7 @@ For each dimension scoring **below 7**, provide:
 **Total: 85/100 - Conversion Machine**
 
 **Minor Optimizations:**
+
 1. Add countdown timer to increase urgency
 2. Tighten video story to under 2 minutes
 

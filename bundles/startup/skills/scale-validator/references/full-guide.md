@@ -7,6 +7,7 @@ Complete guide to stress-testing business models using the Hormozi 10x framework
 Ask the user:
 
 > **Tell me about your business model:**
+>
 > 1. What do you sell? (Product/service/offer)
 > 2. What's your current revenue and customer count?
 > 3. How do you deliver what you sell? (Your time, team, software, products?)
@@ -35,6 +36,7 @@ Evaluate if the business can run **without the founder**:
 | 0-2 | Founder IS the business, no time freedom at all |
 
 **Red Flags:**
+
 - "I do all the sales calls"
 - "Clients want to talk to me specifically"
 - "I'm the only one who can [critical function]"
@@ -62,6 +64,7 @@ Evaluate if the **numbers work at scale**:
 | 0-2 | Losing money on customers, unsustainable unit economics |
 
 **Red Flags:**
+
 - "I don't know my CAC"
 - "I haven't calculated LTV"
 - Margins below 30%
@@ -90,6 +93,7 @@ Evaluate if they **know what's constraining growth**:
 | 0-2 | No idea what's constraining growth |
 
 **Red Flags:**
+
 - "I need more of everything"
 - "I just need more leads" (without data)
 - Blaming external factors only
@@ -125,6 +129,7 @@ Evaluate **how many leverage types** are being used:
 | 0-2 | No leverage, founder does everything |
 
 **Red Flags:**
+
 - Pure service business with no systematization
 - No team, no technology, no products
 - Trading time for money only
@@ -151,12 +156,14 @@ Evaluate if **delivery scales with demand**:
 | 0-2 | Worse than linear, quality/cost degrades at scale |
 
 **Red Flags:**
+
 - "I deliver personally to every client"
 - "We customize everything"
 - No standard operating procedures
 - Can't hire without losing quality
 
 **Scale Questions:**
+
 - What's the marginal cost per additional customer?
 - What breaks first with 10x demand?
 - How would you maintain quality at scale?
@@ -180,6 +187,7 @@ Evaluate if **margins hold at scale**:
 | 0-2 | Margins go negative at scale |
 
 **Red Flags:**
+
 - "We discount for volume"
 - Commodity pricing pressure
 - Increasing customer service costs at scale

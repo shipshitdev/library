@@ -44,6 +44,7 @@ python3 ~/.claude/skills/nextjs-validator/scripts/validate.py --root . --strict
 ### 2. Proxy vs Middleware
 
 **GOOD - Next.js 16:**
+
 ```typescript
 // proxy.ts (Node.js runtime - REQUIRED)
 import { createProxy } from 'next/proxy';
@@ -51,6 +52,7 @@ export const proxy = createProxy();
 ```
 
 **BAD - Deprecated:**
+
 ```typescript
 // middleware.ts (Edge runtime - DEPRECATED)
 export function middleware() { }
@@ -59,6 +61,7 @@ export function middleware() { }
 ### 3. App Router Structure
 
 **GOOD:**
+
 ```
 app/
 ├── layout.tsx          # Root layout
@@ -72,6 +75,7 @@ app/
 ```
 
 **BAD - Pages Router (deprecated):**
+
 ```
 pages/
 ├── _app.tsx
@@ -82,6 +86,7 @@ pages/
 ### 4. Cache Components & `use cache`
 
 **GOOD - Next.js 16:**
+
 ```typescript
 // app/dashboard/page.tsx
 'use cache';
@@ -95,6 +100,7 @@ export default async function Dashboard() {
 ### 5. Server Actions
 
 **GOOD:**
+
 ```typescript
 // app/actions.ts
 'use server';
@@ -107,11 +113,13 @@ export async function createItem(formData: FormData) {
 ### 6. Turbopack Configuration
 
 **GOOD - Default in Next.js 16:**
+
 ```json
 // next.config.ts (Turbopack is default, no config needed)
 ```
 
 **BAD - Disabling Turbopack:**
+
 ```json
 // Don't disable unless absolutely necessary
 experimental: {
@@ -122,6 +130,7 @@ experimental: {
 ### 7. Config File Format
 
 **GOOD - TypeScript config:**
+
 ```typescript
 // next.config.ts
 import type { NextConfig } from 'next';
@@ -134,6 +143,7 @@ export default config;
 ```
 
 **BAD - JavaScript config:**
+
 ```javascript
 // next.config.js - Prefer .ts
 module.exports = { }
@@ -156,6 +166,7 @@ module.exports = { }
 ## Next.js 16 Features to Use
 
 ### Cache Components
+
 ```typescript
 'use cache';
 
@@ -167,6 +178,7 @@ export default async function CachedPage() {
 ```
 
 ### Partial Pre-Rendering (PPR)
+
 ```typescript
 // next.config.ts
 const config: NextConfig = {
@@ -177,13 +189,16 @@ const config: NextConfig = {
 ```
 
 ### Next.js DevTools MCP
+
 AI-assisted debugging with contextual insight:
+
 ```typescript
 // Enable in development
 // Works with Claude Code and other MCP-compatible tools
 ```
 
 ### Parallel Routes
+
 ```
 app/
 ├── @modal/
@@ -195,6 +210,7 @@ app/
 ```
 
 ### Intercepting Routes
+
 ```
 app/
 ├── feed/
@@ -240,6 +256,7 @@ Summary: 2 issues found
 ### From middleware.ts to proxy.ts
 
 **Before (v15):**
+
 ```typescript
 // middleware.ts
 import { NextResponse } from 'next/server';
@@ -255,6 +272,7 @@ export const config = {
 ```
 
 **After (v16):**
+
 ```typescript
 // proxy.ts
 import { createProxy } from 'next/proxy';
@@ -272,6 +290,7 @@ export const proxy = createProxy({
 ### From getServerSideProps to Server Components
 
 **Before:**
+
 ```typescript
 // pages/dashboard.tsx
 export async function getServerSideProps() {
@@ -285,6 +304,7 @@ export default function Dashboard({ data }) {
 ```
 
 **After:**
+
 ```typescript
 // app/dashboard/page.tsx
 export default async function Dashboard() {

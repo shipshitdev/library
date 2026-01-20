@@ -535,6 +535,7 @@ done
 ## 5. Cleaning Git History
 
 **WARNING**: Before cleaning history:
+
 1. **Rotate all leaked credentials immediately** - cleaning history does NOT make secrets safe
 2. Create a backup of the repository
 3. Notify all collaborators

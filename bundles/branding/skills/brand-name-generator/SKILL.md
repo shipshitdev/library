@@ -48,6 +48,7 @@ Before generating names:
 ## Brandability Scoring
 
 Evaluate names on:
+
 - **Memorability**: Shorter = better (1-10)
 - **Pronounceability**: Vowel ratio, consonant clusters (1-10)
 - **Spellability**: Common patterns, no confusion (1-10)

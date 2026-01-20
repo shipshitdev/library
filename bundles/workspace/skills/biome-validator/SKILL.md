@@ -34,6 +34,7 @@ python3 ~/.claude/skills/biome-validator/scripts/validate.py --root . --strict
 ### 1. Biome Version & Schema
 
 **GOOD - Biome 2.3+:**
+
 ```json
 {
   "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json"
@@ -41,6 +42,7 @@ python3 ~/.claude/skills/biome-validator/scripts/validate.py --root . --strict
 ```
 
 **BAD - Old schema:**
+
 ```json
 {
   "$schema": "https://biomejs.dev/schemas/1.9.0/schema.json"
@@ -60,6 +62,7 @@ python3 ~/.claude/skills/biome-validator/scripts/validate.py --root . --strict
 ### 3. Linter Configuration
 
 **GOOD - Biome 2.x:**
+
 ```json
 {
   "linter": {
@@ -77,6 +80,7 @@ python3 ~/.claude/skills/biome-validator/scripts/validate.py --root . --strict
 ### 4. Biome Assist (2.0+)
 
 **GOOD - Using assist:**
+
 ```json
 {
   "assist": {
@@ -90,6 +94,7 @@ python3 ~/.claude/skills/biome-validator/scripts/validate.py --root . --strict
 ```
 
 **BAD - Old organizeImports location:**
+
 ```json
 {
   "organizeImports": {
@@ -101,6 +106,7 @@ python3 ~/.claude/skills/biome-validator/scripts/validate.py --root . --strict
 ### 5. Domains (2.0+)
 
 **GOOD - Using domains for framework-specific rules:**
+
 ```json
 {
   "linter": {
@@ -115,6 +121,7 @@ python3 ~/.claude/skills/biome-validator/scripts/validate.py --root . --strict
 ### 6. Suppression Comments
 
 **GOOD - Biome 2.0+ comments:**
+
 ```typescript
 // biome-ignore lint/suspicious/noExplicitAny: legacy code
 // biome-ignore-all lint/style/useConst
@@ -123,6 +130,7 @@ python3 ~/.claude/skills/biome-validator/scripts/validate.py --root . --strict
 ```
 
 **BAD - Wrong format:**
+
 ```typescript
 // @ts-ignore  // Not Biome
 // eslint-disable  // Wrong tool
@@ -131,7 +139,9 @@ python3 ~/.claude/skills/biome-validator/scripts/validate.py --root . --strict
 ## Biome 2.3+ Features
 
 ### Type-Aware Linting
+
 Biome 2.0+ includes type inference without requiring TypeScript compiler:
+
 ```json
 {
   "linter": {
@@ -146,6 +156,7 @@ Biome 2.0+ includes type inference without requiring TypeScript compiler:
 ```
 
 ### Assist Actions
+
 ```json
 {
   "assist": {
@@ -160,9 +171,11 @@ Biome 2.0+ includes type inference without requiring TypeScript compiler:
 ```
 
 ### Multi-file Analysis
+
 Lint rules can query information from other files for more powerful analysis.
 
 ### Framework Domains
+
 ```json
 {
   "linter": {
@@ -273,22 +286,26 @@ Summary: 2 issues found
 ## Migration from ESLint
 
 ### Step 1: Install Biome
+
 ```bash
 bun remove eslint prettier eslint-config-* eslint-plugin-*
 bun add -D @biomejs/biome@latest
 ```
 
 ### Step 2: Create biome.json
+
 ```bash
 bunx biome init
 ```
 
 ### Step 3: Migrate rules
+
 ```bash
 bunx biome migrate eslint --write
 ```
 
 ### Step 4: Update scripts
+
 ```json
 {
   "scripts": {
@@ -302,6 +319,7 @@ bunx biome migrate eslint --write
 ```
 
 ### Step 5: Remove old configs
+
 ```bash
 rm .eslintrc* .prettierrc* .eslintignore .prettierignore
 ```

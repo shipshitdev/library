@@ -64,6 +64,7 @@ Rate current solution problems + your improvement:
 ## Quick Discovery Questions
 
 **Problem Space:**
+
 1. What specific pain point does your ICP feel?
 2. How do they currently solve this?
 3. What's wrong with current solutions?
@@ -71,11 +72,13 @@ Rate current solution problems + your improvement:
 5. What does this problem cost them?
 
 **Timing:**
+
 1. Why is NOW the right time?
 2. What has changed recently?
 3. What barriers existed before that are now gone?
 
 **ICP:**
+
 1. Company type, size, industry
 2. Buyer vs. user role
 3. What triggers them to seek a solution?

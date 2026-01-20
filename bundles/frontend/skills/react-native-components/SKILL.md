@@ -25,6 +25,7 @@ Use when you're:
 ## Quick Reference
 
 ### Core Components
+
 - **View**: Flexbox container (default `display: flex`)
 - **Text**: Required wrapper for all text
 - **Image**: Use `expo-image` for better caching
@@ -32,12 +33,14 @@ Use when you're:
 - **FlatList**: For lists > 50 items
 
 ### StyleSheet Patterns
+
 - `StyleSheet.create`: Performance-optimized styles
 - Array syntax: `[baseStyle, condition && activeStyle]`
 - Dynamic: `useWindowDimensions` for responsive
 - Platform: `Platform.select({ ios: {}, android: {} })`
 
 ### Performance
+
 - `FlatList` with `initialNumToRender`, `windowSize`
 - `React.memo` for pure components
 - `useMemo` for expensive calculations

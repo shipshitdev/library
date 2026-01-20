@@ -13,6 +13,7 @@ Comprehensive code review focusing on quality, security, performance, and testin
 ## Quick Review
 
 For fast pre-commit checks:
+
 - git status
 - git diff HEAD~1
 - git log --oneline -5
@@ -24,6 +25,7 @@ Then review against critical checklist.
 ### 1. Code Quality
 
 TypeScript Excellence:
+
 - No any types (use proper types)
 - Interfaces in dedicated files
 - Return types on all functions
@@ -31,6 +33,7 @@ TypeScript Excellence:
 - Proper logging (not console.log)
 
 Pattern Compliance:
+
 - Follows existing codebase patterns
 - Consistent with similar code
 - Uses established abstractions
@@ -38,6 +41,7 @@ Pattern Compliance:
 ### 2. Security
 
 Critical Checks:
+
 - Input validation present
 - Auth checks before operations
 - No sensitive data in responses
@@ -46,6 +50,7 @@ Critical Checks:
 ### 3. Database Operations
 
 Query Review:
+
 - Proper filtering applied
 - Projections for large documents
 - Indexes exist for query patterns
@@ -55,6 +60,7 @@ Query Review:
 ### 4. Error Handling
 
 Required:
+
 - Try/catch blocks present
 - Errors logged properly
 - Generic error messages to client
@@ -63,6 +69,7 @@ Required:
 ### 5. Testing
 
 Required:
+
 - Unit tests exist
 - All public methods tested
 - Error cases tested
@@ -71,6 +78,7 @@ Required:
 ### 6. Performance
 
 Check:
+
 - No blocking operations in API routes
 - Heavy operations use queues
 - Database queries optimized
@@ -79,6 +87,7 @@ Check:
 ### 7. Documentation
 
 Check:
+
 - Code comments for complex logic
 - API documentation updated
 - README updated if needed
@@ -86,6 +95,7 @@ Check:
 ## Review Checklist
 
 Before approval:
+
 - All tests passing
 - No security issues
 - No any types
@@ -96,16 +106,19 @@ Before approval:
 ## Approval Criteria
 
 BLOCK if:
+
 - Security issues present
 - Tests failing
 - Build failing
 
 REQUEST CHANGES if:
+
 - Coverage too low
 - Missing documentation
 - Performance concerns
 
 APPROVE if:
+
 - All checks pass
 - Code is clean
 - Ready for production

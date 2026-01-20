@@ -1722,6 +1722,7 @@ export const AsLink: Story = {
 Before merging any component:
 
 ### Structure
+
 - [ ] Component in correct location (ui/patterns/features)
 - [ ] Follows file naming conventions (kebab-case)
 - [ ] Has types file (`.types.ts`)
@@ -1729,6 +1730,7 @@ Before merging any component:
 - [ ] Uses `forwardRef` where appropriate
 
 ### Code Quality
+
 - [ ] No `any` types
 - [ ] Props interface properly defined
 - [ ] Default props documented
@@ -1736,6 +1738,7 @@ Before merging any component:
 - [ ] Follows existing codebase patterns
 
 ### Accessibility
+
 - [ ] Semantic HTML elements
 - [ ] Proper ARIA attributes
 - [ ] Keyboard navigation works
@@ -1743,18 +1746,21 @@ Before merging any component:
 - [ ] Screen reader tested
 
 ### Performance
+
 - [ ] Memoization where needed
 - [ ] No unnecessary re-renders
 - [ ] Lazy loading for heavy components
 - [ ] Bundle size checked
 
 ### Testing
+
 - [ ] Unit tests written
 - [ ] Edge cases covered
 - [ ] Accessibility tests pass
 - [ ] Visual regression tests (if applicable)
 
 ### Documentation
+
 - [ ] JSDoc comments on exports
 - [ ] Storybook stories created
 - [ ] Usage examples provided

@@ -297,6 +297,7 @@
    - Validate light/dark theme consistency
 
 3. **Generate report**
+
    ```
    Color Violations Found: X
    - File: path/to/component.tsx:42
@@ -477,6 +478,7 @@ AI-generated frontends tend to converge on generic, "on distribution" outputs th
 **AUDIT FOR DISTINCTIVENESS:**
 
 When reviewing frontend code, ask:
+
 - Does this look like it was designed specifically for THIS product?
 - Would a user recognize this app from its visual style?
 - Are we using the same fonts/colors as every other AI-generated app?

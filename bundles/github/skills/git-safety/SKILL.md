@@ -12,6 +12,7 @@ Comprehensive security scanning, cleaning, and prevention for git repositories.
 **Removing secrets from git history does NOT make them safe!**
 
 Even after cleaning git history:
+
 - GitHub is scraped by bots within seconds of a push
 - Archive services may have captured snapshots
 - Forks retain the original history
@@ -22,15 +23,19 @@ Even after cleaning git history:
 ## Modes of Operation
 
 ### 1. `/git-safety scan` - Detect Sensitive Files
+
 Scan repository for sensitive files in current state and git history.
 
 ### 2. `/git-safety clean` - Remove from History
+
 Remove sensitive files using git-filter-repo or BFG.
 
 ### 3. `/git-safety prevent` - Set Up Prevention
+
 Configure .gitignore and pre-commit hooks.
 
 ### 4. `/git-safety full` - Complete Audit
+
 Run all three operations in sequence.
 
 ## Sensitive File Patterns
@@ -43,17 +48,20 @@ Run all three operations in sequence.
 ## Quick Commands
 
 **Scan for sensitive files in history:**
+
 ```bash
 git log --all --pretty=format: --name-only --diff-filter=A | sort -u | grep -iE 'env|secret|credential|key'
 ```
 
 **Remove .env from all history:**
+
 ```bash
 git filter-repo --path .env --invert-paths --force
 git push origin --force --all
 ```
 
 **Add to .gitignore:**
+
 ```bash
 echo -e "\n.env\n.env.*\n*.pem\n*.key\ncredentials.json" >> .gitignore
 ```
@@ -61,6 +69,7 @@ echo -e "\n.env\n.env.*\n*.pem\n*.key\ncredentials.json" >> .gitignore
 ## Emergency Response
 
 If you've leaked credentials:
+
 1. **IMMEDIATELY rotate the credential**
 2. Check access logs
 3. Run `/git-safety clean`

@@ -11,14 +11,16 @@ Use this checklist for rapid design audits of new features or components.
 
 ## 1. Color Audit (5 min)
 
-### Check for violations:
+### Check for violations
+
 - [ ] No hardcoded hex colors (`#000000`, `#ffffff`, etc.)
 - [ ] No arbitrary Tailwind values (`bg-[#fafafa]`)
 - [ ] No inline color styles
 - [ ] All colors use theme tokens (`bg-primary`, `bg-base-100`, etc.)
 - [ ] Dark mode works correctly
 
-### Quick scan commands:
+### Quick scan commands
+
 ```bash
 # In the file/component directory
 grep -n "#[0-9a-fA-F]\{6\}" *.tsx
@@ -30,14 +32,16 @@ grep -n "style={{.*color" *.tsx
 
 ## 2. Typography Audit (3 min)
 
-### Check for violations:
+### Check for violations
+
 - [ ] No custom font families (Inter is default)
 - [ ] No arbitrary text sizes (`text-[18px]`)
 - [ ] Proper heading hierarchy (h1 → h2 → h3)
 - [ ] Responsive typography modifiers (`text-3xl sm:text-4xl`)
 - [ ] Consistent font weights
 
-### Quick checks:
+### Quick checks
+
 ```bash
 # Check for arbitrary sizes
 grep -n "text-\[" *.tsx
@@ -49,14 +53,16 @@ grep -n "fontFamily" *.tsx
 
 ## 3. Spacing Audit (3 min)
 
-### Check for violations:
+### Check for violations
+
 - [ ] No arbitrary spacing (`p-[17px]`, `m-[23px]`)
 - [ ] Consistent padding/margin scale
 - [ ] Proper container spacing (`px-4 md:px-8`)
 - [ ] Responsive spacing modifiers
 - [ ] No inline spacing styles
 
-### Quick checks:
+### Quick checks
+
 ```bash
 # Check for arbitrary spacing
 grep -n "p-\[\|m-\[\|gap-\[" *.tsx
@@ -66,14 +72,16 @@ grep -n "p-\[\|m-\[\|gap-\[" *.tsx
 
 ## 4. Component Patterns Audit (5 min)
 
-### Check for violations:
+### Check for violations
+
 - [ ] Cards use `.gf-card` class
 - [ ] App shells use `.gf-app`
 - [ ] Modals use `.glass-modal`
 - [ ] Inputs use `.glass-input` or `.form-focus`
 - [ ] Buttons use standard variants (`.btn-secondary`, etc.)
 
-### Manual inspection:
+### Manual inspection
+
 - [ ] Count custom card implementations
 - [ ] Check modal consistency
 - [ ] Verify button patterns
@@ -82,7 +90,8 @@ grep -n "p-\[\|m-\[\|gap-\[" *.tsx
 
 ## 5. Accessibility Audit (7 min)
 
-### Critical checks:
+### Critical checks
+
 - [ ] Semantic HTML (`<button>`, not `<div onClick>`)
 - [ ] ARIA labels on icon buttons
 - [ ] Color contrast ≥ 4.5:1 for text
@@ -91,7 +100,8 @@ grep -n "p-\[\|m-\[\|gap-\[" *.tsx
 - [ ] Keyboard navigation works
 - [ ] Screen reader tested (if critical feature)
 
-### Quick checks:
+### Quick checks
+
 ```bash
 # Check for non-semantic buttons
 grep -n "<div.*onClick" *.tsx
@@ -99,7 +109,8 @@ grep -n "<div.*onClick" *.tsx
 grep -n "<button" *.tsx | grep -v "aria-label"
 ```
 
-### Manual testing:
+### Manual testing
+
 - [ ] Tab through all interactive elements
 - [ ] Check focus indicators visible
 - [ ] Test with browser color contrast checker
@@ -108,13 +119,15 @@ grep -n "<button" *.tsx | grep -v "aria-label"
 
 ## 6. Responsive Design Audit (4 min)
 
-### Check for violations:
+### Check for violations
+
 - [ ] No fixed widths without responsive variants
 - [ ] Responsive modifiers on key elements (`sm:`, `md:`, `lg:`)
 - [ ] Mobile-first approach
 - [ ] All breakpoints tested (640px, 768px, 1024px)
 
-### Manual testing:
+### Manual testing
+
 - [ ] Resize browser to 375px (mobile)
 - [ ] Resize browser to 768px (tablet)
 - [ ] Resize browser to 1280px (desktop)
@@ -123,13 +136,15 @@ grep -n "<button" *.tsx | grep -v "aria-label"
 
 ## 7. Animation Audit (2 min)
 
-### Check for violations:
+### Check for violations
+
 - [ ] Transitions on interactive elements
 - [ ] Consistent durations (`duration-300`, `duration-500`)
 - [ ] No arbitrary durations (`duration-[247ms]`)
 - [ ] Smooth hover states
 
-### Quick checks:
+### Quick checks
+
 ```bash
 # Check for arbitrary durations
 grep -n "duration-\[" *.tsx
@@ -139,13 +154,15 @@ grep -n "duration-\[" *.tsx
 
 ## 8. Dark Mode Audit (3 min)
 
-### Check for violations:
+### Check for violations
+
 - [ ] All components work in dark theme
 - [ ] No hardcoded light/dark colors
 - [ ] Images/icons adapt to theme
 - [ ] Sufficient contrast in both themes
 
-### Manual testing:
+### Manual testing
+
 - [ ] Toggle to dark mode
 - [ ] Check all components render correctly
 - [ ] Verify readability
@@ -179,18 +196,21 @@ Total:                       ___/100
 If score is below 75, prioritize these quick wins:
 
 ### 5-Minute Fixes
+
 1. Replace hardcoded colors with theme tokens
 2. Add missing `aria-label` attributes
 3. Fix arbitrary spacing values
 4. Add transitions to buttons
 
 ### 15-Minute Fixes
+
 1. Use `.gf-card` for custom cards
 2. Add responsive modifiers to fixed-width elements
 3. Fix semantic HTML (divs → buttons)
 4. Add focus states
 
 ### 30-Minute Fixes
+
 1. Fix color contrast violations
 2. Implement proper keyboard navigation
 3. Refactor duplicate component patterns
@@ -203,17 +223,20 @@ If score is below 75, prioritize these quick wins:
 **Date**: ___________________
 **Time Taken**: ___ minutes
 
-**Critical Issues**:
+**Critical Issues:**
+
 -
 -
 -
 
-**Quick Wins**:
+**Quick Wins:**
+
 -
 -
 -
 
-**Follow-up Required**:
+**Follow-up Required:**
+
 -
 -
 -

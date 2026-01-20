@@ -65,6 +65,7 @@ Value = (Dream Outcome × Perceived Likelihood) / (Time Delay × Effort Required
 ## Quick Gather Questions
 
 Ask:
+
 1. What exactly are you selling?
 2. What do you promise they'll get?
 3. What's included? (Deliverables, features, bonuses)

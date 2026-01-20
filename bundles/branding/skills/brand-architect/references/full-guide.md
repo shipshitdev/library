@@ -27,6 +27,7 @@ Build from the bottom up. Name first, then positioning, then voice, then identit
 Ask the user:
 
 > **What are we naming/branding?**
+>
 > 1. Is this a company, product, or feature?
 > 2. What does it do in one sentence?
 > 3. Who is the primary audience?
@@ -103,6 +104,7 @@ we [key differentiator].
 ```
 
 **Example:**
+
 ```
 For B2B sales teams
 who struggle with follow-up consistency,
@@ -132,6 +134,7 @@ with simple pricing and 5-minute setup.
 ```
 
 **Common Positioning Dimensions:**
+
 - Price (Low ↔ Premium)
 - Complexity (Simple ↔ Enterprise)
 - Scope (Narrow ↔ Broad)

@@ -268,6 +268,7 @@ flowchart LR
 - [ ] Add password reset flow
 - [ ] Implement MFA support
 - [ ] Add social login providers
+
 ```
 
 ### Update Related Files
@@ -556,6 +557,7 @@ flowchart TD
     F -->|No| H[Show error]
     G --> I[Redirect to dashboard]
 ```
+
 ```
 
 ### Text Flow Alternative
@@ -566,6 +568,7 @@ When mermaid is not supported:
 ### System Flow
 
 ```
+
 User Action
     │
     ▼
@@ -582,6 +585,7 @@ User Action
 ┌─────────────┐
 │  Response   │
 └─────────────┘
+
 ```
 ```
 
@@ -798,6 +802,7 @@ flowchart TD
 ---
 
 **Total sessions today:** 2
+
 ```
 
 ---

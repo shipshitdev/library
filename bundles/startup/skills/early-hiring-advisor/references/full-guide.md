@@ -68,6 +68,7 @@ Work from bottom up. Prioritize roles first, then timing, then comp, then cultur
 | Cost sensitive | | | Y |
 
 **Common Outsource-First Roles:**
+
 - Legal (use a startup lawyer)
 - Accounting (use a startup bookkeeper)
 - PR (project-based)
@@ -76,6 +77,7 @@ Work from bottom up. Prioritize roles first, then timing, then comp, then cultur
 - Content writing (can be, early on)
 
 **Always Hire (Don't Outsource):**
+
 - Core engineering (your product)
 - Sales (if sales-driven)
 - Customer success (customer relationships)
@@ -114,10 +116,12 @@ We also offer [benefits: flexibility, learning, impact, etc.]"
 | 50+ | Entry-Junior | 0.01-0.1% |
 
 **First Engineer Equity:**
+
 - First engineer (pre-seed): 1-3%
 - First engineer (seed): 0.5-1.5%
 
 **Vesting Standard:**
+
 - 4 years total
 - 1 year cliff (25% vests at 12 months)
 - Monthly vesting thereafter
@@ -135,6 +139,7 @@ We also offer [benefits: flexibility, learning, impact, etc.]"
 | **Recruiters** | Medium | High | $$$ | When desperate |
 
 **Where Early-Stage Talent Hangs Out:**
+
 - Twitter/X (tech, startup folks)
 - LinkedIn (professionals)
 - Slack communities (industry-specific)
@@ -166,6 +171,7 @@ We also offer [benefits: flexibility, learning, impact, etc.]"
 | "What would make you leave in 6 months?" | Risk factors |
 
 **Red Flags for Early Hires:**
+
 - Needs detailed job descriptions
 - Can't handle ambiguity
 - Optimizing for title/salary over impact
@@ -285,6 +291,7 @@ Do you have any questions? What are your thoughts?"
 ## The "Too Early to Hire" Warning Signs
 
 Don't hire if:
+
 - You don't know exactly what they'll do in week 1
 - You haven't done the job yourself first
 - You can't afford them for 18+ months
@@ -295,6 +302,7 @@ Don't hire if:
 ## The "First 10 Rule"
 
 Your first 10 hires:
+
 - **Shape your culture** — they ARE the culture
 - **Set quality bar** — you get what you hire
 - **Define work ethic** — their habits become norms

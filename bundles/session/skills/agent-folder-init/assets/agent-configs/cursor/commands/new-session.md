@@ -213,13 +213,13 @@ mkdir -p scripts/sh
 chmod +x scripts/sh/new-session.sh
 ```
 
-2. Make template available:
+1. Make template available:
 
 ```bash
 # Ensure .agent/SESSIONS/TEMPLATE.md exists
 ```
 
-3. Run from project root
+1. Run from project root
 
 ## Shell Alias (Optional)
 

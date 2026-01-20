@@ -3,6 +3,7 @@
 For AI interfaces that show chain-of-thought or "thinking" processes.
 
 ## Table of Contents
+
 - [When to Use](#when-to-use)
 - [Anatomy of a Thinking Indicator](#anatomy-of-a-thinking-indicator)
 - [Visibility Levels](#visibility-levels)
@@ -13,12 +14,14 @@ For AI interfaces that show chain-of-thought or "thinking" processes.
 ## When to Use
 
 Use reasoning display when:
+
 - AI is solving complex problems (math, logic, planning)
 - Users benefit from understanding *how* the answer was reached
 - Trust-building is important (financial, medical, legal domains)
 - The process takes >3 seconds
 
 Skip reasoning display when:
+
 - Simple Q&A or lookups
 - Speed is more important than transparency
 - Content speaks for itself (creative writing, summaries)
@@ -36,6 +39,7 @@ Skip reasoning display when:
 ```
 
 **Components:**
+
 1. **Icon** - Animated to show activity (brain, sparkles, dots)
 2. **Label** - Changes based on phase ("Thinking...", "Analyzing...", "Finalizing...")
 3. **Timer** - Elapsed time (reduces anxiety about stuck states)
@@ -45,25 +49,30 @@ Skip reasoning display when:
 ## Visibility Levels
 
 ### Level 1: Minimal (ChatGPT-style)
+
 ```
 Thinking...
 ```
+
 - Just a label + animation
 - Collapses when done
 - Best for: Fast responses, simple queries
 
 ### Level 2: Summary (Claude-style)
+
 ```
 ▼ Thinking (8s)
   • Analyzing request
   • Searching knowledge
   • Formulating response
 ```
+
 - Collapsed by default, expandable
 - Shows high-level steps
 - Best for: Balance of transparency and simplicity
 
 ### Level 3: Verbose (DeepSeek-style)
+
 ```
 Thinking...
 First, I need to understand what the user is asking.
@@ -71,6 +80,7 @@ They want to know about X, which involves Y and Z.
 Let me consider the implications...
 [continues streaming]
 ```
+
 - Full reasoning visible
 - Streams in real-time
 - Best for: Power users, debugging, research contexts
@@ -90,6 +100,7 @@ Let me consider the implications...
 ```
 
 **State behaviors:**
+
 - **Idle**: No indicator visible
 - **Thinking**: Animated indicator, timer counting, steps appearing
 - **Done**: Animation stops, checkmark or fade, then transition to answer
@@ -99,6 +110,7 @@ Let me consider the implications...
 ## Implementation Patterns
 
 ### Pattern A: Collapsible Accordion
+
 ```
 // Pseudocode - adapt to your framework
 
@@ -139,6 +151,7 @@ ThinkingIndicator:
 ```
 
 ### Pattern B: Inline Badge
+
 ```
 // For chat interfaces where thinking appears inline
 
@@ -151,6 +164,7 @@ ThinkingIndicator:
 ```
 
 ### Pattern C: Side Panel
+
 ```
 // For complex reasoning that shouldn't interrupt main flow
 

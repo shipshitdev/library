@@ -48,6 +48,7 @@
 **Goal:** Map the monorepo structure and identify audit targets.
 
 **Actions:**
+
 ```bash
 # Discover monorepo structure
 ls -la apps/
@@ -63,6 +64,7 @@ cat apps/extension/package.json  # Plasmo
 ```
 
 **Output:**
+
 ```
 Workspace: GenFeedAI
 ├── apps/
@@ -81,6 +83,7 @@ Workspace: GenFeedAI
 ### Phase 1: Frontend Audit (Next.js)
 
 **Skills Invoked:**
+
 - `performance-expert` (primary)
 - `design-consistency-auditor`
 - `accessibility`
@@ -98,6 +101,7 @@ Workspace: GenFeedAI
 | Code Splitting | Dynamic imports | Manual check |
 
 **Checks:**
+
 ```typescript
 // Bundle Analysis
 // Run: npx @next/bundle-analyzer
@@ -119,6 +123,7 @@ Workspace: GenFeedAI
 ```
 
 **Report Template:**
+
 ```markdown
 ## Frontend Performance Report
 
@@ -153,6 +158,7 @@ Workspace: GenFeedAI
 ### Phase 2: Backend Audit (NestJS)
 
 **Skills Invoked:**
+
 - `performance-expert` (primary)
 - `security-expert`
 
@@ -168,6 +174,7 @@ Workspace: GenFeedAI
 | CPU Usage | < 70% | Process metrics |
 
 **Checks:**
+
 ```typescript
 // API Performance Analysis
 // - Identify slow endpoints
@@ -190,6 +197,7 @@ Workspace: GenFeedAI
 ```
 
 **Report Template:**
+
 ```markdown
 ## Backend Performance Report
 
@@ -222,6 +230,7 @@ Workspace: GenFeedAI
 ### Phase 3: Database Audit (MongoDB)
 
 **Skills Invoked:**
+
 - `performance-expert` (primary)
 
 **Metrics to Collect:**
@@ -234,6 +243,7 @@ Workspace: GenFeedAI
 | Slow Queries (>100ms) | 0 | Slow query log |
 
 **Checks:**
+
 ```javascript
 // Index Analysis
 db.collection.getIndexes()
@@ -251,6 +261,7 @@ db.serverStatus().connections
 ```
 
 **Report Template:**
+
 ```markdown
 ## Database Performance Report
 
@@ -279,6 +290,7 @@ db.serverStatus().connections
 ### Phase 4: Extension & Shared Packages
 
 **Skills Invoked:**
+
 - `performance-expert` (primary)
 - `design-consistency-auditor` (for extension UI)
 
@@ -294,6 +306,7 @@ db.serverStatus().connections
 | Message Latency | < 10ms | Performance.now() |
 
 **Checks:**
+
 ```typescript
 // Bundle size
 // Check: apps/extension/build/
@@ -311,6 +324,7 @@ db.serverStatus().connections
 #### Shared Packages Audit
 
 **Checks:**
+
 ```bash
 # Dependency duplication
 npx depcheck
@@ -326,6 +340,7 @@ npx depcheck
 ```
 
 **Report Template:**
+
 ```markdown
 ## Extension & Packages Report
 
@@ -354,9 +369,11 @@ npx depcheck
 ### Phase 5: Consolidation & Prioritization
 
 **Skills Invoked:**
+
 - `qa-reviewer` (validation)
 
 **Actions:**
+
 1. Aggregate all findings from Phases 1-4
 2. Calculate impact scores (1-10)
 3. Estimate effort (hours/days)
@@ -364,6 +381,7 @@ npx depcheck
 5. Prioritize recommendations
 
 **Final Report Template:**
+
 ```markdown
 # Workspace Performance Audit Report
 **Project:** [Name]
@@ -415,16 +433,19 @@ npx depcheck
 ## Best Practices
 
 ### Before Audit
+
 - Ensure all apps are buildable
 - Have access to production metrics if available
 - Clear any local caches for accurate bundle analysis
 
 ### During Audit
+
 - Document current state before changes
 - Take screenshots of metrics
 - Note any anomalies or edge cases
 
 ### After Audit
+
 - Create tickets for each recommendation
 - Establish baseline metrics
 - Schedule follow-up audit (quarterly recommended)
@@ -434,6 +455,7 @@ npx depcheck
 **User:** "Run a performance audit on the GenFeedAI monorepo"
 
 **Orchestrator:**
+
 ```
 Starting Workspace Performance Audit...
 

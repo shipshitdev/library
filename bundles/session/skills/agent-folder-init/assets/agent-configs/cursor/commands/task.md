@@ -96,6 +96,7 @@ Ask these questions if not clear from request:
    ```
 
 3. Check examples:
+
    ```bash
    cat .agent/EXAMPLES/[category]/[example-name].md
    ```
@@ -122,7 +123,7 @@ await mcp_context7_get_library_docs(
 );
 ```
 
-2. Document which libraries will be used in PRD
+1. Document which libraries will be used in PRD
 
 ### Step 5: Create Files (Task + PRD)
 
@@ -239,6 +240,7 @@ Create companion PRD with implementation details (see PRD Template section below
    - [Tenant/organization] isolation (if multi-tenant)
 
 3. Run test suite:
+
    ```bash
    npm test
    ```

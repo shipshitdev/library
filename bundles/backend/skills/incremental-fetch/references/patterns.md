@@ -31,6 +31,7 @@ BTCUSD      | prices_1h_oldest| 8000000
 ```
 
 This design allows:
+
 - N watermark types per entity without schema changes
 - Different data types (tweets, prices_1h, prices_1d) tracked independently
 - Bidirectional fetching (newest + oldest) per data type
@@ -169,7 +170,9 @@ def fetch_with_retry(url: str, params: dict, max_attempts: int = 3):
 ## Gotchas
 
 ### 1. Compare IDs as integers
+
 Tweet IDs and similar identifiers are numeric but may be stored as strings. Always compare as int:
+
 ```python
 # WRONG: string comparison ("9" > "10" is True)
 if item_id > run_newest_id:
@@ -179,12 +182,16 @@ if int(item_id) > int(run_newest_id):
 ```
 
 ### 2. Data saves vs watermark updates are DIFFERENT
+
 This is the #1 mistake. The timing is different for a reason:
+
 - **Data**: Save per-page for resilience (crash recovery)
 - **Watermarks**: Save at end for correctness (don't claim progress until complete)
 
 ### 3. Handle backfill-without-data error
+
 If user requests `--backfill` but no data exists yet, error loudly:
+
 ```python
 if backfill and not oldest_id:
     oldest_in_db = conn.execute("SELECT MIN(id) FROM items WHERE asset_id = ?", [asset_id]).fetchone()[0]
@@ -193,7 +200,9 @@ if backfill and not oldest_id:
 ```
 
 ### 4. Rate limit skip tracking
+
 When you hit rate limits and skip an asset, record it for next run:
+
 ```python
 FETCH_STATE_FILE = Path("data/fetch_state.json")
 
@@ -209,7 +218,9 @@ def write_fetch_state(skipped_assets: list, reason: str):
 Then prioritize skipped assets on next run.
 
 ### 5. Use ON CONFLICT for upserts
+
 When inserting data, handle duplicates gracefully:
+
 ```python
 conn.execute("""
     INSERT INTO items (id, asset_id, data, fetched_at)

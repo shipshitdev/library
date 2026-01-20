@@ -17,10 +17,12 @@ Create a new session entry for todays work.
 ### One File Per Day
 
 CORRECT:
+
 - .agent/SESSIONS/2025-01-15.md
 - .agent/SESSIONS/2025-01-16.md
 
 WRONG:
+
 - .agent/SESSIONS/2025-01-15-feature-name.md
 
 Multiple sessions on same day go in the same file.
@@ -32,15 +34,19 @@ Multiple sessions on same day go in the same file.
 ## Session 1 (HH:MM AM/PM)
 
 ### Goal
+
 [To be filled]
 
 ### Changes Made
+
 - [To be documented]
 
 ### Decisions
+
 - [To be documented]
 
 ### Incomplete
+
 - [To be documented]
 
 ## Related Commands

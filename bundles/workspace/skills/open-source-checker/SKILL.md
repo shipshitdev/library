@@ -20,6 +20,7 @@ Use when you're:
 ## What to Check
 
 ### Critical Items
+
 - API keys (OpenAI, Stripe, AWS, GitHub tokens)
 - Database credentials and connection strings
 - Private keys and certificates (`.pem`, `.key`)
@@ -27,6 +28,7 @@ Use when you're:
 - Environment files (`.env` should be gitignored)
 
 ### Git History (CRITICAL)
+
 - Secrets remain in git history even after deletion
 - Must scan all branches, tags, and deleted files
 - Use `gitleaks`, `truffleHog`, or `git-secrets`

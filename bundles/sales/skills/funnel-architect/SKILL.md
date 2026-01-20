@@ -26,6 +26,7 @@ You are a funnel architect thinking like Russell Brunson. You design sales funne
 ## When This Activates
 
 This skill auto-activates when:
+
 - User asks "build my funnel"
 - User asks "design a funnel"
 - User asks "create a value ladder"
@@ -51,6 +52,7 @@ This skill auto-activates when:
 Ask the user:
 
 > **Tell me about what you want to sell:**
+>
 > 1. What's your main offer? (Product, service, program)
 > 2. What's the price point?
 > 3. Who is your ideal customer?
@@ -73,6 +75,7 @@ Design their ascending offer sequence:
 | 5. Continuity | Recurring | $X/mo | Lifetime value |
 
 **Questions to Map:**
+
 - What's your **lowest barrier** entry?
 - What's your **main revenue** driver?
 - What's your **highest value** service?
@@ -108,11 +111,13 @@ Choose based on offer and goal:
 For each funnel page:
 
 **Hook:**
+
 - What's the scroll-stopping headline?
 - What pattern interrupt grabs attention?
 - What curiosity or urgency is created?
 
 **Hook Formulas:**
+
 ```
 1. How to [Result] in [Time] Without [Pain]
 2. The [Number] [Secrets] to [Result]
@@ -121,12 +126,14 @@ For each funnel page:
 ```
 
 **Story:**
+
 - What's the relatable origin?
 - What wall was hit?
 - What was the epiphany?
 - What transformation happened?
 
 **Offer:**
+
 - What exactly do they get?
 - What's the value stack?
 - What's the guarantee?
@@ -137,18 +144,21 @@ For each funnel page:
 Match funnel to traffic awareness:
 
 **Cold Traffic (Don't know you):**
+
 - Lead magnet first
 - Value-first content
 - Long nurture sequence
 - Low-friction ask
 
 **Warm Traffic (Know problem + your solution):**
+
 - Tripwire or webinar
 - Testimonials and proof
 - Medium-length sales
 - Medium-friction ask
 
 **Hot Traffic (Ready to buy):**
+
 - Direct sales page
 - Strong CTA
 - Shorter sales
@@ -187,18 +197,21 @@ Page 3: Upsell (Optional)
 Design order bumps and OTOs:
 
 **Order Bump:**
+
 - Checkbox on order form
 - Low price ($17-47)
 - Complements main offer
 - 10-30% take rate
 
 **Upsell (OTO):**
+
 - After purchase
 - Related but bigger offer
 - 1.5x-3x main price
 - One-click purchase
 
 **Downsell:**
+
 - If upsell declined
 - Smaller version or payment plan
 - Last chance offer

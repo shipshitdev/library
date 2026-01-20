@@ -49,6 +49,7 @@
 ```
 
 **Process:**
+
 1. Read controller file
 2. Identify route, method, DTOs
 3. Check authentication requirements
@@ -60,6 +61,7 @@
 **Location:** `[controller].spec.ts` (co-located with controller)
 
 **Structure:**
+
 ```typescript
 describe('UsersController', () => {
   let controller: UsersController;

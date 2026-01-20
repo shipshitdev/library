@@ -212,6 +212,7 @@ When reviewing copy, check for:
 ## Common Copy Patterns
 
 **Discover project-specific patterns from:**
+
 - Existing UI copy in codebase
 - Project documentation
 - Brand guidelines
@@ -220,24 +221,28 @@ When reviewing copy, check for:
 **Common patterns (adapt to project):**
 
 **Marketing Pages:**
+
 - Hero: Bold transformation statement matching project's value prop
 - Features: Action + Outcome format
 - Social proof: Specific results, not testimonials
 - CTA: Match project's CTA style
 
 **App Interfaces:**
+
 - Instructions: Direct, step-by-step
 - Tooltips: Explain constraints and limits
 - Empty states: Show what's possible + CTA to create
 - Success states: Specific achievement + next action
 
 **Data Dashboards:**
+
 - Metrics: Always labeled with units
 - Insights: Actionable recommendations
 - Empty states: Clear, helpful messages
 - Filters: Clear, specific options
 
 **Forms & Settings:**
+
 - Labels: Clear, descriptive
 - Help text: Why this matters + recommended settings
 - Warnings: Specific impacts of changes
@@ -262,37 +267,31 @@ When reviewing copy, check for:
 
 ## Example Copy Reviews
 
-### ❌ Before
+### Example 1: Hero Copy
 
-"Experience the power of our innovative AI-driven content creation platform that leverages cutting-edge technology to transform your digital presence."
+**Before:** "Experience the power of our innovative AI-driven content creation platform that leverages cutting-edge technology to transform your digital presence."
 
-### ✅ After
-
-"Create videos, images, and articles with AI. Publish everywhere. Track revenue."
+**After:** "Create videos, images, and articles with AI. Publish everywhere. Track revenue."
 
 **Why:** Direct, specific, focused on outcomes. No buzzwords.
 
 ---
 
-### ❌ Before
+### Example 2: CTA Copy
 
-"Learn More About Our Solutions"
+**Before:** "Learn More About Our Solutions"
 
-### ✅ After
-
-"Request Access"
+**After:** "Request Access"
 
 **Why:** Action-oriented, clear next step, reinforces invite-only positioning.
 
 ---
 
-### ❌ Before
+### Example 3: Feature Copy
 
-"Advanced analytics dashboard with comprehensive insights"
+**Before:** "Advanced analytics dashboard with comprehensive insights"
 
-### ✅ After
-
-"Track engagement, reach, and ROI across all channels"
+**After:** "Track engagement, reach, and ROI across all channels"
 
 **Why:** Specific metrics, clear value, no jargon.
 
@@ -333,6 +332,7 @@ This skill activates automatically when you're:
 - Creating error messages, tooltips, or microcopy
 
 **Before writing, always:**
+
 1. Discover project's brand voice from documentation
 2. Check for project-specific copywriting skills
 3. Review existing copy examples

@@ -24,6 +24,7 @@ You are a financial operations expert specializing in indie business finances. Y
 ## When This Activates
 
 This skill auto-activates when:
+
 - User asks "am I actually profitable"
 - User mentions taxes, bookkeeping, or accounting
 - User asks about business structure (LLC, S-corp)
@@ -49,6 +50,7 @@ This skill auto-activates when:
 Ask the user:
 
 > **Tell me about your current financial setup:**
+>
 > 1. How many businesses/revenue streams do you have?
 > 2. What's your approximate monthly revenue (total)?
 > 3. Do you have separate business bank accounts?
@@ -57,6 +59,7 @@ Ask the user:
 > 6. What's your current business structure? (LLC, sole prop, S-corp)
 
 **Financial Health Symptoms:**
+
 | Symptom | What It Means |
 |---------|--------------|
 | "I think I'm profitable" | No clear tracking |
@@ -70,6 +73,7 @@ Ask the user:
 Calculate actual profit:
 
 **Monthly Profit Formula:**
+
 ```
 Total Revenue
 - Cost of Goods Sold (COGS)
@@ -87,6 +91,7 @@ Total Revenue
 ```
 
 **Example:**
+
 ```
 Revenue: $20,000
 - COGS: $4,000 (API costs, hosting, contractors)
@@ -104,6 +109,7 @@ Revenue: $20,000
 For each business, track separately:
 
 **Business P&L Template:**
+
 | Business | Revenue | COGS | Gross Margin | OpEx | Profit | % |
 |----------|---------|------|--------------|------|--------|---|
 | Business A | $X | $X | X% | $X | $X | X% |
@@ -112,6 +118,7 @@ For each business, track separately:
 | **TOTAL** | **$X** | **$X** | **X%** | **$X** | **$X** | **X%** |
 
 **Cash Flow by Business:**
+
 | Business | Starting Cash | + Revenue | - Expenses | = Ending Cash | Runway |
 |----------|--------------|-----------|------------|---------------|--------|
 | Business A | $X | $X | $X | $X | X months |
@@ -129,6 +136,7 @@ For each business, track separately:
 | Q4 | Jan 15 (next year) | Sept-Dec income |
 
 **Tax Reserve Formula:**
+
 ```
 Monthly Tax Reserve = Monthly Profit × 25-35%
 
@@ -139,6 +147,7 @@ Why 25-35%:
 ```
 
 **S-Corp Consideration:**
+
 | Annual Profit | Structure | Why |
 |--------------|-----------|-----|
 | < $40K | Sole Prop/LLC | Simple, SE tax not too painful |
@@ -146,6 +155,7 @@ Why 25-35%:
 | > $80K | Likely S-Corp | Significant SE tax savings |
 
 **S-Corp Basics:**
+
 - Pay yourself "reasonable salary" (W-2)
 - Take rest as distributions (no SE tax)
 - Requires payroll, more complexity
@@ -154,12 +164,14 @@ Why 25-35%:
 ### Step 5: Cash Flow Management
 
 **The Cash Flow Reality:**
+
 ```
 When money HITS your account ≠ When you "earned" it
 When money LEAVES your account ≠ When you "spent" it
 ```
 
 **Cash Flow Forecasting:**
+
 | Week | Expected In | Expected Out | Net | Running Balance |
 |------|-------------|--------------|-----|-----------------|
 | Week 1 | $X | $X | +/- $X | $X |
@@ -168,6 +180,7 @@ When money LEAVES your account ≠ When you "spent" it
 | Week 4 | $X | $X | +/- $X | $X |
 
 **Danger Zones:**
+
 - Balance < 2 months expenses = Yellow alert
 - Balance < 1 month expenses = Red alert
 - Balance < 2 weeks expenses = Emergency
@@ -250,7 +263,9 @@ When money LEAVES your account ≠ When you "spent" it
 
 ### Profit Calculation
 ```
+
 Revenue:           $X
+
 - COGS:            $X
 = Gross Profit:    $X (X% margin)
 - Operating:       $X
@@ -259,6 +274,7 @@ Revenue:           $X
 = Pre-Tax Profit:  $X
 - Tax Reserve:     $X (X%)
 = True Net Profit: $X (X% of revenue)
+
 ```
 
 ## Cash Flow Status
@@ -352,17 +368,20 @@ Revenue:           $X
 ## When to Get Professional Help
 
 **Hire a bookkeeper when:**
+
 - Revenue > $10K/month
 - More than 50 transactions/month
 - You hate doing it (time cost > bookkeeper cost)
 
 **Hire an accountant when:**
+
 - Revenue > $50K/year
 - Considering S-corp election
 - Multiple businesses with complex structures
 - Audit concerns or back taxes
 
 **Hire a CFO/fractional CFO when:**
+
 - Revenue > $500K/year
 - Need strategic financial planning
 - Raising capital or considering exit

@@ -23,6 +23,7 @@ You are an offer architect specializing in Alex Hormozi's Grand Slam Offer frame
 ## When This Activates
 
 This skill auto-activates when:
+
 - User discusses creating or improving an offer
 - User mentions low conversions or poor sales
 - User asks "what should I sell" or "how do I package this"
@@ -38,6 +39,7 @@ Value = (Dream Outcome × Perceived Likelihood of Achievement) / (Time Delay × 
 ```
 
 **To maximize value:**
+
 - **INCREASE** Dream Outcome (make it bigger, more desirable)
 - **INCREASE** Perceived Likelihood (add proof, guarantees, certainty)
 - **DECREASE** Time Delay (faster results, quick wins)
@@ -50,6 +52,7 @@ Value = (Dream Outcome × Perceived Likelihood of Achievement) / (Time Delay × 
 Ask the user:
 
 > **Tell me about your customer and what you sell:**
+>
 > 1. Who is your ideal customer? (Be specific: role, situation, pain)
 > 2. What do they THINK they want? (The surface desire)
 > 3. What do they ACTUALLY want? (The deeper transformation)
@@ -57,6 +60,7 @@ Ask the user:
 > 5. What keeps them up at night? (The pain to eliminate)
 
 **Dream Outcome Framework:**
+
 - **Surface Desire**: What they say they want (e.g., "I want more leads")
 - **Root Desire**: What they actually want (e.g., "I want financial freedom")
 - **Dream Outcome**: The transformation (e.g., "I want to never worry about money again")
@@ -66,6 +70,7 @@ Ask the user:
 Ask the user:
 
 > **Why would someone believe your offer will work?**
+>
 > 1. What proof do you have? (Case studies, testimonials, data)
 > 2. What's your track record? (Years, customers, results)
 > 3. What guarantees could you offer? (Risk reversal)
@@ -73,6 +78,7 @@ Ask the user:
 > 5. What makes you different from others who failed them before?
 
 **Likelihood Boosters:**
+
 - **Social Proof**: Customer results, testimonials, logos
 - **Authority**: Credentials, experience, media features
 - **Specificity**: Exact numbers, timeframes, outcomes
@@ -84,6 +90,7 @@ Ask the user:
 Ask the user:
 
 > **How fast can your customer see results?**
+>
 > 1. What's the fastest win you can deliver? (First 24 hours, first week)
 > 2. What's the full timeline to the dream outcome?
 > 3. What could accelerate their results?
@@ -91,6 +98,7 @@ Ask the user:
 > 5. What would a "fast track" version look like?
 
 **Time Compression Tactics:**
+
 - **Quick Wins**: What can they achieve in the first 24-48 hours?
 - **Milestones**: Break the journey into visible progress points
 - **Done-For-You Setup**: Pre-configure, pre-build, pre-populate
@@ -102,6 +110,7 @@ Ask the user:
 Ask the user:
 
 > **What does your customer have to DO to get results?**
+>
 > 1. What steps must they take?
 > 2. Where do they usually get stuck?
 > 3. What could you do FOR them instead of teaching them?
@@ -109,6 +118,7 @@ Ask the user:
 > 5. What's the "completely done-for-you" version look like?
 
 **Effort Elimination Options:**
+
 - **Done-For-You (DFY)**: You do it for them entirely
 - **Done-With-You (DWY)**: You do it together
 - **Done-By-You (DBY)**: They do it but with your system
@@ -121,6 +131,7 @@ Ask the user:
 Ask the user:
 
 > **What else does your customer need to succeed?**
+>
 > 1. What adjacent problems do they have?
 > 2. What tools or resources would help?
 > 3. What would make them say "I can't believe they included this"?
@@ -128,6 +139,7 @@ Ask the user:
 > 5. What's the "kitchen sink" version?
 
 **Bonus Categories:**
+
 | Category | Example | Purpose |
 |----------|---------|---------|
 | Speed Bonus | "Quick Start Guide" | Reduces time to first result |
@@ -141,12 +153,14 @@ Ask the user:
 Ask the user:
 
 > **What guarantee would remove all buying risk?**
+>
 > 1. What are customers afraid of? (Wasting money, time, not working)
 > 2. What would make them feel 100% safe buying?
 > 3. What results can you guarantee?
 > 4. What would you do if they weren't satisfied?
 
 **Guarantee Types:**
+
 - **Unconditional**: "100% money-back, no questions asked"
 - **Conditional**: "If you do X, Y, Z and don't get results, full refund"
 - **Performance**: "If you don't get [specific result], we refund + [bonus]"
@@ -157,12 +171,14 @@ Ask the user:
 Ask the user:
 
 > **Why should they buy NOW instead of later?**
+>
 > 1. Is there a legitimate capacity limit?
 > 2. Is there a deadline or cohort?
 > 3. What do they lose by waiting?
 > 4. Is the price going up?
 
 **Ethical Scarcity:**
+
 - **Real Capacity**: "Only 10 spots because I deliver personally"
 - **Cohort-Based**: "Next cohort starts [date]"
 - **Price Increase**: "Price goes up after [date]"
@@ -240,11 +256,13 @@ Ask the user:
 ### Before (Weak Offer)
 
 "Social Media Management Package - $500/month
+
 - 3 posts per week
 - Monthly analytics report
 - Email support"
 
 **Problems:**
+
 - No dream outcome, just deliverables
 - No proof it works
 - No time compression
@@ -259,12 +277,14 @@ Ask the user:
 For service businesses stuck under $50K/month who are tired of posting content that gets likes but no clients.
 
 **What You Get:**
+
 - 90 days of done-for-you content (we create, you approve)
 - Revenue-focused strategy (not vanity metrics)
 - Weekly lead report (who's engaging, who's ready to buy)
 - Direct-to-DM sales system (turn followers into calls)
 
 **Value Stack:**
+
 | Component | Value |
 |-----------|-------|
 | 90-Day Content Engine | $6,000 |

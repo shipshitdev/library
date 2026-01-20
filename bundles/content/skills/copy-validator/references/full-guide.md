@@ -7,6 +7,7 @@
 Ask the user:
 
 > **Share your copy. I need to see:**
+>
 > 1. What type of copy is this? (Landing page, email, ad, sales letter?)
 > 2. What's the goal? (Opt-in, sale, click, call booking?)
 > 3. Who is this for? (Target audience)
@@ -36,6 +37,7 @@ Evaluate the **headline and opening lines**:
 | 0-2 | No hook, boring, or headline missing |
 
 **Red Flags:**
+
 - Generic headlines ("Welcome", "The Best [X]")
 - No headline at all
 - Headline doesn't match the body
@@ -73,6 +75,7 @@ Evaluate the **emotional journey**:
 | 0-2 | No story, just features and claims |
 
 **Red Flags:**
+
 - No story element at all
 - Story about the company, not the customer journey
 - Story too long (loses reader)
@@ -80,6 +83,7 @@ Evaluate the **emotional journey**:
 - Facts without feelings
 
 **Story Elements Checklist:**
+
 - [ ] Relatable starting point ("I was...")
 - [ ] Conflict/struggle ("But then...")
 - [ ] Discovery/epiphany ("That's when I realized...")
@@ -107,6 +111,7 @@ Evaluate the **credibility elements**:
 | 0-2 | No proof, or claims that seem too good to be true |
 
 **Red Flags:**
+
 - No testimonials or case studies
 - Testimonials without specific results ("Great product!")
 - Claims without backing ("The best in the industry")
@@ -114,6 +119,7 @@ Evaluate the **credibility elements**:
 - Stock photos for testimonials
 
 **Proof Types to Check:**
+
 - **Testimonials:** Specific results, full names, photos
 - **Case Studies:** Before/after, specific metrics
 - **Data:** Numbers, percentages, timeframes
@@ -141,6 +147,7 @@ Evaluate how the **offer is presented**:
 | 0-2 | No clear offer, or buried in copy |
 
 **Red Flags:**
+
 - Features without benefits
 - Price mentioned without value context
 - No value stack
@@ -148,6 +155,7 @@ Evaluate how the **offer is presented**:
 - Offer buried at the bottom
 
 **Value Presentation Formula:**
+
 ```
 Total Value: $X,XXX
 Today's Price: $XXX
@@ -175,6 +183,7 @@ Evaluate the **reason to act now**:
 | 0-2 | No urgency, or obviously fake scarcity |
 
 **Red Flags:**
+
 - Evergreen countdown timers (fake)
 - "Only 3 left!" on digital products
 - No reason given for deadline
@@ -182,6 +191,7 @@ Evaluate the **reason to act now**:
 - Urgency that contradicts other elements
 
 **Legitimate Urgency Types:**
+
 - **Capacity:** "Only 10 spots—I work with clients personally"
 - **Cohort:** "Next group starts [date]"
 - **Price:** "Price increases [date] to $X"
@@ -209,6 +219,7 @@ Evaluate the **call-to-action**:
 | 0-2 | No CTA, or buried/invisible |
 
 **Red Flags:**
+
 - "Submit" or "Click Here" (generic)
 - Multiple competing CTAs
 - CTA only at the bottom
@@ -216,6 +227,7 @@ Evaluate the **call-to-action**:
 - CTA that doesn't match the offer
 
 **Strong CTA Formulas:**
+
 ```
 [Get/Start/Claim] + [Outcome] + [Now/Today/Instantly]
 
@@ -368,6 +380,7 @@ For each dimension scoring **below 7**, provide:
 "Welcome to Our Marketing Agency"
 
 **Body (summary):**
+
 - List of services
 - "We're the best in the industry"
 - "Contact us today"
@@ -400,6 +413,7 @@ For each dimension scoring **below 7**, provide:
 ### Example: Strong Email Copy
 
 **User's Email:**
+
 - Subject: "The $100K mistake I almost made (and how to avoid it)"
 - Opens with relatable story
 - Shares specific lesson learned
@@ -420,6 +434,7 @@ For each dimension scoring **below 7**, provide:
 **Total: 79/100 - Strong Copy**
 
 **Minor Tweaks:**
+
 1. Add a specific testimonial before CTA
 2. Make deadline more specific (not just "this week")
 

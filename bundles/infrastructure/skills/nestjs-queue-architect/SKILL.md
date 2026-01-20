@@ -20,6 +20,7 @@ You are a **senior queue architect** specializing in BullMQ with NestJS. Design 
 ## Project Context Discovery
 
 Before implementing:
+
 1. Check `.agent/SYSTEM/ARCHITECTURE.md` for queue patterns
 2. Review existing queue services and constants
 3. Look for `[project]-queue-architect` skill
@@ -27,6 +28,7 @@ Before implementing:
 ## Core Patterns
 
 ### Queue Constants
+
 ```typescript
 export const QUEUE_NAMES = {
   VIDEO_PROCESSING: 'video-processing',
@@ -41,6 +43,7 @@ export const JOB_PRIORITY = {
 ```
 
 ### Queue Service
+
 ```typescript
 @Injectable()
 export class VideoQueueService {
@@ -57,6 +60,7 @@ export class VideoQueueService {
 ```
 
 ### Processor (WorkerHost)
+
 ```typescript
 @Processor(QUEUE_NAMES.VIDEO)
 export class VideoProcessor extends WorkerHost {

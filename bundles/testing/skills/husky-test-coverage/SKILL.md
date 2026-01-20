@@ -10,6 +10,7 @@ Set up or verify Husky git hooks to ensure tests run and coverage thresholds are
 ## Purpose
 
 This skill automates the setup of:
+
 - Husky git hooks for pre-commit testing
 - Test runner detection (Jest, Vitest, Mocha)
 - Coverage configuration with thresholds (default: 80%)
@@ -19,6 +20,7 @@ This skill automates the setup of:
 ## When to Use
 
 This skill should be used when:
+
 - Setting up test coverage enforcement for the first time
 - Verifying existing Husky/test setup is correctly configured
 - Ensuring coverage thresholds are met before commits
@@ -102,21 +104,25 @@ The skill automatically detects:
 ### Coverage Configuration
 
 **Jest:**
+
 - Creates or updates `jest.config.json` with `coverageThreshold`
 - Default thresholds: 80% lines, 75% branches, 80% functions, 80% statements
 
 **Vitest:**
+
 - Creates or updates `vitest.config.ts/js` with coverage thresholds
 - Configures v8 coverage provider
 - Sets same default thresholds as Jest
 
 **Mocha + nyc:**
+
 - Creates or updates `.nycrc.json` with coverage thresholds
 - Configures text, html, and lcov reporters
 
 ### Pre-commit Hook
 
 The created hook:
+
 - Runs tests with coverage before every commit
 - Fails the commit if coverage is below threshold (configurable)
 - Can skip if no test files are found (optional)
@@ -167,14 +173,17 @@ Alternatively, add to `package.json`:
 ### Jest Projects
 
 **Detection:**
+
 - Checks for `jest` in dependencies
 - Looks for `jest.config.js` or `jest.config.json`
 
 **Configuration:**
+
 - Updates or creates `jest.config.json` with coverage thresholds
 - Pre-commit hook: `npm test -- --coverage --watchAll=false`
 
 **Example jest.config.json:**
+
 ```json
 {
   "coverageThreshold": {
@@ -191,14 +200,17 @@ Alternatively, add to `package.json`:
 ### Vitest Projects
 
 **Detection:**
+
 - Checks for `vitest` in dependencies
 - Looks for `vitest.config.ts` or `vitest.config.js`
 
 **Configuration:**
+
 - Updates or creates Vitest config with coverage thresholds
 - Pre-commit hook: `npm test -- --coverage --run`
 
 **Example vitest.config.ts:**
+
 ```typescript
 import { defineConfig } from 'vitest/config'
 
@@ -221,14 +233,17 @@ export default defineConfig({
 ### Mocha Projects
 
 **Detection:**
+
 - Checks for `mocha` in dependencies
 - Checks for coverage tool (`nyc` or `c8`)
 
 **Configuration:**
+
 - Creates or updates `.nycrc.json` for nyc
 - Pre-commit hook: `nyc --reporter=text --reporter=html npm test`
 
 **Example .nycrc.json:**
+
 ```json
 {
   "check-coverage": true,
@@ -243,6 +258,7 @@ export default defineConfig({
 ## Package Manager Support
 
 The skill automatically detects and uses:
+
 - **npm**: `npm run test`
 - **yarn**: `yarn test`
 - **pnpm**: `pnpm run test`
@@ -296,6 +312,7 @@ This skill works alongside:
 ### Automatic Setup with fullstack-workspace-init
 
 When using `fullstack-workspace-init` to scaffold a new project, this skill is automatically applied with:
+
 - Vitest as the test runner
 - 80% coverage threshold
 - Pre-commit hooks enabled
@@ -306,6 +323,7 @@ You don't need to run this skill separately if you used `fullstack-workspace-ini
 ### Manual Integration
 
 If adding to an existing project:
+
 ```bash
 python3 ~/.claude/skills/husky-test-coverage/scripts/setup-husky-coverage.py \
   --root /path/to/project \
@@ -363,10 +381,10 @@ The skill uses the first detected runner in priority order: Vitest > Jest > Moch
 ---
 
 **When this skill is active**, Claude will:
+
 1. Discover project test setup and configuration
 2. Detect test runner and coverage tool
 3. Set up or verify Husky installation
 4. Configure coverage thresholds appropriately
 5. Create pre-commit hook that enforces coverage
 6. Provide troubleshooting guidance when needed
-

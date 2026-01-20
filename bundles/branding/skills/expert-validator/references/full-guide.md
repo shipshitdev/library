@@ -7,6 +7,7 @@ Complete guide to validating positioning against Expert Secrets principles.
 Ask the user:
 
 > **Tell me about your positioning:**
+>
 > 1. Who are you and what do you help people do?
 > 2. What's your background/origin story?
 > 3. What makes you different from competitors?
@@ -36,6 +37,7 @@ Ask the user:
 | Reluctant Hero | "I didn't want to, but..." | Accidental experts |
 
 **Red Flags:**
+
 - "We help businesses..." (no character)
 - Generic bio with only credentials
 - No personality in communication
@@ -79,6 +81,7 @@ Ask the user:
 ```
 
 **Examples:**
+
 - "If I can get them to believe funnels work better than websites..."
 - "If I can get them to believe speed matters more than perfection..."
 - "If I can get them to believe they can code with AI..."
@@ -113,6 +116,7 @@ Ask the user:
 | 0-2 | No authority signals |
 
 **Authority Types:**
+
 - **Results:** "Helped X people achieve Y"
 - **Credentials:** Certifications, education
 - **Media:** Publications, features

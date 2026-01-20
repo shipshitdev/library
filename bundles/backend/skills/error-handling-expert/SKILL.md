@@ -21,6 +21,7 @@ Expert in error handling patterns, exception management, error responses, loggin
 ## Project Context Discovery
 
 Before providing guidance:
+
 1. Check `.agent/SYSTEM/ARCHITECTURE.md` for error patterns
 2. Review existing exception filters
 3. Check for error monitoring (Sentry, Rollbar)
@@ -51,6 +52,7 @@ Before providing guidance:
 ## Quick Patterns
 
 ### NestJS Exception Filter
+
 ```typescript
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
@@ -61,6 +63,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
 ```
 
 ### React Error Boundary
+
 ```typescript
 class ErrorBoundary extends React.Component {
   componentDidCatch(error, errorInfo) {
@@ -70,6 +73,7 @@ class ErrorBoundary extends React.Component {
 ```
 
 ### Retry with Backoff
+
 ```typescript
 async function retryWithBackoff<T>(fn, maxRetries = 3): Promise<T>
 ```

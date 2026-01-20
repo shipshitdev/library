@@ -13,6 +13,7 @@ tags:
 # Expo Architect
 
 Create **production-ready** Expo React Native apps with:
+
 - **Framework:** Expo SDK 54 + React Native 0.83 + TypeScript
 - **Navigation:** Expo Router (file-based routing)
 - **Auth:** Clerk authentication (optional)
@@ -23,6 +24,7 @@ Create **production-ready** Expo React Native apps with:
 ## What Makes This Different
 
 Generates **working mobile apps**, not empty scaffolds:
+
 - Complete navigation structure with working screens
 - Optional Clerk authentication flow
 - Real UI components with proper styling

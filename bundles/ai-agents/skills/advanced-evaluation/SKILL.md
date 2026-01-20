@@ -27,10 +27,12 @@ LLM-as-a-Judge techniques for evaluating AI outputs. Not a single technique but 
 ### Evaluation Taxonomy
 
 **Direct Scoring**: Single LLM rates one response on a defined scale.
+
 - Best for: Objective criteria (factual accuracy, instruction following, toxicity)
 - Reliability: Moderate to high for well-defined criteria
 
 **Pairwise Comparison**: LLM compares two responses and selects better one.
+
 - Best for: Subjective preferences (tone, style, persuasiveness)
 - Reliability: Higher than direct scoring for preferences
 
@@ -55,17 +57,20 @@ Is there an objective ground truth?
 ## Quick Reference
 
 ### Direct Scoring Requirements
+
 1. Clear criteria definitions
 2. Calibrated scale (1-5 recommended)
 3. Chain-of-thought: justification BEFORE score (improves reliability 15-25%)
 
 ### Pairwise Comparison Protocol
+
 1. First pass: A in first position
 2. Second pass: B in first position (swap)
 3. Consistency check: If passes disagree → TIE
 4. Final verdict: Consistent winner with averaged confidence
 
 ### Rubric Components
+
 - Level descriptions with clear boundaries
 - Observable characteristics per level
 - Edge case guidance
@@ -74,6 +79,7 @@ Is there an objective ground truth?
 ## Integration
 
 Works with:
+
 - **context-fundamentals** - Effective context structure
 - **tool-design** - Evaluation tool schemas
 - **evaluation** (foundational) - Core evaluation concepts

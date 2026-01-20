@@ -32,17 +32,20 @@ Is this correct? Any adjustments?
 Generate Clerk authentication for mobile:
 
 **Files:**
+
 - `providers/clerk-provider.tsx` - ClerkProvider wrapper
 - `app/(auth)/sign-in.tsx` - Sign in screen
 - `app/(auth)/sign-up.tsx` - Sign up screen
 - `lib/auth.ts` - Auth utilities
 
 **Environment:**
+
 - `.env` with `EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY`
 
 ## Phase 3: Screen Generation
 
 ### Tab-based App Structure
+
 ```
 app/
 ├── _layout.tsx              # Root layout with providers
@@ -59,6 +62,7 @@ app/
 ```
 
 ### Stack-based App Structure
+
 ```
 app/
 ├── _layout.tsx              # Root layout with providers

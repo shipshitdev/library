@@ -81,6 +81,11 @@
       "description": "Session management and documentation"
     },
     {
+      "name": ".system",
+      "source": "./skills/.system",
+      "description": ".system skill"
+    },
+    {
       "name": "accessibility",
       "source": "./skills/accessibility",
       "description": "Expert in web accessibility (WCAG 2.1 AA compliance) for React/Next.js applications, ensuring all pr"
@@ -689,6 +694,11 @@
       "name": "workspace-performance-audit",
       "source": "./skills/workspace-performance-audit",
       "description": "Orchestrates comprehensive performance audits across full-stack monorepos. Coordinates performance-e"
+    },
+    {
+      "name": "x-algorithm-optimizer",
+      "source": "./skills/x-algorithm-optimizer",
+      "description": "Optimize X/Twitter content for algorithm engagement signals. Based on xai-org/x-algorithm's Grok tra"
     },
     {
       "name": "youtube-video-analyst",

@@ -218,10 +218,10 @@ Trend Detection → Content Generation → Distribution → Analytics → Optimi
 
 1. **Discover Project Context First**: Scan project documentation to understand platform, brand voice, and workflows
 2. **Data-Driven Decisions**: Always base recommendations on actual analytics data from the project
-2. **Platform-Specific Strategy**: Consider platform-specific requirements and best practices
-3. **Brand Consistency**: Ensure all content recommendations align with brand guidelines
-4. **Competitive Intelligence**: Use competitor analysis to identify opportunities, not to copy
-5. **Continuous Optimization**: Recommend iterative improvements based on performance data
+3. **Platform-Specific Strategy**: Consider platform-specific requirements and best practices
+4. **Brand Consistency**: Ensure all content recommendations align with brand guidelines
+5. **Competitive Intelligence**: Use competitor analysis to identify opportunities, not to copy
+6. **Continuous Optimization**: Recommend iterative improvements based on performance data
 
 ## Resources
 

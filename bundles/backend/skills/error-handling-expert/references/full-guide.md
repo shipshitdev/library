@@ -5,6 +5,7 @@
 ### 1. Error Types
 
 **Application Errors:**
+
 - Validation errors (400)
 - Authentication errors (401)
 - Authorization errors (403)
@@ -13,6 +14,7 @@
 - Business logic errors (422)
 
 **System Errors:**
+
 - Server errors (500)
 - Database errors (500)
 - External service errors (502, 503)
@@ -21,6 +23,7 @@
 ### 2. Error Response Format
 
 **Consistent Error Structure:**
+
 ```typescript
 {
   "error": {
@@ -42,6 +45,7 @@
 ### 3. Exception Filters (NestJS)
 
 **Global Exception Filter:**
+
 ```typescript
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
@@ -81,6 +85,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
 ```
 
 **HTTP Exception Filter:**
+
 ```typescript
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -106,6 +111,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
 ### 4. Custom Exceptions
 
 **Business Logic Exceptions:**
+
 ```typescript
 export class UserNotFoundException extends HttpException {
   constructor(userId: string) {
@@ -133,6 +139,7 @@ export class EmailAlreadyExistsException extends HttpException {
 ```
 
 **Usage:**
+
 ```typescript
 async findOne(id: string) {
   const user = await this.userModel.findById(id);
@@ -148,6 +155,7 @@ async findOne(id: string) {
 ### 5. Validation Error Handling
 
 **Validation Pipe:**
+
 ```typescript
 app.useGlobalPipes(
   new ValidationPipe({
@@ -170,6 +178,7 @@ app.useGlobalPipes(
 ### 6. Async Error Handling
 
 **Try-Catch in Async Functions:**
+
 ```typescript
 async create(dto: CreateUserDto) {
   try {
@@ -186,6 +195,7 @@ async create(dto: CreateUserDto) {
 ```
 
 **Promise Error Handling:**
+
 ```typescript
 async findAll() {
   return this.userModel
@@ -201,6 +211,7 @@ async findAll() {
 ### 7. Error Logging
 
 **Structured Logging:**
+
 ```typescript
 catch(exception: unknown, host: ArgumentsHost) {
   const ctx = host.switchToHttp();
@@ -229,6 +240,7 @@ catch(exception: unknown, host: ArgumentsHost) {
 ```
 
 **Error Monitoring Integration:**
+
 ```typescript
 import * as Sentry from '@sentry/node';
 
@@ -254,6 +266,7 @@ catch(exception: unknown, host: ArgumentsHost) {
 ### Error Boundaries
 
 **Class Component Error Boundary:**
+
 ```typescript
 class ErrorBoundary extends React.Component<
   { children: React.ReactNode },
@@ -286,6 +299,7 @@ class ErrorBoundary extends React.Component<
 ```
 
 **Hook-Based Error Boundary:**
+
 ```typescript
 function useErrorHandler(error?: Error) {
   useEffect(() => {
@@ -299,6 +313,7 @@ function useErrorHandler(error?: Error) {
 ### API Error Handling
 
 **Error Handling Hook:**
+
 ```typescript
 function useApiError() {
   const [error, setError] = useState<Error | null>(null);
@@ -320,6 +335,7 @@ function useApiError() {
 ```
 
 **API Call with Error Handling:**
+
 ```typescript
 async function fetchUsers() {
   try {
@@ -349,6 +365,7 @@ async function fetchUsers() {
 ### 1. Retry Logic
 
 **Exponential Backoff:**
+
 ```typescript
 async function retryWithBackoff<T>(
   fn: () => Promise<T>,
@@ -373,6 +390,7 @@ async function retryWithBackoff<T>(
 ### 2. Circuit Breaker
 
 **Circuit Breaker Pattern:**
+
 ```typescript
 class CircuitBreaker {
   private failures = 0;
@@ -415,6 +433,7 @@ class CircuitBreaker {
 ### 3. Fallback Values
 
 **Fallback Strategy:**
+
 ```typescript
 async function getUserWithFallback(id: string) {
   try {
@@ -429,30 +448,35 @@ async function getUserWithFallback(id: string) {
 ## Best Practices
 
 ### 1. Error Messages
+
 - ✅ User-friendly messages
 - ✅ Don't expose sensitive information
 - ✅ Include error codes for debugging
 - ✅ Provide actionable guidance
 
 ### 2. Error Logging
+
 - ✅ Log all errors
 - ✅ Include context (user, request, etc.)
 - ✅ Use structured logging
 - ✅ Don't log sensitive data
 
 ### 3. Error Monitoring
+
 - ✅ Integrate error monitoring (Sentry)
 - ✅ Set up alerts for critical errors
 - ✅ Track error rates
 - ✅ Review error trends
 
 ### 4. Error Recovery
+
 - ✅ Implement retry logic
 - ✅ Use circuit breakers
 - ✅ Provide fallback values
 - ✅ Graceful degradation
 
 ### 5. Error Testing
+
 - ✅ Test error cases
 - ✅ Test error boundaries
 - ✅ Test error recovery

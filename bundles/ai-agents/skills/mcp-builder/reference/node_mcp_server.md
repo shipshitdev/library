@@ -9,6 +9,7 @@ This document provides Node/TypeScript-specific best practices and examples for 
 ## Quick Reference
 
 ### Key Imports
+
 ```typescript
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
@@ -17,6 +18,7 @@ import axios, { AxiosError } from "axios";
 ```
 
 ### Server Initialization
+
 ```typescript
 const server = new McpServer({
   name: "service-mcp-server",
@@ -25,6 +27,7 @@ const server = new McpServer({
 ```
 
 ### Tool Registration Pattern
+
 ```typescript
 server.registerTool("tool_name", {...config}, async (params) => {
   // Implementation
@@ -36,6 +39,7 @@ server.registerTool("tool_name", {...config}, async (params) => {
 ## MCP TypeScript SDK
 
 The official MCP TypeScript SDK provides:
+
 - `McpServer` class for server initialization
 - `registerTool` method for tool registration
 - Zod schema integration for runtime input validation
@@ -46,10 +50,12 @@ See the MCP SDK documentation in the references for complete details.
 ## Server Naming Convention
 
 Node/TypeScript MCP servers must follow this naming pattern:
+
 - **Format**: `{service}-mcp-server` (lowercase with hyphens)
 - **Examples**: `github-mcp-server`, `jira-mcp-server`, `stripe-mcp-server`
 
 The name should be:
+
 - General (not tied to specific features)
 - Descriptive of the service/API being integrated
 - Easy to infer from the task description
@@ -81,6 +87,7 @@ Create the following structure for Node/TypeScript MCP servers:
 Use snake_case for tool names (e.g., "search_users", "create_project", "get_channel_info") with clear, action-oriented names.
 
 **Avoid Naming Conflicts**: Include the service context to prevent overlaps:
+
 - Use "slack_send_message" instead of just "send_message"
 - Use "github_create_issue" instead of just "create_issue"
 - Use "asana_list_tasks" instead of just "list_tasks"
@@ -88,6 +95,7 @@ Use snake_case for tool names (e.g., "search_users", "create_project", "get_chan
 ### Tool Structure
 
 Tools are registered using the `registerTool` method with the following requirements:
+
 - Use Zod schemas for runtime input validation and type safety
 - The `description` field must be explicitly provided - JSDoc comments are NOT automatically extracted
 - Explicitly provide `title`, `description`, `inputSchema`, and `annotations`
@@ -333,6 +341,7 @@ const inputSchema = z.object({
 ```
 
 **Markdown format**:
+
 - Use headers, lists, and formatting for clarity
 - Convert timestamps to human-readable format
 - Show display names with IDs in parentheses
@@ -340,6 +349,7 @@ const inputSchema = z.object({
 - Group related information logically
 
 **JSON format**:
+
 - Return complete, structured data suitable for programmatic processing
 - Include all available fields and metadata
 - Use consistent field names and types
@@ -772,6 +782,7 @@ server.registerResourceList(async () => {
 ```
 
 **When to use Resources vs Tools:**
+
 - **Resources**: For data access with simple URI-based parameters
 - **Tools**: For complex operations requiring validation and business logic
 - **Resources**: When data is relatively static or template-based
@@ -798,6 +809,7 @@ await server.connect(sseTransport);
 ```
 
 **Transport selection guide:**
+
 - **Stdio**: Command-line tools, subprocess integration, local development
 - **HTTP**: Web services, remote access, multiple simultaneous clients
 - **SSE**: Real-time updates, server-push notifications, web dashboards
@@ -863,6 +875,7 @@ Always ensure `npm run build` completes successfully before considering the impl
 Before finalizing your Node/TypeScript MCP server implementation, ensure:
 
 ### Strategic Design
+
 - [ ] Tools enable complete workflows, not just API endpoint wrappers
 - [ ] Tool names reflect natural task subdivisions
 - [ ] Response formats optimize for agent context efficiency
@@ -870,6 +883,7 @@ Before finalizing your Node/TypeScript MCP server implementation, ensure:
 - [ ] Error messages guide agents toward correct usage
 
 ### Implementation Quality
+
 - [ ] FOCUSED IMPLEMENTATION: Most important and valuable tools implemented
 - [ ] All tools registered using `registerTool` with complete configuration
 - [ ] All tools include `title`, `description`, `inputSchema`, and `annotations`
@@ -881,6 +895,7 @@ Before finalizing your Node/TypeScript MCP server implementation, ensure:
 - [ ] Error messages are clear, actionable, and educational
 
 ### TypeScript Quality
+
 - [ ] TypeScript interfaces are defined for all data structures
 - [ ] Strict TypeScript is enabled in tsconfig.json
 - [ ] No use of `any` type - use `unknown` or proper types instead
@@ -888,12 +903,14 @@ Before finalizing your Node/TypeScript MCP server implementation, ensure:
 - [ ] Error handling uses proper type guards (e.g., `axios.isAxiosError`, `z.ZodError`)
 
 ### Advanced Features (where applicable)
+
 - [ ] Resources registered for appropriate data endpoints
 - [ ] Appropriate transport configured (stdio, HTTP, SSE)
 - [ ] Notifications implemented for dynamic server capabilities
 - [ ] Type-safe with SDK interfaces
 
 ### Project Configuration
+
 - [ ] Package.json includes all necessary dependencies
 - [ ] Build script produces working JavaScript in dist/ directory
 - [ ] Main entry point is properly configured as dist/index.js
@@ -901,6 +918,7 @@ Before finalizing your Node/TypeScript MCP server implementation, ensure:
 - [ ] tsconfig.json properly configured with strict mode
 
 ### Code Quality
+
 - [ ] Pagination is properly implemented where applicable
 - [ ] Large responses check CHARACTER_LIMIT constant and truncate with clear messages
 - [ ] Filtering options are provided for potentially large result sets
@@ -909,6 +927,7 @@ Before finalizing your Node/TypeScript MCP server implementation, ensure:
 - [ ] Return types are consistent across similar operations
 
 ### Testing and Build
+
 - [ ] `npm run build` completes successfully without errors
 - [ ] dist/index.js created and executable
 - [ ] Server runs: `node dist/index.js --help`

@@ -10,6 +10,7 @@ Unified project scaffolder for creating new projects or adding components to exi
 ## Purpose
 
 This skill provides a unified way to scaffold:
+
 - `.agent/` folder structure for AI-first development
 - Backend (NestJS) with MongoDB, Swagger, and best practices
 - Frontend (NextJS) with Tailwind and @agenticindiedev/ui
@@ -19,6 +20,7 @@ This skill provides a unified way to scaffold:
 ## When to Use
 
 Use this skill when:
+
 - Starting a new project from scratch
 - Adding components to an existing project
 - Setting up a monorepo or separate repositories
@@ -33,6 +35,7 @@ python3 ~/.claude/skills/project-scaffold/scripts/scaffold.py
 ```
 
 The script will ask you:
+
 1. Project name
 2. Project root path
 3. Repository structure (monorepo vs separate)
@@ -57,12 +60,15 @@ The script handles all interactive prompts.
 ## Features
 
 ### Flexible Structure
+
 - **Monorepo**: All components in one repository with workspace configuration
 - **Separate repos**: Each component in its own directory/repository
 - **Existing projects**: Can add components to existing projects
 
 ### Component Options
+
 All components are optional - scaffold only what you need:
+
 - `.agent/` folder with full AI documentation structure
 - Backend with NestJS, MongoDB, Swagger
 - Frontend with NextJS 15, Tailwind, @agenticindiedev/ui
@@ -70,7 +76,9 @@ All components are optional - scaffold only what you need:
 - Extension with Plasmo, React, Tailwind
 
 ### Cross-Platform
+
 Works from:
+
 - Claude Code
 - Codex
 - Cursor
@@ -118,6 +126,7 @@ myproject-frontend/          # Frontend only
 ## Key Patterns Included
 
 ### Backend (NestJS)
+
 - Soft deletes: `isDeleted: boolean`
 - Multi-tenancy: Always filter by `organization`
 - Collection pattern: controllers → services → schemas
@@ -125,17 +134,20 @@ myproject-frontend/          # Frontend only
 - Dockerfile included
 
 ### Frontend (NextJS)
+
 - Path aliases: `@components/`, `@services/`, `@hooks/`
 - Tailwind CSS with @agenticindiedev/ui
 - TypeScript strict mode
 - App Router structure
 
 ### Mobile (Expo)
+
 - Expo Router for navigation
 - TypeScript configuration
 - Platform-specific configurations
 
 ### Extension (Plasmo)
+
 - React + TypeScript
 - Tailwind CSS with @agenticindiedev/ui
 - Manifest configuration
@@ -144,12 +156,14 @@ myproject-frontend/          # Frontend only
 ## Next Steps After Scaffolding
 
 1. **Install dependencies**:
+
    ```bash
    cd [project-root]
    bun install
    ```
 
 2. **Start development**:
+
    ```bash
    # Monorepo
    bun run dev:api
@@ -168,6 +182,7 @@ myproject-frontend/          # Frontend only
 ## Integration with Existing Skills
 
 This skill integrates with:
+
 - `agent-folder-init`: Uses its script for .agent folder scaffolding
 - `fullstack-workspace-init`: Reuses component templates and patterns
 

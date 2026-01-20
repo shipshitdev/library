@@ -23,6 +23,7 @@ This is the **meta-skill** that coordinates: offer-architect, pricing-strategist
 ## When This Activates
 
 This skill auto-activates when:
+
 - User mentions managing multiple products or businesses
 - User asks "which business should I focus on"
 - User needs help prioritizing across ventures
@@ -37,6 +38,7 @@ This skill auto-activates when:
 ### The Business Priority Matrix
 
 Score each business on:
+
 1. **Revenue Potential** (1-10): How much can this make?
 2. **Current Traction** (1-10): Is it already working?
 3. **Effort Required** (1-10, inverted): How much of YOUR time does it need?
@@ -45,6 +47,7 @@ Score each business on:
 **Priority Score = (Revenue × Traction × Leverage) / Effort**
 
 ### The Weekly Focus Rule
+
 - **Primary Business** (60% of time): Highest priority score
 - **Secondary Business** (30% of time): Growth potential or maintenance
 - **Exploration** (10% of time): New opportunities or experiments
@@ -55,6 +58,7 @@ Score each business on:
 
 Ask the user:
 > "List all your active businesses/products. For each one, tell me:
+>
 > 1. What is it? (one sentence)
 > 2. Current monthly revenue (or $0 if pre-revenue)
 > 3. Growth trend (growing/flat/declining)
@@ -63,6 +67,7 @@ Ask the user:
 ### Step 2: Health Metrics Assessment
 
 For each business, gather:
+
 - **Revenue**: Current MRR/monthly revenue
 - **Growth Rate**: Month-over-month change
 - **Customer Count**: Active paying customers
@@ -104,6 +109,7 @@ Where each factor is scored 1-10:
 For each business, output:
 
 **[Business Name]**
+
 - Priority Score: X/100
 - Primary Issue: [Detected problem]
 - Recommended Skill: [Which Hormozi skill to deploy]
@@ -163,56 +169,72 @@ Deploy these skills in order:
 After analysis, route to the appropriate skill:
 
 ### Offer Problems → `offer-architect`
+
 **Triggers:**
+
 - "My offer isn't compelling"
 - "People don't understand what I sell"
 - "Conversions are low"
 - "Competitors seem more attractive"
 
 ### Pricing Issues → `pricing-strategist`
+
 **Triggers:**
+
 - "I think I'm too cheap"
 - "Competitors charge more"
 - "I'm scared to raise prices"
 - "Low revenue per customer"
 
 ### Lead Generation Gaps → `lead-channel-optimizer`
+
 **Triggers:**
+
 - "Not enough leads"
 - "Marketing isn't working"
 - "Don't know where to focus"
 - "Spreading myself too thin on channels"
 
 ### Churn/Retention Issues → `retention-engine`
+
 **Triggers:**
+
 - "Customers keep leaving"
 - "Low repeat purchases"
 - "High churn rate"
 - "No upsells or cross-sells"
 
 ### Customer Success Friction → `constraint-eliminator`
+
 **Triggers:**
+
 - "Customers struggle to get results"
 - "Too many support tickets"
 - "People don't use what they buy"
 - "High refund requests"
 
 ### Scale Limitations → `business-model-auditor`
+
 **Triggers:**
+
 - "I'm the bottleneck"
 - "Can't grow without hiring"
 - "Trading time for money"
 - "What breaks at 10x?"
 
 ### Outbound Not Converting → `outbound-optimizer`
+
 **Triggers:**
+
 - "Cold outreach isn't working"
 - "Low response rates"
 - "Can't get meetings"
 - "Outbound feels spammy"
 
 ### Analysis Paralysis → `execution-accelerator`
+
 **Triggers:**
+
 - "I'm stuck on a decision"
 - "Should I wait for..."
 - "I'm overthinking this"
@@ -234,6 +256,7 @@ This skill orchestrates but doesn't replace the specialized skills:
 | `execution-accelerator` | User is stuck or overthinking |
 
 **Also integrates with existing skills:**
+
 - `analytics-expert` - For deep-dive into business metrics
 - `leads-researcher` - For identifying new customer segments
 - `copywriter` - For messaging across businesses
@@ -248,6 +271,7 @@ This skill orchestrates but doesn't replace the specialized skills:
 > Let me help you prioritize. Tell me about each business:
 >
 > **For each business, share:**
+>
 > 1. What is it? (one sentence)
 > 2. Monthly revenue
 > 3. Growth trend (growing/flat/declining)
@@ -255,6 +279,7 @@ This skill orchestrates but doesn't replace the specialized skills:
 > 5. Biggest current challenge
 >
 > I'll run a Hormozi analysis on your portfolio and give you:
+>
 > - Priority rankings with scores
 > - Which business gets focus this week
 > - The specific skill/framework each business needs
@@ -269,6 +294,7 @@ Sometimes the answer is to **kill a business**. Consider killing when:
 - Opportunity cost of time is high
 
 **Before killing, ask:**
+
 1. Could a single change (offer, price, channel) fix this?
 2. Would I start this business today knowing what I know?
 3. Is my emotional attachment clouding judgment?
@@ -285,6 +311,7 @@ Sometimes the answer is to **kill a business**. Consider killing when:
 ## When to Escalate
 
 Route to `execution-accelerator` if:
+
 - User can't decide which business to focus on after analysis
 - User is emotionally attached and can't see clearly
 - User needs to make a kill decision but is stuck

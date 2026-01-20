@@ -27,6 +27,7 @@ Build from bottom up. Define the company first, then the buyer, then the user, t
 Ask the user:
 
 > **What type of company is your ideal customer?**
+>
 > 1. What industry or vertical?
 > 2. What company size? (Employees or revenue)
 > 3. What company stage? (Startup, growth, enterprise)
@@ -46,6 +47,7 @@ Ask the user:
 | **Business Model** | [B2B/B2C/etc.] | [Why this model] |
 
 **Example:**
+
 ```
 Industry: B2B SaaS companies
 Size: 50-500 employees
@@ -62,6 +64,7 @@ Business Model: Recurring revenue software
 Ask the user:
 
 > **What triggers a company to seek your solution?**
+>
 > 1. What event creates urgency? (Growth, pain, mandate)
 > 2. What symptoms indicate they need you?
 > 3. What makes some companies better fits than others?
@@ -76,6 +79,7 @@ Ask the user:
 | [Trigger 3] | [Situation] | [High/Med/Low] |
 
 **Common B2B Triggers:**
+
 - Rapid headcount growth
 - New executive hire
 - Failed with competitor product
@@ -92,6 +96,7 @@ Ask the user:
 Ask the user:
 
 > **Who is the buyer in your ICP?**
+>
 > 1. What's their title/role?
 > 2. What's their seniority level?
 > 3. What are their goals and KPIs?
@@ -135,6 +140,7 @@ Ask the user:
 Ask the user:
 
 > **Who actually uses your product day-to-day?**
+>
 > 1. What's their title/role?
 > 2. What's their daily workflow?
 > 3. What tasks do they do that involve your product?
@@ -177,6 +183,7 @@ Ask the user:
 Ask the user:
 
 > **Who else is involved in the buying decision?**
+>
 > 1. Who initiates the search for a solution?
 > 2. Who evaluates options?
 > 3. Who influences the decision?
@@ -223,6 +230,7 @@ Ask the user:
 Ask the user:
 
 > **Rank your customer's pain points:**
+>
 > 1. What pain is most urgent?
 > 2. What pain costs them the most money?
 > 3. What pain is most frequent?
@@ -246,6 +254,7 @@ Ask the user:
 Ask the user:
 
 > **How will you validate this ICP?**
+>
 > 1. Do you have access to people matching this profile?
 > 2. Have you talked to 10+ people in this segment?
 > 3. What questions will you ask to validate?
@@ -269,6 +278,7 @@ Ask the user:
 Ask the user:
 
 > **Which constraints help you focus?**
+>
 > 1. What makes a company a PERFECT fit?
 > 2. What makes them a GOOD fit?
 > 3. What makes them a BAD fit?

@@ -31,6 +31,7 @@ See `TEMPLATE.md` for the session file template.
 ### During Session
 
 Track:
+
 - Decisions made
 - Files changed
 - Patterns used
@@ -39,6 +40,7 @@ Track:
 ### At Session End
 
 Add session entry with:
+
 - What was done
 - Files changed
 - Decisions with rationale

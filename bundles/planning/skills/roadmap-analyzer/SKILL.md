@@ -10,6 +10,7 @@ description: Analyze project features against ICP (Ideal Customer Profile) needs
 This skill analyzes a project's current feature set against the needs of the Ideal Customer Profile (ICP). Before analyzing, discover the project's ICP from documentation (`.agent/SYSTEM/` or project docs) and current features from the codebase and documentation.
 
 The skill produces three outputs:
+
 1. **Gap Analysis Table**: Side-by-side comparison of ICP needs vs current features with gaps highlighted
 2. **Prioritized Backlog**: Ranked list of features to build next based on ICP alignment and impact
 3. **Strategic Themes**: High-level focus areas with specific initiatives
@@ -17,6 +18,7 @@ The skill produces three outputs:
 ## When to Use This Skill
 
 Invoke this skill when asked to:
+
 - "What should we build next?"
 - "Compare our features against what our customers need"
 - "Analyze product gaps for our ICP"
@@ -36,6 +38,7 @@ Use a hybrid approach to identify existing project capabilities (discover from p
 Search the codebase for feature implementations. Focus on:
 
 **Key directories to explore:**
+
 ```
 apps/frontend-apps/*/      - Frontend applications
 apps/apis/*/               - Backend APIs
@@ -43,6 +46,7 @@ packages/*/                - Shared packages
 ```
 
 **Search patterns for features:**
+
 - Component names (React components often indicate UI features)
 - API endpoints (routes indicate backend capabilities)
 - Service methods (business logic indicates functionality)
@@ -50,6 +54,7 @@ packages/*/                - Shared packages
 - Configuration files (feature flags, settings)
 
 **Use grep/glob to find:**
+
 - Video editing features: `pattern: "edit|timeline|trim|cut|transition"`
 - Avatar features: `pattern: "avatar|character|persona|voice"`
 - Export features: `pattern: "export|format|platform|render"`
@@ -59,6 +64,7 @@ packages/*/                - Shared packages
 #### 1.2 User Context Integration
 
 Ask the user:
+
 - "Are there features I should know about that might not be obvious in the code?"
 - "Any recent features added that might not be fully integrated?"
 - "Features in beta or soft-launched?"
@@ -67,6 +73,7 @@ Ask the user:
 #### 1.3 Feature Inventory Creation
 
 Organize discovered features into categories from `references/feature-categories.md`:
+
 1. Content Input & Ideation
 2. AI Avatar Creation & Management
 3. Video Editing & Assembly
@@ -84,6 +91,7 @@ Organize discovered features into categories from `references/feature-categories
 15. E-commerce & Monetization
 
 For each feature, note:
+
 - **Status**: Exists (production), Partial (incomplete), Planned, Missing
 - **Quality**: Production-ready, Beta, Prototype, Needs improvement
 - **Location**: Where found in codebase (file paths)
@@ -93,17 +101,20 @@ For each feature, note:
 Read the reference documents to understand requirements:
 
 **Required reading:**
+
 - `references/icp-profile.md` - Deep understanding of target customer needs
 - `references/editor-needs.md` - What editors need for great social content
 - `references/feature-categories.md` - Comprehensive feature taxonomy
 
 **Key focus areas from ICP:**
+
 1. **AI Avatar Army**: Creating multiple avatars, consistency, customization
 2. **User Empowerment**: Self-service creation, templates, intuitive UX
 3. **UGC at Scale**: Volume, speed, platform-native content
 4. **Team Collaboration**: Multi-user, approvals, brand consistency
 
 **Critical editor needs:**
+
 - Platform-specific optimization (TikTok, Instagram, YouTube)
 - Fast pacing and trending effects
 - Text overlays and captions
@@ -117,6 +128,7 @@ Compare current features against ICP needs and editor requirements.
 #### 3.1 Create Gap Analysis Table
 
 Format:
+
 ```markdown
 | Feature Category | ICP Need Priority | Current State | Gap Severity | Key Missing Elements |
 |-----------------|-------------------|---------------|--------------|----------------------|
@@ -126,12 +138,14 @@ Format:
 ```
 
 **Gap Severity Levels:**
+
 - **CRITICAL**: Blocking ICP adoption, core value prop missing
 - **HIGH**: Significantly impacts ICP success, competitive disadvantage
 - **MEDIUM**: Limits scale/efficiency, nice-to-have
 - **LOW**: Future enhancement, not blocking
 
 **Priority Levels:**
+
 - **CRITICAL**: Must-have for ICP, core to value proposition
 - **HIGH**: Important for ICP success, competitive requirement
 - **MEDIUM**: Valuable but not essential
@@ -140,6 +154,7 @@ Format:
 #### 3.2 Identify Critical Gaps
 
 Highlight gaps where:
+
 1. ICP Need Priority = CRITICAL AND Gap Severity = CRITICAL/HIGH
 2. Feature is table stakes for competitors
 3. Feature directly enables "AI avatar army" or "user empowerment"
@@ -154,6 +169,7 @@ Create a ranked list of features to build next.
 Score each feature on:
 
 **ICP Impact (1-5)**
+
 - 5: Core to ICP value prop, directly addresses primary pain point
 - 4: Strongly supports ICP needs, key differentiator
 - 3: Valuable for ICP, improves experience
@@ -161,6 +177,7 @@ Score each feature on:
 - 1: Minimal ICP impact
 
 **Urgency (1-5)**
+
 - 5: Blocking sales/adoption, critical competitive gap
 - 4: Significant competitive pressure, customer requests
 - 3: On roadmap, good timing to build
@@ -168,6 +185,7 @@ Score each feature on:
 - 1: Future consideration
 
 **Implementation Effort (1-5)**
+
 - 5: Very high effort, 3+ months, complex
 - 4: High effort, 1-3 months, significant work
 - 3: Medium effort, 2-4 weeks, moderate complexity
@@ -200,6 +218,7 @@ Higher score = higher priority.
 #### 4.3 Quick Wins Section
 
 Identify features with:
+
 - High ICP Impact (4-5)
 - Low Implementation Effort (1-2)
 - Decent Urgency (3+)
@@ -215,6 +234,7 @@ Group features into high-level strategic focus areas.
 Analyze feature clusters to identify 3-5 strategic themes, such as:
 
 **Example themes:**
+
 - **"AI Avatar Arsenal"**: Building the avatar creation and management system
 - **"Platform-Native Mastery"**: Optimizing for TikTok, Instagram, YouTube
 - **"Team Empowerment Engine"**: Collaboration, templates, workflows
@@ -253,6 +273,7 @@ For each theme, provide:
 #### 5.3 Theme Prioritization
 
 Recommend theme focus order based on:
+
 1. **Foundation themes first**: Core platform capabilities required for everything else
 2. **Differentiator themes next**: Unique value props (e.g., AI avatar army)
 3. **Enhancement themes last**: Improvements to existing capabilities

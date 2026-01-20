@@ -10,6 +10,7 @@ Create config-driven NextJS landing pages for startups.
 ## Concept
 
 Each landing page is a standalone NextJS app where:
+
 - Content is defined in `app.json` config file
 - UI comes from `@agenticindiedev/ui`
 - Deploy independently to any domain via Vercel
@@ -17,6 +18,7 @@ Each landing page is a standalone NextJS app where:
 ## Prerequisites
 
 You need a published landing UI components package. The skill expects:
+
 - Package name (default: `@agenticindiedev/ui`)
 - Components: Hero, Features, Pricing, FAQ, CTA, Testimonials, Stats, EmailCapture, Header, Footer
 
@@ -216,6 +218,7 @@ python3 ~/.claude/skills/micro-landing-builder/scripts/deploy_vercel.py \
 ## Customization
 
 To add custom sections or override components:
+
 1. Add component to `app/components/`
 2. Import in `app/page.tsx`
 3. Add to section renderer

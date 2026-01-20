@@ -173,4 +173,3 @@ Good: Maintaining consistent naming patterns across all tools for similar concep
 ## Checklist for Tool Design
 
 Before deploying a new tool, verify that the description clearly states what the tool does and when to use it. Verify that all parameters have descriptive names and clear type information. Verify that return values are documented with structure and examples. Verify that error cases are covered with actionable messages. Verify that the tool follows naming conventions used elsewhere. Verify that examples demonstrate common usage patterns. Verify that format options are available if response size varies significantly.
-

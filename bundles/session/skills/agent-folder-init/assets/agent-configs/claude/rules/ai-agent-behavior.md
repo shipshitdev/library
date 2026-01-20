@@ -21,12 +21,14 @@ Universal rules for AI agents working on any codebase.
 ### Always Read Before Writing
 
 **WRONG:**
+
 ```
 User: "Add a delete button to the profile page"
 AI: *immediately writes code without reading profile page*
 ```
 
 **CORRECT:**
+
 ```
 User: "Add a delete button to the profile page"
 AI: *reads profile page component first*
@@ -39,6 +41,7 @@ AI: *follows established patterns*
 ### Never Speculate About Code
 
 **WRONG:**
+
 ```
 "I believe the function probably does X..."
 "The file likely contains..."
@@ -46,6 +49,7 @@ AI: *follows established patterns*
 ```
 
 **CORRECT:**
+
 ```
 "Reading the file, I can see it does X..."
 "The function at line 42 returns..."
@@ -59,6 +63,7 @@ AI: *follows established patterns*
 ### Copy Existing Patterns Exactly
 
 When adding new code:
+
 1. Find similar existing code in the project
 2. Copy the exact structure
 3. Use same imports, naming, error handling
@@ -71,6 +76,7 @@ When adding new code:
 ### Never Introduce New Patterns Without Asking
 
 If the codebase uses Pattern A and you think Pattern B is better:
+
 - DON'T silently use Pattern B
 - ASK the user if they want to change patterns
 - If changing, update ALL instances (not just new code)
@@ -82,6 +88,7 @@ If the codebase uses Pattern A and you think Pattern B is better:
 ### Never Create Compatibility Workarounds
 
 **WRONG:**
+
 ```typescript
 // Alias for backward compatibility
 export { NewName as OldName };
@@ -93,6 +100,7 @@ export function oldMethod(...args) {
 ```
 
 **CORRECT:**
+
 ```typescript
 // Fix at source, update all usages
 export { NewName };
@@ -101,6 +109,7 @@ export { NewName };
 ```
 
 **PRINCIPLE:**
+
 - Break things properly
 - Fix at the source
 - Document what breaks
@@ -113,6 +122,7 @@ export { NewName };
 ### Never Work Outside Workspace
 
 **FORBIDDEN:**
+
 ```bash
 /tmp/anything
 /var/tmp/anything
@@ -121,6 +131,7 @@ export { NewName };
 ```
 
 **ALLOWED:**
+
 - Only files within the current project/workspace
 - Project's designated temp directories if they exist
 
@@ -129,6 +140,7 @@ export { NewName };
 ### Never Delete Critical Files
 
 These files often MUST exist and should never be deleted:
+
 - `README.md`
 - Configuration files (.eslintrc, tsconfig.json, etc.)
 - Entry point files (index.ts, main.ts, app.ts)
@@ -141,6 +153,7 @@ These files often MUST exist and should never be deleted:
 ### Document What You Did
 
 At session end:
+
 1. Summarize changes made
 2. List files modified
 3. Note any decisions or trade-offs
@@ -151,6 +164,7 @@ At session end:
 ### Check Previous Sessions
 
 Before starting work:
+
 1. Check for relevant past sessions
 2. Read how similar problems were solved
 3. Don't re-implement what already exists
@@ -183,12 +197,14 @@ Before starting work:
 ### Be Direct
 
 **WRONG:**
+
 ```
 "I would suggest that perhaps we might consider..."
 "It could potentially be beneficial to..."
 ```
 
 **CORRECT:**
+
 ```
 "I recommend X because Y."
 "This approach has trade-off: [explain]"
@@ -199,6 +215,7 @@ Before starting work:
 ### Acknowledge Corrections
 
 When user corrects you:
+
 - Don't defend or explain why you did it wrong
 - Simply acknowledge and fix
 - Note the preference for future
@@ -218,6 +235,7 @@ When user corrects you:
 ### Parallel When Possible
 
 When operations are independent:
+
 - Read multiple files at once
 - Run multiple searches simultaneously
 - Don't serialize when you can parallelize

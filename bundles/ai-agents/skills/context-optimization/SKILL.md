@@ -10,6 +10,7 @@ Context optimization extends the effective capacity of limited context windows t
 ## When to Activate
 
 Activate this skill when:
+
 - Context limits constrain task complexity
 - Optimizing for cost reduction (fewer tokens = lower costs)
 - Reducing latency for long conversations
@@ -95,12 +96,14 @@ Monitor signals for optimization triggers: token utilization above 80%, degradat
 ### Optimization Decision Framework
 
 When to optimize:
+
 - Context utilization exceeds 70%
 - Response quality degrades as conversations extend
 - Costs increase due to long contexts
 - Latency increases with conversation length
 
 What to apply:
+
 - Tool outputs dominate: observation masking
 - Retrieved documents dominate: summarization or partitioning
 - Message history dominates: compaction with summarization
@@ -115,12 +118,14 @@ Monitor and iterate on optimization strategies based on measured effectiveness.
 ## Examples
 
 **Example 1: Compaction Trigger**
+
 ```python
 if context_tokens / context_limit > 0.8:
     context = compact_context(context)
 ```
 
 **Example 2: Observation Masking**
+
 ```python
 if len(observation) > max_length:
     ref_id = store_observation(observation)
@@ -128,6 +133,7 @@ if len(observation) > max_length:
 ```
 
 **Example 3: Cache-Friendly Ordering**
+
 ```python
 # Stable content first
 context = [system_prompt, tool_definitions]  # Cacheable
@@ -157,14 +163,17 @@ This skill builds on context-fundamentals and context-degradation. It connects t
 ## References
 
 Internal reference:
+
 - [Optimization Techniques Reference](./references/optimization_techniques.md) - Detailed technical reference
 
 Related skills in this collection:
+
 - context-fundamentals - Context basics
 - context-degradation - Understanding when to optimize
 - evaluation - Measuring optimization
 
 External resources:
+
 - Research on context window limitations
 - KV-cache optimization techniques
 - Production engineering guides

@@ -76,6 +76,7 @@ npm license-checker --onlyAllow 'MIT;Apache-2.0;ISC'
 **2.1 Authentication & Authorization**
 
 **Check for:**
+
 - ✅ All API endpoints protected
 - ✅ Authentication guards applied
 - ✅ Authorization checks present
@@ -104,6 +105,7 @@ async getUsers(@CurrentUser() user) {
 **2.2 Input Validation**
 
 **Check for:**
+
 - ✅ DTOs with validation decorators
 - ✅ Input sanitization
 - ✅ SQL injection prevention (if using SQL)
@@ -141,6 +143,7 @@ export class CreateUserDto {
 **2.3 Data Isolation (Multi-Tenancy)**
 
 **Check for:**
+
 - ✅ Organization/tenant filtering in all queries
 - ✅ No cross-tenant data access
 - ✅ User can only access their org's data
@@ -166,6 +169,7 @@ async findAll(organizationId: string) {
 **2.4 Secrets Management**
 
 **Check for:**
+
 - ✅ No hardcoded secrets in code
 - ✅ Environment variables used
 - ✅ `.env` files in `.gitignore`
@@ -187,6 +191,7 @@ const apiKey = process.env.API_KEY;
 **3.1 Environment Variables**
 
 **Check:**
+
 - `.env.example` exists (without secrets)
 - `.env` in `.gitignore`
 - Required variables documented
@@ -231,6 +236,7 @@ async getData() {
 **4.1 XSS Prevention**
 
 **Check for:**
+
 - ✅ React's automatic escaping
 - ✅ No `dangerouslySetInnerHTML` without sanitization
 - ✅ Content Security Policy headers
@@ -239,6 +245,7 @@ async getData() {
 **4.2 Authentication Tokens**
 
 **Check for:**
+
 - ✅ Tokens stored securely (httpOnly cookies preferred)
 - ✅ No tokens in localStorage (if XSS risk)
 - ✅ Token expiration handling
@@ -247,6 +254,7 @@ async getData() {
 **4.3 API Security**
 
 **Check for:**
+
 - ✅ API keys not exposed in frontend
 - ✅ Sensitive operations require authentication
 - ✅ Request validation
@@ -257,6 +265,7 @@ async getData() {
 **5.1 MongoDB Security**
 
 **Check for:**
+
 - ✅ Connection string secure (not hardcoded)
 - ✅ Database user with minimal privileges
 - ✅ Network access restricted
@@ -266,6 +275,7 @@ async getData() {
 **5.2 Query Security**
 
 **Check for:**
+
 - ✅ No user input in queries without validation
 - ✅ Parameterized queries
 - ✅ Injection prevention
@@ -289,6 +299,7 @@ const query = {
 **6.1 AWS Security**
 
 **Check for:**
+
 - ✅ IAM roles with least privilege
 - ✅ Security groups properly configured
 - ✅ S3 buckets not publicly accessible
@@ -299,6 +310,7 @@ const query = {
 **6.2 Docker Security**
 
 **Check for:**
+
 - ✅ Non-root user in containers
 - ✅ Minimal base images
 - ✅ No secrets in Dockerfile

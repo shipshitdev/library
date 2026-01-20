@@ -33,11 +33,13 @@ STRIPE_WEBHOOK_SECRET=whsec_...
 ## Key Flows
 
 ### Payment Methods
+
 - **Checkout Sessions**: Recommended for one-time payments
 - **Payment Intents**: For custom payment flows
 - **Subscriptions**: For recurring billing
 
 ### Webhook Events
+
 - `payment_intent.succeeded` / `payment_intent.payment_failed`
 - `customer.subscription.created/updated/deleted`
 - `invoice.payment_succeeded/failed`

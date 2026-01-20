@@ -393,3 +393,15 @@ Unlike [old way/competitors],
 - If user needs to **build an offer** → `offer-architect`
 - If user needs **funnel design** → `funnel-architect`
 - If user is **stuck** → `execution-accelerator`
+
+## Complementary Skills (External)
+
+For launch tactics and execution, pair with [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills):
+
+```
+/plugin marketplace add coreyhaines31/marketingskills
+```
+
+| Skill | Why |
+|-------|-----|
+| `launch-strategy` | Tactical launch execution and campaign planning |

@@ -210,6 +210,41 @@ touch agents/.claude/skills/my-skill/SKILL.md
 
 These external skill repositories complement this library. Install them separately when needed.
 
+### [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills)
+
+Tactical marketing execution: CRO, SEO, paid ads, and email sequences.
+
+**How it complements this library:**
+
+| This Library (Strategic) | coreyhaines31 (Tactical) |
+|--------------------------|--------------------------|
+| Hormozi/Brunson frameworks | CRO, SEO, ads execution |
+| `offer-architect` → Build offers | `page-cro` → Optimize where offers live |
+| `funnel-architect` → Design funnels | `form-cro`, `email-sequence` → Optimize steps |
+| `traffic-architect` → Plan traffic | `paid-ads`, `programmatic-seo` → Execute traffic |
+| `expert-architect` → Build positioning | `launch-strategy` → Execute launches |
+
+**Install both for full coverage:**
+
+```bash
+# Strategic frameworks (this library)
+/plugin marketplace add shipshitdev/library
+
+# Tactical execution
+/plugin marketplace add coreyhaines31/marketingskills
+```
+
+| Category | Skills |
+|----------|--------|
+| **CRO** | form-cro, page-cro, onboarding-cro, signup-flow-cro, popup-cro, paywall-upgrade-cro |
+| **SEO** | programmatic-seo, seo-audit, schema-markup |
+| **Paid** | paid-ads |
+| **Testing** | ab-test-setup |
+| **Email** | email-sequence |
+| **Launch** | launch-strategy |
+| **Psychology** | marketing-psychology (70+ mental models) |
+| **Ideas** | marketing-ideas (140 tactics) |
+
 > **Note:** Skills can be enabled or disabled per project via `.claude/settings.json`:
 >
 > ```json

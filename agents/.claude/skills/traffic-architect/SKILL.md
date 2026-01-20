@@ -85,6 +85,20 @@ Ask:
 | `channel-validator` | Validate channel focus |
 | `copy-validator` | Validate hooks |
 
+## Complementary Skills (External)
+
+For tactical paid ads and SEO execution, pair with [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills):
+
+```
+/plugin marketplace add coreyhaines31/marketingskills
+```
+
+| Skill | Why |
+|-------|-----|
+| `paid-ads` | Execute paid traffic campaigns |
+| `programmatic-seo` | Scale organic traffic with programmatic pages |
+| `seo-audit` | Audit and optimize existing SEO |
+
 ---
 
 **For detailed execution workflow, templates, and 90-day plans:** `references/full-guide.md`

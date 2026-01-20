@@ -307,3 +307,16 @@ Only 5 clients per month (we write your content personally)."
 - If the problem is **getting leads** → `lead-channel-optimizer`
 - If the problem is **customer churn** → `retention-engine`
 - If the user is **stuck/overthinking** → `execution-accelerator`
+
+## Complementary Skills (External)
+
+For tactical CRO and pricing execution, pair with [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills):
+
+```
+/plugin marketplace add coreyhaines31/marketingskills
+```
+
+| Skill | Why |
+|-------|-----|
+| `page-cro` | Optimize landing pages where your offer lives |
+| `pricing-strategy` | Tactical pricing packaging and tiers |

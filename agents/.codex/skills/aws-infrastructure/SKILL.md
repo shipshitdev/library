@@ -67,7 +67,7 @@ Use when users need:
 Inbound:
 - HTTP (80) from ALB security group
 - HTTPS (443) from ALB security group
-- SSH (22) from bastion/your IP only
+- SSH (22) from bastion/approved IPs only
 
 Outbound:
 - All traffic (0.0.0.0/0)
@@ -79,7 +79,7 @@ Outbound:
 Inbound:
 - MongoDB (27017) from application security group only
 - Redis (6379) from application security group only
-- SSH (22) from bastion/your IP only
+- SSH (22) from bastion/approved IPs only
 
 Outbound:
 - All traffic (0.0.0.0/0)

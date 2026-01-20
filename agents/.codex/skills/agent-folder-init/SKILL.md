@@ -142,12 +142,12 @@ python3 ~/.codex/skills/agent-folder-init/scripts/scaffold.py \
 
 After scaffolding, customize:
 
-1. `SYSTEM/PRD.md` - Fill in your product requirements (use with fullstack-workspace-init)
-2. `SYSTEM/ENTITIES.md` - Document your data entities
+1. `SYSTEM/PRD.md` - Fill in product requirements (use with fullstack-workspace-init)
+2. `SYSTEM/ENTITIES.md` - Document data entities
 3. `SYSTEM/RULES.md` - Add project-specific coding standards
-4. `SYSTEM/ARCHITECTURE.md` - Document your architecture
+4. `SYSTEM/ARCHITECTURE.md` - Document architecture
 5. `SYSTEM/critical/CRITICAL-NEVER-DO.md` - Add project-specific violations
-6. `SOP/` - Add your standard operating procedures
+6. `SOP/` - Add standard operating procedures
 7. `.claude/rules/` - Add project-specific rules
 8. `.claude/commands/`, `.codex/commands/`, `.cursor/commands/` - Add project-specific commands
 

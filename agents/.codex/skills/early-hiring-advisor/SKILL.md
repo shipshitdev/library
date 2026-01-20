@@ -47,7 +47,7 @@ Work from bottom up. Prioritize roles first, then timing, then comp, then cultur
 
 ### Step 1: Hiring Readiness Check
 
-**Before hiring anyone, ensure you're ready.**
+**Before hiring anyone, ensure readiness.**
 
 Ask the user:
 
@@ -163,9 +163,9 @@ Ask the user:
 | Series A+ | Specialist | Roles well-defined, need depth |
 
 **Ideal Early Hire Profile:**
-- Done the job before (not learning on your dime)
+- Done the job before (not learning on the company dime)
 - Comfortable with ambiguity
-- Self-directed (you can't micromanage)
+- Self-directed (avoid micromanagement)
 - Cares about the mission
 - Willing to do "whatever it takes"
 
@@ -568,12 +568,12 @@ Ask the user:
 ## The "Too Early to Hire" Warning Signs
 
 Don't hire if:
-- You don't know exactly what they'll do in week 1
-- You haven't done the job yourself first
-- You can't afford them for 18+ months
-- You don't have time to manage them
-- You're hiring to "figure it out"
-- You haven't tried contractors/outsourcing first
+- Week 1 responsibilities are unclear
+- The job has not been done internally first
+- 18+ months of runway for the hire is not available
+- Management time is not available
+- Hiring is meant to "figure it out"
+- Contractors/outsourcing have not been tried first
 
 ## Integration with Other Skills
 
@@ -609,7 +609,7 @@ Hire slowly. Fire quickly (if not working). The cost of a bad early hire is imme
 
 ## When to Route Elsewhere
 
-- If you need to **evaluate a co-founder** → `cofounder-evaluator`
-- If you need to **check unit economics** → `business-model-auditor`
-- If you need to **plan finances** → `financial-operations-expert`
-- If you're **stuck deciding** → `execution-accelerator`
+- For **co-founder evaluation** → `cofounder-evaluator`
+- For **unit economics** → `business-model-auditor`
+- For **financial planning** → `financial-operations-expert`
+- For **decision paralysis** → `execution-accelerator`

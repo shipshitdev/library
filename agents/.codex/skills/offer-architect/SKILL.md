@@ -288,7 +288,7 @@ Only 5 clients per month (we write your content personally)."
 2. **Weak Guarantees**: "Satisfaction guaranteed" means nothing
 3. **No Specificity**: Vague promises don't convert
 4. **Fake Scarcity**: Destroys trust permanently
-5. **Underpricing**: If you stack value, charge accordingly
+5. **Underpricing**: When value is stacked, charge accordingly
 6. **No Time Element**: Missing quick wins and milestones
 7. **Ignoring Effort**: Making customers do too much work
 

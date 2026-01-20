@@ -58,7 +58,7 @@ Prompts that work:
 One paragraph: what this is for.
 
 ## Non-Goals
-Explicitly state what you are NOT building.
+Explicitly state what is NOT being built.
 
 ## Interfaces
 Inputs/outputs, data types, file formats, API endpoints, CLI commands.
@@ -193,7 +193,7 @@ Make the recommendation conditional on constraints A/B/C.
 **Context discipline (for large codebases):**
 ```
 Only use the files I provided.
-If you need more context, ask for a specific file and explain why.
+If more context is needed, ask for a specific file and explain why.
 ```
 
 **Make it provable:**

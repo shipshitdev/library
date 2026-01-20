@@ -372,5 +372,5 @@ Create templates for common responses:
 
 - If the issue is **product friction** → `constraint-eliminator`
 - If the issue is **customer churn** → `retention-engine`
-- If you're **overwhelmed with decisions** → `execution-accelerator`
-- If you need **help writing docs** → `copywriter`
+- If the issue is **decision overwhelm** → `execution-accelerator`
+- For **documentation writing** → `copywriter`

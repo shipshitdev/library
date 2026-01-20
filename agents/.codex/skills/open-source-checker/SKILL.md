@@ -626,7 +626,7 @@ Scanner: [tool/agent]
 
 ---
 
-**When this skill is active**, you will:
+**When this skill is active**, do the following:
 1. Scan the codebase for private information patterns
 2. Check for hardcoded secrets and credentials
 3. Verify .gitignore includes sensitive files
@@ -634,4 +634,3 @@ Scanner: [tool/agent]
 5. Provide actionable recommendations
 6. Generate a comprehensive report
 7. Help clean up any found issues before open sourcing
-

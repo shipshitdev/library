@@ -26,7 +26,7 @@ Use when:
 
 **Key Principles:**
 
-1. **Know Your Numbers:** You can't improve what you don't measure
+1. **Know the Numbers:** What is not measured cannot be improved
 2. **Separate Everything:** Each business = separate accounts, tracking
 3. **Pay Yourself First:** Owner pay before reinvestment
 4. **Tax Planning is Profit:** Every dollar saved in taxes = profit
@@ -145,8 +145,8 @@ Why 25-35%:
 
 **The Cash Flow Reality:**
 ```
-When money HITS your account ≠ When you "earned" it
-When money LEAVES your account ≠ When you "spent" it
+When money HITS the account ≠ When it is "earned"
+When money LEAVES the account ≠ When it is "spent"
 ```
 
 **Cash Flow Forecasting:**
@@ -361,5 +361,5 @@ Revenue:           $X
 
 - If the problem is **pricing** → `pricing-strategist`
 - If the problem is **business model viability** → `business-model-auditor`
-- If you need to **prioritize businesses** → `business-operator`
-- If **stuck on decisions** → `execution-accelerator`
+- For **portfolio prioritization** → `business-operator`
+- If the problem is **decision paralysis** → `execution-accelerator`

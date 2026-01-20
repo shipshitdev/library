@@ -273,7 +273,7 @@ Ask the user:
 | Week 7-8 | [Date] | Iteration + polish |
 | Week 9-10 | [Date] | Public launch |
 
-**If you can't launch in 10 weeks, scope is too big.**
+**If launch cannot happen in 10 weeks, scope is too big.**
 
 ### Step 10: Manual vs. Automated Decision
 
@@ -473,7 +473,7 @@ Before adding ANY feature, ask:
 | Skill | How It Works Together |
 |-------|----------------------|
 | `idea-validator` | Validate before scoping |
-| `startup-icp-definer` | Define who you're building for |
+| `startup-icp-definer` | Define target customer |
 | `fullstack-workspace-init` | Set up the codebase |
 | `project-scaffold` | Initialize project structure |
 | `brand-architect` | Name and position the product |
@@ -482,26 +482,26 @@ Before adding ANY feature, ask:
 ## Common Mistakes to Avoid
 
 1. **Building before validating:** No design partners = building in the dark
-2. **Too many features:** If you have more than 5, you're over-scoped
+2. **Too many features:** More than 5 indicates overscoping
 3. **Premature polish:** Ugly but working > beautiful but unfinished
 4. **Fixed roadmaps:** Plans change—stay adaptable
-5. **Building what you'd use:** You're not the customer (usually)
-6. **Ignoring feedback:** Design partners know better than your assumptions
-7. **Perfect architecture first:** You'll rewrite it anyway—ship first
+5. **Building what founders would use:** Founders are not the customer (usually)
+6. **Ignoring feedback:** Design partners know better than assumptions
+7. **Perfect architecture first:** It will be rewritten anyway—ship first
 8. **Underestimating manual options:** Many features can be manual for months
 
 ## The "Launch in 2 Weeks" Test
 
-If I told you that you HAD to launch in 2 weeks, what would you cut?
+If launch had to happen in 2 weeks, what would be cut?
 
-**Whatever you'd cut... cut it now.**
+**Whatever would be cut... cut it now.**
 
 That's your real MVP.
 
 ## When to Route Elsewhere
 
 - If the problem isn't validated → `idea-validator`
-- If you don't know who you're building for → `startup-icp-definer`
-- If you need help with the tech setup → `fullstack-workspace-init`
-- If you're stuck deciding → `execution-accelerator`
-- If you need to price the MVP → `pricing-strategist`
+- For **ICP clarity** → `startup-icp-definer`
+- For **tech setup** → `fullstack-workspace-init`
+- For **decision paralysis** → `execution-accelerator`
+- For **MVP pricing** → `pricing-strategist`

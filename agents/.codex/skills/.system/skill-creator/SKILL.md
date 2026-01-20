@@ -291,7 +291,7 @@ The script:
 - Optionally creates resource directories based on `--resources`
 - Optionally adds example files when `--examples` is set
 
-After initialization, customize the SKILL.md and add resources as needed. If you used `--examples`, replace or delete placeholder files.
+After initialization, customize the SKILL.md and add resources as needed. If `--examples` was used, replace or delete placeholder files.
 
 ### Step 4: Edit the Skill
 
@@ -299,7 +299,7 @@ When editing the (newly-generated or existing) skill, remember that the skill is
 
 #### Learn Proven Design Patterns
 
-Consult these helpful guides based on your skill's needs:
+Consult these helpful guides based on the skill's needs:
 
 - **Multi-step processes**: See references/workflows.md for sequential workflows and conditional logic
 - **Specific output formats or quality standards**: See references/output-patterns.md for template and example patterns
@@ -312,7 +312,7 @@ To begin implementation, start with the reusable resources identified above: `sc
 
 Added scripts must be tested by actually running them to ensure there are no bugs and that the output matches what is expected. If there are many similar scripts, only a representative sample needs to be tested to ensure confidence that they all work while balancing time to completion.
 
-If you used `--examples`, delete any placeholder files that are not needed for the skill. Only create resource directories that are actually required.
+If `--examples` was used, delete any placeholder files that are not needed for the skill. Only create resource directories that are actually required.
 
 #### Update SKILL.md
 
@@ -323,7 +323,7 @@ If you used `--examples`, delete any placeholder files that are not needed for t
 Write the YAML frontmatter with `name` and `description`:
 
 - `name`: The skill name
-- `description`: This is the primary triggering mechanism for your skill, and helps Codex understand when to use the skill.
+- `description`: This is the primary triggering mechanism for the skill, and helps Codex understand when to use the skill.
   - Include both what the Skill does and specific triggers/contexts for when to use it.
   - Include all "when to use" information here - Not in the body. The body is only loaded after triggering, so "When to Use This Skill" sections in the body are not helpful to Codex.
   - Example description for a `docx` skill: "Comprehensive document creation, editing, and analysis with support for tracked changes, comments, formatting preservation, and text extraction. Use when Codex needs to work with professional documents (.docx files) for: (1) Creating new documents, (2) Modifying or editing content, (3) Working with tracked changes, (4) Adding comments, or any other document tasks"
@@ -371,3 +371,9 @@ After testing the skill, users may request improvements. Often this happens righ
 2. Notice struggles or inefficiencies
 3. Identify how SKILL.md or bundled resources should be updated
 4. Implement changes and test again
+
+## Scripts
+
+- `scripts/init_skill.py` - Generate a new skill template with scaffolding.
+- `scripts/quick_validate.py` - Run lightweight validation on a skill folder.
+- `scripts/package_skill.py` - Validate and package a skill into a distributable .skill file.

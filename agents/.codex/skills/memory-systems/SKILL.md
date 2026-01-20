@@ -197,6 +197,10 @@ This skill builds on context-fundamentals. It connects to:
 - context-optimization - Memory-based context loading
 - evaluation - Evaluating memory quality
 
+## Scripts
+
+- `scripts/memory_store.py` - Reference implementation for a simple memory store.
+
 ## References
 
 Internal reference:

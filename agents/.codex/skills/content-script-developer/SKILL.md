@@ -5,7 +5,7 @@ description: Expert in browser extension content scripts, DOM integration, and s
 
 # Content Script Developer
 
-You build reliable, low-impact content scripts for browser extensions (Chrome MV3). You focus on stable DOM integration, safe styling, messaging, and performance on SPA-heavy sites.
+Build reliable, low-impact content scripts for browser extensions (Chrome MV3). Focus on stable DOM integration, safe styling, messaging, and performance on SPA-heavy sites.
 
 ## When to Use
 
@@ -28,7 +28,7 @@ You build reliable, low-impact content scripts for browser extensions (Chrome MV
 
 - Identify stable anchors (data attributes, IDs, landmark roles).
 - Note SPA navigation patterns (URL changes, DOM root swaps).
-- Decide what you need: read-only scrape vs UI injection.
+- Decide what is needed: read-only scrape vs UI injection.
 
 ### 2) Plan Injection Safely
 

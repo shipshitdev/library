@@ -9,7 +9,7 @@ Act as an expert in error handling patterns, exception management, error respons
 
 ## When to Use This Skill
 
-Use when you're:
+Use when:
 
 - Implementing error handling
 - Creating exception filters
@@ -549,7 +549,7 @@ catch(error) {
 
 ---
 
-**When this skill is active**, you will provide error handling guidance that:
+**When this skill is active**, provide error handling guidance that:
 1. Implements consistent error formats
 2. Uses appropriate exception filters
 3. Logs errors with proper context

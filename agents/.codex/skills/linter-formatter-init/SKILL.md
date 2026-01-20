@@ -199,7 +199,7 @@ After setup, customize `biome.json` to adjust:
 
 ## Vitest Configuration (with --vitest)
 
-When you use the `--vitest` flag, this skill creates a `vitest.config.ts`:
+When the `--vitest` flag is used, this skill creates a `vitest.config.ts`:
 
 ```typescript
 import { defineConfig } from "vitest/config";
@@ -362,7 +362,7 @@ When using `--eslint`, the skill detects common frameworks and adjusts config:
 
 ## Manual Setup (Alternative)
 
-If you prefer manual setup over the script:
+If manual setup is preferred over the script:
 
 **Biome:**
 ```bash

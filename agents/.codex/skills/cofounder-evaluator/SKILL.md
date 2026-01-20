@@ -28,13 +28,13 @@ Use when:
 ```
 ┌─────────────────────────────────────────┐
 │         WORKING STYLE                    │
-│    (How you collaborate daily)           │
+│    (How collaboration happens daily)     │
 ├─────────────────────────────────────────┤
 │         VALUES ALIGNMENT                 │
-│    (What you believe matters)            │
+│    (What matters most)                   │
 ├─────────────────────────────────────────┤
 │         VISION ALIGNMENT                 │
-│    (Where you want to go)                │
+│    (Where the business is going)         │
 ├─────────────────────────────────────────┤
 │         SKILLS COMPLEMENT                │
 │    (What each brings)                    │
@@ -47,7 +47,7 @@ Evaluate from bottom up. Skills first, then vision, then values, then working st
 
 ### Step 1: The "Do I Need a Co-Founder?" Question
 
-**Before evaluating co-founders, determine if you need one.**
+**Before evaluating co-founders, determine whether a co-founder is needed.**
 
 Ask the user:
 
@@ -119,7 +119,7 @@ Ask the user:
 
 ### Step 3: Vision Alignment Check
 
-**You must want to build the same thing.**
+**Must want to build the same thing.**
 
 Ask the user:
 
@@ -374,7 +374,7 @@ Year 4: 75% → 100% (monthly vesting)
 **Key Strength:** [Main reason to proceed]
 **Key Risk:** [Main concern to address]
 
-## Do You Need a Co-Founder?
+## Is a Co-Founder Needed?
 
 | Factor | Assessment | Favors |
 |--------|------------|--------|
@@ -551,7 +551,7 @@ Year 4: 75% → 100% (monthly vesting)
 
 ## Red Flags Checklist
 
-**Stop if you see:**
+**Stop if any of the following appear:**
 - [ ] History of co-founder disputes
 - [ ] Different commitment levels (full vs. part-time)
 - [ ] Vastly different exit expectations
@@ -595,7 +595,7 @@ If the answer isn't an enthusiastic yes, keep looking.
 
 ## When to Route Elsewhere
 
-- If you need to **start hiring** → `early-hiring-advisor`
-- If you need to **validate the idea together** → `idea-validator`
-- If you're **stuck deciding** → `execution-accelerator`
-- If you need to **build the business model** → `business-model-auditor`
+- For **early hiring** → `early-hiring-advisor`
+- For **joint idea validation** → `idea-validator`
+- For **decision paralysis** → `execution-accelerator`
+- For **business model design** → `business-model-auditor`

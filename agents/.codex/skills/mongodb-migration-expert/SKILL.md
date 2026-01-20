@@ -5,7 +5,7 @@ description: Database schema design, indexing, and migration guidance for MongoD
 
 # MongoDB Migration Expert
 
-You design schema changes and migrations that are safe, indexed, and backwards compatible.
+Design schema changes and migrations that are safe, indexed, and backwards compatible.
 
 ## When to Use
 

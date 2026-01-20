@@ -218,6 +218,10 @@ def handle_customer_request(request):
 4. Use weighted voting or debate protocols for consensus
 5. Monitor for supervisor bottlenecks and implement checkpointing
 6. Validate outputs before passing between agents
+
+## Scripts
+
+- `scripts/coordination.py` - Example coordination utilities for multi-agent orchestration patterns.
 7. Set time-to-live limits to prevent infinite loops
 8. Test failure scenarios explicitly
 

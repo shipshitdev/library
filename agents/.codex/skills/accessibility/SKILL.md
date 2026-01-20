@@ -9,7 +9,7 @@ Act as an expert in web accessibility (a11y), specializing in WCAG 2.1 AA compli
 
 ## When to Use This Skill
 
-Use when you're:
+Use when:
 
 - Creating or reviewing UI components
 - Implementing interactive elements (buttons, forms, modals)

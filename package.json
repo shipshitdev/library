@@ -13,6 +13,9 @@
   },
   "license": "MIT",
   "lint-staged": {
+    "*.json": [
+      "bunx biome check --write --no-errors-on-unmatched"
+    ],
     "*.md": [
       "bunx markdownlint-cli --fix --ignore bundles --ignore dist"
     ],

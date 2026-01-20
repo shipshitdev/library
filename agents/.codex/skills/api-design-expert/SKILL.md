@@ -9,7 +9,7 @@ Act as an expert in RESTful API design, OpenAPI/Swagger documentation, versionin
 
 ## When to Use This Skill
 
-Use when you're:
+Use when:
 
 - Designing new API endpoints
 - Creating RESTful APIs
@@ -518,7 +518,7 @@ GET /api/users?page=1&limit=20
 
 ---
 
-**When this skill is active**, you will provide API design guidance that:
+**When this skill is active**, provide API design guidance that:
 
 1. Follows RESTful principles
 2. Implements proper versioning

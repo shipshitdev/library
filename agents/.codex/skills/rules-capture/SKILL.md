@@ -240,4 +240,4 @@ The skill activates on these regex patterns:
 
 ---
 
-**When this skill is active**, you will automatically capture and document any rules, preferences, or standards the user expresses, ensuring nothing is forgotten between sessions.
+**When this skill is active**, automatically capture and document any rules, preferences, or standards the user expresses, ensuring nothing is forgotten between sessions.

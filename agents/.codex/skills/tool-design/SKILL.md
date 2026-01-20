@@ -152,7 +152,7 @@ Without the server prefix, agents may fail to locate tools, especially when mult
 
 ### Using Agents to Optimize Tools
 
-Claude can optimize its own tools. When given a tool and observed failure modes, it diagnoses issues and suggests improvements. Production testing shows this approach achieves 40% reduction in task completion time by helping future agents avoid mistakes.
+Codex can optimize its own tools. When given a tool and observed failure modes, it diagnoses issues and suggests improvements. Production testing shows this approach achieves 40% reduction in task completion time by helping future agents avoid mistakes.
 
 **The Tool-Testing Agent Pattern**:
 
@@ -284,6 +284,10 @@ This skill connects to:
 - context-fundamentals - How tools interact with context
 - multi-agent-patterns - Specialized tools per agent
 - evaluation - Evaluating tool effectiveness
+
+## Scripts
+
+- `scripts/description_generator.py` - Helper to draft tool descriptions from schemas.
 
 ## References
 

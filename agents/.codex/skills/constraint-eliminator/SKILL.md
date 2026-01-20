@@ -81,7 +81,7 @@ Design levels of service:
 **Spectrum:**
 ```
 DIY ───────────────────────────────────────────────────── DFY
-You teach    You guide    You help    You do together    You do it
+Teach       Guide       Help        Do together        Do it
 ```
 
 **Level Analysis:**
@@ -236,7 +236,7 @@ Create content/copy that addresses objections BEFORE they arise:
 
 ### Quick Wins (This Week)
 - [ ] [Easiest obstacle to remove]
-- [ ] [Guarantee you can add immediately]
+- [ ] [Guarantee that can be added immediately]
 - [ ] [Objection handling to update]
 
 ### Medium-Term (30 Days)

@@ -1,6 +1,6 @@
 ---
 name: quick-view
-description: Generate minimal HTML pages to review Claude Code output in a browser. Use when terminal output is hard to read, when reviewing lists/tables/drafts, or when user says "show me", "make this reviewable", "quick view", or "open as webpage". Produces unstyled semantic HTML only. For granular feedback with inline comments, see the comment-mode skill.
+description: Generate minimal HTML pages to review Codex output in a browser. Use when terminal output is hard to read, when reviewing lists/tables/drafts, or when user says "show me", "make this reviewable", "quick view", or "open as webpage". Produces unstyled semantic HTML only. For granular feedback with inline comments, see the comment-mode skill.
 ---
 
 # Quick View
@@ -353,7 +353,7 @@ Add export button in header when using editable drafts:
 
 User: "show me the drafts"
 
-Claude:
+Codex:
 1. Reads `_private/drafts/outreach_drafts.md`
 2. Parses each draft (heading = contact, body = draft)
 3. Generates HTML with `<details>` for each draft
@@ -364,7 +364,7 @@ Result: Browser opens, user sees expandable list of drafts with auto dark/light 
 
 User: "this looks good, keep it"
 
-Claude:
+Codex:
 1. Renames `drafts-temp.html` → `drafts.html`
 2. Confirms: "Saved as drafts.html"
 

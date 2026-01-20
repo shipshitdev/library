@@ -101,7 +101,7 @@ Monthly Delay Cost =
 
 **The MVP Razor:**
 ```
-If you're not embarrassed by v1, you launched too late.
+If v1 is not embarrassing, the launch was too late.
 ```
 
 **Scope Cutting Framework:**
@@ -121,16 +121,16 @@ If you're not embarrassed by v1, you launched too late.
 > **What are you pretending you need that you actually don't?**
 
 **Common Pretend Needs:**
-| You Think You Need | Reality |
+| Perceived Need | Reality |
 |-------------------|---------|
 | Perfect website | Landing page is fine |
 | Complete product | MVP is enough |
-| More research | You have enough |
-| Right pricing | You can change it later |
+| More research | Enough already |
+| Right pricing | Change later |
 | Perfect timing | There is no perfect timing |
 | More features | Features don't sell |
-| Social proof | Start with what you have |
-| Funding | Bootstrap what you can |
+| Social proof | Start with what exists |
+| Funding | Bootstrap what is possible |
 
 ### Step 6: The Action Directive
 
@@ -155,7 +155,7 @@ If you're not embarrassed by v1, you launched too late.
 
 ## The Reality Check
 
-**What You Think You Need:**
+**Perceived Needs:**
 [What they claim to be waiting for]
 
 **What's Actually True:**
@@ -239,7 +239,7 @@ If you're not embarrassed by v1, you launched too late.
 - Day 2: Build
 - Day 3: Ship
 
-If you're past 72 hours and haven't started, either start NOW or acknowledge you're not going to do it.
+If more than 72 hours pass without starting, either start NOW or acknowledge it will not happen.
 
 ## The Kill Questions
 

@@ -62,7 +62,7 @@ The script handles all interactive prompts.
 - **Existing projects**: Can add components to existing projects
 
 ### Component Options
-All components are optional - scaffold only what you need:
+All components are optional - scaffold only what is needed:
 - `.agent/` folder with full AI documentation structure
 - Backend with NestJS, MongoDB, Swagger
 - Frontend with NextJS 15, Tailwind, @agenticindiedev/ui

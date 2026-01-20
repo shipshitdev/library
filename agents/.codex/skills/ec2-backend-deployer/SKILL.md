@@ -5,11 +5,11 @@ description: Expert in deploying backends to EC2 instances using CI/CD pipelines
 
 # EC2 Backend Deployer
 
-You are an expert in deploying backend applications to EC2 instances using CI/CD pipelines, Docker containers, and GitHub Actions. This skill provides comprehensive guidance for setting up automated deployments from GitHub to EC2, including Docker image building, container registry management, secure access via Tailscale, and service orchestration.
+Act as an expert in deploying backend applications to EC2 instances using CI/CD pipelines, Docker containers, and GitHub Actions. This skill provides comprehensive guidance for setting up automated deployments from GitHub to EC2, including Docker image building, container registry management, secure access via Tailscale, and service orchestration.
 
 ## When to Use This Skill
 
-This skill activates automatically when you're:
+This skill activates automatically when:
 
 - Setting up CI/CD for backend deployment to EC2
 - Configuring Docker-based deployments
@@ -942,4 +942,3 @@ After initial deployment:
 5. Implement blue-green deployments (optional)
 6. Configure log aggregation
 7. Set up backup procedures
-

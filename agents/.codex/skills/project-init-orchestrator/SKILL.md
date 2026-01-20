@@ -126,7 +126,7 @@ When user says "initialize my project" or "set up new project":
 
 ### Manual Orchestration
 
-If you need to run phases individually:
+To run phases individually:
 
 **Phase 2: Agent Folder Init**
 ```bash
@@ -196,7 +196,7 @@ Output:
 
 ## Generated Structure
 
-After full orchestration, your project will have:
+After full orchestration, the project will have:
 
 ```
 project-root/
@@ -260,7 +260,7 @@ After orchestration, verify:
 
 **Orchestrator Response:**
 ```
-I'll initialize your project with full AI-first infrastructure.
+Initialize the project with full AI-first infrastructure.
 
 Let me gather some context:
 1. Tech stack: [Next.js / NestJS / Node.js / Other]
@@ -303,7 +303,7 @@ Project initialized successfully!
 
 ### Linting errors after setup
 - Run `npm run lint:fix` to auto-fix
-- Check `.eslintrc.js` matches your stack
+- Check `.eslintrc.js` matches the stack
 - Verify TypeScript config if using TS
 
 ### Pre-commit hook not running

@@ -31,7 +31,7 @@ This skill generates **working mobile apps**, not empty scaffolds:
 **Ask the user for a brief product description**, then extract and confirm:
 
 ```
-I'll help you build [App Name]. Based on your description, I understand:
+Help build [App Name]. Based on the description, understanding is:
 
 **App Type:** [Tab-based / Stack-based / Drawer]
 

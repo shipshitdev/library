@@ -72,6 +72,12 @@ Note: This is a completely optional step. Only perform if necessary or requested
 
 To test/visualize the artifact, use available tools (including other Skills or built-in tools like Playwright or Puppeteer). In general, avoid testing the artifact upfront as it adds latency between the request and when the finished artifact can be seen. Test later, after presenting the artifact, if requested or if issues arise.
 
+## Scripts and Assets
+
+- `scripts/init-artifact.sh` - Scaffold a React-based artifact project.
+- `scripts/bundle-artifact.sh` - Bundle the project into a single HTML artifact.
+- `scripts/shadcn-components.tar.gz` - Prepackaged shadcn/ui components used by the init script.
+
 ## Reference
 
 - **@agenticindiedev/ui**: Check the package README/docs

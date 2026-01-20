@@ -18,7 +18,7 @@ Use this skill to diagnose failing GitHub Actions checks on a PR and propose a f
    - `gh pr checks`
 4) For GitHub Actions failures, fetch logs:
    - `gh run view <run-id> --log`
-   - If you only have a job id: `gh run view --job <job-id> --log`
+   - When only a job id is available: `gh run view --job <job-id> --log`
 5) Summarize the root cause and impacted files.
 6) Propose a fix plan and get user approval before changing code.
 7) For external checks (non-GitHub Actions), report the details URL and mark as out of scope.

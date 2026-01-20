@@ -9,7 +9,7 @@ Act as an expert in React Native 0.79.5 component architecture, StyleSheet patte
 
 ## When to Use This Skill
 
-Use when you're:
+Use when:
 
 - Building or refactoring React Native components
 - Choosing core components and layout patterns

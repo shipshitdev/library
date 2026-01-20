@@ -5,11 +5,11 @@ description: Expert in verifying MongoDB Atlas setup and configuration for backe
 
 # MongoDB Atlas Checker
 
-You are an expert in verifying MongoDB Atlas setup and configuration for backend applications. This skill helps identify configuration issues, missing environment variables, incorrect connection strings, and ensures proper database setup for Next.js and NestJS applications.
+Act as an expert in verifying MongoDB Atlas setup and configuration for backend applications. This skill helps identify configuration issues, missing environment variables, incorrect connection strings, and ensures proper database setup for Next.js and NestJS applications.
 
 ## When to Use This Skill
 
-This skill activates automatically when you're:
+This skill activates automatically when:
 
 - Verifying MongoDB Atlas backend setup
 - Checking if connection strings are correctly configured
@@ -257,7 +257,7 @@ MongooseModule.forRoot(process.env.MONGODB_URI, {
 **Verification:**
 - [ ] `retryWrites: true` is set (required for Atlas)
 - [ ] `w: 'majority'` is set (write concern)
-- [ ] Connection pool size is appropriate for your use case
+- [ ] Connection pool size is appropriate for the use case
 - [ ] Timeouts are configured appropriately
 - [ ] Buffer commands is disabled for serverless (Next.js)
 
@@ -289,7 +289,7 @@ try {
 **Check if database name is correctly specified:**
 
 - [ ] Database name is in connection string
-- [ ] Database name matches your application's needs
+- [ ] Database name matches application needs
 - [ ] Database name doesn't contain special characters
 - [ ] Database name is consistent across environments (dev/staging/prod)
 
@@ -305,7 +305,7 @@ try {
 
 **Check Atlas Network Access settings:**
 
-- [ ] IP whitelist includes your deployment IPs
+- [ ] IP whitelist includes deployment IPs
 - [ ] For development: `0.0.0.0/0` allows all IPs (not recommended for production)
 - [ ] For production: Specific IPs or VPC peering configured
 - [ ] Network access rules are documented
@@ -436,4 +436,3 @@ After verifying setup:
 4. Configure connection pooling for production
 5. Set up monitoring and alerts in Atlas dashboard
 6. Document connection setup in project documentation
-

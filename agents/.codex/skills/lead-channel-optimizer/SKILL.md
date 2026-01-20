@@ -306,5 +306,5 @@ Don't add a new channel until:
 
 - If the problem is **the offer not converting** → `offer-architect`
 - If **outbound specifically isn't working** → `outbound-optimizer`
-- If you're **stuck and can't decide** → `execution-accelerator`
+- If the problem is **decision paralysis** → `execution-accelerator`
 - If the **business model doesn't work** → `business-model-auditor`

@@ -39,7 +39,7 @@ Users must know when processing ends. Ambiguous end states frustrate users.
 ### Reasoning Display (Chain-of-Thought)
 When AI is "thinking" through a problem. See [references/reasoning-patterns.md](references/reasoning-patterns.md).
 
-**Best approach (Claude-style):**
+**Best approach (expandable reasoning style):**
 - Hidden by default, expandable on demand
 - Structured bullets when expanded
 - Time counter or progress indicator

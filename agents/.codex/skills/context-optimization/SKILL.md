@@ -154,6 +154,10 @@ This skill builds on context-fundamentals and context-degradation. It connects t
 - evaluation - Measuring optimization effectiveness
 - memory-systems - Offloading context to memory
 
+## Scripts
+
+- `scripts/compaction.py` - Example compaction routine for shrinking long contexts.
+
 ## References
 
 Internal reference:

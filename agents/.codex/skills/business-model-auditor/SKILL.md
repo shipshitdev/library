@@ -91,12 +91,12 @@ Ask the user:
 **Time Dependency Score:**
 | Scenario | Score | Meaning |
 |----------|-------|---------|
-| Business stops if you stop | 1/10 | Totally dependent |
+| Business stops if the founder stops | 1/10 | Totally dependent |
 | Revenue drops 50%+ | 3/10 | Highly dependent |
 | Revenue drops 20-50% | 5/10 | Moderately dependent |
 | Revenue drops <20% | 7/10 | Low dependency |
 | Revenue unaffected | 9/10 | Time independent |
-| Revenue grows without you | 10/10 | True leverage |
+| Revenue grows without founder involvement | 10/10 | True leverage |
 
 ### Step 4: The 10x Stress Test
 
@@ -194,12 +194,12 @@ For each bottleneck:
 
 **Time Dependency Score:** X/10
 
-**If You Stopped Working:**
+**If Work Stopped:**
 - Immediate Impact: [What happens day 1]
 - 30-Day Impact: [What happens in a month]
 - 90-Day Impact: [What happens in 3 months]
 
-**Tasks Only You Can Do:**
+**Tasks Only the Founder Can Do:**
 1. [Task 1] — [Time spent] — [Can be changed: Y/N]
 2. [Task 2] — [Time spent] — [Can be changed: Y/N]
 3. [Task 3] — [Time spent] — [Can be changed: Y/N]
@@ -223,7 +223,7 @@ For each bottleneck:
 
 **Current Maximum Capacity:** X customers/month
 **Limiting Factor:** [What creates the ceiling]
-**To 10x, You Need:** [What would need to change]
+**To 10x, Needed Changes:** [What would need to change]
 
 ### Margin at Scale
 
@@ -305,14 +305,14 @@ For each bottleneck:
 Ask yourself:
 > "If this business had to pay me a salary for the work I do, would the economics still work?"
 
-If revenue - your salary - all other costs < 20% margin, the model is too dependent on your free/cheap labor.
+If revenue minus founder salary and other costs yields < 20% margin, the model depends on underpriced founder labor.
 
 ## Model Evolution Paths
 
 **From Service to Productized Service:**
-- Package your service into fixed-scope, fixed-price offerings
+- Package the service into fixed-scope, fixed-price offerings
 - Create processes that others can execute
-- Build systems that don't require your judgment
+- Build systems that don't require founder judgment
 
 **From Productized Service to SaaS:**
 - Identify the repeatable, automatable parts
@@ -336,7 +336,7 @@ If revenue - your salary - all other costs < 20% margin, the model is too depend
 
 ## Common Mistakes to Avoid
 
-1. **Ignoring your time cost:** Counting "profit" without valuing your hours
+1. **Ignoring time cost:** Counting "profit" without valuing hours
 2. **Hoping margins improve:** They usually get worse at scale without action
 3. **Hiring to fix bottlenecks:** Sometimes the fix is automation or elimination
 4. **Scaling before fixing:** 10x a broken model = 10x the problems
@@ -345,14 +345,14 @@ If revenue - your salary - all other costs < 20% margin, the model is too depend
 
 ## The Founder Replacement Test
 
-Could someone else run this business at 80% effectiveness if you left for 6 months?
+Could someone else run this business at 80% effectiveness if the founder left for 6 months?
 
-- **If yes:** You have a business
-- **If no:** You have a job you created for yourself
+- **If yes:** Business is viable
+- **If no:** This is a job created for the founder
 
 ## When to Route Elsewhere
 
 - If the problem is **the offer** → `offer-architect`
 - If the problem is **pricing** → `pricing-strategist`
 - If the problem is **not enough leads** → `lead-channel-optimizer`
-- If you're **stuck on what to fix first** → `execution-accelerator`
+- If the problem is **prioritization** → `execution-accelerator`

@@ -7,7 +7,7 @@ description: Automatically document session work after each task completion. Tra
 
 **Purpose:** Automatically document all work, decisions, and context throughout the session for continuity.
 
-**Auto-activation:** Use when you complete tasks to ensure documentation is not skipped.
+**Auto-activation:** Use when completing tasks to ensure documentation is not skipped.
 
 ## When This Skill Activates
 

@@ -82,12 +82,12 @@ Ask the user:
 ```
 [Personalized opener showing research]
 [Observation/insight about their situation]
-[Value you can offer for free]
+[Value offered for free]
 [Zero-commitment CTA]
 ```
 
 **First Sentence Test:**
-- Does it prove you researched THEM specifically?
+- Does it prove research was done on THEM specifically?
 - Would this apply to 100 other people? (If yes, it's not personalized)
 - Does it make them want to read more?
 
@@ -194,7 +194,7 @@ Ask the user:
 - **Company:** [Size, type, industry]
 - **Pain:** [Core problem they have]
 - **Trigger:** [Why they'd care NOW]
-- **Proof Point:** [Why you can help]
+- **Proof Point:** [Why help is credible]
 
 ## Current Message Audit
 

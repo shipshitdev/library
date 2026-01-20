@@ -9,7 +9,7 @@ description: Use when users need to calculate market size (TAM/SAM/SOM), assess 
 
 Act as a market sizing specialist applying Hexa's practical market assessment methodology. Help indie founders determine if their target market is big enough to build a venture-scale business, or if they should pursue a different opportunity. Execute rigorous bottom-up AND top-down analysis—not just guess—producing defensible market size estimates.
 
-**Hexa's Core Principle:** "No need to carry on a complex market sizing here, but we want to assess the scale of the opportunity. Make sure you can approximate how big the market is—ideally by confronting bottom-up and top-down analysis."
+**Hexa's Core Principle:** "No need to carry on a complex market sizing here, but we want to assess the scale of the opportunity. Make sure the market size can be approximated—ideally by confronting bottom-up and top-down analysis."
 
 ## When This Activates
 
@@ -37,8 +37,8 @@ The goal is to produce:
 | Term | Definition | What It Means |
 |------|------------|---------------|
 | **TAM** | Total Addressable Market | Everyone who could theoretically buy |
-| **SAM** | Serviceable Available Market | The segment you can actually reach |
-| **SOM** | Serviceable Obtainable Market | What you can realistically capture in 3-5 years |
+| **SAM** | Serviceable Available Market | The segment the business can actually reach |
+| **SOM** | Serviceable Obtainable Market | What can realistically be captured in 3-5 years |
 
 **Visual:**
 ```
@@ -55,7 +55,7 @@ The goal is to produce:
 
 ## Execution Workflow
 
-### Step 1: Define What You're Sizing
+### Step 1: Define What Is Being Sized
 
 Ask the user:
 
@@ -68,9 +68,9 @@ Ask the user:
 
 **Sizing Parameters:**
 
-| Parameter | Your Answer |
+| Parameter | Answer |
 |-----------|-------------|
-| Product/Service | [What you sell] |
+| Product/Service | [What is sold] |
 | Target Customer | [Company type + buyer role] |
 | Problem Solved | [Core pain point] |
 | Geography | [Initial market] |
@@ -78,7 +78,7 @@ Ask the user:
 
 ### Step 2: Bottom-Up Analysis (Build from Units)
 
-**Bottom-up starts with your specific customer and multiplies out.**
+**Bottom-up starts with the specific customer and multiplies out.**
 
 Ask the user:
 
@@ -93,7 +93,7 @@ Ask the user:
 ```
 TAM = Total Potential Customers × Annual Revenue Per Customer
 
-SAM = TAM × Percentage You Can Reach (geographic, segment fit)
+SAM = TAM × Percentage Reachable (geographic, segment fit)
 
 SOM = SAM × Realistic Market Share (usually 1-5% in years 1-3)
 ```
@@ -233,16 +233,16 @@ Ask the user:
 
 ### Step 7: Market Size Adequacy Test
 
-**Is this market big enough for your ambitions?**
+**Is this market big enough for the ambitions?**
 
-| Your Goal | Required SOM | Required SAM |
+| Goal | Required SOM | Required SAM |
 |-----------|--------------|--------------|
 | Lifestyle business ($500K-2M/year) | $500K-2M | $10M+ |
 | Venture-scale ($10M+ ARR) | $10M+ | $100M+ |
 | Unicorn potential ($100M+ ARR) | $100M+ | $1B+ |
 
 **The 10% Rule:**
-If you captured 10% of your SAM, would that be an interesting business?
+If 10% of SAM were captured, would that be an interesting business?
 - **If yes:** Market is big enough
 - **If no:** Market too small or SAM definition too narrow
 
@@ -363,13 +363,13 @@ If you captured 10% of your SAM, would that be an interesting business?
 
 | Who Tried | When | Why They Failed | What's Different Now |
 |-----------|------|-----------------|---------------------|
-| [Company] | [Year] | [Reason] | [Your advantage] |
+| [Company] | [Year] | [Reason] | [Advantage] |
 
 ## Adequacy Assessment
 
-### Your Ambition vs. Market Size
+### Ambition vs. Market Size
 
-| Goal | Required SOM | Your SOM | Adequate? |
+| Goal | Required SOM | Current SOM | Adequate? |
 |------|--------------|----------|-----------|
 | Lifestyle ($1M ARR) | $1M | $[X]M | [Yes/No] |
 | Venture ($10M ARR) | $10M | $[X]M | [Yes/No] |
@@ -377,13 +377,13 @@ If you captured 10% of your SAM, would that be an interesting business?
 
 ### The 10% Test
 
-**If you captured 10% of SAM:** $[X]M × 10% = **$[X]M**
+**If 10% of SAM were captured:** $[X]M × 10% = **$[X]M**
 
 **Is this interesting?** [Yes/No]
 
 ## Recommendations
 
-### If Market Is Big Enough (SOM > Your Goal)
+### If Market Is Big Enough (SOM > Goal)
 
 - [ ] Proceed with validation using `idea-validator`
 - [ ] Define go-to-market using `startup-icp-definer`
@@ -463,8 +463,8 @@ If you captured 10% of your SAM, would that be an interesting business?
 
 ## When to Route Elsewhere
 
-- If you need to **validate the idea** → `idea-validator`
-- If you need to **define the customer** → `startup-icp-definer`
-- If you need to **analyze competitors** → `competitive-intelligence-analyst`
-- If you need to **present to investors** → `fundraise-advisor`
-- If the market seems too small and you're **stuck** → `execution-accelerator`
+- For **idea validation** → `idea-validator`
+- For **ICP definition** → `startup-icp-definer`
+- For **competitive analysis** → `competitive-intelligence-analyst`
+- For **investor presentation** → `fundraise-advisor`
+- If the market seems too small and **decision paralysis** hits → `execution-accelerator`

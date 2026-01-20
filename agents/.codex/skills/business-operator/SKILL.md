@@ -72,7 +72,7 @@ For each business, identify which Hormozi framework is needed most:
 | Not enough leads/customers | `lead-channel-optimizer` |
 | High churn, low LTV | `retention-engine` |
 | Customers struggling to succeed | `constraint-eliminator` |
-| Can't scale, you're the bottleneck | `business-model-auditor` |
+| Can't scale, founder is the bottleneck | `business-model-auditor` |
 | Outbound isn't converting | `outbound-optimizer` |
 | Stuck, can't decide, overthinking | `execution-accelerator` |
 
@@ -86,8 +86,8 @@ Priority = (Revenue Potential × Current Traction × Leverage) / Effort Required
 Where each factor is scored 1-10:
 - Revenue Potential: Market size × pricing power
 - Current Traction: Customers × growth rate × retention
-- Leverage: Can it run without you? (10 = fully automated, 1 = you ARE the product)
-- Effort Required: Your weekly hours (inverted: 1 hour = 10, 40 hours = 1)
+- Leverage: Can it run without the founder? (10 = fully automated, 1 = founder is the product)
+- Effort Required: Weekly hours (inverted: 1 hour = 10, 40 hours = 1)
 ```
 
 ### Step 5: Action Plan Generation
@@ -99,7 +99,7 @@ For each business, output:
 - Primary Issue: [Detected problem]
 - Recommended Skill: [Which Hormozi skill to deploy]
 - This Week's Action: [One specific thing to do]
-- Time Allocation: [% of your week]
+- Time Allocation: [% of week]
 
 ## Output Format
 
@@ -271,7 +271,7 @@ Sometimes the answer is to **kill a business**. Consider killing when:
 3. **Time Tracking**: Actually track hours to validate effort scores
 4. **Quarterly Kills**: Review what to kill every quarter
 5. **Stack Rankings**: Always rank, never tie - forces prioritization
-6. **Exit Criteria**: Define what would make you kill each business upfront
+6. **Exit Criteria**: Define what would make each business a clear kill
 
 ## When to Escalate
 

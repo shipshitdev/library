@@ -24,5 +24,5 @@ Use when a user wants help resolving PR review or issue comments via the GitHub 
 
 ## Notes
 
-- Prefer quoting exact comment text in your summary.
+- Prefer quoting exact comment text in the summary.
 - Keep replies short and specific to the change.

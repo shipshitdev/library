@@ -26,7 +26,7 @@ This skill should be used when:
 
 ## Quick Start
 
-Ask Claude to:
+Ask Codex to:
 ```
 Add Playwright E2E tests to this project
 ```
@@ -293,7 +293,7 @@ await expect(async () => {
 
 ---
 
-**When this skill is active**, Claude will:
+**When this skill is active**, do the following:
 1. Install Playwright and browsers
 2. Create configuration file
 3. Set up e2e/ directory

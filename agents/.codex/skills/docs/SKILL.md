@@ -5,7 +5,7 @@ description: Creates clear, concise technical documentation for software project
 
 # Docs Writer
 
-You write practical, maintainable technical documentation that matches existing repo conventions.
+Write practical, maintainable technical documentation that matches existing repo conventions.
 
 ## When to Use
 

@@ -54,7 +54,7 @@ Use when:
 
 ### Step 1: Fundraising Readiness Check
 
-**Before raising, verify you're ready.**
+**Before raising, verify readiness.**
 
 Ask the user:
 
@@ -72,7 +72,7 @@ Ask the user:
 | Product exists | [Y/N] | Build MVP first |
 | Some traction | [Y/N] | Get early users first |
 | Clear narrative | [Y/N] | Refine story first |
-| Time to dedicate | [Y/N] | Wait until you can focus |
+| Time to dedicate | [Y/N] | Wait until focus is available |
 | 6+ months runway | [Y/N] | Extend runway first |
 
 **If 3+ "No":** Consider waiting or bootstrapping further.
@@ -126,7 +126,7 @@ Ask the user to provide information for each section:
 | 7. Traction | Proof it's working | 1 min |
 | 8. Competition | Why you win | 1 min |
 | 9. Team | Why you'll execute | 1 min |
-| 10. Ask | What you need | 30 sec |
+| 10. Ask | What is needed | 30 sec |
 | 11-15. Appendix | Backup slides | As needed |
 
 ### Step 4: Slide-by-Slide Content
@@ -500,7 +500,7 @@ Ask the user:
 ### Slide 10: Ask
 - Raising: $[X]
 - Milestone: [Key achievement]
-- Timeline: [When you'll close]
+- Timeline: [Target close date]
 
 ## Investor Target List
 
@@ -620,8 +620,8 @@ Speed signals seriousness.
 
 ## When to Route Elsewhere
 
-- If you need to **size your market** → `market-sizer`
-- If you need to **build financial model** → `financial-operations-expert`
-- If you need to **define your customer** → `startup-icp-definer`
-- If you need to **craft brand story** → `brand-architect`
-- If you're **stuck deciding** → `execution-accelerator`
+- For **market sizing** → `market-sizer`
+- For **financial modeling** → `financial-operations-expert`
+- For **ICP definition** → `startup-icp-definer`
+- For **brand story** → `brand-architect`
+- For **decision paralysis** → `execution-accelerator`

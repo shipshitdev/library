@@ -32,7 +32,7 @@ Stress-test business models by imagining 10x growth and asking: "What breaks?"
 
 **Core Question:**
 ```
-If you 10x'd your business tomorrow, what breaks first?
+If the business 10x'd tomorrow, what breaks first?
 ```
 
 ### Four Leverage Types
@@ -48,11 +48,11 @@ If you 10x'd your business tomorrow, what breaks first?
 
 | Dimension | Weight | What It Measures |
 |-----------|--------|------------------|
-| Time Independence | 2x | Can it run without you? |
+| Time Independence | 2x | Can it run without the founder? |
 | Unit Economics | 2x | Do the numbers work at scale? |
-| Bottleneck Clarity | 1.5x | Do you know what's constraining? |
+| Bottleneck Clarity | 1.5x | Is the constraint clear? |
 | Leverage Active | 1x | How many leverage types? |
-| Delivery Scalability | 1.5x | Can you deliver 10x without 10x cost? |
+| Delivery Scalability | 1.5x | Can delivery scale 10x without 10x cost? |
 | Margin Integrity | 1x | Do margins hold at scale? |
 
 **Max Score:** 100 points

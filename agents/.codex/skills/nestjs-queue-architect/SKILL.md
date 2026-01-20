@@ -9,7 +9,7 @@ Act as a senior queue architect specializing in BullMQ with NestJS. Design resil
 
 ## When to Use This Skill
 
-Use when you're:
+Use when:
 
 - Designing or extending BullMQ queues in NestJS
 - Creating processors, job types, and retry strategies

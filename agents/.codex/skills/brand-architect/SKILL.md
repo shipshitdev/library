@@ -9,7 +9,7 @@ description: Use when users need to develop brand strategy, choose a company nam
 
 Act as a brand architect applying Hexa's "Branding from Day One" methodology. Help indie founders build a brand that scales—avoiding costly rebrands later and creating instant recognition in the market. Execute strategic brand development—not just pick pretty colors—by guiding users through naming, positioning, voice, and visual identity foundations.
 
-**Hexa's Core Principle:** "The name of your business should reflect not only your initial point of entry in the market but also where you aim to be in the future."
+**Hexa's Core Principle:** "The name of the business should reflect not only the initial point of entry in the market but also the intended future."
 
 ## When This Activates
 
@@ -64,11 +64,11 @@ Ask the user:
 | One-liner | [What it does] |
 | Audience | [Who it's for] |
 | Category | [Market/Industry] |
-| Vision | [Where you're headed] |
+| Vision | [Where the brand is headed] |
 
 ### Step 2: Naming Strategy
 
-**The DemoChimp Lesson:** Consensus (formerly DemoChimp) had to rebrand when moving upmarket because "DemoChimp" didn't translate to enterprise. Name for where you're going, not just where you are.
+**The DemoChimp Lesson:** Consensus (formerly DemoChimp) had to rebrand when moving upmarket because "DemoChimp" didn't translate to enterprise. Name for where the brand is going, not just where it is.
 
 Ask the user:
 
@@ -132,7 +132,7 @@ Ask the user:
 
 ### Step 4: Brand Positioning
 
-**Positioning = Why someone should choose you over alternatives.**
+**Positioning = Why someone should choose the brand over alternatives.**
 
 Ask the user:
 
@@ -200,7 +200,7 @@ Ask the user:
 
 ### Step 6: Brand Voice Definition
 
-**Voice = How you sound in all communications.**
+**Voice = How the brand sounds in all communications.**
 
 Ask the user:
 
@@ -241,7 +241,7 @@ Ask the user:
 
 ### Step 7: Visual Identity Foundations
 
-**Note:** Full visual identity often needs a designer, but you can establish foundations.
+**Note:** Full visual identity often needs a designer, but establish foundations.
 
 Ask the user:
 
@@ -286,7 +286,7 @@ Ask the user:
 
 **Brand Name:** [Name]
 **Tagline:** [If applicable]
-**Category:** [What category you're in]
+**Category:** [Current category]
 **Position:** [One-sentence positioning]
 
 ## Brand Foundation
@@ -354,7 +354,7 @@ we [key differentiator].
 
 ### Competitive Positioning
 
-**Our Position:** [Description of where you sit in the market]
+**Position:** [Description of market position]
 
 **Key Differentiators:**
 1. [Differentiator 1]
@@ -486,7 +486,7 @@ Our brand is:
 
 Before finalizing a name, ask:
 
-1. **The Expansion Test:** Does it work if you expand to adjacent markets?
+1. **The Expansion Test:** Does it work if the brand expands to adjacent markets?
 2. **The Enterprise Test:** Would Fortune 500 executives take it seriously?
 3. **The Cocktail Party Test:** Is it easy to explain and remember?
 4. **The Global Test:** Does it work in major international markets?
@@ -530,8 +530,8 @@ Use this to audit an existing brand:
 
 ## When to Route Elsewhere
 
-- If you need to **generate name ideas** → `brand-name-generator`
-- If you need to **write brand copy** → `copywriter`
-- If you need to **define target customer** → `startup-icp-definer`
-- If you need to **build landing page** → `micro-landing-builder`
-- If you're **stuck deciding** → `execution-accelerator`
+- For **name generation** → `brand-name-generator`
+- For **brand copy** → `copywriter`
+- For **ICP definition** → `startup-icp-definer`
+- For **landing page build** → `micro-landing-builder`
+- For **decision paralysis** → `execution-accelerator`

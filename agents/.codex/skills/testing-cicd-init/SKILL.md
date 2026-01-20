@@ -35,7 +35,7 @@ The skill detects project type by scanning:
 
 ## Quick Start
 
-Ask Claude to:
+Ask Codex to:
 ```
 Add testing and CI/CD to this project
 ```
@@ -139,7 +139,7 @@ For monorepos (detected by workspaces in package.json):
 ```
 User: Add testing to this project
 
-Claude:
+Codex:
 1. Detects Next.js from package.json
 2. Installs vitest, @vitest/coverage-v8, @testing-library/react
 3. Creates vitest.config.ts with jsdom environment
@@ -153,7 +153,7 @@ Claude:
 ```
 User: Set up tests for this NestJS API
 
-Claude:
+Codex:
 1. Detects NestJS from @nestjs/core dependency
 2. Installs vitest, @vitest/coverage-v8, supertest
 3. Creates vitest.config.ts with node environment
@@ -195,7 +195,7 @@ Ensure `bunx tsc --noEmit` passes locally before pushing.
 
 ---
 
-**When this skill is active**, Claude will:
+**When this skill is active**, do the following:
 1. Detect the project type automatically
 2. Install appropriate testing dependencies
 3. Create properly configured test files

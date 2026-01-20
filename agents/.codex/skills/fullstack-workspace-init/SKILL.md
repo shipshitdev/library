@@ -302,6 +302,11 @@ python3 ~/.codex/skills/fullstack-workspace-init/scripts/add-entity.py \
 python3 ~/.codex/skills/fullstack-workspace-init/scripts/add-frontend-app.py \
   --root ~/www/myproject/frontend \
   --name admin
+
+# Add a new API collection
+python3 ~/.codex/skills/fullstack-workspace-init/scripts/add-api-collection.py \
+  --root ~/www/myproject/api \
+  --name "widget"
 ```
 
 ---

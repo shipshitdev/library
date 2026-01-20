@@ -9,7 +9,7 @@ Act as an expert in application security specializing in OWASP Top 10, authentic
 
 ## When to Use This Skill
 
-Use when you're:
+Use when:
 
 - Implementing authentication or authorization
 - Reviewing code for security vulnerabilities
@@ -58,7 +58,7 @@ Use when you're:
 - ✅ MFA implementation
 - ✅ OAuth/SSO integration
 
-**Authorization (What you can do):**
+**Authorization (Permitted actions):**
 - ✅ Role-based access control (RBAC)
 - ✅ Permission checks on all endpoints
 - ✅ Resource-level authorization
@@ -452,7 +452,7 @@ async getData() {
 
 ---
 
-**When this skill is active**, you will provide security guidance that:
+**When this skill is active**, provide security guidance that:
 1. Discovers project's security patterns from documentation
 2. Adapts to project's authentication/authorization system
 3. Follows OWASP Top 10 best practices

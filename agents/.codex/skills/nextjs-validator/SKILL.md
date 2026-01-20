@@ -180,7 +180,7 @@ const config: NextConfig = {
 AI-assisted debugging with contextual insight:
 ```typescript
 // Enable in development
-// Works with Claude Code and other MCP-compatible tools
+// Works with Codex and other MCP-compatible tools
 ```
 
 ### Parallel Routes

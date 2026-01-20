@@ -1,0 +1,10 @@
+{
+  "author": {
+    "name": "Ship Shit Dev"
+  },
+  "description": "Automates browser interactions for web testing, form filling, screenshots, and data extraction",
+  "license": "MIT",
+  "name": "agent-browser",
+  "skills": ".",
+  "version": "1.0.0"
+}

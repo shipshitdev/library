@@ -283,6 +283,13 @@ Create an XML file with this structure:
 
 ---
 
+## Scripts and Assets
+
+- `scripts/connections.py` - Example client connections for MCP server testing.
+- `scripts/evaluation.py` - Helper to run MCP evaluation suites.
+- `scripts/example_evaluation.xml` - Sample evaluation file.
+- `scripts/requirements.txt` - Python dependencies for running MCP scripts.
+
 # Reference Files
 
 ## 📚 Documentation Library

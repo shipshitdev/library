@@ -501,7 +501,7 @@ echo -e "\n# Secrets\n.env\n.env.*\n*.pem\n*.key\ncredentials.json\nsecrets.*" >
 
 ## Emergency Response Checklist
 
-If you've leaked credentials:
+If credentials were leaked:
 
 1. **IMMEDIATELY rotate the credential** (this is the only real fix)
 2. Check access logs for unauthorized usage

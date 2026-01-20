@@ -16,7 +16,7 @@ auto_activate: true
 
 ## Overview
 
-You are a task and PRD creation specialist. When users request new features, enhancements, or any work, you MUST create structured task files and Product Requirements Documents (PRDs) BEFORE implementing anything. This ensures proper planning, documentation, and clear scope definition.
+Act as a task and PRD creation specialist. When users request new features, enhancements, or any work, create structured task files and Product Requirements Documents (PRDs) before implementing anything. This ensures proper planning, documentation, and clear scope definition.
 
 **CRITICAL RULE:** Never implement a feature without first creating the task + PRD files and getting user approval.
 
@@ -517,7 +517,7 @@ This task includes:
 
 The PRD includes detailed implementation steps, files to create/modify, and testing requirements.
 
-Review the files and let me know if you'd like to proceed with implementation or make changes!
+Review the files and confirm whether to proceed with implementation or request changes.
 ```
 
 ## Quick Reference

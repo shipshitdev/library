@@ -1,6 +1,6 @@
 ---
 name: tailwind-validator
-description: Validate Tailwind CSS v4 configuration and detect/prevent Tailwind v3 patterns. Use this skill when setting up Tailwind, auditing CSS configuration, or when you suspect outdated Tailwind patterns are being used. Ensures CSS-first configuration with @theme blocks.
+description: Validate Tailwind CSS v4 configuration and detect/prevent Tailwind v3 patterns. Use this skill when setting up Tailwind, auditing CSS configuration, or when outdated Tailwind patterns are suspected. Ensures CSS-first configuration with @theme blocks.
 version: 1.0.0
 tags:
   - tailwind
@@ -16,7 +16,7 @@ Validates that a project uses Tailwind CSS v4 with proper CSS-first configuratio
 
 ## Purpose
 
-**CRITICAL**: Claude and other AI assistants often default to Tailwind v3 patterns. This skill ensures:
+**CRITICAL**: Codex and other AI assistants often default to Tailwind v3 patterns. This skill ensures:
 - Projects use Tailwind v4 CSS-first configuration
 - Old `tailwind.config.js` patterns are detected and flagged
 - Proper `@theme` blocks are used instead of JS config

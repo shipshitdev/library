@@ -505,12 +505,12 @@ Ask the user:
 
 ## The "Too Broad" Warning Signs
 
-Your ICP is too broad if:
-- You can't name 50 specific companies that fit
-- You can't find 10 people to interview
-- Your messaging has to be vague to apply
-- You're getting very different feedback from prospects
-- Your sales conversations feel scattered
+ICP is too broad if:
+- Unable to name 50 specific companies that fit
+- Unable to find 10 people to interview
+- Messaging has to be vague to apply
+- Feedback from prospects varies widely
+- Sales conversations feel scattered
 
 **If too broad:** Pick ONE sub-segment and own it first.
 
@@ -538,18 +538,18 @@ Your ICP is too broad if:
 
 ## The 50-Company Test
 
-Before finalizing your ICP:
+Before finalizing the ICP:
 
 1. **List 50 specific companies** that fit your ICP
 2. **Find the buyer's name** at 20 of them
 3. **Reach out to 10** of them
 
-If you can't do this, your ICP isn't specific enough.
+If this is not possible, the ICP is not specific enough.
 
 ## When to Route Elsewhere
 
-- If you need to **validate the problem** → `idea-validator`
-- If you need to **size the market** → `market-sizer`
-- If you need to **find leads** → `leads-researcher`
-- If you need to **build the offer** → `offer-architect`
-- If you're **stuck deciding** → `execution-accelerator`
+- For **problem validation** → `idea-validator`
+- For **market sizing** → `market-sizer`
+- For **lead sourcing** → `leads-researcher`
+- For **offer design** → `offer-architect`
+- For **decision paralysis** → `execution-accelerator`

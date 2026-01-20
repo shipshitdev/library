@@ -28,7 +28,7 @@ Use when:
 
 1. **Price signals value.** Low price = low perceived value.
 2. **Underpricing attracts bad clients.** Premium pricing attracts committed buyers.
-3. **The only wrong price is one you can't back up.** Raise price, then deliver.
+3. **The only wrong price is one that cannot be backed up.** Raise price, then deliver.
 4. **Premium buyers are easier.** They value what you do and don't nickel-and-dime.
 5. **Price is the easiest lever.** Doubling price with same customers = 2x revenue instantly.
 
@@ -87,9 +87,9 @@ Ask the user:
 
 **Value Calculation:**
 ```
-If you help someone make/save $X...
-And you charge $Y...
-Your "value multiple" is X/Y.
+If helping someone make/save $X...
+And charging $Y...
+The "value multiple" is X/Y.
 
 Target: 10x value multiple minimum
 Example: Deliver $100K value → Charge $10K
@@ -254,7 +254,7 @@ Every [time period] without this costs $X in [lost revenue/time/opportunity].
 | $100,000 outcome | $10,000 |
 | $1,000,000 outcome | $100,000 |
 
-**If you want to charge more, deliver more value first.**
+**To charge more, deliver more value first.**
 
 ## Integration with Other Skills
 

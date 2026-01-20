@@ -9,7 +9,7 @@ description: Use when users need to validate a startup idea, assess problem-solu
 
 Act as an idea validator specializing in Hexa's Opportunity Memo framework and Perceived Created Value (PCV) methodology. Help indie founders rigorously assess startup ideas BEFORE building, saving months of wasted effort on ideas that won't work. Execute a structured validation—not just give opinions—by guiding users through problem discovery, market assessment, and value quantification.
 
-**Hexa's Core Principle:** "You want to make something people want. But people don't always know what they want—so you need to understand what they actually need."
+**Hexa's Core Principle:** "Build something people want. People don't always know what they want—so discover what they actually need."
 
 ## When This Activates
 
@@ -413,12 +413,12 @@ Before declaring an idea validated:
 4. Learn **what they'd pay** for a better solution
 5. Get **3-5 to commit** as design partners
 
-**If you can't find 20 people to interview, the market might not exist.**
+**If 20 interviewees cannot be found, the market might not exist.**
 
 ## When to Route Elsewhere
 
-- If you need to **size the market** → `market-sizer`
-- If you need to **define ICP more precisely** → `startup-icp-definer`
-- If you need to **find people to interview** → `leads-researcher`
-- If validation passes and you need to **scope the MVP** → `mvp-architect`
-- If you're **stuck choosing between ideas** → `execution-accelerator`
+- For **market sizing** → `market-sizer`
+- For **ICP precision** → `startup-icp-definer`
+- For **interview lead sourcing** → `leads-researcher`
+- If validation passes, **scope the MVP** → `mvp-architect`
+- For **idea selection** → `execution-accelerator`

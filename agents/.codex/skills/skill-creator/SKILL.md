@@ -163,7 +163,7 @@ Also, delete any example files and directories not needed for the skill. The ini
 
 #### Update SKILL.md
 
-**Writing Style:** Write the entire skill using **imperative/infinitive form** (verb-first instructions), not second person. Use objective, instructional language (e.g., "To accomplish X, do Y" rather than "You should do X" or "If you need to do X"). This maintains consistency and clarity for AI consumption.
+**Writing Style:** Write the entire skill using **imperative/infinitive form** (verb-first instructions), not second person. Use objective, instructional language (e.g., "To accomplish X, do Y" rather than second-person phrasing). This maintains consistency and clarity for AI consumption.
 
 To complete SKILL.md, answer the following questions:
 
@@ -206,3 +206,9 @@ After testing the skill, users may request improvements. Often this happens righ
 2. Notice struggles or inefficiencies
 3. Identify how SKILL.md or bundled resources should be updated
 4. Implement changes and test again
+
+## Scripts
+
+- `scripts/init_skill.py` - Generate a new skill template with scaffolding.
+- `scripts/quick_validate.py` - Run lightweight validation on a skill folder.
+- `scripts/package_skill.py` - Validate and package a skill into a distributable zip.

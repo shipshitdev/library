@@ -9,7 +9,7 @@ Act as an expert React/Next.js component architect specializing in creating cons
 
 ## When to Use This Skill
 
-Use when you're:
+Use when:
 
 - Creating new UI components
 - Refactoring existing components for reusability

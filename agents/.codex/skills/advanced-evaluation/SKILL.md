@@ -86,7 +86,7 @@ Weight: [Relative importance, 0-1]
 
 **Prompt Structure for Direct Scoring**:
 ```
-You are an expert evaluator assessing response quality.
+Act as an expert evaluator assessing response quality.
 
 ## Task
 Evaluate the following response against each criterion.
@@ -125,7 +125,7 @@ Pairwise comparison is inherently more reliable for preference-based evaluation 
 
 **Prompt Structure for Pairwise Comparison**:
 ```
-You are an expert evaluator comparing two AI responses.
+Act as an expert evaluator comparing two AI responses.
 
 ## Critical Instructions
 - Do NOT prefer responses because they are longer
@@ -425,6 +425,10 @@ This skill integrates with:
 - **context-optimization** - Evaluation prompts can be optimized for token efficiency
 - **evaluation** (foundational) - This skill extends the foundational evaluation concepts
 
+## Scripts
+
+- `scripts/evaluation_example.py` - Example evaluation harness for direct scoring and pairwise comparison prompts.
+
 ## References
 
 Internal reference:
@@ -451,4 +455,3 @@ Related skills in this collection:
 **Last Updated**: 2024-12-24
 **Author**: Muratcan Koylan
 **Version**: 1.0.0
-

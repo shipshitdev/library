@@ -73,7 +73,7 @@ Act as an expert copywriter and brand voice guardian, specializing in direct, co
 ```
 ✅ Turn Content Into Customers
 ✅ Track Revenue, Not Just Likes
-✅ Everything You Need to Scale Content
+✅ Everything Needed to Scale Content
 ✅ Manual Outreach is dead. Long live Autonomous AI Agents.
 
 ❌ Revolutionize Your Content Strategy
@@ -315,7 +315,7 @@ When reviewing copy, check for:
 
 ## When to Use This Skill
 
-Use when you're:
+Use when:
 
 - Writing or editing copy in any project
 - Creating new pages, components, or features with user-facing text

@@ -16,7 +16,7 @@ Each landing page is a standalone NextJS app where:
 
 ## Prerequisites
 
-You need a published landing UI components package. The skill expects:
+Require a published landing UI components package. The skill expects:
 - Package name (default: `@agenticindiedev/ui`)
 - Components: Hero, Features, Pricing, FAQ, CTA, Testimonials, Stats, EmailCapture, Header, Footer
 
@@ -195,14 +195,14 @@ python3 ~/.codex/skills/micro-landing-builder/scripts/deploy_vercel.py \
 }
 ```
 
-**Note:** Domains must be configured in your DNS before adding to Vercel. Vercel will provide DNS records to add.
+**Note:** Domains must be configured in DNS before adding to Vercel. Vercel will provide DNS records to add.
 
 ## Workflow
 
 ### Single Landing Page
 
 1. Run scaffold to create landing structure
-2. Edit `app.json` with your content
+2. Edit `app.json` with content
 3. Add images to `public/`
 4. Deploy with `vercel` or use `deploy_vercel.py`
 

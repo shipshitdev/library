@@ -69,7 +69,7 @@ Mitigate distraction through careful curation of what enters context. Apply rele
 
 Context confusion arises when irrelevant information influences responses in ways that degrade quality. This is related to distraction but distinct—confusion concerns the influence of context on model behavior rather than attention allocation.
 
-If you put something in context, the model has to pay attention to it. The model may incorporate irrelevant information, use inappropriate tool definitions, or apply constraints that came from different contexts. Confusion is especially problematic when context contains multiple task types or when switching between tasks within a single session.
+If something enters context, the model has to pay attention to it. The model may incorporate irrelevant information, use inappropriate tool definitions, or apply constraints that came from different contexts. Confusion is especially problematic when context contains multiple task types or when switching between tasks within a single session.
 
 **Signs of Confusion**
 Watch for responses that address the wrong aspect of a query, tool calls that seem appropriate for a different task, or outputs that mix requirements from multiple sources. These indicate confusion about what context applies to the current situation.
@@ -205,6 +205,10 @@ This skill builds on context-fundamentals and should be studied after understand
 - context-optimization - Techniques for mitigating degradation
 - multi-agent-patterns - Using isolation to prevent degradation
 - evaluation - Measuring and detecting degradation in production
+
+## Scripts
+
+- `scripts/degradation_detector.py` - Utility for spotting context degradation signals in logs or traces.
 
 ## References
 

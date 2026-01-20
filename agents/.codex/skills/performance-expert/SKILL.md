@@ -9,7 +9,7 @@ Act as an expert in performance optimization specializing in React, Next.js, Nes
 
 ## When to Use This Skill
 
-Use when you're:
+Use when:
 
 - Optimizing React components or Next.js pages
 - Improving API response times
@@ -445,7 +445,7 @@ ANALYZE=true npm run build
 
 ---
 
-**When this skill is active**, you will provide performance guidance that:
+**When this skill is active**, provide performance guidance that:
 1. Discovers project's performance patterns from documentation
 2. Analyzes current performance metrics
 3. Identifies bottlenecks

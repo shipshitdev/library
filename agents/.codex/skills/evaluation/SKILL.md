@@ -206,12 +206,16 @@ This skill connects to all other skills as a cross-cutting concern:
 - tool-design - Evaluating tool effectiveness
 - memory-systems - Evaluating memory quality
 
+## Scripts
+
+- `scripts/evaluator.py` - Sample evaluation runner for scoring and aggregation.
+
 ## References
 
 Internal reference:
 - [Metrics Reference](./references/metrics.md) - Detailed evaluation metrics and implementation
 
-## References
+## Related Resources
 
 Internal skills:
 - All other skills connect to evaluation for quality measurement

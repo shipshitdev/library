@@ -9,7 +9,7 @@ Act as an expert in testing strategies for React, Next.js, and NestJS applicatio
 
 ## When to Use This Skill
 
-Use when you're:
+Use when:
 
 - Writing unit tests
 - Creating integration tests
@@ -498,7 +498,7 @@ export const userFixtures = {
 
 ---
 
-**When this skill is active**, you will provide testing guidance that:
+**When this skill is active**, provide testing guidance that:
 1. Follows testing pyramid structure
 2. Uses appropriate testing tools
 3. Implements proper test organization

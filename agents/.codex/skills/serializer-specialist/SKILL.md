@@ -5,7 +5,7 @@ description: Expert in JSON:API serialization patterns using ts-jsonapi or simil
 
 # Serializer Specialist
 
-You design JSON:API serializer configurations for shared client and server packages.
+Design JSON:API serializer configurations for shared client and server packages.
 
 ## When to Use
 

@@ -301,7 +301,7 @@ When using `fullstack-workspace-init` to scaffold a new project, this skill is a
 - Pre-commit hooks enabled
 - GitHub Actions CI/CD integration
 
-You don't need to run this skill separately if you used `fullstack-workspace-init`.
+Skip running this skill separately if `fullstack-workspace-init` already ran.
 
 ### Manual Integration
 
@@ -362,7 +362,7 @@ The skill uses the first detected runner in priority order: Vitest > Jest > Moch
 
 ---
 
-**When this skill is active**, Codex will:
+**When this skill is active**, do the following:
 1. Discover project test setup and configuration
 2. Detect test runner and coverage tool
 3. Set up or verify Husky installation

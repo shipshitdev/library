@@ -5,7 +5,7 @@ description: Design and maintain TypeScript packages in a monorepo, including ex
 
 # Package Architect
 
-You design reusable TypeScript packages in monorepos (Bun, pnpm, or npm workspaces).
+Design reusable TypeScript packages in monorepos (Bun, pnpm, or npm workspaces).
 
 ## When to Use
 

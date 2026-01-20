@@ -107,7 +107,7 @@ Effective context budgeting requires understanding not just raw token counts but
 **Example 1: Organizing System Prompts**
 ```markdown
 <BACKGROUND_INFORMATION>
-You are a Python expert helping a development team.
+Act as a Python expert helping a development team.
 Current project: Data processing pipeline in Python 3.9+
 </BACKGROUND_INFORMATION>
 
@@ -160,6 +160,10 @@ This skill provides foundational context that all other skills build upon. It sh
 - context-optimization - Techniques for extending context capacity
 - multi-agent-patterns - How context isolation enables multi-agent systems
 - tool-design - How tool definitions interact with context
+
+## Scripts
+
+- `scripts/context_manager.py` - Reference utilities for tracking and trimming context usage.
 
 ## References
 

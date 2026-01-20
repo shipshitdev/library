@@ -49,10 +49,10 @@ Ask the user:
 
 **Readiness Checklist:**
 - [ ] Product is stable and delivering value
-- [ ] You can track referrals/conversions
-- [ ] You have margin to share (20-50%)
-- [ ] You can support partners (resources, assets)
-- [ ] You have time to manage partnerships
+- [ ] Track referrals/conversions
+- [ ] Maintain margin to share (20-50%)
+- [ ] Support partners (resources, assets)
+- [ ] Allocate time to manage partnerships
 
 ### Step 2: Affiliate Program Design
 
@@ -67,7 +67,7 @@ Ask the user:
 | **Flat fee** | Fixed $ per conversion | High-volume, low-ticket |
 
 **Program Elements:**
-| Element | Decision | Your Choice |
+| Element | Decision | Selection |
 |---------|----------|-------------|
 | Commission rate | X% or $X | |
 | Cookie duration | 30/60/90 days | |
@@ -402,7 +402,7 @@ Ask the user:
 
 ## When to Route Elsewhere
 
-- If you need **outreach messaging** → `outbound-optimizer`
-- If you need **partner landing pages** → `copywriter` or `micro-landing-builder`
-- If you need **offer for partners** → `offer-architect`
-- If you're **stuck on strategy** → `execution-accelerator`
+- For **outreach messaging** → `outbound-optimizer`
+- For **partner landing pages** → `copywriter` or `micro-landing-builder`
+- For **partner offers** → `offer-architect`
+- For **strategy paralysis** → `execution-accelerator`

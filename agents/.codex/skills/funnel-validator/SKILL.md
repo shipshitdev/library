@@ -68,8 +68,8 @@ HOOK (Grab Attention) → STORY (Build Connection) → OFFER (Close the Deal)
 
 | Temperature | They Know | Appropriate Funnel |
 |-------------|-----------|-------------------|
-| Cold | Nothing about you | Lead funnel, value-first content |
-| Warm | Problem + your solution | Tripwire, webinar, challenge |
+| Cold | Nothing about the brand | Lead funnel, value-first content |
+| Warm | Problem + solution | Tripwire, webinar, challenge |
 | Hot | Ready to buy | Sales page, order form, call booking |
 
 ## Value Ladder Reference

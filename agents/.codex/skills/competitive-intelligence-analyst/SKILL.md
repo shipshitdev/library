@@ -359,13 +359,13 @@ Set up ongoing competitive monitoring:
 1. **Copying competitors:** Being slightly better isn't a strategy
 2. **Ignoring indirect competitors:** Alternative solutions matter
 3. **Feature wars:** Adding features to match is a losing game
-4. **No monitoring:** Competitors change, you should know
+4. **No monitoring:** Competitors change; monitor continuously
 5. **Obsessing too much:** Customers > competitors
 6. **Competing on price:** Race to bottom, especially vs funded
 
 ## When to Route Elsewhere
 
-- If you need to **differentiate your offer** → `offer-architect`
-- If you need **pricing strategy** → `pricing-strategist`
-- If you need **market positioning copy** → `copywriter`
-- If you're **stuck on strategy** → `execution-accelerator`
+- For **offer differentiation** → `offer-architect`
+- For **pricing strategy** → `pricing-strategist`
+- For **market positioning copy** → `copywriter`
+- For **strategy paralysis** → `execution-accelerator`

@@ -1,12 +1,10 @@
 {
-  "author": {
-    "name": "Ship Shit Dev"
-  },
-  "description": "Project setup and workspace initialization",
-  "license": "MIT",
   "name": "shipshitdev-workspace",
+  "version": "1.0.0",
+  "description": "Project setup and workspace initialization",
+  "author": "Ship Shit Dev",
+  "license": "MIT",
   "skills": {
     "path": "./skills"
-  },
-  "version": "1.0.0"
+  }
 }

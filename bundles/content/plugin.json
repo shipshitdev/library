@@ -2,7 +2,7 @@
   "name": "shipshitdev-content",
   "version": "1.0.0",
   "description": "Content creation and documentation skills",
-  "author": { "name": "Ship Shit Dev" },
+  "author": "Ship Shit Dev",
   "license": "MIT",
   "skills": {
     "path": "./skills"

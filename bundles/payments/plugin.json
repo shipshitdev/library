@@ -2,7 +2,7 @@
   "name": "shipshitdev-payments",
   "version": "1.0.0",
   "description": "Payment processing and financial integrations",
-  "author": { "name": "Ship Shit Dev" },
+  "author": "Ship Shit Dev",
   "license": "MIT",
   "skills": {
     "path": "./skills"

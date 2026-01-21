@@ -2,11 +2,7 @@
   "name": "shipshitdev-planning",
   "version": "1.0.0",
   "description": "Strategy, planning, and analysis skills",
-  "author": {
-    "name": "Ship Shit Dev",
-    "email": "hello@shipshit.dev",
-    "url": "https://github.com/shipshitdev"
-  },
+  "author": "Ship Shit Dev",
   "license": "MIT",
   "skills": {
     "path": "./skills"

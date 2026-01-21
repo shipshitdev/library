@@ -2,11 +2,7 @@
   "name": "shipshitdev-backend",
   "version": "1.0.0",
   "description": "Backend development and API skills",
-  "author": {
-    "name": "Ship Shit Dev",
-    "email": "hello@shipshit.dev",
-    "url": "https://github.com/shipshitdev"
-  },
+  "author": "Ship Shit Dev",
   "license": "MIT",
   "skills": {
     "path": "./skills"

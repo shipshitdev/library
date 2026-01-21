@@ -1,14 +1,10 @@
 {
-  "author": {
-    "name": "Ship Shit Dev",
-    "email": "hello@shipshit.dev",
-    "url": "https://github.com/shipshitdev"
-  },
-  "description": "Testing, QA, and CI/CD automation skills",
-  "license": "MIT",
   "name": "shipshitdev-testing",
+  "version": "1.0.0",
+  "description": "Testing, QA, and CI/CD automation skills",
+  "author": "Ship Shit Dev",
+  "license": "MIT",
   "skills": {
     "path": "./skills"
-  },
-  "version": "1.0.0"
+  }
 }

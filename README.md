@@ -25,41 +25,25 @@ library/
 - **Documentation**: Platform-specific adaptations and management guides
 - **Scripts**: Tooling for syncing, validation, and generation
 
-## How It Works
-
-This repo uses a single source of truth. Symlink to your agent directories:
-
-```bash
-~/.claude/skills   -> library/skills
-~/.claude/commands -> library/commands
-~/.codex/skills    -> library/skills
-~/.cursor/skills   -> library/skills
-~/.cursor/commands -> library/commands
-```
-
-Edit in `skills/` or `commands/`, changes are immediately available to all agents.
-
-See `.agent/SYSTEM/SYMLINK-CONFIG.md` for full configuration details.
-
 ## Installation
 
 ### Quick Install (Recommended)
 
 ```bash
-# Install all skills globally
-npx add-skill shipshitdev/library -g
+# Install all skills globally to all agents
+npx skills add shipshitdev/library --all
 
 # Install specific skills
-npx add-skill shipshitdev/library --skill stripe-implementer
+npx skills add shipshitdev/library --skill stripe-implementer
 
 # List available skills
-npx add-skill shipshitdev/library --list
+npx skills add shipshitdev/library --list
 ```
 
 ### Project-local Install
 
 ```bash
-npx add-skill shipshitdev/library
+npx skills add shipshitdev/library
 ```
 
 ### Claude Code Plugin (Alternative)
@@ -69,12 +53,20 @@ npx add-skill shipshitdev/library
 /plugin install shipshitdev-full@shipshitdev
 ```
 
-### Manual (Contributors)
+### For Contributors
+
+Clone the repo and use the CLI to install:
 
 ```bash
 git clone https://github.com/shipshitdev/library.git ~/shipshitdev-library
-ln -s ~/shipshitdev-library/skills ~/.claude/skills
-ln -s ~/shipshitdev-library/commands ~/.claude/commands
+cd ~/shipshitdev-library
+npx skills add . --all
+```
+
+After making changes, reinstall to update:
+
+```bash
+npx skills add shipshitdev/library --all
 ```
 
 ## Adding Skills & Commands
@@ -102,7 +94,6 @@ touch skills/my-skill/SKILL.md
 - `.agent/SYSTEM/AI-DEV-LOOP.md` - The /loop autonomous workflow
 - `.agent/SYSTEM/PLATFORM-ADAPTATIONS.md` - Claude vs Codex vs Cursor differences
 - `.agent/SYSTEM/SKILL-MANAGEMENT.md` - Syncing skills across platforms
-- `.agent/SYSTEM/SYMLINK-CONFIG.md` - Symlink configuration
 
 ## Commands
 
@@ -217,10 +208,10 @@ Tactical marketing execution: CRO, SEO, paid ads, and email sequences.
 
 ```bash
 # Strategic frameworks (this library)
-/plugin marketplace add shipshitdev/library
+npx skills add shipshitdev/library --all
 
 # Tactical execution
-/plugin marketplace add coreyhaines31/marketingskills
+npx skills add coreyhaines31/marketingskills --all
 ```
 
 | Category | Skills |
@@ -257,7 +248,7 @@ Frontend development and design guidelines.
 | | web-design-guidelines | Review UI for Web Interface Guidelines compliance |
 
 ```bash
-npx add-skill vercel-labs/agent-skills
+npx skills add vercel-labs/agent-skills --all
 ```
 
 ### [trailofbits/skills](https://github.com/trailofbits/skills)
@@ -285,8 +276,34 @@ Security auditing, smart contracts, and vulnerability analysis.
 | | spec-to-code-compliance | Specification compliance checker |
 
 ```bash
-/plugin marketplace add trailofbits/skills
-/plugin menu  # Browse and select individual skills
+npx skills add trailofbits/skills --all
+```
+
+### [expo/skills](https://github.com/expo/skills)
+
+Official Expo skills for React Native development.
+
+| Category | Skill | Description |
+|----------|-------|-------------|
+| **UI** | building-ui | Complete guide for building beautiful apps with Expo Router |
+| | building-native-ui | Native app development patterns |
+| **Data** | data-fetching | Network requests, React Query, caching, offline support |
+| **Deployment** | deployment | iOS App Store, Play Store, web hosting |
+| | dev-client | Build and distribute development clients |
+| **Infrastructure** | api-routes | API routes in Expo Router with EAS Hosting |
+| | cicd-workflows | EAS workflow YAML files for CI/CD |
+| **Setup** | tailwind-setup | Tailwind CSS v4 with NativeWind v5 |
+| | upgrading-expo | SDK version upgrades and dependency fixes |
+| **Advanced** | use-dom | Run web code in webviews on native platforms |
+
+**How it complements this library:**
+
+| This Library | expo/skills |
+|--------------|-------------|
+| `expo-architect` → Scaffold new apps | Develop and maintain existing apps |
+
+```bash
+npx skills add expo/skills --all
 ```
 
 ---

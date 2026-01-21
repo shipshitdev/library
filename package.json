@@ -24,7 +24,6 @@
   "name": "ship-shit-dev-library",
   "private": true,
   "scripts": {
-    "check-symlinks": "bash -c 'for link in ~/.claude/skills ~/.claude/commands ~/.claude/agents ~/.claude/rules ~/.codex/skills ~/.cursor/skills ~/.cursor/commands; do if [[ -L \"$link\" ]]; then echo \"✓ $link -> $(readlink \"$link\")\"; else echo \"✗ $link (not a symlink)\"; fi; done'",
     "count": "bash -c 'echo \"Skills: $(ls -1 skills 2>/dev/null | wc -l | tr -d \" \")\"; echo \"Commands: $(ls -1 commands 2>/dev/null | wc -l | tr -d \" \")\"'",
     "generate:all": "bun scripts/generate-plugin.js all cursor",
     "generate:bundle": "bun scripts/generate-bundle.js",
@@ -37,7 +36,6 @@
     "lint:sh": "bash -c 'if command -v shellcheck >/dev/null 2>&1; then find scripts -name \"*.sh\" -exec shellcheck {} +; else echo \"⚠ shellcheck not installed, skipping shell script linting\"; fi'",
     "marketplace:generate": "bun scripts/generate-marketplace-bundles.js && bun scripts/generate-marketplace-json.js",
     "prepare": "husky",
-    "setup:symlinks": "bash scripts/setup-symlinks.sh",
     "sync:marketplace": "bun scripts/sync-marketplace.js",
     "validate": "bash scripts/validate-skill-sync.sh",
     "validate:skill": "bash scripts/validate-skill-sync.sh"

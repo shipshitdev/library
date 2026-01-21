@@ -10,7 +10,7 @@
 
 ```
 library/
-├── skills/              # All skills (123 skills)
+├── skills/              # All skills (124 skills)
 ├── commands/            # All commands (35 commands)
 ├── bundles/             # Generated marketplace bundles
 ├── .agent/              # Library management (sessions, tasks)
@@ -133,58 +133,132 @@ touch skills/my-skill/SKILL.md
 
 ## Skills
 
-| Skill                      | Description                            |
-|----------------------------|----------------------------------------|
-| accessibility              | WCAG 2.1 AA compliance                 |
-| agent-folder-init          | Initialize .agent/ folder              |
-| analytics-expert           | Content analytics                      |
-| api-design-expert          | RESTful API design                     |
-| artifacts-builder          | Project artifacts                      |
-| aws-infrastructure         | AWS EC2/VPC/ALB setup                  |
-| changelog-generator        | Git changelogs                         |
-| clerk-validator            | Clerk auth validation                  |
-| component-library          | Component standards                    |
-| content-creator            | Newsletters & tweets with your voice   |
-| content-script-developer   | Browser extensions                     |
-| copywriter                 | Brand copywriting                      |
-| design-consistency-auditor | Design system                          |
-| docker-expert              | Docker/compose                         |
-| docs                       | Documentation                          |
-| docusaurus-writer          | Docusaurus sites                       |
-| error-handling-expert      | Error patterns                         |
-| expo-architect             | Expo/React Native                      |
-| fullstack-workspace-init   | Monorepo setup                         |
-| gh-address-comments        | GitHub comments                        |
-| gh-fix-ci                  | Fix CI/CD                              |
-| internal-comms             | Internal comms                         |
-| landing-page-vercel        | Vercel landing pages                   |
-| leads-researcher           | Lead research                          |
-| mcp-builder                | MCP servers                            |
-| micro-landing-builder      | Micro landing pages                    |
-| mongodb-migration-expert   | MongoDB migrations                     |
-| monitoring-setup           | Sentry/Analytics                       |
-| nestjs-queue-architect     | BullMQ queues                          |
-| nestjs-testing-expert      | NestJS testing                         |
-| package-architect          | npm packages                           |
-| performance-expert         | Performance                            |
-| planning-assistant         | Content planning                       |
-| plasmo-extension-architect | Plasmo extensions                      |
-| project-scaffold           | Project scaffolding                    |
-| prompt-engineer            | Prompt engineering                     |
-| qa-reviewer                | QA review                              |
-| react-native-components    | RN components                          |
-| roadmap-analyzer           | Product roadmap                        |
-| rules-capture              | Coding rules                           |
-| search-domain-validator    | Domain validation                      |
-| security-expert            | App security                           |
-| serializer-specialist      | Data serialization                     |
-| session-documenter         | Session docs                           |
-| skill-creator              | Skill creation                         |
-| strategy-expert            | Content strategy                       |
-| stripe-implementer         | Stripe payments                        |
-| task-prd-creator           | Task & PRD creation workflow           |
-| testing-expert             | Testing strategies                     |
-| workflow-automation        | Workflow automation                    |
+| Skill | Description | Install |
+|-------|-------------|---------|
+| [accessibility](https://skills.sh/shipshitdev/library/accessibility) | WCAG 2.1 AA compliance for React/Next.js | `npx skills add shipshitdev/library --skill accessibility` |
+| [advanced-evaluation](https://skills.sh/shipshitdev/library/advanced-evaluation) | LLM-as-a-Judge evaluation techniques | `npx skills add shipshitdev/library --skill advanced-evaluation` |
+| [agent-browser](https://skills.sh/shipshitdev/library/agent-browser) | Browser automation for testing & scraping | `npx skills add shipshitdev/library --skill agent-browser` |
+| [agent-folder-init](https://skills.sh/shipshitdev/library/agent-folder-init) | Initialize .agent/ folder structure | `npx skills add shipshitdev/library --skill agent-folder-init` |
+| [ai-dev-loop](https://skills.sh/shipshitdev/library/ai-dev-loop) | Autonomous AI development workflow | `npx skills add shipshitdev/library --skill ai-dev-loop` |
+| [ai-loading-ux](https://skills.sh/shipshitdev/library/ai-loading-ux) | AI loading & progress indicator UX | `npx skills add shipshitdev/library --skill ai-loading-ux` |
+| [analytics-expert](https://skills.sh/shipshitdev/library/analytics-expert) | Content analytics & metrics | `npx skills add shipshitdev/library --skill analytics-expert` |
+| [api-design-expert](https://skills.sh/shipshitdev/library/api-design-expert) | RESTful API design & OpenAPI docs | `npx skills add shipshitdev/library --skill api-design-expert` |
+| [artifacts-builder](https://skills.sh/shipshitdev/library/artifacts-builder) | Multi-component claude.ai artifacts | `npx skills add shipshitdev/library --skill artifacts-builder` |
+| [aws-infrastructure](https://skills.sh/shipshitdev/library/aws-infrastructure) | AWS EC2/VPC/ALB infrastructure setup | `npx skills add shipshitdev/library --skill aws-infrastructure` |
+| [biome-validator](https://skills.sh/shipshitdev/library/biome-validator) | Validate Biome 2.3+ configuration | `npx skills add shipshitdev/library --skill biome-validator` |
+| [brand-architect](https://skills.sh/shipshitdev/library/brand-architect) | Brand strategy & identity development | `npx skills add shipshitdev/library --skill brand-architect` |
+| [brand-name-generator](https://skills.sh/shipshitdev/library/brand-name-generator) | Creative brand & product naming | `npx skills add shipshitdev/library --skill brand-name-generator` |
+| [bun-validator](https://skills.sh/shipshitdev/library/bun-validator) | Validate Bun workspace configuration | `npx skills add shipshitdev/library --skill bun-validator` |
+| [business-model-auditor](https://skills.sh/shipshitdev/library/business-model-auditor) | Stress test business models | `npx skills add shipshitdev/library --skill business-model-auditor` |
+| [business-operator](https://skills.sh/shipshitdev/library/business-operator) | Multi-business operations management | `npx skills add shipshitdev/library --skill business-operator` |
+| [changelog-generator](https://skills.sh/shipshitdev/library/changelog-generator) | Auto-generate changelogs from git | `npx skills add shipshitdev/library --skill changelog-generator` |
+| [channel-validator](https://skills.sh/shipshitdev/library/channel-validator) | Validate marketing channels | `npx skills add shipshitdev/library --skill channel-validator` |
+| [clerk-validator](https://skills.sh/shipshitdev/library/clerk-validator) | Validate Clerk auth configuration | `npx skills add shipshitdev/library --skill clerk-validator` |
+| [cofounder-evaluator](https://skills.sh/shipshitdev/library/cofounder-evaluator) | Evaluate potential co-founders | `npx skills add shipshitdev/library --skill cofounder-evaluator` |
+| [comment-mode](https://skills.sh/shipshitdev/library/comment-mode) | Granular feedback without rewriting | `npx skills add shipshitdev/library --skill comment-mode` |
+| [competitive-intelligence-analyst](https://skills.sh/shipshitdev/library/competitive-intelligence-analyst) | Competitor analysis & monitoring | `npx skills add shipshitdev/library --skill competitive-intelligence-analyst` |
+| [component-library](https://skills.sh/shipshitdev/library/component-library) | React/Next.js component architecture | `npx skills add shipshitdev/library --skill component-library` |
+| [constraint-eliminator](https://skills.sh/shipshitdev/library/constraint-eliminator) | Remove customer friction points | `npx skills add shipshitdev/library --skill constraint-eliminator` |
+| [content-creator](https://skills.sh/shipshitdev/library/content-creator) | Newsletters & tweets in your voice | `npx skills add shipshitdev/library --skill content-creator` |
+| [content-script-developer](https://skills.sh/shipshitdev/library/content-script-developer) | Browser extension content scripts | `npx skills add shipshitdev/library --skill content-script-developer` |
+| [context-degradation](https://skills.sh/shipshitdev/library/context-degradation) | Diagnose & mitigate context issues | `npx skills add shipshitdev/library --skill context-degradation` |
+| [context-fundamentals](https://skills.sh/shipshitdev/library/context-fundamentals) | Context mechanics for agent systems | `npx skills add shipshitdev/library --skill context-fundamentals` |
+| [context-optimization](https://skills.sh/shipshitdev/library/context-optimization) | Extend effective context capacity | `npx skills add shipshitdev/library --skill context-optimization` |
+| [copy-validator](https://skills.sh/shipshitdev/library/copy-validator) | Validate sales copy & landing pages | `npx skills add shipshitdev/library --skill copy-validator` |
+| [copywriter](https://skills.sh/shipshitdev/library/copywriter) | Brand voice & conversion copywriting | `npx skills add shipshitdev/library --skill copywriter` |
+| [cto-advisor](https://skills.sh/shipshitdev/library/cto-advisor) | Technical leadership guidance | `npx skills add shipshitdev/library --skill cto-advisor` |
+| [design-consistency-auditor](https://skills.sh/shipshitdev/library/design-consistency-auditor) | Design system consistency audit | `npx skills add shipshitdev/library --skill design-consistency-auditor` |
+| [devcontainer-setup](https://skills.sh/shipshitdev/library/devcontainer-setup) | VS Code devcontainer with Docker | `npx skills add shipshitdev/library --skill devcontainer-setup` |
+| [docker-expert](https://skills.sh/shipshitdev/library/docker-expert) | Docker & docker-compose patterns | `npx skills add shipshitdev/library --skill docker-expert` |
+| [docs](https://skills.sh/shipshitdev/library/docs) | Technical documentation creation | `npx skills add shipshitdev/library --skill docs` |
+| [early-hiring-advisor](https://skills.sh/shipshitdev/library/early-hiring-advisor) | Early-stage hiring guidance | `npx skills add shipshitdev/library --skill early-hiring-advisor` |
+| [ec2-backend-deployer](https://skills.sh/shipshitdev/library/ec2-backend-deployer) | Deploy backends to EC2 with CI/CD | `npx skills add shipshitdev/library --skill ec2-backend-deployer` |
+| [email-finder](https://skills.sh/shipshitdev/library/email-finder) | Find email addresses for contacts | `npx skills add shipshitdev/library --skill email-finder` |
+| [error-handling-expert](https://skills.sh/shipshitdev/library/error-handling-expert) | Error handling patterns & strategies | `npx skills add shipshitdev/library --skill error-handling-expert` |
+| [evaluation](https://skills.sh/shipshitdev/library/evaluation) | Agent evaluation frameworks | `npx skills add shipshitdev/library --skill evaluation` |
+| [execution-accelerator](https://skills.sh/shipshitdev/library/execution-accelerator) | Unblock decisions & execution | `npx skills add shipshitdev/library --skill execution-accelerator` |
+| [execution-validator](https://skills.sh/shipshitdev/library/execution-validator) | Validate launch plans & execution | `npx skills add shipshitdev/library --skill execution-validator` |
+| [expert-architect](https://skills.sh/shipshitdev/library/expert-architect) | Build positioning & authority | `npx skills add shipshitdev/library --skill expert-architect` |
+| [expert-validator](https://skills.sh/shipshitdev/library/expert-validator) | Validate positioning & messaging | `npx skills add shipshitdev/library --skill expert-validator` |
+| [expo-architect](https://skills.sh/shipshitdev/library/expo-architect) | Scaffold Expo React Native apps | `npx skills add shipshitdev/library --skill expo-architect` |
+| [financial-operations-expert](https://skills.sh/shipshitdev/library/financial-operations-expert) | Business finances & operations | `npx skills add shipshitdev/library --skill financial-operations-expert` |
+| [frontend-design](https://skills.sh/shipshitdev/library/frontend-design) | Production-grade frontend interfaces | `npx skills add shipshitdev/library --skill frontend-design` |
+| [fullstack-workspace-init](https://skills.sh/shipshitdev/library/fullstack-workspace-init) | Full-stack monorepo scaffolding | `npx skills add shipshitdev/library --skill fullstack-workspace-init` |
+| [fundraise-advisor](https://skills.sh/shipshitdev/library/fundraise-advisor) | Fundraising & pitch deck guidance | `npx skills add shipshitdev/library --skill fundraise-advisor` |
+| [funnel-architect](https://skills.sh/shipshitdev/library/funnel-architect) | Design sales funnels | `npx skills add shipshitdev/library --skill funnel-architect` |
+| [funnel-validator](https://skills.sh/shipshitdev/library/funnel-validator) | Validate existing sales funnels | `npx skills add shipshitdev/library --skill funnel-validator` |
+| [gh-address-comments](https://skills.sh/shipshitdev/library/gh-address-comments) | Address GitHub PR/issue comments | `npx skills add shipshitdev/library --skill gh-address-comments` |
+| [gh-fix-ci](https://skills.sh/shipshitdev/library/gh-fix-ci) | Fix failing GitHub Actions CI | `npx skills add shipshitdev/library --skill gh-fix-ci` |
+| [git-safety](https://skills.sh/shipshitdev/library/git-safety) | Scan & clean git history secrets | `npx skills add shipshitdev/library --skill git-safety` |
+| [html-style](https://skills.sh/shipshitdev/library/html-style) | Apply styling to barebones HTML | `npx skills add shipshitdev/library --skill html-style` |
+| [humanizer](https://skills.sh/shipshitdev/library/humanizer) | Remove AI writing patterns | `npx skills add shipshitdev/library --skill humanizer` |
+| [husky-test-coverage](https://skills.sh/shipshitdev/library/husky-test-coverage) | Husky hooks for test coverage | `npx skills add shipshitdev/library --skill husky-test-coverage` |
+| [idea-validator](https://skills.sh/shipshitdev/library/idea-validator) | Validate startup ideas (Hexa framework) | `npx skills add shipshitdev/library --skill idea-validator` |
+| [incremental-fetch](https://skills.sh/shipshitdev/library/incremental-fetch) | Resilient API data pipelines | `npx skills add shipshitdev/library --skill incremental-fetch` |
+| [internal-comms](https://skills.sh/shipshitdev/library/internal-comms) | Internal communications templates | `npx skills add shipshitdev/library --skill internal-comms` |
+| [landing-page-vercel](https://skills.sh/shipshitdev/library/landing-page-vercel) | Static landing pages for Vercel | `npx skills add shipshitdev/library --skill landing-page-vercel` |
+| [lead-channel-optimizer](https://skills.sh/shipshitdev/library/lead-channel-optimizer) | Optimize lead generation channels | `npx skills add shipshitdev/library --skill lead-channel-optimizer` |
+| [leads-researcher](https://skills.sh/shipshitdev/library/leads-researcher) | Research leads & prospects | `npx skills add shipshitdev/library --skill leads-researcher` |
+| [linter-formatter-init](https://skills.sh/shipshitdev/library/linter-formatter-init) | Set up Biome or ESLint + Prettier | `npx skills add shipshitdev/library --skill linter-formatter-init` |
+| [market-sizer](https://skills.sh/shipshitdev/library/market-sizer) | Calculate TAM/SAM/SOM market size | `npx skills add shipshitdev/library --skill market-sizer` |
+| [mcp-builder](https://skills.sh/shipshitdev/library/mcp-builder) | Build MCP servers for LLMs | `npx skills add shipshitdev/library --skill mcp-builder` |
+| [memory-systems](https://skills.sh/shipshitdev/library/memory-systems) | Memory architectures for agents | `npx skills add shipshitdev/library --skill memory-systems` |
+| [micro-landing-builder](https://skills.sh/shipshitdev/library/micro-landing-builder) | Config-driven NextJS landing pages | `npx skills add shipshitdev/library --skill micro-landing-builder` |
+| [mongodb-atlas-checker](https://skills.sh/shipshitdev/library/mongodb-atlas-checker) | Verify MongoDB Atlas configuration | `npx skills add shipshitdev/library --skill mongodb-atlas-checker` |
+| [mongodb-migration-expert](https://skills.sh/shipshitdev/library/mongodb-migration-expert) | MongoDB schema & migration guidance | `npx skills add shipshitdev/library --skill mongodb-migration-expert` |
+| [monitoring-setup](https://skills.sh/shipshitdev/library/monitoring-setup) | Sentry & Google Analytics setup | `npx skills add shipshitdev/library --skill monitoring-setup` |
+| [multi-agent-patterns](https://skills.sh/shipshitdev/library/multi-agent-patterns) | Multi-agent architecture design | `npx skills add shipshitdev/library --skill multi-agent-patterns` |
+| [mvp-architect](https://skills.sh/shipshitdev/library/mvp-architect) | Scope MVPs & minimum features | `npx skills add shipshitdev/library --skill mvp-architect` |
+| [nestjs-queue-architect](https://skills.sh/shipshitdev/library/nestjs-queue-architect) | BullMQ queue patterns for NestJS | `npx skills add shipshitdev/library --skill nestjs-queue-architect` |
+| [nestjs-testing-expert](https://skills.sh/shipshitdev/library/nestjs-testing-expert) | NestJS testing patterns with Jest | `npx skills add shipshitdev/library --skill nestjs-testing-expert` |
+| [nextjs-validator](https://skills.sh/shipshitdev/library/nextjs-validator) | Validate Next.js 16 configuration | `npx skills add shipshitdev/library --skill nextjs-validator` |
+| [nextra-writer](https://skills.sh/shipshitdev/library/nextra-writer) | Nextra documentation sites | `npx skills add shipshitdev/library --skill nextra-writer` |
+| [offer-architect](https://skills.sh/shipshitdev/library/offer-architect) | Create irresistible offers | `npx skills add shipshitdev/library --skill offer-architect` |
+| [offer-validator](https://skills.sh/shipshitdev/library/offer-validator) | Validate offers (Hormozi framework) | `npx skills add shipshitdev/library --skill offer-validator` |
+| [open-source-checker](https://skills.sh/shipshitdev/library/open-source-checker) | Detect secrets & private info | `npx skills add shipshitdev/library --skill open-source-checker` |
+| [outbound-optimizer](https://skills.sh/shipshitdev/library/outbound-optimizer) | Optimize cold outreach & sales | `npx skills add shipshitdev/library --skill outbound-optimizer` |
+| [package-architect](https://skills.sh/shipshitdev/library/package-architect) | TypeScript packages in monorepos | `npx skills add shipshitdev/library --skill package-architect` |
+| [partnership-builder](https://skills.sh/shipshitdev/library/partnership-builder) | Build revenue partnerships | `npx skills add shipshitdev/library --skill partnership-builder` |
+| [performance-expert](https://skills.sh/shipshitdev/library/performance-expert) | Performance optimization patterns | `npx skills add shipshitdev/library --skill performance-expert` |
+| [planning-assistant](https://skills.sh/shipshitdev/library/planning-assistant) | Content planning & scheduling | `npx skills add shipshitdev/library --skill planning-assistant` |
+| [plasmo-extension-architect](https://skills.sh/shipshitdev/library/plasmo-extension-architect) | Chrome MV3 extensions with Plasmo | `npx skills add shipshitdev/library --skill plasmo-extension-architect` |
+| [playwright-e2e-init](https://skills.sh/shipshitdev/library/playwright-e2e-init) | Playwright E2E testing setup | `npx skills add shipshitdev/library --skill playwright-e2e-init` |
+| [positioning-angles](https://skills.sh/shipshitdev/library/positioning-angles) | Find unique marketing angles | `npx skills add shipshitdev/library --skill positioning-angles` |
+| [pricing-strategist](https://skills.sh/shipshitdev/library/pricing-strategist) | Pricing strategy & optimization | `npx skills add shipshitdev/library --skill pricing-strategist` |
+| [project-init-orchestrator](https://skills.sh/shipshitdev/library/project-init-orchestrator) | Orchestrate project initialization | `npx skills add shipshitdev/library --skill project-init-orchestrator` |
+| [project-scaffold](https://skills.sh/shipshitdev/library/project-scaffold) | Cross-platform project scaffolding | `npx skills add shipshitdev/library --skill project-scaffold` |
+| [prompt-engineer](https://skills.sh/shipshitdev/library/prompt-engineer) | Prompt engineering for content | `npx skills add shipshitdev/library --skill prompt-engineer` |
+| [qa-reviewer](https://skills.sh/shipshitdev/library/qa-reviewer) | Review AI work for quality | `npx skills add shipshitdev/library --skill qa-reviewer` |
+| [quick-view](https://skills.sh/shipshitdev/library/quick-view) | Generate HTML preview pages | `npx skills add shipshitdev/library --skill quick-view` |
+| [react-native-components](https://skills.sh/shipshitdev/library/react-native-components) | React Native 0.79.5 components | `npx skills add shipshitdev/library --skill react-native-components` |
+| [retention-engine](https://skills.sh/shipshitdev/library/retention-engine) | Reduce churn & increase retention | `npx skills add shipshitdev/library --skill retention-engine` |
+| [roadmap-analyzer](https://skills.sh/shipshitdev/library/roadmap-analyzer) | Analyze features against ICP | `npx skills add shipshitdev/library --skill roadmap-analyzer` |
+| [rules-capture](https://skills.sh/shipshitdev/library/rules-capture) | Detect & document coding rules | `npx skills add shipshitdev/library --skill rules-capture` |
+| [scale-validator](https://skills.sh/shipshitdev/library/scale-validator) | Validate business scalability | `npx skills add shipshitdev/library --skill scale-validator` |
+| [search-domain-validator](https://skills.sh/shipshitdev/library/search-domain-validator) | Validate domain availability | `npx skills add shipshitdev/library --skill search-domain-validator` |
+| [security-expert](https://skills.sh/shipshitdev/library/security-expert) | OWASP Top 10 & app security | `npx skills add shipshitdev/library --skill security-expert` |
+| [serializer-specialist](https://skills.sh/shipshitdev/library/serializer-specialist) | JSON:API serialization patterns | `npx skills add shipshitdev/library --skill serializer-specialist` |
+| [session-documenter](https://skills.sh/shipshitdev/library/session-documenter) | Document session work automatically | `npx skills add shipshitdev/library --skill session-documenter` |
+| [shadcn-setup](https://skills.sh/shipshitdev/library/shadcn-setup) | shadcn/ui with Tailwind CSS v4 | `npx skills add shipshitdev/library --skill shadcn-setup` |
+| [skill-creator](https://skills.sh/shipshitdev/library/skill-creator) | Guide for creating new skills | `npx skills add shipshitdev/library --skill skill-creator` |
+| [spec-first](https://skills.sh/shipshitdev/library/spec-first) | Spec → plan → execute workflow | `npx skills add shipshitdev/library --skill spec-first` |
+| [startup-icp-definer](https://skills.sh/shipshitdev/library/startup-icp-definer) | Define ideal customer profile | `npx skills add shipshitdev/library --skill startup-icp-definer` |
+| [strategy-expert](https://skills.sh/shipshitdev/library/strategy-expert) | Content strategy planning | `npx skills add shipshitdev/library --skill strategy-expert` |
+| [stripe-implementer](https://skills.sh/shipshitdev/library/stripe-implementer) | Stripe payments & subscriptions | `npx skills add shipshitdev/library --skill stripe-implementer` |
+| [support-systems-architect](https://skills.sh/shipshitdev/library/support-systems-architect) | Customer support system setup | `npx skills add shipshitdev/library --skill support-systems-architect` |
+| [table-filters](https://skills.sh/shipshitdev/library/table-filters) | Optimal filtering UX for tables | `npx skills add shipshitdev/library --skill table-filters` |
+| [tailwind-validator](https://skills.sh/shipshitdev/library/tailwind-validator) | Validate Tailwind CSS v4 config | `npx skills add shipshitdev/library --skill tailwind-validator` |
+| [task-prd-creator](https://skills.sh/shipshitdev/library/task-prd-creator) | Task files & PRD creation | `npx skills add shipshitdev/library --skill task-prd-creator` |
+| [testing-cicd-init](https://skills.sh/shipshitdev/library/testing-cicd-init) | Vitest & GitHub Actions CI/CD | `npx skills add shipshitdev/library --skill testing-cicd-init` |
+| [testing-expert](https://skills.sh/shipshitdev/library/testing-expert) | Testing strategies for React/NestJS | `npx skills add shipshitdev/library --skill testing-expert` |
+| [theme-factory](https://skills.sh/shipshitdev/library/theme-factory) | Theme toolkit for artifacts | `npx skills add shipshitdev/library --skill theme-factory` |
+| [tool-design](https://skills.sh/shipshitdev/library/tool-design) | Design effective agent tools | `npx skills add shipshitdev/library --skill tool-design` |
+| [traffic-architect](https://skills.sh/shipshitdev/library/traffic-architect) | Traffic strategy & Dream 100 | `npx skills add shipshitdev/library --skill traffic-architect` |
+| [traffic-validator](https://skills.sh/shipshitdev/library/traffic-validator) | Validate traffic strategy | `npx skills add shipshitdev/library --skill traffic-validator` |
+| [workflow-automation](https://skills.sh/shipshitdev/library/workflow-automation) | Content workflow automation | `npx skills add shipshitdev/library --skill workflow-automation` |
+| [workspace-performance-audit](https://skills.sh/shipshitdev/library/workspace-performance-audit) | Full-stack performance audits | `npx skills add shipshitdev/library --skill workspace-performance-audit` |
+| [x-algorithm-optimizer](https://skills.sh/shipshitdev/library/x-algorithm-optimizer) | Optimize X/Twitter for algorithm | `npx skills add shipshitdev/library --skill x-algorithm-optimizer` |
+| [youtube-video-analyst](https://skills.sh/shipshitdev/library/youtube-video-analyst) | Deconstruct YouTube videos | `npx skills add shipshitdev/library --skill youtube-video-analyst` |
 
 ## Complementary Skills (External)
 

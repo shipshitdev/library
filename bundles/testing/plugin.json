@@ -1,10 +1,12 @@
 {
-  "name": "shipshitdev-testing",
-  "version": "1.0.0",
+  "author": {
+    "name": "Ship Shit Dev"
+  },
   "description": "Testing, QA, and CI/CD automation skills",
-  "author": "Ship Shit Dev",
   "license": "MIT",
+  "name": "shipshitdev-testing",
   "skills": {
     "path": "./skills"
-  }
+  },
+  "version": "1.0.0"
 }

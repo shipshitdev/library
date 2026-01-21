@@ -2,7 +2,7 @@
   "name": "shipshitdev-github",
   "version": "1.0.0",
   "description": "GitHub workflow and automation skills",
-  "author": "Ship Shit Dev",
+  "author": { "name": "Ship Shit Dev" },
   "license": "MIT",
   "skills": {
     "path": "./skills"

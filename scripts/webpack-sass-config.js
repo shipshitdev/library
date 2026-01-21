@@ -66,4 +66,3 @@ function configureWebpackSass(config, projectRoot) {
 }
 
 module.exports = { configureWebpackSass };
-

@@ -17,15 +17,15 @@ function copyDir(src, dest) {
   if (!fs.existsSync(src)) {
     return;
   }
-  
+
   fs.mkdirSync(dest, { recursive: true });
-  
+
   const entries = fs.readdirSync(src, { withFileTypes: true });
-  
+
   for (const entry of entries) {
     const srcPath = path.join(src, entry.name);
     const destPath = path.join(dest, entry.name);
-    
+
     if (entry.isDirectory()) {
       // Skip certain directories
       if (entry.name === 'node_modules' || entry.name === '.git') {
@@ -43,38 +43,38 @@ function copyDir(src, dest) {
  */
 function generateSkillPlugin(skillName, platform = 'cursor') {
   const skillPath = path.join(LIBRARY_ROOT, 'skills', skillName);
-  
+
   if (!fs.existsSync(skillPath)) {
     throw new Error(`Skill not found: ${skillPath}`);
   }
-  
+
   const pluginName = `skill-${skillName}`;
   const pluginDir = path.join(PLUGINS_DIR, pluginName);
   const pluginManifestDir = path.join(pluginDir, '.claude-plugin');
   const pluginSkillsDir = path.join(pluginDir, 'skills', skillName);
-  
+
   // Create directories
   fs.mkdirSync(pluginManifestDir, { recursive: true });
   fs.mkdirSync(pluginSkillsDir, { recursive: true });
-  
+
   // Generate manifest
   const manifest = generateFromSkill(skillPath, platform, {
-    homepage: `https://skillhub.com/plugins/${skillName}`
+    homepage: `https://skillhub.com/plugins/${skillName}`,
   });
-  
+
   // Write manifest
   fs.writeFileSync(
     path.join(pluginManifestDir, 'plugin.json'),
     JSON.stringify(manifest, null, 2) + '\n'
   );
-  
+
   // Copy skill directory contents
   copyDir(skillPath, pluginSkillsDir);
-  
+
   console.log(`✅ Generated plugin: ${pluginName}`);
   console.log(`   Location: ${pluginDir}`);
   console.log(`   Manifest: ${path.join(pluginManifestDir, 'plugin.json')}`);
-  
+
   return pluginDir;
 }
 
@@ -83,38 +83,38 @@ function generateSkillPlugin(skillName, platform = 'cursor') {
  */
 function generateCommandPlugin(commandName, platform = 'cursor') {
   const commandPath = path.join(LIBRARY_ROOT, 'commands', `${commandName}.md`);
-  
+
   if (!fs.existsSync(commandPath)) {
     throw new Error(`Command not found: ${commandPath}`);
   }
-  
+
   const pluginName = `command-${commandName}`;
   const pluginDir = path.join(PLUGINS_DIR, pluginName);
   const pluginManifestDir = path.join(pluginDir, '.claude-plugin');
   const pluginCommandsDir = path.join(pluginDir, 'commands');
-  
+
   // Create directories
   fs.mkdirSync(pluginManifestDir, { recursive: true });
   fs.mkdirSync(pluginCommandsDir, { recursive: true });
-  
+
   // Generate manifest
   const manifest = generateFromCommand(commandPath, platform, {
-    homepage: `https://skillhub.com/plugins/${commandName}`
+    homepage: `https://skillhub.com/plugins/${commandName}`,
   });
-  
+
   // Write manifest
   fs.writeFileSync(
     path.join(pluginManifestDir, 'plugin.json'),
     JSON.stringify(manifest, null, 2) + '\n'
   );
-  
+
   // Copy command file
   fs.copyFileSync(commandPath, path.join(pluginCommandsDir, `${commandName}.md`));
-  
+
   console.log(`✅ Generated plugin: ${pluginName}`);
   console.log(`   Location: ${pluginDir}`);
   console.log(`   Manifest: ${path.join(pluginManifestDir, 'plugin.json')}`);
-  
+
   return pluginDir;
 }
 
@@ -124,15 +124,16 @@ function generateCommandPlugin(commandName, platform = 'cursor') {
 function generateAllPlugins(platform = 'cursor') {
   const skillsDir = path.join(LIBRARY_ROOT, 'skills');
   const commandsDir = path.join(LIBRARY_ROOT, 'commands');
-  
+
   const plugins = [];
-  
+
   // Generate skill plugins
   if (fs.existsSync(skillsDir)) {
-    const skills = fs.readdirSync(skillsDir, { withFileTypes: true })
-      .filter(entry => entry.isDirectory())
-      .map(entry => entry.name);
-    
+    const skills = fs
+      .readdirSync(skillsDir, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => entry.name);
+
     for (const skill of skills) {
       try {
         generateSkillPlugin(skill, platform);
@@ -142,13 +143,14 @@ function generateAllPlugins(platform = 'cursor') {
       }
     }
   }
-  
+
   // Generate command plugins
   if (fs.existsSync(commandsDir)) {
-    const commands = fs.readdirSync(commandsDir)
-      .filter(file => file.endsWith('.md'))
-      .map(file => file.replace('.md', ''));
-    
+    const commands = fs
+      .readdirSync(commandsDir)
+      .filter((file) => file.endsWith('.md'))
+      .map((file) => file.replace('.md', ''));
+
     for (const command of commands) {
       try {
         generateCommandPlugin(command, platform);
@@ -158,7 +160,7 @@ function generateAllPlugins(platform = 'cursor') {
       }
     }
   }
-  
+
   console.log(`\n✅ Generated ${plugins.length} plugins for ${platform}`);
   return plugins;
 }
@@ -166,7 +168,7 @@ function generateAllPlugins(platform = 'cursor') {
 // CLI usage
 if (require.main === module) {
   const args = process.argv.slice(2);
-  
+
   if (args.length === 0) {
     console.log('Usage:');
     console.log('  generate-plugin.js skill <skill-name> [platform]');
@@ -179,9 +181,9 @@ if (require.main === module) {
     console.log('  generate-plugin.js all cursor');
     process.exit(1);
   }
-  
+
   const [action, name, platform = 'cursor'] = args;
-  
+
   try {
     if (action === 'skill') {
       if (!name) {
@@ -207,6 +209,5 @@ if (require.main === module) {
 module.exports = {
   generateSkillPlugin,
   generateCommandPlugin,
-  generateAllPlugins
+  generateAllPlugins,
 };
-

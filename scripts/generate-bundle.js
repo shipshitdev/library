@@ -18,15 +18,15 @@ function copyDir(src, dest) {
   if (!fs.existsSync(src)) {
     return;
   }
-  
+
   fs.mkdirSync(dest, { recursive: true });
-  
+
   const entries = fs.readdirSync(src, { withFileTypes: true });
-  
+
   for (const entry of entries) {
     const srcPath = path.join(src, entry.name);
     const destPath = path.join(dest, entry.name);
-    
+
     if (entry.isDirectory()) {
       // Skip certain directories
       if (entry.name === 'node_modules' || entry.name === '.git') {
@@ -46,7 +46,7 @@ function loadBundles() {
   if (!fs.existsSync(BUNDLES_FILE)) {
     throw new Error(`Bundles file not found: ${BUNDLES_FILE}`);
   }
-  
+
   const content = fs.readFileSync(BUNDLES_FILE, 'utf8');
   return JSON.parse(content);
 }
@@ -56,60 +56,60 @@ function loadBundles() {
  */
 function generateBundlePlugin(bundleId, platform = 'cursor') {
   const bundles = loadBundles();
-  const bundle = bundles.bundles.find(b => b.id === bundleId);
-  
+  const bundle = bundles.bundles.find((b) => b.id === bundleId);
+
   if (!bundle) {
     throw new Error(`Bundle not found: ${bundleId}`);
   }
-  
+
   const pluginName = `bundle-${bundleId}`;
   const pluginDir = path.join(PLUGINS_DIR, pluginName);
   const pluginManifestDir = path.join(pluginDir, '.claude-plugin');
   const pluginSkillsDir = path.join(pluginDir, 'skills');
   const pluginCommandsDir = path.join(pluginDir, 'commands');
-  
+
   // Create directories
   fs.mkdirSync(pluginManifestDir, { recursive: true });
   fs.mkdirSync(pluginSkillsDir, { recursive: true });
   fs.mkdirSync(pluginCommandsDir, { recursive: true });
-  
+
   // Copy skills
   const skillsDir = path.join(LIBRARY_ROOT, 'skills');
   const includedSkills = [];
-  
+
   if (bundle.skills && bundle.skills.length > 0) {
     for (const skillName of bundle.skills) {
       const skillPath = path.join(skillsDir, skillName);
-      
+
       if (!fs.existsSync(skillPath)) {
         console.warn(`⚠️  Skill not found: ${skillName} (skipping)`);
         continue;
       }
-      
+
       const destSkillDir = path.join(pluginSkillsDir, skillName);
       copyDir(skillPath, destSkillDir);
       includedSkills.push(skillName);
     }
   }
-  
+
   // Copy commands
   const commandsDir = path.join(LIBRARY_ROOT, 'commands');
   const includedCommands = [];
-  
+
   if (bundle.commands && bundle.commands.length > 0) {
     for (const commandName of bundle.commands) {
       const commandPath = path.join(commandsDir, `${commandName}.md`);
-      
+
       if (!fs.existsSync(commandPath)) {
         console.warn(`⚠️  Command not found: ${commandName} (skipping)`);
         continue;
       }
-      
+
       fs.copyFileSync(commandPath, path.join(pluginCommandsDir, `${commandName}.md`));
       includedCommands.push(commandName);
     }
   }
-  
+
   // Generate manifest
   const manifest = generateManifest({
     name: `@agenticdev/bundle-${bundleId}`,
@@ -118,10 +118,10 @@ function generateBundlePlugin(bundleId, platform = 'cursor') {
     tags: bundle.tags || [],
     homepage: `https://skillhub.com/bundles/${bundleId}`,
     author: {
-      name: 'Ship Shit Dev'
-    }
+      name: 'Ship Shit Dev',
+    },
   });
-  
+
   // Add bundle metadata
   manifest.bundle = {
     id: bundle.id,
@@ -129,15 +129,15 @@ function generateBundlePlugin(bundleId, platform = 'cursor') {
     category: bundle.category,
     includedSkills: includedSkills,
     includedCommands: includedCommands,
-    icon: bundle.icon
+    icon: bundle.icon,
   };
-  
+
   // Write manifest
   fs.writeFileSync(
     path.join(pluginManifestDir, 'plugin.json'),
     JSON.stringify(manifest, null, 2) + '\n'
   );
-  
+
   // Create README for bundle
   const readme = `# ${bundle.name}
 
@@ -146,10 +146,10 @@ ${bundle.description}
 ## Included Items
 
 ### Skills (${includedSkills.length})
-${includedSkills.map(skill => `- ${skill}`).join('\n')}
+${includedSkills.map((skill) => `- ${skill}`).join('\n')}
 
 ### Commands (${includedCommands.length})
-${includedCommands.map(cmd => `- ${cmd}`).join('\n')}
+${includedCommands.map((cmd) => `- ${cmd}`).join('\n')}
 
 ## Installation
 
@@ -162,14 +162,14 @@ Or install via marketplace:
 /plugin install @agenticdev/bundle-${bundleId}
 \`\`\`
 `;
-  
+
   fs.writeFileSync(path.join(pluginDir, 'README.md'), readme);
-  
+
   console.log(`✅ Generated bundle plugin: ${pluginName}`);
   console.log(`   Location: ${pluginDir}`);
   console.log(`   Skills: ${includedSkills.length}`);
   console.log(`   Commands: ${includedCommands.length}`);
-  
+
   return pluginDir;
 }
 
@@ -178,11 +178,11 @@ Or install via marketplace:
  */
 function generateAllBundles(platform = 'cursor') {
   const bundles = loadBundles();
-  
+
   console.log(`Generating ${bundles.bundles.length} bundles for ${platform}...\n`);
-  
+
   const results = [];
-  
+
   for (const bundle of bundles.bundles) {
     try {
       generateBundlePlugin(bundle.id, platform);
@@ -192,16 +192,18 @@ function generateAllBundles(platform = 'cursor') {
       results.push({ bundle: bundle.id, status: 'error', error: error.message });
     }
   }
-  
-  console.log(`\n✅ Generated ${results.filter(r => r.status === 'success').length}/${bundles.bundles.length} bundles`);
-  
+
+  console.log(
+    `\n✅ Generated ${results.filter((r) => r.status === 'success').length}/${bundles.bundles.length} bundles`
+  );
+
   return results;
 }
 
 // CLI usage
 if (require.main === module) {
   const args = process.argv.slice(2);
-  
+
   if (args.length === 0) {
     console.log('Usage:');
     console.log('  generate-bundle.js <bundle-id> [platform]');
@@ -213,14 +215,14 @@ if (require.main === module) {
     console.log('');
     console.log('Available bundles:');
     const bundles = loadBundles();
-    bundles.bundles.forEach(b => {
+    bundles.bundles.forEach((b) => {
       console.log(`  - ${b.id}: ${b.name}`);
     });
     process.exit(1);
   }
-  
+
   const [bundleId, platform = 'cursor'] = args;
-  
+
   try {
     if (bundleId === 'all') {
       generateAllBundles(platform);
@@ -236,6 +238,5 @@ if (require.main === module) {
 module.exports = {
   generateBundlePlugin,
   generateAllBundles,
-  loadBundles
+  loadBundles,
 };
-

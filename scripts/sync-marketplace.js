@@ -10,7 +10,8 @@ const fs = require('fs');
 const path = require('path');
 
 const LIBRARY_ROOT = path.resolve(__dirname, '..');
-const MARKETPLACE_ROOT = process.env.MARKETPLACE_ROOT || path.join(LIBRARY_ROOT, '..', 'tools', 'skillhubcom');
+const MARKETPLACE_ROOT =
+  process.env.MARKETPLACE_ROOT || path.join(LIBRARY_ROOT, '..', 'tools', 'skillhubcom');
 
 async function syncMarketplace() {
   console.log('🔄 Syncing library to marketplace...\n');
@@ -64,4 +65,3 @@ if (require.main === module) {
 }
 
 module.exports = { syncMarketplace };
-

@@ -1,5 +1,5 @@
 ---
-name: Prompt Engineer
+name: prompt-engineer
 description: Expert prompt engineer specializing in content generation and social media optimization
 version: 1.0.0
 tags:

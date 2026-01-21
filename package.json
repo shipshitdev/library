@@ -25,10 +25,10 @@
   "private": true,
   "scripts": {
     "count": "bash -c 'echo \"Skills: $(ls -1 skills 2>/dev/null | wc -l | tr -d \" \")\"; echo \"Commands: $(ls -1 commands 2>/dev/null | wc -l | tr -d \" \")\"'",
+    "deps:update": "bunx npm-check-updates -u && bun install",
     "generate:all": "bun scripts/generate-plugin.js all cursor",
     "generate:bundle": "bun scripts/generate-bundle.js",
     "generate:manifest": "bun scripts/generate-manifest.js",
-    "deps:update": "bunx npm-check-updates -u && bun install",
     "generate:plugin": "bun scripts/generate-plugin.js",
     "lint": "markdownlint '**/*.md' --ignore node_modules --ignore bundles --ignore dist",
     "lint:docs": "markdownlint '*.md' '**/*.md' --ignore node_modules --ignore '.claude/**'",

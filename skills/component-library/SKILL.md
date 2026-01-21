@@ -1,5 +1,5 @@
 ---
-name: Component Library Standards
+name: component-library
 description: Expert React/Next.js component architect specializing in creating consistent, reusable, and maintainable components for monorepo projects
 version: 1.0.0
 tags:

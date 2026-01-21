@@ -1,5 +1,5 @@
 ---
-name: Copywriter
+name: copywriter
 description: Brand voice guardian and conversion-focused copywriter, specializing in direct, no-fluff copy that adapts to project's brand voice
 version: 1.0.0
 tags:

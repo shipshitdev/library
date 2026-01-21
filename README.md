@@ -50,7 +50,7 @@ npx skills add shipshitdev/library
 
 ```bash
 /plugin marketplace add shipshitdev/library
-/plugin install shipshitdev-full@shipshitdev
+/plugin install shipshitdev-startup@shipshitdev    # or any category bundle
 ```
 
 ### For Contributors
@@ -331,10 +331,7 @@ Users install directly from GitHub:
 # Add the marketplace
 /plugin marketplace add shipshitdev/library
 
-# Install full library
-/plugin install shipshitdev-full@shipshitdev
-
-# Or install specific bundles
+# Install category bundles
 /plugin install shipshitdev-startup@shipshitdev
 /plugin install shipshitdev-testing@shipshitdev
 /plugin install shipshitdev-frontend@shipshitdev

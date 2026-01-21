@@ -1,5 +1,5 @@
 ---
-name: Design Consistency Auditor
+name: design-consistency-auditor
 description: Audit and maintain design system consistency, UX/UI patterns, color palettes, and design best practices across frontend applications
 version: 1.0.0
 tags:

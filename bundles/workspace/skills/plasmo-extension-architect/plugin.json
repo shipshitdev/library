@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Architect Chrome MV3 extensions using Plasmo, including messaging, storage, and UI surfaces.",
   "author": {
-    "name": "Ship Shit Dev"
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
   },
   "license": "MIT",
   "skills": "."

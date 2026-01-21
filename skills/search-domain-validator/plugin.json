@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "This skill should be used when users need to validate domain name format, check domain availability,",
   "author": {
-    "name": "Ship Shit Dev"
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
   },
   "license": "MIT",
   "skills": "."

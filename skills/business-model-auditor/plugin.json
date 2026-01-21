@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Use this skill when users need to stress test their business model, identify scale limitations, find",
   "author": {
-    "name": "Ship Shit Dev"
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
   },
   "license": "MIT",
   "skills": "."

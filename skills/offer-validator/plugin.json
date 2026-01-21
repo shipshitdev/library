@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Use this skill when users need to validate an existing offer, rate an offer's strength, or assess whether an offer is ready to launch. Activates for 'validate my offer,' 'rate my offer,' 'is my offer good,' or when checking offer quality before launch.",
   "author": {
-    "name": "Ship Shit Dev"
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
   },
   "license": "MIT",
   "skills": "."

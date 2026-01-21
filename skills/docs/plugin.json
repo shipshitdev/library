@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Creates clear, concise technical documentation for software projects, runbooks, and developer guides",
   "author": {
-    "name": "Ship Shit Dev"
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
   },
   "license": "MIT",
   "skills": "."

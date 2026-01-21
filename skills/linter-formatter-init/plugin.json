@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Set up Biome (default) or ESLint + Prettier, Vitest testing, and pre-commit hooks for any JavaScript",
   "author": {
-    "name": "Ship Shit Dev"
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
   },
   "license": "MIT",
   "skills": "."

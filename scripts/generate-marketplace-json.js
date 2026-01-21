@@ -3,7 +3,7 @@
  * Generates marketplace.json with all bundles and individual skills
  */
 
-import { existsSync, readdirSync, readFileSync, writeFileSync } from 'fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -61,7 +61,11 @@ const marketplace = {
   plugins,
 };
 
-const outputPath = join(ROOT, '.claude-plugin/marketplace.json');
+const outputDir = join(ROOT, '.claude-plugin');
+if (!existsSync(outputDir)) {
+  mkdirSync(outputDir, { recursive: true });
+}
+const outputPath = join(outputDir, 'marketplace.json');
 writeFileSync(outputPath, JSON.stringify(marketplace, null, 2));
 
 console.log(`Generated marketplace.json with ${plugins.length} plugins:`);

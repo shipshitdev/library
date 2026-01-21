@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Use this skill when users need to raise funding, create a pitch deck, prepare for investor meetings,",
   "author": {
-    "name": "Ship Shit Dev"
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
   },
   "license": "MIT",
   "skills": "."

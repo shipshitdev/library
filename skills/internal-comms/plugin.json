@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "A set of resources to help me write all kinds of internal communications, using the formats that my ",
   "author": {
-    "name": "Ship Shit Dev"
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
   },
   "license": "MIT",
   "skills": "."

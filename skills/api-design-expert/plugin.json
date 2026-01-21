@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Expert in RESTful API design, OpenAPI/Swagger documentation, versioning, error handling, and API bes",
   "author": {
-    "name": "Ship Shit Dev"
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
   },
   "license": "MIT",
   "skills": "."

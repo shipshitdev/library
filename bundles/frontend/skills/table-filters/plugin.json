@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Designs optimal filtering UX for data tables. Use when building a table that needs filters - analyze",
   "author": {
-    "name": "Ship Shit Dev"
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
   },
   "license": "MIT",
   "skills": "."

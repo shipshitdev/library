@@ -1,10 +1,12 @@
 {
-  "name": "serializer-specialist",
-  "version": "1.0.0",
-  "description": "Expert in JSON:API serialization patterns using ts-jsonapi or similar libraries.",
   "author": {
-    "name": "Ship Shit Dev"
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
   },
+  "description": "Expert in JSON:API serialization patterns using ts-jsonapi or similar libraries.",
   "license": "MIT",
-  "skills": "."
+  "name": "serializer-specialist",
+  "skills": ".",
+  "version": "1.0.0"
 }

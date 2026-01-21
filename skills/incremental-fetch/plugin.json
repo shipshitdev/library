@@ -1,6 +1,8 @@
 {
   "author": {
-    "name": "Ship Shit Dev"
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
   },
   "description": "Build resilient data ingestion pipelines from APIs. Use when creating scripts that fetch paginated data from an API.",
   "license": "MIT",

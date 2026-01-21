@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Use this skill when users need to design a traffic strategy, build a Dream 100 list, or plan audience acquisition. Activates for 'build my traffic plan,' 'create my Dream 100,' 'plan my audience strategy,' or when designing traffic acquisition.",
   "author": {
-    "name": "Ship Shit Dev"
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
   },
   "license": "MIT",
   "skills": "."

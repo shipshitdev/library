@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Expert content creator specializing in newsletters and tweets that capture your authentic voice. Cre",
   "author": {
-    "name": "Ship Shit Dev"
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
   },
   "license": "MIT",
   "skills": "."

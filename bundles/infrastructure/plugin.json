@@ -2,7 +2,11 @@
   "name": "shipshitdev-infrastructure",
   "version": "1.0.0",
   "description": "DevOps, cloud, and infrastructure skills",
-  "author": "Ship Shit Dev",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
   "license": "MIT",
   "skills": {
     "path": "./skills"

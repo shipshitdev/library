@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Generate minimal HTML pages to review Claude Code output in a browser. Use when terminal output is h",
   "author": {
-    "name": "Ship Shit Dev"
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
   },
   "license": "MIT",
   "skills": "."

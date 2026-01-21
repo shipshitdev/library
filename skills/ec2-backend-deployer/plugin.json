@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Expert in deploying backends to EC2 instances using CI/CD pipelines, Docker containers, and GitHub A",
   "author": {
-    "name": "Ship Shit Dev"
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
   },
   "license": "MIT",
   "skills": "."

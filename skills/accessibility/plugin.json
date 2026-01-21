@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Expert in web accessibility (WCAG 2.1 AA compliance) for React/Next.js applications, ensuring all pr",
   "author": {
-    "name": "Ship Shit Dev"
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
   },
   "license": "MIT",
   "skills": "."

@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Validate Biome 2.3+ configuration and detect outdated patterns",
   "author": {
-    "name": "Ship Shit Dev"
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
   },
   "license": "MIT",
   "skills": "."

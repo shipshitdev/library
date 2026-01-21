@@ -1,10 +1,12 @@
 {
-  "name": "error-handling-expert",
-  "version": "1.0.0",
-  "description": "Expert in error handling patterns, exception management, error responses, logging, and error recover",
   "author": {
-    "name": "Ship Shit Dev"
+    "email": "hello@shipshit.dev",
+    "name": "Ship Shit Dev",
+    "url": "https://github.com/shipshitdev"
   },
+  "description": "Expert in error handling patterns, exception management, error responses, logging, and error recover",
   "license": "MIT",
-  "skills": "."
+  "name": "error-handling-expert",
+  "skills": ".",
+  "version": "1.0.0"
 }

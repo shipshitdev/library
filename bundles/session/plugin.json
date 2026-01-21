@@ -2,7 +2,11 @@
   "name": "shipshitdev-session",
   "version": "1.0.0",
   "description": "Session management and documentation",
-  "author": "Ship Shit Dev",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
   "license": "MIT",
   "skills": {
     "path": "./skills"

@@ -30,14 +30,7 @@ function getSkillDescription(skillName) {
 
 const plugins = [];
 
-// 1. Add full bundle first
-plugins.push({
-	name: "shipshitdev-full",
-	source: ".",
-	description: "Complete skill library - all 100+ skills for indie developers",
-});
-
-// 2. Add category bundles
+// 1. Add category bundles
 for (const [category, config] of Object.entries(CATEGORIES.bundles)) {
 	plugins.push({
 		name: `shipshitdev-${category}`,
@@ -74,6 +67,5 @@ const outputPath = join(ROOT, ".claude-plugin/marketplace.json");
 writeFileSync(outputPath, JSON.stringify(marketplace, null, 2));
 
 console.log(`Generated marketplace.json with ${plugins.length} plugins:`);
-console.log(`  - 1 full bundle`);
 console.log(`  - ${Object.keys(CATEGORIES.bundles).length} category bundles`);
 console.log(`  - ${skills.length} individual skills`);

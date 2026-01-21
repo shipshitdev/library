@@ -6,11 +6,6 @@
   "description": "100+ AI agent skills for indie developers building startups",
   "plugins": [
     {
-      "name": "shipshitdev-full",
-      "source": ".",
-      "description": "Complete skill library - all 100+ skills for indie developers"
-    },
-    {
       "name": "shipshitdev-startup",
       "source": "./bundles/startup",
       "description": "Skills for validating ideas, planning MVPs, and launching startups"

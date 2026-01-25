@@ -639,7 +639,7 @@ def create_frontend_globals_scss() -> str:
 
 def create_biome_config() -> str:
     return json.dumps({
-        "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
+        "$schema": "https://biomejs.dev/schemas/2.3.12/schema.json",
         "assist": {
             "actions": {
                 "source": {

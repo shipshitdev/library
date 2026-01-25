@@ -37,7 +37,7 @@ python3 ~/.claude/skills/biome-validator/scripts/validate.py --root . --strict
 
 ```json
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json"
+  "$schema": "https://biomejs.dev/schemas/2.3.12/schema.json"
 }
 ```
 
@@ -192,7 +192,7 @@ Lint rules can query information from other files for more powerful analysis.
 
 ```json
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.3.12/schema.json",
   "assist": {
     "actions": {
       "source": {

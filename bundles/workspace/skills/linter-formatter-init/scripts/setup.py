@@ -33,7 +33,7 @@ from pathlib import Path
 # ============================================================================
 
 BIOME_CONFIG = {
-    "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
+    "$schema": "https://biomejs.dev/schemas/2.3.12/schema.json",
     "assist": {
         "actions": {
             "source": {

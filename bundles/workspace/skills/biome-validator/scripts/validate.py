@@ -118,7 +118,7 @@ def check_schema_version(config: dict, result: ValidationResult):
     if not schema:
         result.add_issue('warning', 'biome.json',
                         'No $schema defined',
-                        fix='Add "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json"')
+                        fix='Add "$schema": "https://biomejs.dev/schemas/2.3.12/schema.json"')
         return
 
     # Extract version from schema URL
@@ -133,11 +133,11 @@ def check_schema_version(config: dict, result: ValidationResult):
         if major < 2:
             result.add_issue('error', 'biome.json',
                            f'Schema version {version} is outdated. Use 2.3+',
-                           fix='Update $schema to "https://biomejs.dev/schemas/2.3.11/schema.json"')
+                           fix='Update $schema to "https://biomejs.dev/schemas/2.3.12/schema.json"')
         elif major == 2 and minor < 3:
             result.add_issue('warning', 'biome.json',
                            f'Schema version {version}. Consider upgrading to 2.3+',
-                           fix='Update $schema to "https://biomejs.dev/schemas/2.3.11/schema.json"')
+                           fix='Update $schema to "https://biomejs.dev/schemas/2.3.12/schema.json"')
         else:
             result.add_passed(f'Schema version: {version}')
     else:

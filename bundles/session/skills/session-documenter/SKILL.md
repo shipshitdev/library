@@ -24,8 +24,8 @@ Trigger conditions:
 ### Session File Naming (ONE FILE PER DAY)
 
 ```
-✅ CORRECT: .agent/SESSIONS/2025-11-15.md
-❌ WRONG:   .agent/SESSIONS/2025-11-15-feature-name.md
+✅ CORRECT: .agents/SESSIONS/2025-11-15.md
+❌ WRONG:   .agents/SESSIONS/2025-11-15-feature-name.md
 ```
 
 Multiple sessions same day → Same file, Session 1, Session 2, etc.
@@ -51,10 +51,10 @@ Include flowchart for:
 
 ## Related Files to Update
 
-- `.agent/SESSIONS/README.md`
-- `.agent/SYSTEM/SUMMARY.md`
-- `.agent/TASKS/*/TODO.md`
-- `.agent/SYSTEM/ARCHITECTURE.md` (if architectural decisions)
+- `.agents/SESSIONS/README.md`
+- `.agents/SYSTEM/SUMMARY.md`
+- `.agents/TASKS/*/TODO.md`
+- `.agents/SYSTEM/ARCHITECTURE.md` (if architectural decisions)
 
 ## References
 

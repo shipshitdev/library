@@ -24,15 +24,15 @@ This skill activates automatically (no manual invocation needed) when:
 ### ONE FILE PER DAY Naming Convention
 
 ```
-.agent/SESSIONS/YYYY-MM-DD.md
+.agents/SESSIONS/YYYY-MM-DD.md
 ```
 
 | Status | Example |
 |--------|---------|
-| CORRECT | `.agent/SESSIONS/2025-11-15.md` |
-| WRONG | `.agent/SESSIONS/2025-11-15-feature-name.md` |
-| WRONG | `.agent/SESSIONS/auth-implementation.md` |
-| WRONG | `.agent/SESSIONS/session-1.md` |
+| CORRECT | `.agents/SESSIONS/2025-11-15.md` |
+| WRONG | `.agents/SESSIONS/2025-11-15-feature-name.md` |
+| WRONG | `.agents/SESSIONS/auth-implementation.md` |
+| WRONG | `.agents/SESSIONS/session-1.md` |
 
 **Multiple sessions same day** = Same file, Session 1, Session 2, etc.
 
@@ -75,20 +75,20 @@ flowchart TD
 
 ```bash
 # Check if today's session file exists
-ls -la .agent/SESSIONS/$(date +%Y-%m-%d).md 2>/dev/null
+ls -la .agents/SESSIONS/$(date +%Y-%m-%d).md 2>/dev/null
 
 # Alternative: Check with explicit date
-ls -la .agent/SESSIONS/2025-11-15.md 2>/dev/null
+ls -la .agents/SESSIONS/2025-11-15.md 2>/dev/null
 ```
 
 ### Create New Session File (if needed)
 
 ```bash
 # Create sessions directory if missing
-mkdir -p .agent/SESSIONS
+mkdir -p .agents/SESSIONS
 
 # Create today's file with header
-cat > .agent/SESSIONS/$(date +%Y-%m-%d).md << 'EOF'
+cat > .agents/SESSIONS/$(date +%Y-%m-%d).md << 'EOF'
 # Sessions: YYYY-MM-DD
 
 **Summary:** [Update after first session]
@@ -137,10 +137,10 @@ EOF
 
 ```bash
 # Read today's session file
-cat .agent/SESSIONS/$(date +%Y-%m-%d).md
+cat .agents/SESSIONS/$(date +%Y-%m-%d).md
 
 # Read last N lines for quick context
-tail -50 .agent/SESSIONS/$(date +%Y-%m-%d).md
+tail -50 .agents/SESSIONS/$(date +%Y-%m-%d).md
 ```
 
 ---
@@ -277,7 +277,7 @@ After documenting the session, update these files:
 
 ```bash
 # 1. Update SESSIONS/README.md with link to today
-echo "- [$(date +%Y-%m-%d)]($(date +%Y-%m-%d).md) - Brief description" >> .agent/SESSIONS/README.md
+echo "- [$(date +%Y-%m-%d)]($(date +%Y-%m-%d).md) - Brief description" >> .agents/SESSIONS/README.md
 
 # 2. Update SYSTEM/SUMMARY.md if major changes
 # Add to Recent Changes section
@@ -334,7 +334,7 @@ flowchart TD
 ```
 SESSION START
     │
-    ├─► Check: .agent/SESSIONS/YYYY-MM-DD.md exists?
+    ├─► Check: .agents/SESSIONS/YYYY-MM-DD.md exists?
     │   ├─► NO  → Create new file with template
     │   └─► YES → Read file for context
     │
@@ -369,7 +369,7 @@ SESSION END
 ```markdown
 ## Starting new session
 
-📄 Session file: `.agent/SESSIONS/2025-11-15.md`
+📄 Session file: `.agents/SESSIONS/2025-11-15.md`
 📋 Context loaded: 2 previous sessions today
 🎯 Ready to document this session's work
 ```
@@ -377,7 +377,7 @@ SESSION END
 ```markdown
 ## Continuing existing session
 
-📄 Reading: `.agent/SESSIONS/2025-11-15.md`
+📄 Reading: `.agents/SESSIONS/2025-11-15.md`
 📊 Previous sessions: 1
 🔄 Status: Session 2 will be appended
 ```
@@ -396,7 +396,7 @@ SESSION END
 ```markdown
 ## Session entry created
 
-✅ Added Session 2 entry to `.agent/SESSIONS/2025-11-15.md`
+✅ Added Session 2 entry to `.agents/SESSIONS/2025-11-15.md`
 📊 Files tracked: 5
 💡 Decisions documented: 2
 🔧 Mistakes logged: 1
@@ -407,7 +407,7 @@ SESSION END
 ```markdown
 ## Session documented
 
-📄 Updated: `.agent/SESSIONS/2025-11-15.md`
+📄 Updated: `.agents/SESSIONS/2025-11-15.md`
 📋 Sessions today: 2
 📊 Total changes: 8 files
 
@@ -441,21 +441,21 @@ Every session entry MUST have:
 
 ```bash
 # Check for missing session file
-if [ ! -f ".agent/SESSIONS/$(date +%Y-%m-%d).md" ]; then
+if [ ! -f ".agents/SESSIONS/$(date +%Y-%m-%d).md" ]; then
     echo "ERROR: No session file for today"
     echo "ACTION: Creating session file..."
     # Create file with template
 fi
 
 # Check for missing required sections
-grep -q "### What was done" ".agent/SESSIONS/$(date +%Y-%m-%d).md"
+grep -q "### What was done" ".agents/SESSIONS/$(date +%Y-%m-%d).md"
 if [ $? -ne 0 ]; then
     echo "ERROR: Missing 'What was done' section"
     echo "ACTION: Adding section..."
 fi
 
 # Check for proper session numbering
-SESSION_COUNT=$(grep -c "^## Session " ".agent/SESSIONS/$(date +%Y-%m-%d).md")
+SESSION_COUNT=$(grep -c "^## Session " ".agents/SESSIONS/$(date +%Y-%m-%d).md")
 echo "Session count: $SESSION_COUNT"
 ```
 
@@ -477,52 +477,52 @@ echo "Session count: $SESSION_COUNT"
 
 ```bash
 # Create today's session file
-mkdir -p .agent/SESSIONS && touch .agent/SESSIONS/$(date +%Y-%m-%d).md
+mkdir -p .agents/SESSIONS && touch .agents/SESSIONS/$(date +%Y-%m-%d).md
 
 # List all session files
-ls -la .agent/SESSIONS/*.md
+ls -la .agents/SESSIONS/*.md
 
 # Find sessions from this week
-find .agent/SESSIONS -name "*.md" -mtime -7
+find .agents/SESSIONS -name "*.md" -mtime -7
 
 # Count sessions in current file
-grep -c "^## Session " .agent/SESSIONS/$(date +%Y-%m-%d).md
+grep -c "^## Session " .agents/SESSIONS/$(date +%Y-%m-%d).md
 
 # Get last session number
-grep "^## Session " .agent/SESSIONS/$(date +%Y-%m-%d).md | tail -1
+grep "^## Session " .agents/SESSIONS/$(date +%Y-%m-%d).md | tail -1
 
 # Check if session file exists
-test -f .agent/SESSIONS/$(date +%Y-%m-%d).md && echo "exists" || echo "missing"
+test -f .agents/SESSIONS/$(date +%Y-%m-%d).md && echo "exists" || echo "missing"
 ```
 
 ### Content Extraction Commands
 
 ```bash
 # Extract all decisions from today's session
-grep -A 3 "^\*\*Decision:" .agent/SESSIONS/$(date +%Y-%m-%d).md
+grep -A 3 "^\*\*Decision:" .agents/SESSIONS/$(date +%Y-%m-%d).md
 
 # Extract all files changed
-grep "^- \`" .agent/SESSIONS/$(date +%Y-%m-%d).md
+grep "^- \`" .agents/SESSIONS/$(date +%Y-%m-%d).md
 
 # Extract next steps
-grep -A 10 "### Next steps" .agent/SESSIONS/$(date +%Y-%m-%d).md
+grep -A 10 "### Next steps" .agents/SESSIONS/$(date +%Y-%m-%d).md
 
 # Get session summaries
-grep "^## Session" .agent/SESSIONS/$(date +%Y-%m-%d).md
+grep "^## Session" .agents/SESSIONS/$(date +%Y-%m-%d).md
 ```
 
 ### Archive Commands
 
 ```bash
 # Archive sessions older than 3 months
-mkdir -p .agent/SESSIONS/archive
-find .agent/SESSIONS -maxdepth 1 -name "*.md" -mtime +90 -exec mv {} .agent/SESSIONS/archive/ \;
+mkdir -p .agents/SESSIONS/archive
+find .agents/SESSIONS -maxdepth 1 -name "*.md" -mtime +90 -exec mv {} .agents/SESSIONS/archive/ \;
 
 # List archived sessions
-ls .agent/SESSIONS/archive/
+ls .agents/SESSIONS/archive/
 
 # Search across all sessions (including archive)
-grep -r "pattern" .agent/SESSIONS/
+grep -r "pattern" .agents/SESSIONS/
 ```
 
 ---
@@ -812,7 +812,7 @@ flowchart TD
 ### Session Start Checklist
 
 ```markdown
-- [ ] Check if `.agent/SESSIONS/YYYY-MM-DD.md` exists
+- [ ] Check if `.agents/SESSIONS/YYYY-MM-DD.md` exists
 - [ ] If exists: Read for context, note last session number
 - [ ] If missing: Create with template header
 - [ ] Review previous session's "Next steps"
@@ -865,7 +865,7 @@ flowchart TD
 ### File Naming
 
 ```
-.agent/SESSIONS/YYYY-MM-DD.md
+.agents/SESSIONS/YYYY-MM-DD.md
 ```
 
 ### Session Entry Template
@@ -904,15 +904,15 @@ flowchart TD
 
 ```bash
 # Today's file path
-.agent/SESSIONS/$(date +%Y-%m-%d).md
+.agents/SESSIONS/$(date +%Y-%m-%d).md
 
 # Check if exists
-test -f .agent/SESSIONS/$(date +%Y-%m-%d).md
+test -f .agents/SESSIONS/$(date +%Y-%m-%d).md
 
 # Session count
-grep -c "^## Session " .agent/SESSIONS/$(date +%Y-%m-%d).md
+grep -c "^## Session " .agents/SESSIONS/$(date +%Y-%m-%d).md
 ```
 
 ---
 
-**Questions?** This guide covers the complete session documentation workflow. For project-specific customizations, check `.agent/SYSTEM/RULES.md`.
+**Questions?** This guide covers the complete session documentation workflow. For project-specific customizations, check `.agents/SYSTEM/RULES.md`.

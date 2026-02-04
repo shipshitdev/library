@@ -593,7 +593,7 @@
     {
       "name": "session-documenter",
       "source": "./skills/session-documenter",
-      "description": "Automatically document session work after each task completion. Tracks decisions, file changes, flow"
+      "description": "Document session work with explicit commands. Use /start to begin tracking, /end to finalize session"
     },
     {
       "name": "shadcn-setup",

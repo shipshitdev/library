@@ -1,23 +1,32 @@
 ---
 name: session-documenter
-description: Automatically document session work after each task completion. Tracks decisions, file changes, flowcharts, and context for session continuity.
-location: project
-auto_activate: true
+description: Document session work with explicit commands. Use /start to begin tracking, /end to finalize session, /clear to reset. Tracks decisions, file changes, and context for continuity.
+triggers:
+  - /start
+  - /end
+  - session start
+  - session end
+  - document session
+  - what did we do
+  - track this decision
 ---
 
 # Session Documenter Skill
 
-Automatically document all work, decisions, and context throughout the session for continuity.
+Document work, decisions, and context with explicit commands.
 
-## When This Skill Activates
+## Commands
 
-Trigger conditions:
+| Command | Action |
+|---------|--------|
+| `/start` | Begin new session - creates/appends to today's file, loads context |
+| `/end` | Finalize session - writes entry with all tracked work, updates related files |
 
-1. When a task from TodoList is marked completed
-2. When files are modified/created/deleted
-3. When architectural decisions are made
-4. When new patterns are established
-5. At session end (MANDATORY)
+## How It Works
+
+1. **`/start`** - Creates `.agent/SESSIONS/YYYY-MM-DD.md` if missing, or loads existing context
+2. **During session** - You tell me what to track: decisions, files changed, mistakes
+3. **`/end`** - I write the full session entry with flowcharts, decisions, next steps
 
 ## Critical Rules
 

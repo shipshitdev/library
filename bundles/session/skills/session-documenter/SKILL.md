@@ -24,7 +24,7 @@ Document work, decisions, and context with explicit commands.
 
 ## How It Works
 
-1. **`/start`** - Creates `.agent/SESSIONS/YYYY-MM-DD.md` if missing, or loads existing context
+1. **`/start`** - Creates `.agents/SESSIONS/YYYY-MM-DD.md` if missing, or loads existing context
 2. **During session** - You tell me what to track: decisions, files changed, mistakes
 3. **`/end`** - I write the full session entry with flowcharts, decisions, next steps
 

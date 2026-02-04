@@ -93,7 +93,7 @@
     {
       "name": "agent-folder-init",
       "source": "./skills/agent-folder-init",
-      "description": "Initialize a comprehensive .agents/ folder structure for AI-first development. Use this skill when st"
+      "description": "Initialize a comprehensive .agents/ folder structure for AI-first development. Use this skill when s"
     },
     {
       "name": "ai-dev-loop",

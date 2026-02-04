@@ -55,9 +55,9 @@ npm test
 
 ```bash
 # Find the right pattern
-cat .agent/EXAMPLES/API/endpoint-crud.md
-cat .agent/EXAMPLES/FRONTEND/component-pattern.md
-cat .agent/EXAMPLES/API/service-factory.md
+cat .agents/EXAMPLES/API/endpoint-crud.md
+cat .agents/EXAMPLES/FRONTEND/component-pattern.md
+cat .agents/EXAMPLES/API/service-factory.md
 ```
 
 ### Step 4: Make Small Changes
@@ -301,7 +301,7 @@ After:
 
 ```bash
 # Create session entry
-cat >> .agent/SESSIONS/$(date +%Y-%m-%d).md << EOF
+cat >> .agents/SESSIONS/$(date +%Y-%m-%d).md << EOF
 
 ## Refactoring: [Component/Service Name]
 

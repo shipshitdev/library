@@ -9,7 +9,7 @@ Load all critical preferences and instructions at the start of each session or a
 Read the primary entry point document:
 
 ```bash
-cat .agent/SYSTEM/ai/SESSION-QUICK-START.md
+cat .agents/SYSTEM/ai/SESSION-QUICK-START.md
 ```
 
 This document will guide you to any other necessary documentation.
@@ -19,7 +19,7 @@ This document will guide you to any other necessary documentation.
 Read the user's non-negotiable preferences:
 
 ```bash
-cat .agent/SYSTEM/ai/USER-PREFERENCES.md
+cat .agents/SYSTEM/ai/USER-PREFERENCES.md
 ```
 
 This file contains:
@@ -34,7 +34,7 @@ This file contains:
 Read today's session to understand what was already done before `/clear`:
 
 ```bash
-cat .agent/SESSIONS/$(date +%Y-%m-%d).md
+cat .agents/SESSIONS/$(date +%Y-%m-%d).md
 ```
 
 If the file exists, this shows:
@@ -56,7 +56,7 @@ The `session-documenter` skill will automatically activate and track:
 - Patterns established
 - Mistakes and fixes
 
-Documentation is written to `.agent/SESSIONS/YYYY-MM-DD.md` after each task completion.
+Documentation is written to `.agents/SESSIONS/YYYY-MM-DD.md` after each task completion.
 
 **No manual action required** - this happens automatically.
 
@@ -69,13 +69,13 @@ Show the current inbox backlog. The inbox location depends on where you're runni
 **If running from workspace root:**
 
 ```bash
-cat .agent/TASKS/INBOX.md
+cat .agents/TASKS/INBOX.md
 ```
 
 **If running from a project subdirectory:**
 
 ```bash
-cat ../.agent/TASKS/INBOX.md
+cat ../.agents/TASKS/INBOX.md
 ```
 
 Display inbox in two categories:
@@ -123,11 +123,11 @@ This command ensures consistent behavior across sessions by:
    - No background processes (foreground only)
    - No local builds/tests (CI/CD only)
    - Document before /clear (session-documenter skill)
-   - Check `.agent/SESSIONS/` before implementing
+   - Check `.agents/SESSIONS/` before implementing
    - Find and follow real codebase examples (not generic patterns)
    - Quality over speed
    - Session memory is critical
-3. **Today's session file** (`.agent/SESSIONS/YYYY-MM-DD.md`):
+3. **Today's session file** (`.agents/SESSIONS/YYYY-MM-DD.md`):
    - What was done earlier today (before /clear)
    - Context continuity across /clear boundaries
 

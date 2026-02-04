@@ -313,7 +313,7 @@ Identify risks:
 [Identified risks and mitigation strategies]
 ```
 
-Save to: `.agent/PRDS/mvp-plan-[product-name].md` or `.agent/MVP/[product-name]-mvp.md`
+Save to: `.agents/PRDS/mvp-plan-[product-name].md` or `.agents/MVP/[product-name]-mvp.md`
 
 ---
 

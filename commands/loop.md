@@ -15,7 +15,7 @@ Run `/loop` when:
 Each `/loop` invocation processes ONE task:
 
 1. **Find Next Task**
-   - Scan `.agent/TASKS/` for `Status: To Do`
+   - Scan `.agents/TASKS/` for `Status: To Do`
    - Sort by Priority: High > Medium > Low
    - Skip tasks with active claims (< 30 min old)
 
@@ -27,7 +27,7 @@ Each `/loop` invocation processes ONE task:
 3. **Read Context**
    - Read the task file completely
    - Read linked PRD if `**PRD:**` field exists
-   - Check `.agent/SESSIONS/` for related past work
+   - Check `.agents/SESSIONS/` for related past work
 
 4. **Implement**
    - Follow the task requirements
@@ -112,7 +112,7 @@ Rejected tasks return to To Do with rejection notes for next `/loop`.
 ```
 User: /loop
 
-Agent: Scanning .agent/TASKS/ for available tasks...
+Agent: Scanning .agents/TASKS/ for available tasks...
 
 Found 3 tasks in To Do:
 1. [High] add-reject-button - Kaiban.md reject functionality

@@ -432,7 +432,7 @@ When creating commands for monorepo projects:
 
 ```bash
 /update-prd "feature-name"
-# Syncs code changes with .agent/TASKS/ PRDs
+# Syncs code changes with .agents/TASKS/ PRDs
 # Flags outdated documentation
 ```
 
@@ -440,7 +440,7 @@ When creating commands for monorepo projects:
 
 ```bash
 /sync-arch
-# Updates .agent/SYSTEM/WORKSPACE-ARCHITECTURE.md
+# Updates .agents/SYSTEM/WORKSPACE-ARCHITECTURE.md
 # Reflects current package structure
 ```
 
@@ -450,7 +450,7 @@ When creating commands for monorepo projects:
 
 ```bash
 /check-rules
-# Validates against .agent/SYSTEM/CRITICAL-NEVER-DO.md
+# Validates against .agents/SYSTEM/CRITICAL-NEVER-DO.md
 # Scans for violations before commit
 ```
 
@@ -465,8 +465,8 @@ When creating ANY command for a project, ALWAYS include these patterns:
 
 **⚠️ Check critical rules:**
 ```bash
-cat .agent/SYSTEM/critical/CRITICAL-NEVER-DO.md
-cat .agent/SYSTEM/critical/CROSS-PROJECT-RULES.md
+cat .agents/SYSTEM/critical/CRITICAL-NEVER-DO.md
+cat .agents/SYSTEM/critical/CROSS-PROJECT-RULES.md
 ```
 
 Ensure command doesn't violate:
@@ -514,7 +514,7 @@ gh run watch
 
 Protected files across ALL projects:
 - `AGENTS.md`, `CLAUDE.md`, `CODEX.md` (MANDATORY in each project root)
-- `**/.agent/**` (All documentation)
+- `**/.agents/**` (All documentation)
 - `**/README.md` (Standard docs)
 
 Projects:
@@ -597,7 +597,7 @@ ls .cursor/commands/
 
 **Common patterns used:**
 
-1. **Check CRITICAL rules first** - Always reference `.agent/SYSTEM/critical/`
+1. **Check CRITICAL rules first** - Always reference `.agents/SYSTEM/critical/`
 2. **Never run tests locally** - Push to GitHub Actions instead
 3. **Monorepo-aware** - Handle multiple packages correctly
 4. **GitHub Actions integration** - Use `gh` CLI for CI/CD

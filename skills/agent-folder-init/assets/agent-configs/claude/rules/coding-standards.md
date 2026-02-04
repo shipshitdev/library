@@ -203,7 +203,7 @@ Follow the project's established import order:
 - `CONTRIBUTING.md`
 - `LICENSE.md`
 
-**Everything else:** Goes in a docs/ or .agent/ folder
+**Everything else:** Goes in a docs/ or .agents/ folder
 
 ---
 

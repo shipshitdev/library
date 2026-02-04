@@ -27,23 +27,23 @@ This command ensures comprehensive tracking of all work, decisions, and context 
 
 | File Type             | Correct Location                             |
 | --------------------- | -------------------------------------------- |
-| Migration/Task status | `.agent/TASKS/[task-name]-status.md`         |
-| Implementation docs   | `.agent/TASKS/[task-name]-implementation.md` |
-| Architecture docs     | `.agent/SYSTEM/[feature]-architecture.md`    |
-| Testing checklists    | `.agent/TASKS/[task-name]-testing.md`        |
-| SOPs/Guides           | `.agent/SOP/[topic].md`                      |
-| Session notes         | `.agent/SESSIONS/YYYY-MM-DD.md`              |
+| Migration/Task status | `.agents/TASKS/[task-name]-status.md`         |
+| Implementation docs   | `.agents/TASKS/[task-name]-implementation.md` |
+| Architecture docs     | `.agents/SYSTEM/[feature]-architecture.md`    |
+| Testing checklists    | `.agents/TASKS/[task-name]-testing.md`        |
+| SOPs/Guides           | `.agents/SOP/[topic].md`                      |
+| Session notes         | `.agents/SESSIONS/YYYY-MM-DD.md`              |
 
 **BEFORE creating ANY .md file, ask yourself:**
 
 1. Is this AGENTS.md, CLAUDE.md, CODEX.md, or README.md?
-   - NO → It goes in `.agent/` folder
+   - NO → It goes in `.agents/` folder
    - YES → Only update, never recreate
 
 **Rule documented in:**
 
-- `.agent/README.md`
-- `.agent/SESSIONS/README.md` (line 7: "ONE FILE PER DAY")
+- `.agents/README.md`
+- `.agents/SESSIONS/README.md` (line 7: "ONE FILE PER DAY")
 - Repo rules
 
 ## What This Command Does
@@ -62,22 +62,22 @@ Updates all critical documentation files to track:
 
 **⚠️ CRITICAL: ONE FILE PER DAY - NOT MULTIPLE FILES!**
 
-**Location:** `/.agent/SESSIONS/YYYY-MM-DD.md`
+**Location:** `/.agents/SESSIONS/YYYY-MM-DD.md`
 
 **Naming:** `YYYY-MM-DD.md` (e.g., `2025-10-08.md`)
 
 **❌ WRONG:**
 
 ```
-.agent/SESSIONS/2025-10-08-feature-1.md
-.agent/SESSIONS/2025-10-08-feature-2.md
-.agent/SESSIONS/2025-10-08-bugfix.md
+.agents/SESSIONS/2025-10-08-feature-1.md
+.agents/SESSIONS/2025-10-08-feature-2.md
+.agents/SESSIONS/2025-10-08-bugfix.md
 ```
 
 **✅ CORRECT:**
 
 ```
-.agent/SESSIONS/2025-10-08.md  ← ONE file with MULTIPLE sessions
+.agents/SESSIONS/2025-10-08.md  ← ONE file with MULTIPLE sessions
 ```
 
 **File Structure:**
@@ -106,11 +106,11 @@ Updates all critical documentation files to track:
 
 **If file already exists:** Add NEW session at TOP of file, increment session number
 
-**Also update:** `/.agent/SESSIONS/README.md` - Add link to new session in "Quick Links" section
+**Also update:** `/.agents/SESSIONS/README.md` - Add link to new session in "Quick Links" section
 
 ### 2. System Summary (MANDATORY)
 
-**File:** `/.agent/SYSTEM/SUMMARY.md`
+**File:** `/.agents/SYSTEM/SUMMARY.md`
 
 Update the following sections:
 
@@ -123,7 +123,7 @@ Update the following sections:
 
 ### 3. Task Tracking (MANDATORY)
 
-**Files:** Relevant TODO.md in `/.agent/TASKS/*/TODO.md`
+**Files:** Relevant TODO.md in `/.agents/TASKS/*/TODO.md`
 
 For each relevant TODO.md:
 
@@ -134,16 +134,16 @@ For each relevant TODO.md:
 
 Relevant TODO locations:
 
-- `/.agent/TASKS/general/TODO.md` - Cross-cutting tasks
-- `/.agent/TASKS/api/TODO.md` - Backend tasks
-- `/.agent/TASKS/frontend/TODO.md` - Frontend tasks
-- `/.agent/TASKS/docs/TODO.md` - Documentation tasks
-- `/.agent/TASKS/extension/TODO.md` - Extension tasks
-- `/.agent/TASKS/mobile/TODO.md` - Mobile tasks
+- `/.agents/TASKS/general/TODO.md` - Cross-cutting tasks
+- `/.agents/TASKS/api/TODO.md` - Backend tasks
+- `/.agents/TASKS/frontend/TODO.md` - Frontend tasks
+- `/.agents/TASKS/docs/TODO.md` - Documentation tasks
+- `/.agents/TASKS/extension/TODO.md` - Extension tasks
+- `/.agents/TASKS/mobile/TODO.md` - Mobile tasks
 
 ### 4. Architecture Decisions (IF APPLICABLE)
 
-**File:** `/.agent/SYSTEM/ARCHITECTURE.md`
+**File:** `/.agents/SYSTEM/ARCHITECTURE.md`
 
 If architectural decisions were made:
 
@@ -154,7 +154,7 @@ If architectural decisions were made:
 
 ### 5. Standard Operating Procedures (IF APPLICABLE)
 
-**Files:** Relevant SOP in `/.agent/SOP/*.md`
+**Files:** Relevant SOP in `/.agents/SOP/*.md`
 
 If new patterns were established:
 
@@ -165,12 +165,12 @@ If new patterns were established:
 
 Available SOP files:
 
-- `/.agent/SOP/api-development.md`
-- `/.agent/SOP/frontend-development.md`
-- `/.agent/SOP/testing.md`
-- `/.agent/SOP/deployment.md`
-- `/.agent/SOP/code-review.md`
-- `/.agent/SOP/troubleshooting.md`
+- `/.agents/SOP/api-development.md`
+- `/.agents/SOP/frontend-development.md`
+- `/.agents/SOP/testing.md`
+- `/.agents/SOP/deployment.md`
+- `/.agents/SOP/code-review.md`
+- `/.agents/SOP/troubleshooting.md`
 
 ### 6. Root-Level CLAUDE.md (IF APPLICABLE)
 
@@ -342,9 +342,9 @@ Before updating files, answer these questions:
 
 **⚠️ REMEMBER: ONE FILE PER DAY, NOT MULTIPLE FILES!**
 
-**🚨 CRITICAL: Files MUST go in `.agent/SESSIONS/` - NEVER at workspace root!**
+**🚨 CRITICAL: Files MUST go in `.agents/SESSIONS/` - NEVER at workspace root!**
 
-1. **Create or update `.agent/SESSIONS/YYYY-MM-DD.md`** (today's date)
+1. **Create or update `.agents/SESSIONS/YYYY-MM-DD.md`** (today's date)
    - **Filename:** `YYYY-MM-DD.md` (NO descriptive suffix!)
    - **If file doesn't exist:** Create new file with first session + 3-5 word summary
    - **If file exists:** Add new session at TOP of file, update total count
@@ -431,13 +431,13 @@ Before updating files, answer these questions:
    **Total sessions today:** 2
    ````
 
-2. **Update `.agent/SESSIONS/README.md`** (if new daily file created)
+2. **Update `.agents/SESSIONS/README.md`** (if new daily file created)
    - Add link in "Recent Sessions" section (most recent first)
    - Format: `- [YYYY-MM-DD](./YYYY-MM-DD.md) - Brief description`
 
 ### Step 4: Update Summary & Tasks
 
-1. **Update `/.agent/SYSTEM/SUMMARY.md`**
+1. **Update `/.agents/SYSTEM/SUMMARY.md`**
    - Update "Last Updated" date
    - Add to "Recent Changes (Last 7 Days)" → "Completed"
    - Update metrics if changed
@@ -449,7 +449,7 @@ Before updating files, answer these questions:
    - Add new tasks if discovered
 
 3. **Document Decisions (if applicable)**
-   - Add to `/.agent/SYSTEM/ARCHITECTURE.md`
+   - Add to `/.agents/SYSTEM/ARCHITECTURE.md`
    - Follow ADR format if significant
 
 4. **Update SOPs (if applicable)**
@@ -538,7 +538,7 @@ After making changes, verify the build compiles successfully using the optimized
 
 ### Daily Session File Template
 
-**⚠️ ONE FILE PER DAY: `/.agent/SESSIONS/YYYY-MM-DD.md` (not YYYY-MM-DD-description.md)**
+**⚠️ ONE FILE PER DAY: `/.agents/SESSIONS/YYYY-MM-DD.md` (not YYYY-MM-DD-description.md)**
 
 **If new file:**
 
@@ -774,7 +774,7 @@ Before ending session, ensure these are documented:
 
 **Updates:**
 
-1. Create or update `/.agent/SESSIONS/2025-10-07.md`:
+1. Create or update `/.agents/SESSIONS/2025-10-07.md`:
 
    ```markdown
    # Sessions: 2025-10-07
@@ -843,7 +843,7 @@ Before ending session, ensure these are documented:
    **Total sessions today:** 1
    ```
 
-2. Update `/.agent/SESSIONS/README.md` (if new file):
+2. Update `/.agents/SESSIONS/README.md` (if new file):
 
    ```markdown
    ## Recent Sessions (Quick Links)
@@ -851,7 +851,7 @@ Before ending session, ensure these are documented:
    - [2025-10-07](./2025-10-07.md) - Clerk authentication implementation
    ```
 
-3. `/.agent/SYSTEM/SUMMARY.md`:
+3. `/.agents/SYSTEM/SUMMARY.md`:
 
    ```markdown
    ### Completed
@@ -861,7 +861,7 @@ Before ending session, ensure these are documented:
    - ✅ Protected route implementation
    ```
 
-4. `/.agent/TASKS/mobile/TODO.md`:
+4. `/.agents/TASKS/mobile/TODO.md`:
 
    ```markdown
    - [x] Integrate Clerk authentication
@@ -875,7 +875,7 @@ Before ending session, ensure these are documented:
 
 **Updates:**
 
-1. Add to TOP of existing `/.agent/SESSIONS/2025-10-07.md`:
+1. Add to TOP of existing `/.agents/SESSIONS/2025-10-07.md`:
 
    ```markdown
    # Sessions: 2025-10-07
@@ -928,7 +928,7 @@ Before ending session, ensure these are documented:
    **Total sessions today:** 2
    ```
 
-2. `/.agent/SYSTEM/SUMMARY.md`:
+2. `/.agents/SYSTEM/SUMMARY.md`:
 
    ```markdown
    ### Completed
@@ -940,7 +940,7 @@ Before ending session, ensure these are documented:
    ~~- Memory leaks in singleton services (frontend)~~ - RESOLVED
    ```
 
-3. `/.agent/SOP/frontend-development.md`:
+3. `/.agents/SOP/frontend-development.md`:
 
    ````markdown
    ## Singleton Service Cleanup Pattern

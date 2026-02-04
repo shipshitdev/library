@@ -44,13 +44,13 @@ Prompts that work:
 - "What assumptions are you making? Which ones are risky?"
 - "Propose a minimal version that can be deleted later without regret."
 
-**Output:** Decision notes for `.agent/DECISIONS/[feature-name].md`
+**Output:** Decision notes for `.agents/DECISIONS/[feature-name].md`
 
 ### Stage B: Write spec.md (freeze decisions)
 
 **Goal:** Turn decisions into unambiguous requirements.
 
-**File:** `.agent/SPECS/[feature-name].md`
+**File:** `.agents/SPECS/[feature-name].md`
 
 ```markdown
 # [Feature Name] Spec
@@ -82,7 +82,7 @@ Unit/integration boundaries, fixtures, golden files, what must be mocked.
 
 **Goal:** Stepwise checklist where each step has a verification command.
 
-**File:** `.agent/TODOS/[feature-name].md`
+**File:** `.agents/TODOS/[feature-name].md`
 
 ```markdown
 # [Feature Name] TODO
@@ -143,10 +143,10 @@ Heuristics:
 
 ## The Three-File Convention
 
-Keep in the `.agent/` folder (not project root):
+Keep in the `.agents/` folder (not project root):
 
 ```
-.agent/
+.agents/
 ├── SPECS/
 │   └── [feature-name].md    # what/why/constraints
 ├── TODOS/

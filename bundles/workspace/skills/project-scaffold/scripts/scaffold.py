@@ -91,11 +91,11 @@ def scaffold_agent_folder(root: Path, project_name: str, tech_stack: str = "", a
                 "--tech", tech_stack,
                 "--allow-outside" if allow_outside else ""
             ], check=True, capture_output=True)
-            print(f"✅ Initialized .agent/ for {root}")
+            print(f"✅ Initialized .agents/ for {root}")
         except subprocess.CalledProcessError as e:
-            print(f"⚠️  Warning: Could not initialize .agent/ for {root}: {e}")
+            print(f"⚠️  Warning: Could not initialize .agents/ for {root}: {e}")
     else:
-        print(f"⚠️  Warning: agent-folder-init script not found. Skipping .agent/ initialization.")
+        print(f"⚠️  Warning: agent-folder-init script not found. Skipping .agents/ initialization.")
 
 
 def create_api_structure(root: Path, name: str, org: str, is_monorepo: bool) -> None:
@@ -331,7 +331,7 @@ def create_api_structure(root: Path, name: str, org: str, is_monorepo: bool) -> 
     agents_md = dedent(f"""\
         # {name} API
 
-        AI agent entry point. Documentation in `.agent/`.
+        AI agent entry point. Documentation in `.agents/`.
     """)
     (api_root / "AGENTS.md").write_text(agents_md)
     (api_root / "CLAUDE.md").write_text(agents_md)
@@ -621,7 +621,7 @@ def create_frontend_structure(root: Path, name: str, org: str, is_monorepo: bool
     agents_md = dedent(f"""\
         # {name} Frontend
 
-        AI agent entry point. Documentation in `.agent/`.
+        AI agent entry point. Documentation in `.agents/`.
     """)
     (frontend_root / "AGENTS.md").write_text(agents_md)
     (frontend_root / "CLAUDE.md").write_text(agents_md)
@@ -756,7 +756,7 @@ def create_mobile_structure(root: Path, name: str, org: str, is_monorepo: bool) 
     agents_md = dedent(f"""\
         # {name} Mobile
 
-        AI agent entry point. Documentation in `.agent/`.
+        AI agent entry point. Documentation in `.agents/`.
     """)
     (mobile_root / "AGENTS.md").write_text(agents_md)
     (mobile_root / "CLAUDE.md").write_text(agents_md)
@@ -879,7 +879,7 @@ def create_extension_structure(root: Path, name: str, org: str, is_monorepo: boo
     agents_md = dedent(f"""\
         # {name} Extension
 
-        AI agent entry point. Documentation in `.agent/`.
+        AI agent entry point. Documentation in `.agents/`.
     """)
     (extension_root / "AGENTS.md").write_text(agents_md)
     (extension_root / "CLAUDE.md").write_text(agents_md)
@@ -993,7 +993,7 @@ def create_monorepo_root(root: Path, name: str, components: dict) -> None:
 
         ## Documentation
 
-        See `.agent/README.md` for AI documentation.
+        See `.agents/README.md` for AI documentation.
     """)
     (root / "README.md").write_text(readme)
     
@@ -1001,7 +1001,7 @@ def create_monorepo_root(root: Path, name: str, components: dict) -> None:
     agents_md = dedent(f"""\
         # {name}
 
-        AI agent entry point. Documentation in `.agent/`.
+        AI agent entry point. Documentation in `.agents/`.
     """)
     (root / "AGENTS.md").write_text(agents_md)
     (root / "CLAUDE.md").write_text(agents_md)

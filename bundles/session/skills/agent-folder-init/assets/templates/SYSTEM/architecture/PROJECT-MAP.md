@@ -9,7 +9,7 @@
 
 ```
 {{PROJECT_NAME}}/
-├── .agent/              # AI documentation (you are here)
+├── .agents/              # AI documentation (you are here)
 ├── src/                 # Source code
 │   ├── components/      # UI components
 │   ├── services/        # Business logic

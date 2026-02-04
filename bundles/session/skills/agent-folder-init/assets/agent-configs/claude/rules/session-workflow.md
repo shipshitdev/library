@@ -20,7 +20,7 @@ Before any work:
 
 ```bash
 # Search for similar work in session history
-grep -r "keyword" .agent/SESSIONS/*.md 2>/dev/null || true
+grep -r "keyword" .agents/SESSIONS/*.md 2>/dev/null || true
 ```
 
 If previous work exists:
@@ -73,7 +73,7 @@ When user is about to clear session (/clear):
    - Next steps
 
 3. **Save to session file:**
-   - Location: `.agent/SESSIONS/YYYY-MM-DD.md`
+   - Location: `.agents/SESSIONS/YYYY-MM-DD.md`
    - One file per day
    - Multiple sessions append to same file
 
@@ -119,15 +119,15 @@ What was requested
 **CORRECT:**
 
 ```
-.agent/SESSIONS/2025-01-15.md
-.agent/SESSIONS/2025-01-16.md
+.agents/SESSIONS/2025-01-15.md
+.agents/SESSIONS/2025-01-16.md
 ```
 
 **WRONG:**
 
 ```
-.agent/SESSIONS/2025-01-15-feature-name.md
-.agent/SESSIONS/2025-01-15-bug-fix.md
+.agents/SESSIONS/2025-01-15-feature-name.md
+.agents/SESSIONS/2025-01-15-bug-fix.md
 ```
 
 Multiple sessions on same day go in the same file.
@@ -137,7 +137,7 @@ Multiple sessions on same day go in the same file.
 ### Session Directory Structure
 
 ```
-.agent/
+.agents/
 └── SESSIONS/
     ├── README.md          # Format documentation
     ├── TEMPLATE.md        # Optional template

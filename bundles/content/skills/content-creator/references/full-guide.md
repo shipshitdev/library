@@ -8,9 +8,9 @@ Complete guide to creating newsletters, tweets, and content lineups that capture
 
 ### Step 1: Scan Project Documentation
 
-- Check `.agent/SYSTEM/ARCHITECTURE.md` for brand guidelines
+- Check `.agents/SYSTEM/ARCHITECTURE.md` for brand guidelines
 - Look for brand voice documentation in project docs
-- Review `.agent/SOP/` for content standards
+- Review `.agents/SOP/` for content standards
 - Check for existing content examples (newsletters, tweets, social posts)
 
 ### Step 2: Identify Brand Voice
@@ -190,8 +190,8 @@ When users request a content lineup, generate a comprehensive content plan based
 **Thoroughly research the current project:**
 
 1. **Read Project Documentation:**
-   - Check `.agent/SYSTEM/ARCHITECTURE.md` for project overview
-   - Review `.agent/SYSTEM/SUMMARY.md` for current status
+   - Check `.agents/SYSTEM/ARCHITECTURE.md` for project overview
+   - Review `.agents/SYSTEM/SUMMARY.md` for current status
    - Read `README.md` for project description and purpose
    - Check any project documentation files
 

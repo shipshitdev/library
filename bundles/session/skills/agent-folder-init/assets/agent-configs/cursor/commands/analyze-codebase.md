@@ -92,8 +92,8 @@ find apps -name "pages" -o -name "app" -type d
 
 **Code Patterns:**
 
-- Check `.agent/EXAMPLES/` for established patterns
-- Review `.agent/SOP/` for documented procedures
+- Check `.agents/EXAMPLES/` for established patterns
+- Review `.agents/SOP/` for documented procedures
 - Analyze common service patterns (singletons, CRUD)
 
 **Type System:**
@@ -140,7 +140,7 @@ grep -r "[AuthGuard]" [backend-path] --include="*.ts" | head -5
 
 ### Step 5: Generate Analysis Report
 
-Create comprehensive report in: `.agent/SYSTEM/CODEBASE-ANALYSIS.md`
+Create comprehensive report in: `.agents/SYSTEM/CODEBASE-ANALYSIS.md`
 
 ## Report Structure
 
@@ -325,7 +325,7 @@ await this.model.find({ isDeleted: false });
 
 - ✅ Consistent patterns (Base classes)
 - ✅ Type safety (TypeScript throughout)
-- ✅ Documentation (`.agent/` folder)
+- ✅ Documentation (`.agents/` folder)
 - ✅ Multi-tenancy enforced
 - ✅ Error handling with NestJS exceptions
 
@@ -437,10 +437,10 @@ find . -name "*.e2e-spec.ts" | wc -l
 
 ### Key Files
 
-- **Architecture:** `.agent/SYSTEM/ARCHITECTURE.md`
-- **SOPs:** `.agent/SOP/*.md` (if applicable)
-- **Examples:** `.agent/EXAMPLES/` (if applicable)
-- **Sessions:** `.agent/SESSIONS/` (if applicable)
+- **Architecture:** `.agents/SYSTEM/ARCHITECTURE.md`
+- **SOPs:** `.agents/SOP/*.md` (if applicable)
+- **Examples:** `.agents/EXAMPLES/` (if applicable)
+- **Sessions:** `.agents/SESSIONS/` (if applicable)
 
 ### Metrics
 
@@ -460,7 +460,7 @@ find . -name "*.e2e-spec.ts" | wc -l
 
 ## Output Location
 
-**Primary:** `.agent/SYSTEM/CODEBASE-ANALYSIS.md`
+**Primary:** `.agents/SYSTEM/CODEBASE-ANALYSIS.md`
 
 **Updates:** Regenerate quarterly or after major changes
 

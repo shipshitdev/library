@@ -22,7 +22,7 @@
 
 ## Option 1: Validate Documentation
 
-**Purpose:** Validates `.agent/` documentation structure and content
+**Purpose:** Validates `.agents/` documentation structure and content
 
 ### What This Checks
 
@@ -35,21 +35,21 @@
 
 #### Workspace Level
 
-- [ ] `.agent/README.md` exists
-- [ ] `.agent/SYSTEM/WORKSPACE-ARCHITECTURE.md` exists
-- [ ] `.agent/SYSTEM/critical/CROSS-PROJECT-RULES.md` exists
-- [ ] `.agent/SYSTEM/PROJECT-MAP.md` exists
-- [ ] `.agent/TASKS/README.md` exists
-- [ ] `.agent/SESSIONS/README.md` exists
-- [ ] `.agent/SESSIONS/TEMPLATE.md` exists
+- [ ] `.agents/README.md` exists
+- [ ] `.agents/SYSTEM/WORKSPACE-ARCHITECTURE.md` exists
+- [ ] `.agents/SYSTEM/critical/CROSS-PROJECT-RULES.md` exists
+- [ ] `.agents/SYSTEM/PROJECT-MAP.md` exists
+- [ ] `.agents/TASKS/README.md` exists
+- [ ] `.agents/SESSIONS/README.md` exists
+- [ ] `.agents/SESSIONS/TEMPLATE.md` exists
 
 #### For Each Project (discover from project structure)
 
-- [ ] `[project]/.agent/README.md` exists
-- [ ] `[project]/.agent/SYSTEM/ARCHITECTURE.md` exists (if applicable)
-- [ ] `[project]/.agent/SYSTEM/RULES.md` exists (if applicable)
-- [ ] `[project]/.agent/SYSTEM/SUMMARY.md` exists
-- [ ] `[project]/.agent/TASKS/README.md` exists
+- [ ] `[project]/.agents/README.md` exists
+- [ ] `[project]/.agents/SYSTEM/ARCHITECTURE.md` exists (if applicable)
+- [ ] `[project]/.agents/SYSTEM/RULES.md` exists (if applicable)
+- [ ] `[project]/.agents/SYSTEM/SUMMARY.md` exists
+- [ ] `[project]/.agents/TASKS/README.md` exists
 
 ### Validation Script
 
@@ -58,7 +58,7 @@ Run this check:
 ```bash
 #!/bin/bash
 
-echo "🔍 Validating .agent/ documentation..."
+echo "🔍 Validating .agents/ documentation..."
 echo ""
 
 ERRORS=0
@@ -66,13 +66,13 @@ ERRORS=0
 # Check workspace files
 echo "📁 Checking workspace files..."
 WORKSPACE_FILES=(
-  ".agent/README.md"
-  ".agent/SYSTEM/WORKSPACE-ARCHITECTURE.md"
-  ".agent/SYSTEM/critical/CROSS-PROJECT-RULES.md"
-  ".agent/SYSTEM/PROJECT-MAP.md"
-  ".agent/TASKS/README.md"
-  ".agent/SESSIONS/README.md"
-  ".agent/SESSIONS/TEMPLATE.md"
+  ".agents/README.md"
+  ".agents/SYSTEM/WORKSPACE-ARCHITECTURE.md"
+  ".agents/SYSTEM/critical/CROSS-PROJECT-RULES.md"
+  ".agents/SYSTEM/PROJECT-MAP.md"
+  ".agents/TASKS/README.md"
+  ".agents/SESSIONS/README.md"
+  ".agents/SESSIONS/TEMPLATE.md"
 )
 
 for file in "${WORKSPACE_FILES[@]}"; do
@@ -94,29 +94,29 @@ for project in "${PROJECTS[@]}"; do
   echo "📁 Checking $project..."
 
   # Required files
-  if [ ! -f "$project/.agent/README.md" ]; then
-    echo "  ❌ Missing: $project/.agent/README.md"
+  if [ ! -f "$project/.agents/README.md" ]; then
+    echo "  ❌ Missing: $project/.agents/README.md"
     ((ERRORS++))
   else
     echo "  ✅ Found: README.md"
   fi
 
-  if [ ! -f "$project/.agent/SYSTEM/SUMMARY.md" ]; then
-    echo "  ❌ Missing: $project/.agent/SYSTEM/SUMMARY.md"
+  if [ ! -f "$project/.agents/SYSTEM/SUMMARY.md" ]; then
+    echo "  ❌ Missing: $project/.agents/SYSTEM/SUMMARY.md"
     ((ERRORS++))
   else
     echo "  ✅ Found: SUMMARY.md"
   fi
 
   # Optional but recommended
-  if [ ! -f "$project/.agent/SYSTEM/ARCHITECTURE.md" ]; then
-    echo "  ⚠️  Recommended: $project/.agent/SYSTEM/ARCHITECTURE.md"
+  if [ ! -f "$project/.agents/SYSTEM/ARCHITECTURE.md" ]; then
+    echo "  ⚠️  Recommended: $project/.agents/SYSTEM/ARCHITECTURE.md"
   else
     echo "  ✅ Found: ARCHITECTURE.md"
   fi
 
-  if [ ! -f "$project/.agent/TASKS/README.md" ]; then
-    echo "  ❌ Missing: $project/.agent/TASKS/README.md"
+  if [ ! -f "$project/.agents/TASKS/README.md" ]; then
+    echo "  ❌ Missing: $project/.agents/TASKS/README.md"
     ((ERRORS++))
   else
     echo "  ✅ Found: TASKS/README.md"
@@ -214,7 +214,7 @@ When user runs `/validate sessions`:
 
 ```bash
 # Check workspace sessions
-violations=$(find .agent/SESSIONS -type f -name "*.md" \
+violations=$(find .agents/SESSIONS -type f -name "*.md" \
   ! -name "README.md" \
   ! -name "TEMPLATE.md" \
   ! -regex ".*/[0-9]{4}-[0-9]{2}-[0-9]{2}\.md")
@@ -222,8 +222,8 @@ violations=$(find .agent/SESSIONS -type f -name "*.md" \
 # Check all project sessions
 # Detect projects dynamically or use generic placeholder
 for project in [project-1] [project-2] [project-3]; do
-  if [ -d "$project/.agent/SESSIONS" ]; then
-    violations+=$(find "$project/.agent/SESSIONS" -type f -name "*.md" \
+  if [ -d "$project/.agents/SESSIONS" ]; then
+    violations+=$(find "$project/.agents/SESSIONS" -type f -name "*.md" \
       ! -name "README.md" \
       ! -name "TEMPLATE.md" \
       ! -regex ".*/[0-9]{4}-[0-9]{2}-[0-9]{2}\.md")
@@ -266,9 +266,9 @@ For each violation:
 **Example:**
 
 ```bash
-# Violation: .agent/SESSIONS/CODE-AUDIT-2025-10-09.md
+# Violation: .agents/SESSIONS/CODE-AUDIT-2025-10-09.md
 # Date extracted: 2025-10-09
-# Target file: .agent/SESSIONS/2025-10-09.md
+# Target file: .agents/SESSIONS/2025-10-09.md
 
 # If 2025-10-09.md exists:
 cat CODE-AUDIT-2025-10-09.md >> 2025-10-09.md
@@ -379,15 +379,15 @@ validate_sessions() {
 }
 
 # Validate workspace sessions
-if [ -d ".agent/SESSIONS" ]; then
-  validate_sessions ".agent/SESSIONS" "Workspace"
+if [ -d ".agents/SESSIONS" ]; then
+  validate_sessions ".agents/SESSIONS" "Workspace"
 fi
 
 # Validate project sessions
 # Detect projects dynamically or use generic placeholder
 for project in [project-1] [project-2] [project-3]; do
-  if [ -d "$project/.agent/SESSIONS" ]; then
-    validate_sessions "$project/.agent/SESSIONS" "$project"
+  if [ -d "$project/.agents/SESSIONS" ]; then
+    validate_sessions "$project/.agents/SESSIONS" "$project"
   fi
 done
 
@@ -465,7 +465,7 @@ All sessions now follow the ONE FILE PER DAY rule
 Run the task validation script:
 
 ```bash
-node .agent/scripts/validate-tasks.js
+node .agents/scripts/validate-tasks.js
 ```
 
 ### What Gets Checked
@@ -481,7 +481,7 @@ node .agent/scripts/validate-tasks.js
 If validation finds issues, run the auto-fix script:
 
 ```bash
-node .agent/scripts/fix-tasks.js
+node .agents/scripts/fix-tasks.js
 ```
 
 This will automatically fix:
@@ -550,7 +550,7 @@ Total Tasks:       227
 Detailed validation report saved to:
 
 ```
-.agent/REPORTS/task-validation-YYYY-MM-DD.md
+.agents/REPORTS/task-validation-YYYY-MM-DD.md
 ```
 
 ---

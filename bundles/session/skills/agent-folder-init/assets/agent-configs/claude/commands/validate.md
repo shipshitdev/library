@@ -15,7 +15,7 @@ Checks required files and broken links.
 
 ### What This Checks
 
-- Required files exist (.agent/README.md, etc.)
+- Required files exist (.agents/README.md, etc.)
 - Internal links work
 - Proper folder organization
 
@@ -23,15 +23,15 @@ Checks required files and broken links.
 
 Workspace level:
 
-- .agent/README.md
-- .agent/SYSTEM/ directory
-- .agent/TASKS/ directory
-- .agent/SESSIONS/ directory
+- .agents/README.md
+- .agents/SYSTEM/ directory
+- .agents/TASKS/ directory
+- .agents/SESSIONS/ directory
 
 Project level:
 
-- <project>/.agent/README.md
-- <project>/.agent/SYSTEM/SUMMARY.md
+- <project>/.agents/README.md
+- <project>/.agents/SYSTEM/SUMMARY.md
 
 ## Option 2: Validate Sessions
 

@@ -168,7 +168,7 @@ def create_readme(name: str) -> str:
 
         ## Documentation
 
-        See `.agent/README.md` for AI documentation.
+        See `.agents/README.md` for AI documentation.
     """)
 
 
@@ -176,18 +176,18 @@ def create_agents_md(name: str) -> str:
     return dedent(f"""\
         # {name}
 
-        AI agent entry point. Documentation in `.agent/`.
+        AI agent entry point. Documentation in `.agents/`.
 
         ## Projects
 
-        - `api/` - NestJS backend → `api/.agent/`
-        - `frontend/` - NextJS apps → `frontend/.agent/`
-        - `mobile/` - React Native → `mobile/.agent/`
-        - `packages/` - Shared → `packages/.agent/`
+        - `api/` - NestJS backend → `api/.agents/`
+        - `frontend/` - NextJS apps → `frontend/.agents/`
+        - `mobile/` - React Native → `mobile/.agents/`
+        - `packages/` - Shared → `packages/.agents/`
 
         ## Quick Start
 
-        Read `.agent/SYSTEM/ai/SESSION-QUICK-START.md` first.
+        Read `.agents/SYSTEM/ai/SESSION-QUICK-START.md` first.
     """)
 
 
@@ -195,7 +195,7 @@ def create_claude_md(name: str) -> str:
     return dedent(f"""\
         # {name}
 
-        Claude entry point. Rules in `.agent/SYSTEM/RULES.md`.
+        Claude entry point. Rules in `.agents/SYSTEM/RULES.md`.
 
         ## Commands
 
@@ -207,7 +207,7 @@ def create_claude_md(name: str) -> str:
 
         ## Critical Rules
 
-        See `.agent/SYSTEM/critical/CRITICAL-NEVER-DO.md`
+        See `.agents/SYSTEM/critical/CRITICAL-NEVER-DO.md`
     """)
 
 
@@ -215,7 +215,7 @@ def create_codex_md(name: str) -> str:
     return dedent(f"""\
         # {name}
 
-        Codex entry point. Documentation in `.agent/`.
+        Codex entry point. Documentation in `.agents/`.
     """)
 
 
@@ -1936,9 +1936,9 @@ def scaffold_workspace(
                     "--name", project_name,
                     "--allow-outside"
                 ], check=True, capture_output=True)
-                print(f"Initialized .agent/ for {project}")
+                print(f"Initialized .agents/ for {project}")
             except subprocess.CalledProcessError:
-                print(f"Warning: Could not initialize .agent/ for {project}")
+                print(f"Warning: Could not initialize .agents/ for {project}")
 
     print(f"\n✅ Workspace created at: {root}")
     print(f"\nNext steps:")

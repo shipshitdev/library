@@ -49,8 +49,8 @@ Create structured task files and PRDs before implementing features. This ensures
 
 ### Step 4: Create Files
 
-**Task file:** `[project]/.agent/TASKS/[task-name].md`
-**PRD file:** `[project]/.agent/PRDS/[task-name].md`
+**Task file:** `[project]/.agents/TASKS/[task-name].md`
+**PRD file:** `[project]/.agents/PRDS/[task-name].md`
 
 ### Step 5: Get Approval
 
@@ -92,7 +92,7 @@ Present files, explain approach, **WAIT for user approval**.
 
 - `mvp-architect` - MVP scoping
 - `planning-assistant` - Content planning
-- `agent-folder-init` - Initialize .agent/ structure
+- `agent-folder-init` - Initialize .agents/ structure
 
 ---
 

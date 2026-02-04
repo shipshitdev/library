@@ -4,7 +4,7 @@
 
 ## What This Command Does
 
-1. **Activates the `session-documenter` skill** to save all session context to `.agent/SESSIONS/YYYY-MM-DD.md`
+1. **Activates the `session-documenter` skill** to save all session context to `.agents/SESSIONS/YYYY-MM-DD.md`
 2. **Tells you to manually run `/clear`** (Claude Code's built-in command) to clear the context
 
 **Note:** `/end` only documents. You must manually run `/clear` (built-in) after `/end` completes to actually clear the conversation context.
@@ -15,10 +15,10 @@
 
 When user types `/end`, you MUST:
 
-1. **Activate session-documenter skill:**
+1. **Invoke the session-documenter skill using the Skill tool:**
 
    ```
-   Use the Skill tool to activate session-documenter
+   Use the Skill tool: skill="session-documenter"
    ```
 
 2. **Let it complete** - The skill will:
@@ -27,12 +27,12 @@ When user types `/end`, you MUST:
    - Record files created/modified/deleted
    - Note patterns established
    - Track mistakes and fixes
-   - Write everything to `.agent/SESSIONS/YYYY-MM-DD.md`
+   - Write everything to `.agents/SESSIONS/YYYY-MM-DD.md`
 
 3. **Confirm documentation saved:**
 
    ```
-   ✅ Session documented to .agent/SESSIONS/YYYY-MM-DD.md
+   ✅ Session documented to .agents/SESSIONS/YYYY-MM-DD.md
    ```
 
 ### Step 2: Remind User to Clear Manually
@@ -44,7 +44,7 @@ After documentation is complete, tell the user:
 
 📋 NEXT STEP:
 Run /clear (Claude Code's built-in command) to clear the conversation context.
-Your session is safely preserved in .agent/SESSIONS/YYYY-MM-DD.md
+Your session is safely preserved in .agents/SESSIONS/YYYY-MM-DD.md
 
 Next time you run /start, it will load this documented session.
 ```
@@ -62,7 +62,7 @@ Next time you run /start, it will load this documented session.
 
 **WITH documentation before /clear:**
 
-- Context preserved in `.agent/SESSIONS/YYYY-MM-DD.md`
+- Context preserved in `.agents/SESSIONS/YYYY-MM-DD.md`
 - Next `/start` reads the session file
 - Continuity maintained across clear boundaries
 - User can pick up exactly where they left off
@@ -78,7 +78,7 @@ Next time you run /start, it will load this documented session.
 
 [session-documenter skill activates]
 
-✅ Session documented to .agent/SESSIONS/2025-11-23.md
+✅ Session documented to .agents/SESSIONS/2025-11-23.md
 
 Session saved with:
 - 3 tasks completed
@@ -91,7 +91,7 @@ Your session is safely preserved and will be loaded when you run /start again.
 
 **Then:** User manually types `/clear` to clear the conversation context using Claude Code's built-in command
 
-**Next session:** User runs `/start` → reads `.agent/SESSIONS/2025-11-23.md` → knows everything that was done
+**Next session:** User runs `/start` → reads `.agents/SESSIONS/2025-11-23.md` → knows everything that was done
 
 ## How This Works
 
@@ -99,7 +99,7 @@ Your session is safely preserved and will be loaded when you run /start again.
 
 1. Custom `/end` command (this file) triggers when user types `/end`
 2. AI executes session documentation via `session-documenter` skill
-3. Session data is saved to `.agent/SESSIONS/YYYY-MM-DD.md`
+3. Session data is saved to `.agents/SESSIONS/YYYY-MM-DD.md`
 4. AI tells user to manually run `/clear` (Claude Code's built-in command)
 5. User runs `/clear` to clear conversation context
 
@@ -110,7 +110,7 @@ Your session is safely preserved and will be loaded when you run /start again.
 
 ## Important Notes
 
-- **ONE FILE PER DAY:** Session documenter appends to `.agent/SESSIONS/YYYY-MM-DD.md`
+- **ONE FILE PER DAY:** Session documenter appends to `.agents/SESSIONS/YYYY-MM-DD.md`
 - **Multiple /ends:** Each /end adds a new session to the same day's file
 - **Automatic documentation:** Session documenter skill handles everything
 - **Manual clear required:** User must run `/clear` after `/end` to clear context
@@ -151,7 +151,7 @@ Best practice is to ALWAYS run `/end` before `/clear`.
   ↓
 [work on tasks]      → Make changes, complete tasks
   ↓
-/end                 → Document session to .agent/SESSIONS/YYYY-MM-DD.md
+/end                 → Document session to .agents/SESSIONS/YYYY-MM-DD.md
   ↓
 /clear               → Clear conversation context (built-in command)
   ↓

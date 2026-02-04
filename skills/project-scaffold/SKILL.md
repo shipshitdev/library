@@ -11,7 +11,7 @@ Unified project scaffolder for creating new projects or adding components to exi
 
 This skill provides a unified way to scaffold:
 
-- `.agent/` folder structure for AI-first development
+- `.agents/` folder structure for AI-first development
 - Backend (NestJS) with MongoDB, Swagger, and best practices
 - Frontend (NextJS) with Tailwind and @agenticindiedev/ui
 - Mobile (Expo) with React Native and Expo Router
@@ -69,7 +69,7 @@ The script handles all interactive prompts.
 
 All components are optional - scaffold only what you need:
 
-- `.agent/` folder with full AI documentation structure
+- `.agents/` folder with full AI documentation structure
 - Backend with NestJS, MongoDB, Swagger
 - Frontend with NextJS 15, Tailwind, @agenticindiedev/ui
 - Mobile with Expo Router, React Native
@@ -89,22 +89,22 @@ Works from:
 
 ```
 myproject/
-├── .agent/                  # AI documentation
+├── .agents/                  # AI documentation
 ├── package.json             # Workspace root
 ├── api/                     # NestJS backend
-│   ├── .agent/
+│   ├── .agents/
 │   ├── apps/api/src/
 │   └── package.json
 ├── frontend/                # NextJS apps
-│   ├── .agent/
+│   ├── .agents/
 │   ├── apps/dashboard/
 │   └── package.json
 ├── mobile/                  # Expo app
-│   ├── .agent/
+│   ├── .agents/
 │   ├── app/
 │   └── package.json
 └── extension/               # Plasmo extension
-    ├── .agent/
+    ├── .agents/
     ├── src/
     └── package.json
 ```
@@ -113,12 +113,12 @@ myproject/
 
 ```
 myproject-api/               # Backend only
-├── .agent/
+├── .agents/
 ├── apps/api/src/
 └── package.json
 
 myproject-frontend/          # Frontend only
-├── .agent/
+├── .agents/
 ├── apps/dashboard/
 └── package.json
 ```
@@ -175,7 +175,7 @@ myproject-frontend/          # Frontend only
    ```
 
 3. **Customize**:
-   - Update `.agent/SYSTEM/RULES.md` with your coding standards
+   - Update `.agents/SYSTEM/RULES.md` with your coding standards
    - Configure environment variables
    - Add your first features
 

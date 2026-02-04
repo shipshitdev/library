@@ -189,8 +189,8 @@ To identify trends from analytics data:
 
 1. **Scan Project Documentation:**
 
-   - Check `.agent/SYSTEM/ARCHITECTURE.md` for analytics platform details
-   - Review `.agent/SYSTEM/SUMMARY.md` for analytics capabilities
+   - Check `.agents/SYSTEM/ARCHITECTURE.md` for analytics platform details
+   - Review `.agents/SYSTEM/SUMMARY.md` for analytics capabilities
    - Look for analytics-related documentation
 
 2. **Identify Analytics Platform:**

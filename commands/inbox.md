@@ -20,7 +20,7 @@ Quick task capture and expansion. Backlog only - no status tracking here.
 
 **Steps:**
 
-1. Read `.agent/TASKS/INBOX.md`
+1. Read `.agents/TASKS/INBOX.md`
 2. Display tasks from "Backlog" section:
 
    ```
@@ -66,7 +66,7 @@ Quick task capture and expansion. Backlog only - no status tracking here.
    - Success criteria
    - Technical approach
    - Priority
-4. Create PRD (`.agent/PRDS/`) or TASK (`.agent/TASKS/`)
+4. Create PRD (`.agents/PRDS/`) or TASK (`.agents/TASKS/`)
 5. **Remove task from INBOX.md** (it now lives in PRD/TASK)
 6. Confirm: "✅ Created: [FILE_PATH]"
 
@@ -74,10 +74,10 @@ Quick task capture and expansion. Backlog only - no status tracking here.
 
 ## File Paths
 
-**Inbox:** `.agent/TASKS/INBOX.md`
+**Inbox:** `.agents/TASKS/INBOX.md`
 
-**PRDs:** `.agent/PRDS/{category}/{name}.md`
-**Tasks:** `.agent/TASKS/{category}/{name}.md`
+**PRDs:** `.agents/PRDS/{category}/{name}.md`
+**Tasks:** `.agents/TASKS/{category}/{name}.md`
 
 Categories: `studio/`, `manager/`, `publisher/`, `analytics/`, `api/`, `infrastructure/`
 

@@ -24,11 +24,11 @@ Ask:
 
 **Test file location:**
 
-- Frontend tests: `.agent/TESTS/frontend/[app]/[test-name].md`
-- Backend tests: `.agent/TESTS/api/[test-name].md`
-- Extension tests: `.agent/TESTS/extension/[test-name].md`
-- Mobile tests: `.agent/TESTS/mobile/[test-name].md`
-- Cross-cutting: `.agent/TESTS/general/[test-name].md`
+- Frontend tests: `.agents/TESTS/frontend/[app]/[test-name].md`
+- Backend tests: `.agents/TESTS/api/[test-name].md`
+- Extension tests: `.agents/TESTS/extension/[test-name].md`
+- Mobile tests: `.agents/TESTS/mobile/[test-name].md`
+- Cross-cutting: `.agents/TESTS/general/[test-name].md`
 
 **Create directory structure if it doesn't exist.**
 
@@ -41,7 +41,7 @@ Use template below with specific scenarios.
 ```
 Test tracked! ✅
 
-File: .agent/TESTS/[area]/[app]/[test-name].md
+File: .agents/TESTS/[area]/[app]/[test-name].md
 
 You can check off scenarios as you test them.
 ```
@@ -192,7 +192,7 @@ You can check off scenarios as you test them.
 ```
 Good idea! Let me create a test tracking file for that.
 
-✅ Test tracked: .agent/TESTS/frontend/studio/video-generation-with-captions.md
+✅ Test tracked: .agents/TESTS/frontend/studio/video-generation-with-captions.md
 
 I've set up test scenarios for:
 - Happy path (selecting, positioning, styling captions)
@@ -255,7 +255,7 @@ After implementing a task, create a test file:
 ```markdown
 ## Testing
 
-- [Test: Video Captions](.agent/TESTS/frontend/studio/video-generation-with-captions.md) - In Progress
+- [Test: Video Captions](.agents/TESTS/frontend/studio/video-generation-with-captions.md) - In Progress
   - Happy path: ✅ Pass
   - Edge cases: 🔄 Testing
   - Found 2 bugs (logged in bugs/)

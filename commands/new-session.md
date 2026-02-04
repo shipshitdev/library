@@ -5,7 +5,7 @@ Quickly create a new session file from template.
 ## What This Command Does
 
 1. **Creates Session File** - Generates dated session file
-2. **Uses Template** - Pre-fills from `.agent/SESSIONS/TEMPLATE.md`
+2. **Uses Template** - Pre-fills from `.agents/SESSIONS/TEMPLATE.md`
 3. **Auto-fills Metadata** - Sets date, project name
 4. **Opens in Editor** - Ready to document your work
 
@@ -39,21 +39,21 @@ TIME=$(date +%H:%M)
 # Determine session file path
 if [ -z "$PROJECT" ]; then
   # Workspace-level session
-  SESSION_FILE=".agent/SESSIONS/${DATE}.md"
+  SESSION_FILE=".agents/SESSIONS/${DATE}.md"
   PROJECT_NAME="Workspace"
 else
   # Project-specific session
-  SESSION_FILE=".agent/SESSIONS/${DATE}-${PROJECT}.md"
+  SESSION_FILE=".agents/SESSIONS/${DATE}-${PROJECT}.md"
   PROJECT_NAME="$PROJECT"
 fi
 
 # Check if template exists
-TEMPLATE=".agent/SESSIONS/TEMPLATE.md"
+TEMPLATE=".agents/SESSIONS/TEMPLATE.md"
 if [ ! -f "$TEMPLATE" ]; then
   echo "❌ Error: Template not found: $TEMPLATE"
   echo ""
   echo "Create the template first:"
-  echo "  cp .agent/SESSIONS/TEMPLATE.md $TEMPLATE"
+  echo "  cp .agents/SESSIONS/TEMPLATE.md $TEMPLATE"
   exit 1
 fi
 
@@ -216,7 +216,7 @@ chmod +x scripts/sh/new-session.sh
 1. Make template available:
 
 ```bash
-# Ensure .agent/SESSIONS/TEMPLATE.md exists
+# Ensure .agents/SESSIONS/TEMPLATE.md exists
 ```
 
 1. Run from project root

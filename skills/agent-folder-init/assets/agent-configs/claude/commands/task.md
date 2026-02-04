@@ -45,7 +45,7 @@ Read relevant documentation:
 
 ### Step 4: Create Task File
 
-File location: <project>/.agent/TASKS/[task-name].md
+File location: <project>/.agents/TASKS/[task-name].md
 
 Task Template:
 

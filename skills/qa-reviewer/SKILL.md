@@ -85,7 +85,7 @@ grep -r ": any" <files>
 - [ ] No `any` types
 - [ ] No inline interfaces
 - [ ] AGENTS/CLAUDE/CODEX files intact
-- [ ] .agent/ folders untouched
+- [ ] .agents/ folders untouched
 - [ ] Multi-tenancy preserved
 
 ## Final Assessment Categories

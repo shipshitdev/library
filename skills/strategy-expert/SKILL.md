@@ -186,8 +186,8 @@ To ensure brand voice consistency across content:
 **Before providing strategy recommendations, discover the project's context:**
 
 1. **Scan Project Documentation:**
-   - Check `.agent/SYSTEM/ARCHITECTURE.md` for platform architecture
-   - Review `.agent/SYSTEM/SUMMARY.md` for capabilities overview
+   - Check `.agents/SYSTEM/ARCHITECTURE.md` for platform architecture
+   - Review `.agents/SYSTEM/SUMMARY.md` for capabilities overview
    - Look for brand voice guidelines in project docs
 
 2. **Identify Platform Components:**

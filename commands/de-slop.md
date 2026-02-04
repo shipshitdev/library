@@ -51,8 +51,8 @@ Use this command:
 
 ```bash
 # Check for critical rules that might affect cleanup
-cat .agent/SYSTEM/critical/CRITICAL-NEVER-DO.md 2>/dev/null || true
-cat .agent/SYSTEM/critical/CROSS-PROJECT-RULES.md 2>/dev/null || true
+cat .agents/SYSTEM/critical/CRITICAL-NEVER-DO.md 2>/dev/null || true
+cat .agents/SYSTEM/critical/CROSS-PROJECT-RULES.md 2>/dev/null || true
 ```
 
 **Critical constraints:**
@@ -280,7 +280,7 @@ When user runs `/de-slop`:
 
 ### Pre-Cleanup
 
-- [ ] Check `.agent/SYSTEM/critical/` rules
+- [ ] Check `.agents/SYSTEM/critical/` rules
 - [ ] Detect monorepo structure
 - [ ] Identify target packages/projects
 
@@ -313,7 +313,7 @@ When user runs `/de-slop`:
 
 ### Documentation
 
-- [ ] Log cleanup in `.agent/SESSIONS/[today].md`
+- [ ] Log cleanup in `.agents/SESSIONS/[today].md`
 - [ ] List files modified
 - [ ] Note any interfaces created
 - [ ] Summary of artifacts removed

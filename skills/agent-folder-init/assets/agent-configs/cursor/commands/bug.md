@@ -26,17 +26,17 @@ That's it! Keep it fast.
 
 **Bug file location:**
 
-- Frontend bugs: `[frontend-project]/.agent/TASKS/bug-[short-name].md`
-- Backend bugs: `[backend-project]/.agent/TASKS/bug-[short-name].md`
+- Frontend bugs: `[frontend-project]/.agents/TASKS/bug-[short-name].md`
+- Backend bugs: `[backend-project]/.agents/TASKS/bug-[short-name].md`
 - Other projects: Adapt project paths to your structure
-- Cross-project: `.agent/TASKS/bug-[short-name].md`
+- Cross-project: `.agents/TASKS/bug-[short-name].md`
 
 **Bug PRD location:**
 
-- Frontend bugs: `[frontend-project]/.agent/PRDS/bugs/bug-[short-name].md`
-- Backend bugs: `[backend-project]/.agent/PRDS/bugs/bug-[short-name].md`
+- Frontend bugs: `[frontend-project]/.agents/PRDS/bugs/bug-[short-name].md`
+- Backend bugs: `[backend-project]/.agents/PRDS/bugs/bug-[short-name].md`
 - Other projects: Adapt project paths to your structure
-- Cross-project: `.agent/PRDS/bugs/bug-[short-name].md`
+- Cross-project: `.agents/PRDS/bugs/bug-[short-name].md`
 
 **Create `bugs/` subdirectory in PRD folder if it doesn't exist.**
 
@@ -71,8 +71,8 @@ Linked PRD: ../PRDS/bugs/bug-short-name.md
 ```
 Bug captured! 📝
 
-Task: <project>/.agent/TASKS/bug-[name].md
-PRD: <project>/.agent/PRDS/bugs/bug-[name].md
+Task: <project>/.agents/TASKS/bug-[name].md
+PRD: <project>/.agents/PRDS/bugs/bug-[name].md
 
 You can clean it up later and convert to a proper fix task when ready to implement.
 ```
@@ -81,7 +81,7 @@ You can clean it up later and convert to a proper fix task when ready to impleme
 
 ### Bug Task File (Structured Format)
 
-**File:** `<project>/.agent/TASKS/bug-[short-name].md`
+**File:** `<project>/.agents/TASKS/bug-[short-name].md`
 
 ```markdown
 ## Task: Bug: [Short Description]
@@ -105,7 +105,7 @@ Linked PRD: ../PRDS/bugs/bug-short-name.md
 
 ### Bug PRD File (Details)
 
-**File:** `<project>/.agent/PRDS/bugs/bug-[short-name].md`
+**File:** `<project>/.agents/PRDS/bugs/bug-[short-name].md`
 
 **CRITICAL:** No checkboxes (`- [ ]` or `- [x]`) in PRD. Use plain bullets `-`.
 
@@ -229,8 +229,8 @@ _Unknown - to be investigated_
 Got it! Let me capture this bug quickly.
 
 📝 Bug captured:
-   Task: [project]/.agent/TASKS/bug-video-preview-black-screen.md
-   PRD: [project]/.agent/PRDS/bugs/bug-video-preview-black-screen.md
+   Task: [project]/.agents/TASKS/bug-video-preview-black-screen.md
+   PRD: [project]/.agents/PRDS/bugs/bug-video-preview-black-screen.md
 
 I've documented:
 - App: Studio
@@ -297,7 +297,7 @@ When ready to investigate a captured bug:
 ```markdown
 ## Bugs Found
 
-- [Bug: Video Preview Black Screen]([project]/.agent/TASKS/bug-video-preview-black-screen.md) - [PRD]([project]/.agent/PRDS/bugs/bug-video-preview-black-screen.md)
+- [Bug: Video Preview Black Screen]([project]/.agents/TASKS/bug-video-preview-black-screen.md) - [PRD]([project]/.agents/PRDS/bugs/bug-video-preview-black-screen.md)
 ```
 
 ---

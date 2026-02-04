@@ -21,7 +21,7 @@ Expert in RESTful API design, OpenAPI/Swagger documentation, versioning strategi
 
 Before providing guidance:
 
-1. Check `.agent/SYSTEM/ARCHITECTURE.md` for API patterns
+1. Check `.agents/SYSTEM/ARCHITECTURE.md` for API patterns
 2. Review existing controllers and DTOs
 3. Check for OpenAPI/Swagger setup
 4. Review versioning strategy

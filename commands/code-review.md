@@ -65,7 +65,7 @@ async function getData(id: string): Promise<DataResponse> {
 #### Pattern Compliance
 
 ```
-- [ ] Follows patterns from `.agent/EXAMPLES/`
+- [ ] Follows patterns from `.agents/EXAMPLES/`
 - [ ] Uses BaseCRUDController (when appropriate)
 - [ ] Uses BaseService (when appropriate)
 - [ ] Service singletons use .getInstance()
@@ -411,10 +411,10 @@ async generatePost(prompt: string) {
 ### 9. Documentation Review
 
 ```
-- [ ] Session file created (`.agent/SESSIONS/YYYY-MM-DD.md`)
+- [ ] Session file created (`.agents/SESSIONS/YYYY-MM-DD.md`)
 - [ ] Flowchart included (for complex features)
-- [ ] Architecture docs updated (`.agent/SYSTEM/ARCHITECTURE.md` if needed)
-- [ ] Summary updated (`.agent/SYSTEM/SUMMARY.md`)
+- [ ] Architecture docs updated (`.agents/SYSTEM/ARCHITECTURE.md` if needed)
+- [ ] Summary updated (`.agents/SYSTEM/SUMMARY.md`)
 - [ ] Task file marked complete
 - [ ] API docs updated (if applicable)
 - [ ] Comments for complex logic

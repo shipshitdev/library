@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Scaffold a comprehensive .agent/ folder structure for AI-first development.
+Scaffold a comprehensive .agents/ folder structure for AI-first development.
 """
 
 from __future__ import annotations
@@ -107,7 +107,7 @@ def create_minimal_structure(agent_dir: Path, project_name: str, tech_stack: str
 
 **Welcome to the {project_name} workspace!**
 
-This is the `.agent/` folder containing AI agent documentation, session tracking, and project rules.
+This is the `.agents/` folder containing AI agent documentation, session tracking, and project rules.
 
 ## Quick Start
 
@@ -142,39 +142,39 @@ This file provides entry points for AI agents.
 
 ## Documentation
 
-All documentation is in `.agent/`:
-- `.agent/README.md` - Navigation hub
-- `.agent/SYSTEM/RULES.md` - Coding standards
-- `.agent/TASKS/` - Task tracking
-- `.agent/SESSIONS/` - Session history
+All documentation is in `.agents/`:
+- `.agents/README.md` - Navigation hub
+- `.agents/SYSTEM/RULES.md` - Coding standards
+- `.agents/TASKS/` - Task tracking
+- `.agents/SESSIONS/` - Session history
 
 ## Quick Start
 
-Read `.agent/SYSTEM/ai/SESSION-QUICK-START.md` before starting work.
+Read `.agents/SYSTEM/ai/SESSION-QUICK-START.md` before starting work.
 """
 
     claude_content = f"""# {project_name}
 
-Claude-specific entry point. Documentation in `.agent/`.
+Claude-specific entry point. Documentation in `.agents/`.
 
 ## Commands
 
-Check `.agent/SYSTEM/RULES.md` for coding standards.
+Check `.agents/SYSTEM/RULES.md` for coding standards.
 
 ## Sessions
 
-Document all work in `.agent/SESSIONS/YYYY-MM-DD.md` (one file per day).
+Document all work in `.agents/SESSIONS/YYYY-MM-DD.md` (one file per day).
 """
 
     codex_content = f"""# {project_name}
 
-Codex-specific entry point. Documentation in `.agent/`.
+Codex-specific entry point. Documentation in `.agents/`.
 
 ## Documentation
 
-- `.agent/README.md` - Start here
-- `.agent/SYSTEM/` - Architecture and rules
-- `.agent/TASKS/` - Current tasks
+- `.agents/README.md` - Start here
+- `.agents/SYSTEM/` - Architecture and rules
+- `.agents/TASKS/` - Current tasks
 """
 
     (root / "AGENTS.md").write_text(agents_content)
@@ -283,7 +283,7 @@ def copy_agent_configs(root: Path) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Scaffold a .agent/ folder structure for AI-first development."
+        description="Scaffold a .agents/ folder structure for AI-first development."
     )
     parser.add_argument(
         "--root",

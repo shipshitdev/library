@@ -128,7 +128,7 @@ For commands with options:
 
 ## Adapting Commands to Your Project
 
-These commands use standard `.agent/` folder structure. Only adapt project-specific paths:
+These commands use standard `.agents/` folder structure. Only adapt project-specific paths:
 
 - `[project]` - Replace with your project name/path
 - `[frontend-project]` - Replace with your frontend project path (e.g., `web/`, `frontend/`)
@@ -138,11 +138,11 @@ These commands use standard `.agent/` folder structure. Only adapt project-speci
 
 All commands use these standard paths:
 
-- `.agent/SYSTEM/` - Architecture, rules, summary
-- `.agent/SESSIONS/` - Session documentation
-- `.agent/TASKS/` - Task files
-- `.agent/PRDS/` - Product requirement documents
-- `.agent/EXAMPLES/` - Code examples
+- `.agents/SYSTEM/` - Architecture, rules, summary
+- `.agents/SESSIONS/` - Session documentation
+- `.agents/TASKS/` - Task files
+- `.agents/PRDS/` - Product requirement documents
+- `.agents/EXAMPLES/` - Code examples
 
 ### Common Adaptations Needed
 
@@ -178,10 +178,10 @@ Follow the naming convention:
 
 ## Notes
 
-- Commands use standard `.agent/` folder structure
+- Commands use standard `.agents/` folder structure
 - Only project paths need adaptation (`[frontend-project]`, `[backend-project]`)
 - Security checks in `/code-review` are configurable - adapt to your requirements
-- Task management commands use standard `.agent/TASKS/` and `.agent/PRDS/` structure
+- Task management commands use standard `.agents/TASKS/` and `.agents/PRDS/` structure
 
 ---
 

@@ -30,11 +30,11 @@ Ask these questions if not clear from request:
 
    ```bash
    # For API features
-   cat [api-project]/.agent/SYSTEM/ARCHITECTURE.md
-   cat [api-project]/.agent/SYSTEM/RULES.md
+   cat [api-project]/.agents/SYSTEM/ARCHITECTURE.md
+   cat [api-project]/.agents/SYSTEM/RULES.md
 
    # For Frontend features
-   cat [frontend-project]/.agent/SYSTEM/ARCHITECTURE.md
+   cat [frontend-project]/.agents/SYSTEM/ARCHITECTURE.md
    ```
 
 2. Search for similar implementations:
@@ -46,7 +46,7 @@ Ask these questions if not clear from request:
 3. Check examples:
 
    ```bash
-   cat .agent/EXAMPLES/[category]/[example-name].md
+   cat .agents/EXAMPLES/[category]/[example-name].md
    ```
 
 ### Step 4: Fetch Latest Library Docs (MANDATORY)
@@ -76,16 +76,16 @@ await mcp_context7_get_library_docs(
 **Task file locations:**
 
 - **Frontend tasks:**
-  - Task: `[frontend-project]/.agent/TASKS/[task-name].md`
-  - PRD: `[frontend-project]/.agent/PRDS/[subfolder]/[task-name].md`
+  - Task: `[frontend-project]/.agents/TASKS/[task-name].md`
+  - PRD: `[frontend-project]/.agents/PRDS/[subfolder]/[task-name].md`
 
 - **Backend tasks:**
-  - Task: `[backend-project]/.agent/TASKS/[task-name].md`
-  - PRD: `[backend-project]/.agent/PRDS/[task-name].md`
+  - Task: `[backend-project]/.agents/TASKS/[task-name].md`
+  - PRD: `[backend-project]/.agents/PRDS/[task-name].md`
 
 - **Cross-project tasks:**
-  - Task: `.agent/TASKS/[task-name].md` (workspace root)
-  - PRD: `.agent/PRDS/[task-name].md`
+  - Task: `.agents/TASKS/[task-name].md` (workspace root)
+  - PRD: `.agents/PRDS/[task-name].md`
 
 #### 5.2 Choose Template Type
 
@@ -153,7 +153,7 @@ await mcp_context7_get_library_docs(
 ### PRD Template
 
 **File naming:** Same as task file: `[task-name].md`
-**Location:** `<project>/.agent/PRDS/[subdirs]/[task-name].md`
+**Location:** `<project>/.agents/PRDS/[subdirs]/[task-name].md`
 
 **CRITICAL:** PRDs MUST NOT contain checkboxes (`- [ ]` or `- [x]`). Use plain bullets `-` instead.
 
@@ -359,8 +359,8 @@ A few quick questions:
 [You check architecture, fetch Context7 docs for ffmpeg, Next.js, etc.]
 
 I've created the task files:
-📄 [project]/.agent/TASKS/video-generation-with-captions.md
-📄 [project]/.agent/PRDS/video-generation-with-captions.md
+📄 [project]/.agents/TASKS/video-generation-with-captions.md
+📄 [project]/.agents/PRDS/video-generation-with-captions.md
 
 This task includes:
 
@@ -386,6 +386,6 @@ Review the files and let me know if you'd like to proceed with implementation or
 | Fetch Docs | Get latest     | Context7 MCP     |
 | Plan       | Create files   | task + PRD       |
 | Approve    | Get permission | Present to user  |
-| Code       | Implement      | .agent/EXAMPLES/ |
+| Code       | Implement      | .agents/EXAMPLES/ |
 | Test       | Verify         | npm test         |
 | Document   | Update docs    | -                |

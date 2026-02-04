@@ -53,8 +53,8 @@ Adapt your response style based on the question type and context:
 
 ```bash
 # Check for roadmap, metrics, progress
-cat .agent/TASKS/ROADMAP.md 2>/dev/null
-cat .agent/TASKS/*.md | head -100  # Recent tasks
+cat .agents/TASKS/ROADMAP.md 2>/dev/null
+cat .agents/TASKS/*.md | head -100  # Recent tasks
 ```
 
 **Look for:**
@@ -68,10 +68,10 @@ cat .agent/TASKS/*.md | head -100  # Recent tasks
 
 ```bash
 # Today's session
-cat .agent/SESSIONS/$(date +%Y-%m-%d).md 2>/dev/null
+cat .agents/SESSIONS/$(date +%Y-%m-%d).md 2>/dev/null
 
 # Recent sessions (last 7 days)
-ls -t .agent/SESSIONS/*.md 2>/dev/null | head -7 | xargs cat
+ls -t .agents/SESSIONS/*.md 2>/dev/null | head -7 | xargs cat
 
 # Business conversations or notes
 find .agent -name "*business*" -o -name "*conversation*" -o -name "*meeting*" 2>/dev/null
@@ -89,9 +89,9 @@ find .agent -name "*business*" -o -name "*conversation*" -o -name "*meeting*" 2>
 
 ```bash
 # System architecture
-cat .agent/SYSTEM/ARCHITECTURE.md 2>/dev/null
-cat .agent/SYSTEM/PROJECT-MAP.md 2>/dev/null
-cat .agent/SYSTEM/*.md 2>/dev/null | head -200
+cat .agents/SYSTEM/ARCHITECTURE.md 2>/dev/null
+cat .agents/SYSTEM/PROJECT-MAP.md 2>/dev/null
+cat .agents/SYSTEM/*.md 2>/dev/null | head -200
 
 # Product documentation
 cat README.md 2>/dev/null

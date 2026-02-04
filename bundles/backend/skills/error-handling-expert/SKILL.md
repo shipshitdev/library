@@ -22,7 +22,7 @@ Expert in error handling patterns, exception management, error responses, loggin
 
 Before providing guidance:
 
-1. Check `.agent/SYSTEM/ARCHITECTURE.md` for error patterns
+1. Check `.agents/SYSTEM/ARCHITECTURE.md` for error patterns
 2. Review existing exception filters
 3. Check for error monitoring (Sentry, Rollbar)
 4. Review logging libraries (Winston, Pino)

@@ -48,7 +48,7 @@ This skill activates automatically when users:
                            ▼
 ┌─────────────────────────────────────────────────────────────┐
 │  PHASE 2: AGENT FOLDER INIT                                 │
-│  • Create .agent/ directory structure                       │
+│  • Create .agents/ directory structure                       │
 │  • Set up SESSIONS/, TASKS/, SYSTEM/ folders               │
 │  • Generate coding standards and rules                      │
 │  • Copy agent configs (.claude/, .codex/, .cursor/)        │
@@ -163,7 +163,7 @@ python3 ~/.claude/skills/project-scaffold/project-scaffold/scripts/scaffold.py
 ```
 Phases: 2, 3
 Output:
-├── .agent/
+├── .agents/
 ├── .eslintrc.js
 ├── .prettierrc
 ├── .husky/pre-commit (lint-staged)
@@ -175,7 +175,7 @@ Output:
 ```
 Phases: 2, 3, 4
 Output:
-├── .agent/
+├── .agents/
 ├── .eslintrc.js
 ├── .prettierrc
 ├── .husky/pre-commit (lint-staged + tests)
@@ -188,7 +188,7 @@ Output:
 ```
 Phases: 2, 3, 4, 5
 Output:
-├── .agent/
+├── .agents/
 ├── apps/
 │   ├── web/          (Next.js)
 │   ├── api/          (NestJS)
@@ -208,7 +208,7 @@ After full orchestration, your project will have:
 
 ```
 project-root/
-├── .agent/                          # AI-first documentation
+├── .agents/                          # AI-first documentation
 │   ├── SESSIONS/                    # Daily session logs
 │   ├── TASKS/                       # Task tracking
 │   │   └── INBOX.md
@@ -253,7 +253,7 @@ project-root/
 
 After orchestration, verify:
 
-- [ ] `.agent/` folder exists with proper structure
+- [ ] `.agents/` folder exists with proper structure
 - [ ] `npm run lint` or `bun lint` works
 - [ ] `npm run format` or `bun format` works
 - [ ] Git commit triggers pre-commit hooks
@@ -279,7 +279,7 @@ Let me gather some context:
 Starting orchestration...
 
 ✓ Phase 2: Agent Folder Init
-  - Created .agent/ with 13 files
+  - Created .agents/ with 13 files
   - Copied agent configs (.claude/, .codex/, .cursor/)
 
 ✓ Phase 3: Linter Formatter Init

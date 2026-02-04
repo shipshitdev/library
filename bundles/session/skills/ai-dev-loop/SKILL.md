@@ -38,7 +38,7 @@ The AI Development Loop enables fully autonomous feature development where:
 
 ### 1. Task Creation
 
-Tasks live in `.agent/TASKS/[task-name].md` with structured metadata:
+Tasks live in `.agents/TASKS/[task-name].md` with structured metadata:
 
 ```markdown
 ## Task: [Feature Name]
@@ -74,7 +74,7 @@ Tasks live in `.agent/TASKS/[task-name].md` with structured metadata:
 
 When an agent runs `/loop`:
 
-1. Scans `.agent/TASKS/` for `Status: To Do`
+1. Scans `.agents/TASKS/` for `Status: To Do`
 2. Sorts by priority (High > Medium > Low)
 3. Skips tasks with active claims (< 30 min old)
 4. Updates task with `Claimed-By` and `Claimed-At`
@@ -84,7 +84,7 @@ When an agent runs `/loop`:
 Agent works on the task:
 
 1. Reads task file and linked PRD
-2. Checks `.agent/SESSIONS/` for related past work
+2. Checks `.agents/SESSIONS/` for related past work
 3. Implements the feature/fix
 4. Updates `Agent-Notes` with progress
 5. Creates branch and commits
@@ -183,7 +183,7 @@ All limited? → QA time (review Testing)
 
 ### Kaiban.md Extension
 
-- Visual Kanban board for `.agent/TASKS/`
+- Visual Kanban board for `.agents/TASKS/`
 - Drag & drop status changes
 - PRD preview panel
 - Reject button with note input

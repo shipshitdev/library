@@ -6,7 +6,7 @@ Scaffold new projects or add components to existing projects with interactive pr
 
 This command provides a unified way to scaffold:
 
-- `.agent/` folder structure for AI-first development
+- `.agents/` folder structure for AI-first development
 - Backend (NestJS) with MongoDB, Swagger, and best practices
 - Frontend (NextJS) with Tailwind, @agenticindiedev/ui, and TypeScript
 - Mobile (Expo) with React Native and Expo Router
@@ -110,7 +110,7 @@ If components were scaffolded, verify:
 
 ```
 myproject/
-├── .agent/
+├── .agents/
 ├── package.json
 ├── api/              # NestJS backend
 ├── frontend/          # NextJS apps
@@ -122,11 +122,11 @@ myproject/
 
 ```
 myproject-api/        # Backend only
-├── .agent/
+├── .agents/
 └── apps/api/src/
 
 myproject-frontend/   # Frontend only
-├── .agent/
+├── .agents/
 └── apps/dashboard/
 ```
 
@@ -182,6 +182,6 @@ This command uses the `project-scaffold` skill which:
    ```
 
 3. **Customize:**
-   - Update `.agent/SYSTEM/RULES.md` with coding standards
+   - Update `.agents/SYSTEM/RULES.md` with coding standards
    - Configure environment variables
    - Add your first features

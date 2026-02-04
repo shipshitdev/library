@@ -184,8 +184,8 @@ To plan content across multiple platforms:
 **Before creating content plans, discover the project's context:**
 
 1. **Scan Project Documentation:**
-   - Check `.agent/SYSTEM/ARCHITECTURE.md` for planning tools
-   - Review `.agent/SOP/` for content planning processes
+   - Check `.agents/SYSTEM/ARCHITECTURE.md` for planning tools
+   - Review `.agents/SOP/` for content planning processes
    - Look for existing content calendar templates
 
 2. **Identify Planning Tools:**

@@ -36,8 +36,8 @@ List all changes made:
 For projects, ALWAYS verify against:
 
 ```bash
-cat .agent/SYSTEM/critical/CRITICAL-NEVER-DO.md
-cat .agent/SYSTEM/critical/CROSS-PROJECT-RULES.md
+cat .agents/SYSTEM/critical/CRITICAL-NEVER-DO.md
+cat .agents/SYSTEM/critical/CROSS-PROJECT-RULES.md
 ```
 
 ### Phase 2: Requirement Verification
@@ -154,7 +154,7 @@ Violations to check:
 [ ] No test execution locally
 [ ] Multi-tenancy enforced
 [ ] AGENTS.md/CLAUDE.md/CODEX.md not deleted
-[ ] .agent/ folders not deleted
+[ ] .agents/ folders not deleted
 ```
 
 ### Phase 5: Completeness Audit
@@ -388,7 +388,7 @@ ls [packages-project]/packages/common/serializers/
 find [api-project] -name "*serializer*" -type f
 
 # Verify 3: Check CRITICAL-NEVER-DO.md confirms
-grep -i "serializer" .agent/SYSTEM/critical/CRITICAL-NEVER-DO.md
+grep -i "serializer" .agents/SYSTEM/critical/CRITICAL-NEVER-DO.md
 ```
 
 ## Best Practices

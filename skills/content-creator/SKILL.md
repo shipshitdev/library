@@ -39,7 +39,7 @@ Expert content creator specializing in newsletters and tweets that authentically
 
 ### Voice Discovery Checklist
 
-- [ ] Check `.agent/SYSTEM/ARCHITECTURE.md` for brand guidelines
+- [ ] Check `.agents/SYSTEM/ARCHITECTURE.md` for brand guidelines
 - [ ] Review existing newsletters/tweets for patterns
 - [ ] Look for brand voice documentation
 - [ ] Identify target audience from project docs

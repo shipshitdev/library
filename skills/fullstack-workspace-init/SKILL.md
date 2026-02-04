@@ -197,7 +197,7 @@ myproject/
 ├── .husky/
 │   ├── pre-commit              # Lint staged files
 │   └── pre-push                # Type check
-├── .agent/                     # AI documentation
+├── .agents/                     # AI documentation
 ├── package.json                # Workspace root
 ├── biome.json                  # Root linting config
 │

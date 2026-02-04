@@ -146,7 +146,7 @@ Organization: {{organizationId}}
 - **Installation & Setup:** Step-by-step getting started
 - **Configuration:** Environment variables and settings
 - **Architecture:** High-level system design
-- **Patterns:** Code patterns used (from `.agent/EXAMPLES/`)
+- **Patterns:** Code patterns used (from `.agents/EXAMPLES/`)
 - **Troubleshooting:** Common issues and solutions
 
 ### For API Users
@@ -180,9 +180,9 @@ Organization: {{organizationId}}
 
 ### Feature Documentation
 
-- **Session Files:** `.agent/SESSIONS/YYYY-MM-DD.md` (includes flowchart)
-- **Architecture:** `.agent/SYSTEM/ARCHITECTURE.md` (major decisions)
-- **SOPs:** `.agent/SOP/*.md` (patterns and procedures)
+- **Session Files:** `.agents/SESSIONS/YYYY-MM-DD.md` (includes flowchart)
+- **Architecture:** `.agents/SYSTEM/ARCHITECTURE.md` (major decisions)
+- **SOPs:** `.agents/SOP/*.md` (patterns and procedures)
 
 ## Quality Checklist
 

@@ -26,7 +26,7 @@ Only these 4 `.md` files allowed at project root:
 3. `CODEX.md`
 4. `README.md`
 
-Everything else goes in `.agent/`.
+Everything else goes in `.agents/`.
 
 ---
 
@@ -37,14 +37,14 @@ Everything else goes in `.agent/`.
 **Correct:**
 
 ```
-.agent/SESSIONS/2025-01-15.md
+.agents/SESSIONS/2025-01-15.md
 ```
 
 **Wrong:**
 
 ```
-.agent/SESSIONS/2025-01-15-feature.md  ❌
-.agent/SESSIONS/FEATURE-2025-01-15.md  ❌
+.agents/SESSIONS/2025-01-15-feature.md  ❌
+.agents/SESSIONS/FEATURE-2025-01-15.md  ❌
 ```
 
 Multiple sessions same day → Same file, Session 1, Session 2, etc.

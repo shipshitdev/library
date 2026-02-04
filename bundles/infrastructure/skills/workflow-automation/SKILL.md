@@ -181,8 +181,8 @@ To optimize content pipelines for efficiency:
 **Before designing workflows, discover the project's context:**
 
 1. **Scan Project Documentation:**
-   - Check `.agent/SYSTEM/ARCHITECTURE.md` for workflow architecture
-   - Review `.agent/SOP/` for existing process documentation
+   - Check `.agents/SYSTEM/ARCHITECTURE.md` for workflow architecture
+   - Review `.agents/SOP/` for existing process documentation
    - Look for workflow diagrams or process maps
 
 2. **Identify Workflow Components:**

@@ -27,7 +27,7 @@ Every project follows:
 ├── CLAUDE.md
 ├── CODEX.md
 ├── README.md
-└── .agent/
+└── .agents/
     ├── README.md
     ├── SYSTEM/
     ├── TASKS/
@@ -39,7 +39,7 @@ Every project follows:
 ## Session Files
 
 - **One file per day:** `YYYY-MM-DD.md`
-- **Location:** `.agent/SESSIONS/`
+- **Location:** `.agents/SESSIONS/`
 - Multiple sessions = Session 1, Session 2 in SAME file
 
 ---
@@ -48,7 +48,7 @@ Every project follows:
 
 ### Directories
 
-- Top-level `.agent/` dirs: ALL-CAPS (`SYSTEM/`, `TASKS/`)
+- Top-level `.agents/` dirs: ALL-CAPS (`SYSTEM/`, `TASKS/`)
 - Subdirectories: lowercase with hyphens (`user-management/`)
 
 ### Files
@@ -109,5 +109,5 @@ Every project follows:
 ## Never Delete
 
 - `AGENTS.md`, `CLAUDE.md`, `CODEX.md` in any project root
-- `.agent/` folders
+- `.agents/` folders
 - `README.md` files

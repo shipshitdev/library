@@ -58,12 +58,12 @@ For each completed task, replace content with:
 
 This task has been completed and is tracked in the roadmap (MD files).
 
-See `.agent/SESSIONS/[date].md` for implementation details.
+See `.agents/SESSIONS/[date].md` for implementation details.
 ```
 
 #### 3. Update Session Log
 
-Add to `.agent/SESSIONS/[today].md`:
+Add to `.agents/SESSIONS/[today].md`:
 
 ```markdown
 ## Cleaned Completed Tasks
@@ -86,7 +86,7 @@ When user runs `/clean tasks`:
   - [ ] Get task name from file
   - [ ] Replace content with minimal completion marker
   - [ ] Keep filename unchanged
-- [ ] Update `.agent/SESSIONS/[today].md` with cleaned files
+- [ ] Update `.agents/SESSIONS/[today].md` with cleaned files
 - [ ] Report cleanup summary
 
 ### Example
@@ -111,7 +111,7 @@ When user runs `/clean tasks`:
 
 This task has been completed and is tracked in the roadmap (MD files).
 
-See `.agent/SESSIONS/2025-10-07.md` for implementation details.
+See `.agents/SESSIONS/2025-10-07.md` for implementation details.
 ```
 
 **Result:** File exists (shows what was done), but content is minimal (no bloat).
@@ -157,7 +157,7 @@ See `.agent/SESSIONS/2025-10-07.md` for implementation details.
 #### Restore from Backup
 
 ```bash
-tar -xzf .agent/SESSIONS/backups/[backup-file] -C .
+tar -xzf .agents/SESSIONS/backups/[backup-file] -C .
 ```
 
 ### File Structure After Cleanup
@@ -165,7 +165,7 @@ tar -xzf .agent/SESSIONS/backups/[backup-file] -C .
 **Before:**
 
 ```
-.agent/SESSIONS/
+.agents/SESSIONS/
 ├── 2025-10-07.md
 ├── 2025-10-08.md
 ├── 2025-10-09.md
@@ -175,7 +175,7 @@ tar -xzf .agent/SESSIONS/backups/[backup-file] -C .
 **After (Daily → Monthly):**
 
 ```
-.agent/SESSIONS/
+.agents/SESSIONS/
 ├── 2025-10.md          # Consolidated monthly file
 └── 2025-yearly-review.md  # If monthly files exist from previous year
 ```
@@ -206,7 +206,7 @@ The script provides colored output:
 
 ### Backup Location
 
-Backups are stored in: `.agent/SESSIONS/backups/`
+Backups are stored in: `.agents/SESSIONS/backups/`
 
 Format: `[project-name]-backup-YYYYMMDD-HHMMSS.tar.gz`
 

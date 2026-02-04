@@ -8,7 +8,7 @@ Create a new session entry for todays work.
 
 ## What This Command Does
 
-1. Creates or appends to .agent/SESSIONS/YYYY-MM-DD.md
+1. Creates or appends to .agents/SESSIONS/YYYY-MM-DD.md
 2. Adds a new session header with timestamp
 3. Sets up structure for documenting work
 
@@ -18,12 +18,12 @@ Create a new session entry for todays work.
 
 CORRECT:
 
-- .agent/SESSIONS/2025-01-15.md
-- .agent/SESSIONS/2025-01-16.md
+- .agents/SESSIONS/2025-01-15.md
+- .agents/SESSIONS/2025-01-16.md
 
 WRONG:
 
-- .agent/SESSIONS/2025-01-15-feature-name.md
+- .agents/SESSIONS/2025-01-15-feature-name.md
 
 Multiple sessions on same day go in the same file.
 

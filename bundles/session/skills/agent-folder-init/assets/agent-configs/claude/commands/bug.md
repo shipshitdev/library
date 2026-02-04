@@ -24,9 +24,9 @@ Keep it fast.
 
 Bug file location (adjust paths for your project):
 
-- Frontend bugs: <project>/.agent/TASKS/bug-[short-name].md
-- Backend bugs: <project>/.agent/TASKS/bug-[short-name].md
-- Cross-project: .agent/TASKS/bug-[short-name].md
+- Frontend bugs: <project>/.agents/TASKS/bug-[short-name].md
+- Backend bugs: <project>/.agents/TASKS/bug-[short-name].md
+- Cross-project: .agents/TASKS/bug-[short-name].md
 
 ### Step 3: Create Bug File
 
@@ -68,7 +68,7 @@ Use structured format:
 
 Bug captured!
 
-File: <project>/.agent/TASKS/bug-[name].md
+File: <project>/.agents/TASKS/bug-[name].md
 
 You can add more details later when ready to fix.
 

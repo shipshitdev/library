@@ -74,7 +74,7 @@ Parse the user's statement to identify:
 
 ### 3. Document to Capture File
 
-Append to `.agent/SYSTEM/CAPTURED-RULES.md`:
+Append to `.agents/SYSTEM/CAPTURED-RULES.md`:
 
 ````markdown
 ### [YYYY-MM-DD HH:MM] - [Category]: [Short Title]
@@ -156,16 +156,16 @@ Should I add this to the permanent rules? [Yes/No/Modify]
 
 | Rule Type | Storage Location |
 |-----------|------------------|
-| Personal preferences | `../.agent/SYSTEM/ai/USER-PREFERENCES.md` |
-| Coding standards | `.agent/SYSTEM/RULES.md` |
-| Critical rules | `../.agent/SYSTEM/critical/CRITICAL-NEVER-DO.md` |
-| Pending review | `../.agent/SYSTEM/CAPTURED-RULES.md` |
+| Personal preferences | `../.agents/SYSTEM/ai/USER-PREFERENCES.md` |
+| Coding standards | `.agents/SYSTEM/RULES.md` |
+| Critical rules | `../.agents/SYSTEM/critical/CRITICAL-NEVER-DO.md` |
+| Pending review | `../.agents/SYSTEM/CAPTURED-RULES.md` |
 
 ---
 
 ## Auto-Capture File Format
 
-File: `../.agent/SYSTEM/CAPTURED-RULES.md`
+File: `../.agents/SYSTEM/CAPTURED-RULES.md`
 
 ```markdown
 # Captured Rules - Pending Review

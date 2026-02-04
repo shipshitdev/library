@@ -21,8 +21,8 @@ Process into proper task files or complete directly.
 
 <!-- Add quick tasks below -->
 
-- [ ] Review and customize `.agent/SYSTEM/RULES.md`
-- [ ] Update `.agent/SYSTEM/ARCHITECTURE.md` with project architecture
+- [ ] Review and customize `.agents/SYSTEM/RULES.md`
+- [ ] Update `.agents/SYSTEM/ARCHITECTURE.md` with project architecture
 - [ ] Add project-specific rules to `SYSTEM/critical/CRITICAL-NEVER-DO.md`
 
 ---
@@ -33,4 +33,4 @@ Process into proper task files or complete directly.
 
 ### {{DATE}}
 
-- [x] Initial `.agent/` setup complete
+- [x] Initial `.agents/` setup complete

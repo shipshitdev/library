@@ -25,7 +25,7 @@
 #### Patterns
 
 ```
-- [ ] Follows patterns from .agent/EXAMPLES/
+- [ ] Follows patterns from .agents/EXAMPLES/
 - [ ] Uses service singletons (.getInstance())
 - [ ] BaseCRUDController used when appropriate
 - [ ] BaseService used when appropriate
@@ -268,9 +268,9 @@ Use this prompt for AI-assisted review:
 ```
 Review this PR against project standards:
 
-1. Read: .agent/SYSTEM/RULES.md
-2. Read: .agent/SOP/code-review.md
-3. Check: .agent/EXAMPLES/ for pattern compliance
+1. Read: .agents/SYSTEM/RULES.md
+2. Read: .agents/SOP/code-review.md
+3. Check: .agents/EXAMPLES/ for pattern compliance
 4. Verify: Organization filtering in all queries
 5. Verify: isDeleted: false filtering
 6. Check: No `any` types

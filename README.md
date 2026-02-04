@@ -13,7 +13,7 @@ library/
 ├── skills/              # All skills (124 skills)
 ├── commands/            # All commands (35 commands)
 ├── bundles/             # Generated marketplace bundles
-├── .agent/              # Library management (sessions, tasks)
+├── .agents/              # Library management (sessions, tasks)
 │   └── SYSTEM/          # Library documentation
 └── scripts/             # Scaffolding, validation scripts
 ```
@@ -90,10 +90,10 @@ touch skills/my-skill/SKILL.md
 
 ## Documentation
 
-- `.agent/SYSTEM/ARCHITECTURE.md` - .agent folder structure explained
-- `.agent/SYSTEM/AI-DEV-LOOP.md` - The /loop autonomous workflow
-- `.agent/SYSTEM/PLATFORM-ADAPTATIONS.md` - Claude vs Codex vs Cursor differences
-- `.agent/SYSTEM/SKILL-MANAGEMENT.md` - Syncing skills across platforms
+- `.agents/SYSTEM/ARCHITECTURE.md` - .agent folder structure explained
+- `.agents/SYSTEM/AI-DEV-LOOP.md` - The /loop autonomous workflow
+- `.agents/SYSTEM/PLATFORM-ADAPTATIONS.md` - Claude vs Codex vs Cursor differences
+- `.agents/SYSTEM/SKILL-MANAGEMENT.md` - Syncing skills across platforms
 
 ## Commands
 
@@ -138,7 +138,7 @@ touch skills/my-skill/SKILL.md
 | [accessibility](https://skills.sh/shipshitdev/library/accessibility) | WCAG 2.1 AA compliance for React/Next.js | `npx skills add shipshitdev/library --skill accessibility` |
 | [advanced-evaluation](https://skills.sh/shipshitdev/library/advanced-evaluation) | LLM-as-a-Judge evaluation techniques | `npx skills add shipshitdev/library --skill advanced-evaluation` |
 | [agent-browser](https://skills.sh/shipshitdev/library/agent-browser) | Browser automation for testing & scraping | `npx skills add shipshitdev/library --skill agent-browser` |
-| [agent-folder-init](https://skills.sh/shipshitdev/library/agent-folder-init) | Initialize .agent/ folder structure | `npx skills add shipshitdev/library --skill agent-folder-init` |
+| [agent-folder-init](https://skills.sh/shipshitdev/library/agent-folder-init) | Initialize .agents/ folder structure | `npx skills add shipshitdev/library --skill agent-folder-init` |
 | [ai-dev-loop](https://skills.sh/shipshitdev/library/ai-dev-loop) | Autonomous AI development workflow | `npx skills add shipshitdev/library --skill ai-dev-loop` |
 | [ai-loading-ux](https://skills.sh/shipshitdev/library/ai-loading-ux) | AI loading & progress indicator UX | `npx skills add shipshitdev/library --skill ai-loading-ux` |
 | [analytics-expert](https://skills.sh/shipshitdev/library/analytics-expert) | Content analytics & metrics | `npx skills add shipshitdev/library --skill analytics-expert` |
@@ -379,6 +379,41 @@ Official Expo skills for React Native development.
 ```bash
 npx skills add expo/skills --all
 ```
+
+### [sickn33/antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills)
+
+Massive community skill collection (610+ skills) covering nearly every development domain.
+
+| Category | Example Skills |
+|----------|---------------|
+| **Frontend** | react-patterns, nextjs-best-practices, tailwind-patterns, svelte, vue |
+| **Backend** | nestjs-expert, django-pro, fastapi-pro, rails, golang-pro |
+| **Security** | penetration-testing, vulnerability-scanner, malware-analyst, red-team |
+| **DevOps** | kubernetes-architect, terraform-specialist, docker, gitops |
+| **AI/ML** | rag-engineer, ml-engineer, prompt-engineering, langchain |
+| **Data** | data-engineer, database-architect, redis-expert, postgresql |
+| **Testing** | tdd-workflows, playwright, vitest, e2e-testing-patterns |
+| **Mobile** | react-native-architecture, flutter-expert, ios-developer |
+
+```bash
+npx skills add sickn33/antigravity-awesome-skills --all
+```
+
+### Other Community Repos
+
+Smaller repos that provide focused skills:
+
+| Repo | Skills | Install |
+|------|--------|---------|
+| [vercel-labs/skills](https://github.com/vercel-labs/skills) | find-skills | `npx skills add vercel-labs/skills --all` |
+| [vercel/turborepo](https://github.com/vercel/turborepo) | turborepo | `npx skills add vercel/turborepo --all` |
+| [resend/resend-skills](https://github.com/resend/resend-skills) | Email with Resend | `npx skills add resend/resend-skills --all` |
+| [resend/email-best-practices](https://github.com/resend/email-best-practices) | Email best practices | `npx skills add resend/email-best-practices --all` |
+| [glebis/claude-skills](https://github.com/glebis/claude-skills) | Claude utilities | `npx skills add glebis/claude-skills --all` |
+| [pproenca/dot-skills](https://github.com/pproenca/dot-skills) | General dev | `npx skills add pproenca/dot-skills --all` |
+| [lammesen/skills](https://github.com/lammesen/skills) | Additional skills | `npx skills add lammesen/skills --all` |
+| [clawdbot/skills](https://github.com/clawdbot/skills) | Bot/automation | `npx skills add clawdbot/skills --all` |
+| [SpillwaveSolutions/running-marketing-campaigns-agent-skill](https://github.com/SpillwaveSolutions/running-marketing-campaigns-agent-skill) | Marketing campaigns | `npx skills add SpillwaveSolutions/running-marketing-campaigns-agent-skill --all` |
 
 ---
 

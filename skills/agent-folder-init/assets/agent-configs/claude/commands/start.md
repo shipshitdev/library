@@ -9,7 +9,7 @@ Load all critical preferences and instructions at the start of each session or a
 Check for project entry point documentation:
 
 ```bash
-cat .agent/SYSTEM/ai/SESSION-QUICK-START.md 2>/dev/null || cat .agent/SYSTEM/SESSION-QUICK-START.md 2>/dev/null || echo "No session quick start found"
+cat .agents/SYSTEM/ai/SESSION-QUICK-START.md 2>/dev/null || cat .agents/SYSTEM/SESSION-QUICK-START.md 2>/dev/null || echo "No session quick start found"
 ```
 
 This document will guide you to any other necessary documentation.
@@ -19,7 +19,7 @@ This document will guide you to any other necessary documentation.
 Read the user's non-negotiable preferences:
 
 ```bash
-cat .agent/SYSTEM/ai/USER-PREFERENCES.md 2>/dev/null || cat .claude/rules/user-preferences.md 2>/dev/null || echo "No user preferences found"
+cat .agents/SYSTEM/ai/USER-PREFERENCES.md 2>/dev/null || cat .claude/rules/user-preferences.md 2>/dev/null || echo "No user preferences found"
 ```
 
 This file contains:
@@ -35,7 +35,7 @@ Read today's session to understand what was already done before `/clear`:
 
 ```bash
 TODAY=$(date +%Y-%m-%d)
-cat .agent/SESSIONS/$TODAY.md 2>/dev/null || echo "No session file for today yet"
+cat .agents/SESSIONS/$TODAY.md 2>/dev/null || echo "No session file for today yet"
 ```
 
 If the file exists, this shows:
@@ -57,7 +57,7 @@ The `session-documenter` skill will automatically activate and track:
 - Patterns established
 - Mistakes and fixes
 
-Documentation is written to `.agent/SESSIONS/YYYY-MM-DD.md` after each task completion.
+Documentation is written to `.agents/SESSIONS/YYYY-MM-DD.md` after each task completion.
 
 **No manual action required** - this happens automatically.
 
@@ -68,7 +68,7 @@ Documentation is written to `.agent/SESSIONS/YYYY-MM-DD.md` after each task comp
 Show the current inbox backlog:
 
 ```bash
-cat .agent/TASKS/INBOX.md 2>/dev/null || echo "No inbox found"
+cat .agents/TASKS/INBOX.md 2>/dev/null || echo "No inbox found"
 ```
 
 Display inbox in two categories:
@@ -116,11 +116,11 @@ This command ensures consistent behavior across sessions by:
    - No background processes (foreground only)
    - No local builds/tests (CI/CD only)
    - Document before /clear (session-documenter skill)
-   - Check `.agent/SESSIONS/` before implementing
+   - Check `.agents/SESSIONS/` before implementing
    - Find and follow real codebase examples (not generic patterns)
    - Quality over speed
    - Session memory is critical
-3. **Today's session file** (`.agent/SESSIONS/YYYY-MM-DD.md`):
+3. **Today's session file** (`.agents/SESSIONS/YYYY-MM-DD.md`):
    - What was done earlier today (before /clear)
    - Context continuity across /clear boundaries
 

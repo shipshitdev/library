@@ -1,6 +1,6 @@
 # [Project] ICP (Ideal Customer Profile)
 
-**Note:** This is a template. Discover the project's actual ICP from project documentation (`.agent/SYSTEM/` or project docs).
+**Note:** This is a template. Discover the project's actual ICP from project documentation (`.agents/SYSTEM/` or project docs).
 
 ## Primary Customer Segment: Marketing Agencies ⭐
 

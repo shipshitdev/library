@@ -8,7 +8,7 @@ Display current inbox tasks awaiting action.
 
 ## What This Command Does
 
-Reads and displays .agent/TASKS/INBOX.md showing:
+Reads and displays .agents/TASKS/INBOX.md showing:
 
 1. Human QA tasks - Blocking production
 2. Features to prompt - Ready for implementation
@@ -17,7 +17,7 @@ Reads and displays .agent/TASKS/INBOX.md showing:
 
 ### Step 1: Read Inbox
 
-cat .agent/TASKS/INBOX.md
+cat .agents/TASKS/INBOX.md
 
 ### Step 2: Display by Category
 

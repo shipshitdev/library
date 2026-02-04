@@ -24,8 +24,10 @@
   "name": "ship-shit-dev-library",
   "private": true,
   "scripts": {
+    "cleanup:global": "bash scripts/cleanup-global-duplicates.sh --execute",
     "count": "bash -c 'echo \"Skills: $(ls -1 skills 2>/dev/null | wc -l | tr -d \" \")\"; echo \"Commands: $(ls -1 commands 2>/dev/null | wc -l | tr -d \" \")\"'",
     "deps:update": "bunx npm-check-updates -u && bun install",
+    "inventory": "bash scripts/cleanup-global-duplicates.sh --dry-run",
     "generate:all": "bun scripts/generate-plugin.js all cursor",
     "generate:bundle": "bun scripts/generate-bundle.js",
     "generate:manifest": "bun scripts/generate-manifest.js",

@@ -47,7 +47,7 @@ npm run type-check || tsc --noEmit
 npm run build || pnpm build
 
 # Tests (push to CI if required by project rules)
-# Check .agent/SYSTEM/critical/ for test rules
+# Check .agents/SYSTEM/critical/ for test rules
 ```
 
 **Checklist:**
@@ -136,7 +136,7 @@ cat .env.example 2>/dev/null || cat .env.template 2>/dev/null || true
 cat README.md
 
 # Check API documentation exists (if applicable)
-# Check for .agent/SYSTEM/ARCHITECTURE.md updates
+# Check for .agents/SYSTEM/ARCHITECTURE.md updates
 ```
 
 **Checklist:**
@@ -264,7 +264,7 @@ Generate comprehensive launch documentation:
 - [Optimizations planned]
 ```
 
-Save to: `.agent/SESSIONS/[today].md` or `.agent/LAUNCHES/[product-name]-[date].md`
+Save to: `.agents/SESSIONS/[today].md` or `.agents/LAUNCHES/[product-name]-[date].md`
 
 ---
 
@@ -274,7 +274,7 @@ When user runs `/launch`:
 
 ### Pre-Launch Phase
 
-- [ ] Check critical rules: `.agent/SYSTEM/critical/CRITICAL-NEVER-DO.md`
+- [ ] Check critical rules: `.agents/SYSTEM/critical/CRITICAL-NEVER-DO.md`
 - [ ] Run code quality checks (lint, type-check, build)
 - [ ] Run security audit
 - [ ] Check performance metrics
@@ -318,7 +318,7 @@ When user runs `/launch`:
 4. On confirmation, execute deployment
 5. Run post-launch verification
 6. Generate launch report
-7. Save to `.agent/SESSIONS/[today].md`
+7. Save to `.agents/SESSIONS/[today].md`
 
 ### Example 2: Pre-Launch Check Only
 

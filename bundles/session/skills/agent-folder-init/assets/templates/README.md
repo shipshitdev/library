@@ -2,7 +2,7 @@
 
 **Welcome to the {{PROJECT_NAME}} workspace!**
 
-This is the `.agent/` folder containing AI agent documentation, session tracking, and project rules.
+This is the `.agents/` folder containing AI agent documentation, session tracking, and project rules.
 
 ## Quick Start
 
@@ -11,7 +11,7 @@ This is the `.agent/` folder containing AI agent documentation, session tracking
 ## Directory Structure
 
 ```
-.agent/
+.agents/
 ├── README.md                    # This file - Navigation hub
 ├── SYSTEM/
 │   ├── RULES.md                 # Coding standards (READ THIS)

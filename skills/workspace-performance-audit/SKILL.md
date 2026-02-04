@@ -66,7 +66,7 @@ Phase 5: Consolidation
 
 ## Integration
 
-Produces reports for `.agent/AUDITS/YYYY-MM-DD-performance.md`
+Produces reports for `.agents/AUDITS/YYYY-MM-DD-performance.md`
 
 ---
 

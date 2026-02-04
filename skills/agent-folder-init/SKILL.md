@@ -1,11 +1,11 @@
 ---
 name: agent-folder-init
-description: Initialize a comprehensive .agent/ folder structure for AI-first development. Use this skill when starting a new project that needs AI agent documentation, session tracking, task management, and coding standards. Generates full structure based on proven patterns from production projects.
+description: Initialize a comprehensive .agents/ folder structure for AI-first development. Use this skill when starting a new project that needs AI agent documentation, session tracking, task management, and coding standards. Generates full structure based on proven patterns from production projects.
 ---
 
 # Agent Folder Init
 
-Create a comprehensive `.agent/` folder structure for AI-first development workflows.
+Create a comprehensive `.agents/` folder structure for AI-first development workflows.
 
 ## Purpose
 
@@ -49,10 +49,10 @@ python3 ~/.claude/skills/agent-folder-init/scripts/scaffold.py \
 
 ## Generated Structure
 
-### Documentation (.agent/)
+### Documentation (.agents/)
 
 ```
-.agent/
+.agents/
 ├── README.md                    # Navigation hub
 ├── SYSTEM/
 │   ├── README.md
@@ -121,7 +121,7 @@ python3 ~/.claude/skills/agent-folder-init/scripts/scaffold.py \
 
 ### Root Files
 
-- `AGENTS.md` - Points to `.agent/README.md`
+- `AGENTS.md` - Points to `.agents/README.md`
 - `CLAUDE.md` - Claude-specific entry point
 - `CODEX.md` - Codex-specific entry point
 - `.editorconfig` - Editor configuration

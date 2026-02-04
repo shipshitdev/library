@@ -502,6 +502,6 @@ Top 3 Quick Wins:
 Critical Issues: 1
 - N+1 query in /api/feed endpoint
 
-Full report generated at: .agent/AUDITS/2025-01-XX-performance.md
+Full report generated at: .agents/AUDITS/2025-01-XX-performance.md
 ═══════════════════════════════════════
 ```

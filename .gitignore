@@ -8,3 +8,43 @@ node_modules/
 
 # Local settings (personal profiles)
 .claude/settings.local.json
+
+# Skills installed by `npx skills add` (project-local copies)
+.agents/skills/
+.claude/skills/
+.codex/
+.cursor/skills/
+.github/skills/
+.openclaw/
+
+# Agent dirs created by skills CLI (not used)
+.adal/
+.agent/
+.augment/
+.cline/
+.codebuddy/
+.commandcode/
+.continue/
+.crush/
+.factory/
+.gemini/
+.goose/
+.iflow/
+.junie/
+.kilocode/
+.kiro/
+.kode/
+.mcpjam/
+.mux/
+.neovate/
+.opencode/
+.openhands/
+.pi/
+.pochi/
+.qoder/
+.qwen/
+.roo/
+.trae/
+.vibe/
+.windsurf/
+.zencoder/

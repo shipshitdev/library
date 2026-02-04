@@ -30,20 +30,23 @@ library/
 ### Quick Install (Recommended)
 
 ```bash
-# Install all skills globally to all agents
-npx skills add shipshitdev/library --all
+# Install all skills globally — pick your agents
+npx skills add shipshitdev/library -g --agent claude-code cursor codex openclaw --skill '*' -y
 
 # Install specific skills
-npx skills add shipshitdev/library --skill stripe-implementer
+npx skills add shipshitdev/library -g --skill stripe-implementer -y
 
 # List available skills
 npx skills add shipshitdev/library --list
 ```
 
+> **Do NOT use `--all`** — it installs to every agent the CLI knows about (30+).
+> Always use `--agent` to target only the agents you use.
+
 ### Project-local Install
 
 ```bash
-npx skills add shipshitdev/library
+npx skills add shipshitdev/library --agent claude-code cursor
 ```
 
 ### Claude Code Plugin (Alternative)
@@ -60,13 +63,13 @@ Clone the repo and use the CLI to install:
 ```bash
 git clone https://github.com/shipshitdev/library.git ~/shipshitdev-library
 cd ~/shipshitdev-library
-npx skills add . --all
+npx skills add . -g --agent claude-code cursor codex openclaw --skill '*' -y
 ```
 
 After making changes, reinstall to update:
 
 ```bash
-npx skills add shipshitdev/library --all
+npx skills add shipshitdev/library -g --agent claude-code cursor codex openclaw --skill '*' -y
 ```
 
 ## Adding Skills & Commands
@@ -282,10 +285,10 @@ Tactical marketing execution: CRO, SEO, paid ads, and email sequences.
 
 ```bash
 # Strategic frameworks (this library)
-npx skills add shipshitdev/library --all
+npx skills add shipshitdev/library -g --skill '*' -y
 
 # Tactical execution
-npx skills add coreyhaines31/marketingskills --all
+npx skills add coreyhaines31/marketingskills -g --skill '*' -y
 ```
 
 | Category | Skills |
@@ -322,7 +325,7 @@ Frontend development and design guidelines.
 | | web-design-guidelines | Review UI for Web Interface Guidelines compliance |
 
 ```bash
-npx skills add vercel-labs/agent-skills --all
+npx skills add vercel-labs/agent-skills -g --skill '*' -y
 ```
 
 ### [trailofbits/skills](https://github.com/trailofbits/skills)
@@ -350,7 +353,7 @@ Security auditing, smart contracts, and vulnerability analysis.
 | | spec-to-code-compliance | Specification compliance checker |
 
 ```bash
-npx skills add trailofbits/skills --all
+npx skills add trailofbits/skills -g --skill '*' -y
 ```
 
 ### [expo/skills](https://github.com/expo/skills)
@@ -377,7 +380,7 @@ Official Expo skills for React Native development.
 | `expo-architect` → Scaffold new apps | Develop and maintain existing apps |
 
 ```bash
-npx skills add expo/skills --all
+npx skills add expo/skills -g --skill '*' -y
 ```
 
 ### [sickn33/antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills)
@@ -396,7 +399,7 @@ Massive community skill collection (610+ skills) covering nearly every developme
 | **Mobile** | react-native-architecture, flutter-expert, ios-developer |
 
 ```bash
-npx skills add sickn33/antigravity-awesome-skills --all
+npx skills add sickn33/antigravity-awesome-skills -g --skill '*' -y
 ```
 
 ### Other Community Repos
@@ -405,15 +408,15 @@ Smaller repos that provide focused skills:
 
 | Repo | Skills | Install |
 |------|--------|---------|
-| [vercel-labs/skills](https://github.com/vercel-labs/skills) | find-skills | `npx skills add vercel-labs/skills --all` |
-| [vercel/turborepo](https://github.com/vercel/turborepo) | turborepo | `npx skills add vercel/turborepo --all` |
-| [resend/resend-skills](https://github.com/resend/resend-skills) | Email with Resend | `npx skills add resend/resend-skills --all` |
-| [resend/email-best-practices](https://github.com/resend/email-best-practices) | Email best practices | `npx skills add resend/email-best-practices --all` |
-| [glebis/claude-skills](https://github.com/glebis/claude-skills) | Claude utilities | `npx skills add glebis/claude-skills --all` |
-| [pproenca/dot-skills](https://github.com/pproenca/dot-skills) | General dev | `npx skills add pproenca/dot-skills --all` |
-| [lammesen/skills](https://github.com/lammesen/skills) | Additional skills | `npx skills add lammesen/skills --all` |
-| [clawdbot/skills](https://github.com/clawdbot/skills) | Bot/automation | `npx skills add clawdbot/skills --all` |
-| [SpillwaveSolutions/running-marketing-campaigns-agent-skill](https://github.com/SpillwaveSolutions/running-marketing-campaigns-agent-skill) | Marketing campaigns | `npx skills add SpillwaveSolutions/running-marketing-campaigns-agent-skill --all` |
+| [vercel-labs/skills](https://github.com/vercel-labs/skills) | find-skills | `npx skills add vercel-labs/skills -g --skill '*' -y` |
+| [vercel/turborepo](https://github.com/vercel/turborepo) | turborepo | `npx skills add vercel/turborepo -g --skill '*' -y` |
+| [resend/resend-skills](https://github.com/resend/resend-skills) | Email with Resend | `npx skills add resend/resend-skills -g --skill '*' -y` |
+| [resend/email-best-practices](https://github.com/resend/email-best-practices) | Email best practices | `npx skills add resend/email-best-practices -g --skill '*' -y` |
+| [glebis/claude-skills](https://github.com/glebis/claude-skills) | Claude utilities | `npx skills add glebis/claude-skills -g --skill '*' -y` |
+| [pproenca/dot-skills](https://github.com/pproenca/dot-skills) | General dev | `npx skills add pproenca/dot-skills -g --skill '*' -y` |
+| [lammesen/skills](https://github.com/lammesen/skills) | Additional skills | `npx skills add lammesen/skills -g --skill '*' -y` |
+| [clawdbot/skills](https://github.com/clawdbot/skills) | Bot/automation | `npx skills add clawdbot/skills -g --skill '*' -y` |
+| [SpillwaveSolutions/running-marketing-campaigns-agent-skill](https://github.com/SpillwaveSolutions/running-marketing-campaigns-agent-skill) | Marketing campaigns | `npx skills add SpillwaveSolutions/running-marketing-campaigns-agent-skill -g --skill '*' -y` |
 
 ---
 

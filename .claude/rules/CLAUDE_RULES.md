@@ -3,7 +3,7 @@
 ## User Preferences (OVERRIDE ALL)
 
 ### Forbidden Actions
-- **Background processes**: No `run_in_background`, no `&`
+- **Background processes**: Use `run_in_background` for long-running tasks (training, generation, server ops). No trailing `&` in commands.
 - **Local builds/tests**: No `pnpm build`, `npm test` - CI/CD only
 - **Auto-commit/push**: Wait for explicit user request
 - **Work outside workspace**: No `/tmp`, no `~/Desktop`, stay in project

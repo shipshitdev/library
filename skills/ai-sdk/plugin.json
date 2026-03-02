@@ -1,0 +1,12 @@
+{
+  "name": "ai-sdk",
+  "version": "1.0.0",
+  "description": "This skill should be used when users need to add AI/LLM features to their TypeScript apps using the Vercel AI SDK — streaming chat, completions, tool calling, structured output, RAG, and multi-step agents.",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

@@ -12,8 +12,7 @@ plugins/
 # Local settings (personal profiles)
 .claude/settings.local.json
 
-# Skills installed by `npx skills add` (project-local copies)
-.agents/skills/
+# Skills installed by `npx skills add` (project-local copies — not this repo)
 .claude/skills/
 .codex/
 .cursor/skills/

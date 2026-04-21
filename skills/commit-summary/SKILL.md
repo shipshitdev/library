@@ -2,7 +2,7 @@
 name: commit-summary
 description: Generate meaningful commit messages from staged changes using conventional commits. Use when user says 'commit', 'commit summary', 'generate commit message', or before committing.
 metadata:
-  version: 1.0.0
+  version: "1.0.0"
   tags: git, workflow, commits, productivity
 ---
 

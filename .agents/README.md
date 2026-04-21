@@ -6,23 +6,21 @@ You are working **ON the library**, not in a project that uses it.
 
 | Need to... | Look at... |
 |------------|------------|
-| Find tasks | `TASKS/` |
+| Find tasks | GitHub Issues |
 | Check past context | `SESSIONS/` |
 | Read docs | `SYSTEM/` |
 
 ## Structure
 
 ```
-.agent/
+.agents/
 ├── README.md          # You are here
 ├── SESSIONS/          # Context preservation
-├── TASKS/             # Task queue
 └── SYSTEM/            # All documentation
-    ├── ARCHITECTURE.md         # .agent/ folder explained
+    ├── ARCHITECTURE.md         # .agents/ folder explained
     ├── AI-DEV-LOOP.md          # The /loop workflow
     ├── PLATFORM-ADAPTATIONS.md # Claude vs Codex differences
-    ├── SKILL-MANAGEMENT.md     # Sync workflow
-    └── SYMLINK-CONFIG.md       # Symlink setup
+    └── SKILL-MANAGEMENT.md     # Sync workflow
 ```
 
 ## This Repository
@@ -32,7 +30,7 @@ library/
 ├── skills/              # All skills (single source)
 ├── commands/            # All commands
 ├── bundles/             # Generated marketplace bundles
-├── .agent/              # Library management (you are here)
+├── .agents/             # Library management (you are here)
 └── scripts/             # Scaffolding, validation scripts
 ```
 
@@ -42,10 +40,6 @@ library/
 
 1. Create in `skills/skill-name/SKILL.md`
 2. Update main README.md skill table
-
-### Setting Up Symlinks
-
-See `SYSTEM/SYMLINK-CONFIG.md`
 
 ### Running the Dev Loop
 

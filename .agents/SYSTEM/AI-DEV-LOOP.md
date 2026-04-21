@@ -6,14 +6,14 @@ The `/loop` command enables autonomous task execution with human QA gates.
 
 **One invocation = one task.** The loop is NOT a daemon that runs continuously. Each `/loop` invocation:
 
-1. Picks the highest priority "To Do" task
-2. Claims it (30-minute expiration)
+1. Picks the highest priority task from GitHub Issues
+2. Claims it (assigns to self, adds "in-progress" label)
 3. Implements the solution
 4. Runs automated QA
-5. Moves task to "Testing"
+5. Opens a PR and moves the issue to "Testing" / awaiting review
 6. Exits
 
-The human reviews in `Kaiban.md` and either approves (Done) or rejects (back to To Do).
+The human reviews the PR and either approves (merges / closes issue as Done) or requests changes (issue goes back to open).
 
 ## Workflow Diagram
 
@@ -45,29 +45,26 @@ When you run `/loop`:
 
 ### 1. Task Selection
 
+Query GitHub Issues:
+
 ```
-Find tasks where:
-  - status = "To Do"
-  - (claimed_by is null OR expires_at < now)
+Find issues where:
+  - status = open
+  - label = "to-do" or no in-progress label
 Order by:
-  - priority DESC
+  - priority label DESC
   - created ASC
 Pick first match
 ```
 
 ### 2. Claim Task
 
-```yaml
-claimed_by: claude-code  # or cursor, codex
-claimed_at: 2024-01-16T10:30:00Z
-expires_at: 2024-01-16T11:00:00Z  # 30 min from now
-status: In Progress
-```
+Add "in-progress" label and self-assign the issue to signal it is being worked on.
 
 ### 3. Implement
 
-- Read task requirements
-- Check related PRD sections
+- Read task requirements from the issue body
+- Check related PRD sections or linked issues
 - Implement the solution
 - Follow project conventions
 
@@ -80,12 +77,7 @@ status: In Progress
 
 ### 5. Move to Testing
 
-```yaml
-status: Testing
-claimed_by: null
-claimed_at: null
-expires_at: null
-```
+Open a PR referencing the issue. Remove "in-progress" label and add "testing" label. The issue is now awaiting human review.
 
 ### 6. Exit
 
@@ -93,27 +85,15 @@ Loop ends. Human reviews the work.
 
 ## Human Review
 
-After `/loop` completes, check `Kaiban.md` for tasks in "Testing":
+After `/loop` completes, check GitHub Issues / PRs for items in "Testing":
 
-**Approve:** Move to "Done"
+**Approve:** Merge the PR — issue closes automatically (or close manually).
 
-```yaml
-status: Done
-```
-
-**Reject:** Move back to "To Do" with feedback
-
-```yaml
-status: To Do
----
-## Rejection Feedback
-- Issue 1: Description
-- Issue 2: Description
-```
+**Reject:** Request changes on the PR with specific feedback. Remove "testing" label, add "to-do" so the loop can pick it up again.
 
 ## Multi-Platform Usage
 
-The file-based system enables platform switching:
+The file-based session system enables platform switching:
 
 ```
 User on Claude Code    ─────▶  Rate limited
@@ -132,58 +112,28 @@ User switches to Cursor ─────▶  Picks up same task
 3. **Cursor:** Previous claim expired, picks up next task
 4. **Evening:** Back to Claude Code, continues where left off
 
-All platforms read/write the same `.agent/TASKS/` files.
+All platforms read/write the same `.agents/SESSIONS/` files and GitHub Issues.
 
 ## Rate Limit Handling
 
-The 30-minute claim expiration solves rate limits:
+The GitHub Issue claim system handles rate limits gracefully:
 
 | Scenario | What Happens |
 |----------|--------------|
-| Agent completes task | Claim cleared, task moves to Testing |
-| Agent rate limited | Claim expires after 30 min |
-| Agent crashes | Claim expires after 30 min |
-| User switches platforms | Other agent claims after expiration |
-
-No manual intervention needed. The system self-heals.
-
-## Kaiban.md Integration
-
-`Kaiban.md` is an optional visual task board:
-
-```markdown
-# Kaiban
-
-## Backlog
-- [ ] Task idea 1
-- [ ] Task idea 2
-
-## To Do
-- [ ] Task 001: Feature X (high)
-- [ ] Task 002: Bug Y (medium)
-
-## Testing
-- [ ] Task 003: Feature Z - awaiting review
-
-## Done
-- [x] Task 000: Initial setup
-```
-
-Use it for:
-
-- Quick visual overview
-- Manual task prioritization
-- Review queue management
+| Agent completes task | PR opened, issue moves to Testing |
+| Agent rate limited | Remove in-progress label, issue stays open |
+| Agent crashes | Manually remove in-progress label |
+| User switches platforms | Other agent picks up open issue |
 
 ## Why This Works
 
 | Benefit | How |
 |---------|-----|
-| No external dependencies | File-based state |
-| Multi-platform | Any tool can read/write markdown |
-| Handles failures | Claim expiration |
-| Human oversight | Testing gate requires approval |
-| Context preservation | Session docs + task history |
+| No external dependencies | File-based sessions + GitHub Issues |
+| Multi-platform | Any tool can read/write markdown and GitHub |
+| Handles failures | Re-open issue to re-queue |
+| Human oversight | Testing gate requires PR approval |
+| Context preservation | Session docs + issue history |
 
 ## Commands
 

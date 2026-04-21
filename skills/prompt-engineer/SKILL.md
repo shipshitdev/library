@@ -2,7 +2,7 @@
 name: prompt-engineer
 description: Expert prompt engineer specializing in content generation and social media optimization
 metadata:
-  version: 1.0.0
+  version: "1.0.0"
   tags: prompt-engineering, content-generation, ai, social-media, seo, virality, optimization
 ---
 

@@ -2,7 +2,7 @@
 name: agent-config-audit
 description: Audit and sync AI agent configuration files (CLAUDE.md, CODEX.md, AGENTS.md, .cursorrules, hooks, settings) across workspaces. Use when agent configs drift, rules duplicate, files go stale, or after workspace restructuring.
 metadata:
-  version: 1.0.0
+  version: "1.0.0"
   tags: audit, claude-md, codex-md, agents-md, config, documentation, maintenance
   triggers: audit CLAUDE.md, agent config audit, sync agent configs, check CLAUDE.md, docs out of date, rules duplicated, config drift, stale cursorrules, CODEX.md outdated, agent config maintenance
 allowed-tools:

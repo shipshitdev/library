@@ -1,13 +1,9 @@
 ---
 name: qa-reviewer
 description: Systematically review AI agent work for quality, accuracy, and completeness. Catches bugs, verifies patterns, checks against requirements, and suggests improvements before committing changes.
-version: 1.0.0
-tags:
-  - quality-assurance
-  - verification
-  - code-review
-  - accuracy
-  - completeness
+metadata:
+  version: 1.0.0
+  tags: quality-assurance, verification, code-review, accuracy, completeness
 ---
 
 # QA Reviewer: Systematic Work Verification
@@ -72,7 +68,7 @@ Structured framework for reviewing AI agent work before finalizing changes. Catc
 ls -la <file-path>
 
 # Check balanced code blocks
-grep -c '\`\`\`' file.md
+grep -c '```' file.md
 
 # Find violations
 grep -r "console\.log" <files>

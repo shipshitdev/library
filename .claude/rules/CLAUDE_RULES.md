@@ -4,7 +4,7 @@
 
 ### Forbidden Actions
 - **Background processes**: Use `run_in_background` for long-running tasks (training, generation, server ops). No trailing `&` in commands.
-- **Sequential only**: Run tests/builds one package at a time — `bun run test --filter=@genfeedai/[name]` or `bun build:app @genfeedai/[name]`. Never run the full root suite (`bun test` with no filter) locally — that's CI/CD only. No `pnpm build` at root.
+- **Sequential only**: Run tests/builds one package at a time — `bun run test --filter=<package-name>`. Never run the full root suite (`bun test` with no filter) locally — that's CI/CD only.
 - **Auto-commit/push**: Wait for explicit user request
 - **Work outside workspace**: No `/tmp`, no `~/Desktop`, stay in project
 - **Force push main/master**: Never
@@ -71,8 +71,3 @@
 - Read tool (not cat), Grep tool (not grep), Edit tool (not sed)
 - Save state before context limits
 
-## Frontend (when applicable)
-- Unique typography (avoid Inter, Roboto, Arial)
-- Cohesive color themes with sharp accents
-- CSS animations for micro-interactions
-- Avoid generic "AI slop" aesthetics

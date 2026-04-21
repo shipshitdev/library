@@ -2,7 +2,7 @@
 name: copy-validator
 description: Use this skill when users need to validate sales copy, landing page text, email sequences, or marketing messaging. Activates for "validate my copy," "is my copy good," "rate my headline," or when checking copy quality before publishing.
 metadata:
-  version: 1.0.0
+  version: "1.0.0"
   tags: business, brunson, validation, copywriting, hook-story-offer, sales-copy, messaging
 ---
 

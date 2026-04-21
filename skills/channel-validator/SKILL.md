@@ -2,7 +2,7 @@
 name: channel-validator
 description: Use this skill when users need to validate their marketing channel strategy, assess channel focus, or determine lead gen priorities. Activates for "validate my channels," "am I on the right platforms," "should I focus on X or Y channel," or when assessing marketing spread.
 metadata:
-  version: 1.0.0
+  version: "1.0.0"
   tags: business, hormozi, validation, channels, lead-gen, marketing, focus
 ---
 

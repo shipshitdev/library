@@ -2,7 +2,7 @@
 name: retention-engine
 description: Use this skill when users need to reduce churn, increase customer lifetime value (LTV), build recurring revenue, design upsells/cross-sells, or create customer ascension paths. Activates for retention strategy, subscription optimization, or "customers keep leaving" problems.
 metadata:
-  version: 1.0.0
+  version: "1.0.0"
   tags: business, hormozi, retention, ltv, churn, recurring-revenue, upsells
 ---
 

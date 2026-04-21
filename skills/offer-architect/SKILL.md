@@ -2,7 +2,7 @@
 name: offer-architect
 description: Use this skill when users need to create irresistible offers, design value stacks, optimize product/service positioning, or build "grand slam offers." Activates for offer creation, value propositions, pricing packages, bundles, or when conversions are low.
 metadata:
-  version: 1.0.0
+  version: "1.0.0"
   tags: business, hormozi, offers, value-stack, pricing, conversion
 ---
 

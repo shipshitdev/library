@@ -16,14 +16,14 @@ const CATEGORIES = JSON.parse(readFileSync(join(__dirname, 'plugin-categories.js
 // Get skill description from SKILL.md frontmatter
 function getSkillDescription(skillName) {
   const skillPath = join(SKILLS_DIR, skillName, 'SKILL.md');
-  if (!existsSync(skillPath)) return `${skillName} skill`;
+  if (!existsSync(skillPath)) return null;
 
   const content = readFileSync(skillPath, 'utf-8');
   const match = content.match(/^---\n[\s\S]*?description:\s*(.+?)\n[\s\S]*?---/);
   if (match) {
     return match[1].trim().replace(/^["']|["']$/g, '');
   }
-  return `${skillName} skill`;
+  return null;
 }
 
 const plugins = [];
@@ -43,13 +43,20 @@ const skills = readdirSync(SKILLS_DIR, { withFileTypes: true })
   .map((d) => d.name)
   .sort();
 
+let includedSkillCount = 0;
+
 for (const skillName of skills) {
   const description = getSkillDescription(skillName);
+  if (!description) {
+    console.warn(`Skipping invalid skill directory without SKILL.md: ${skillName}`);
+    continue;
+  }
   plugins.push({
     name: skillName,
     source: `./skills/${skillName}`,
     description: description.slice(0, 100), // Truncate long descriptions
   });
+  includedSkillCount += 1;
 }
 
 const marketplace = {
@@ -70,4 +77,4 @@ writeFileSync(outputPath, JSON.stringify(marketplace, null, 2));
 
 console.log(`Generated marketplace.json with ${plugins.length} plugins:`);
 console.log(`  - ${Object.keys(CATEGORIES.bundles).length} category bundles`);
-console.log(`  - ${skills.length} individual skills`);
+console.log(`  - ${includedSkillCount} individual skills`);

@@ -2,7 +2,7 @@
 name: qa-reviewer
 description: Systematically review AI agent work for quality, accuracy, and completeness. Catches bugs, verifies patterns, checks against requirements, and suggests improvements before committing changes.
 metadata:
-  version: 1.0.0
+  version: "1.0.0"
   tags: quality-assurance, verification, code-review, accuracy, completeness
 ---
 

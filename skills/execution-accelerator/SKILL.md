@@ -2,7 +2,7 @@
 name: execution-accelerator
 description: Use this skill when users are stuck on a decision, overthinking, experiencing analysis paralysis, or need to ship faster. Activates for "should I wait," "I can't decide," "I'm overthinking," or when speed is critical and perfectionism is the enemy.
 metadata:
-  version: 1.0.0
+  version: "1.0.0"
   tags: business, hormozi, execution, speed, decisions, mvp, action
 ---
 

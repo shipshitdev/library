@@ -2,13 +2,13 @@
 name: refactor-code
 description: Systematic approach to safely refactoring code with tests. Use when user says 'refactor', 'clean up code', 'simplify', 'reduce complexity', or 'technical debt'.
 metadata:
-  version: 1.0.0
-  tags: refactoring, code-quality, testing, maintenance
+  version: "1.1.0"
+  tags: "refactoring, code-quality, testing, maintenance, clean-code"
 ---
 
 # Refactor Code
 
-Systematic approach to refactoring code safely.
+Systematic approach to refactoring code safely — improve readability, cohesion, and maintainability without changing behavior.
 
 ## Triggers
 
@@ -18,34 +18,72 @@ Systematic approach to refactoring code safely.
 - Complex conditionals (> 3 levels deep)
 - `any` types
 - Hard to test or understand
+- Vague naming and mixed responsibilities
+- Dead abstractions, dead code, or misleading comments
 
 ## Steps
 
-### 1. Write Tests First
+### 1. Lock Behavior First
 
 Test current behavior comprehensively before changing anything.
 
-### 2. Check Examples
+- Read existing tests before editing
+- If behavior is unclear, derive it from current callers and runtime paths
+- Preserve public contracts unless explicitly asked for API changes
+
+### 2. Study Local Patterns
 
 Find 3+ similar implementations in the codebase to follow.
 
-### 3. Make Small Changes
+- Match naming, error handling, file structure, and test style
+- Reuse existing helpers before introducing new abstractions
 
-Refactor incrementally — one change at a time:
+### 3. Refactor for Clarity
 
-- **Extract Function**: Break long methods into focused helpers
-- **Extract Constants**: Replace magic numbers/strings
-- **Replace `any`**: Define proper TypeScript interfaces
-- **Extract Service**: Move business logic out of controllers
-- **Extract Component**: Split large React components
+Make small, incremental changes — one at a time. Prioritize in order:
 
-### 4. Run Tests After Each Change
+1. Better names
+2. Smaller focused functions (extract long methods into helpers)
+3. Clearer control flow
+4. Removing duplication
+5. Removing dead code and misleading comments
+6. Narrowing types and interfaces (replace `any` with proper types)
+7. Extract constants (replace magic numbers/strings)
+8. Extract service/component (move business logic out of controllers, split large components)
+
+### 4. Avoid Over-Engineering
+
+- Do not introduce patterns just because they are fashionable
+- Prefer straightforward code over clever indirection
+- Extract abstractions only when they reduce real duplication or confusion
+
+### 5. Run Tests After Each Change
 
 ```bash
-npm test -- [specific-test-file]
+bun run test <specific-test-file>
 ```
 
-### 5. Refactoring Checklist
+## Heuristics
+
+- One function should do one job
+- Names should explain intent, not implementation trivia
+- Comments should explain why, not restate what the code already says
+- Conditionals should read top-to-bottom without mental backtracking
+- Shared logic belongs in one place, but not at the cost of unreadable abstractions
+
+## Red Flags (Stop and Reconsider)
+
+- Generic names like `data`, `item`, `temp`, `helper`, `util`
+- Boolean parameters that change function meaning
+- Functions that both fetch, transform, and render
+- Duplicate validation or mapping logic
+- Commented-out code or TODOs masking uncertainty
+- Behavior changes during refactoring
+- Tests start failing
+- Need to change public API
+- Unclear what code does
+
+## Checklist
 
 Before starting:
 
@@ -67,20 +105,3 @@ After:
 - [ ] No behavior changes
 - [ ] Code is more readable
 - [ ] Performance same or better
-
-## Red Flags (Stop and Reconsider)
-
-- Behavior changes during refactoring
-- Tests start failing
-- Need to change public API
-- Unclear what code does
-- No test coverage to verify
-
-## Safe Refactoring Rules
-
-1. Always have tests first
-2. One change at a time
-3. Run tests after each change
-4. Keep same behavior
-5. Don't change public API
-6. Commit working states

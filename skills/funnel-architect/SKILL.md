@@ -2,7 +2,7 @@
 name: funnel-architect
 description: Use this skill when users need to design a sales funnel, map a value ladder, or create a customer journey. Activates for "build my funnel," "design a funnel," "create a value ladder," or when planning landing page sequences.
 metadata:
-  version: 1.0.0
+  version: "1.0.0"
   tags: business, brunson, funnels, dotcom-secrets, value-ladder, landing-pages, conversion
 ---
 

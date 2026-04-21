@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 /**
- * Generate bundled Claude Code plugin from bundle definition
+ * Generate bundled plugins from bundle definitions
  */
 
 const fs = require('fs');
@@ -8,7 +8,7 @@ const path = require('path');
 const { generateManifest } = require('./generate-manifest');
 
 const LIBRARY_ROOT = path.resolve(__dirname, '..');
-const BUNDLES_FILE = path.join(LIBRARY_ROOT, 'bundles.json');
+const BUNDLES_FILE = path.join(__dirname, 'plugin-categories.json');
 const PLUGINS_DIR = path.join(LIBRARY_ROOT, 'plugins', 'bundles', '@agenticdev');
 
 /**
@@ -48,7 +48,21 @@ function loadBundles() {
   }
 
   const content = fs.readFileSync(BUNDLES_FILE, 'utf8');
-  return JSON.parse(content);
+  const categories = JSON.parse(content);
+
+  return {
+    bundles: Object.entries(categories.bundles || {}).map(([id, bundle]) => ({
+      id,
+      name: bundle.name || `${id.charAt(0).toUpperCase()}${id.slice(1)} Bundle`,
+      category: id,
+      description: bundle.description,
+      skills: bundle.skills || [],
+      commands: bundle.commands || [],
+      icon: bundle.icon,
+      tags: bundle.tags || [id],
+      version: bundle.version || '1.0.0',
+    })),
+  };
 }
 
 /**
@@ -210,7 +224,7 @@ if (require.main === module) {
     console.log('  generate-bundle.js all [platform]');
     console.log('');
     console.log('Examples:');
-    console.log('  generate-bundle.js testing-suite cursor');
+    console.log('  generate-bundle.js testing cursor');
     console.log('  generate-bundle.js all cursor');
     console.log('');
     console.log('Available bundles:');

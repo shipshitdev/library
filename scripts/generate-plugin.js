@@ -132,7 +132,16 @@ function generateAllPlugins(platform = 'cursor') {
     const skills = fs
       .readdirSync(skillsDir, { withFileTypes: true })
       .filter((entry) => entry.isDirectory())
-      .map((entry) => entry.name);
+      .map((entry) => entry.name)
+      .filter((skillName) => {
+        const skillFile = path.join(skillsDir, skillName, 'SKILL.md');
+        if (fs.existsSync(skillFile)) {
+          return true;
+        }
+
+        console.warn(`⚠️  Skipping invalid skill directory without SKILL.md: ${skillName}`);
+        return false;
+      });
 
     for (const skill of skills) {
       try {

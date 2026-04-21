@@ -4,13 +4,13 @@
 
 ![Project Type](https://img.shields.io/badge/Project-Library-blue)
 
-250+ AI agent skills for indie developers. Works with Claude Code, OpenAI Codex, and Cursor.
+214+ AI agent skills for indie developers. Works with Claude Code, OpenAI Codex, and Cursor.
 
 ## Directory Structure
 
 ```
 library/
-├── skills/              # All skills (252 skills)
+├── skills/              # All skills (216 skills)
 ├── commands/            # All commands (35 commands)
 ├── bundles/             # Generated marketplace bundles
 ├── .agents/              # Library management (sessions, tasks)
@@ -167,9 +167,7 @@ touch skills/my-skill/SKILL.md
 | [churn-prevention](https://skills.sh/shipshitdev/skills/churn-prevention) | Reduce voluntary and involuntary churn with cancel flows, dynamic save offe | `npx skills add shipshitdev/skills --skill churn-prevention` |
 | [clarify](https://skills.sh/shipshitdev/skills/clarify) | Improve unclear UX copy, error messages, microcopy, labels, and instruction | `npx skills add shipshitdev/skills --skill clarify` |
 | [claude-code-guide](https://skills.sh/shipshitdev/skills/claude-code-guide) | To provide a comprehensive reference for configuring and using Claude Code | `npx skills add shipshitdev/skills --skill claude-code-guide` |
-| [clean-code](https://skills.sh/shipshitdev/skills/clean-code) | Improve readability, cohesion, naming, and maintainability without changing | `npx skills add shipshitdev/skills --skill clean-code` |
 | [clerk-validator](https://skills.sh/shipshitdev/skills/clerk-validator) | Validate Clerk authentication configuration and detect deprecated patterns. | `npx skills add shipshitdev/skills --skill clerk-validator` |
-| [code-refactoring-refactor-clean](https://skills.sh/shipshitdev/skills/code-refactoring-refactor-clean) | You are a code refactoring expert specializing in clean code principles, SO | `npx skills add shipshitdev/skills --skill code-refactoring-refactor-clean` |
 | [code-review](https://skills.sh/shipshitdev/skills/code-review) | Comprehensive code review focusing on quality, security, performance, and t | `npx skills add shipshitdev/skills --skill code-review` |
 | [cofounder-evaluator](https://skills.sh/shipshitdev/skills/cofounder-evaluator) | Use this skill when users need to evaluate potential co-founders, assess fo | `npx skills add shipshitdev/skills --skill cofounder-evaluator` |
 | [cold-email](https://skills.sh/shipshitdev/skills/cold-email) | Write B2B cold emails and follow-up sequences that earn replies. Use when c | `npx skills add shipshitdev/skills --skill cold-email` |
@@ -329,7 +327,6 @@ touch skills/my-skill/SKILL.md
 | [skill-capture](https://skills.sh/shipshitdev/skills/skill-capture) | Extracts valuable learnings, patterns, and workflows from conversations and | `npx skills add shipshitdev/skills --skill skill-capture` |
 | [skill-creator](https://skills.sh/shipshitdev/skills/skill-creator) | Guide for creating effective skills. Use when creating a new skill or updat | `npx skills add shipshitdev/skills --skill skill-creator` |
 | [spec-first](https://skills.sh/shipshitdev/skills/spec-first) | Use when building anything non-trivial. Enforces a spec → plan → execut | `npx skills add shipshitdev/skills --skill spec-first` |
-| [spec-to-code-compliance](https://skills.sh/shipshitdev/skills/spec-to-code-compliance) | Verify code implementation matches specification requirements | `npx skills add shipshitdev/skills --skill spec-to-code-compliance` |
 | [startup-icp-definer](https://skills.sh/shipshitdev/skills/startup-icp-definer) | Use this skill when users need to define their ideal customer profile, iden | `npx skills add shipshitdev/skills --skill startup-icp-definer` |
 | [static-analysis-codeql](https://skills.sh/shipshitdev/skills/static-analysis-codeql) | Scans a codebase for security vulnerabilities using CodeQL's interprocedura | `npx skills add shipshitdev/skills --skill static-analysis-codeql` |
 | [static-analysis-sarif](https://skills.sh/shipshitdev/skills/static-analysis-sarif) | Parses and processes SARIF files from static analysis tools like CodeQL, Se | `npx skills add shipshitdev/skills --skill static-analysis-sarif` |

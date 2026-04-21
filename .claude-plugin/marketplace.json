@@ -76,6 +76,11 @@
       "description": "Session management and documentation"
     },
     {
+      "name": "ab-test-setup",
+      "source": "./skills/ab-test-setup",
+      "description": "When the user wants to plan, design, or implement an A/B test or experiment, or build a growth exper"
+    },
+    {
       "name": "accessibility",
       "source": "./skills/accessibility",
       "description": "Expert in web accessibility (WCAG 2.1 AA compliance) for React/Next.js applications, ensuring all pr"
@@ -126,14 +131,34 @@
       "description": "Expert in RESTful API design, OpenAPI/Swagger documentation, versioning, error handling, and API bes"
     },
     {
+      "name": "api-security-best-practices",
+      "source": "./skills/api-security-best-practices",
+      "description": "Implement secure API design: authentication (JWT, OAuth 2.0, API keys), authorization (RBAC), input "
+    },
+    {
       "name": "artifacts-builder",
       "source": "./skills/artifacts-builder",
       "description": "Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern fronten"
     },
     {
+      "name": "ask-questions-if-underspecified",
+      "source": "./skills/ask-questions-if-underspecified",
+      "description": "Pause and clarify underspecified requirements before implementing. Use when a task has multiple plau"
+    },
+    {
+      "name": "audit",
+      "source": "./skills/audit",
+      "description": "Run technical quality checks across accessibility, performance, theming, responsive design, and anti"
+    },
+    {
       "name": "aws-infrastructure",
       "source": "./skills/aws-infrastructure",
       "description": "Expert in AWS infrastructure setup including EC2, VPC, security groups, Application Load Balancers, "
+    },
+    {
+      "name": "backend-security-coder",
+      "source": "./skills/backend-security-coder",
+      "description": "Expert in secure backend coding: input validation, authentication, injection prevention, CSRF protec"
     },
     {
       "name": "biome-validator",
@@ -149,6 +174,11 @@
       "name": "brand-name-generator",
       "source": "./skills/brand-name-generator",
       "description": "Generate creative brand names, company names, product names, or startup names. Includes naming strat"
+    },
+    {
+      "name": "bun-development",
+      "source": "./skills/bun-development",
+      "description": "Fast, modern JavaScript/TypeScript development with the Bun runtime. Covers installation, project se"
     },
     {
       "name": "bun-validator",
@@ -176,9 +206,34 @@
       "description": "Use this skill when users need to validate their marketing channel strategy, assess channel focus, o"
     },
     {
+      "name": "churn-prevention",
+      "source": "./skills/churn-prevention",
+      "description": "Reduce voluntary and involuntary churn with cancel flows, dynamic save offers, dunning, and win-back"
+    },
+    {
+      "name": "clarify",
+      "source": "./skills/clarify",
+      "description": "Improve unclear UX copy, error messages, microcopy, labels, and instructions to make interfaces easi"
+    },
+    {
+      "name": "claude-code-guide",
+      "source": "./skills/claude-code-guide",
+      "description": "To provide a comprehensive reference for configuring and using Claude Code (the agentic coding tool)"
+    },
+    {
+      "name": "clean-code",
+      "source": "./skills/clean-code",
+      "description": "Improve readability, cohesion, naming, and maintainability without changing behavior. Use when refac"
+    },
+    {
       "name": "clerk-validator",
       "source": "./skills/clerk-validator",
       "description": "Validate Clerk authentication configuration and detect deprecated patterns. Ensures proper proxy.ts "
+    },
+    {
+      "name": "code-refactoring-refactor-clean",
+      "source": "./skills/code-refactoring-refactor-clean",
+      "description": "You are a code refactoring expert specializing in clean code principles, SOLID design patterns, and "
     },
     {
       "name": "code-review",
@@ -189,6 +244,11 @@
       "name": "cofounder-evaluator",
       "source": "./skills/cofounder-evaluator",
       "description": "Use this skill when users need to evaluate potential co-founders, assess founder compatibility, desi"
+    },
+    {
+      "name": "cold-email",
+      "source": "./skills/cold-email",
+      "description": "Write B2B cold emails and follow-up sequences that earn replies. Use when creating outbound prospect"
     },
     {
       "name": "comment-mode",
@@ -226,6 +286,11 @@
       "description": "Expert in browser extension content scripts, DOM integration, and safe page augmentation across mode"
     },
     {
+      "name": "content-strategy",
+      "source": "./skills/content-strategy",
+      "description": "Plan a content strategy, topic clusters, editorial roadmap, and content mix for traffic, authority, "
+    },
+    {
       "name": "context-degradation",
       "source": "./skills/context-degradation",
       "description": "Recognize, diagnose, and mitigate patterns of context degradation in agent systems. Use when context"
@@ -251,6 +316,16 @@
       "description": "Brand voice guardian and conversion-focused copywriter, specializing in direct, no-fluff copy that a"
     },
     {
+      "name": "copywriting",
+      "source": "./skills/copywriting",
+      "description": "Write rigorous, conversion-focused marketing copy for landing pages and emails. Enforces brief confi"
+    },
+    {
+      "name": "critique",
+      "source": "./skills/critique",
+      "description": "Evaluate design from a UX perspective, assessing visual hierarchy, information architecture, emotion"
+    },
+    {
       "name": "cto-advisor",
       "source": "./skills/cto-advisor",
       "description": "Technical leadership guidance for engineering teams, architecture decisions, and technology strategy"
@@ -259,6 +334,11 @@
       "name": "de-slop",
       "source": "./skills/de-slop",
       "description": "Remove AI-generated code artifacts (console.log, any types, unused imports, dead code) while maintai"
+    },
+    {
+      "name": "debug",
+      "source": "./skills/debug",
+      "description": "Comprehensive debugging methodology for finding and fixing bugs (formerly debugging). This skill sho"
     },
     {
       "name": "deploy",
@@ -274,6 +354,11 @@
       "name": "devcontainer-setup",
       "source": "./skills/devcontainer-setup",
       "description": "Set up a .devcontainer for VS Code with Docker, Claude Code CLI support, and configurable options. U"
+    },
+    {
+      "name": "differential-review",
+      "source": "./skills/differential-review",
+      "description": ">"
     },
     {
       "name": "docker-expert",
@@ -299,6 +384,11 @@
       "name": "email-finder",
       "source": "./skills/email-finder",
       "description": "This skill should be used when users need to find email addresses associated with a domain. It activ"
+    },
+    {
+      "name": "email-sequence",
+      "source": "./skills/email-sequence",
+      "description": "When the user wants to create or optimize an email sequence, drip campaign, automated email flow, or"
     },
     {
       "name": "error-handling-expert",
@@ -331,9 +421,54 @@
       "description": "Validate positioning, authority, and messaging strategy using Expert Secrets principles. Assess Attr"
     },
     {
+      "name": "expo-api-routes",
+      "source": "./skills/expo-api-routes",
+      "description": "Guidelines for creating API routes in Expo Router with EAS Hosting"
+    },
+    {
       "name": "expo-architect",
       "source": "./skills/expo-architect",
       "description": "Scaffold a production-ready Expo React Native app with working screens, navigation, and optional Cle"
+    },
+    {
+      "name": "expo-building-native-ui",
+      "source": "./skills/expo-building-native-ui",
+      "description": "Complete guide for building beautiful apps with Expo Router. Covers fundamentals, styling, component"
+    },
+    {
+      "name": "expo-cicd-workflows",
+      "source": "./skills/expo-cicd-workflows",
+      "description": "Helps understand and write EAS workflow YAML files for Expo projects. Use this skill when the user a"
+    },
+    {
+      "name": "expo-data-fetching",
+      "source": "./skills/expo-data-fetching",
+      "description": "Use when implementing or debugging ANY network request, API call, or data fetching. Covers fetch API"
+    },
+    {
+      "name": "expo-deployment",
+      "source": "./skills/expo-deployment",
+      "description": "Deploying Expo apps to iOS App Store, Android Play Store, web hosting, and API routes"
+    },
+    {
+      "name": "expo-dev-client",
+      "source": "./skills/expo-dev-client",
+      "description": "Build and distribute Expo development clients locally or via TestFlight"
+    },
+    {
+      "name": "expo-tailwind-setup",
+      "source": "./skills/expo-tailwind-setup",
+      "description": "Set up Tailwind CSS v4 in Expo with react-native-css and NativeWind v5 for universal styling"
+    },
+    {
+      "name": "expo-upgrading",
+      "source": "./skills/expo-upgrading",
+      "description": "Guidelines for upgrading Expo SDK versions and fixing dependency issues"
+    },
+    {
+      "name": "expo-use-dom",
+      "source": "./skills/expo-use-dom",
+      "description": "Use Expo DOM components to run web code in a webview on native and as-is on web. Migrate web code to"
     },
     {
       "name": "financial-operations-expert",
@@ -341,9 +476,19 @@
       "description": "Use this skill when users need help with business finances, tax planning, bookkeeping, profit/loss a"
     },
     {
+      "name": "form-cro",
+      "source": "./skills/form-cro",
+      "description": "When the user wants to optimize any form that is NOT signup/registration — including lead capture fo"
+    },
+    {
       "name": "frontend-design",
       "source": "./skills/frontend-design",
       "description": "Create distinctive, production-grade frontend interfaces with high design quality. Use this skill wh"
+    },
+    {
+      "name": "frontend-security-coder",
+      "source": "./skills/frontend-security-coder",
+      "description": "Expert in secure frontend coding: XSS prevention, safe DOM manipulation, Content Security Policy, cl"
     },
     {
       "name": "fullstack-workspace-init",
@@ -381,9 +526,19 @@
       "description": "Scan git history for sensitive files, clean leaked credentials, and set up prevention measures. Use "
     },
     {
+      "name": "graphql-architect",
+      "source": "./skills/graphql-architect",
+      "description": "Design and review GraphQL schemas, resolvers, mutations, pagination, and data-loading patterns. Use "
+    },
+    {
+      "name": "growth-engine",
+      "source": "./skills/growth-engine",
+      "description": "Growth engine for digital products: growth hacking, SEO, ASO, viral loops, email marketing, referral"
+    },
+    {
       "name": "html-style",
       "source": "./skills/html-style",
-      "description": ">"
+      "description": "Apply opinionated styling to barebones HTML. Use when user has plain/unstyled HTML and wants to appl"
     },
     {
       "name": "humanizer",
@@ -408,12 +563,27 @@
     {
       "name": "internal-comms",
       "source": "./skills/internal-comms",
-      "description": "A set of resources to help me write all kinds of internal communications, using the formats that my "
+      "description": "Resources for writing internal communications in company-preferred formats. Use when asked to draft "
+    },
+    {
+      "name": "javascript-pro",
+      "source": "./skills/javascript-pro",
+      "description": "Master modern JavaScript with ES6+, async patterns, and Node.js APIs. Handles promises, event loops,"
     },
     {
       "name": "landing-page-vercel",
       "source": "./skills/landing-page-vercel",
       "description": "Scaffold a production-ready static landing page with working email capture form, analytics, and resp"
+    },
+    {
+      "name": "launch-strategy",
+      "source": "./skills/launch-strategy",
+      "description": "When the user wants to plan a product launch, feature announcement, or release strategy. Also use wh"
+    },
+    {
+      "name": "layout",
+      "source": "./skills/layout",
+      "description": "Improve layout, spacing, and visual rhythm. Fixes monotonous grids, inconsistent spacing, and weak v"
     },
     {
       "name": "lead-channel-optimizer",
@@ -431,9 +601,24 @@
       "description": "Set up Biome (default) or ESLint + Prettier, Vitest testing, and pre-commit hooks for any JavaScript"
     },
     {
+      "name": "llm-structured-output",
+      "source": "./skills/llm-structured-output",
+      "description": "Design prompts, schemas, validation, and recovery logic for reliable machine-readable model outputs."
+    },
+    {
       "name": "market-sizer",
       "source": "./skills/market-sizer",
       "description": "Use this skill when users need to calculate market size (TAM/SAM/SOM), assess market opportunity, va"
+    },
+    {
+      "name": "marketing-ideas",
+      "source": "./skills/marketing-ideas",
+      "description": "When the user needs marketing ideas, inspiration, or strategies for their SaaS or software product. "
+    },
+    {
+      "name": "marketing-psychology",
+      "source": "./skills/marketing-psychology",
+      "description": "When the user wants to apply psychological principles, mental models, or behavioral science to marke"
     },
     {
       "name": "mcp-builder",
@@ -476,6 +661,16 @@
       "description": "Use this skill when users need to scope an MVP, define minimum viable features, plan early product d"
     },
     {
+      "name": "neon-postgres",
+      "source": "./skills/neon-postgres",
+      "description": "Expert patterns for Neon serverless Postgres: branching, connection pooling, Prisma/Drizzle integrat"
+    },
+    {
+      "name": "nestjs-expert",
+      "source": "./skills/nestjs-expert",
+      "description": "NestJS architecture, modules, DI, guards, interceptors, pipes, MongoDB/Mongoose integration, auth, a"
+    },
+    {
       "name": "nestjs-queue-architect",
       "source": "./skills/nestjs-queue-architect",
       "description": "Queue job management patterns, processors, and async workflows for video/image processing"
@@ -484,6 +679,16 @@
       "name": "nestjs-testing-expert",
       "source": "./skills/nestjs-testing-expert",
       "description": "Testing patterns for NestJS apps using Jest, covering unit, integration, and e2e tests."
+    },
+    {
+      "name": "nextjs-best-practices",
+      "source": "./skills/nextjs-best-practices",
+      "description": "Next.js App Router principles: Server Components, data fetching, routing patterns, metadata, caching"
+    },
+    {
+      "name": "nextjs-supabase-auth",
+      "source": "./skills/nextjs-supabase-auth",
+      "description": "Expert integration of Supabase Auth with Next.js App Router. Covers browser/server client setup, aut"
     },
     {
       "name": "nextjs-validator",
@@ -506,6 +711,11 @@
       "description": "Validate existing offers using Hormozi's Value Equation. Scores offers, exposes weaknesses, and prov"
     },
     {
+      "name": "onboarding-cro",
+      "source": "./skills/onboarding-cro",
+      "description": "When the user wants to optimize post-signup onboarding, user activation, first-run experience, or ti"
+    },
+    {
       "name": "open-source-checker",
       "source": "./skills/open-source-checker",
       "description": "Expert in detecting private information, secrets, API keys, credentials, and sensitive data in codeb"
@@ -521,9 +731,24 @@
       "description": "Design and maintain TypeScript packages in a monorepo, including exports and build configuration."
     },
     {
+      "name": "page-cro",
+      "source": "./skills/page-cro",
+      "description": "When the user wants to optimize, improve, or increase conversions on any marketing page — including "
+    },
+    {
+      "name": "paid-ads",
+      "source": "./skills/paid-ads",
+      "description": "When the user wants help with paid advertising campaigns on Google Ads, Meta (Facebook/Instagram), L"
+    },
+    {
       "name": "partnership-builder",
       "source": "./skills/partnership-builder",
       "description": "Build revenue-generating partnerships including affiliate programs, integration partnerships, resell"
+    },
+    {
+      "name": "paywall-upgrade-cro",
+      "source": "./skills/paywall-upgrade-cro",
+      "description": "When the user wants to create or optimize in-app paywalls, upgrade screens, upsell modals, or featur"
     },
     {
       "name": "performance-expert",
@@ -546,14 +771,44 @@
       "description": "Initialize Playwright end-to-end testing for Next.js and React projects. Sets up configuration, crea"
     },
     {
+      "name": "playwright-skill",
+      "source": "./skills/playwright-skill",
+      "description": "General-purpose browser automation with Playwright. Write and execute custom Playwright scripts for "
+    },
+    {
+      "name": "polish",
+      "source": "./skills/polish",
+      "description": "Performs a final quality pass fixing alignment, spacing, consistency, and micro-detail issues before"
+    },
+    {
+      "name": "popup-cro",
+      "source": "./skills/popup-cro",
+      "description": "When the user wants to create or optimize popups, modals, overlays, slide-ins, or banners for conver"
+    },
+    {
       "name": "positioning-angles",
       "source": "./skills/positioning-angles",
       "description": "Use this skill when users need to find their unique marketing angle, differentiate from competitors,"
     },
     {
+      "name": "postgres-best-practices",
+      "source": "./skills/postgres-best-practices",
+      "description": "Postgres performance optimization and best practices. Covers query performance, connection managemen"
+    },
+    {
       "name": "pricing-strategist",
       "source": "./skills/pricing-strategist",
       "description": "Use this skill when users need help with pricing strategy, feel they're undercharging, want to raise"
+    },
+    {
+      "name": "prisma-expert",
+      "source": "./skills/prisma-expert",
+      "description": "Expert in Prisma ORM: schema design, migrations, query optimization, N+1 prevention, connection mana"
+    },
+    {
+      "name": "programmatic-seo",
+      "source": "./skills/programmatic-seo",
+      "description": "When the user wants to create SEO-driven pages at scale using templates and data. Also use when the "
     },
     {
       "name": "project-init-orchestrator",
@@ -571,6 +826,16 @@
       "description": "Expert prompt engineer specializing in content generation and social media optimization"
     },
     {
+      "name": "prompt-engineering",
+      "source": "./skills/prompt-engineering",
+      "description": "Expert guide on prompt engineering patterns, best practices, and optimization techniques. Use when u"
+    },
+    {
+      "name": "property-based-testing",
+      "source": "./skills/property-based-testing",
+      "description": "Provides guidance for property-based testing across multiple languages and smart contracts. Use when"
+    },
+    {
       "name": "qa-reviewer",
       "source": "./skills/qa-reviewer",
       "description": "Systematically review AI agent work for quality, accuracy, and completeness. Catches bugs, verifies "
@@ -578,7 +843,22 @@
     {
       "name": "quick-view",
       "source": "./skills/quick-view",
-      "description": "Generate minimal HTML pages to review Claude Code output in a browser. Use when terminal output is h"
+      "description": "Generate minimal HTML pages to review agent output in a browser. Use when terminal output is hard to"
+    },
+    {
+      "name": "quieter",
+      "source": "./skills/quieter",
+      "description": "Tones down visually aggressive or overstimulating designs, reducing intensity while preserving quali"
+    },
+    {
+      "name": "react-component-performance",
+      "source": "./skills/react-component-performance",
+      "description": "Diagnose slow React components and suggest targeted performance fixes."
+    },
+    {
+      "name": "react-hook-form",
+      "source": "./skills/react-hook-form",
+      "description": "React Hook Form performance optimization for client-side form validation using useForm, useWatch, us"
     },
     {
       "name": "react-native-components",
@@ -586,9 +866,49 @@
       "description": "Master React Native 0.79.5 components, styling, performance optimization, and mobile UI best practic"
     },
     {
+      "name": "react-patterns",
+      "source": "./skills/react-patterns",
+      "description": "Modern React patterns and principles. Hooks, composition, performance, TypeScript best practices."
+    },
+    {
+      "name": "react-refactor",
+      "source": "./skills/react-refactor",
+      "description": "Architectural refactoring guide for React applications covering component architecture, state archit"
+    },
+    {
+      "name": "react-testing-library",
+      "source": "./skills/react-testing-library",
+      "description": "React Testing Library best practices for writing maintainable, user-centric tests. Use when writing,"
+    },
+    {
       "name": "refactor-code",
       "source": "./skills/refactor-code",
       "description": "Systematic approach to safely refactoring code with tests. Use when user says 'refactor', 'clean up "
+    },
+    {
+      "name": "resend",
+      "source": "./skills/resend",
+      "description": "Use when working with the Resend email API — sending transactional emails (single or batch), receivi"
+    },
+    {
+      "name": "resend-agent-email-inbox",
+      "source": "./skills/resend-agent-email-inbox",
+      "description": "Use when building any system where email content triggers actions — AI agent inboxes, automated supp"
+    },
+    {
+      "name": "resend-cli",
+      "source": "./skills/resend-cli",
+      "description": ">"
+    },
+    {
+      "name": "resend-email-best-practices",
+      "source": "./skills/resend-email-best-practices",
+      "description": "Use when building email features, emails going to spam, high bounce rates, setting up SPF/DKIM/DMARC"
+    },
+    {
+      "name": "resend-react-email",
+      "source": "./skills/resend-react-email",
+      "description": "Use when building HTML email templates with React components, adding a visual email editor to an app"
     },
     {
       "name": "retention-engine",
@@ -621,14 +941,34 @@
       "description": "Use this skill when users need to validate if their business can scale, stress-test their model, or "
     },
     {
+      "name": "schema-markup",
+      "source": "./skills/schema-markup",
+      "description": "When the user wants to add, fix, or optimize schema markup and structured data on their site. Also u"
+    },
+    {
       "name": "search-domain-validator",
       "source": "./skills/search-domain-validator",
       "description": "This skill should be used when users need to validate domain name format, check domain availability,"
     },
     {
+      "name": "security-audit",
+      "source": "./skills/security-audit",
+      "description": "Comprehensive security auditing workflow covering web application testing, API security, penetration"
+    },
+    {
       "name": "security-expert",
       "source": "./skills/security-expert",
       "description": "Expert in application security, OWASP Top 10, authentication, authorization, data protection, and se"
+    },
+    {
+      "name": "semgrep-rule-creator",
+      "source": "./skills/semgrep-rule-creator",
+      "description": "Creates custom Semgrep rules for detecting security vulnerabilities, bug patterns, and code patterns"
+    },
+    {
+      "name": "seo-audit",
+      "source": "./skills/seo-audit",
+      "description": "When the user wants to audit, review, or diagnose SEO issues on their site. Also use when the user m"
     },
     {
       "name": "serializer-specialist",
@@ -651,9 +991,29 @@
       "description": "Load critical preferences, session history, and inbox tasks at session start. Use when user says 'st"
     },
     {
+      "name": "shadcn",
+      "source": "./skills/shadcn",
+      "description": "shadcn/ui component library best practices and patterns (formerly shadcn-ui). This skill should be u"
+    },
+    {
       "name": "shadcn-setup",
       "source": "./skills/shadcn-setup",
       "description": "Set up shadcn/ui component library with Tailwind CSS v4 configuration. Handles installation, initial"
+    },
+    {
+      "name": "shape",
+      "source": "./skills/shape",
+      "description": "Plan the UX and UI for a feature before writing code. Runs a structured discovery interview, then pr"
+    },
+    {
+      "name": "sharp-edges",
+      "source": "./skills/sharp-edges",
+      "description": "Identifies error-prone APIs, dangerous configurations, and footgun designs that enable security mist"
+    },
+    {
+      "name": "signup-flow-cro",
+      "source": "./skills/signup-flow-cro",
+      "description": "When the user wants to optimize signup, registration, account creation, or trial activation flows. A"
     },
     {
       "name": "skill-capture",
@@ -663,7 +1023,7 @@
     {
       "name": "skill-creator",
       "source": "./skills/skill-creator",
-      "description": "Guide for creating effective skills. This skill should be used when users want to create a new skill"
+      "description": "Guide for creating effective skills. Use when creating a new skill or updating an existing one to ex"
     },
     {
       "name": "spec-first",
@@ -674,6 +1034,21 @@
       "name": "startup-icp-definer",
       "source": "./skills/startup-icp-definer",
       "description": "Use this skill when users need to define their ideal customer profile, identify target personas, map"
+    },
+    {
+      "name": "static-analysis-codeql",
+      "source": "./skills/static-analysis-codeql",
+      "description": ">-"
+    },
+    {
+      "name": "static-analysis-sarif",
+      "source": "./skills/static-analysis-sarif",
+      "description": ">-"
+    },
+    {
+      "name": "static-analysis-semgrep",
+      "source": "./skills/static-analysis-semgrep",
+      "description": ">-"
     },
     {
       "name": "strategy-expert",
@@ -696,6 +1071,11 @@
       "description": "Designs optimal filtering UX for data tables. Use when building a table that needs filters - analyze"
     },
     {
+      "name": "tailwind",
+      "source": "./skills/tailwind",
+      "description": "Tailwind CSS v4 performance optimization and best practices guidelines (formerly tailwindcss-v4-styl"
+    },
+    {
       "name": "tailwind-validator",
       "source": "./skills/tailwind-validator",
       "description": "Validate Tailwind CSS v4 configuration and detect/prevent Tailwind v3 patterns. Use this skill when "
@@ -703,7 +1083,7 @@
     {
       "name": "task-prd-creator",
       "source": "./skills/task-prd-creator",
-      "description": "Use this skill when users request new features, enhancements, bug fixes, or any work that needs plan"
+      "description": "Create a well-written PRD, task, or GitHub issue/sub-issue for a feature, bug, or enhancement. Use w"
     },
     {
       "name": "testing-cicd-init",
@@ -734,6 +1114,36 @@
       "name": "traffic-validator",
       "source": "./skills/traffic-validator",
       "description": "Validate traffic strategy against Traffic Secrets principles. Assess Dream 100, Work In vs. Buy In, "
+    },
+    {
+      "name": "turborepo",
+      "source": "./skills/turborepo",
+      "description": "|"
+    },
+    {
+      "name": "typescript-expert",
+      "source": "./skills/typescript-expert",
+      "description": "TypeScript and JavaScript expert with deep knowledge of type-level programming, performance optimiza"
+    },
+    {
+      "name": "typescript-refactor",
+      "source": "./skills/typescript-refactor",
+      "description": "TypeScript refactoring and modernization guidelines from a principal specialist perspective. This sk"
+    },
+    {
+      "name": "variant-analysis",
+      "source": "./skills/variant-analysis",
+      "description": "Find similar vulnerabilities and bugs across codebases using pattern-based analysis. Use when huntin"
+    },
+    {
+      "name": "vercel-react-best-practices",
+      "source": "./skills/vercel-react-best-practices",
+      "description": "React and Next.js performance optimization guidelines from Vercel Engineering. This skill should be "
+    },
+    {
+      "name": "web-design-guidelines",
+      "source": "./skills/web-design-guidelines",
+      "description": "Review UI code for Web Interface Guidelines compliance. Use when asked to \"review my UI\", \"check acc"
     },
     {
       "name": "workflow-automation",

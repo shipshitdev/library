@@ -30,7 +30,7 @@
     <circle cx="138" cy="38" r="7" fill="#27ca40"/>
 
     <!-- Window title -->
-    <text x="640" y="43" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#6e7681">shipshitdev - library - zsh</text>
+    <text x="640" y="43" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#6e7681">shipshitdev - skills - zsh</text>
   </g>
 
   <!-- Terminal content -->
@@ -39,7 +39,7 @@
     <!-- Line 1: Command -->
     <text x="90" y="85" font-size="15">
       <tspan fill="#7ee787">~</tspan>
-      <tspan fill="#c9d1d9">/library</tspan>
+      <tspan fill="#c9d1d9">/skills</tspan>
       <tspan fill="#6e7681" dx="12">$</tspan>
       <tspan fill="#c9d1d9" dx="8">neofetch</tspan>
     </text>
@@ -48,14 +48,14 @@
     <text x="140" y="145" font-size="52" font-weight="bold" fill="#00d4ff" filter="url(#glow)">shipshit.dev</text>
 
     <!-- Subtitle -->
-    <text x="140" y="185" font-size="28" fill="#8b949e">library</text>
+    <text x="140" y="185" font-size="28" fill="#8b949e">skills</text>
 
     <!-- Info block on the right side -->
     <g font-size="14" fill="#c9d1d9">
       <text x="680" y="120">
         <tspan fill="#7ee787">skills</tspan>
         <tspan fill="#6e7681">:</tspan>
-        <tspan fill="#c9d1d9" dx="4">123</tspan>
+        <tspan fill="#c9d1d9" dx="4">216</tspan>
       </text>
       <text x="680" y="142">
         <tspan fill="#f0883e">commands</tspan>
@@ -65,7 +65,7 @@
       <text x="680" y="164">
         <tspan fill="#a5d6ff">platforms</tspan>
         <tspan fill="#6e7681">:</tspan>
-        <tspan fill="#c9d1d9" dx="4">Claude, Cursor, Codex</tspan>
+        <tspan fill="#c9d1d9" dx="4">Claude Code, Codex</tspan>
       </text>
       <text x="680" y="186">
         <tspan fill="#d2a8ff">type</tspan>
@@ -80,15 +80,15 @@
     <!-- Install command -->
     <text x="90" y="245" font-size="15">
       <tspan fill="#7ee787">~</tspan>
-      <tspan fill="#c9d1d9">/library</tspan>
+      <tspan fill="#c9d1d9">/skills</tspan>
       <tspan fill="#6e7681" dx="12">$</tspan>
-      <tspan fill="#c9d1d9" dx="8">npx add-skill shipshitdev/skills -g</tspan>
+      <tspan fill="#c9d1d9" dx="8">npx skills add shipshitdev/skills -g --skill '*'</tspan>
     </text>
 
     <!-- Output line -->
     <text x="90" y="275" font-size="14">
       <tspan fill="#7ee787">✓</tspan>
-      <tspan fill="#8b949e" dx="8">Installed 123 skills globally</tspan>
+      <tspan fill="#8b949e" dx="8">Installed 216 skills globally</tspan>
     </text>
 
   </g>

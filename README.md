@@ -1,37 +1,40 @@
-![Ship Shit Dev Library](./assets/banner.svg)
+![Ship Shit Dev Skills](./assets/banner.svg)
 
-# Ship Shit Dev Library
+# Ship Shit Dev Skills
 
-![Project Type](https://img.shields.io/badge/Project-Library-blue)
+![Project Type](https://img.shields.io/badge/Project-Skills-blue)
 
-214+ AI agent skills for indie developers. Works with Claude Code, OpenAI Codex, and Cursor.
+216 AI agent skills for indie developers. Works with Claude Code and OpenAI Codex.
 
 ## Directory Structure
 
 ```
-library/
-├── skills/              # All skills (216 skills)
-├── commands/            # All commands (35 commands)
+skills/
+├── skills/              # All skills (216)
+├── commands/            # All commands (35)
 ├── bundles/             # Generated marketplace bundles
-├── .agents/              # Library management (sessions, tasks)
-│   └── SYSTEM/          # Library documentation
-└── scripts/             # Scaffolding, validation scripts
+├── .agents/             # Repo management, memory, meta-skills
+│   ├── SYSTEM/          # Architecture docs, skill standards
+│   ├── memory/          # Repo decisions and context
+│   └── skills/          # Meta-skills for maintaining this repo
+├── .claude/             # Claude Code config (agents, rules)
+├── .codex/              # Codex CLI config
+└── scripts/             # Validation, generation, migration
 ```
 
 ## What's Included
 
-- **Skills**: Specialized agent capabilities for specific domains (e.g., `stripe-implementer`, `mongodb-migration-expert`)
+- **Skills**: Specialized agent capabilities for specific domains (e.g., `stripe-implementer`, `nestjs-expert`)
 - **Commands**: Workflow commands for structured tasks (e.g., `code-review`, `deploy`, `mvp-plan`)
-- **Documentation**: Platform-specific adaptations and management guides
-- **Scripts**: Tooling for syncing, validation, and generation
+- **Scripts**: Validation, generation, and migration tooling
 
 ## Installation
 
 ### Quick Install (Recommended)
 
 ```bash
-# Install all skills globally — pick your agents
-npx skills add shipshitdev/skills -g --agent claude-code cursor codex openclaw --skill '*' -y
+# Install all skills globally for Claude Code and Codex
+npx skills add shipshitdev/skills -g --agent claude-code codex --skill '*' -y
 
 # Install specific skills
 npx skills add shipshitdev/skills -g --skill stripe-implementer -y
@@ -46,7 +49,7 @@ npx skills add shipshitdev/skills --list
 ### Project-local Install
 
 ```bash
-npx skills add shipshitdev/skills --agent claude-code cursor
+npx skills add shipshitdev/skills --agent claude-code codex
 ```
 
 ### Claude Code Plugin (Alternative)
@@ -58,18 +61,10 @@ npx skills add shipshitdev/skills --agent claude-code cursor
 
 ### For Contributors
 
-Clone the repo and use the CLI to install:
-
 ```bash
-git clone https://github.com/shipshitdev/skills.git ~/shipshitdev-library
-cd ~/shipshitdev-library
-npx skills add . -g --agent claude-code cursor codex openclaw --skill '*' -y
-```
-
-After making changes, reinstall to update:
-
-```bash
-npx skills add shipshitdev/skills -g --agent claude-code cursor codex openclaw --skill '*' -y
+git clone https://github.com/shipshitdev/skills.git ~/shipshitdev-skills
+cd ~/shipshitdev-skills
+npx skills add . -g --agent claude-code codex --skill '*' -y
 ```
 
 ## Adding Skills & Commands
@@ -93,46 +88,46 @@ touch skills/my-skill/SKILL.md
 
 ## Documentation
 
-- `.agents/SYSTEM/ARCHITECTURE.md` - .agent folder structure explained
-- `.agents/SYSTEM/AI-DEV-LOOP.md` - The /loop autonomous workflow
-- `.agents/SYSTEM/PLATFORM-ADAPTATIONS.md` - Claude vs Codex vs Cursor differences
-- `.agents/SYSTEM/SKILL-MANAGEMENT.md` - Syncing skills across platforms
+- `.agents/SYSTEM/SKILL-STANDARDS.md` - Agent Skills spec + Claude Code extensions
+- `.agents/SYSTEM/SKILL-MANAGEMENT.md` - Single-source skill workflow
+- `.agents/SYSTEM/ARCHITECTURE.md` - .agents folder structure
+- `.agents/SYSTEM/PLATFORM-ADAPTATIONS.md` - Claude vs Codex writing guide
 
 ## Commands
 
-| Command          | Description                                    | Cursor                                                      |
-|------------------|------------------------------------------------|-------------------------------------------------------------|
-| analyze-codebase | Codebase analysis                               | [analyze-codebase](commands/analyze-codebase.md) |
-| api-test         | API test generation                            | [api-test](commands/api-test.md)             |
-| bug              | Bug capture workflow                            | [bug](commands/bug.md)                       |
-| check-domain     | Domain name generator & availability checker   | [check-domain](commands/check-domain.md)       |
-| clean            | Cleanup workflow                                | [clean](commands/clean.md)                     |
-| code-review      | Code review                                     | [code-review](commands/code-review.md)        |
-| db-setup         | MongoDB/Redis setup                             | [db-setup](commands/db-setup.md)              |
-| de-slop          | Clean AI code artifacts                         | [de-slop](commands/de-slop.md)                |
-| deploy           | Deployment workflows                            | [deploy](commands/deploy.md)                   |
-| docs-generate    | Documentation generation                        | [docs-generate](commands/docs-generate.md)     |
-| docs-update      | Documentation updates                           | [docs-update](commands/docs-update.md)        |
-| end              | End session                                     | [end](commands/end.md)                         |
-| env-setup        | Environment variables                           | [env-setup](commands/env-setup.md)            |
-| inbox            | Process inbox items                             | [inbox](commands/inbox.md)                     |
-| launch           | Launch workflow                                 | [launch](commands/launch.md)                    |
-| migrate          | Database migrations                             | [migrate](commands/migrate.md)                 |
-| monitoring-setup| Sentry/Analytics setup                         | [monitoring-setup](commands/monitoring-setup.md) |
-| mvp-plan         | MVP planning                                    | [mvp-plan](commands/mvp-plan.md)               |
-| new-cmd          | Create new commands                             | [new-cmd](commands/new-cmd.md)                 |
-| new-session      | Create session files                            | [new-session](commands/new-session.md)         |
-| optimize-prompt  | Prompt optimization                             | [optimize-prompt](commands/optimize-prompt.md)  |
-| performance      | Performance analysis                            | [performance](commands/performance.md)           |
-| quick-fix        | Quick fixes                                     | [quick-fix](commands/quick-fix.md)              |
-| refactor-code    | Code refactoring                                | [refactor-code](commands/refactor-code.md)     |
-| review-pr        | PR review                                       | [review-pr](commands/review-pr.md)              |
-| scaffold         | Project scaffolding                             | [scaffold](commands/scaffold.md)                |
-| security-audit   | Security audit                                  | [security-audit](commands/security-audit.md)   |
-| start            | Start session                                   | [start](commands/start.md)                      |
-| task             | Task management                                 | [task](commands/task.md)                         |
-| test             | Test tracking                                   | [test](commands/test.md)                        |
-| validate         | Validation workflow                             | [validate](commands/validate.md)                 |
+| Command | Description |
+|---------|-------------|
+| analyze-codebase | Codebase analysis |
+| api-test | API test generation |
+| bug | Bug capture workflow |
+| check-domain | Domain name generator & availability checker |
+| clean | Cleanup workflow |
+| code-review | Code review |
+| db-setup | MongoDB/Redis setup |
+| de-slop | Clean AI code artifacts |
+| deploy | Deployment workflows |
+| docs-generate | Documentation generation |
+| docs-update | Documentation updates |
+| end | End session |
+| env-setup | Environment variables |
+| inbox | Process inbox items |
+| launch | Launch workflow |
+| migrate | Database migrations |
+| monitoring-setup | Sentry/Analytics setup |
+| mvp-plan | MVP planning |
+| new-cmd | Create new commands |
+| new-session | Create session files |
+| optimize-prompt | Prompt optimization |
+| performance | Performance analysis |
+| quick-fix | Quick fixes |
+| refactor-code | Code refactoring |
+| review-pr | PR review |
+| scaffold | Project scaffolding |
+| security-audit | Security audit |
+| start | Start session |
+| task | Task management |
+| test | Test tracking |
+| validate | Validation workflow |
 
 ## Skills
 

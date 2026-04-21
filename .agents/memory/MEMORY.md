@@ -4,13 +4,34 @@ last_verified: 2026-04-21
 
 ## What This Repo Is
 
-Public skills library at `shipshitdev/skills`. 250+ AI agent skills installable via `npx skills add shipshitdev/skills --skill <name>`. Works with Claude Code, Codex, Cursor, OpenClaw, Gemini.
+Public skills library at `shipshitdev/skills`. 216 skills, 26 commands, 14 bundles. Installable via `npx skills add shipshitdev/skills --skill <name>`. Works with Claude Code, Codex, Cursor, OpenClaw, Gemini.
+
+Published as `@agenticdev/*` packages via generated `plugins/` directory. Marketplace catalog at `.claude-plugin/marketplace.json`.
+
+## Repo Identity
+
+- **Name:** ship-shit-dev-library
+- **Owner:** Vincent (decod3rs) — solo founder, zero-code workflow
+- **License:** MIT
+- **Runtime:** Bun (never npm/yarn/pnpm)
+- **Linting:** markdownlint (markdown), biome (JSON/JS), shellcheck (bash)
+- **CI:** GitHub Actions on push to master — regenerates bundles + marketplace
+
+## Numbers (snapshot 2026-04-21)
+
+| Asset | Count | Location |
+|-------|-------|----------|
+| Skills | 216 | `skills/<name>/SKILL.md` |
+| Commands | 26 | `commands/<name>.md` |
+| Bundles | 14 | `bundles/<bundle>/plugin.json` |
+| Scripts | 15 | `scripts/` |
+| Prompts | 1 | `prompts/prd-interview.md` |
 
 ## Architecture Decisions
 
 ### Single-Source Skills (2026-02-04)
 
-One `skills/` directory at root. No per-platform copies (`.claude/skills/`, `.codex/skills/`). Platform-neutral writing: no tool names, imperative style.
+One `skills/` directory at root. No per-platform copies. Platform-neutral writing: no tool names, imperative style.
 
 ### Agent Skills Spec Compliance (2026-04-21)
 
@@ -39,10 +60,6 @@ All referenced external repos now internal — no external dependencies:
 | Keep react-patterns + react-refactor + react-component-performance | Cleanly separated by concern |
 | Keep all expo-*/resend-*/static-analysis-* families | Non-overlapping topics |
 
-### Nested Directory Cleanup (2026-04-21)
-
-Removed 34 orphaned `skills/<name>/<name>/` nested duplicates. Root cause: old structure was `skills/<name>/<name>/SKILL.md`, flattened to `skills/<name>/SKILL.md` without cleanup.
-
 ## Known Issues
 
 - `prompt-engineer` has hardcoded project paths (`packages/models/content/prompt*.ts`) — needs scrubbing
@@ -56,3 +73,5 @@ Removed 34 orphaned `skills/<name>/<name>/` nested duplicates. Root cause: old s
 - `scripts/validate-skill-sync.sh` — validation script
 - `scripts/generate-manifest.js` — manifest generation
 - `scripts/generate-plugin.js` — plugin.json generation
+- `.claude-plugin/marketplace.json` — full marketplace catalog (generated)
+- `.github/workflows/generate-bundles.yml` — CI pipeline

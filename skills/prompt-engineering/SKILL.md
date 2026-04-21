@@ -1,10 +1,9 @@
 ---
 name: prompt-engineering
-description: Expert guide on prompt engineering patterns, best practices, and optimization techniques. Use when user wants to improve prompts, learn prompting strategies, or debug agent behavior.
+description: Expert guide on prompt engineering patterns, best practices, and optimization techniques. Use when user wants to improve prompts, learn prompting strategies, debug agent behavior, or design content generation prompts.
 metadata:
-  risk: unknown
-  source: community
-  date_added: '2026-02-27'
+  version: "1.0.0"
+  tags: prompt-engineering, ai, optimization, content-generation, templates
 ---
 
 # Prompt Engineering Patterns
@@ -174,9 +173,25 @@ Build prompts that gracefully handle failures:
 - **Ambiguous instructions**: Leaving room for multiple interpretations
 - **Ignoring edge cases**: Not testing on unusual or boundary inputs
 
+## Content & Social Media Prompts
+
+When designing prompts for content generation:
+
+- **Multi-platform awareness**: Design prompts that adapt across articles, social posts, video scripts
+- **Brand voice**: Include tone/style constraints to maintain consistency across generated content
+- **SEO & engagement**: Balance optimization signals with authentic, engaging language
+- **Structured outputs**: Use JSON or markdown schemas for bulk content pipelines
+- **Validation criteria**: Include quality checks and scoring rubrics within the prompt
+
+**Example tasks:**
+
+- Design a prompt template for generating Twitter threads from long-form articles
+- Create a system prompt for brand-consistent LinkedIn post generation
+- Build a prompt pipeline for content repurposing (article → social → email)
+
 ## When to Use
 
-This skill is applicable to execute the workflow or actions described in the overview.
+Activate when user wants to improve prompts, learn prompting strategies, debug agent behavior, or design content generation pipelines.
 
 ## Limitations
 

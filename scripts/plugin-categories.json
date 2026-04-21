@@ -126,7 +126,7 @@
     "ai-agents": {
       "description": "AI agent development and prompt engineering",
       "skills": [
-        "prompt-engineer",
+        "prompt-engineering",
         "mcp-builder",
         "skill-creator",
         "context-fundamentals",
@@ -146,7 +146,7 @@
       "description": "Project setup and workspace initialization",
       "skills": [
         "fullstack-workspace-init",
-        "project-scaffold",
+        "project-init-orchestrator",
         "project-init-orchestrator",
         "linter-formatter-init",
         "clerk-validator",
@@ -195,7 +195,7 @@
     "docker-expert",
     "mongodb-migration-expert",
     "frontend-design",
-    "prompt-engineer",
+    "prompt-engineering",
     "mcp-builder",
     "testing-expert"
   ]

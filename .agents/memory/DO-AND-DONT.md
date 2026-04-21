@@ -75,8 +75,8 @@ last_verified: 2026-04-21
 
 ## WATCH OUT FOR
 
-- `prompt-engineer` skill has hardcoded project paths — needs cleanup
-- `skill-capture` Phase 3 teaches wrong frontmatter format
-- 3 meta-skills have `metadata.tags` as YAML lists instead of strings
+- `prompt-engineer` merged into `prompt-engineering` (2026-04-21)
+- `project-scaffold` merged into `project-init-orchestrator` (2026-04-21)
+- `skill-capture` Phase 3 frontmatter template fixed (2026-04-21)
 - Orphaned nested directories can appear after structure migrations — check with `find skills -mindepth 3`
 - Bundle `plugin.json` files are curated, not generated — treat as source

@@ -4,7 +4,7 @@
 
 ![Project Type](https://img.shields.io/badge/Project-Skills-blue)
 
-160 AI agent skills for indie developers. Works with Claude Code and OpenAI Codex.
+158 AI agent skills for indie developers. Works with Claude Code and OpenAI Codex.
 
 ## Directory Structure
 
@@ -129,7 +129,7 @@ touch skills/my-skill/SKILL.md
 | test | Test tracking |
 | validate | Validation workflow |
 
-## Skills (160)
+## Skills (158)
 
 ### Startup (15)
 
@@ -179,9 +179,9 @@ touch skills/my-skill/SKILL.md
 
 `husky-test-coverage`, `nestjs-testing-expert`, `playwright-e2e-init`, `qa-reviewer`, `testing-cicd-init`, `testing-expert`
 
-### AI Agents (14)
+### AI Agents (13)
 
-`advanced-evaluation`, `agent-browser`, `comment-mode`, `context-degradation`, `context-fundamentals`, `context-optimization`, `evaluation`, `mcp-builder`, `memory-systems`, `multi-agent-patterns`, `prompt-engineer`, `skill-creator`, `spec-first`, `tool-design`
+`advanced-evaluation`, `agent-browser`, `comment-mode`, `context-degradation`, `context-fundamentals`, `context-optimization`, `evaluation`, `mcp-builder`, `memory-systems`, `multi-agent-patterns`, `skill-creator`, `spec-first`, `tool-design`
 
 ### Dev Workflow (18)
 
@@ -195,9 +195,9 @@ touch skills/my-skill/SKILL.md
 
 `agent-folder-init`, `ai-dev-loop`, `session-documenter`, `workspace-performance-audit`
 
-### Workspace Setup (13)
+### Workspace Setup (12)
 
-`artifacts-builder`, `biome-validator`, `bun-validator`, `clerk-validator`, `content-script-developer`, `devcontainer-setup`, `fullstack-workspace-init`, `linter-formatter-init`, `open-source-checker`, `package-architect`, `plasmo-extension-architect`, `project-init-orchestrator`, `project-scaffold`
+`artifacts-builder`, `biome-validator`, `bun-validator`, `clerk-validator`, `content-script-developer`, `devcontainer-setup`, `fullstack-workspace-init`, `linter-formatter-init`, `open-source-checker`, `package-architect`, `plasmo-extension-architect`, `project-init-orchestrator`
 
 ## How Skills Adapt to Projects
 

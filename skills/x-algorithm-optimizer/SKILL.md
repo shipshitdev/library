@@ -296,7 +296,7 @@ The model is pure ML prediction. Implications:
 |-------|-------------|
 | `content-creator` | Generate tweet/thread content |
 | `copywriter` | Brand voice consistency |
-| `prompt-engineer` | Content generation prompts |
+| `prompt-engineering` | Content generation prompts |
 | `youtube-video-analyst` | Apply hook patterns from video |
 
 ---

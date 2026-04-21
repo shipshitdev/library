@@ -27,6 +27,13 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 SKILLS_DIR="$REPO_ROOT/skills"
+EXISTING_SKILLS="$(
+    find "$SKILLS_DIR" -mindepth 1 -maxdepth 1 -type d | while read -r skill_dir; do
+        if [[ -f "$skill_dir/SKILL.md" ]]; then
+            basename "$skill_dir"
+        fi
+    done | sort
+)"
 
 SKILL_NAME="${1:-}"
 
@@ -38,6 +45,11 @@ SKILLS_WITH_ISSUES=0
 
 # Skills that legitimately need limited platform references in subject matter
 PLATFORM_EXEMPT_SKILLS=""
+
+skill_exists() {
+    local skill_name="$1"
+    grep -Fxq "$skill_name" <<< "$EXISTING_SKILLS"
+}
 
 # Function to check frontmatter
 check_frontmatter() {
@@ -274,6 +286,94 @@ check_platform_paths() {
     return $warnings
 }
 
+# Function to check for external skill handoffs
+check_external_handoffs() {
+    local file="$1"
+    local warnings=0
+
+    if [[ ! -f "$file" ]]; then
+        return 0
+    fi
+
+    local patterns=(
+        "Complementary Skills (External)"
+        "/plugin marketplace add"
+        "github.com/coreyhaines31/marketingskills"
+        "github.com/trailofbits/skills"
+        "github.com/resend/resend-skills"
+    )
+
+    for pattern in "${patterns[@]}"; do
+        if grep -Fq "$pattern" "$file"; then
+            local line_num
+            line_num=$(grep -n -F "$pattern" "$file" | head -1 | cut -d: -f1)
+            echo -e "  ${YELLOW}⚠${NC} External skill handoff: '$pattern' (line $line_num)"
+            ((warnings++))
+        fi
+    done
+
+    return $warnings
+}
+
+# Function to check for missing local skill references in routing sections
+check_missing_skill_references() {
+    local file="$1"
+    local warnings=0
+
+    if [[ ! -f "$file" ]]; then
+        return 0
+    fi
+
+    while IFS=: read -r line_num ref; do
+        [[ -n "$ref" ]] || continue
+
+        if ! skill_exists "$ref"; then
+            echo -e "  ${YELLOW}⚠${NC} Missing local skill reference: '$ref' (line $line_num)"
+            ((warnings++))
+        fi
+    done < <(
+        python3 - "$file" <<'PY'
+import pathlib
+import re
+import sys
+
+path = pathlib.Path(sys.argv[1])
+headings = {
+    "Related Skills",
+    "Integration",
+    "Integration with Other Skills",
+    "When to Route Elsewhere",
+    "Complementary Skills (External)",
+    "Skills to Invoke",
+    "Related Workflow Bundles",
+}
+patterns = [
+    re.compile(r"^\|\s*`([a-z0-9]+(?:-[a-z0-9]+)+)`\s*\|"),
+    re.compile(r"^\s*-\s+`([a-z0-9]+(?:-[a-z0-9]+)+)`\b"),
+    re.compile(r"→\s*`([a-z0-9]+(?:-[a-z0-9]+)+)`\s*$"),
+    re.compile(r"Use @([a-z0-9]+(?:-[a-z0-9]+)+)"),
+]
+
+active = False
+for lineno, line in enumerate(path.read_text().splitlines(), 1):
+    heading = re.match(r"^(#{2,4})\s+(.*)$", line)
+    if heading:
+        active = heading.group(2).strip() in headings
+        continue
+
+    if not active:
+        continue
+
+    for pattern in patterns:
+        match = pattern.search(line)
+        if match:
+            print(f"{lineno}:{match.group(1)}")
+PY
+    )
+
+    return $warnings
+}
+
 # Function to check SKILL.md line count
 check_line_count() {
     local file="$1"
@@ -309,7 +409,9 @@ validate_skill() {
         ((skill_warnings += frontmatter_warnings))
 
         # Platform-agnostic checks
-        check_tool_references "$skill_file" || skill_warnings=$?
+        local tool_warnings=0
+        check_tool_references "$skill_file" || tool_warnings=$?
+        ((skill_warnings += tool_warnings))
 
         local name_warnings=0
         check_platform_names "$skill_file" "$skill_name" || name_warnings=$?
@@ -318,6 +420,14 @@ validate_skill() {
         local path_warnings=0
         check_platform_paths "$skill_file" "$skill_name" || path_warnings=$?
         ((skill_warnings += path_warnings))
+
+        local handoff_warnings=0
+        check_external_handoffs "$skill_file" || handoff_warnings=$?
+        ((skill_warnings += handoff_warnings))
+
+        local reference_warnings=0
+        check_missing_skill_references "$skill_file" || reference_warnings=$?
+        ((skill_warnings += reference_warnings))
 
         local line_warnings=0
         check_line_count "$skill_file" || line_warnings=$?
@@ -338,6 +448,10 @@ validate_skill() {
                     local ref_path_warnings=0
                     check_platform_paths "$ref_file" "$skill_name" || ref_path_warnings=$?
                     ((skill_warnings += ref_path_warnings))
+
+                    local ref_handoff_warnings=0
+                    check_external_handoffs "$ref_file" || ref_handoff_warnings=$?
+                    ((skill_warnings += ref_handoff_warnings))
                 fi
             done
         fi

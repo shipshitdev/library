@@ -297,7 +297,7 @@ await expect(async () => {
 |-------|-------------|
 | `testing-cicd-init` | Sets up unit tests first |
 | `testing-expert` | Provides testing patterns |
-| `webapp-testing` | Alternative automation skill |
+| `debug` | Investigates flaky tests and failing browser flows |
 
 ---
 

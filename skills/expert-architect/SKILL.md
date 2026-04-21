@@ -393,14 +393,10 @@ Unlike [old way/competitors],
 - If user needs **funnel design** → `funnel-architect`
 - If user is **stuck** → `execution-accelerator`
 
-## Complementary Skills (External)
+## Related Local Skills
 
-For launch tactics and execution, pair with [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills):
-
-```
-/plugin marketplace add coreyhaines31/marketingskills
-```
-
-| Skill | Why |
-|-------|-----|
-| `launch-strategy` | Tactical launch execution and campaign planning |
+| Skill | When to Use |
+|-------|-------------|
+| `offer-architect` | Turn positioning into a concrete offer structure |
+| `funnel-architect` | Map the expert narrative into a funnel |
+| `copywriter` | Write the landing page and messaging from the positioning work |

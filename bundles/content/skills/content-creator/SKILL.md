@@ -3,7 +3,7 @@ name: content-creator
 description: Expert content creator specializing in newsletters and tweets that capture your authentic voice. Creates engaging, on-brand content for newsletters and social media (X/Twitter) that reflects your unique style and tone. Activates when users want to create newsletters, tweets, social media content, or content lineups.
 license: Complete terms in LICENSE.txt
 metadata:
-  version: 1.0.0
+  version: "1.0.0"
   tags: content-creation, newsletter, social-media, twitter, brand-voice, content-strategy
 ---
 
@@ -75,18 +75,6 @@ Expert content creator specializing in newsletters and tweets that authentically
 | `copywriter` | Brand voice consistency |
 | `strategy-expert` | Content strategy planning |
 | `planning-assistant` | Content calendar management |
-
-## Complementary Skills (External)
-
-For social media tactics and templates, pair with [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills):
-
-```
-/plugin marketplace add coreyhaines31/marketingskills
-```
-
-| Skill | Why |
-|-------|-----|
-| `social-content` | Social media content templates and tactics |
 
 ---
 

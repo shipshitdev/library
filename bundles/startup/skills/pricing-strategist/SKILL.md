@@ -2,7 +2,7 @@
 name: pricing-strategist
 description: Use this skill when users need help with pricing strategy, feel they're undercharging, want to raise prices confidently, or need to position offerings as premium. Activates for pricing questions, value-based pricing, competitor pricing analysis, or pricing confidence issues.
 metadata:
-  version: 1.0.0
+  version: "1.0.0"
   tags: business, hormozi, pricing, value, premium, positioning
 ---
 
@@ -306,15 +306,3 @@ Every [time period] without this costs $X in [lost revenue/time/opportunity].
 - If the problem is **not enough leads** → `lead-channel-optimizer`
 - If the user is **stuck/can't decide** → `execution-accelerator`
 - If the **business model doesn't work at scale** → `business-model-auditor`
-
-## Complementary Skills (External)
-
-For tactical pricing packaging, pair with [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills):
-
-```
-/plugin marketplace add coreyhaines31/marketingskills
-```
-
-| Skill | Why |
-|-------|-----|
-| `pricing-strategy` | Packaging, tiers, and pricing page optimization |

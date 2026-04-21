@@ -62,9 +62,7 @@ All referenced external repos now internal — no external dependencies:
 
 ## Known Issues
 
-- `prompt-engineer` has hardcoded project paths (`packages/models/content/prompt*.ts`) — needs scrubbing
-- `skill-capture` Phase 3 template teaches wrong frontmatter (top-level `version`, list-style `tags`)
-- 3 meta-skills have `metadata.tags` as YAML lists instead of strings
+None currently tracked.
 
 ## Key Files
 

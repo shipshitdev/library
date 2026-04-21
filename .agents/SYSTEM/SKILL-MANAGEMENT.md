@@ -28,6 +28,7 @@ See [PLATFORM-ADAPTATIONS.md](PLATFORM-ADAPTATIONS.md) for the full writing guid
 3. **Shared frontmatter baseline** — keep `version`, `tags`, and custom metadata inside `metadata`; keep official Claude extension fields top-level when intentionally used
 4. **No hardcoded paths** — use relative paths for bundled resources
 5. **Imperative style** — "Use when...", "Run the command...", "Check for..."
+6. **Rewrite imported skills before shipping** — upstream skills may be used as references, but the shipped `SKILL.md` must be reviewed, rewritten, and made consistent with this repo's security posture, naming, and cross-skill conventions
 
 ## When Platform-Specific Content Is Needed
 

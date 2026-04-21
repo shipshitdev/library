@@ -2,7 +2,7 @@
 name: copywriter
 description: Brand voice guardian and conversion-focused copywriter, specializing in direct, no-fluff copy that adapts to project's brand voice
 metadata:
-  version: 1.0.0
+  version: "1.0.0"
   tags: copywriting, brand-voice, marketing, content, conversion, ux-writing
 ---
 
@@ -344,16 +344,10 @@ Ensure copy is consistent across all project platforms:
 
 All platforms should reflect the same discovered brand voice, terminology, and value propositions.
 
-## Complementary Skills (External)
+## Related Local Skills
 
-For persuasion psychology and copy editing, pair with [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills):
-
-```
-/plugin marketplace add coreyhaines31/marketingskills
-```
-
-| Skill | Why |
-|-------|-----|
-| `copywriting` | Persuasion frameworks and conversion copy |
-| `copy-editing` | Polish and refine existing copy |
-| `marketing-psychology` | 70+ mental models for persuasion |
+| Skill | When to Use |
+|-------|-------------|
+| `copy-validator` | Review finished copy for clarity, tone, and persuasion |
+| `expert-architect` | Rework positioning before rewriting the message |
+| `offer-architect` | Fix the offer when copy alone cannot carry conversion |

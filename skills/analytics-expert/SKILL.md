@@ -241,15 +241,10 @@ To identify trends from analytics data:
 - `roi-report-template.md`: Template for ROI analysis reports
 - `trend-analysis-template.md`: Template for trend identification reports
 
-## Complementary Skills (External)
+## Related Local Skills
 
-For A/B testing and analytics tracking, pair with [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills):
-
-```
-/plugin marketplace add coreyhaines31/marketingskills
-```
-
-| Skill | Why |
-|-------|-----|
-| `analytics-tracking` | Tracking setup and event configuration |
-| `ab-test-setup` | A/B test design and implementation |
+| Skill | When to Use |
+|-------|-------------|
+| `copywriter` | Turn analytics findings into revised messaging |
+| `funnel-architect` | Redesign the funnel when analytics shows structural drop-off |
+| `traffic-architect` | Adjust channels and acquisition mix based on performance data |

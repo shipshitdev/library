@@ -2,7 +2,7 @@
 name: offer-architect
 description: Use this skill when users need to create irresistible offers, design value stacks, optimize product/service positioning, or build "grand slam offers." Activates for offer creation, value propositions, pricing packages, bundles, or when conversions are low.
 metadata:
-  version: 1.0.0
+  version: "1.0.0"
   tags: business, hormozi, offers, value-stack, pricing, conversion
 ---
 
@@ -321,16 +321,3 @@ Only 5 clients per month (we write your content personally)."
 - If the problem is **getting leads** → `lead-channel-optimizer`
 - If the problem is **customer churn** → `retention-engine`
 - If the user is **stuck/overthinking** → `execution-accelerator`
-
-## Complementary Skills (External)
-
-For tactical CRO and pricing execution, pair with [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills):
-
-```
-/plugin marketplace add coreyhaines31/marketingskills
-```
-
-| Skill | Why |
-|-------|-----|
-| `page-cro` | Optimize landing pages where your offer lives |
-| `pricing-strategy` | Tactical pricing packaging and tiers |

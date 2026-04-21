@@ -2,7 +2,7 @@
 name: traffic-architect
 description: Design traffic strategy, build Dream 100 list, or plan audience acquisition using Traffic Secrets principles. Activates for "build my traffic plan," "create my Dream 100," or traffic acquisition planning.
 metadata:
-  version: 1.0.0
+  version: "1.0.0"
   tags: business, brunson, traffic-secrets, dream-100, audience, acquisition, marketing
 ---
 
@@ -79,20 +79,6 @@ Ask:
 | `funnel-architect` | Design funnel |
 | `channel-validator` | Validate channel focus |
 | `copy-validator` | Validate hooks |
-
-## Complementary Skills (External)
-
-For tactical paid ads and SEO execution, pair with [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills):
-
-```
-/plugin marketplace add coreyhaines31/marketingskills
-```
-
-| Skill | Why |
-|-------|-----|
-| `paid-ads` | Execute paid traffic campaigns |
-| `programmatic-seo` | Scale organic traffic with programmatic pages |
-| `seo-audit` | Audit and optimize existing SEO |
 
 ---
 

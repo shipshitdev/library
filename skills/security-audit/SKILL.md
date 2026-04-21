@@ -1,247 +1,165 @@
 ---
 name: security-audit
-description: Comprehensive security auditing workflow covering web application testing, API security, penetration testing, vulnerability scanning, and security hardening.
+description: Run a self-contained security audit workflow for web applications and APIs, covering scoping, reconnaissance, manual testing, API review, hardening, and reporting.
 metadata:
-  category: workflow-bundle
-  risk: safe
-  source: personal
-  date_added: '2026-02-27'
+  version: "1.0.0"
+  tags: "security, audit, web, api, hardening"
 ---
 
-# Security Auditing Workflow Bundle
+# Security Audit
+
+Standalone workflow for reviewing a web application or API without depending on other skills.
 
-## Overview
+## When to Use
 
-Comprehensive security auditing workflow for web applications, APIs, and infrastructure. This bundle orchestrates skills for penetration testing, vulnerability assessment, security scanning, and remediation.
+Use this skill when:
 
-## When to Use This Workflow
+- auditing a web application or API for security issues
+- reviewing authentication, authorization, or session handling
+- checking input validation, injection risk, or data exposure
+- performing a structured hardening and reporting pass before release
 
-Use this workflow when:
+## Scope and Safety
 
-- Performing security audits on web applications
-- Testing API security
-- Conducting penetration tests
-- Scanning for vulnerabilities
-- Hardening application security
-- Compliance security assessments
+- Confirm the target, authorized boundaries, and whether testing is read-only or allows active probing.
+- Do not run destructive checks, high-volume fuzzing, or denial-of-service style traffic unless explicitly authorized.
+- Record assumptions, environment limits, and access level before starting.
+- Prefer reproducible evidence over broad claims.
 
-## Workflow Phases
+## Audit Workflow
+
+### Phase 1: Scope and Reconnaissance
+
+1. Identify the in-scope domains, apps, APIs, jobs, and background workers.
+2. Map the attack surface:
+   - routes and entry points
+   - authentication flows
+   - admin surfaces
+   - file upload or import paths
+   - third-party callbacks and webhooks
+3. Note the framework, hosting model, data stores, and external integrations.
+4. Build a simple asset inventory before testing.
+
+### Phase 2: Baseline Review
 
-### Phase 1: Reconnaissance
+1. Check dependency versions, known exposure areas, and obvious misconfigurations.
+2. Review environment and deployment assumptions:
+   - secret handling
+   - logging
+   - debug mode
+   - CORS
+   - cookie flags
+   - security headers
+3. Identify areas where automated scanning would be useful, but keep the workflow self-contained: describe the scan you would run and why.
 
-#### Skills to Invoke
+### Phase 3: Manual Web Application Testing
 
-- `scanning-tools` - Security scanning
-- `shodan-reconnaissance` - Shodan searches
-- `top-web-vulnerabilities` - OWASP Top 10
-
-#### Actions
-
-1. Identify target scope
-2. Gather intelligence
-3. Map attack surface
-4. Identify technologies
-5. Document findings
-
-#### Copy-Paste Prompts
-
-```
-Use @scanning-tools to perform initial reconnaissance
-```
-
-```
-Use @shodan-reconnaissance to find exposed services
-```
-
-### Phase 2: Vulnerability Scanning
-
-#### Skills to Invoke
-
-- `vulnerability-scanner` - Vulnerability analysis
-- `security-scanning-security-sast` - Static analysis
-- `security-scanning-security-dependencies` - Dependency scanning
-
-#### Actions
-
-1. Run automated scanners
-2. Perform static analysis
-3. Scan dependencies
-4. Identify misconfigurations
-5. Document vulnerabilities
-
-#### Copy-Paste Prompts
-
-```
-Use @vulnerability-scanner to scan for OWASP Top 10 vulnerabilities
-```
-
-```
-Use @security-scanning-security-dependencies to audit dependencies
-```
-
-### Phase 3: Web Application Testing
-
-#### Skills to Invoke
-
-- `top-web-vulnerabilities` - OWASP vulnerabilities
-- `sql-injection-testing` - SQL injection
-- `xss-html-injection` - XSS testing
-- `broken-authentication` - Authentication testing
-- `idor-testing` - IDOR testing
-- `file-path-traversal` - Path traversal
-- `burp-suite-testing` - Burp Suite testing
-
-#### Actions
-
-1. Test for injection flaws
-2. Test authentication mechanisms
-3. Test session management
-4. Test access controls
-5. Test input validation
-6. Test security headers
-
-#### Copy-Paste Prompts
-
-```
-Use @sql-injection-testing to test for SQL injection vulnerabilities
-```
-
-```
-Use @xss-html-injection to test for cross-site scripting
-```
-
-```
-Use @broken-authentication to test authentication security
-```
-
-### Phase 4: API Security Testing
-
-#### Skills to Invoke
-
-- `api-fuzzing-bug-bounty` - API fuzzing
-- `api-security-best-practices` - API security
-
-#### Actions
-
-1. Enumerate API endpoints
-2. Test authentication/authorization
-3. Test rate limiting
-4. Test input validation
-5. Test error handling
-6. Document API vulnerabilities
-
-#### Copy-Paste Prompts
-
-```
-Use @api-fuzzing-bug-bounty to fuzz API endpoints
-```
-
-### Phase 5: Penetration Testing
-
-#### Skills to Invoke
-
-- `pentest-commands` - Penetration testing commands
-- `pentest-checklist` - Pentest planning
-- `ethical-hacking-methodology` - Ethical hacking
-- `metasploit-framework` - Metasploit
-
-#### Actions
-
-1. Plan penetration test
-2. Execute attack scenarios
-3. Exploit vulnerabilities
-4. Document proof of concept
-5. Assess impact
-
-#### Copy-Paste Prompts
-
-```
-Use @pentest-checklist to plan penetration test
-```
-
-```
-Use @pentest-commands to execute penetration testing
-```
-
-### Phase 6: Security Hardening
-
-#### Skills to Invoke
-
-- `security-scanning-security-hardening` - Security hardening
-- `auth-implementation-patterns` - Authentication
-- `api-security-best-practices` - API security
-
-#### Actions
-
-1. Implement security controls
-2. Configure security headers
-3. Set up authentication
-4. Implement authorization
-5. Configure logging
-6. Apply patches
-
-#### Copy-Paste Prompts
-
-```
-Use @security-scanning-security-hardening to harden application security
-```
-
-### Phase 7: Reporting
-
-#### Skills to Invoke
-
-- `reporting-standards` - Security reporting
-
-#### Actions
-
-1. Document findings
-2. Assess risk levels
-3. Provide remediation steps
-4. Create executive summary
-5. Generate technical report
-
-## Security Testing Checklist
-
-### OWASP Top 10
-
-- [ ] Injection (SQL, NoSQL, OS, LDAP)
-- [ ] Broken Authentication
-- [ ] Sensitive Data Exposure
-- [ ] XML External Entities (XXE)
-- [ ] Broken Access Control
-- [ ] Security Misconfiguration
-- [ ] Cross-Site Scripting (XSS)
-- [ ] Insecure Deserialization
-- [ ] Using Components with Known Vulnerabilities
-- [ ] Insufficient Logging & Monitoring
-
-### API Security
-
-- [ ] Authentication mechanisms
-- [ ] Authorization checks
-- [ ] Rate limiting
-- [ ] Input validation
-- [ ] Error handling
-- [ ] Security headers
-
-## Quality Gates
-
-- [ ] All planned tests executed
-- [ ] Vulnerabilities documented
-- [ ] Proof of concepts captured
-- [ ] Risk assessments completed
-- [ ] Remediation steps provided
-- [ ] Report generated
-
-## Related Workflow Bundles
-
-- `development` - Secure development practices
-- `wordpress` - WordPress security
-- `cloud-devops` - Cloud security
-- `testing-qa` - Security testing
-
-## Limitations
-
-- Use this skill only when the task clearly matches the scope described above.
-- Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
-- Stop and ask for clarification if required inputs, permissions, safety boundaries, or success criteria are missing.
+Check:
+
+- injection risk in query params, forms, search, filters, uploads, and template rendering
+- XSS risk in stored, reflected, and DOM-driven flows
+- broken authentication, weak session handling, and insecure password reset flows
+- broken access control and IDOR patterns across user, team, and admin scopes
+- CSRF exposure on state-changing requests
+- path traversal, file handling, and unsafe object access
+- sensitive data exposure in UI, logs, client storage, and error messages
+
+For each finding, capture:
+
+- entry point
+- required privileges
+- reproduction steps
+- observed impact
+- fix direction
+
+### Phase 4: API Security Review
+
+Check:
+
+- endpoint inventory and undocumented routes
+- authn/authz coverage on every state-changing endpoint
+- tenant isolation and object-level authorization
+- rate limiting and abuse resistance
+- request validation and schema enforcement
+- unsafe defaults in error responses
+- webhook signature verification and replay handling
+
+Where useful, describe the exact request variants that should be tested:
+
+- missing auth
+- low-privilege auth
+- cross-tenant identifiers
+- malformed payloads
+- boundary values
+- repeated requests
+
+### Phase 5: Hardening Review
+
+Review:
+
+- password and token lifecycle
+- MFA or step-up auth where appropriate
+- least-privilege roles and admin separation
+- audit logging for privileged actions
+- secrets management and rotation
+- SSRF, open redirect, and outbound request controls
+- file upload validation and storage isolation
+- backup, recovery, and incident response readiness
+
+### Phase 6: Reporting
+
+Produce a report with:
+
+1. Executive summary
+2. Scope and methodology
+3. Findings ordered by severity
+4. Reproduction notes and evidence
+5. Remediation guidance
+6. Residual risks and follow-up checks
+
+## Security Checklist
+
+### Web
+
+- [ ] Authentication flows reviewed
+- [ ] Authorization boundaries reviewed
+- [ ] Session handling reviewed
+- [ ] Input validation reviewed
+- [ ] Injection risk reviewed
+- [ ] XSS risk reviewed
+- [ ] CSRF protection reviewed
+- [ ] Error handling and data exposure reviewed
+
+### API
+
+- [ ] Endpoint inventory captured
+- [ ] Auth coverage checked per endpoint
+- [ ] Object-level authorization checked
+- [ ] Rate limiting reviewed
+- [ ] Validation and schema handling reviewed
+- [ ] Webhook verification reviewed
+
+### Operations
+
+- [ ] Secrets handling reviewed
+- [ ] Logging and audit trail reviewed
+- [ ] Security headers and cookie settings reviewed
+- [ ] Dependency posture reviewed
+- [ ] Recovery and incident readiness reviewed
+
+## Output Standard
+
+Every finding should include:
+
+- title
+- severity
+- affected surface
+- reproduction steps
+- impact
+- remediation
+- confidence level
+
+## Limits
+
+- This skill structures the audit; it does not replace environment-specific testing or specialist review.
+- If access, authorization, or rules of engagement are unclear, stop and clarify before continuing.

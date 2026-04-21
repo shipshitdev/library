@@ -99,10 +99,9 @@ Transform conversational insights into SKILL.md format:
 ---
 name: <skill-name>
 description: <One sentence describing what the skill does and when to use it>
-version: 1.0.0
-tags:
-  - <relevant>
-  - <tags>
+metadata:
+  version: "1.0.0"
+  tags: relevant, tags
 ---
 
 # <Skill Title>

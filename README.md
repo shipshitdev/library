@@ -4,13 +4,13 @@
 
 ![Project Type](https://img.shields.io/badge/Project-Skills-blue)
 
-216 AI agent skills for indie developers. Works with Claude Code and OpenAI Codex.
+160 AI agent skills for indie developers. Works with Claude Code and OpenAI Codex.
 
 ## Directory Structure
 
 ```
 skills/
-├── skills/              # All skills (216)
+├── skills/              # All skills (160)
 ├── commands/            # All commands (35)
 ├── bundles/             # Generated marketplace bundles
 ├── .agents/             # Repo management, memory, meta-skills
@@ -129,7 +129,7 @@ touch skills/my-skill/SKILL.md
 | test | Test tracking |
 | validate | Validation workflow |
 
-## Skills (216)
+## Skills (160)
 
 ### Startup (15)
 
@@ -139,9 +139,9 @@ touch skills/my-skill/SKILL.md
 
 `channel-validator`, `competitive-intelligence-analyst`, `email-finder`, `funnel-architect`, `funnel-validator`, `lead-channel-optimizer`, `leads-researcher`, `outbound-optimizer`, `partnership-builder`, `retention-engine`, `support-systems-architect`, `traffic-architect`, `traffic-validator`
 
-### Marketing & CRO (21)
+### Marketing & CRO (1)
 
-`ab-test-setup`, `churn-prevention`, `cold-email`, `content-strategy`, `copywriting`, `email-sequence`, `form-cro`, `growth-engine`, `launch-strategy`, `marketing-ideas`, `marketing-psychology`, `onboarding-cro`, `page-cro`, `paid-ads`, `paywall-upgrade-cro`, `popup-cro`, `programmatic-seo`, `schema-markup`, `seo-audit`, `signup-flow-cro`, `x-algorithm-optimizer`
+`x-algorithm-optimizer`
 
 ### Branding (6)
 
@@ -155,33 +155,25 @@ touch skills/my-skill/SKILL.md
 
 `analytics-expert`, `business-operator`, `cto-advisor`, `planning-assistant`, `roadmap-analyzer`, `rules-capture`, `strategy-expert`, `task-prd-creator`
 
-### Frontend & React (32)
+### Frontend & React (28)
 
-`accessibility`, `ai-loading-ux`, `clarify`, `component-library`, `critique`, `design-consistency-auditor`, `expo-architect`, `frontend-design`, `html-style`, `landing-page-vercel`, `layout`, `micro-landing-builder`, `nextjs-best-practices`, `nextjs-supabase-auth`, `nextjs-validator`, `polish`, `quick-view`, `quieter`, `react-component-performance`, `react-hook-form`, `react-native-components`, `react-patterns`, `react-refactor`, `react-testing-library`, `shadcn`, `shadcn-setup`, `table-filters`, `tailwind`, `tailwind-validator`, `theme-factory`, `vercel-react-best-practices`, `web-design-guidelines`
+`accessibility`, `ai-loading-ux`, `clarify`, `component-library`, `critique`, `design-consistency-auditor`, `expo-architect`, `frontend-design`, `html-style`, `landing-page-vercel`, `layout`, `micro-landing-builder`, `nextjs-validator`, `polish`, `quick-view`, `quieter`, `react-component-performance`, `react-hook-form`, `react-native-components`, `react-patterns`, `react-refactor`, `react-testing-library`, `shadcn`, `shadcn-setup`, `table-filters`, `tailwind`, `tailwind-validator`, `theme-factory`
 
-### Backend & Data (14)
+### Backend & Data (9)
 
-`api-design-expert`, `bun-development`, `error-handling-expert`, `graphql-architect`, `incremental-fetch`, `javascript-pro`, `neon-postgres`, `nestjs-expert`, `postgres-best-practices`, `prisma-expert`, `serializer-specialist`, `turborepo`, `typescript-expert`, `typescript-refactor`
+`api-design-expert`, `error-handling-expert`, `graphql-architect`, `incremental-fetch`, `nestjs-expert`, `serializer-specialist`, `turborepo`, `typescript-expert`, `typescript-refactor`
 
 ### Infrastructure (10)
 
 `aws-infrastructure`, `docker-expert`, `ec2-backend-deployer`, `mongodb-atlas-checker`, `mongodb-migration-expert`, `monitoring-setup`, `nestjs-queue-architect`, `performance-expert`, `security-expert`, `workflow-automation`
 
-### Expo / Mobile (9)
-
-`expo-api-routes`, `expo-building-native-ui`, `expo-cicd-workflows`, `expo-data-fetching`, `expo-deployment`, `expo-dev-client`, `expo-tailwind-setup`, `expo-upgrading`, `expo-use-dom`
-
-### Email (5)
-
-`resend`, `resend-agent-email-inbox`, `resend-cli`, `resend-email-best-practices`, `resend-react-email`
-
 ### Payments (2)
 
 `financial-operations-expert`, `stripe-implementer`
 
-### Security (13)
+### Security (1)
 
-`api-security-best-practices`, `ask-questions-if-underspecified`, `backend-security-coder`, `differential-review`, `frontend-security-coder`, `property-based-testing`, `security-audit`, `semgrep-rule-creator`, `sharp-edges`, `static-analysis-codeql`, `static-analysis-sarif`, `static-analysis-semgrep`, `variant-analysis`
+`security-audit`
 
 ### Testing (6)
 
@@ -191,9 +183,9 @@ touch skills/my-skill/SKILL.md
 
 `advanced-evaluation`, `agent-browser`, `comment-mode`, `context-degradation`, `context-fundamentals`, `context-optimization`, `evaluation`, `mcp-builder`, `memory-systems`, `multi-agent-patterns`, `prompt-engineer`, `skill-creator`, `spec-first`, `tool-design`
 
-### Dev Workflow (19)
+### Dev Workflow (18)
 
-`agent-config-audit`, `analyze-codebase`, `audit`, `claude-code-guide`, `code-review`, `commit-summary`, `de-slop`, `debug`, `deploy`, `llm-structured-output`, `playwright-skill`, `prompt-engineering`, `refactor-code`, `review-pr`, `scaffold`, `session-end`, `session-start`, `shape`, `skill-capture`
+`agent-config-audit`, `analyze-codebase`, `audit`, `claude-code-guide`, `code-review`, `commit-summary`, `de-slop`, `debug`, `deploy`, `llm-structured-output`, `prompt-engineering`, `refactor-code`, `review-pr`, `scaffold`, `session-end`, `session-start`, `shape`, `skill-capture`
 
 ### GitHub (3)
 

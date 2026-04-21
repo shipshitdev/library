@@ -2,7 +2,7 @@
 name: scale-validator
 description: Use this skill when users need to validate if their business can scale, stress-test their model, or assess bottlenecks. Activates for "can this scale," "validate my business model," "what's my bottleneck," or when planning for growth.
 metadata:
-  version: 1.0.0
+  version: "1.0.0"
   tags: business, hormozi, validation, scale, unit-economics, bottlenecks, leverage
 ---
 

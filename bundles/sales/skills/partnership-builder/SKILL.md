@@ -2,7 +2,7 @@
 name: partnership-builder
 description: Build revenue-generating partnerships including affiliate programs, integration partnerships, reseller programs, and co-marketing strategies. Activates for "how do I get partners" or affiliate setup questions.
 metadata:
-  version: 1.0.0
+  version: "1.0.0"
   tags: business, partnerships, affiliates, integrations, resellers, co-marketing, distribution
 ---
 
@@ -67,18 +67,6 @@ Create revenue-generating partnerships for indie businesses: affiliate programs,
 | `copywriter` | Partner landing pages |
 | `offer-architect` | Partner-specific offers |
 | `analytics-expert` | Track performance |
-
-## Complementary Skills (External)
-
-For referral program mechanics, pair with [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills):
-
-```
-/plugin marketplace add coreyhaines31/marketingskills
-```
-
-| Skill | Why |
-|-------|-----|
-| `referral-program` | Tactical referral program setup and optimization |
 
 ---
 

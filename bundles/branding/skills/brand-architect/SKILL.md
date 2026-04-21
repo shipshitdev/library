@@ -2,7 +2,7 @@
 name: brand-architect
 description: Use this skill when users need to develop brand strategy, choose a company name, define brand positioning, create brand voice, or build brand identity from day one. Activates for "what should I name it," "brand strategy," "positioning," or identity questions.
 metadata:
-  version: 1.0.0
+  version: "1.0.0"
   tags: business, hexa, brand, naming, positioning, voice, identity
 ---
 

@@ -2,7 +2,7 @@
 name: funnel-architect
 description: Use this skill when users need to design a sales funnel, map a value ladder, or create a customer journey. Activates for "build my funnel," "design a funnel," "create a value ladder," or when planning landing page sequences.
 metadata:
-  version: 1.0.0
+  version: "1.0.0"
   tags: business, brunson, funnels, dotcom-secrets, value-ladder, landing-pages, conversion
 ---
 
@@ -348,18 +348,3 @@ Design order bumps and OTOs:
 - If user needs to **validate copy** → `copy-validator`
 - If user needs **traffic strategy** → `traffic-architect`
 - If user is **stuck** → `execution-accelerator`
-
-## Complementary Skills (External)
-
-For tactical CRO and email execution, pair with [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills):
-
-```
-/plugin marketplace add coreyhaines31/marketingskills
-```
-
-| Skill | Why |
-|-------|-----|
-| `page-cro` | Optimize the pages your funnel drives to |
-| `form-cro` | Improve lead capture form conversion |
-| `signup-flow-cro` | Optimize signup and onboarding flows |
-| `email-sequence` | Build nurture sequences for your funnel |

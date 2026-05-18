@@ -1,0 +1,12 @@
+{
+  "name": "deployment-composer",
+  "version": "1.0.0",
+  "description": "Compose safe deployment workflows from release PRs, CI gates, provider deploys, and rollback checks",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

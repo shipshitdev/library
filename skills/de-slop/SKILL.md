@@ -1,6 +1,6 @@
 ---
 name: de-slop
-description: Remove AI-generated code artifacts (console.log, any types, unused imports, dead code) while maintaining project structure. Use when user says 'de-slop', 'clean up', 'remove slop', or 'clean AI artifacts'.
+description: "AI artifact cleanup."
 metadata:
   version: "1.0.0"
   tags: code-quality, cleanup, ai-artifacts, maintenance

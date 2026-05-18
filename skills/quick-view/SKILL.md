@@ -1,6 +1,6 @@
 ---
 name: quick-view
-description: Generate minimal HTML pages to review agent output in a browser. Use when terminal output is hard to read, when reviewing lists/tables/drafts, or when the user says "show me", "make this reviewable", "quick view", or "open as webpage". Produces unstyled semantic HTML only. For granular feedback with inline comments, see the comment-mode skill.
+description: "HTML review page generation."
 ---
 
 # Quick View

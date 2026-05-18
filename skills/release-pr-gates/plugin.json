@@ -1,0 +1,12 @@
+{
+  "name": "release-pr-gates",
+  "version": "1.0.0",
+  "description": "Promote release PRs through develop, staging, and production branches while waiting for CI gates",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

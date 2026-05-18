@@ -72,12 +72,12 @@ check_frontmatter() {
     # Check for required fields
     if ! echo "$content" | grep -q "^name:"; then
         echo -e "  ${RED}✗${NC} Missing required 'name' field"
-        ((issues++))
+        ((++issues))
     fi
 
     if ! echo "$content" | grep -q "^description:"; then
         echo -e "  ${RED}✗${NC} Missing required 'description' field"
-        ((issues++))
+        ((++issues))
     fi
 
     return $issues
@@ -147,7 +147,7 @@ check_frontmatter_fields() {
             local line_num
             line_num=$(grep -n "^$field:" "$file" | head -1 | cut -d: -f1)
             echo -e "  ${YELLOW}⚠${NC} Unsupported top-level frontmatter field: '$field' (line $line_num)"
-            ((warnings++))
+            ((++warnings))
         fi
     done <<< "$frontmatter"
 
@@ -189,7 +189,7 @@ check_tool_references() {
             local line_num
             line_num=$(grep -n -i "$pattern" "$file" | head -1 | cut -d: -f1)
             echo -e "  ${YELLOW}⚠${NC} Tool reference: '$pattern' (line $line_num)"
-            ((warnings++))
+            ((++warnings))
         fi
     done
 
@@ -238,7 +238,7 @@ check_platform_names() {
             local line_num
             line_num=$(grep -n "$pattern" "$file" | head -1 | cut -d: -f1)
             echo -e "  ${YELLOW}⚠${NC} Platform coupling: '$pattern' (line $line_num)"
-            ((warnings++))
+            ((++warnings))
         fi
     done
 
@@ -279,7 +279,7 @@ check_platform_paths() {
             local line_num
             line_num=$(grep -n "$pattern" "$file" | head -1 | cut -d: -f1)
             echo -e "  ${YELLOW}⚠${NC} Hardcoded path: '$pattern' (line $line_num)"
-            ((warnings++))
+            ((++warnings))
         fi
     done
 
@@ -308,7 +308,7 @@ check_external_handoffs() {
             local line_num
             line_num=$(grep -n -F "$pattern" "$file" | head -1 | cut -d: -f1)
             echo -e "  ${YELLOW}⚠${NC} External skill handoff: '$pattern' (line $line_num)"
-            ((warnings++))
+            ((++warnings))
         fi
     done
 
@@ -329,7 +329,7 @@ check_missing_skill_references() {
 
         if ! skill_exists "$ref"; then
             echo -e "  ${YELLOW}⚠${NC} Missing local skill reference: '$ref' (line $line_num)"
-            ((warnings++))
+            ((++warnings))
         fi
     done < <(
         python3 - "$file" <<'PY'
@@ -406,32 +406,32 @@ validate_skill() {
 
         local frontmatter_warnings=0
         check_frontmatter_fields "$skill_file" || frontmatter_warnings=$?
-        ((skill_warnings += frontmatter_warnings))
+        ((skill_warnings += frontmatter_warnings, 1))
 
         # Platform-agnostic checks
         local tool_warnings=0
         check_tool_references "$skill_file" || tool_warnings=$?
-        ((skill_warnings += tool_warnings))
+        ((skill_warnings += tool_warnings, 1))
 
         local name_warnings=0
         check_platform_names "$skill_file" "$skill_name" || name_warnings=$?
-        ((skill_warnings += name_warnings))
+        ((skill_warnings += name_warnings, 1))
 
         local path_warnings=0
         check_platform_paths "$skill_file" "$skill_name" || path_warnings=$?
-        ((skill_warnings += path_warnings))
+        ((skill_warnings += path_warnings, 1))
 
         local handoff_warnings=0
         check_external_handoffs "$skill_file" || handoff_warnings=$?
-        ((skill_warnings += handoff_warnings))
+        ((skill_warnings += handoff_warnings, 1))
 
         local reference_warnings=0
         check_missing_skill_references "$skill_file" || reference_warnings=$?
-        ((skill_warnings += reference_warnings))
+        ((skill_warnings += reference_warnings, 1))
 
         local line_warnings=0
         check_line_count "$skill_file" || line_warnings=$?
-        ((skill_warnings += line_warnings))
+        ((skill_warnings += line_warnings, 1))
 
         # Also check references/ directory
         if [[ -d "$SKILLS_DIR/$skill_name/references" ]]; then
@@ -439,37 +439,37 @@ validate_skill() {
                 if [[ -f "$ref_file" ]]; then
                     local ref_warnings=0
                     check_tool_references "$ref_file" || ref_warnings=$?
-                    ((skill_warnings += ref_warnings))
+                    ((skill_warnings += ref_warnings, 1))
 
                     local ref_name_warnings=0
                     check_platform_names "$ref_file" "$skill_name" || ref_name_warnings=$?
-                    ((skill_warnings += ref_name_warnings))
+                    ((skill_warnings += ref_name_warnings, 1))
 
                     local ref_path_warnings=0
                     check_platform_paths "$ref_file" "$skill_name" || ref_path_warnings=$?
-                    ((skill_warnings += ref_path_warnings))
+                    ((skill_warnings += ref_path_warnings, 1))
 
                     local ref_handoff_warnings=0
                     check_external_handoffs "$ref_file" || ref_handoff_warnings=$?
-                    ((skill_warnings += ref_handoff_warnings))
+                    ((skill_warnings += ref_handoff_warnings, 1))
                 fi
             done
         fi
     else
         echo -e "  ${RED}✗${NC} SKILL.md missing"
-        ((skill_issues++))
+        ((++skill_issues))
     fi
 
     if [[ $skill_issues -eq 0 ]] && [[ $skill_warnings -eq 0 ]]; then
         echo -e "  ${GREEN}✓${NC} Valid (Claude + Codex)"
     elif [[ $skill_issues -eq 0 ]]; then
         echo -e "  ${YELLOW}⚠${NC} Valid but has $skill_warnings compatibility warning(s)"
-        ((SKILLS_WITH_ISSUES++))
-        ((TOTAL_WARNINGS += skill_warnings))
+        ((++SKILLS_WITH_ISSUES))
+        ((TOTAL_WARNINGS += skill_warnings, 1))
     else
-        ((SKILLS_WITH_ISSUES++))
-        ((TOTAL_ISSUES += skill_issues))
-        ((TOTAL_WARNINGS += skill_warnings))
+        ((++SKILLS_WITH_ISSUES))
+        ((TOTAL_ISSUES += skill_issues, 1))
+        ((TOTAL_WARNINGS += skill_warnings, 1))
     fi
 
     echo
@@ -483,7 +483,7 @@ if [[ -n "$SKILL_NAME" ]]; then
         echo -e "${RED}Error: Skill '$SKILL_NAME' not found${NC}"
         exit 1
     fi
-    ((TOTAL_SKILLS++))
+    ((++TOTAL_SKILLS))
     validate_skill "$SKILL_NAME"
 else
     # Validate all skills
@@ -496,7 +496,7 @@ else
                 continue
             fi
             skill_name=$(basename "$skill_dir")
-            ((TOTAL_SKILLS++))
+            ((++TOTAL_SKILLS))
             validate_skill "$skill_name"
         fi
     done

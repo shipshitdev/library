@@ -1,6 +1,6 @@
 ---
 name: git-safety
-description: Scan git history for sensitive files, clean leaked credentials, and set up prevention measures. Use when asked to "check for secrets", "scan git history", "remove .env from history", "secure my repo", or "clean sensitive files".
+description: "Git history secret scan."
 ---
 
 # Git Safety Skill

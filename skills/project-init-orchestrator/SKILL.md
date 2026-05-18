@@ -10,7 +10,48 @@ metadata:
 
 ## Overview
 
-This skill orchestrates multiple initialization skills to set up a complete, production-ready project environment. Instead of manually invoking each skill, this orchestrator coordinates them in the correct sequence with proper dependencies.
+This skill orchestrates project initialization by choosing the smallest safe
+setup route. For new Shipshit.dev product repos, prefer `npx @shipshitdev/v0`
+as the primary scaffolder. Use the lower-level init skills for existing repos,
+repairs, or project types not covered by v0.
+
+## Contract
+
+Inputs:
+
+- Target project path and project name
+- Project type: new Shipshit.dev product, existing repo, docs-only, library, or custom
+- Desired app surfaces, routes, agent platform support, and GitHub setup
+
+Outputs:
+
+- Selected initialization route
+- List of delegated skills or v0 command used
+- Files/directories created or modified
+- Verification status and remaining manual setup
+
+Creates/Modifies:
+
+- New product repos through `npx @shipshitdev/v0`
+- Existing repo `.agents/`, `.claude/`, `.codex/`, lint, test, and scaffold files when delegated
+
+External Side Effects:
+
+- May install dependencies when using v0 or delegated setup skills
+- May create a GitHub repo or issue only when the v0 command is run with GitHub flags
+
+Confirmation Required:
+
+- Before creating a GitHub repo or issue
+- Before running setup outside the current workspace
+- Before overwriting existing agent/config files
+
+Delegates To:
+
+- `fullstack-workspace-init` for v0-backed Shipshit.dev product scaffolding
+- `agent-folder-init` for existing repos that only need AI project context
+- `linter-formatter-init`, `testing-cicd-init`, and `husky-test-coverage` for repo repair
+- `scaffold` for small module/component additions inside an existing codebase
 
 ## When to Use This Skill
 
@@ -26,10 +67,38 @@ This skill activates automatically when users:
 
 | Order | Skill | Purpose | Required |
 |-------|-------|---------|----------|
-| 1 | `agent-folder-init` | AI documentation & standards | Yes |
-| 2 | `linter-formatter-init` | ESLint + Prettier + pre-commit | Yes |
-| 3 | `husky-test-coverage` | Test coverage enforcement | Optional |
-| 4 | Component scaffolding | Backend/Frontend/Mobile/Extension | Optional |
+| 1 | `fullstack-workspace-init` / `npx @shipshitdev/v0` | New Shipshit.dev product repo | Conditional |
+| 2 | `agent-folder-init` | AI documentation & standards for existing repos | Conditional |
+| 3 | `linter-formatter-init` | ESLint/Biome + formatter + pre-commit repair | Conditional |
+| 4 | `testing-cicd-init` / `husky-test-coverage` | Test and CI gates | Optional |
+| 5 | `scaffold` | Incremental module/component additions | Optional |
+
+## Route Selection
+
+Use this order:
+
+1. New Shipshit.dev product repo: run `npx @shipshitdev/v0`.
+2. New non-product repo: scaffold only the requested repo structure, then add agent docs and gates.
+3. Existing repo missing AI context: run `agent-folder-init`.
+4. Existing repo with weak quality gates: run linter/test/CI skills only.
+5. Existing repo needing one feature/module: run `scaffold` after finding 3+ examples.
+
+For v0-backed setup, use interactive mode unless the user provides all inputs:
+
+```bash
+npx @shipshitdev/v0 <project-directory>
+```
+
+For non-interactive Shipshit.dev product setup:
+
+```bash
+npx @shipshitdev/v0 <project-directory> \
+  --scope "<product scope>" \
+  --agent codex \
+  --apps web,app,desktop,mobile,extension,cli \
+  --routes overview,new-task,search,inbox,activities \
+  --no-github
+```
 
 ## Orchestration Flow
 
@@ -119,13 +188,15 @@ When user says "initialize my project" or "set up new project":
 ```
 1. Ask for project context:
    - Project path (default: current directory)
-   - Tech stack (Next.js, NestJS, Node.js, etc.)
-   - Package manager (bun, pnpm, npm)
+   - New Shipshit.dev product or existing repo repair?
+   - Product scope if using v0
+   - App surfaces and routes if non-default
+   - Agent to hand off to: codex or claude
    - Test coverage threshold (default: 80%)
    - Need additional scaffolding? (backend, frontend, mobile, extension)
 
 2. Execute phases in order:
-   Phase 2 → Phase 3 → Phase 4 → Phase 5 (if needed) → Phase 6
+   v0 route OR existing-repo phases → verification
 ```
 
 ### Manual Orchestration

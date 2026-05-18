@@ -1,6 +1,6 @@
 ---
 name: code-review
-description: Comprehensive code review focusing on quality, security, performance, and testing. Use when user says 'review', 'code review', 'check my code', or before merging PRs.
+description: "Code review guidance."
 metadata:
   version: "1.0.0"
   tags: code-review, quality, security, testing, best-practices

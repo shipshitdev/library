@@ -5,6 +5,8 @@ metadata:
   risk: unknown
   source: community
   date_added: '2026-02-27'
+  version: "1.0.0"
+  tags: "claude-code, configuration, guide"
 ---
 
 # Claude Code Guide

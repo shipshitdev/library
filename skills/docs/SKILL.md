@@ -1,6 +1,9 @@
 ---
 name: docs
 description: Creates clear, concise technical documentation for software projects, runbooks, and developer guides.
+metadata:
+  version: "1.0.0"
+  tags: "documentation, technical-writing, runbooks"
 ---
 
 # Docs Writer

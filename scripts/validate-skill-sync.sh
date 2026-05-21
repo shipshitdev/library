@@ -46,6 +46,31 @@ SKILLS_WITH_ISSUES=0
 # Skills that legitimately need limited platform references in subject matter
 PLATFORM_EXEMPT_SKILLS=""
 
+# Skills with orchestration, local writes, or external side effects must declare
+# their operating boundary so Claude-only frontmatter is not the only safety
+# mechanism. Keep this list focused; add skills here when they become
+# composable/action-oriented.
+CONTRACT_REQUIRED_SKILLS="
+agent-config-audit
+agent-folder-init
+deploy
+deployment-composer
+fullstack-workspace-init
+gh-address-comments
+gh-fix-ci
+git-safety
+landing-page-vercel
+micro-landing-builder
+project-init-orchestrator
+release-pr-gates
+rules-capture
+scaffold
+session-documenter
+session-end
+session-start
+task-prd-creator
+"
+
 skill_exists() {
     local skill_name="$1"
     grep -Fxq "$skill_name" <<< "$EXISTING_SKILLS"
@@ -150,6 +175,50 @@ check_frontmatter_fields() {
             ((++warnings))
         fi
     done <<< "$frontmatter"
+
+    return $warnings
+}
+
+# Function to check required metadata keys
+check_metadata_fields() {
+    local file="$1"
+    local warnings=0
+
+    if [[ ! -f "$file" ]]; then
+        return 0
+    fi
+
+    local frontmatter
+    frontmatter=$(get_frontmatter_block "$file")
+
+    if [[ -z "$frontmatter" ]]; then
+        return 0
+    fi
+
+    if ! grep -q "^metadata:$" <<< "$frontmatter"; then
+        echo -e "  ${YELLOW}⚠${NC} Missing metadata block"
+        return 1
+    fi
+
+    if ! awk '
+        /^metadata:$/ { in_metadata = 1; next }
+        in_metadata && /^[A-Za-z0-9_-]+:/ { in_metadata = 0 }
+        in_metadata && /^  version: / { found = 1 }
+        END { exit found ? 0 : 1 }
+    ' <<< "$frontmatter"; then
+        echo -e "  ${YELLOW}⚠${NC} Missing metadata.version"
+        ((++warnings))
+    fi
+
+    if ! awk '
+        /^metadata:$/ { in_metadata = 1; next }
+        in_metadata && /^[A-Za-z0-9_-]+:/ { in_metadata = 0 }
+        in_metadata && /^  tags: / { found = 1 }
+        END { exit found ? 0 : 1 }
+    ' <<< "$frontmatter"; then
+        echo -e "  ${YELLOW}⚠${NC} Missing metadata.tags"
+        ((++warnings))
+    fi
 
     return $warnings
 }
@@ -374,6 +443,69 @@ PY
     return $warnings
 }
 
+# Function to check composable/action skills declare a safety contract
+check_contract_requirements() {
+    local file="$1"
+    local skill_name="$2"
+    local warnings=0
+
+    if [[ ! -f "$file" ]]; then
+        return 0
+    fi
+
+    local requires_contract=0
+
+    for required in $CONTRACT_REQUIRED_SKILLS; do
+        if [[ "$skill_name" == "$required" ]]; then
+            requires_contract=1
+            break
+        fi
+    done
+
+    if grep -q "^allowed-tools:" "$file"; then
+        requires_contract=1
+    fi
+
+    if [[ $requires_contract -eq 0 ]]; then
+        return 0
+    fi
+
+    if ! grep -q "^## Contract$" "$file"; then
+        echo -e "  ${YELLOW}⚠${NC} Missing ## Contract section for composable/action skill"
+        return 1
+    fi
+
+    local labels=(
+        "Inputs:"
+        "Outputs:"
+        "Creates/Modifies:"
+        "External Side Effects:"
+        "Confirmation Required:"
+        "Delegates To:"
+    )
+
+    for label in "${labels[@]}"; do
+        if ! grep -q "^$label$" "$file"; then
+            echo -e "  ${YELLOW}⚠${NC} Contract missing label: '$label'"
+            ((++warnings))
+        fi
+    done
+
+    return $warnings
+}
+
+# Function to check skill-local plugin manifest exists for distribution
+check_plugin_manifest() {
+    local skill_dir="$1"
+
+    if [[ ! -f "$skill_dir/plugin.json" ]]; then
+        echo -e "  ${YELLOW}⚠${NC} Missing plugin.json manifest"
+        return 1
+    fi
+
+    return 0
+}
+
 # Function to check SKILL.md line count
 check_line_count() {
     local file="$1"
@@ -408,6 +540,10 @@ validate_skill() {
         check_frontmatter_fields "$skill_file" || frontmatter_warnings=$?
         ((skill_warnings += frontmatter_warnings, 1))
 
+        local metadata_warnings=0
+        check_metadata_fields "$skill_file" || metadata_warnings=$?
+        ((skill_warnings += metadata_warnings, 1))
+
         # Platform-agnostic checks
         local tool_warnings=0
         check_tool_references "$skill_file" || tool_warnings=$?
@@ -429,9 +565,17 @@ validate_skill() {
         check_missing_skill_references "$skill_file" || reference_warnings=$?
         ((skill_warnings += reference_warnings, 1))
 
+        local contract_warnings=0
+        check_contract_requirements "$skill_file" "$skill_name" || contract_warnings=$?
+        ((skill_warnings += contract_warnings, 1))
+
         local line_warnings=0
         check_line_count "$skill_file" || line_warnings=$?
         ((skill_warnings += line_warnings, 1))
+
+        local plugin_warnings=0
+        check_plugin_manifest "$SKILLS_DIR/$skill_name" || plugin_warnings=$?
+        ((skill_warnings += plugin_warnings, 1))
 
         # Also check references/ directory
         if [[ -d "$SKILLS_DIR/$skill_name/references" ]]; then

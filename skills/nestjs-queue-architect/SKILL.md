@@ -6,6 +6,7 @@ metadata:
   technology: BullMQ 5.61.0 with NestJS 11.1.7
   expertise_level: senior
   last_updated: "2025-10-22"
+  tags: "nestjs, queues, async"
 ---
 
 # NestJS Queue Architect - BullMQ Expert

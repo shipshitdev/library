@@ -1,6 +1,9 @@
 ---
 name: api-design-expert
 description: Expert in RESTful API design, OpenAPI/Swagger documentation, versioning, error handling, and API best practices for NestJS applications
+metadata:
+  version: "1.0.0"
+  tags: "api, rest, design"
 ---
 
 # API Design Expert Skill

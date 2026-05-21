@@ -5,6 +5,7 @@ user-invocable: true
 argument-hint: "[feature to shape]"
 metadata:
   version: "2.1.1"
+  tags: "ux, planning, design-brief"
 ---
 
 ## MANDATORY PREPARATION

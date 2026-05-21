@@ -2,9 +2,48 @@
 name: agent-browser
 description: Automates browser interactions for web testing, form filling, screenshots, and data extraction. Use when the user needs to navigate websites, interact with web pages, fill forms, take screenshots, test web applications, or extract information from web pages.
 allowed-tools: Bash(agent-browser:*)
+metadata:
+  version: "1.0.0"
+  tags: "browser, automation, testing"
 ---
 
 # Browser Automation with agent-browser
+
+## Contract
+
+Inputs:
+
+- Target URL or existing browser context
+- Browser task: inspect, click, fill, screenshot, test, record, or extract
+- Optional selectors, element refs, viewport, credentials, or file paths
+
+Outputs:
+
+- Page state, extracted values, screenshots, PDFs, recordings, or test observations
+- List of actions performed
+- Blockers such as missing elements, auth walls, or network failures
+
+Creates/Modifies:
+
+- Local screenshot, PDF, or video files only when a path is provided
+- Browser cookies, local storage, form fields, and page state during interaction
+
+External Side Effects:
+
+- Navigates websites and may submit forms or trigger app actions
+- May upload files or change data in the target application if directed
+
+Confirmation Required:
+
+- Before submitting forms that create, update, purchase, publish, send, or delete data
+- Before entering secrets or credentials into non-local sites
+- Before interacting with production admin or billing surfaces
+
+Delegates To:
+
+- `critique` for design review
+- `audit` for technical quality checks
+- `qa-reviewer` for final verification of generated work
 
 ## Quick start
 

@@ -1,6 +1,9 @@
 ---
 name: workflow-automation
 description: This skill should be used when users need help designing content workflows, creating process documentation, implementing automation rules, designing approval processes, or optimizing content pipelines. It activates when users ask about workflow design, process documentation, automation, approval workflows, or content pipeline optimization.
+metadata:
+  version: "1.0.0"
+  tags: "workflow, automation, process"
 ---
 
 # Content Workflow Automation

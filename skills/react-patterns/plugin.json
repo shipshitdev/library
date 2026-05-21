@@ -1,0 +1,12 @@
+{
+  "name": "react-patterns",
+  "version": "1.0.0",
+  "description": "Modern React patterns and principles. Hooks, composition, performance, TypeScript best practices.",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

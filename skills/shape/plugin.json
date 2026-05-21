@@ -1,0 +1,12 @@
+{
+  "name": "shape",
+  "version": "2.1.1",
+  "description": "Plan the UX and UI for a feature before writing code. Runs a structured discovery interview, then pr",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

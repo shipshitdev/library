@@ -5,6 +5,8 @@ metadata:
   risk: safe
   source: Dimillian/Skills (MIT)
   date_added: '2026-03-25'
+  version: "1.0.0"
+  tags: "react, performance, components"
 ---
 
 # React Component Performance

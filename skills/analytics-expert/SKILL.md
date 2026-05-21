@@ -1,6 +1,9 @@
 ---
 name: analytics-expert
 description: This skill should be used when users need help analyzing content analytics data, creating reports, identifying trends, calculating ROI, or providing content optimization recommendations. It activates when users ask analytics questions, request reports, need performance analysis, ROI calculations, trend identification, or content optimization recommendations.
+metadata:
+  version: "1.0.0"
+  tags: "analytics, reporting, optimization"
 ---
 
 # Content Analytics Expert

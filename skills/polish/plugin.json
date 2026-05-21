@@ -1,0 +1,12 @@
+{
+  "name": "polish",
+  "version": "2.1.1",
+  "description": "Performs a final quality pass fixing alignment, spacing, consistency, and micro-detail issues before",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

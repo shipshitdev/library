@@ -1,6 +1,9 @@
 ---
 name: executing-plans
 description: Orchestrate autonomous AI development with task-based workflow and QA gates. Use when implementing a development plan, picking tasks from a queue, or running multi-platform parallel execution with QA gates.
+metadata:
+  version: "1.0.0"
+  tags: "execution, planning, agents"
 ---
 
 # Executing Plans

@@ -5,6 +5,7 @@ user-invocable: true
 argument-hint: "[target]"
 metadata:
   version: "2.1.1"
+  tags: "visual-design, refinement, ui"
 ---
 
 Reduce visual intensity in designs that are too bold, aggressive, or overstimulating, creating a more refined and approachable aesthetic without losing effectiveness.

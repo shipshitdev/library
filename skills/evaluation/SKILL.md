@@ -1,6 +1,9 @@
 ---
 name: evaluation
 description: Build evaluation frameworks for agent systems. Use when testing agent performance, validating context engineering choices, or measuring improvements over time.
+metadata:
+  version: "1.0.0"
+  tags: "evaluation, agents, testing"
 ---
 
 # Evaluation Methods for Agent Systems

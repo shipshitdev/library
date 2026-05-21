@@ -1,6 +1,9 @@
 ---
 name: error-handling-expert
 description: Expert in error handling patterns, exception management, error responses, logging, and error recovery strategies for React, Next.js, and NestJS applications
+metadata:
+  version: "1.0.0"
+  tags: "errors, reliability, architecture"
 ---
 
 # Error Handling Expert Skill

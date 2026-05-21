@@ -1,6 +1,9 @@
 ---
 name: micro-landing-builder
 description: Scaffold, clone, and deploy config-driven NextJS landing pages that use a shared UI components package. Use this skill when creating single or multiple startup landing pages with email capture, analytics, and modern design. Supports batch creation from templates or CSV/JSON files, and automatic Vercel deployment with custom domains. Each landing is a standalone NextJS app driven by an app.json config file.
+metadata:
+  version: "1.0.0"
+  tags: "landing-page, nextjs, vercel"
 ---
 
 # Micro Landing Builder

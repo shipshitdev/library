@@ -1,0 +1,12 @@
+{
+  "name": "typescript-refactor",
+  "version": "1.0.0",
+  "description": "TypeScript refactoring and modernization guidelines from a principal specialist perspective. This sk",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

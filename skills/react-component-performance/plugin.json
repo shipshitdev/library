@@ -1,0 +1,12 @@
+{
+  "name": "react-component-performance",
+  "version": "1.0.0",
+  "description": "Diagnose slow React components and suggest targeted performance fixes.",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

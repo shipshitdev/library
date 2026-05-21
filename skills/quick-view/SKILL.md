@@ -1,6 +1,9 @@
 ---
 name: quick-view
 description: "HTML review page generation."
+metadata:
+  version: "1.0.0"
+  tags: "html, review, preview"
 ---
 
 # Quick View

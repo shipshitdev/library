@@ -1,6 +1,6 @@
 ---
 name: scaffold
-description: Generate new code modules following existing codebase patterns. Use when user says 'scaffold', 'generate', 'create new endpoint', 'new component', or 'new module'.
+description: Generate incremental local code modules following existing codebase patterns. Use for endpoints, components, packages, collections, or modules inside an existing repo; not for full project scaffolds.
 metadata:
   version: "1.0.0"
   tags: scaffolding, code-generation, boilerplate, productivity
@@ -8,7 +8,8 @@ metadata:
 
 # Scaffold
 
-Generate new code following existing codebase patterns.
+Generate incremental code inside an existing repository, following local
+codebase patterns.
 
 ## Contract
 

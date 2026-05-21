@@ -1,6 +1,9 @@
 ---
 name: git-safety
 description: "Git history secret scan."
+metadata:
+  version: "1.0.0"
+  tags: "git, security, secrets"
 ---
 
 # Git Safety Skill

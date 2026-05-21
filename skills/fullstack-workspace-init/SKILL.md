@@ -1,13 +1,16 @@
 ---
 name: fullstack-workspace-init
-description: Scaffold a production-ready full-stack monorepo with working MVP features, tests, and CI/CD. Generates complete CRUD functionality, Clerk authentication, and quality gates that run immediately with `bun dev`.
+description: Initialize Shipshit.dev full-stack product workspaces through npx @shipshitdev/v0, then customize and verify the generated repo. Use for new product scaffolds or post-v0 workspace setup.
+metadata:
+  version: "1.0.0"
+  tags: "fullstack, workspace, v0"
 ---
 
 # Full Stack Workspace Init
 
-Create a **production-ready** Shipshit.dev product workspace. For new product
-repos, use `npx @shipshitdev/v0` as the default scaffolder and treat this skill
-as the product-brief, customization, and verification layer.
+Create a Shipshit.dev product workspace. For new product repos, use
+`npx @shipshitdev/v0` as the default scaffolder and treat this skill as the
+product-brief, customization, and verification layer.
 
 ## Contract
 
@@ -75,6 +78,9 @@ the user only wants the scaffold written.
 
 Use the manual guidance below only when v0 is not appropriate or when enhancing
 an existing workspace that already has its core scaffold.
+
+Do not use this route for a new Shipshit.dev product repo unless v0 is
+unavailable or the user explicitly asks to bypass it.
 
 Create a **production-ready** monorepo with working MVP features:
 

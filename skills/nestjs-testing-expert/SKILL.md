@@ -1,6 +1,9 @@
 ---
 name: nestjs-testing-expert
 description: Testing patterns for NestJS apps using Jest, covering unit, integration, and e2e tests.
+metadata:
+  version: "1.0.0"
+  tags: "nestjs, testing, jest"
 ---
 
 # NestJS Testing Expert

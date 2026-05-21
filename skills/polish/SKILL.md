@@ -5,6 +5,7 @@ user-invocable: true
 argument-hint: "[target]"
 metadata:
   version: "2.1.1"
+  tags: "polish, ui, quality"
 ---
 
 ## MANDATORY PREPARATION

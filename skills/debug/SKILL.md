@@ -1,6 +1,9 @@
 ---
 name: debug
 description: "Systematic debugging guidance."
+metadata:
+  version: "1.0.0"
+  tags: "debugging, troubleshooting, methodology"
 ---
 
 # dot-skills Debugging Best Practices

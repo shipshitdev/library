@@ -1,6 +1,9 @@
 ---
 name: ec2-backend-deployer
 description: Expert in deploying backends to EC2 instances using CI/CD pipelines, Docker containers, and GitHub Actions
+metadata:
+  version: "1.0.0"
+  tags: "ec2, deployment, backend"
 ---
 
 # EC2 Backend Deployer

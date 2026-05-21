@@ -1,6 +1,6 @@
 ---
 name: project-init-orchestrator
-description: Orchestrates complete project initialization — scaffolding, agent folders, linting, test coverage, and component setup (NestJS, Next.js, Expo, Plasmo). Use when starting a new project or adding infrastructure to an existing one.
+description: Select the correct project initialization route. Use v0 for new Shipshit.dev product repos; use lower-level setup skills only for existing repo repair, customization, or small additions.
 metadata:
   version: "1.0.0"
   tags: project-init, scaffolding, orchestration, setup, monorepo
@@ -58,7 +58,7 @@ Delegates To:
 This skill activates automatically when users:
 
 - Start a new project from scratch
-- Want full project setup with one command
+- Want full Shipshit.dev product setup with one command
 - Need AI-first development infrastructure + code quality tools
 - Say "initialize project", "set up new project", "bootstrap project"
 - Want consistent setup across multiple projects
@@ -100,85 +100,6 @@ npx @shipshitdev/v0 <project-directory> \
   --no-github
 ```
 
-## Orchestration Flow
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│              PROJECT INIT ORCHESTRATOR                       │
-└─────────────────────────────────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────────┐
-│  PHASE 1: GATHER CONTEXT                                    │
-│  • Project name and path                                    │
-│  • Tech stack (Next.js, NestJS, Expo, Plasmo)              │
-│  • Package manager preference (bun, pnpm, npm)             │
-│  • Test coverage threshold (default: 80%)                  │
-│  • Additional scaffolding needs                            │
-└─────────────────────────────────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────────┐
-│  PHASE 2: AGENT FOLDER INIT                                 │
-│  • Create .agents/ directory structure                       │
-│  • Set up SESSIONS/, TASKS/, SYSTEM/ folders               │
-│  • Generate coding standards and rules                      │
-│  • Copy agent configs (.claude/, .codex/, .cursor/)        │
-│  ──────────────────────────────────────────────────────────│
-│  Invocation:                                                │
-│  python3 scripts/scaffold.py                               │
-│          (from agent-folder-init skill)                    │
-│          --root /path/to/project                           │
-└─────────────────────────────────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────────┐
-│  PHASE 3: LINTER FORMATTER INIT                             │
-│  • Detect project tech stack                                │
-│  • Install ESLint + Prettier (or Biome)                    │
-│  • Configure framework-specific rules                       │
-│  • Set up lint-staged for pre-commit                       │
-│  • Create .vscode/settings.json                            │
-│  ──────────────────────────────────────────────────────────│
-│  Invocation:                                                │
-│  Use linter-formatter-init skill guidance                   │
-└─────────────────────────────────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────────┐
-│  PHASE 4: HUSKY TEST COVERAGE (if tests exist)             │
-│  • Detect test runner (Jest, Vitest, Mocha)                │
-│  • Configure coverage thresholds                            │
-│  • Add pre-commit hook for test coverage                   │
-│  ──────────────────────────────────────────────────────────│
-│  Invocation:                                                │
-│  Use husky-test-coverage skill guidance                     │
-└─────────────────────────────────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────────┐
-│  PHASE 5: COMPONENT SCAFFOLD (optional)                     │
-│  • Scaffold additional components if requested:            │
-│    - Backend (NestJS + MongoDB + Swagger + Dockerfile)     │
-│    - Frontend (Next.js + Tailwind + App Router)            │
-│    - Mobile (Expo + Expo Router + React Native)            │
-│    - Extension (Plasmo + React + Tailwind)                 │
-│  • Supports monorepo (workspaces) or separate repos       │
-│  ──────────────────────────────────────────────────────────│
-│  Invocation:                                                │
-│  python3 scripts/scaffold.py                               │
-└─────────────────────────────────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────────┐
-│  PHASE 6: VERIFICATION                                      │
-│  • Verify all configurations created                        │
-│  • Run lint check (should pass)                            │
-│  • Confirm git hooks installed                             │
-│  • Generate setup summary                                   │
-└─────────────────────────────────────────────────────────────┘
-```
-
 ## Usage
 
 ### Quick Start (Recommended)
@@ -192,143 +113,39 @@ When user says "initialize my project" or "set up new project":
    - Product scope if using v0
    - App surfaces and routes if non-default
    - Agent to hand off to: codex or claude
-   - Test coverage threshold (default: 80%)
-   - Need additional scaffolding? (backend, frontend, mobile, extension)
+   - Need existing-repo repair or incremental scaffolding?
 
 2. Execute phases in order:
    v0 route OR existing-repo phases → verification
 ```
 
-### Manual Orchestration
+### Existing-Repo Repair
 
-If you need to run phases individually:
+Use lower-level skills only after deciding v0 is not the right route:
 
-**Phase 2: Agent Folder Init**
+1. `agent-folder-init` for AI docs and agent config.
+2. `linter-formatter-init` for lint/format drift.
+3. `testing-cicd-init` or `husky-test-coverage` for test and CI gates.
+4. `scaffold` for a requested module, endpoint, component, or package.
 
-```bash
-python3 scripts/scaffold.py --root /path/to/project  # from agent-folder-init skill
-```
+## Route Matrix
 
-**Phase 3: Linter Formatter**
-Follow the `linter-formatter-init` skill to:
-
-- Install dependencies based on detected stack
-- Configure ESLint rules
-- Set up Prettier
-- Configure lint-staged
-
-**Phase 4: Test Coverage**
-Follow the `husky-test-coverage` skill to:
-
-- Detect test runner
-- Configure coverage thresholds
-- Add pre-commit hook
-
-**Phase 5: Component Scaffold (optional)**
-
-```bash
-python3 scripts/scaffold.py
-```
-
-Supports scaffolding:
-
-- **Backend (NestJS)**: MongoDB, Swagger, soft deletes (`isDeleted`), multi-tenancy (filter by `organization`), Dockerfile
-- **Frontend (Next.js)**: Tailwind CSS, TypeScript strict, App Router, path aliases (`@components/`, `@services/`, `@hooks/`)
-- **Mobile (Expo)**: Expo Router, TypeScript, platform-specific configs
-- **Extension (Plasmo)**: React + TypeScript, Tailwind, manifest config, popup component
-
-Structure options:
-
-- **Monorepo**: All components in one repo with workspace config
-- **Separate repos**: Each component in its own directory
-- **Existing projects**: Add components incrementally
-
-## Configuration Presets
-
-### Minimal (AI docs + linting)
-
-```
-Phases: 2, 3
-Output:
-├── .agents/
-├── .eslintrc.js
-├── .prettierrc
-├── .husky/pre-commit (lint-staged)
-└── .vscode/settings.json
-```
-
-### Standard (+ test coverage)
-
-```
-Phases: 2, 3, 4
-Output:
-├── .agents/
-├── .eslintrc.js
-├── .prettierrc
-├── .husky/pre-commit (lint-staged + tests)
-├── jest.config.js (coverage thresholds)
-└── .vscode/settings.json
-```
-
-### Full Stack (+ scaffolding)
-
-```
-Phases: 2, 3, 4, 5
-Output:
-├── .agents/
-├── apps/
-│   ├── web/          (Next.js)
-│   ├── api/          (NestJS)
-│   ├── mobile/       (Expo)
-│   └── extension/    (Plasmo)
-├── packages/
-│   └── shared/
-├── .eslintrc.js
-├── .prettierrc
-├── .husky/pre-commit
-└── .vscode/settings.json
-```
-
-## Generated Structure
-
-After full orchestration, your project will have:
-
-```
-project-root/
-├── .agents/                          # AI-first documentation
-│   ├── SESSIONS/                    # Daily session logs
-│   ├── TASKS/                       # Task tracking
-│   │   └── INBOX.md
-│   ├── SYSTEM/                      # Architecture docs
-│   │   ├── ARCHITECTURE.md
-│   │   └── RULES.md
-│   └── README.md
-│
-├── .claude/                         # Claude Code configs
-│   ├── commands/
-│   ├── rules/
-│   └── skills/
-│
-├── .husky/                          # Git hooks
-│   └── pre-commit                   # Runs lint-staged + tests
-│
-├── .vscode/                         # Editor settings
-│   └── settings.json                # Format on save
-│
-├── .eslintrc.js                     # ESLint configuration
-├── .prettierrc                      # Prettier configuration
-├── .lintstagedrc                    # Lint-staged configuration
-│
-└── [app directories if scaffolded]
-```
+| Request | Primary Route | Notes |
+|---------|---------------|-------|
+| New Shipshit.dev product repo | `npx @shipshitdev/v0` | Default route. Includes app surfaces and agent setup. |
+| New non-product repo | Minimal scaffold + `agent-folder-init` | Keep setup proportional to the requested repo. |
+| Existing repo AI context | `agent-folder-init` | No application source generation. |
+| Existing repo quality gates | Linter/test/CI skills | Repair only the missing gates. |
+| Existing repo feature/module | `scaffold` | Find 3+ local examples first. |
 
 ## Best Practices
 
 ### Sequencing
 
-- Always run agent-folder-init FIRST (establishes standards)
-- Run linter-formatter-init BEFORE husky-test-coverage (both use Husky)
-- Run component scaffolding LAST (depends on base setup)
+- For new Shipshit.dev products, run v0 first.
+- For existing repos, add AI docs before repo-specific repair work.
+- Run linter and formatter setup before test hooks when both are missing.
+- Run `scaffold` only after the target codebase patterns are known.
 
 ### Customization
 
@@ -340,51 +157,21 @@ project-root/
 
 After orchestration, verify:
 
-- [ ] `.agents/` folder exists with proper structure
-- [ ] `npm run lint` or `bun lint` works
-- [ ] `npm run format` or `bun format` works
-- [ ] Git commit triggers pre-commit hooks
-- [ ] Tests run on commit (if Phase 4 enabled)
+- [ ] The selected route matches the user request
+- [ ] New product repos were created through v0 unless explicitly exempted
+- [ ] Existing repo changes are limited to the delegated repair/addition
+- [ ] `bun lint`, `bun test`, or the repo's documented equivalents work when present
 
 ## Example Interaction
 
-**User:** "Set up my new project at ~/projects/my-saas"
+**User:** "Set up my new product at ~/projects/my-saas"
 
 **Orchestrator Response:**
 
 ```
-I'll initialize your project with full AI-first infrastructure.
+Route: new Shipshit.dev product repo → v0.
 
-Let me gather some context:
-1. Tech stack: [Next.js / NestJS / Node.js / Other]
-2. Package manager: [bun / pnpm / npm]
-3. Test coverage threshold: [80% default]
-4. Need scaffolding? [backend / frontend / mobile / extension]
-
-[After user responds]
-
-Starting orchestration...
-
-✓ Phase 2: Agent Folder Init
-  - Created .agents/ with 13 files
-  - Copied agent configs (.claude/, .codex/, .cursor/)
-
-✓ Phase 3: Linter Formatter Init
-  - Detected: Next.js + TypeScript
-  - Installed: eslint, prettier, lint-staged
-  - Created: .eslintrc.js, .prettierrc, .lintstagedrc
-
-✓ Phase 4: Husky Test Coverage
-  - Detected: Jest
-  - Set threshold: 80%
-  - Added pre-commit hook
-
-✓ Phase 6: Verification
-  - All configs created ✓
-  - Lint check passed ✓
-  - Git hooks installed ✓
-
-Project initialized successfully!
+npx @shipshitdev/v0 ~/projects/my-saas --agent codex --no-github
 ```
 
 ## Troubleshooting

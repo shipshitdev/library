@@ -1,6 +1,9 @@
 ---
 name: agent-folder-init
-description: Initialize a comprehensive .agents/ folder structure for AI-first development. Use this skill when starting a new project that needs AI agent documentation, session tracking, task management, and coding standards. Generates full structure based on proven patterns from production projects.
+description: Add or repair .agents/ project context for an existing repo. Use for AI agent documentation, session tracking, task management, and coding standards; do not use as the primary new-product scaffold.
+metadata:
+  version: "1.0.0"
+  tags: "agents, setup, documentation"
 ---
 
 # Agent Folder Init
@@ -195,6 +198,7 @@ This skill integrates with:
 
 | Skill | How It Works Together |
 |-------|----------------------|
-| `fullstack-workspace-init` | Use PRD.md to define requirements before scaffolding |
+| `project-init-orchestrator` | Routes new product requests to v0 before lower-level setup |
+| `fullstack-workspace-init` | Uses v0 for new Shipshit.dev product workspaces |
 | `linter-formatter-init` | Sets up quality tooling in the scaffolded project |
 | `husky-test-coverage` | Enforces test coverage in pre-commit hooks |

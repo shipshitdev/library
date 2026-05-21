@@ -1,6 +1,9 @@
 ---
 name: gh-address-comments
 description: "GitHub PR comment fixes."
+metadata:
+  version: "1.0.0"
+  tags: "github, pull-requests, review-comments"
 ---
 
 # GH Address Comments

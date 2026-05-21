@@ -1,6 +1,9 @@
 ---
 name: gh-fix-ci
 description: "GitHub Actions CI fixes."
+metadata:
+  version: "1.0.0"
+  tags: "github, ci, actions"
 ---
 
 # GH Fix CI

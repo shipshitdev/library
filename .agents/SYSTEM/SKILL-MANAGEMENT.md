@@ -59,6 +59,27 @@ This should be rare. If you find yourself adding many platform blocks, reconside
 3. Regenerate manifests if frontmatter changed: `bun run generate:plugin`
 4. Regenerate bundles if skill is in a bundle: `bun run generate:bundle`
 
+## Consolidation Policy
+
+Use consolidation to reduce routing ambiguity, not to make broad skills that hide
+side effects. Split or merge based on contracts:
+
+- **Keep separate** when skills have different side-effect boundaries
+- **Compose** when one skill selects an execution route and delegates to focused skills
+- **Merge** when two skills have the same inputs, outputs, and confirmation gates
+- **Deprecate** when another skill or `npx @shipshitdev/v0` fully owns the workflow
+
+Current consolidation backlog:
+
+| Cluster | Direction |
+|---------|-----------|
+| Init/scaffold | `project-init-orchestrator` owns route selection; new Shipshit.dev products route to `npx @shipshitdev/v0`; setup skills become repair/customization helpers |
+| Deployment/release | `deployment-composer` owns route selection; `release-pr-gates`, `deploy`, and provider skills stay separate by side-effect boundary |
+| Agent config | Split read-only audit from write/sync if `fix` mode grows further |
+| Landing pages | Keep scaffold and deploy/domain attach as separate contracts; route full products through v0 |
+| Session learning | Keep `rules-capture`, `skill-capture`, and `session-documenter` separate; promotion to permanent skills/rules must remain explicit |
+| Frontend review/design | Keep `critique`, `audit`, `polish`, `layout`, `quieter`, and `clarify` separate while their outputs differ; consider a future UI-review orchestrator if routing becomes confusing |
+
 ## Validation
 
 Run the platform-agnostic validator:

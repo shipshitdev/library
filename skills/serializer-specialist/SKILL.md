@@ -1,6 +1,9 @@
 ---
 name: serializer-specialist
 description: Expert in JSON:API serialization patterns using ts-jsonapi or similar libraries.
+metadata:
+  version: "1.0.0"
+  tags: "serialization, jsonapi, api"
 ---
 
 # Serializer Specialist

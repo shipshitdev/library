@@ -5,6 +5,7 @@ user-invocable: true
 argument-hint: "[area (feature, page, component...)]"
 metadata:
   version: "2.1.1"
+  tags: "critique, ux, design"
 ---
 
 ## STEPS

@@ -5,6 +5,8 @@ metadata:
   risk: safe
   source: community
   date_added: '2026-02-27'
+  version: "1.0.0"
+  tags: "react, patterns, frontend"
 ---
 
 # React Patterns

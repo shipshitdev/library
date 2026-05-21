@@ -1,6 +1,9 @@
 ---
 name: spec-first
 description: Use when building anything non-trivial. Enforces a spec → plan → execute → verify loop that prevents "looks right" failures. Creates spec.md, todo.md, and decisions.md before writing code.
+metadata:
+  version: "1.0.0"
+  tags: "specification, planning, execution"
 ---
 
 # Spec-First Development

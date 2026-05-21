@@ -1,6 +1,9 @@
 ---
 name: mongodb-migration-expert
 description: Database schema design, indexing, and migration guidance for MongoDB-based applications.
+metadata:
+  version: "1.0.0"
+  tags: "mongodb, migration, database"
 ---
 
 # MongoDB Migration Expert

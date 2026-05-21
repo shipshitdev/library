@@ -5,6 +5,7 @@ user-invocable: true
 argument-hint: "[target]"
 metadata:
   version: "2.1.1"
+  tags: "ux-writing, copy, clarity"
 ---
 
 Identify and improve unclear, confusing, or poorly written interface text to make the product easier to understand and use.

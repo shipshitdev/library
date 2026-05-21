@@ -10,6 +10,39 @@ metadata:
 
 Document work, decisions, and context with explicit commands.
 
+## Contract
+
+Inputs:
+
+- Current session context
+- Files changed, decisions made, blockers, and next steps
+- Optional task or PRD references
+
+Outputs:
+
+- Appended session entry in `.agents/SESSIONS/YYYY-MM-DD.md`
+- Related summary/task updates when needed
+
+Creates/Modifies:
+
+- `.agents/SESSIONS/` daily session file
+- Related `.agents/` summary, architecture, or task docs when relevant
+
+External Side Effects:
+
+- None
+
+Confirmation Required:
+
+- Before rewriting existing session history
+- Before promoting session notes into permanent rules or skills
+
+Delegates To:
+
+- `rules-capture` for reusable preferences discovered during the session
+- `skill-capture` for reusable workflows discovered during the session
+- `session-end` for wrap-up flow
+
 ## Commands
 
 | Command | Action |

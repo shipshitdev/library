@@ -7,6 +7,41 @@ description: "GitHub PR comment fixes."
 
 Use this skill when a user wants help resolving PR review or issue comments via the GitHub CLI.
 
+## Contract
+
+Inputs:
+
+- Current branch or PR URL/number
+- Optional review thread IDs or issue comment IDs
+
+Outputs:
+
+- Review-thread summary
+- Mapped code changes
+- Draft reply text for each resolved thread
+
+Creates/Modifies:
+
+- Local code changes when fixing review comments
+- Does not push or post replies without approval
+
+External Side Effects:
+
+- Reads GitHub PR review and issue comments
+- May post GitHub replies only after approval
+
+Confirmation Required:
+
+- Before changing code when fixes are not obvious
+- Before pushing
+- Before posting replies to GitHub
+
+Delegates To:
+
+- `code-review` to validate proposed fixes
+- `qa-reviewer` before final response
+- `gh-fix-ci` if fixes cause or reveal CI failures
+
 ## Workflow
 
 1) Verify auth:

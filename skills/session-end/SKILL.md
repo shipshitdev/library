@@ -10,6 +10,38 @@ metadata:
 
 Document your session before clearing context. This is a TWO-STEP process: `/session-end` documents, then user manually runs `/clear`.
 
+## Contract
+
+Inputs:
+
+- Current session context and changed-file summary
+- Pending tasks, blockers, decisions, and reusable rules/workflows
+
+Outputs:
+
+- Saved session documentation
+- Clear next-step instruction for context reset
+
+Creates/Modifies:
+
+- `.agents/SESSIONS/YYYY-MM-DD.md`
+- Related `.agents/` task or summary files when delegated to `session-documenter`
+
+External Side Effects:
+
+- None
+
+Confirmation Required:
+
+- Before rewriting existing session entries
+- Before promoting captured rules or skills outside session docs
+
+Delegates To:
+
+- `session-documenter`
+- `rules-capture` for unresolved reusable preferences
+- `skill-capture` for reusable workflows that should become skills
+
 ## Workflow
 
 ### Step 1: Document Session

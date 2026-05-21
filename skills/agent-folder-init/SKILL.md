@@ -7,6 +7,40 @@ description: Initialize a comprehensive .agents/ folder structure for AI-first d
 
 Create a comprehensive `.agents/` folder structure for AI-first development workflows.
 
+## Contract
+
+Inputs:
+
+- Existing project root
+- Project name and primary tech stack
+- Agent platforms to support: Claude Code, Codex, Cursor, or all
+
+Outputs:
+
+- `.agents/` documentation structure
+- Root agent entry files such as `AGENTS.md`, `CLAUDE.md`, and `CODEX.md`
+- Summary of files created and files skipped because they already existed
+
+Creates/Modifies:
+
+- `.agents/`, `.claude/`, `.codex/`, `.cursor/`, and root agent entry files
+- Does not create application source code
+
+External Side Effects:
+
+- None beyond local file writes
+
+Confirmation Required:
+
+- Before overwriting existing agent docs or config files
+- Before writing outside the current workspace
+
+Delegates To:
+
+- `project-init-orchestrator` when starting a new product repo
+- `fullstack-workspace-init` / `npx @shipshitdev/v0` when a new Shipshit.dev product should be scaffolded
+- `agent-config-audit` after generation to detect drift or stale config
+
 ## Purpose
 
 This skill scaffolds a complete AI agent documentation system including:
@@ -23,9 +57,13 @@ This skill scaffolds a complete AI agent documentation system including:
 
 Use this skill when:
 
-- Starting a new project that will use AI coding assistants
+- Adding AI coding-assistant context to an existing project
 - Setting up AI-first development workflows
 - Migrating an existing project to use structured AI documentation
+
+For new Shipshit.dev product repos, prefer `project-init-orchestrator`, which
+routes to `npx @shipshitdev/v0` and includes the standard `.agents`, `.claude`,
+and `.codex` setup.
 
 ## Usage
 

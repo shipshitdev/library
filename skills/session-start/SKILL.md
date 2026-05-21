@@ -10,6 +10,38 @@ metadata:
 
 Load all critical preferences and instructions at the start of each session or after `/clear`.
 
+## Contract
+
+Inputs:
+
+- Project root
+- Current date
+- Existing `.agents/` session and preference files
+
+Outputs:
+
+- Loaded session context summary
+- Current inbox summary
+- Active documentation expectations for the session
+
+Creates/Modifies:
+
+- No required writes
+- May create today's session file only through `session-documenter`
+
+External Side Effects:
+
+- None
+
+Confirmation Required:
+
+- Before creating or rewriting session files when paths are ambiguous
+
+Delegates To:
+
+- `session-documenter` to track the active session
+- `rules-capture` if startup reveals uncaptured preferences
+
 ## Workflow
 
 ### 1. Read Session Quick Start

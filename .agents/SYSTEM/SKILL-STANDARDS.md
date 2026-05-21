@@ -82,6 +82,44 @@ skills/my-skill/
 
 Keep `SKILL.md` focused: under 500 lines. Move anything detailed to `references/`.
 
+## Contract blocks for composable skills
+
+Composable, action-oriented, or side-effecting skills should include a `## Contract`
+section near the top of `SKILL.md`. Pure reference skills may skip this when the
+description and body are enough.
+
+Use this shape:
+
+```markdown
+## Contract
+
+Inputs:
+- Required context or arguments
+
+Outputs:
+- Artifacts or status the next skill can consume
+
+Creates/Modifies:
+- Local files, generated directories, or none
+
+External Side Effects:
+- Network calls, GitHub writes, deploys, publishes, or none
+
+Confirmation Required:
+- Actions that need explicit approval
+
+Delegates To:
+- Related skills to run next
+```
+
+Rules:
+
+- Keep contracts factual and short.
+- Put safety gates in the skill body, not only Claude-only frontmatter.
+- Split skills at side-effect boundaries when a contract becomes ambiguous.
+- For Shipshit.dev product initialization, route new product scaffolds through
+  `npx @shipshitdev/v0` and use init/setup skills for customization or repair.
+
 ---
 
 ## Description quality bar

@@ -10,6 +10,38 @@ metadata:
 
 This skill automatically detects when users express preferences, rules, or coding standards during conversations and documents them for future sessions.
 
+## Contract
+
+Inputs:
+
+- User statement that expresses a reusable rule, preference, standard, or correction
+- Optional target scope: user, repo, project, skill, or session
+
+Outputs:
+
+- Captured pending rule with quote, extracted rule, scope, and status
+- Recommendation for permanent storage location
+
+Creates/Modifies:
+
+- Pending capture files such as `.agents/SYSTEM/CAPTURED-RULES.md`
+- Permanent rules only after explicit confirmation
+
+External Side Effects:
+
+- None
+
+Confirmation Required:
+
+- Before promoting a pending rule into permanent project or user rules
+- Before editing shared/public skills based on the captured rule
+
+Delegates To:
+
+- `skill-capture` when the rule is a reusable workflow that should become a skill
+- `agent-config-audit` when the rule may affect multiple config files
+- `session-documenter` when the rule should be noted in session history
+
 ---
 
 ## When This Skill Activates

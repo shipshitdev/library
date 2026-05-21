@@ -10,6 +10,40 @@ metadata:
 
 Generate new code following existing codebase patterns.
 
+## Contract
+
+Inputs:
+
+- Scaffold target type and name
+- Repository root
+- Existing examples to follow
+
+Outputs:
+
+- Files created or modified
+- Patterns copied from existing code
+- Manual follow-up steps and tests to run
+
+Creates/Modifies:
+
+- Local source, test, and export files for the requested module/component/package
+- Does not create a full product repo
+
+External Side Effects:
+
+- None
+
+Confirmation Required:
+
+- Before overwriting existing files
+- Before introducing a new pattern when fewer than 3 matching examples exist
+
+Delegates To:
+
+- `project-init-orchestrator` when the user needs a whole new project
+- `fullstack-workspace-init` / `npx @shipshitdev/v0` when the user needs a new Shipshit.dev product repo
+- Framework-specific skills such as `nestjs-expert`, `react-patterns`, `shadcn`, or `typescript-expert`
+
 ## Steps
 
 1. **Determine what to scaffold** from arguments:

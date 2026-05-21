@@ -19,6 +19,42 @@ allowed-tools:
 
 > Audit and maintain the full AI agent configuration stack across a workspace — CLAUDE.md, CODEX.md, AGENTS.md, .cursorrules, hooks, settings, and supporting `.agents/` docs.
 
+## Contract
+
+Inputs:
+
+- Workspace root
+- Scope: full, dedup, stale, codex, cursor, settings, or fix
+- Optional list of repos/config files to include
+
+Outputs:
+
+- Audit report with critical/moderate/minor findings
+- Proposed fix plan
+- Applied changes only when fix mode is explicit
+
+Creates/Modifies:
+
+- Report mode: no file changes
+- Fix mode: agent config files, `.agents/` docs, and related settings
+
+External Side Effects:
+
+- None by default
+- Does not push, publish, or call external APIs
+
+Confirmation Required:
+
+- Before applying fix mode
+- Before overwriting existing agent configs
+- Before deleting or consolidating duplicated rules
+
+Delegates To:
+
+- `rules-capture` for single new preferences
+- `agent-folder-init` for missing `.agents/` structure
+- `session-documenter` when audit findings should be recorded
+
 ## When to Use
 
 - User mentions: "audit CLAUDE.md", "agent config", "rules out of date", "config drift", "sync docs"

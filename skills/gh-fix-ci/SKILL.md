@@ -7,6 +7,41 @@ description: "GitHub Actions CI fixes."
 
 Use this skill to diagnose failing GitHub Actions checks on a PR and propose a fix plan.
 
+## Contract
+
+Inputs:
+
+- Current branch or PR URL/number
+- Optional failed run ID or job ID
+
+Outputs:
+
+- Failed check summary
+- Root cause and impacted files
+- Fix plan or applied local fix summary
+
+Creates/Modifies:
+
+- Local code/config changes only when the fix is clear or explicitly requested
+- Does not rerun CI without approval
+
+External Side Effects:
+
+- Reads GitHub PR checks and Actions logs
+- May rerun workflows only after approval
+
+Confirmation Required:
+
+- Before rerunning workflows
+- Before pushing
+- Before changing broad CI/deployment configuration
+
+Delegates To:
+
+- `testing-cicd-init` when baseline CI is missing
+- `deployment-composer` when failures block a release
+- `code-review` for risky fixes
+
 ## Workflow
 
 1) Verify auth:

@@ -29,6 +29,7 @@ See [PLATFORM-ADAPTATIONS.md](PLATFORM-ADAPTATIONS.md) for the full writing guid
 4. **No hardcoded paths** — use relative paths for bundled resources
 5. **Imperative style** — "Use when...", "Run the command...", "Check for..."
 6. **Rewrite imported skills before shipping** — upstream skills may be used as references, but the shipped `SKILL.md` must be reviewed, rewritten, and made consistent with this repo's security posture, naming, and cross-skill conventions
+7. **Use contract blocks for composable skills** — action skills, orchestrators, and skills with side effects declare inputs, outputs, file changes, external side effects, confirmation gates, and delegated skills
 
 ## When Platform-Specific Content Is Needed
 

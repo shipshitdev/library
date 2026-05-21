@@ -4,13 +4,13 @@
 
 ![Project Type](https://img.shields.io/badge/Project-Skills-blue)
 
-158 AI agent skills for indie developers. Works with Claude Code and OpenAI Codex.
+157 AI agent skills for indie developers. Works with Claude Code and OpenAI Codex.
 
 ## Directory Structure
 
 ```
 skills/
-├── skills/              # All skills (160)
+├── skills/              # All skills (157)
 ├── commands/            # All commands (35)
 ├── bundles/             # Generated marketplace bundles
 ├── .agents/             # Repo management, memory, meta-skills
@@ -129,7 +129,7 @@ touch skills/my-skill/SKILL.md
 | test | Test tracking |
 | validate | Validation workflow |
 
-## Skills (158)
+## Skills (157)
 
 ### Startup (14)
 
@@ -179,21 +179,21 @@ touch skills/my-skill/SKILL.md
 
 `husky-test-coverage`, `nestjs-testing-expert`, `playwright-e2e-init`, `qa-reviewer`, `testing-cicd-init`, `testing-expert`
 
-### AI Agents (13)
+### AI Agents (14)
 
-`advanced-evaluation`, `agent-browser`, `comment-mode`, `context-degradation`, `context-fundamentals`, `context-optimization`, `evaluation`, `mcp-builder`, `memory-systems`, `multi-agent-patterns`, `skill-creator`, `spec-first`, `tool-design`
+`advanced-evaluation`, `agent-browser`, `comment-mode`, `context-degradation`, `context-fundamentals`, `context-optimization`, `evaluation`, `executing-plans`, `mcp-builder`, `memory-systems`, `multi-agent-patterns`, `skill-creator`, `spec-first`, `tool-design`
 
-### Dev Workflow (18)
+### Dev Workflow (19)
 
-`agent-config-audit`, `analyze-codebase`, `audit`, `claude-code-guide`, `code-review`, `commit-summary`, `de-slop`, `debug`, `deploy`, `llm-structured-output`, `prompt-engineering`, `refactor-code`, `review-pr`, `scaffold`, `session-end`, `session-start`, `shape`, `skill-capture`
+`agent-config-audit`, `analyze-codebase`, `audit`, `claude-code-guide`, `code-review`, `commit-summary`, `de-slop`, `debug`, `deploy`, `deployment-composer`, `llm-structured-output`, `prompt-engineering`, `refactor-code`, `review-pr`, `scaffold`, `session-end`, `session-start`, `shape`, `skill-capture`
 
-### GitHub (3)
+### GitHub (4)
 
-`gh-address-comments`, `gh-fix-ci`, `git-safety`
+`gh-address-comments`, `gh-fix-ci`, `git-safety`, `release-pr-gates`
 
-### Session Management (4)
+### Session Management (3)
 
-`agent-folder-init`, `ai-dev-loop`, `session-documenter`, `workspace-performance-audit`
+`agent-folder-init`, `session-documenter`, `workspace-performance-audit`
 
 ### Workspace Setup (12)
 

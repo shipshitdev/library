@@ -18,6 +18,47 @@ branching model, CI setup, deploy provider, and release risk.
 Use this as the deployment meta-skill. It routes work to focused skills instead
 of treating every deploy as the same checklist.
 
+## Contract
+
+Inputs:
+
+- Repository root
+- Desired release/deploy goal
+- Optional target environment, source branch, target branch, PR number, or provider
+
+Outputs:
+
+- Deployment route: release PR, provider deploy, CI setup, or repair
+- Selected delegated skills
+- Quality gate state
+- Confirmation gates still required
+
+Creates/Modifies:
+
+- Nothing during discovery
+- May create local release notes or PR body files
+- May create GitHub PRs only through `release-pr-gates` after confirmation rules are satisfied
+
+External Side Effects:
+
+- Reads git/GitHub metadata and workflow status
+- May trigger provider deployment commands through delegated skills
+
+Confirmation Required:
+
+- Before production deploys or merges
+- Before creating GitHub PRs when the user did not explicitly request PR creation
+- Before running provider commands with production flags
+
+Delegates To:
+
+- `release-pr-gates`
+- `deploy`
+- `gh-fix-ci`
+- `ec2-backend-deployer`
+- `testing-cicd-init`
+- `changelog-generator`
+
 ## Composed Skills
 
 | Stage | Use |
@@ -102,16 +143,20 @@ If the release needs user-facing notes or a PR body:
 
 1. Discover repo topology and deployment provider.
 2. Choose the narrowest route from the routing rules.
-3. Run local gates when the deployment mutates production or opens a release PR:
+3. Run local gates before every release PR or deployment. Format, lint, and
+   type-check are mandatory because they mirror the GitHub Actions gates and are
+   cheap to run locally:
 
    ```bash
-   bun run lint || npm run lint
-   bun run typecheck || npm run type-check || npx tsc --noEmit
+   bun run format || npm run format || npx biome check --write .
+   bun run lint || npm run lint || bunx turbo lint
+   bun run typecheck || bun run type-check || npm run typecheck || npm run type-check || npx tsc --noEmit
    bun run test || npm test
    bun run build || npm run build
    ```
 
-   Skip commands that are clearly absent, but report the gap.
+   Fix format, lint, and type-check failures before pushing or deploying. Tests
+   and build should run when configured; report absent scripts as coverage gaps.
 
 4. Execute the selected release or deploy path.
 5. Wait for remote checks or deployment status.

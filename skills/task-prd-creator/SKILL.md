@@ -9,6 +9,41 @@ allowed-tools: Bash(gh *)
 
 Write a clear, actionable PRD or task. Output depends on where the user tracks work.
 
+## Contract
+
+Inputs:
+
+- Feature, bug, enhancement, or planning request
+- Destination preference: GitHub issue, local PRD/task file, or both
+- Optional parent issue, labels, assignee, and priority
+
+Outputs:
+
+- Draft PRD or task body
+- Destination-specific create command or file path
+- Created issue/file URL or path after approval
+
+Creates/Modifies:
+
+- Local `.agents/TASKS/` or `.agents/PRDS/` files only after draft approval
+- GitHub issues/sub-issues only after draft approval
+
+External Side Effects:
+
+- Reads GitHub issue state
+- May create GitHub issues, sub-issues, or issue branches
+
+Confirmation Required:
+
+- Always show the draft before creating files or GitHub issues
+- Ask before linking sub-issues or creating issue branches
+
+Delegates To:
+
+- `spec-first` when implementation constraints are still unclear
+- `gh-fix-ci` for CI failures after implementation
+- `strategy-expert` for roadmap-level planning
+
 ## Step 1: Detect workflow preference
 
 Check in order:

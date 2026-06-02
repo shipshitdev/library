@@ -98,12 +98,7 @@
     {
       "name": "agent-folder-init",
       "source": "./skills/agent-folder-init",
-      "description": "Initialize a comprehensive .agents/ folder structure for AI-first development. Use this skill when s"
-    },
-    {
-      "name": "ai-dev-loop",
-      "source": "./skills/ai-dev-loop",
-      "description": "Orchestrate autonomous AI development with task-based workflow and QA gates"
+      "description": "Add or repair .agents/ project context for an existing repo. Use for AI agent documentation, session"
     },
     {
       "name": "ai-loading-ux",
@@ -193,7 +188,7 @@
     {
       "name": "code-review",
       "source": "./skills/code-review",
-      "description": "Comprehensive code review focusing on quality, security, performance, and testing. Use when user say"
+      "description": "Code review guidance."
     },
     {
       "name": "cofounder-evaluator",
@@ -208,7 +203,7 @@
     {
       "name": "commit-summary",
       "source": "./skills/commit-summary",
-      "description": "Generate meaningful commit messages from staged changes using conventional commits. Use when user sa"
+      "description": "Commit message generation."
     },
     {
       "name": "competitive-intelligence-analyst",
@@ -273,17 +268,22 @@
     {
       "name": "de-slop",
       "source": "./skills/de-slop",
-      "description": "Remove AI-generated code artifacts (console.log, any types, unused imports, dead code) while maintai"
+      "description": "AI artifact cleanup."
     },
     {
       "name": "debug",
       "source": "./skills/debug",
-      "description": "Comprehensive debugging methodology for finding and fixing bugs (formerly debugging). This skill sho"
+      "description": "Systematic debugging guidance."
     },
     {
       "name": "deploy",
       "source": "./skills/deploy",
       "description": "Run deployment workflows for web applications (staging, production). Use when user says 'deploy', 'p"
+    },
+    {
+      "name": "deployment-composer",
+      "source": "./skills/deployment-composer",
+      "description": "Compose deployment workflows from smaller skills and repo signals, including release PR promotion, C"
     },
     {
       "name": "design-consistency-auditor",
@@ -331,6 +331,11 @@
       "description": "Build evaluation frameworks for agent systems. Use when testing agent performance, validating contex"
     },
     {
+      "name": "executing-plans",
+      "source": "./skills/executing-plans",
+      "description": "Orchestrate autonomous AI development with task-based workflow and QA gates. Use when implementing a"
+    },
+    {
       "name": "execution-accelerator",
       "source": "./skills/execution-accelerator",
       "description": "Use this skill when users are stuck on a decision, overthinking, experiencing analysis paralysis, or"
@@ -368,7 +373,7 @@
     {
       "name": "fullstack-workspace-init",
       "source": "./skills/fullstack-workspace-init",
-      "description": "Scaffold a production-ready full-stack monorepo with working MVP features, tests, and CI/CD. Generat"
+      "description": "Initialize Shipshit.dev full-stack product workspaces through npx @shipshitdev/v0, then customize an"
     },
     {
       "name": "fundraise-advisor",
@@ -388,17 +393,17 @@
     {
       "name": "gh-address-comments",
       "source": "./skills/gh-address-comments",
-      "description": "Help address review or issue comments on the open GitHub PR for the current branch using gh CLI; ver"
+      "description": "GitHub PR comment fixes."
     },
     {
       "name": "gh-fix-ci",
       "source": "./skills/gh-fix-ci",
-      "description": "Inspect GitHub PR checks with gh, pull failing GitHub Actions logs, summarize failure context, then "
+      "description": "GitHub Actions CI fixes."
     },
     {
       "name": "git-safety",
       "source": "./skills/git-safety",
-      "description": "Scan git history for sensitive files, clean leaked credentials, and set up prevention measures. Use "
+      "description": "Git history secret scan."
     },
     {
       "name": "graphql-architect",
@@ -598,7 +603,7 @@
     {
       "name": "project-init-orchestrator",
       "source": "./skills/project-init-orchestrator",
-      "description": "Orchestrates complete project initialization — scaffolding, agent folders, linting, test coverage, a"
+      "description": "Select the correct project initialization route. Use v0 for new Shipshit.dev product repos; use lowe"
     },
     {
       "name": "prompt-engineering",
@@ -608,12 +613,12 @@
     {
       "name": "qa-reviewer",
       "source": "./skills/qa-reviewer",
-      "description": "Systematically review AI agent work for quality, accuracy, and completeness. Catches bugs, verifies "
+      "description": "AI work QA review."
     },
     {
       "name": "quick-view",
       "source": "./skills/quick-view",
-      "description": "Generate minimal HTML pages to review agent output in a browser. Use when terminal output is hard to"
+      "description": "HTML review page generation."
     },
     {
       "name": "quieter",
@@ -656,6 +661,11 @@
       "description": "Systematic approach to safely refactoring code with tests. Use when user says 'refactor', 'clean up "
     },
     {
+      "name": "release-pr-gates",
+      "source": "./skills/release-pr-gates",
+      "description": "Promote releases through GitHub pull requests between develop, staging, and master/main branches, in"
+    },
+    {
       "name": "retention-engine",
       "source": "./skills/retention-engine",
       "description": "Use this skill when users need to reduce churn, increase customer lifetime value (LTV), build recurr"
@@ -663,7 +673,7 @@
     {
       "name": "review-pr",
       "source": "./skills/review-pr",
-      "description": "Systematic PR review checklist for quality, security, and consistency. Use when user says 'review PR"
+      "description": "Pull request review checklist."
     },
     {
       "name": "roadmap-analyzer",
@@ -673,12 +683,12 @@
     {
       "name": "rules-capture",
       "source": "./skills/rules-capture",
-      "description": "Automatically detects and documents user preferences, coding rules, and style guidelines when expres"
+      "description": "Capture reusable user rules."
     },
     {
       "name": "scaffold",
       "source": "./skills/scaffold",
-      "description": "Generate new code modules following existing codebase patterns. Use when user says 'scaffold', 'gene"
+      "description": "Generate incremental local code modules following existing codebase patterns. Use for endpoints, com"
     },
     {
       "name": "search-domain-validator",
@@ -703,17 +713,17 @@
     {
       "name": "session-documenter",
       "source": "./skills/session-documenter",
-      "description": "Document session work to .agents/SESSIONS/YYYY-MM-DD.md. Use when user says 'document session', 'sav"
+      "description": "Session documentation workflow."
     },
     {
       "name": "session-end",
       "source": "./skills/session-end",
-      "description": "Document session context before clearing. Use when user says 'end session', 'end', 'wrap up', or bef"
+      "description": "Session wrap-up documentation."
     },
     {
       "name": "session-start",
       "source": "./skills/session-start",
-      "description": "Load critical preferences, session history, and inbox tasks at session start. Use when user says 'st"
+      "description": "Session context loading."
     },
     {
       "name": "shadcn",
@@ -733,7 +743,7 @@
     {
       "name": "skill-capture",
       "source": "./skills/skill-capture",
-      "description": "Extracts valuable learnings, patterns, and workflows from conversations and persists them as reusabl"
+      "description": "Capture workflows as skills."
     },
     {
       "name": "skill-creator",

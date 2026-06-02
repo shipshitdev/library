@@ -1,6 +1,9 @@
 ---
 name: error-handling-expert
 description: Expert in error handling patterns, exception management, error responses, logging, and error recovery strategies for React, Next.js, and NestJS applications
+metadata:
+  version: "1.0.0"
+  tags: "errors, reliability, architecture"
 ---
 
 # Error Handling Expert Skill
@@ -22,7 +25,7 @@ Expert in error handling patterns, exception management, error responses, loggin
 
 Before providing guidance:
 
-1. Check `.agents/SYSTEM/ARCHITECTURE.md` for error patterns
+1. Check `.agents/memory/` for project architecture and error patterns
 2. Review existing exception filters
 3. Check for error monitoring (Sentry, Rollbar)
 4. Review logging libraries (Winston, Pino)

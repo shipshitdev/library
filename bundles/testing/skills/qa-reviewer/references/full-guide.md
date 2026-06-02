@@ -33,12 +33,7 @@ List all changes made:
 
 **1.3 Check Critical Rules**
 
-For projects, ALWAYS verify against:
-
-```bash
-cat .agents/SYSTEM/critical/CRITICAL-NEVER-DO.md
-cat .agents/SYSTEM/critical/CROSS-PROJECT-RULES.md
-```
+For projects, ALWAYS verify against the repo's CLAUDE.md and the global `~/.claude/CLAUDE.md` — these are the canonical sources for project rules and "never do" constraints. The harness loads them automatically; read them if you need to reference specific rules during review.
 
 ### Phase 2: Requirement Verification
 
@@ -142,7 +137,7 @@ Look for:
 
 **4.3 Project-Specific Violations**
 
-Check against CRITICAL-NEVER-DO.md:
+Check against the rules in CLAUDE.md (repo-level and global):
 
 ```
 Violations to check:
@@ -262,7 +257,7 @@ Minor:
 
 ## Project Rules Compliance
 
-CRITICAL-NEVER-DO.md:
+CLAUDE.md rules checked:
 
 - No console.log violations
 - No `any` types added
@@ -387,8 +382,8 @@ ls [packages-project]/packages/common/serializers/
 # Verify 2: Check NOT in API
 find [api-project] -name "*serializer*" -type f
 
-# Verify 3: Check CRITICAL-NEVER-DO.md confirms
-grep -i "serializer" .agents/SYSTEM/critical/CRITICAL-NEVER-DO.md
+# Verify 3: Check CLAUDE.md confirms
+grep -i "serializer" CLAUDE.md
 ```
 
 ## Best Practices

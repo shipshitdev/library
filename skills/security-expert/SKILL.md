@@ -23,8 +23,8 @@ Expert in application security for React, Next.js, and NestJS applications.
 
 ## Project Context Discovery
 
-1. Check `.agents/SYSTEM/ARCHITECTURE.md` for security architecture
-2. Review `.agents/SYSTEM/critical/CRITICAL-NEVER-DO.md` for security rules
+1. Check `.agents/memory/` for security architecture notes and project facts
+2. Review `CLAUDE.md` (repo-level and global) for security rules and "never do" constraints
 3. Identify security patterns and tools
 4. Check for `[project]-security-expert` skill
 

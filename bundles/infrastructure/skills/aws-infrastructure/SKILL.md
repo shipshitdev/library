@@ -1,6 +1,9 @@
 ---
 name: aws-infrastructure
 description: Expert in AWS infrastructure setup including EC2, VPC, security groups, Application Load Balancers, Route53 DNS, and SSL/TLS certificates. Use this skill for AWS infrastructure configuration and deployment.
+metadata:
+  version: "1.0.0"
+  tags: "aws, infrastructure, devops"
 ---
 
 # AWS Infrastructure Expert

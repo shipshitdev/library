@@ -12,29 +12,24 @@ Clean up completed tasks and consolidate session files.
 
 ## Option 1: Clean Tasks
 
-Empty completed task files — keep filenames (shows what was done), remove content (no bloat).
+Close out completed work tracked in GitHub Issues so the open backlog stays accurate.
 
 ### Process
 
-1. Find task files where all checkboxes `[x]` or `Status: Complete`
-2. Replace content with minimal marker:
+1. Find issues that are done (all checklist items `[x]`, or work shipped/merged) but still open
+2. Close each with a short completion comment linking the session:
 
-```markdown
-# [Original Task Name]
-
-**Status:** Completed
-**Completed:** [Date]
-
-See `.agents/SESSIONS/[date].md` for details.
+```bash
+gh issue close <number> --comment "Completed — see .agents/SESSIONS/[date].md for details."
 ```
 
-1. Log cleaned files to today's session file
+1. Log closed issues to today's session file
 
 ### Checklist
 
-- [ ] Search `.agents/TASKS/` for completed tasks
-- [ ] List found tasks for user confirmation
-- [ ] Replace content with completion marker
+- [ ] List open issues that look complete (`gh issue list --state open`)
+- [ ] Confirm with user before closing
+- [ ] Close each with a completion comment
 - [ ] Update session file with cleanup log
 
 ## Option 2: Clean Sessions
@@ -49,7 +44,7 @@ Merge daily sessions into monthly, monthly into yearly.
 ### Safety
 
 - Create backup before modifying: `.agents/SESSIONS/backups/`
-- Preserve `README.md` and `TEMPLATE.md`
+- Preserve `README.md`
 - Dry-run mode available — preview without changes
 
 ### Checklist

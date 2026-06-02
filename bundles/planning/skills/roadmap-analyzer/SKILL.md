@@ -1,13 +1,16 @@
 ---
 name: roadmap-analyzer
 description: Analyze project features against ICP (Ideal Customer Profile) needs to identify gaps and recommend roadmap priorities. Use this skill when asked to evaluate current product state, identify what should be built next, assess competitive positioning, or plan product roadmap based on target customer needs. Outputs gap analysis, prioritized backlog, and strategic themes. Discovers ICP and features from project documentation.
+metadata:
+  version: "1.0.0"
+  tags: "roadmap, product, strategy"
 ---
 
 # Roadmap Analyzer
 
 ## Overview
 
-This skill analyzes a project's current feature set against the needs of the Ideal Customer Profile (ICP). Before analyzing, discover the project's ICP from documentation (`.agents/SYSTEM/` or project docs) and current features from the codebase and documentation.
+This skill analyzes a project's current feature set against the needs of the Ideal Customer Profile (ICP). Before analyzing, discover the project's ICP from documentation (`.agents/memory/` or project docs) and current features from the codebase and documentation.
 
 The skill produces three outputs:
 

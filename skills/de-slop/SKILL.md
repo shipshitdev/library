@@ -22,15 +22,7 @@ Remove AI-generated artifacts and code sloppiness while maintaining project stru
 
 ## Workflow
 
-### Step 1: Check Critical Rules
-
-Read project rules before making changes:
-
-```bash
-cat .agents/SYSTEM/critical/CRITICAL-NEVER-DO.md 2>/dev/null || true
-```
-
-### Step 2: Detect Project Structure
+### Step 1: Detect Project Structure
 
 Determine if monorepo or single project:
 
@@ -40,11 +32,11 @@ ls packages/ 2>/dev/null || ls pnpm-workspace.yaml 2>/dev/null || true
 
 If monorepo: process each package separately.
 
-### Step 3: Identify Artifacts
+### Step 2: Identify Artifacts
 
 Search for each artifact type across the codebase.
 
-### Step 4: Execute Cleanup (Per Package)
+### Step 3: Execute Cleanup (Per Package)
 
 For each package/project:
 
@@ -56,16 +48,16 @@ For each package/project:
 6. Obvious comments — Remove redundant comments
 7. Unused variables — Remove
 
-### Step 5: Verify
+### Step 4: Verify
 
 ```bash
-npm run type-check || tsc --noEmit
-npm test
+bun run type-check || tsc --noEmit
+bun run test
 ```
 
-### Step 6: Document
+### Step 5: Document
 
-Log cleanup in session file with packages cleaned and artifact counts.
+Log cleanup in today's session file (`.agents/SESSIONS/YYYY-MM-DD.md`) with packages cleaned and artifact counts.
 
 ## Options
 

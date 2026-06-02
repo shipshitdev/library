@@ -1,6 +1,9 @@
 ---
 name: context-degradation
 description: Recognize, diagnose, and mitigate patterns of context degradation in agent systems. Use when context grows large, agent performance degrades unexpectedly, or debugging agent failures.
+metadata:
+  version: "1.0.0"
+  tags: "context, agents, reliability"
 ---
 
 # Context Degradation Patterns

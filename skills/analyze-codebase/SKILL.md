@@ -51,7 +51,7 @@ find . -type f -name "*.tsx" | wc -l
 
 ### Step 5: Generate Report
 
-Write to `.agents/SYSTEM/CODEBASE-ANALYSIS.md` with these sections:
+Write to `.agents/memory/codebase-analysis.md` with these sections:
 
 1. **Executive Summary** — 3-5 sentence overview
 2. **Project Overview** — Tech stack, purpose, architecture style

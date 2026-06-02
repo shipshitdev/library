@@ -1,11 +1,50 @@
 ---
 name: landing-page-vercel
 description: Scaffold a production-ready static landing page with working email capture form, analytics, and responsive design. Deploys instantly to Vercel.
+metadata:
+  version: "1.0.0"
+  tags: "landing-page, vercel, frontend"
 ---
 
 # Landing Page (Vercel)
 
 Create a **production-ready** static landing page with:
+
+## Contract
+
+Inputs:
+
+- Product name, tagline, audience, offer, and CTA
+- Destination directory
+- Form provider and analytics preference
+
+Outputs:
+
+- Static landing page files
+- Form/analytics setup notes
+- Deployment instructions
+
+Creates/Modifies:
+
+- Local landing page files and Vercel config
+- Does not deploy production unless explicitly requested
+
+External Side Effects:
+
+- None during scaffolding
+- May deploy to Vercel only after explicit deploy request
+
+Confirmation Required:
+
+- Before using external form/analytics identifiers
+- Before running Vercel deploy commands
+- Before overwriting an existing landing page directory
+
+Delegates To:
+
+- `project-init-orchestrator` / `npx @shipshitdev/v0` for full Shipshit.dev product repos
+- `frontend-design` for custom visual design
+- `deployment-composer` or `deploy` for deployment
 
 - **Structure:** Semantic HTML5 + Modern CSS + Vanilla JS
 - **Form:** Working email capture (Formspree or custom endpoint)

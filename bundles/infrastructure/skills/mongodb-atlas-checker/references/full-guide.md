@@ -7,7 +7,7 @@ Complete guide to verifying MongoDB Atlas setup for Next.js and NestJS applicati
 Before checking MongoDB Atlas setup:
 
 1. **Scan Project Documentation:**
-   - Check `.agents/SYSTEM/ARCHITECTURE.md` for database architecture
+   - Check `.agents/memory/` for durable project context (architecture, deployment, gotchas)
    - Review existing database patterns
    - Check for existing MongoDB integration
 

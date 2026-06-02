@@ -13,5 +13,5 @@ Session management and documentation
 
 - `agent-folder-init`
 - `session-documenter`
-- `ai-dev-loop`
+- `executing-plans`
 - `workspace-performance-audit`

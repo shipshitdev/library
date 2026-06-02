@@ -23,7 +23,7 @@ Expert in performance optimization for React, Next.js, NestJS applications, Mong
 
 ## Project Context Discovery
 
-1. Check `.agents/SYSTEM/ARCHITECTURE.md` for performance architecture
+1. Check `.agents/memory/` for performance architecture context (e.g., `repo_frontend_design_execution.md`, any `*performance*` or `*architecture*` files)
 2. Identify performance tools (Lighthouse CI, APM)
 3. Review existing optimizations and caching strategies
 4. Check for `[project]-performance-expert` skill

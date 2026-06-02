@@ -7,13 +7,13 @@ Generic slash commands for efficient development workflow across projects.
 ```
 .cursor/commands/                    # Global commands (24 commands)
 ├── analyze-codebase.md        # Generate architecture analysis
-├── bug.md                     # Quick bug capture
+├── bug.md                     # Quick bug capture (GitHub Issue)
 ├── clean.md                   # Unified cleanup (tasks/sessions)
 ├── code-review.md             # Comprehensive code review
 ├── docs-generate.md           # Generate comprehensive documentation
 ├── docs-update.md             # Update documentation
 ├── end.md                     # Document session before clearing
-├── inbox.md                   # Process inbox items
+├── inbox.md                   # Process inbox items (GitHub Issues)
 ├── new-cmd.md                 # Create new commands
 ├── new-session.md             # Create session files
 ├── optimize-prompt.md         # AI prompt optimization
@@ -22,7 +22,7 @@ Generic slash commands for efficient development workflow across projects.
 ├── review-pr.md               # Pull request review (basic)
 ├── scaffold.md                # Unified project scaffolder
 ├── start.md                   # Bootstrap session context
-├── task.md                    # Create and manage tasks
+├── task.md                    # Create and manage tasks (GitHub Issues)
 ├── test.md                    # Test tracking
 └── validate.md                # Unified validation (docs/sessions)
 ```
@@ -33,8 +33,8 @@ Generic slash commands for efficient development workflow across projects.
 
 ```bash
 /start              # Start every session with this
-/task               # Create new tasks
-/bug                # Quick bug capture
+/task               # Create new tasks (GitHub Issues)
+/bug                # Quick bug capture (GitHub Issue)
 /clean sessions     # Cleanup session files
 /validate all       # Validate docs and sessions
 /code-review        # Comprehensive code review
@@ -44,12 +44,12 @@ Generic slash commands for efficient development workflow across projects.
 
 #### Core Workflow
 
-- `/start` - Load critical context at session start
+- `/start` - Load project memory + today's session at startup
 - `/end` - Document session before clearing context
-- `/task` - Create tasks with PRDs
-- `/bug` - Fast bug documentation
+- `/task` - Create tasks via GitHub Issues
+- `/bug` - Fast bug documentation as GitHub Issue
 - `/test` - Track testing todos
-- `/inbox` - Process inbox items
+- `/inbox` - Process inbox items from GitHub Issues
 
 #### Development & Review
 
@@ -103,23 +103,28 @@ For commands with options:
 /validate all
 ```
 
+## Canonical .agents/ Structure
+
+All commands assume this lean structure:
+
+```
+.agents/
+├── README.md
+├── memory/      ← durable project context (one topic per *.md file)
+└── SESSIONS/    ← daily logs YYYY-MM-DD.md
+```
+
+**Rules are in CLAUDE.md** (repo-level + global `~/.claude/CLAUDE.md`), loaded automatically.
+**Tasks live in GitHub Issues** (`gh issue list`, `gh issue create`).
+**No SYSTEM/, TASKS/, PRDS/, SOP/, or EXAMPLES/ directories.**
+
 ## Adapting Commands to Your Project
 
-These commands use standard `.agents/` folder structure. Only adapt project-specific paths:
+Only adapt project-specific paths:
 
 - `[project]` - Replace with your project name/path
 - `[frontend-project]` - Replace with your frontend project path (e.g., `web/`, `frontend/`)
 - `[backend-project]` - Replace with your backend project path (e.g., `api/`, `server/`)
-
-### Standard Paths (Do Not Change)
-
-All commands use these standard paths:
-
-- `.agents/SYSTEM/` - Architecture, rules, summary
-- `.agents/SESSIONS/` - Session documentation
-- `.agents/TASKS/` - Task files
-- `.agents/PRDS/` - Product requirement documents
-- `.agents/EXAMPLES/` - Code examples
 
 ### Common Adaptations Needed
 
@@ -137,7 +142,6 @@ All commands use these standard paths:
 **Project Structure:**
 
 - Monorepo structure: Adapt to your workspace setup
-- Task/PRD locations: Adapt to your task tracking system
 
 ## Adding New Commands
 
@@ -155,12 +159,13 @@ Follow the naming convention:
 
 ## Notes
 
-- Commands use standard `.agents/` folder structure
+- Commands use the lean `.agents/` structure (memory/ + SESSIONS/ only)
+- Task management goes through GitHub Issues — no local task files
+- Project rules and preferences live in CLAUDE.md (repo-level + global)
 - Only project paths need adaptation (`[frontend-project]`, `[backend-project]`)
-- Security checks in `/code-review` are configurable - adapt to your requirements
-- Task management commands use standard `.agents/TASKS/` and `.agents/PRDS/` structure
+- Security checks in `/code-review` are configurable — adapt to your requirements
 
 ---
 
 **Total Commands:** 24
-**Last Updated:** 2025-12-24
+**Last Updated:** 2026-06-02

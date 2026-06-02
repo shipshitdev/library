@@ -28,7 +28,7 @@ Outputs:
 
 Creates/Modifies:
 
-- Local `.agents/TASKS/` or `.agents/PRDS/` files only after draft approval
+- Local `.agents/memory/<kebab-name>.md` PRD files only after draft approval
 - GitHub issues/sub-issues only after draft approval
 
 External Side Effects:
@@ -53,8 +53,7 @@ Check in order:
 
 1. User explicitly says "GitHub issue", "local file", or both
 2. Check if `gh auth status` succeeds and a GitHub remote exists → GitHub available
-3. Check if `.agents/TASKS/` or `.agents/PRDS/` exist → local available
-4. If ambiguous, ask: "GitHub issue, local file, or both?"
+3. If ambiguous, ask: "GitHub issue, local PRD file in `.agents/memory/`, or both?"
 
 ## Step 2: Understand the request
 
@@ -68,7 +67,7 @@ Ask only what's missing — don't interrogate if context is clear:
 
 ## Step 3: Research before writing
 
-- Read relevant architecture docs if available (`.agents/SYSTEM/ARCHITECTURE.md`)
+- Read relevant architecture docs if available (`.agents/memory/` — look for architecture, summary, or context files)
 - Search codebase for related patterns
 - Check for existing issues on same topic: `gh issue list --search "[keyword]"`
 
@@ -122,8 +121,7 @@ gh issue develop [issue-number] --branch "feature/[name]"
 
 ### Local files (optional, or when no GitHub)
 
-- Task: `.agents/TASKS/[kebab-name].md`
-- PRD: `.agents/PRDS/[kebab-name].md`
+- PRD: `.agents/memory/[kebab-name].md`
 
 See `references/full-guide.md` for local file templates.
 

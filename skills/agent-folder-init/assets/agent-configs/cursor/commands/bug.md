@@ -20,118 +20,22 @@ Ask only the essentials:
 
 That's it! Keep it fast.
 
-### Step 2: Determine File Location
+### Step 2: Create GitHub Issue
 
-**CRITICAL:** Follow new Kanban Markdown structure (flat tasks directory)
-
-**Bug file location:**
-
-- Frontend bugs: `[frontend-project]/.agents/TASKS/bug-[short-name].md`
-- Backend bugs: `[backend-project]/.agents/TASKS/bug-[short-name].md`
-- Other projects: Adapt project paths to your structure
-- Cross-project: `.agents/TASKS/bug-[short-name].md`
-
-**Bug PRD location:**
-
-- Frontend bugs: `[frontend-project]/.agents/PRDS/bugs/bug-[short-name].md`
-- Backend bugs: `[backend-project]/.agents/PRDS/bugs/bug-[short-name].md`
-- Other projects: Adapt project paths to your structure
-- Cross-project: `.agents/PRDS/bugs/bug-[short-name].md`
-
-**Create `bugs/` subdirectory in PRD folder if it doesn't exist.**
-
-### Step 3: Create Bug Files (Task + PRD)
-
-**Task file** - Structured format:
-
-```markdown
-## Task: Bug: [Short Description]
-
-**ID:** bug-short-name
-**Label:** Bug: [Short Description]
-**Description:** [Brief description of the bug]
-**Type:** Bug
-**Status:** Backlog
-**Priority:** High
-**Created:** YYYY-MM-DD
-**Updated:** YYYY-MM-DD
-**PRD:** [Link](../PRDS/bugs/bug-short-name.md)
-
----
-
-## Additional Notes
-
-Linked PRD: ../PRDS/bugs/bug-short-name.md
-```
-
-**PRD file** - Full bug details (use template below)
-
-### Step 4: Inform User
-
-```
-Bug captured! 📝
-
-Task: <project>/.agents/TASKS/bug-[name].md
-PRD: <project>/.agents/PRDS/bugs/bug-[name].md
-
-You can clean it up later and convert to a proper fix task when ready to implement.
-```
-
-## Templates
-
-### Bug Task File (Structured Format)
-
-**File:** `<project>/.agents/TASKS/bug-[short-name].md`
-
-```markdown
-## Task: Bug: [Short Description]
-
-**ID:** bug-short-name
-**Label:** Bug: [Short Description]
-**Description:** [Brief description of the bug]
-**Type:** Bug
-**Status:** Backlog
-**Priority:** High
-**Created:** YYYY-MM-DD
-**Updated:** YYYY-MM-DD
-**PRD:** [Link](../PRDS/bugs/bug-short-name.md)
-
----
-
-## Additional Notes
-
-Linked PRD: ../PRDS/bugs/bug-short-name.md
-```
-
-### Bug PRD File (Details)
-
-**File:** `<project>/.agents/PRDS/bugs/bug-[short-name].md`
-
-**CRITICAL:** No checkboxes (`- [ ]` or `- [x]`) in PRD. Use plain bullets `-`.
-
-```markdown
-# Bug: [Short Description]
-
-**Priority:** High | Medium | Low | TBD  
-**Status:** Reported | In Progress | Fixed  
-**Type:** Bug  
-**Severity:** Critical | High | Medium | Low | TBD  
-**App:** [app name]  
-**Area:** [specific area/feature if known]  
-**Reported:** YYYY-MM-DD  
-**Last Updated:** YYYY-MM-DD
-
----
-
+```bash
+gh issue create \
+  --title "Bug: [Short Description]" \
+  --label "bug" \
+  --body "$(cat <<'EOF'
 ## What's Wrong
 
 [User's description of the problem - exactly as they described it]
 
-## Steps to Reproduce
+## App / Area
 
-1. [Step 1]
-2. [Step 2]
-3. [Step 3]
+[App name and specific area/feature]
+
+## Steps to Reproduce
 
 _Unknown - to be investigated_
 
@@ -147,51 +51,18 @@ _Unknown - to be investigated_
 
 - Browser: [browser name/version]
 - Device: [desktop/mobile/tablet]
-- OS: [operating system]
-- Other: [any other relevant info]
 
 ## Error Messages (if any)
-```
 
 [Paste any error messages or console logs here]
-
-```
-
-## Screenshots/Videos (if available)
-
-[Link to screenshots or describe visual issues]
 
 ## Possible Cause (if suspected)
 
 [Any hunches about what might be causing this]
 
-## Root Cause (after investigation)
-
-[Once investigated, document the root cause here]
-
-## Fix Approach
-
-[How this will be fixed]
-
-## Files Affected
-
-- `path/to/file.ts` - [what needs to change]
-
-## Testing
-
-- Manual testing steps
-- Edge cases to verify
-- Regression prevention
-
 ## Notes
 
 [Any additional context, workarounds, or related information]
-
-## Related Issues
-
-- Related to: [link to related bugs/tasks if any]
-
----
 
 **Next Steps:**
 - Reproduce the bug
@@ -199,25 +70,36 @@ _Unknown - to be investigated_
 - Assess priority and severity
 - Implement fix
 - Add regression test
+EOF
+)"
+```
+
+### Step 3: Inform User
+
+```
+Bug captured! 📝
+
+GitHub Issue: #N — Bug: [Short Description]
+
+You can add more details later and convert to a proper fix task when ready to implement.
 ```
 
 ## Naming Convention
 
-**Format:** `bug-[short-descriptive-name].md`
+**Issue title format:** `Bug: [short-descriptive-name]`
 
-**Good names:**
+**Good titles:**
 
-- `bug-login-redirect-loop.md`
-- `bug-video-upload-fails-large-files.md`
-- `bug-missing-captions-preview.md`
-- `bug-org-filter-not-working.md`
+- `Bug: Login redirect loop`
+- `Bug: Video upload fails on large files`
+- `Bug: Missing captions in preview`
+- `Bug: Org filter not applied on search`
 
-**Bad names:**
+**Bad titles:**
 
-- `bug.md` (too generic)
-- `bug-1.md` (use description, not numbers)
-- `loginBug.md` (wrong case)
-- `bug_login.md` (use kebab-case)
+- `bug` (too generic)
+- `issue 1` (use description, not numbers)
+- `Video Gen broken` (not specific enough)
 
 ## Example Interaction
 
@@ -228,26 +110,22 @@ _Unknown - to be investigated_
 ```
 Got it! Let me capture this bug quickly.
 
-📝 Bug captured:
-   Task: [project]/.agents/TASKS/bug-video-preview-black-screen.md
-   PRD: [project]/.agents/PRDS/bugs/bug-video-preview-black-screen.md
+Bug captured: GitHub Issue #47 — Bug: Video preview shows black screen in Studio
 
 I've documented:
 - App: Studio
 - Issue: Video preview showing black screen
-- Status: Reported (needs investigation)
-- Kanban: Added to Backlog column
+- Status: Open (needs investigation)
 
 You can add more details later when you have time to investigate. Want me to look into it now or just keep it tracked for later?
 ```
 
 ## Workflow After Capture
 
-1. **Triage:** Review the bug, add priority/severity
+1. **Triage:** View the issue, add priority/severity labels
 2. **Investigate:** Reproduce and identify root cause
-3. **Convert:** Use `/task` command to create proper task + PRD
-4. **Fix:** Implement the fix following task workflow
-5. **Close:** Mark bug as resolved, reference fix commit/PR
+3. **Fix:** Implement the fix, reference the issue number in commits
+4. **Close:** `gh issue close <number> --comment "Fixed in commit <sha>."`
 
 ## Quick Capture vs Full Task
 
@@ -272,7 +150,7 @@ When ready to investigate a captured bug:
 **Quick Checks:**
 
 - [ ] Can you reproduce it consistently?
-- [ ] Check recent changes (git log, sessions)
+- [ ] Check recent changes (`git log`, session notes)
 - [ ] Verify organization isolation (all queries filtered)
 - [ ] Check error logs
 - [ ] Review related code
@@ -288,8 +166,8 @@ When ready to investigate a captured bug:
 ```bash
 # After investigation, convert to proper task:
 # 1. Use /task command with Bug Fix template
-# 2. Reference original bug file
-# 3. Optionally delete or archive original bug file
+# 2. Reference the GitHub Issue number
+# 3. Close the original issue when fix is merged
 ```
 
 **Linking in sessions:**
@@ -297,10 +175,11 @@ When ready to investigate a captured bug:
 ```markdown
 ## Bugs Found
 
-- [Bug: Video Preview Black Screen]([project]/.agents/TASKS/bug-video-preview-black-screen.md) - [PRD]([project]/.agents/PRDS/bugs/bug-video-preview-black-screen.md)
+- Issue #47: Bug: Video preview shows black screen (Studio)
 ```
 
 ---
 
-**Created:** 2025-10-19  
+**Created:** 2025-10-19
+**Updated:** 2026-06-02 — migrated from local task files to GitHub Issues
 **Purpose:** Fast bug capture without ceremony - triage and fix later

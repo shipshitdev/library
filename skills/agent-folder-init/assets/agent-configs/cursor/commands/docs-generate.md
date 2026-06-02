@@ -145,8 +145,8 @@ Organization: {{organizationId}}
 
 - **Installation & Setup:** Step-by-step getting started
 - **Configuration:** Environment variables and settings
-- **Architecture:** High-level system design
-- **Patterns:** Code patterns used (from `.agents/EXAMPLES/`)
+- **Architecture:** High-level system design (see `.agents/memory/`)
+- **Patterns:** Code patterns used (find real examples in codebase)
 - **Troubleshooting:** Common issues and solutions
 
 ### For API Users
@@ -181,8 +181,7 @@ Organization: {{organizationId}}
 ### Feature Documentation
 
 - **Session Files:** `.agents/SESSIONS/YYYY-MM-DD.md` (includes flowchart)
-- **Architecture:** `.agents/SYSTEM/ARCHITECTURE.md` (major decisions)
-- **SOPs:** `.agents/SOP/*.md` (patterns and procedures)
+- **Project Memory:** `.agents/memory/*.md` (major architectural decisions and patterns)
 
 ## Quality Checklist
 

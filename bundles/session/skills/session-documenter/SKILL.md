@@ -1,6 +1,6 @@
 ---
 name: session-documenter
-description: Document session work to .agents/SESSIONS/YYYY-MM-DD.md. Use when user says 'document session', 'save session', 'what did we do', or when invoked by session-start/session-end skills.
+description: "Session documentation workflow."
 metadata:
   version: "1.0.0"
   tags: session, documentation, workflow, productivity
@@ -9,6 +9,39 @@ metadata:
 # Session Documenter Skill
 
 Document work, decisions, and context with explicit commands.
+
+## Contract
+
+Inputs:
+
+- Current session context
+- Files changed, decisions made, blockers, and next steps
+- Optional task or PRD references
+
+Outputs:
+
+- Appended session entry in `.agents/SESSIONS/YYYY-MM-DD.md`
+- Related summary/task updates when needed
+
+Creates/Modifies:
+
+- `.agents/SESSIONS/` daily session file
+- `.agents/memory/*.md` when a decision changes durable project context (architecture, deployment, migrations, gotchas)
+
+External Side Effects:
+
+- None
+
+Confirmation Required:
+
+- Before rewriting existing session history
+- Before promoting session notes into permanent rules or skills
+
+Delegates To:
+
+- `rules-capture` for reusable preferences discovered during the session
+- `skill-capture` for reusable workflows discovered during the session
+- `session-end` for wrap-up flow
 
 ## Commands
 
@@ -55,10 +88,9 @@ Include flowchart for:
 
 ## Related Files to Update
 
-- `.agents/SESSIONS/README.md`
-- `.agents/SYSTEM/SUMMARY.md`
-- `.agents/TASKS/*/TODO.md`
-- `.agents/SYSTEM/ARCHITECTURE.md` (if architectural decisions)
+- `.agents/memory/*.md` — when a decision changes durable repo context
+  (architecture, deployment, migrations, gotchas). Bump the file's
+  `last_verified` date when you touch it.
 
 ## References
 

@@ -34,7 +34,7 @@
 - ✅ Keep file names (shows what was worked on)
 - ✅ Empty content (remove bloat)
 - ✅ MD files are the roadmap (source of truth)
-- ✅ Lean .agent folder (fast for AI to read)
+- ✅ Lean .agents folder (fast for AI to read)
 
 ### Process
 
@@ -73,7 +73,7 @@ Add to `.agents/SESSIONS/[today].md`:
 - api/queue-migration-tasks.md
 - frontend/video-generation-with-captions.md
 
-**Reason:** Tasks completed and tracked in roadmap (MD files). Content removed to keep .agent lean.
+**Reason:** Tasks completed and tracked in roadmap (MD files). Content removed to keep .agents lean.
 ```
 
 ### Manual Checklist for AI Agent

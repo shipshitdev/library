@@ -10,7 +10,7 @@ metadata:
 
 ## Overview
 
-This skill analyzes a project's current feature set against the needs of the Ideal Customer Profile (ICP). Before analyzing, discover the project's ICP from documentation (`.agents/SYSTEM/` or project docs) and current features from the codebase and documentation.
+This skill analyzes a project's current feature set against the needs of the Ideal Customer Profile (ICP). Before analyzing, discover the project's ICP from documentation (`.agents/memory/` or project docs) and current features from the codebase and documentation.
 
 The skill produces three outputs:
 

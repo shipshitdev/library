@@ -145,7 +145,6 @@
       "skills": [
         "fullstack-workspace-init",
         "project-init-orchestrator",
-        "project-init-orchestrator",
         "linter-formatter-init",
         "clerk-validator",
         "plasmo-extension-architect",
@@ -179,7 +178,7 @@
       "skills": [
         "agent-folder-init",
         "session-documenter",
-        "ai-dev-loop",
+        "executing-plans",
         "workspace-performance-audit"
       ]
     }

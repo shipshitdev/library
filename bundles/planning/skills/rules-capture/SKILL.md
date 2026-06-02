@@ -1,6 +1,6 @@
 ---
 name: rules-capture
-description: Automatically detects and documents user preferences, coding rules, and style guidelines when expressed during conversations
+description: "Capture reusable user rules."
 metadata:
   version: "1.0.0"
   tags: preferences, rules, documentation, automation
@@ -9,6 +9,38 @@ metadata:
 # Rules Capture Skill
 
 This skill automatically detects when users express preferences, rules, or coding standards during conversations and documents them for future sessions.
+
+## Contract
+
+Inputs:
+
+- User statement that expresses a reusable rule, preference, standard, or correction
+- Optional target scope: user, repo, project, skill, or session
+
+Outputs:
+
+- Captured pending rule with quote, extracted rule, scope, and status
+- Recommendation for permanent storage location
+
+Creates/Modifies:
+
+- Pending capture appended to `.agents/memory/captured-rules.md` (marked `status: temporary`)
+- Permanent rules only after explicit confirmation
+
+External Side Effects:
+
+- None
+
+Confirmation Required:
+
+- Before promoting a pending rule into permanent project or user rules
+- Before editing shared/public skills based on the captured rule
+
+Delegates To:
+
+- `skill-capture` when the rule is a reusable workflow that should become a skill
+- `agent-config-audit` when the rule may affect multiple config files
+- `session-documenter` when the rule should be noted in session history
 
 ---
 
@@ -71,7 +103,7 @@ Parse the user's statement to identify:
 
 ### 3. Document to Capture File
 
-Append to `.agents/SYSTEM/CAPTURED-RULES.md`:
+Append to `.agents/memory/captured-rules.md` (create the file if absent, with a YAML front-matter block including `status: temporary`):
 
 ````markdown
 ### [YYYY-MM-DD HH:MM] - [Category]: [Short Title]
@@ -114,9 +146,10 @@ Should I add this to the permanent rules? [Yes/No/Modify]
 ````
 
 ### 5. On Confirmation
-- Move to `USER-PREFERENCES.md` under appropriate section
-- Or create new section in `RULES.md` if it's a coding standard
-- Remove from `CAPTURED-RULES.md` (or mark as PROCESSED)
+- **Personal preferences** → append to `~/.claude/CLAUDE.md` (global) under the appropriate section
+- **Project coding standards** → append to the repo-level `CLAUDE.md`
+- **Durable project facts** (architecture, deployment notes, gotchas) → add/update a file in `.agents/memory/`
+- Remove the entry from `.agents/memory/captured-rules.md` (or mark it PROCESSED)
 
 ---
 
@@ -153,21 +186,26 @@ Should I add this to the permanent rules? [Yes/No/Modify]
 
 | Rule Type | Storage Location |
 |-----------|------------------|
-| Personal preferences | `../.agents/SYSTEM/ai/USER-PREFERENCES.md` |
-| Coding standards | `.agents/SYSTEM/RULES.md` |
-| Critical rules | `../.agents/SYSTEM/critical/CRITICAL-NEVER-DO.md` |
-| Pending review | `../.agents/SYSTEM/CAPTURED-RULES.md` |
+| Personal preferences | `~/.claude/CLAUDE.md` (global) |
+| Project coding standards | `<repo>/CLAUDE.md` (repo-level) |
+| Durable project facts | `.agents/memory/<topic>.md` |
+| Pending review | `.agents/memory/captured-rules.md` (`status: temporary`) |
 
 ---
 
 ## Auto-Capture File Format
 
-File: `../.agents/SYSTEM/CAPTURED-RULES.md`
+File: `.agents/memory/captured-rules.md`
 
 ```markdown
+---
+status: temporary
+last_verified: YYYY-MM-DD
+---
+
 # Captured Rules - Pending Review
 
-Rules automatically captured from conversations. Review and promote to permanent docs.
+Rules automatically captured from conversations. Review and promote to permanent storage.
 
 ---
 
@@ -179,8 +217,8 @@ Rules automatically captured from conversations. Review and promote to permanent
 
 ## Processed Rules
 
-[Rules that have been promoted to permanent docs]
-````
+[Rules that have been promoted to CLAUDE.md or .agents/memory/]
+```
 
 ---
 
@@ -197,10 +235,10 @@ This skill works with:
 
 When user says "clean up rules" or "process captured rules":
 
-1. Read `CAPTURED-RULES.md`
+1. Read `.agents/memory/captured-rules.md`
 2. Present each pending rule for review
 3. User can: Approve, Modify, Delete
-4. Approved rules get promoted to permanent docs
+4. Approved rules get promoted to CLAUDE.md or `.agents/memory/` as appropriate
 5. File is cleaned up
 
 ---

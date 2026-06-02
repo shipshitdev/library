@@ -52,9 +52,9 @@ Adapt your response style based on the question type and context:
 ### 1. Current State & Progress
 
 ```bash
-# Check for roadmap, metrics, progress
-cat .agents/TASKS/ROADMAP.md 2>/dev/null
-cat .agents/TASKS/*.md | head -100  # Recent tasks
+# Check for roadmap, metrics, progress (work is tracked in GitHub Issues)
+gh issue list --state open --limit 100 2>/dev/null
+gh issue list --label roadmap --state all 2>/dev/null
 ```
 
 **Look for:**
@@ -74,7 +74,7 @@ cat .agents/SESSIONS/$(date +%Y-%m-%d).md 2>/dev/null
 ls -t .agents/SESSIONS/*.md 2>/dev/null | head -7 | xargs cat
 
 # Business conversations or notes
-find .agent -name "*business*" -o -name "*conversation*" -o -name "*meeting*" 2>/dev/null
+find .agents/memory -name "*business*" -o -name "*conversation*" -o -name "*meeting*" 2>/dev/null
 ```
 
 **Look for:**
@@ -88,10 +88,8 @@ find .agent -name "*business*" -o -name "*conversation*" -o -name "*meeting*" 2>
 ### 3. Product & Architecture Context
 
 ```bash
-# System architecture
-cat .agents/SYSTEM/ARCHITECTURE.md 2>/dev/null
-cat .agents/SYSTEM/PROJECT-MAP.md 2>/dev/null
-cat .agents/SYSTEM/*.md 2>/dev/null | head -200
+# System architecture & durable project context
+cat .agents/memory/*.md 2>/dev/null | head -200
 
 # Product documentation
 cat README.md 2>/dev/null
@@ -108,9 +106,9 @@ cat docs/*.md 2>/dev/null | head -200
 ### 4. Business Plans & Strategy
 
 ```bash
-# Business plans, PRDs, strategy docs
-find .agent -name "*PRD*" -o -name "*business*" -o -name "*strategy*" 2>/dev/null
-find .agent -name "*plan*" -o -name "*roadmap*" 2>/dev/null
+# Business plans, PRDs, strategy docs (PRDs/plans live in GitHub Issues; durable strategy in .agents/memory/)
+gh issue list --label "prd,strategy,roadmap" --state all 2>/dev/null
+find .agents/memory -name "*business*" -o -name "*strategy*" -o -name "*roadmap*" 2>/dev/null
 ```
 
 **Look for:**
@@ -125,7 +123,7 @@ find .agent -name "*plan*" -o -name "*roadmap*" 2>/dev/null
 
 ```bash
 # Any metrics files
-find .agent -name "*metric*" -o -name "*analytics*" -o -name "*dashboard*" 2>/dev/null
+find .agents/memory -name "*metric*" -o -name "*analytics*" -o -name "*dashboard*" 2>/dev/null
 ```
 
 **Look for:**

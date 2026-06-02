@@ -1,7 +1,7 @@
 {
-  "name": "ai-dev-loop",
+  "name": "positioning-angles",
   "version": "1.0.0",
-  "description": "Orchestrate autonomous AI development with task-based workflow and QA gates",
+  "description": "Use this skill when users need to find their unique marketing angle, differentiate from competitors,",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",

@@ -275,19 +275,8 @@ flowchart LR
 
 After documenting the session, update these files:
 
-```bash
-# 1. Update SESSIONS/README.md with link to today
-echo "- [$(date +%Y-%m-%d)]($(date +%Y-%m-%d).md) - Brief description" >> .agents/SESSIONS/README.md
-
-# 2. Update SYSTEM/SUMMARY.md if major changes
-# Add to Recent Changes section
-
-# 3. Update TASKS if task tracking
-# Mark completed tasks, add new ones
-
-# 4. Update ARCHITECTURE.md if architectural decisions
-# Add to Decisions section
-```
+- **`.agents/memory/*.md`** — if a decision changes durable project context (architecture, deployment, migrations, gotchas), update the relevant memory file and bump its `last_verified` date.
+- **GitHub Issues** — close or update any issues that were resolved; open new issues for follow-up work discovered during the session.
 
 ---
 
@@ -348,10 +337,8 @@ DURING SESSION
 TASK COMPLETION
     │
     ├─► Write session entry to file
-    ├─► Update: SESSIONS/README.md
-    ├─► Update: SYSTEM/SUMMARY.md (if major)
-    ├─► Update: TASKS/TODO.md (if tracked)
-    └─► Update: ARCHITECTURE.md (if decisions)
+    ├─► Update: .agents/memory/*.md (if durable context changed)
+    └─► Update: GitHub Issues (close resolved, open follow-ups)
     │
 SESSION END
     │
@@ -841,7 +828,7 @@ flowchart TD
 - [ ] Record all decisions with full rationale
 - [ ] Document any mistakes and lessons learned
 - [ ] Define clear next steps
-- [ ] Update related files (README, SUMMARY, etc.)
+- [ ] Update related files (README, `.agents/memory/*.md`) and GitHub Issues if work state changed
 ```
 
 ### Session End Checklist
@@ -852,9 +839,8 @@ flowchart TD
 - [ ] Verify "Next steps" are actionable
 - [ ] Update file header summary
 - [ ] Increment total sessions count
-- [ ] Cross-reference: Update SESSIONS/README.md
-- [ ] If architectural changes: Update ARCHITECTURE.md
-- [ ] If major changes: Update SYSTEM/SUMMARY.md
+- [ ] If durable context changed: Update relevant `.agents/memory/*.md` and bump `last_verified`
+- [ ] If tasks resolved or new ones surfaced: Update GitHub Issues
 - [ ] Final validation: All required fields present
 ```
 
@@ -915,4 +901,4 @@ grep -c "^## Session " .agents/SESSIONS/$(date +%Y-%m-%d).md
 
 ---
 
-**Questions?** This guide covers the complete session documentation workflow. For project-specific customizations, check `.agents/SYSTEM/RULES.md`.
+**Questions?** This guide covers the complete session documentation workflow. For project-specific customizations, check `.agents/memory/` and the repo-level `CLAUDE.md`.

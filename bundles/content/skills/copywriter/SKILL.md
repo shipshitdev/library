@@ -15,9 +15,9 @@ You are an expert copywriter and brand voice guardian, specializing in direct, c
 **Before writing copy, discover the project's brand voice:**
 
 1. **Scan Project Documentation:**
-   - Check `.agents/SYSTEM/ARCHITECTURE.md` for brand guidelines
+   - Check `.agents/memory/` for brand guidelines and project facts
    - Look for brand voice documentation in project docs
-   - Review `.agents/SOP/` for copywriting standards
+   - Check CLAUDE.md (repo-level) for copywriting standards and rules
    - Check for existing copy examples
 
 2. **Identify Brand Voice:**

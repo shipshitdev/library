@@ -1,20 +1,20 @@
 # Task Management - AI Agent Command
 
-**MANDATORY: When user requests a new feature/task, CREATE TASK + PRD FILES FIRST before implementing anything.**
+**MANDATORY: When user requests a new feature/task, CREATE A GITHUB ISSUE + plan FIRST before implementing anything.**
 
 ## Purpose
 
-Unified command for **creating** and **updating** tasks - from simple one-shots to complex features. Ensures proper planning, documentation, and status tracking.
+Unified command for **creating** and **updating** tasks - from simple one-shots to complex features. Ensures proper planning, documentation, and status tracking via GitHub Issues.
 
 ## Operations
 
 ### 1. Create New Task
 
-Create task + PRD files with full planning before implementation.
+Create a GitHub Issue with full planning before implementation.
 
 ### 2. Update Task Status
 
-Quickly update existing task status, priority, or metadata.
+Update an existing GitHub Issue (close, label, comment with status).
 
 ## When to Use
 
@@ -76,29 +76,19 @@ Ask these questions if not clear from request:
 
 **AI Actions:**
 
-1. Read relevant architecture docs:
+1. Read relevant architecture docs from `.agents/memory/`:
 
    ```bash
-   # For API features
-   cat [api-project]/.agents/SYSTEM/ARCHITECTURE.md
-   cat [api-project]/.agents/SYSTEM/RULES.md
-
-   # For Frontend features
-   cat [frontend-project]/.agents/SYSTEM/ARCHITECTURE.md
-   cat [frontend-project]/.agents/SYSTEM/RULES.md
+   ls .agents/memory/
+   # Read the files most relevant to this feature area
    ```
 
-2. Search for similar implementations:
+2. Search for similar implementations in the codebase
+
+3. Check open issues for related work:
 
    ```bash
-   # Find similar features/patterns
-   grep -r "similar_pattern" [project]/
-   ```
-
-3. Check examples:
-
-   ```bash
-   cat .agents/EXAMPLES/[category]/[example-name].md
+   gh issue list --state open
    ```
 
 ### Step 4: Fetch Latest Library Docs (MANDATORY)
@@ -123,35 +113,13 @@ await mcp_context7_get_library_docs(
 );
 ```
 
-1. Document which libraries will be used in PRD
+1. Document which libraries will be used in the issue body
 
-### Step 5: Create Files (Task + PRD)
+### Step 5: Create GitHub Issue
 
 **AI Actions:**
 
-#### 5.1 Determine File Locations
-
-**CRITICAL:** Follow your project's task structure (adapt to your conventions)
-
-**Task file locations:**
-
-- **Frontend tasks:**
-
-  - Task: `[frontend-project]/.agents/TASKS/[task-name].md`
-  - PRD: `[frontend-project]/.agents/PRDS/[subfolder]/[task-name].md`
-
-- **Backend tasks:**
-
-  - Task: `[backend-project]/.agents/TASKS/[task-name].md`
-  - PRD: `[backend-project]/.agents/PRDS/[task-name].md`
-
-- **Other projects:** Adapt project paths to your structure
-
-- **Cross-project tasks:**
-  - Task: `.agents/TASKS/[task-name].md` (workspace root)
-  - PRD: `.agents/PRDS/[task-name].md`
-
-#### 5.2 Choose Template Type
+#### 5.1 Choose Issue Type
 
 **User Story** - Feature from user perspective
 **Technical Task** - Implementation-focused
@@ -160,13 +128,46 @@ await mcp_context7_get_library_docs(
 **Migration** - Move/refactor existing code
 **Research** - Investigation/audit task
 
-#### 5.3 Create Task File
+#### 5.2 Create the Issue
 
-Use appropriate template (see Templates section below).
+```bash
+gh issue create \
+  --title "[App]: [Feature Name]" \
+  --body "$(cat <<'EOF'
+## Overview
+[Brief description of what needs to be built and why]
 
-#### 5.4 Create PRD File
+## User Story (if applicable)
+As a [user], I want [goal] so that [benefit].
 
-Create companion PRD with implementation details (see PRD Template section below).
+## Requirements
+1. Requirement one
+2. Requirement two
+
+## Technical Approach
+[Architecture approach, patterns to follow]
+
+## Files to Create/Modify
+- `path/to/file.ts` — description
+- `path/to/component.tsx` — description
+
+## Libraries
+- **[Library]** (Context7 ID: `/org/project`) — specific feature needed
+
+## Acceptance Criteria
+- [ ] Criterion one
+- [ ] Criterion two
+
+## Priority
+High | Medium | Low
+EOF
+)" \
+  --label "[type]"
+```
+
+#### 5.3 Note the Issue Number
+
+After creation, note the issue number (e.g., `#42`) for reference in session notes.
 
 ### Step 6: Present to User & Get Approval
 
@@ -174,7 +175,7 @@ Create companion PRD with implementation details (see PRD Template section below
 
 1. Present to user:
 
-   - Show both file locations (task + PRD)
+   - Show the GitHub Issue link
    - Summary of the task breakdown
    - Explain approach and scope
    - List what will be created/modified
@@ -207,7 +208,7 @@ Create companion PRD with implementation details (see PRD Template section below
 
 **AI Actions:**
 
-1. Follow examples from `.agents/EXAMPLES/`
+1. Follow existing codebase patterns (find 3+ examples first)
 2. Implement in this order:
 
    - Database/schema changes (if needed)
@@ -219,345 +220,111 @@ Create companion PRD with implementation details (see PRD Template section below
 3. After each major piece:
    - Run linter
    - Check for errors
-   - Verify [tenant/organization] filtering (if multi-tenant)
+   - Verify tenant/organization filtering (if multi-tenant)
    - Verify soft delete handling (if using soft delete)
 
 ### Step 9: Testing
 
 **AI Actions:**
 
-1. Write unit tests:
-
-   ```typescript
-   // See .agents/EXAMPLES/TESTING/
-   ```
-
+1. Write unit tests
 2. Test manually:
 
    - Happy path
    - Error cases
    - Edge cases
-   - [Tenant/organization] isolation (if multi-tenant)
+   - Tenant isolation (if multi-tenant)
 
 3. Run test suite:
 
    ```bash
-   npm test
+   bun run test
    ```
 
 ### Step 10: Documentation & Cleanup
 
 **AI Actions:**
 
-1. Update docs:
+1. Update `.agents/memory/` files if architectural changes were made
+2. Add session entry to `.agents/SESSIONS/YYYY-MM-DD.md`
+3. Close or update the GitHub Issue:
 
    ```bash
-   # Update relevant files
-   [project]/.agents/SYSTEM/ARCHITECTURE.md  # If architectural change
-   [project]/.agents/SYSTEM/SUMMARY.md       # Current state
+   gh issue close <number> --comment "Implemented in commit <sha>. <brief summary>"
    ```
 
-2. Add session entry:
-
-   ```bash
-   [project]/.agents/SESSIONS/YYYY-MM-DD.md
-   ```
-
-3. Update task file and PRD:
-   - Mark status as complete
-   - Update timestamps
-   - Note any deviations from plan
-
-## Templates
-
-### Task Template: Structured Format
-
-**CRITICAL:** All tasks MUST follow this exact structured format for Kaiban Markdown extension compatibility.
+## Issue Body Template
 
 ```markdown
-## Task: [Feature Name]
-
-**ID:** feature-name-slug
-**Label:** [App]: [Feature Name]
-**Description:** [Brief description of what this task accomplishes]
-**Type:** Feature
-**Status:** Backlog
-**Priority:** High
-**Created:** YYYY-MM-DD
-**Updated:** YYYY-MM-DD
-**PRD:** [Link](../PRDS/[path]/feature-name.md)
-
----
-```
-
-**Metadata Fields:**
-
-- `ID`: kebab-case-slug (filename without .md)
-- `Label`: Human-readable title with app prefix
-- `Description`: Brief description of what this task accomplishes
-- `Type`: Feature | Bug | Enhancement | Task | Migration | Audit | Planning
-- `Status`: Backlog | To Do | Testing | Done
-- `Priority`: High | Medium | Low
-- `Created`: YYYY-MM-DD (when task was first created)
-- `Updated`: YYYY-MM-DD (when task was last modified)
-- `PRD`: Link to PRD file (relative path)
-
-**Status Rules:**
-
-- Not started: `Status: Backlog`
-- In progress: `Status: To Do`
-- Testing: `Status: Testing`
-- Complete: `Status: Done`
-
-**Examples:**
-
-```markdown
-## Task: Studio: Batch Content Generation
-
-**ID:** studio-batch-content-generation
-**Label:** Studio: Batch Content Generation
-**Description:** Enable batch generation of multiple content pieces from a single prompt
-**Type:** Feature
-**Status:** Backlog
-**Priority:** High
-**Created:** 2025-10-07
-**Updated:** 2025-10-19
-**PRD:** [Link](../PRDS/studio/studio-batch-content-generation.md)
-
----
-```
-
-```markdown
-## Task: API: Replicate JSON Prompt Improvements
-
-**ID:** api-replicate-json-prompt-improvements
-**Label:** API: Replicate JSON Prompt Improvements
-**Description:** Improve JSON prompt structure for better model performance
-**Type:** Enhancement
-**Status:** Backlog
-**Priority:** Medium
-**Created:** 2025-10-16
-**Updated:** 2025-10-19
-**PRD:** [Link](../PRDS/api-replicate-json-prompt-improvements.md)
-
----
-```
-
-```markdown
-## Task: Accounts to Brands Migration
-
-**ID:** accounts-to-brands-migration
-**Label:** Accounts to Brands Migration
-**Description:** Rename all account references to brands across the codebase
-**Type:** Migration
-**Status:** Done
-**Priority:** High
-**Created:** 2025-10-15
-**Updated:** 2025-10-19
-**PRD:** [Link](PRDS/accounts-to-brands-migration.md)
-
----
-```
-
-**NOTE:** Task file contains structured metadata + PRD link. All implementation details go in the PRD file.
-
-## PRD Template
-
-**File naming:** Same as task file: `[task-name].md`
-
-**Location:** `<project>/.agents/PRDS/[subdirs]/[task-name].md` (SEPARATE from task file)
-
-**CRITICAL:** PRDs MUST NOT contain checkboxes (`- [ ]` or `- [x]`). Use plain bullets `-` instead.
-
-````markdown
-# [App]: [Feature Name]
-
-**Priority:** High | Medium | Low  
-**Status:** Not Started | In Progress | Done  
-**Type:** Feature | Bug | Enhancement | Task | Migration | Audit  
-**Created:** YYYY-MM-DD  
-**Last Updated:** YYYY-MM-DD
-
 ## Overview
 
 [High-level description of what needs to be built and why]
 
 ## User Story (if applicable)
 
-**As a** [type of user]  
-**I want** [goal/desire]  
+**As a** [type of user]
+**I want** [goal/desire]
 **So that** [benefit/value]
 
-## Description
+## Requirements
 
-[Detailed description of the feature/task]
+1. **Requirement 1** — detail
+2. **Requirement 2** — detail
 
-## Context
+## Technical Approach
 
-[Why is this needed? What problem does it solve? Background information]
-
-## Implementation Overview
-
-[Technical approach, patterns to follow, architectural decisions]
-
-## Features / Requirements
-
-1. **Feature 1**
-
-   - Detail about feature 1
-   - Specific behaviors and requirements
-
-2. **Feature 2**
-   - Detail about feature 2
-   - Specific behaviors and requirements
+[Architecture approach, patterns to follow, key decisions]
 
 ## Files to Create
 
-- `path/to/new/file.ts` - [description and purpose]
-- `path/to/component.tsx` - [description and purpose]
-- `path/to/service.ts` - [description and purpose]
+- `path/to/new/file.ts` — description and purpose
+- `path/to/component.tsx` — description and purpose
 
 ## Files to Modify
 
-- `path/to/existing/file.ts` - [what changes are needed]
-- `path/to/another.tsx` - [what changes are needed]
+- `path/to/existing/file.ts` — what changes are needed
 
 ## API Endpoints (if applicable)
 
-**New endpoints to create:**
-
-- `POST /api/[resource]` - [description]
-- `GET /api/[resource]/:id` - [description]
-- `PATCH /api/[resource]/:id` - [description]
-- `DELETE /api/[resource]/:id` - [description]
-
-**Existing endpoints to modify:**
-
-- `PATCH /api/[resource]/:id` - [changes needed]
-
-## Database Changes (if applicable)
-
-```javascript
-// Schema changes
-{
-  fieldName: Type,
-  newField: Type,
-}
-
-// Indexes to add
-db.collection.createIndex({ field: 1 });
-```
+- `POST /api/[resource]` — description
+- `GET /api/[resource]/:id` — description
 
 ## Libraries/Dependencies
 
-**CRITICAL:** Use Context7 MCP to fetch latest docs before implementing.
+- **[Library Name]** (Context7 ID: `/org/project`) — specific feature/API needed
 
-**Libraries to use:**
+## Acceptance Criteria
 
-- **[Library Name]** (Context7 ID: `/org/project`) - [specific feature/API needed]
-- **[Framework]** (Context7 ID: `/org/project`) - [specific feature needed]
+- [ ] Criterion one
+- [ ] Criterion two
+- [ ] Tests pass
+- [ ] No regression
 
-**Example:**
+## Priority
 
-- **MongoDB** (Context7 ID: `/mongodb/docs`) - Aggregation pipeline for analytics
-- **Next.js** (Context7 ID: `/vercel/next.js`) - Server Actions for form handling
+High | Medium | Low
 
-**Fetch docs:**
+## Notes
 
-```typescript
-mcp_context7_get_library_docs({
-  context7CompatibleLibraryID: "/mongodb/docs",
-  topic: "aggregation pipeline",
-});
-```
-
-## Technical Implementation
-
-### Architecture Approach
-
-[Describe the technical approach, patterns to follow, architectural decisions]
-
-### Database Changes (if applicable)
-
-```javascript
-// Schema changes
-{
-  fieldName: Type,
-  newField: Type,
-  // ...
-}
-
-// Indexes to add
-db.collection.createIndex({ field: 1 });
-```
-
-### Technical Considerations
-
-- [Performance concern]
-- [Security consideration]
-- [Scalability issue]
-- [Browser compatibility]
-- [Tenant/organization filtering - if multi-tenant]
-- [Soft delete handling - if using soft delete]
-
-### Design/UX Considerations
-
-- [User flow]
-- [Wireframe/mockup reference]
-- [Accessibility requirements]
-- [Responsive design notes]
-
-## Testing Requirements
-
-### Unit Tests
-
-- [ ] Test for [component/service] - [specific scenario]
-- [ ] Test for [function] - [edge case]
-
-### Integration Tests
-
-- [ ] Test for [workflow] - [happy path]
-- [ ] Test for [workflow] - [error cases]
-
-### E2E Tests
-
-- [ ] Test user flow: [describe flow]
-- [ ] Test edge case: [describe scenario]
-
-### Manual Testing Checklist
-
-- [ ] Happy path works
-- [ ] Error handling works
-- [ ] Edge cases handled
-- [ ] [Tenant/organization] isolation verified (if multi-tenant)
-- [ ] Soft delete respected (if using soft delete)
-- [ ] Performance acceptable
-
----
-
-**Implementation Notes:**
-
-[Any additional notes, gotchas, or things to watch out for during implementation]
-
+[Any additional gotchas or things to watch out for]
 ```
 
 ## Naming Conventions
 
-**File naming:** `kebab-case-task-name.md`
+**Issue titles:** `[App]: Feature Name` or `[Type]: Brief Description`
 
-**Good names:**
+**Good titles:**
 
-- `video-generation-with-captions.md`
-- `quick-actions-audit.md`
-- `multi-platform-integration.md`
-- `organization-review.md`
+- `Studio: Batch Content Generation`
+- `API: Replicate JSON Prompt Improvements`
+- `Bug: Video preview shows black screen`
+- `Infra: Accounts to Brands Migration`
 
-**Bad names:**
+**Bad titles:**
 
-- `feature.md` (too generic)
-- `VideoGeneration.md` (wrong case)
-- `video_generation.md` (use kebab, not snake)
-- `video-gen.md` (don't abbreviate)
+- `feature` (too generic)
+- `fix bug` (not specific enough)
+- `Video Gen` (don't abbreviate)
 
 ## Example Interaction
 
@@ -566,9 +333,6 @@ db.collection.createIndex({ field: 1 });
 **AI Response:**
 
 ```
-
-Great! Let me create a proper task and PRD for this.
-
 A few quick questions:
 
 1. Priority: Is this critical for this week, or can it wait?
@@ -577,35 +341,30 @@ A few quick questions:
 
 [After getting answers]
 
-[AI checks architecture, fetches Context7 docs for ffmpeg, Next.js, etc.]
+[AI checks .agents/memory/, fetches Context7 docs for ffmpeg, Next.js, etc.]
 
-I've created the task files:
-📄 [project]/.agents/TASKS/video-generation-with-captions.md
-📄 [project]/.agents/PRDS/video-generation-with-captions.md
+I've created the issue:
+🔗 GitHub Issue #47: Studio: Video Generation with Captions
 
-This task includes:
-
+This covers:
 - Integration with caption API
 - Caption positioning options
 - Styling controls
 - Preview with captions
 - Multi-language support
 
-The PRD includes detailed implementation steps, files to create/modify, and testing requirements.
-
-Review the files and let me know if you'd like to proceed with implementation or make changes!
-````
+Review the issue and let me know if you'd like to proceed with implementation or make changes!
+```
 
 ## Critical Rules
 
 **BEFORE implementing ANY new feature:**
 
-1. ✅ Create task file
-2. ✅ Create PRD file
-3. ✅ Link them together
-4. ✅ Present to user for review
-5. ✅ Get approval
-6. ✅ Then implement
+1. ✅ Create GitHub Issue
+2. ✅ Document approach and acceptance criteria
+3. ✅ Present to user for review
+4. ✅ Get approval
+5. ✅ Then implement
 
 **This ensures:**
 
@@ -613,8 +372,6 @@ Review the files and let me know if you'd like to proceed with implementation or
 - User knows what's being built
 - Clear scope and acceptance criteria
 - Better planning and estimation
-- Documentation exists from start
-- Separation of what (task) and how (PRD)
 
 ## Red Flags (Stop and Ask User)
 
@@ -629,27 +386,23 @@ Review the files and let me know if you'd like to proceed with implementation or
 
 **At end of session:**
 
-- Task file status updated (Not Started → In Progress → Complete)
-- PRD status updated
-- Session file references both task and PRD
-- If complete, mark in SUMMARY.md
-- If blocked, note in task file
-
-**Use documentation update checklist** to ensure all documentation is updated.
+- Session file references the GitHub Issue number
+- Issue closed with implementation summary if complete
+- If blocked, note in issue comments
 
 ## Quick Reference
 
 | Step       | Action         | Tool             |
 | ---------- | -------------- | ---------------- |
-| Understand | Detect scope   | -                |
-| Clarify    | Ask questions  | -                |
-| Research   | Check system   | grep, cat        |
+| Understand | Detect scope   | —                |
+| Clarify    | Ask questions  | —                |
+| Research   | Check system   | gh issue list, codebase search |
 | Fetch Docs | Get latest     | Context7 MCP     |
-| Plan       | Create files   | task + PRD       |
+| Plan       | Create issue   | gh issue create  |
 | Approve    | Get permission | Present to user  |
-| Code       | Implement      | .agents/EXAMPLES/ |
-| Test       | Verify         | npm test         |
-| Document   | Update docs    | upt-doc.md       |
+| Code       | Implement      | follow codebase patterns |
+| Test       | Verify         | bun run test     |
+| Document   | Update docs    | session + memory |
 
 ---
 
@@ -660,153 +413,107 @@ Review the files and let me know if you'd like to proceed with implementation or
 User says:
 
 - "Mark [task] as complete"
-- "Update status of [task] to in progress"
-- "Change priority of [task] to high"
-- "Set [task] status to blocked"
+- "Update status of [issue #N] to in progress"
+- "Change priority of [issue] to high"
+- "Set [issue] status to blocked"
 
 ## Update Workflow Steps
 
-### Step 1: Identify Task
+### Step 1: Identify Issue
 
 **Ask user if not clear:**
 
-- Which task file? (full path or task name)
-- What field to update? (status, priority, description)
+- Which issue? (number or title)
+- What needs to update? (status, priority, comment)
 - What's the new value?
 
-### Step 2: Read Task File
+### Step 2: View Current Issue
 
 ```bash
-cat [project]/.agents/TASKS/task-name.md
+gh issue view <number>
 ```
 
 Verify:
 
-- Task exists
-- Current status/priority
-- Task format (Kanban structured)
+- Issue exists
+- Current status/labels
+- Issue details
 
-### Step 3: Update Task Fields
+### Step 3: Update
 
-**Status changes:**
+**Close when complete:**
 
-- Backlog → To Do → Testing → Done
-- Also: Blocked, Cancelled
+```bash
+gh issue close <number> --comment "Done. Implemented in <sha>. <summary>"
+```
 
-**Priority changes:**
+**Add status comment:**
 
-- High, Medium, Low
+```bash
+gh issue comment <number> --body "Status update: [details]"
+```
 
-**Update these fields:**
+**Update labels:**
 
-- `**Status:**` → new status
-- `**Updated:**` → current date (YYYY-MM-DD)
-- `**Priority:**` (if changing)
+```bash
+gh issue edit <number> --add-label "blocked"
+gh issue edit <number> --remove-label "in-progress" --add-label "done"
+```
 
-### Step 4: Update PRD (if status changed to Done)
-
-If marking as complete:
-
-1. Read PRD file (linked in task)
-2. Update PRD status to "Done"
-3. Update "Last Updated" date
-
-### Step 5: Confirm with User
+### Step 4: Confirm with User
 
 ```
-✅ Task updated!
+✅ Issue #N updated!
 
-Task: [project]/.agents/TASKS/task-name.md
 - Status: [old] → [new]
-- Updated: [date]
-
-PRD: [project]/.agents/PRDS/[path]/task-name.md
-- Status: [old] → [new]
+- Comment added: [summary]
 ```
 
 ## Status Reference
 
-| Status    | Meaning     | When to Use                 |
-| --------- | ----------- | --------------------------- |
-| Backlog   | Not started | Initial state, in backlog   |
-| To Do     | In progress | Actively working on it      |
-| Testing   | Testing     | Code complete, being tested |
-| Done      | Complete    | Finished and verified       |
-| Blocked   | Waiting     | Blocked on dependencies     |
-| Cancelled | Won't do    | No longer needed            |
+| Status    | GitHub Action              | When to Use                 |
+| --------- | -------------------------- | --------------------------- |
+| Backlog   | Open, no label             | Not yet started             |
+| In Progress | Label: `in-progress`     | Actively working on it      |
+| Blocked   | Label: `blocked` + comment | Waiting on dependency       |
+| Done      | Closed with summary        | Finished and verified       |
+| Cancelled | Closed with reason         | No longer needed            |
 
 ## Update Examples
 
 ### Example 1: Mark as Complete
 
-**User:** "Mark the video generation task as complete"
+**User:** "Mark the video generation issue as complete"
 
 **AI:**
 
-1. Searches for task file with "video generation" in name
-2. Reads task file
-3. Updates status to "Done"
-4. Updates timestamp
-5. Updates linked PRD status
-6. Confirms with user
-
-### Example 2: Change Priority
-
-**User:** "Change priority of analytics task to high"
-
-**AI:**
-
-1. Finds analytics task file
-2. Updates `**Priority:**` field
-3. Updates `**Updated:**` timestamp
+1. Searches open issues: `gh issue list --search "video generation"`
+2. Views the issue: `gh issue view <number>`
+3. Closes it: `gh issue close <number> --comment "Implemented. See commit <sha>."`
 4. Confirms with user
 
-### Example 3: Mark as Blocked
+### Example 2: Mark as Blocked
 
-**User:** "Set queue migration task as blocked"
+**User:** "Set queue migration issue as blocked"
 
 **AI:**
 
-1. Finds queue migration task
+1. Finds the issue
 2. Asks: "What's blocking it?"
-3. Updates status to "Blocked"
-4. Optionally adds blocker note
-5. Updates timestamp
-6. Confirms
-
-## Quick Update Commands
-
-For common patterns, detect and execute directly:
-
-**Pattern:** "mark [task-name] as [status]"
-**Action:** Find task → Update status → Confirm
-
-**Pattern:** "set [task-name] priority to [priority]"
-**Action:** Find task → Update priority → Confirm
-
-**Pattern:** "[task-name] is complete"
-**Action:** Find task → Set status to Done → Update PRD → Confirm
+3. Adds label: `gh issue edit <number> --add-label "blocked"`
+4. Comments: `gh issue comment <number> --body "Blocked: [reason]"`
+5. Confirms
 
 ## Integration with Other Commands
 
-**After updating task status:**
+**After updating issue:**
 
-- If "Done" → Consider adding to session notes (`/docs-update`)
+- If "Done" → Add to session notes
 - If "Blocked" → Note in current session
-- If priority changed → May affect roadmap
-
-**Clean up completed/cancelled tasks periodically** (if using task tracking).
+- If priority changed → May affect roadmap planning
 
 ---
 
 **Created:** 2025-10-19
-**Updated:** 2025-11-21
+**Updated:** 2026-06-02 — migrated from local task files to GitHub Issues
 **Purpose:** Unified command for task creation and updates - simple to complex
-
-```
-
-```
-
-```
-
-```

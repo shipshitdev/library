@@ -35,7 +35,7 @@ The AI will run the scaffold script interactively, asking you:
 2. Project root path
 3. Repository structure (monorepo vs separate)
 4. Components to scaffold (all optional):
-   - .agent folder
+   - .agents folder
    - Backend (NestJS)
    - Frontend (NextJS)
    - Mobile (Expo)
@@ -134,7 +134,7 @@ myproject-frontend/   # Frontend only
 
 This command uses the `project-init-orchestrator` skill which:
 
-- Integrates with `agent-folder-init` for .agent folder scaffolding
+- Integrates with `agent-folder-init` for .agents folder scaffolding
 - Reuses templates from `fullstack-workspace-init`
 - Works across Claude, Codex, and Cursor platforms
 
@@ -157,7 +157,7 @@ This command uses the `project-init-orchestrator` skill which:
 **Agent folder not created:**
 
 - The script tries to use `agent-folder-init` skill
-- If not found, it will skip .agent folder creation
+- If not found, it will skip .agents folder creation
 - Install agent-folder-init skill for full support
 
 ## Next Steps After Scaffolding
@@ -182,6 +182,7 @@ This command uses the `project-init-orchestrator` skill which:
    ```
 
 3. **Customize:**
-   - Update `.agents/SYSTEM/RULES.md` with coding standards
+   - Add project-specific rules to CLAUDE.md (repo-level)
+   - Populate `.agents/memory/` with durable project facts
    - Configure environment variables
    - Add your first features

@@ -1,13 +1,13 @@
 # Inbox Task Management
 
-Quick task capture and expansion. Backlog only - no status tracking here.
+Quick task capture and triage via GitHub Issues. Backlog lives in GitHub — not local files.
 
 ## Usage
 
 ```bash
-/inbox                    # View backlog
-/inbox [task description] # Quick add
-/inbox expand             # Expand task to PRD/TASK
+/inbox                    # View open issues
+/inbox [task description] # Quick capture as GitHub Issue
+/inbox expand             # Expand a captured issue into a full implementation plan
 ```
 
 ---
@@ -20,19 +20,19 @@ Quick task capture and expansion. Backlog only - no status tracking here.
 
 **Steps:**
 
-1. Read `.agents/TASKS/INBOX.md`
-2. Display tasks from "Backlog" section:
+1. Run `gh issue list --state open`
+2. Display open issues:
 
    ```
-   📥 Inbox (5 tasks)
+   📥 Open Issues (5)
 
-   1. Add dark mode toggle (2025-11-21) - HIGH
-      Users keep requesting this feature
+   #12  Add dark mode toggle (2025-11-21) - HIGH
+        Users keep requesting this feature
 
-   2. Fix analytics cron job (2025-11-20)
-      Sometimes misses hourly runs
+   #11  Fix analytics cron job (2025-11-20)
+        Sometimes misses hourly runs
 
-   Use `/inbox expand` to create PRD/TASK
+   Use `/inbox expand` to create an implementation plan
    ```
 
 ### Mode 2: Quick Capture (arguments provided)
@@ -43,52 +43,56 @@ Quick task capture and expansion. Backlog only - no status tracking here.
 
 1. Extract task title from arguments
 2. Ask: "Brief context? (1-2 sentences)"
-3. Add to "Backlog" section:
+3. Create a GitHub Issue:
 
-   ```markdown
-   - [ ] **[TASK_TITLE]** ([TODAY_DATE])
-     - [USER_CONTEXT]
+   ```bash
+   gh issue create --title "[TASK_TITLE]" --body "[USER_CONTEXT]"
    ```
 
-4. Confirm: "✅ Added: [TASK_TITLE]"
+4. Confirm: "✅ Issue created: #N [TASK_TITLE]"
 
-### Mode 3: Expand to PRD/TASK
+### Mode 3: Expand to Implementation Plan
 
 **When:** `/inbox expand`
 
 **Steps:**
 
-1. Show numbered list of backlog tasks
-2. Ask: "Which task? (number)"
-3. Ask clarifying questions:
+1. Show numbered list from `gh issue list --state open`
+2. Ask: "Which issue? (number)"
+3. Fetch full issue: `gh issue view <number>`
+4. Ask clarifying questions:
    - Problem statement
    - Target users
    - Success criteria
    - Technical approach
    - Priority
-4. Create PRD (`.agents/PRDS/`) or TASK (`.agents/TASKS/`)
-5. **Remove task from INBOX.md** (it now lives in PRD/TASK)
-6. Confirm: "✅ Created: [FILE_PATH]"
+5. Use `/task` command to create the full implementation plan
+6. Reference the GitHub Issue number in the task
+7. Confirm: "✅ Implementation plan ready. Issue #N linked."
 
 ---
 
-## File Paths
+## GitHub Issues Workflow
 
-**Inbox:** `.agents/TASKS/INBOX.md`
+**View:** `gh issue list --state open`
 
-**PRDs:** `.agents/PRDS/{category}/{name}.md`
-**Tasks:** `.agents/TASKS/{category}/{name}.md`
+**Create:** `gh issue create --title "..." --body "..."`
 
-Categories: `studio/`, `manager/`, `publisher/`, `analytics/`, `api/`, `infrastructure/`
+**View detail:** `gh issue view <number>`
+
+**Label/assign:** `gh issue edit <number> --add-label "..." --assignee "..."`
+
+**Close when done:** `gh issue close <number>`
 
 ---
 
-## Task Format
+## Task Format (for quick capture body)
 
-```markdown
-- [ ] **Task Title** (YYYY-MM-DD)
-  - Brief context (1-2 sentences)
-  - Priority: HIGH/MEDIUM/LOW (optional)
+Keep the issue body simple. Once expanded into a full implementation plan, update the issue with a link to the session notes.
+
+```
+Brief context (1-2 sentences).
+Priority: HIGH/MEDIUM/LOW
 ```
 
-Keep it simple. Once expanded, remove from inbox.
+Keep it simple. Once expanded into a full plan, close or update the issue.

@@ -1,6 +1,9 @@
 ---
 name: workflow-automation
 description: This skill should be used when users need help designing content workflows, creating process documentation, implementing automation rules, designing approval processes, or optimizing content pipelines. It activates when users ask about workflow design, process documentation, automation, approval workflows, or content pipeline optimization.
+metadata:
+  version: "1.0.0"
+  tags: "workflow, automation, process"
 ---
 
 # Content Workflow Automation
@@ -180,8 +183,7 @@ To optimize content pipelines for efficiency:
 **Before designing workflows, discover the project's context:**
 
 1. **Scan Project Documentation:**
-   - Check `.agents/SYSTEM/ARCHITECTURE.md` for workflow architecture
-   - Review `.agents/SOP/` for existing process documentation
+   - Check `.agents/memory/` for workflow architecture and existing process documentation
    - Look for workflow diagrams or process maps
 
 2. **Identify Workflow Components:**

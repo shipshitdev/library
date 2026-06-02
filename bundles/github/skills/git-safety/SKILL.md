@@ -1,11 +1,50 @@
 ---
 name: git-safety
-description: Scan git history for sensitive files, clean leaked credentials, and set up prevention measures. Use when asked to "check for secrets", "scan git history", "remove .env from history", "secure my repo", or "clean sensitive files".
+description: "Git history secret scan."
+metadata:
+  version: "1.0.0"
+  tags: "git, security, secrets"
 ---
 
 # Git Safety Skill
 
 Comprehensive security scanning, cleaning, and prevention for git repositories.
+
+## Contract
+
+Inputs:
+
+- Repository root
+- Mode: scan, prevent, clean, or full
+- Optional leaked path, secret pattern, or affected ref range
+
+Outputs:
+
+- Sensitive file/history findings
+- Rotation and remediation checklist
+- Commands required for prevention or history cleanup
+
+Creates/Modifies:
+
+- Scan mode: no file changes
+- Prevent mode: `.gitignore` and optional hook updates
+- Clean mode: rewritten git history only after explicit confirmation
+
+External Side Effects:
+
+- May force-push rewritten history in clean mode
+- May require credential rotation outside the repository
+
+Confirmation Required:
+
+- Before history rewriting
+- Before force-pushing
+- Before changing hooks or ignore rules in shared repos
+
+Delegates To:
+
+- `security-audit` for broader application-security review
+- `open-source-checker` before publishing a private repo
 
 ## CRITICAL WARNING
 

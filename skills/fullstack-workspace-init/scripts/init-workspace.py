@@ -185,9 +185,9 @@ def create_agents_md(name: str) -> str:
         - `mobile/` - React Native → `mobile/.agents/`
         - `packages/` - Shared → `packages/.agents/`
 
-        ## Quick Start
+        ## Context
 
-        Read `.agents/SYSTEM/ai/SESSION-QUICK-START.md` first.
+        Durable project facts live in `.agents/memory/`. Session logs are in `.agents/SESSIONS/`.
     """)
 
 
@@ -195,7 +195,7 @@ def create_claude_md(name: str) -> str:
     return dedent(f"""\
         # {name}
 
-        Claude entry point. Rules in `.agents/SYSTEM/RULES.md`.
+        Claude entry point. Rules and coding standards are defined in this file and `~/.claude/CLAUDE.md`.
 
         ## Commands
 
@@ -205,9 +205,9 @@ def create_claude_md(name: str) -> str:
         bun run dev:mobile   # Start mobile
         ```
 
-        ## Critical Rules
+        ## Project Context
 
-        See `.agents/SYSTEM/critical/CRITICAL-NEVER-DO.md`
+        Durable project facts live in `.agents/memory/`. Session logs are in `.agents/SESSIONS/`.
     """)
 
 
@@ -1816,28 +1816,28 @@ def scaffold_workspace(
     # Create directories
     dirs = [
         root,
-        root / ".agent",
+        root / ".agents",
         root / ".github" / "workflows",
         root / "api" / "apps" / "api" / "src" / "collections",
         root / "api" / "apps" / "api" / "src" / "auth" / "guards",
         root / "api" / "apps" / "api" / "src" / "auth" / "decorators",
         root / "api" / "apps" / "api" / "src" / "config",
         root / "api" / "apps" / "api" / "src" / "helpers",
-        root / "api" / ".agent",
+        root / "api" / ".agents",
         root / "frontend" / "apps" / "dashboard" / "app",
         root / "frontend" / "packages" / "components",
         root / "frontend" / "packages" / "services",
         root / "frontend" / "packages" / "hooks",
         root / "frontend" / "packages" / "interfaces",
-        root / "frontend" / ".agent",
+        root / "frontend" / ".agents",
         root / "mobile" / "app",
-        root / "mobile" / ".agent",
+        root / "mobile" / ".agents",
         root / "packages" / "packages" / "common" / "serializers",
         root / "packages" / "packages" / "common" / "interfaces",
         root / "packages" / "packages" / "common" / "enums",
         root / "packages" / "packages" / "helpers",
         root / "packages" / "packages" / "constants",
-        root / "packages" / ".agent",
+        root / "packages" / ".agents",
     ]
 
     for d in dirs:
@@ -1924,7 +1924,7 @@ def scaffold_workspace(
             print(f"\n[{entity.pascal_case}]")
             generate_entity_crud(root, entity)
 
-    # Run agent-folder-init for .agent folders
+    # Run agent-folder-init for .agents folders
     agent_init_script = Path.home() / ".codex" / "skills" / "agent-folder-init" / "scripts" / "scaffold.py"
     if agent_init_script.exists():
         for project in [root, root / "api", root / "frontend", root / "mobile", root / "packages"]:

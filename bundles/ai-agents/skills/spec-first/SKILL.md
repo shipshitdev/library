@@ -1,6 +1,9 @@
 ---
 name: spec-first
 description: Use when building anything non-trivial. Enforces a spec → plan → execute → verify loop that prevents "looks right" failures. Creates spec.md, todo.md, and decisions.md before writing code.
+metadata:
+  version: "1.0.0"
+  tags: "specification, planning, execution"
 ---
 
 # Spec-First Development
@@ -44,13 +47,13 @@ Prompts that work:
 - "What assumptions are you making? Which ones are risky?"
 - "Propose a minimal version that can be deleted later without regret."
 
-**Output:** Decision notes for `.agents/DECISIONS/[feature-name].md`
+**Output:** Decision notes in `.agents/memory/decisions-[feature-name].md`
 
 ### Stage B: Write spec.md (freeze decisions)
 
 **Goal:** Turn decisions into unambiguous requirements.
 
-**File:** `.agents/SPECS/[feature-name].md`
+**File:** `.agents/memory/spec-[feature-name].md`
 
 ```markdown
 # [Feature Name] Spec
@@ -82,7 +85,7 @@ Unit/integration boundaries, fixtures, golden files, what must be mocked.
 
 **Goal:** Stepwise checklist where each step has a verification command.
 
-**File:** `.agents/TODOS/[feature-name].md`
+**Tracking:** a GitHub Issue per feature — the checklist below is the issue body.
 
 ```markdown
 # [Feature Name] TODO
@@ -141,27 +144,26 @@ Heuristics:
 - Prefer shallow abstractions that can be removed without cascade
 - Invest in tests and fixtures more than clever architecture
 
-## The Three-File Convention
+## The Three-Artifact Convention
 
-Keep in the `.agents/` folder (not project root):
+Durable spec + decisions live in `.agents/memory/` (not project root); the stepwise todo is tracked as a GitHub Issue:
 
 ```
-.agents/
-├── SPECS/
-│   └── [feature-name].md    # what/why/constraints
-├── TODOS/
-│   └── [feature-name].md    # steps + verification commands
-└── DECISIONS/
-    └── [feature-name].md    # tradeoffs, rejected options, assumptions
+.agents/memory/
+├── spec-[feature-name].md       # what/why/constraints
+└── decisions-[feature-name].md  # tradeoffs, rejected options, assumptions
+
+GitHub Issue (one per feature)   # steps + verification commands (checklist body)
 ```
 
-**Naming:** Use the feature/task name as the filename (e.g., `user-auth.md`, `api-refactor.md`).
+**Naming:** Use the feature/task name (e.g., `user-auth`, `api-refactor`) as the filename suffix and the issue title.
 
-**Why .agent folder:**
+**Why memory/ + Issues:**
 
 - Keeps project root clean
-- Groups all AI-assisted planning artifacts
-- Works with task-prd-creator and ai-dev-loop skills
+- Durable spec/decisions stay in `.agents/memory/` (the source of truth)
+- Active todos live in GitHub Issues, where work is tracked
+- Works with task-prd-creator and executing-plans skills
 - Persists across sessions
 
 ## Agent Readiness Checklist (IMPACT)

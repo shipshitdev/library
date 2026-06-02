@@ -1,37 +1,36 @@
 # Validate - Unified Validation Command
 
-Validate documentation, sessions, and tasks.
+Validate the agents folder structure, sessions, and project context.
 
 ## Usage
 
-/validate docs      - Validate documentation structure
+/validate docs      - Validate .agents/ structure and memory files
 /validate sessions  - Validate session file naming
-/validate tasks     - Validate task files
+/validate issues    - List open GitHub Issues for triage
 /validate all       - Run all validation checks
 
 ## Option 1: Validate Documentation
 
-Checks required files and broken links.
+Checks that the `.agents/` folder follows the canonical lean structure.
 
 ### What This Checks
 
-- Required files exist (.agents/README.md, etc.)
-- Internal links work
-- Proper folder organization
+- Required files exist (`.agents/README.md`)
+- `.agents/memory/` exists and contains at least one `.md` file
+- `.agents/SESSIONS/` exists
+- Each memory file carries a `last_verified` date
+- None of the old layout directories exist (any of: `SYSTEM/`, `TASKS/`, `PRDS/`, `SOP/`, `EXAMPLES/`, `FEEDBACK/` inside `.agents/`)
 
-### Files to Check
+### Canonical Structure
 
-Workspace level:
+```
+.agents/
+├── README.md
+├── memory/      ← durable project facts, one topic per *.md file
+└── SESSIONS/    ← daily logs YYYY-MM-DD.md
+```
 
-- .agents/README.md
-- .agents/SYSTEM/ directory
-- .agents/TASKS/ directory
-- .agents/SESSIONS/ directory
-
-Project level:
-
-- <project>/.agents/README.md
-- <project>/.agents/SYSTEM/SUMMARY.md
+Rules and preferences live in `CLAUDE.md` (repo-level and `~/.claude/CLAUDE.md`), not inside `.agents/`.
 
 ## Option 2: Validate Sessions
 
@@ -53,31 +52,27 @@ Ensure session files follow ONE FILE PER DAY rule.
 
 Violations are consolidated into proper date-based files.
 
-## Option 3: Validate Tasks
+## Option 3: Validate Issues
 
-Validate task file format and metadata.
+Fetch open GitHub Issues and flag any that appear stale or missing metadata.
 
-### What This Checks
+```bash
+gh issue list --state open --limit 50
+```
 
-- Kanban Markdown format
-- Required metadata present (ID, Label, Type, Status, Priority)
-- Valid status values (Backlog, To Do, Testing, Done)
-- Valid type values (Feature, Bug, Enhancement, Task)
-- Valid priority values (High, Medium, Low)
+Look for:
 
-### Valid Values
-
-Status: Backlog, To Do, Testing, Done, Blocked
-Type: Feature, Bug, Enhancement, Task, Migration
-Priority: High, Medium, Low, CRITICAL
+- Issues with no label (add `backlog`, `bug`, `feature`, etc.)
+- Issues open for >30 days with no activity (comment or close)
+- Duplicate issues (consolidate)
 
 ## Option 4: Validate All
 
-Runs all validation checks and provides comprehensive report:
+Runs all checks and provides a comprehensive report:
 
-1. Documentation validation
-2. Session validation
-3. Task validation
+1. `.agents/` structure validation
+2. Session file naming validation
+3. Open GitHub Issues triage
 4. Summary with total issues found
 
 ## Error Handling

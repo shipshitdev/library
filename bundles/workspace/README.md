@@ -13,7 +13,6 @@ Project setup and workspace initialization
 
 - `fullstack-workspace-init`
 - `project-init-orchestrator`
-- `project-init-orchestrator`
 - `linter-formatter-init`
 - `clerk-validator`
 - `plasmo-extension-architect`

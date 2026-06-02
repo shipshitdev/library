@@ -1,6 +1,9 @@
 ---
 name: workspace-performance-audit
 description: Orchestrates comprehensive performance audits across full-stack monorepos. Coordinates performance-expert, design-consistency-auditor, accessibility, security-expert, and qa-reviewer skills to audit frontend, backend, database, browser extensions, and shared packages.
+metadata:
+  version: "1.0.0"
+  tags: "performance, audit, monorepo"
 ---
 
 # Workspace Performance Audit
@@ -66,7 +69,7 @@ Phase 5: Consolidation
 
 ## Integration
 
-Produces reports for `.agents/AUDITS/YYYY-MM-DD-performance.md`
+Produces reports in `.agents/memory/performance-audit-YYYY-MM-DD.md`
 
 ---
 

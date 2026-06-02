@@ -29,7 +29,7 @@ Structured framework for reviewing AI agent work before finalizing changes. Catc
 
 - Review original task and requirements
 - List all deliverables (files created/modified/deleted)
-- Check critical rules (CRITICAL-NEVER-DO.md)
+- Check critical rules (CLAUDE.md — repo-level and global)
 
 ### 2. Requirement Verification
 

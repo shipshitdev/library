@@ -23,7 +23,7 @@ Expert in testing strategies for React, Next.js, and NestJS applications.
 
 ## Project Context Discovery
 
-1. **Scan Documentation:** Check `.agents/SYSTEM/ARCHITECTURE.md` for testing architecture
+1. **Scan Documentation:** Check `.agents/memory/` for durable project context (architecture, deployment, gotchas)
 2. **Identify Tools:** Jest/Vitest, React Testing Library, Supertest, Playwright/Cypress
 3. **Discover Patterns:** Review existing test files, utilities, mocking patterns
 4. **Use Project-Specific Skills:** Check for `[project]-testing-expert` skill

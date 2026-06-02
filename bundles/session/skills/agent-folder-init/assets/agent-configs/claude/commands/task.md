@@ -1,6 +1,6 @@
-# Task Management - Create and Update Tasks
+# Task Management - Create and Update GitHub Issues
 
-Unified command for creating and updating tasks.
+Unified command for creating and updating tasks as GitHub Issues.
 
 ## When to Use
 
@@ -35,104 +35,115 @@ Ask if not clear:
 - What is the priority? (High, Medium, Low)
 - Any specific requirements?
 
-### Step 3: Check Existing System
+### Step 3: Check Existing Context
 
-Read relevant documentation:
+Read relevant context before creating:
 
-- Architecture docs
-- Similar implementations
-- Existing patterns
+- `.agents/memory/` — architecture docs, existing patterns, deployment constraints
+- `CLAUDE.md` — repo rules and standards
+- `gh issue list --state open` — avoid duplicating an existing issue
 
-### Step 4: Create Task File
+### Step 4: Create GitHub Issue
 
-File location: <project>/.agents/TASKS/[task-name].md
-
-Task Template:
-
-## Task: [Feature Name]
-
-**ID:** feature-name-slug
-**Label:** [Feature Name]
-**Description:** [Brief description]
-**Type:** Feature
-**Status:** Backlog
-**Priority:** High
-**Created:** YYYY-MM-DD
-**Updated:** YYYY-MM-DD
-
----
-
-### Overview
+```bash
+gh issue create \
+  --title "[Feature Name]" \
+  --body "$(cat <<'EOF'
+## Overview
 
 [High-level description]
 
-### Requirements
+## Requirements
 
 1. [Requirement 1]
 2. [Requirement 2]
 
-### Implementation Notes
+## Implementation Notes
 
 [Technical approach]
 
-### Files to Modify
+## Files to Modify
 
-- path/to/file.ts - [what changes]
+- path/to/file.ts — [what changes]
 
-### Testing
+## Testing
 
 - [ ] Test case 1
 - [ ] Test case 2
+EOF
+)" \
+  --label "feature" \
+  --label "priority:high"
+```
 
 ### Step 5: Present to User
 
 Show:
 
-- Task file location
+- Issue URL and number
 - Summary of the task
-- Ask if they want to proceed
+- Ask if they want to proceed with implementation now
 
 ## Task Update Workflow
 
-### Step 1: Identify Task
+### Step 1: Identify Issue
 
-Find the task file to update.
+```bash
+gh issue list --state open
+# or search by title
+gh issue list --search "keyword"
+```
 
-### Step 2: Update Fields
+### Step 2: Update Issue
 
-Status changes:
+Add a comment with status update:
 
-- Backlog -> To Do -> Testing -> Done
+```bash
+gh issue comment <number> --body "Status: In Progress — starting implementation"
+```
 
-Priority changes:
+Close when done:
 
-- High, Medium, Low
+```bash
+gh issue close <number> --comment "Completed in commit abc1234"
+```
 
-Update the Updated date.
+Add/change labels:
+
+```bash
+gh issue edit <number> --add-label "in-progress" --remove-label "backlog"
+```
 
 ### Step 3: Confirm
 
-Show what was changed.
+Show the issue URL and what was changed.
 
-## Status Values
+## Status Labels
 
-- Backlog: Not started
-- To Do: In progress
-- Testing: Being tested
-- Done: Complete
-- Blocked: Waiting on something
+- `backlog` — Not started
+- `in-progress` — Being worked on
+- `needs-review` — Ready for review / testing
+- `done` — Complete (closed)
+- `blocked` — Waiting on something
 
-## Type Values
+## Type Labels
 
-- Feature: New functionality
-- Bug: Fix existing issue
-- Enhancement: Improve existing
-- Task: General work item
-- Migration: Move/refactor code
+- `feature` — New functionality
+- `bug` — Fix existing issue
+- `enhancement` — Improve existing
+- `task` — General work item
+- `migration` — Move/refactor code
+
+## Priority Labels
+
+- `priority:high`
+- `priority:medium`
+- `priority:low`
+- `priority:critical`
 
 ## Naming Convention
 
-Format: [short-descriptive-name].md
+Issue titles should be short and descriptive:
 
-Good: video-generation-captions.md
-Bad: feature.md, task1.md
+Good: "Add video generation captions support"
+Bad: "Feature", "Task 1"

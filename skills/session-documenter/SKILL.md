@@ -26,7 +26,7 @@ Outputs:
 Creates/Modifies:
 
 - `.agents/SESSIONS/` daily session file
-- Related `.agents/` summary, architecture, or task docs when relevant
+- `.agents/memory/*.md` when a decision changes durable project context (architecture, deployment, migrations, gotchas)
 
 External Side Effects:
 
@@ -88,10 +88,9 @@ Include flowchart for:
 
 ## Related Files to Update
 
-- `.agents/SESSIONS/README.md`
-- `.agents/SYSTEM/SUMMARY.md`
-- `.agents/TASKS/*/TODO.md`
-- `.agents/SYSTEM/ARCHITECTURE.md` (if architectural decisions)
+- `.agents/memory/*.md` — when a decision changes durable repo context
+  (architecture, deployment, migrations, gotchas). Bump the file's
+  `last_verified` date when you touch it.
 
 ## References
 

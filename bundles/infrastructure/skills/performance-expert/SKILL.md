@@ -1,6 +1,9 @@
 ---
 name: performance-expert
 description: Expert in performance optimization for React, Next.js, NestJS applications covering frontend rendering, API response times, database queries, and infrastructure optimization
+metadata:
+  version: "1.0.0"
+  tags: "performance, optimization, fullstack"
 ---
 
 # Performance Expert Skill
@@ -20,7 +23,7 @@ Expert in performance optimization for React, Next.js, NestJS applications, Mong
 
 ## Project Context Discovery
 
-1. Check `.agents/SYSTEM/ARCHITECTURE.md` for performance architecture
+1. Check `.agents/memory/` for performance architecture context (e.g., `repo_frontend_design_execution.md`, any `*performance*` or `*architecture*` files)
 2. Identify performance tools (Lighthouse CI, APM)
 3. Review existing optimizations and caching strategies
 4. Check for `[project]-performance-expert` skill

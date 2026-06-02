@@ -25,7 +25,7 @@
 #### Patterns
 
 ```
-- [ ] Follows patterns from .agents/EXAMPLES/
+- [ ] Follows patterns established in codebase (find 3+ real examples)
 - [ ] Uses service singletons (.getInstance())
 - [ ] BaseCRUDController used when appropriate
 - [ ] BaseService used when appropriate
@@ -154,10 +154,9 @@
 ### 9. Documentation
 
 ```
-- [ ] ARCHITECTURE.md updated (if architectural change)
-- [ ] SUMMARY.md updated
-- [ ] Session file created
-- [ ] Task file marked complete
+- [ ] .agents/memory/ updated (if architectural change)
+- [ ] Session file created in .agents/SESSIONS/
+- [ ] GitHub Issue closed or commented (if applicable)
 - [ ] Comments for complex logic
 - [ ] README updated if needed
 ```
@@ -268,15 +267,14 @@ Use this prompt for AI-assisted review:
 ```
 Review this PR against project standards:
 
-1. Read: .agents/SYSTEM/RULES.md
-2. Read: .agents/SOP/code-review.md
-3. Check: .agents/EXAMPLES/ for pattern compliance
-4. Verify: Organization filtering in all queries
-5. Verify: isDeleted: false filtering
-6. Check: No `any` types
-7. Check: Props in separate files
-8. Check: Error handling present
-9. Check: Tests exist and pass
+1. Read: CLAUDE.md (repo-level) for project rules
+2. Read: .agents/memory/ for architecture and patterns
+3. Verify: Organization filtering in all queries
+4. Verify: isDeleted: false filtering
+5. Check: No `any` types
+6. Check: Props in separate files
+7. Check: Error handling present
+8. Check: Tests exist and pass
 
 Report:
 - ✅ What's good

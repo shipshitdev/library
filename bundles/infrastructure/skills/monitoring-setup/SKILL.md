@@ -1,6 +1,9 @@
 ---
 name: monitoring-setup
 description: Expert in setting up Sentry error tracking and Google Analytics for NestJS and Next.js applications. Use this skill when users need monitoring, error tracking, or analytics configuration.
+metadata:
+  version: "1.0.0"
+  tags: "monitoring, sentry, analytics"
 ---
 
 # Monitoring Setup Expert

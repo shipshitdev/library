@@ -1,11 +1,51 @@
 ---
 name: micro-landing-builder
 description: Scaffold, clone, and deploy config-driven NextJS landing pages that use a shared UI components package. Use this skill when creating single or multiple startup landing pages with email capture, analytics, and modern design. Supports batch creation from templates or CSV/JSON files, and automatic Vercel deployment with custom domains. Each landing is a standalone NextJS app driven by an app.json config file.
+metadata:
+  version: "1.0.0"
+  tags: "landing-page, nextjs, vercel"
 ---
 
 # Micro Landing Builder
 
 Create config-driven NextJS landing pages for startups.
+
+## Contract
+
+Inputs:
+
+- One or more landing definitions: slug, name, domain, concept, and config
+- Destination root
+- Optional shared UI package and domain mapping
+
+Outputs:
+
+- Generated landing app directories
+- `app.json` config files
+- Deployment plan or deployed URLs when deploy is explicitly requested
+
+Creates/Modifies:
+
+- Local landing app directories
+- Vercel config files
+- Does not deploy production by default
+
+External Side Effects:
+
+- May deploy to Vercel and attach custom domains only after explicit deploy request
+
+Confirmation Required:
+
+- Before batch creation outside the current workspace
+- Before production deploys
+- Before attaching custom domains
+- Before overwriting an existing landing directory
+
+Delegates To:
+
+- `landing-page-vercel` for single static landing pages
+- `project-init-orchestrator` / `npx @shipshitdev/v0` for full product repos
+- `deployment-composer` or `deploy` for Vercel deployment
 
 ## Concept
 

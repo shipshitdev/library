@@ -92,8 +92,7 @@ find apps -name "pages" -o -name "app" -type d
 
 **Code Patterns:**
 
-- Check `.agents/EXAMPLES/` for established patterns
-- Review `.agents/SOP/` for documented procedures
+- Check `.agents/memory/` for established patterns and architecture notes
 - Analyze common service patterns (singletons, CRUD)
 
 **Type System:**
@@ -140,7 +139,7 @@ grep -r "[AuthGuard]" [backend-path] --include="*.ts" | head -5
 
 ### Step 5: Generate Analysis Report
 
-Create comprehensive report in: `.agents/SYSTEM/CODEBASE-ANALYSIS.md`
+Save the report as a memory file: `.agents/memory/codebase-analysis.md`
 
 ## Report Structure
 
@@ -437,10 +436,8 @@ find . -name "*.e2e-spec.ts" | wc -l
 
 ### Key Files
 
-- **Architecture:** `.agents/SYSTEM/ARCHITECTURE.md`
-- **SOPs:** `.agents/SOP/*.md` (if applicable)
-- **Examples:** `.agents/EXAMPLES/` (if applicable)
-- **Sessions:** `.agents/SESSIONS/` (if applicable)
+- **Project memory:** `.agents/memory/*.md`
+- **Sessions:** `.agents/SESSIONS/`
 
 ### Metrics
 
@@ -460,7 +457,7 @@ find . -name "*.e2e-spec.ts" | wc -l
 
 ## Output Location
 
-**Primary:** `.agents/SYSTEM/CODEBASE-ANALYSIS.md`
+**Primary:** `.agents/memory/codebase-analysis.md` (add `last_verified: YYYY-MM-DD` header)
 
 **Updates:** Regenerate quarterly or after major changes
 

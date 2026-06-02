@@ -95,7 +95,7 @@ glob "**/.cursor/rules"
 glob "**/.claude/settings.json"
 glob "**/.claude/settings.local.json"
 glob "**/.claude/hooks.json"
-glob "**/.agents/SYSTEM/critical/*.md"
+glob "**/.agents/memory/*.md"
 ```
 
 Build an inventory table:
@@ -108,7 +108,7 @@ Build an inventory table:
 | AGENTS.md       | N           | N           |
 | .cursorrules    | N           | N           |
 | .claude/ config | N           | N           |
-| .agents/ system | N           | N           |
+| .agents/memory/ | N           | N           |
 ```
 
 ### Step 2: Dedup Check — Find Duplicated Rules

@@ -1,6 +1,9 @@
 ---
 name: search-domain-validator
 description: This skill should be used when users need to validate domain name format, check domain availability, or search for available domain names. It activates when users ask about domain validation, domain availability checking, domain search, or domain name verification.
+metadata:
+  version: "1.0.0"
+  tags: "domains, search, validation"
 ---
 
 # Search Domain Name Validator

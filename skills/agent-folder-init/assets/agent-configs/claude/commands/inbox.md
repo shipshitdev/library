@@ -1,6 +1,6 @@
-# Inbox - View Task Inbox
+# Inbox - View Open Issues Backlog
 
-Display current inbox tasks awaiting action.
+Display the current GitHub Issues backlog awaiting action.
 
 ## Usage
 
@@ -8,46 +8,56 @@ Display current inbox tasks awaiting action.
 
 ## What This Command Does
 
-Reads and displays .agents/TASKS/INBOX.md showing:
-
-1. Human QA tasks - Blocking production
-2. Features to prompt - Ready for implementation
+Fetches open GitHub Issues and displays them grouped by label/priority so you can see what needs attention.
 
 ## Workflow
 
-### Step 1: Read Inbox
+### Step 1: List Open Issues
 
-cat .agents/TASKS/INBOX.md
+```bash
+gh issue list --state open --limit 50
+```
 
 ### Step 2: Display by Category
 
 Format output as:
 
-## Human QA (Blocking Production)
+## High Priority / Blocking
 
-Tasks requiring manual testing before production.
+Issues labeled `priority:high` or `blocking`.
 
-## Features to Prompt
+## In Progress
 
-Tasks ready for AI implementation.
+Issues currently being worked on (labeled `in-progress` or assigned).
+
+## Backlog
+
+Remaining open issues ready for implementation.
 
 ### Step 3: Show Count
 
-Total tasks: X
+Total open: X
 
-- Human QA: X
-- Features: X
+- High priority: X
+- In progress: X
+- Backlog: X
 
-## Inbox Management
+## Issue Management
 
-Add to inbox:
+Add to backlog:
 
-- Quick captures go here
-- Ideas for later
-- Blocked items
+```bash
+gh issue create --title "Short description" --body "Details..." --label "backlog"
+```
 
-Remove from inbox:
+Close an issue:
 
-- When task is created
-- When completed
-- When no longer relevant
+```bash
+gh issue close <number>
+```
+
+View a specific issue:
+
+```bash
+gh issue view <number>
+```

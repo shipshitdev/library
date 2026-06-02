@@ -872,7 +872,7 @@ def scaffold_expo_app(
     # Create directories
     dirs = [
         root,
-        root / ".agent",
+        root / ".agents",
         root / "app" / "(tabs)",
         root / "components" / "layout",
         root / "components" / "ui",

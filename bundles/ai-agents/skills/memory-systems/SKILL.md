@@ -1,6 +1,9 @@
 ---
 name: memory-systems
 description: Design and implement memory architectures for agent systems. Use when building agents that need to persist state across sessions, maintain entity consistency, or reason over structured knowledge.
+metadata:
+  version: "1.0.0"
+  tags: "memory, agents, architecture"
 ---
 
 # Memory System Design

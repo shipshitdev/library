@@ -18,10 +18,10 @@ Each rule should live in ONE file. Other files may reference it but should not r
 | Soft delete (isDeleted) | `CRITICAL-NEVER-DO.md` | — | — |
 | Serializer location | `CRITICAL-NEVER-DO.md` | Per-repo CLAUDE.md (brief mention OK) | — |
 | No inline interfaces | `CRITICAL-NEVER-DO.md` | — | — |
-| Naming conventions | `RULES.md` (.agents/SYSTEM/critical/) | — | — |
-| Function declaration style | `RULES.md` (.agents/SYSTEM/critical/) | — | — |
-| Testing standards | `RULES.md` (.agents/SYSTEM/critical/) | — | — |
-| Performance patterns | `RULES.md` (.agents/SYSTEM/critical/) | — | — |
+| Naming conventions | `CLAUDE.md` (repo-level) | .agents/memory/ (detail doc) | — |
+| Function declaration style | `CLAUDE.md` (repo-level) | .agents/memory/ (detail doc) | — |
+| Testing standards | `CLAUDE.md` (repo-level) | .agents/memory/ (detail doc) | — |
+| Performance patterns | `CLAUDE.md` (repo-level) | .agents/memory/ (detail doc) | — |
 
 ## File Roles
 
@@ -31,7 +31,7 @@ Each rule should live in ONE file. Other files may reference it but should not r
 | `CLAUDE.md` (per-repo) | Repo-specific guide | Tech stack, commands, repo-specific rules, architecture |
 | `CLAUDE_RULES.md` (global) | Behavioral preferences | Tool usage, code standards detail, session management |
 | `CRITICAL-NEVER-DO.md` | Violations only | "NEVER do X" rules with examples of what breaks |
-| `RULES.md` (.agents/) | Extended standards | Naming, functions, testing — details beyond CLAUDE.md |
+| `.agents/memory/*.md` | Durable project facts | Architecture, naming conventions, gotchas, extended standards — details beyond CLAUDE.md |
 | `CODEX.md` | Codex-specific | Sandbox constraints, key entry points, no-network notes |
 | `AGENTS.md` | Generic agent nav | Entry points for any AI agent (Cursor, Copilot, etc.) |
 | `.cursorrules` | Cursor-specific | Project navigation, reading order, .agents/ structure |

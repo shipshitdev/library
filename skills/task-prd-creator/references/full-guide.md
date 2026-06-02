@@ -5,9 +5,9 @@
 | Situation | Output |
 |-----------|--------|
 | `gh auth status` OK + git remote is GitHub | GitHub issue (default) |
-| `.agents/TASKS/` exists | Local file (default) |
+| No GitHub access | Local PRD in `.agents/memory/` |
 | Both available | Ask user which, or both |
-| Neither | Create local files, suggest `gh auth login` |
+| No GitHub + no repo | Create `.agents/memory/` PRD, suggest `gh auth login` |
 
 ---
 
@@ -150,24 +150,9 @@ gh issue close 42 --comment "Shipped in #87"
 
 Use when: no GitHub access, or user explicitly wants local tracking.
 
-**Task file:** `.agents/TASKS/[kebab-name].md`
+**PRD file:** `.agents/memory/[kebab-name].md`
 
-```markdown
-## Task: [Feature Name]
-
-**ID:** kebab-name
-**Type:** Feature | Bug | Enhancement | Refactor | Chore
-**Status:** Backlog | In Progress | Testing | Done
-**Priority:** Critical | High | Medium | Low
-**Created:** YYYY-MM-DD
-**Updated:** YYYY-MM-DD
-**GitHub:** #N (link if issue exists)
-**PRD:** [full-prd.md](../PRDS/kebab-name.md)
-```
-
-**PRD file:** `.agents/PRDS/[kebab-name].md`
-
-Use the PRD structure from above. Add `# [Feature Name]` as h1.
+Use the PRD structure from above. Add `# [Feature Name]` as h1. Include a `last_verified: YYYY-MM-DD` frontmatter field so the memory file stays auditable.
 
 **File naming rules:**
 

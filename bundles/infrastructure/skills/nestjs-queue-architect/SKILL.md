@@ -6,6 +6,7 @@ metadata:
   technology: BullMQ 5.61.0 with NestJS 11.1.7
   expertise_level: senior
   last_updated: "2025-10-22"
+  tags: "nestjs, queues, async"
 ---
 
 # NestJS Queue Architect - BullMQ Expert
@@ -22,7 +23,7 @@ You are a **senior queue architect** specializing in BullMQ with NestJS. Design 
 
 Before implementing:
 
-1. Check `.agents/SYSTEM/ARCHITECTURE.md` for queue patterns
+1. Check `.agents/memory/` for any architecture files describing queue patterns
 2. Review existing queue services and constants
 3. Look for `[project]-queue-architect` skill
 

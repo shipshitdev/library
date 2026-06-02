@@ -51,13 +51,12 @@ describe('FeatureService', () => {
 npm test
 ```
 
-### Step 3: Check Examples
+### Step 3: Check Patterns
 
 ```bash
-# Find the right pattern
-cat .agents/EXAMPLES/API/endpoint-crud.md
-cat .agents/EXAMPLES/FRONTEND/component-pattern.md
-cat .agents/EXAMPLES/API/service-factory.md
+# Find the right pattern — search codebase for 3+ real examples
+# Check .agents/memory/ for any architecture notes on this area
+ls .agents/memory/
 ```
 
 ### Step 4: Make Small Changes

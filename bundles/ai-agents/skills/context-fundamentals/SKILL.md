@@ -1,6 +1,9 @@
 ---
 name: context-fundamentals
 description: Understand the components, mechanics, and constraints of context in agent systems. Use when designing agent architectures, debugging context-related failures, or optimizing context usage.
+metadata:
+  version: "1.0.0"
+  tags: "context, agents, architecture"
 ---
 
 # Context Engineering Fundamentals

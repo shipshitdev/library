@@ -1,6 +1,6 @@
 ---
 name: qa-reviewer
-description: Systematically review AI agent work for quality, accuracy, and completeness. Catches bugs, verifies patterns, checks against requirements, and suggests improvements before committing changes.
+description: "AI work QA review."
 metadata:
   version: "1.0.0"
   tags: quality-assurance, verification, code-review, accuracy, completeness
@@ -29,7 +29,7 @@ Structured framework for reviewing AI agent work before finalizing changes. Catc
 
 - Review original task and requirements
 - List all deliverables (files created/modified/deleted)
-- Check critical rules (CRITICAL-NEVER-DO.md)
+- Check critical rules (CLAUDE.md — repo-level and global)
 
 ### 2. Requirement Verification
 

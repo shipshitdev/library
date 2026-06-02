@@ -65,7 +65,7 @@ async function getData(id: string): Promise<DataResponse> {
 #### Pattern Compliance
 
 ```
-- [ ] Follows patterns from `.agents/EXAMPLES/`
+- [ ] Follows patterns established in codebase (find 3+ real examples)
 - [ ] Uses BaseCRUDController (when appropriate)
 - [ ] Uses BaseService (when appropriate)
 - [ ] Service singletons use .getInstance()
@@ -413,9 +413,8 @@ async generatePost(prompt: string) {
 ```
 - [ ] Session file created (`.agents/SESSIONS/YYYY-MM-DD.md`)
 - [ ] Flowchart included (for complex features)
-- [ ] Architecture docs updated (`.agents/SYSTEM/ARCHITECTURE.md` if needed)
-- [ ] Summary updated (`.agents/SYSTEM/SUMMARY.md`)
-- [ ] Task file marked complete
+- [ ] .agents/memory/ updated (if architectural change)
+- [ ] GitHub Issue closed or commented (if applicable)
 - [ ] API docs updated (if applicable)
 - [ ] Comments for complex logic
 - [ ] JSDoc for public APIs
@@ -528,7 +527,7 @@ CRITICAL CHECKS:
 6. Tests exist and pass
 
 PATTERN COMPLIANCE:
-7. Check [examples/docs] for patterns
+7. Check .agents/memory/ and codebase examples for patterns
 8. Verify [service pattern] usage
 9. Check [type organization] location
 10. Verify [validation approach]

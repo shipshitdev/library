@@ -1,6 +1,9 @@
 ---
 name: testing-cicd-init
 description: Add Vitest testing infrastructure and GitHub Actions CI/CD to any TypeScript project. Supports Next.js, NestJS, and React projects with 80% coverage thresholds. Use this skill when setting up tests for a new project or adding CI/CD pipelines.
+metadata:
+  version: "1.0.0"
+  tags: "testing, ci, vitest"
 ---
 
 # Testing & CI/CD Initialization

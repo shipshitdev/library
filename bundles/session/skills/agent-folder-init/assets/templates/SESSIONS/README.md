@@ -27,6 +27,7 @@ See `TEMPLATE.md` for the session file template.
 1. Check if today's file exists
 2. If yes: read it for context
 3. If no: create using template
+4. Read `.agents/memory/` for durable project context
 
 ### During Session
 

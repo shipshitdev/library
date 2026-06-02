@@ -1,6 +1,9 @@
 ---
 name: plasmo-extension-architect
 description: Architect Chrome MV3 extensions using Plasmo, including messaging, storage, and UI surfaces.
+metadata:
+  version: "1.0.0"
+  tags: "plasmo, browser-extension, react"
 ---
 
 # Plasmo Extension Architect

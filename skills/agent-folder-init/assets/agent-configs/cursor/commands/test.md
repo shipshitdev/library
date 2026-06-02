@@ -20,33 +20,38 @@ Ask:
 - Which app/area?
 - Any specific scenarios to check?
 
-### Step 2: Determine File Location
+### Step 2: Label the Area
 
-**Test file location:**
+Track the test as a GitHub Issue, labeled by area so it stays filterable:
 
-- Frontend tests: `.agents/TESTS/frontend/[app]/[test-name].md`
-- Backend tests: `.agents/TESTS/api/[test-name].md`
-- Extension tests: `.agents/TESTS/extension/[test-name].md`
-- Mobile tests: `.agents/TESTS/mobile/[test-name].md`
-- Cross-cutting: `.agents/TESTS/general/[test-name].md`
+- Frontend: `--label "test,area:frontend"`
+- Backend: `--label "test,area:api"`
+- Extension: `--label "test,area:extension"`
+- Mobile: `--label "test,area:mobile"`
+- Cross-cutting: `--label "test,area:general"`
 
-**Create directory structure if it doesn't exist.**
+### Step 3: Create the Issue
 
-### Step 3: Create Test File
+Use the template below as the issue body, with specific scenarios:
 
-Use template below with specific scenarios.
+```bash
+gh issue create --title "Test: [Feature/Area Name]" --label "test,area:[area]" --body "$(cat <<'BODY'
+[template body here]
+BODY
+)"
+```
 
 ### Step 4: Inform User
 
 ```
 Test tracked! ✅
 
-File: .agents/TESTS/[area]/[app]/[test-name].md
+Issue: #[number] — Test: [Feature/Area Name]
 
-You can check off scenarios as you test them.
+You can check off scenarios in the issue as you test them.
 ```
 
-## Template
+## Issue Body Template
 
 ```markdown
 # Test: [Feature/Area Name]
@@ -132,9 +137,9 @@ You can check off scenarios as you test them.
 
 ## Related
 
-- **Task:** [link to task file if applicable]
-- **PRD:** [link to PRD if applicable]
-- **Related tests:** [link to related test files]
+- **Issue:** [link to the feature/task issue if applicable]
+- **PRD:** [link to PRD issue if applicable]
+- **Related tests:** [link to related test issues]
 
 ---
 
@@ -165,23 +170,21 @@ You can check off scenarios as you test them.
 [Add more test result logs as testing progresses]
 ```
 
-## Naming Convention
+## Title Convention
 
-**Format:** `[feature-or-area-name].md`
+**Format:** `Test: [feature-or-area-name]`
 
-**Good names:**
+**Good titles:**
 
-- `video-generation-with-captions.md`
-- `organization-isolation.md`
-- `multi-platform-publishing.md`
-- `payment-flow.md`
+- `Test: video generation with captions`
+- `Test: organization isolation`
+- `Test: multi-platform publishing`
+- `Test: payment flow`
 
-**Bad names:**
+**Bad titles:**
 
-- `test.md` (too generic)
-- `test-1.md` (use description, not numbers)
-- `videoTest.md` (wrong case)
-- `test_video.md` (use kebab-case)
+- `Test` (too generic)
+- `Test 1` (use a description, not numbers)
 
 ## Example Interaction
 
@@ -192,7 +195,7 @@ You can check off scenarios as you test them.
 ```
 Good idea! Let me create a test tracking file for that.
 
-✅ Test tracked: .agents/TESTS/frontend/studio/video-generation-with-captions.md
+✅ Test tracked as issue #142 (labeled test, area:frontend)
 
 I've set up test scenarios for:
 - Happy path (selecting, positioning, styling captions)
@@ -232,22 +235,22 @@ Test system behavior under load or stress.
 
 ## Workflow
 
-1. **Create test file** when feature is ready for testing
-2. **Execute tests** and check off scenarios
-3. **Log results** in the Test Results Log section
-4. **Create bug files** for any issues found (use `/bug` command)
-5. **Mark complete** when all scenarios pass
-6. **Archive or keep** for regression testing
+1. **Create the tracking issue** when feature is ready for testing
+2. **Execute tests** and check off scenarios in the issue
+3. **Log results** in a Test Results Log comment on the issue
+4. **Open bug issues** for any issues found (use `/bug` command)
+5. **Close the issue** when all scenarios pass
+6. **Keep closed / reopen** for regression testing
 
 ## Integration with Other Commands
 
 **Creating test from task:**
 
-After implementing a task, create a test file:
+After implementing a task, create a test issue:
 
 ```bash
 # Use /test command
-# Reference the task/PRD in the test file
+# Reference the task/PRD issue in the test issue
 ```
 
 **Linking in sessions:**
@@ -255,10 +258,10 @@ After implementing a task, create a test file:
 ```markdown
 ## Testing
 
-- [Test: Video Captions](.agents/TESTS/frontend/studio/video-generation-with-captions.md) - In Progress
+- Test: Video Captions (#142) - In Progress
   - Happy path: ✅ Pass
   - Edge cases: 🔄 Testing
-  - Found 2 bugs (logged in bugs/)
+  - Found 2 bugs (logged as issues)
 ```
 
 **Creating bugs from test failures:**

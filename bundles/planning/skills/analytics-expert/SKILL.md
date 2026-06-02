@@ -1,6 +1,9 @@
 ---
 name: analytics-expert
 description: This skill should be used when users need help analyzing content analytics data, creating reports, identifying trends, calculating ROI, or providing content optimization recommendations. It activates when users ask analytics questions, request reports, need performance analysis, ROI calculations, trend identification, or content optimization recommendations.
+metadata:
+  version: "1.0.0"
+  tags: "analytics, reporting, optimization"
 ---
 
 # Content Analytics Expert
@@ -189,8 +192,7 @@ To identify trends from analytics data:
 
 1. **Scan Project Documentation:**
 
-   - Check `.agents/SYSTEM/ARCHITECTURE.md` for analytics platform details
-   - Review `.agents/SYSTEM/SUMMARY.md` for analytics capabilities
+   - Check `.agents/memory/` for analytics platform details and architecture notes
    - Look for analytics-related documentation
 
 2. **Identify Analytics Platform:**

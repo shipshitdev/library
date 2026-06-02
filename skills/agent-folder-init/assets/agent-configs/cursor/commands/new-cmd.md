@@ -428,19 +428,19 @@ When creating commands for monorepo projects:
 
 ### Documentation Commands
 
-**Update PRDs:**
+**Update Project Memory:**
 
 ```bash
 /update-prd "feature-name"
-# Syncs code changes with .agents/TASKS/ PRDs
-# Flags outdated documentation
+# Reviews .agents/memory/ files for the feature area
+# Flags outdated documentation in memory files
 ```
 
 **Architecture Sync:**
 
 ```bash
 /sync-arch
-# Updates .agents/SYSTEM/WORKSPACE-ARCHITECTURE.md
+# Updates .agents/memory/repo_architecture.md
 # Reflects current package structure
 ```
 
@@ -450,7 +450,7 @@ When creating commands for monorepo projects:
 
 ```bash
 /check-rules
-# Validates against .agents/SYSTEM/CRITICAL-NEVER-DO.md
+# Validates against CLAUDE.md (repo-level) rules
 # Scans for violations before commit
 ```
 
@@ -465,8 +465,8 @@ When creating ANY command for a project, ALWAYS include these patterns:
 
 **⚠️ Check critical rules:**
 ```bash
-cat .agents/SYSTEM/critical/CRITICAL-NEVER-DO.md
-cat .agents/SYSTEM/critical/CROSS-PROJECT-RULES.md
+cat CLAUDE.md          # Repo-level rules
+cat ~/.claude/CLAUDE.md # Global rules
 ```
 
 Ensure command doesn't violate:
@@ -597,7 +597,7 @@ ls .cursor/commands/
 
 **Common patterns used:**
 
-1. **Check CRITICAL rules first** - Always reference `.agents/SYSTEM/critical/`
+1. **Check CRITICAL rules first** - Always reference CLAUDE.md (repo + global)
 2. **Never run tests locally** - Push to GitHub Actions instead
 3. **Monorepo-aware** - Handle multiple packages correctly
 4. **GitHub Actions integration** - Use `gh` CLI for CI/CD

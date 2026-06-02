@@ -2,6 +2,9 @@
 name: internal-comms
 description: Resources for writing internal communications in company-preferred formats. Use when asked to draft status reports, leadership updates, 3P updates, company newsletters, FAQs, incident reports, or project updates.
 license: Complete terms in LICENSE.txt
+metadata:
+  version: "1.0.0"
+  tags: "communications, writing, updates"
 ---
 
 ## When to use this skill

@@ -1,6 +1,9 @@
 ---
 name: context-optimization
 description: Apply optimization techniques to extend effective context capacity. Use when context limits constrain agent performance, when optimizing for cost or latency, or when implementing long-running agent systems.
+metadata:
+  version: "1.0.0"
+  tags: "context, optimization, agents"
 ---
 
 # Context Optimization Techniques

@@ -28,7 +28,7 @@ def scaffold_agent_folder(
 ) -> None:
     """Copy template files and customize for the project."""
 
-    agent_dir = root / ".agent"
+    agent_dir = root / ".agents"
 
     if agent_dir.exists():
         print(f"Warning: {agent_dir} already exists. Merging with existing structure.")
@@ -79,24 +79,17 @@ def scaffold_agent_folder(
 
     print(f"\n✅ Agent folder created at: {agent_dir}")
     print("\nNext steps:")
-    print("1. Customize SYSTEM/RULES.md with your coding standards")
-    print("2. Update SYSTEM/ARCHITECTURE.md with your architecture")
-    print("3. Add project-specific rules to SYSTEM/critical/CRITICAL-NEVER-DO.md")
+    print("1. Add coding standards and 'never do' rules to CLAUDE.md (repo root)")
+    print("2. Create .agents/memory/<topic>.md files for durable project facts (architecture, entities, deployment, etc.)")
+    print("3. Track tasks in GitHub Issues: gh issue create")
 
 
 def create_minimal_structure(agent_dir: Path, project_name: str, tech_stack: str) -> None:
     """Create minimal structure if templates are missing."""
 
     dirs = [
-        "SYSTEM/ai",
-        "SYSTEM/architecture",
-        "SYSTEM/critical",
-        "SYSTEM/quality",
-        "TASKS",
+        "memory",
         "SESSIONS",
-        "SOP",
-        "EXAMPLES",
-        "FEEDBACK",
     ]
 
     for d in dirs:
@@ -107,20 +100,18 @@ def create_minimal_structure(agent_dir: Path, project_name: str, tech_stack: str
 
 **Welcome to the {project_name} workspace!**
 
-This is the `.agents/` folder containing AI agent documentation, session tracking, and project rules.
-
-## Quick Start
-
-Read `SYSTEM/ai/SESSION-QUICK-START.md` first.
+This is the `.agents/` folder — source of truth for AI agent context, session tracking, and durable project facts.
 
 ## Structure
 
-- `SYSTEM/` - Architecture, rules, and AI protocols
-- `TASKS/` - Task tracking and inbox
-- `SESSIONS/` - Daily session documentation
-- `SOP/` - Standard operating procedures
-- `EXAMPLES/` - Code patterns and examples
-- `FEEDBACK/` - Improvement tracking
+- `memory/` - Durable project facts, one topic per `*.md` file. Each file carries `last_verified: YYYY-MM-DD`.
+- `SESSIONS/` - Daily session logs (`YYYY-MM-DD.md`). Multiple sessions on the same day go in the same file.
+
+## For AI Agents
+
+- **Rules / coding standards:** see `CLAUDE.md` (repo root + global `~/.claude/CLAUDE.md`)
+- **Task tracking:** GitHub Issues (`gh issue list`)
+- **Durable context:** read `.agents/memory/` files before starting work
 
 ## Tech Stack
 
@@ -142,39 +133,55 @@ This file provides entry points for AI agents.
 
 ## Documentation
 
-All documentation is in `.agents/`:
+All durable project context is in `.agents/memory/`. Session logs are in `.agents/SESSIONS/`.
+
 - `.agents/README.md` - Navigation hub
-- `.agents/SYSTEM/RULES.md` - Coding standards
-- `.agents/TASKS/` - Task tracking
-- `.agents/SESSIONS/` - Session history
+- `.agents/memory/` - Durable project facts (source of truth)
+- `.agents/SESSIONS/` - Daily session history
 
-## Quick Start
+## Rules & Standards
 
-Read `.agents/SYSTEM/ai/SESSION-QUICK-START.md` before starting work.
-"""
+Coding standards and "never do" rules live in `CLAUDE.md` (this file) and the global `~/.claude/CLAUDE.md`. Do not duplicate them in `.agents/`.
 
-    claude_content = f"""# {project_name}
+## Task Tracking
 
-Claude-specific entry point. Documentation in `.agents/`.
-
-## Commands
-
-Check `.agents/SYSTEM/RULES.md` for coding standards.
+Use GitHub Issues for task tracking: `gh issue list`, `gh issue create`.
 
 ## Sessions
 
 Document all work in `.agents/SESSIONS/YYYY-MM-DD.md` (one file per day).
 """
 
+    claude_content = f"""# {project_name}
+
+Claude-specific entry point.
+
+## Context
+
+Read `.agents/memory/` for durable project facts before starting work.
+
+## Sessions
+
+Document all work in `.agents/SESSIONS/YYYY-MM-DD.md` (one file per day).
+
+## Task Tracking
+
+Use GitHub Issues: `gh issue list`, `gh issue create`.
+"""
+
     codex_content = f"""# {project_name}
 
-Codex-specific entry point. Documentation in `.agents/`.
+Codex-specific entry point.
 
 ## Documentation
 
 - `.agents/README.md` - Start here
-- `.agents/SYSTEM/` - Architecture and rules
-- `.agents/TASKS/` - Current tasks
+- `.agents/memory/` - Durable project facts (source of truth)
+- `.agents/SESSIONS/` - Daily session history
+
+## Task Tracking
+
+Use GitHub Issues: `gh issue list`.
 """
 
     (root / "AGENTS.md").write_text(agents_content)

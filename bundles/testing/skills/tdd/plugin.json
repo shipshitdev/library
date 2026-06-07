@@ -1,7 +1,7 @@
 {
-  "name": "executing-plans",
-  "version": "2.1.0",
-  "description": "Orchestrate autonomous AI development with task-based workflow and QA gates",
+  "name": "tdd",
+  "version": "1.0.0",
+  "description": "Test-driven development with red-green-refactor and vertical slices.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",

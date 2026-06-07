@@ -4,13 +4,13 @@
 
 ![Project Type](https://img.shields.io/badge/Project-Skills-blue)
 
-163 AI agent skills for indie developers. Works with Claude Code and OpenAI Codex.
+164 AI agent skills for indie developers. Works with Claude Code and OpenAI Codex.
 
 ## Directory Structure
 
 ```
 skills/
-├── skills/              # All skills (163)
+├── skills/              # All skills (164)
 ├── commands/            # All commands (35)
 ├── bundles/             # Generated marketplace bundles
 ├── .agents/             # Repo management, memory, meta-skills
@@ -129,7 +129,7 @@ touch skills/my-skill/SKILL.md
 | test | Test tracking |
 | validate | Validation workflow |
 
-## Skills (163)
+## Skills (164)
 
 ### Startup (14)
 
@@ -175,9 +175,9 @@ touch skills/my-skill/SKILL.md
 
 `security-audit`
 
-### Testing (7)
+### Testing (8)
 
-`ai-regression-testing`, `husky-test-coverage`, `nestjs-testing-expert`, `playwright-e2e-init`, `qa-reviewer`, `testing-cicd-init`, `testing-expert`
+`ai-regression-testing`, `husky-test-coverage`, `nestjs-testing-expert`, `playwright-e2e-init`, `qa-reviewer`, `tdd`, `testing-cicd-init`, `testing-expert`
 
 ### AI Agents (17)
 

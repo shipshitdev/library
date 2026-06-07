@@ -12,6 +12,7 @@ Testing, QA, and CI/CD automation skills
 ## Included Skills
 
 - `playwright-e2e-init`
+- `tdd`
 - `testing-expert`
 - `testing-cicd-init`
 - `nestjs-testing-expert`

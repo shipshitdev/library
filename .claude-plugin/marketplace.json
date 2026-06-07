@@ -273,7 +273,7 @@
     {
       "name": "debug",
       "source": "./skills/debug",
-      "description": "Systematic debugging guidance."
+      "description": "Systematic debugging guidance for bugs, failures, unexpected behavior, and performance regressions. "
     },
     {
       "name": "deploy",
@@ -794,6 +794,11 @@
       "name": "task-prd-creator",
       "source": "./skills/task-prd-creator",
       "description": "Create a well-written PRD, task, or GitHub issue/sub-issue for a feature, bug, or enhancement. Use w"
+    },
+    {
+      "name": "tdd",
+      "source": "./skills/tdd",
+      "description": "Test-driven development workflow for feature work and bug fixes. Use when the user asks for TDD, red"
     },
     {
       "name": "testing-cicd-init",

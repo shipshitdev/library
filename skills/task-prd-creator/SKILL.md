@@ -4,7 +4,7 @@ description: 'Create a well-written PRD, task, or GitHub issue/sub-issue for a f
 disable-model-invocation: true
 allowed-tools: Bash(gh *)
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   tags: "tasks, prd, github"
 ---
 
@@ -44,6 +44,7 @@ Confirmation Required:
 Delegates To:
 
 - `spec-first` when implementation constraints are still unclear
+- `tdd` when the work should be executed test-first
 - `gh-fix-ci` for CI failures after implementation
 - `strategy-expert` for roadmap-level planning
 
@@ -84,6 +85,27 @@ A good PRD has:
 - **Technical notes** — approach, risks, dependencies
 
 Keep it tight. No filler. Acceptance criteria must be checkable by a human.
+
+### Agent-ready issue rules
+
+When the output is an issue for an autonomous or AFK agent, write it as an
+agent brief, not a stream-of-consciousness plan:
+
+- Describe behavior and contracts, not file-by-file instructions.
+- Avoid line numbers and brittle file paths unless the path is itself the contract.
+- Include current behavior, desired behavior, acceptance criteria, and out of scope.
+- Name public interfaces, CLI commands, API shapes, config keys, or data contracts when known.
+- Keep implementation notes as constraints, not a script the agent must follow.
+
+### Vertical-slice breakdown
+
+When breaking an epic, PRD, or plan into issues:
+
+- Prefer thin vertical slices that produce a verifiable outcome.
+- Mark each issue as `AFK` when an agent can complete it without more human input.
+- Mark each issue as `HITL` when it needs a human decision, design review, credential, or product judgment.
+- Publish blockers before blocked issues so dependencies can reference real issue IDs.
+- Keep each sub-issue small enough for one focused PR.
 
 ## Step 5: Output to correct destination
 
@@ -135,9 +157,11 @@ Show the draft PRD. Wait for "looks good" or edits. Then create.
 - Never create files or GitHub issues without user seeing the draft first
 - Sub-issues should be small enough to ship in one PR
 - If requirements are unclear, write the problem statement first — not the solution
+- If rejecting an enhancement as out of scope, record durable reasoning in `.out-of-scope/<concept>.md` when the repo uses local out-of-scope memory.
 
 ## Related
 
 - `spec-first` — spec-driven development before writing code
+- `tdd` — red-green-refactor execution for tasks with clear behavior
 - `gh-fix-ci` — fix CI on existing PRs
 - `strategy-expert` — broader roadmap and content planning

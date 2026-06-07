@@ -2,7 +2,7 @@
 name: executing-plans
 description: Orchestrate autonomous AI development with task-based workflow and QA gates. Use when implementing a development plan, picking tasks from a queue, or running multi-platform parallel execution with QA gates.
 metadata:
-  version: "2.0.0"
+  version: "2.1.0"
   tags: "execution, planning, agents"
 ---
 
@@ -81,6 +81,16 @@ Create issues with:
 gh issue create --title "[Feature Name]" --body "..." --label "status:todo" --assignee "@me"
 ```
 
+### Agent-ready issue contract
+
+Before an issue enters `status:todo`, make sure it is ready for an agent:
+
+- It has an agent brief or PRD link with current behavior, desired behavior, acceptance criteria, verification, and out of scope.
+- It identifies key public contracts: API shape, CLI command, UI behavior, config key, data model, or generated artifact.
+- It avoids brittle instructions such as line numbers and file-by-file scripts unless the path is the product.
+- It is marked `AFK` when an agent can complete it from written context, or `HITL` when a human decision is required.
+- It is a vertical slice with a verifiable result, not a horizontal layer task.
+
 ### 2. Task Claiming
 
 When an agent runs `/loop`:
@@ -100,10 +110,14 @@ gh issue comment <number> --body "Claimed-By: claude-cli | Claimed-At: $(date -u
 Agent works on the task:
 
 1. Reads the issue body and linked PRD issue/URL
-2. Checks `.agents/SESSIONS/` for related past work
-3. Implements the feature/fix
-4. Appends progress to the issue as comments (`gh issue comment <number> --body "..."`)
-5. Creates branch and commits
+2. Reads all comments, especially prior rejection or triage notes
+3. Checks `.agents/SESSIONS/` for related past work
+4. Checks `.out-of-scope/` if the issue appears to revive a previously rejected enhancement
+5. Chooses the narrowest verification loop before editing
+6. Uses `tdd` for behavior changes when the behavior is clear enough to test first
+7. Implements the feature/fix
+8. Appends progress to the issue as comments (`gh issue comment <number> --body "..."`)
+9. Creates branch and commits
 
 ### 4. Quality Check
 
@@ -145,6 +159,11 @@ When rejected:
 2. Rejection count bumped via label (`rejection:1`, `rejection:2`, …) or tracked in comments
 3. Rejection note added as a comment on the issue
 4. Next `/loop` picks up the issue with full comment history as context
+
+If the rejection means the requested enhancement should not be built, do not
+keep cycling it through To Do. Close it as `wontfix` and, when the reasoning is
+durable, record the concept under `.out-of-scope/<concept>.md` so future triage
+does not re-litigate the same request.
 
 ## Multi-Platform Strategy
 
@@ -253,6 +272,9 @@ Claims expire after 30 minutes:
 - Link to the PRD issue or URL in the body
 - Apply the correct priority label (`priority:high`, `priority:medium`, `priority:low`)
 - Include testing criteria in the QA Checklist section
+- Include explicit out-of-scope boundaries
+- Prefer vertical slices that can be verified independently
+- Split `HITL` decisions from `AFK` implementation work
 
 ### For Agents
 

@@ -56,6 +56,114 @@ Skip sections that don't apply. Never leave placeholder text in.
 
 ---
 
+## Agent brief structure
+
+Use this when the issue is intended for an autonomous agent to implement.
+The brief is the durable contract; prior comments and PRDs are supporting
+context.
+
+```markdown
+## Agent Brief
+
+**Type:** bug | enhancement | refactor | chore
+**Mode:** AFK | HITL
+**Priority:** critical | high | medium | low
+
+## Current behavior
+
+[What happens now. For bugs, name the broken user or caller behavior.]
+
+## Desired behavior
+
+[What should be true after this issue is complete. Include edge cases.]
+
+## Key contracts
+
+- `[public interface, endpoint, CLI command, config key, or data shape]`:
+  [what must be preserved or changed]
+
+## Acceptance criteria
+
+- [ ] [Specific, independently verifiable condition]
+- [ ] [Specific, independently verifiable condition]
+
+## Verification
+
+- [ ] [Exact command, manual check, or browser flow]
+
+## Out of scope
+
+- [Thing that should not be changed]
+- [Adjacent feature that belongs in a separate issue]
+```
+
+Write from behavior to implementation. Do not include line numbers. Avoid file
+paths unless the task is explicitly about a file path, generated artifact, or
+configuration location.
+
+---
+
+## Vertical-slice issue breakdown
+
+Break large work into independently grabbable slices:
+
+```markdown
+## Slice
+
+**Mode:** AFK | HITL
+**Blocked by:** None | #123
+**User stories covered:** [short list]
+
+## What to build
+
+[One narrow end-to-end behavior, not a layer-by-layer task list.]
+
+## Acceptance criteria
+
+- [ ] [Demoable or mechanically verifiable result]
+
+## Verification
+
+- [ ] [Narrow command or review step]
+```
+
+Use `AFK` for issues an agent can complete from the written context. Use `HITL`
+for issues that require product judgment, design approval, credentials, manual
+access, legal/compliance review, or a human-only decision.
+
+Prefer many thin issues over a few thick ones, but do not split so far that a
+completed issue has no user, caller, or maintainer-visible result.
+
+---
+
+## Out-of-scope memory
+
+When an enhancement is rejected as `wontfix`, preserve the decision if future
+requests are likely:
+
+```markdown
+# [Concept Name]
+
+## Decision
+
+This project does not support [concept].
+
+## Why this is out of scope
+
+[Durable reasoning: project scope, technical constraint, strategy, or product
+positioning. Avoid temporary reasons like "not this sprint".]
+
+## Prior requests
+
+- #123 - [short title]
+```
+
+Create one `.out-of-scope/<concept>.md` file per concept, not per issue. When a
+new issue matches an existing rejected concept, surface the prior decision and
+ask whether it still stands before closing or reopening the idea.
+
+---
+
 ## Issue types and titles
 
 Format: `[type]: [clear imperative title]`

@@ -1,14 +1,57 @@
 ---
 name: debug
-description: "Systematic debugging guidance."
+description: Systematic debugging guidance for bugs, failures, unexpected behavior, and performance regressions. Emphasizes reproducible feedback loops, hypothesis testing, instrumentation, fixes, and regression tests.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   tags: "debugging, troubleshooting, methodology"
 ---
 
 # dot-skills Debugging Best Practices
 
 Comprehensive debugging methodology guide for software engineers, containing 54 rules across 10 categories prioritized by impact. Based on research from Andreas Zeller's "Why Programs Fail" and academic debugging curricula.
+
+## Operational Loop
+
+Use this loop before reaching for the detailed rules:
+
+1. Build a fast, deterministic feedback loop that can fail on the reported bug.
+2. Reproduce the user's symptom with that loop.
+3. Write 3-5 ranked, falsifiable hypotheses before testing fixes.
+4. Instrument the narrowest point that distinguishes those hypotheses.
+5. Fix the cause, then add or preserve a regression test at the highest useful test boundary.
+6. Re-run the original feedback loop and remove temporary debug instrumentation.
+
+If no reliable loop can be built, stop and name exactly what evidence is missing:
+logs, trace payloads, a failing fixture, a screen recording, environment access, or
+a reproduction script. Do not guess without a loop.
+
+## Feedback Loop Options
+
+Try these in order, choosing the cheapest loop that reproduces the real symptom:
+
+1. Failing unit, integration, component, route, or end-to-end test.
+2. CLI command with fixture input and an expected stdout/stderr snapshot.
+3. HTTP script or curl request against a local or staging server.
+4. Browser automation that asserts DOM, console, network, or visual state.
+5. Captured trace replay: network request, webhook payload, event log, or job payload.
+6. Throwaway harness around the smallest runnable subsystem.
+7. Property, fuzz, stress, or repeated-run loop for nondeterministic failures.
+8. Bisection or differential loop across commits, versions, configs, or datasets.
+
+Improve the loop itself when it is slow, flaky, or vague. A sharp 2-second loop
+is more valuable than a broad 2-minute suite when debugging.
+
+## Instrumentation Rules
+
+- Map every probe to a specific hypothesis.
+- Change one variable at a time.
+- Prefer debugger/REPL inspection when available.
+- Use targeted logs at decision boundaries, not broad log spam.
+- Tag temporary logs with a unique prefix such as `[DEBUG-20260607-auth]`.
+- Grep and remove every temporary tag before finishing.
+
+For performance regressions, measure first. Establish a baseline, capture timing
+or profiler evidence, and bisect before changing code.
 
 ## When to Apply
 
@@ -134,3 +177,8 @@ Read individual reference files for detailed explanations and code examples:
 ## Full Compiled Document
 
 For the complete guide with all rules expanded: [AGENTS.md](AGENTS.md)
+
+## Attribution
+
+The operational loop incorporates debugging workflow ideas adapted from
+Matt Pocock's MIT-licensed `diagnose` skill.

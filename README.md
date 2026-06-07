@@ -4,13 +4,13 @@
 
 ![Project Type](https://img.shields.io/badge/Project-Skills-blue)
 
-158 AI agent skills for indie developers. Works with Claude Code and OpenAI Codex.
+163 AI agent skills for indie developers. Works with Claude Code and OpenAI Codex.
 
 ## Directory Structure
 
 ```
 skills/
-├── skills/              # All skills (158)
+├── skills/              # All skills (163)
 ├── commands/            # All commands (35)
 ├── bundles/             # Generated marketplace bundles
 ├── .agents/             # Repo management, memory, meta-skills
@@ -129,7 +129,7 @@ touch skills/my-skill/SKILL.md
 | test | Test tracking |
 | validate | Validation workflow |
 
-## Skills (158)
+## Skills (163)
 
 ### Startup (14)
 
@@ -163,9 +163,9 @@ touch skills/my-skill/SKILL.md
 
 `api-design-expert`, `error-handling-expert`, `graphql-architect`, `incremental-fetch`, `nestjs-expert`, `serializer-specialist`, `turborepo`, `typescript-expert`, `typescript-refactor`
 
-### Infrastructure (10)
+### Infrastructure (11)
 
-`aws-infrastructure`, `docker-expert`, `ec2-backend-deployer`, `mongodb-atlas-checker`, `mongodb-migration-expert`, `monitoring-setup`, `nestjs-queue-architect`, `performance-expert`, `security-expert`, `workflow-automation`
+`aws-infrastructure`, `docker-expert`, `ec2-backend-deployer`, `mongodb-atlas-checker`, `mongodb-migration-expert`, `monitoring-setup`, `nestjs-queue-architect`, `performance-expert`, `production-audit`, `security-expert`, `workflow-automation`
 
 ### Payments (2)
 
@@ -175,17 +175,17 @@ touch skills/my-skill/SKILL.md
 
 `security-audit`
 
-### Testing (6)
+### Testing (7)
 
-`husky-test-coverage`, `nestjs-testing-expert`, `playwright-e2e-init`, `qa-reviewer`, `testing-cicd-init`, `testing-expert`
+`ai-regression-testing`, `husky-test-coverage`, `nestjs-testing-expert`, `playwright-e2e-init`, `qa-reviewer`, `testing-cicd-init`, `testing-expert`
 
-### AI Agents (15)
+### AI Agents (17)
 
-`advanced-evaluation`, `agent-browser`, `ai-agent-cost-optimizer`, `comment-mode`, `context-degradation`, `context-fundamentals`, `context-optimization`, `evaluation`, `executing-plans`, `mcp-builder`, `memory-systems`, `multi-agent-patterns`, `skill-creator`, `spec-first`, `tool-design`
+`advanced-evaluation`, `agent-architecture-audit`, `agent-browser`, `ai-agent-cost-optimizer`, `comment-mode`, `context-degradation`, `context-fundamentals`, `context-optimization`, `evaluation`, `executing-plans`, `mcp-builder`, `memory-systems`, `multi-agent-patterns`, `skill-comply`, `skill-creator`, `spec-first`, `tool-design`
 
-### Dev Workflow (19)
+### Dev Workflow (20)
 
-`agent-config-audit`, `analyze-codebase`, `audit`, `claude-code-guide`, `code-review`, `commit-summary`, `de-slop`, `debug`, `deploy`, `deployment-composer`, `llm-structured-output`, `prompt-engineering`, `refactor-code`, `review-pr`, `scaffold`, `session-end`, `session-start`, `shape`, `skill-capture`
+`agent-config-audit`, `analyze-codebase`, `audit`, `claude-code-guide`, `code-review`, `commit-summary`, `de-slop`, `debug`, `deploy`, `deployment-composer`, `llm-structured-output`, `prompt-engineering`, `refactor-code`, `review-pr`, `scaffold`, `session-end`, `session-start`, `shape`, `skill-capture`, `skill-scout`
 
 ### GitHub (4)
 

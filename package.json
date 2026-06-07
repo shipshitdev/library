@@ -1,5 +1,5 @@
 {
-  "description": "100+ AI agent skills for indie developers - works with Claude Code, OpenAI Codex, and Cursor",
+  "description": "170 AI agent skills for indie developers - works with Claude Code, OpenAI Codex, and Cursor",
   "devDependencies": {
     "@biomejs/biome": "2.3.14",
     "husky": "9.1.7",

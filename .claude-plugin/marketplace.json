@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "169 AI agent skills for indie developers building startups",
+  "description": "170 AI agent skills for indie developers building startups",
   "plugins": [
     {
       "name": "shipshitdev-startup",
@@ -679,6 +679,11 @@
       "name": "react-testing-library",
       "source": "./skills/react-testing-library",
       "description": "React Testing Library best practices for writing maintainable, user-centric tests. Use when writing,"
+    },
+    {
+      "name": "redis-caching",
+      "source": "./skills/redis-caching",
+      "description": "Redis caching, rate limiting, session storage, pub/sub, and production integration patterns for Type"
     },
     {
       "name": "refactor-code",

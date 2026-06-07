@@ -1,7 +1,7 @@
 {
-  "name": "commit-summary",
+  "name": "gh-inbox",
   "version": "1.0.0",
-  "description": "Generate Conventional Commit messages, split logical changes, and create commits after approval.",
+  "description": "Collect and triage assigned issues, review requests, mentions, failing PRs, and project-filtered GitHub work.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",

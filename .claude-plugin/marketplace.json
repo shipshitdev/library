@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "100+ AI agent skills for indie developers building startups",
+  "description": "170 AI agent skills for indie developers building startups",
   "plugins": [
     {
       "name": "shipshitdev-startup",
@@ -203,7 +203,7 @@
     {
       "name": "commit-summary",
       "source": "./skills/commit-summary",
-      "description": "Commit message generation."
+      "description": "Generate Conventional Commit messages from staged or unstaged git changes, split unrelated changes i"
     },
     {
       "name": "competitive-intelligence-analyst",
@@ -399,6 +399,31 @@
       "name": "gh-fix-ci",
       "source": "./skills/gh-fix-ci",
       "description": "GitHub Actions CI fixes."
+    },
+    {
+      "name": "gh-inbox",
+      "source": "./skills/gh-inbox",
+      "description": "Collect and triage a GitHub work inbox from assigned issues, review requests, mentions, authored PRs"
+    },
+    {
+      "name": "gh-pr-publish",
+      "source": "./skills/gh-pr-publish",
+      "description": "Create, update, and publish GitHub pull requests with a clean title, durable body, branch hygiene, v"
+    },
+    {
+      "name": "gh-project-board",
+      "source": "./skills/gh-project-board",
+      "description": "Configure GitHub Projects v2 kanban boards with Ship Shit Dev defaults: Status columns, Human Review"
+    },
+    {
+      "name": "gh-review-suggestions",
+      "source": "./skills/gh-review-suggestions",
+      "description": "Review GitHub pull requests and post precise inline suggested changes with GitHub suggestion blocks."
+    },
+    {
+      "name": "github-actions-author",
+      "source": "./skills/github-actions-author",
+      "description": "Author, review, and harden GitHub Actions workflows using current official documentation, secure tri"
     },
     {
       "name": "git-safety",
@@ -654,6 +679,11 @@
       "name": "react-testing-library",
       "source": "./skills/react-testing-library",
       "description": "React Testing Library best practices for writing maintainable, user-centric tests. Use when writing,"
+    },
+    {
+      "name": "redis-caching",
+      "source": "./skills/redis-caching",
+      "description": "Redis caching, rate limiting, session storage, pub/sub, and production integration patterns for Type"
     },
     {
       "name": "refactor-code",

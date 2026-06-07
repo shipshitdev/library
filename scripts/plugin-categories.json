@@ -46,6 +46,7 @@
         "monitoring-setup",
         "nestjs-queue-architect",
         "performance-expert",
+        "redis-caching",
         "security-expert",
         "workflow-automation"
       ]
@@ -172,7 +173,17 @@
     },
     "github": {
       "description": "GitHub workflow and automation skills",
-      "skills": ["gh-address-comments", "gh-fix-ci", "git-safety"]
+      "skills": [
+        "gh-address-comments",
+        "gh-fix-ci",
+        "gh-inbox",
+        "gh-pr-publish",
+        "gh-project-board",
+        "gh-review-suggestions",
+        "github-actions-author",
+        "git-safety",
+        "release-pr-gates"
+      ]
     },
     "session": {
       "description": "Session management and documentation",

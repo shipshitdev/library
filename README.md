@@ -4,13 +4,13 @@
 
 ![Project Type](https://img.shields.io/badge/Project-Skills-blue)
 
-164 AI agent skills for indie developers. Works with Claude Code and OpenAI Codex.
+170 AI agent skills for indie developers. Works with Claude Code and OpenAI Codex.
 
 ## Directory Structure
 
 ```
 skills/
-├── skills/              # All skills (164)
+├── skills/              # All skills (170)
 ├── commands/            # All commands (35)
 ├── bundles/             # Generated marketplace bundles
 ├── .agents/             # Repo management, memory, meta-skills
@@ -129,7 +129,7 @@ touch skills/my-skill/SKILL.md
 | test | Test tracking |
 | validate | Validation workflow |
 
-## Skills (164)
+## Skills (170)
 
 ### Startup (14)
 
@@ -163,9 +163,9 @@ touch skills/my-skill/SKILL.md
 
 `api-design-expert`, `error-handling-expert`, `graphql-architect`, `incremental-fetch`, `nestjs-expert`, `serializer-specialist`, `turborepo`, `typescript-expert`, `typescript-refactor`
 
-### Infrastructure (11)
+### Infrastructure (12)
 
-`aws-infrastructure`, `docker-expert`, `ec2-backend-deployer`, `mongodb-atlas-checker`, `mongodb-migration-expert`, `monitoring-setup`, `nestjs-queue-architect`, `performance-expert`, `production-audit`, `security-expert`, `workflow-automation`
+`aws-infrastructure`, `docker-expert`, `ec2-backend-deployer`, `mongodb-atlas-checker`, `mongodb-migration-expert`, `monitoring-setup`, `nestjs-queue-architect`, `performance-expert`, `production-audit`, `redis-caching`, `security-expert`, `workflow-automation`
 
 ### Payments (2)
 
@@ -187,9 +187,9 @@ touch skills/my-skill/SKILL.md
 
 `agent-config-audit`, `analyze-codebase`, `audit`, `claude-code-guide`, `code-review`, `commit-summary`, `de-slop`, `debug`, `deploy`, `deployment-composer`, `llm-structured-output`, `prompt-engineering`, `refactor-code`, `review-pr`, `scaffold`, `session-end`, `session-start`, `shape`, `skill-capture`, `skill-scout`
 
-### GitHub (4)
+### GitHub (9)
 
-`gh-address-comments`, `gh-fix-ci`, `git-safety`, `release-pr-gates`
+`gh-address-comments`, `gh-fix-ci`, `gh-inbox`, `gh-pr-publish`, `gh-project-board`, `gh-review-suggestions`, `github-actions-author`, `git-safety`, `release-pr-gates`
 
 ### Session Management (3)
 

@@ -1,7 +1,7 @@
 {
-  "name": "commit-summary",
+  "name": "github-actions-author",
   "version": "1.0.0",
-  "description": "Generate Conventional Commit messages, split logical changes, and create commits after approval.",
+  "description": "Author and harden GitHub Actions workflows with secure triggers, permissions, and docs-backed guidance.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",

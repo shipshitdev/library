@@ -1,0 +1,12 @@
+{
+  "name": "redis-caching",
+  "version": "1.0.0",
+  "description": "Redis caching, rate limiting, session storage, pub/sub, and production integration patterns for TypeScript, Next.js, NestJS, and Prisma applications.",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

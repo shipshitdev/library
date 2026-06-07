@@ -19,5 +19,6 @@ DevOps, cloud, and infrastructure skills
 - `monitoring-setup`
 - `nestjs-queue-architect`
 - `performance-expert`
+- `redis-caching`
 - `security-expert`
 - `workflow-automation`

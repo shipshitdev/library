@@ -1,7 +1,7 @@
 {
-  "name": "commit-summary",
+  "name": "gh-pr-publish",
   "version": "1.0.0",
-  "description": "Generate Conventional Commit messages, split logical changes, and create commits after approval.",
+  "description": "Create or update GitHub pull requests with branch hygiene, PR body, checks, and safe push gates.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",

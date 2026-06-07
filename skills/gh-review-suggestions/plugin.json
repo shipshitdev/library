@@ -1,7 +1,7 @@
 {
-  "name": "commit-summary",
+  "name": "gh-review-suggestions",
   "version": "1.0.0",
-  "description": "Generate Conventional Commit messages, split logical changes, and create commits after approval.",
+  "description": "Review GitHub PRs and post precise inline suggested changes with safe GitHub suggestion blocks.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",

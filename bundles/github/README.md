@@ -13,4 +13,10 @@ GitHub workflow and automation skills
 
 - `gh-address-comments`
 - `gh-fix-ci`
+- `gh-inbox`
+- `gh-pr-publish`
+- `gh-project-board`
+- `gh-review-suggestions`
+- `github-actions-author`
 - `git-safety`
+- `release-pr-gates`

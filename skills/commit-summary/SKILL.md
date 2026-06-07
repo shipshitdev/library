@@ -1,69 +1,134 @@
 ---
 name: commit-summary
-description: "Commit message generation."
+description: "Generate Conventional Commit messages from staged or unstaged git changes, split unrelated changes into logical commits, detect breaking changes, and optionally create commits after approval. Use when writing commit messages, preparing commits, or committing local work."
+compatibility: Requires git.
+disable-model-invocation: true
+allowed-tools: Bash(git *)
 metadata:
   version: "1.0.0"
-  tags: git, workflow, commits, productivity
+  tags: "git, workflow, commits, productivity"
 ---
 
 # Commit Summary
 
-Generate meaningful commit messages based on staged changes.
+Generate accurate Conventional Commits from real git diffs.
+
+## Contract
+
+Inputs:
+
+- Repository root
+- Staged changes, unstaged changes, or approved paths to stage
+- Optional commit type, scope, and breaking-change context
+
+Outputs:
+
+- Commit message candidate
+- Logical commit grouping when changes are mixed
+- Created commit hash after approval, if requested
+
+Creates/Modifies:
+
+- No changes in message-only mode
+- May stage files and create commits after approval
+
+External Side Effects:
+
+- None unless another workflow pushes the commit later
+
+Confirmation Required:
+
+- Before staging files
+- Before creating a commit
+- Before amending or squashing existing commits
+
+Delegates To:
+
+- `gh-pr-publish` when the commit should be pushed and opened as a PR
+- `git-safety` when secrets or sensitive files appear in the diff
 
 ## Workflow
 
-### Step 1: Review Changes
+1. Inspect repository state:
 
-```bash
-git status
-git diff --staged
-git log --oneline -5
-```
+   ```bash
+   git status -sb
+   git log --oneline -5
+   git diff --stat
+   git diff --cached --stat
+   ```
 
-### Step 2: Analyze Changes
+2. Determine whether changes are already staged:
+   - If staged changes exist, generate the message from `git diff --staged`.
+   - If nothing is staged, inspect unstaged changes and propose logical groups.
+   - If unrelated changes are mixed, recommend separate commits.
 
-Categorize:
+3. Guard against unsafe commits:
+   - Do not stage secrets, `.env`, credentials, private keys, local databases,
+     build caches, or large generated artifacts.
+   - If sensitive files appear, stop and delegate to `git-safety`.
+   - Do not include unrelated formatting churn in a feature/fix commit unless
+     it is required by the change.
 
-- `feat:` New feature
-- `fix:` Bug fix
-- `refactor:` Code restructuring
-- `docs:` Documentation only
-- `test:` Adding/updating tests
-- `chore:` Maintenance tasks
+4. Choose the Conventional Commit type:
 
-### Step 3: Generate Message
+   - `feat`: user-visible feature or capability
+   - `fix`: bug fix
+   - `docs`: documentation only
+   - `style`: formatting only, no behavior change
+   - `refactor`: code restructuring without behavior change
+   - `perf`: performance improvement
+   - `test`: tests only
+   - `build`: build system, package manager, dependencies
+   - `ci`: CI/CD workflow changes
+   - `chore`: maintenance with no user-facing behavior
+   - `revert`: revert a previous commit
 
-Format: `type(scope): short description`
+5. Detect scope:
+   - Prefer package, app, domain, or subsystem names already used in history.
+   - Omit scope if it would be vague (`misc`, `stuff`, `changes`).
 
-- What changed
-- Why it changed (if not obvious)
+6. Detect breaking changes:
+   - Public API contract changes
+   - CLI flags or output changes
+   - Database/schema migrations requiring user action
+   - Removed config keys, env vars, routes, events, or exported symbols
 
-### Step 4: Review
+   Format as `type(scope)!: summary` and include a `BREAKING CHANGE:` footer.
 
-Ensure message:
+7. Generate the commit message:
 
-- Accurately describes changes
-- Follows project conventions
-- Is concise but complete
+   ```text
+   type(scope): imperative summary
 
-## Guidelines
+   Optional body explaining why and any non-obvious implementation detail.
 
-- Start with type (feat, fix, refactor, etc.)
-- Include scope if applicable
-- Use imperative mood ("Add" not "Added")
-- Keep first line under 72 chars
-- Explain why, not just what
+   Optional footer such as:
+   BREAKING CHANGE: migration required because ...
+   Refs: #123
+   ```
+
+8. If the user asked to commit, show the exact message and get approval:
+
+   ```bash
+   git add <approved-paths>
+   git diff --staged --stat
+   git commit -m "<subject>" -m "<body-or-footer>"
+   ```
+
+## Quality Bar
+
+- Subject is imperative and under 72 characters.
+- Body explains why when the diff alone is not enough.
+- Message does not overstate behavior.
+- Commit contains one logical change.
+- Verification commands are not placed in the commit message unless the repo
+  convention asks for them.
 
 ## Examples
 
 - `feat(auth): add password reset flow`
-- `fix(api): handle null response from external service`
-- `refactor(utils): extract date formatting to shared helper`
-- `docs: update API endpoint documentation`
-
-## What NOT to Do
-
-- Vague messages ("fix stuff", "update code")
-- Too long first lines
-- Missing context for non-obvious changes
-- Committing unrelated changes together
+- `fix(api): handle null provider response`
+- `ci(actions): restrict pull request token permissions`
+- `refactor(utils): extract date formatting helper`
+- `docs: update GitHub project board workflow`

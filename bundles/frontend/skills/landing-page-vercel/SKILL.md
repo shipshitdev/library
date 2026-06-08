@@ -396,5 +396,4 @@ vercel --prod
 
 ## References
 
-- `scripts/scaffold.py` - Generation script
-- `assets/templates/` - HTML/CSS templates
+- `scripts/scaffold.py` - Generation script (templates are inline)

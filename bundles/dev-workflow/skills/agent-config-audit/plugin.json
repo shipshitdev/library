@@ -1,0 +1,12 @@
+{
+  "name": "agent-config-audit",
+  "version": "1.0.0",
+  "description": "Audit and sync AI agent configuration files (CLAUDE.md, CODEX.md, AGENTS.md, .cursorrules, hooks, settings) across workspaces",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

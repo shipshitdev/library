@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 /**
  * Generates bundle directories for Claude marketplace distribution.
- * These are symlink-based bundles that reference skills from agents/.claude/skills/
+ * These are committed bundle snapshots copied from the root skills directory.
  *
  * Usage:
  *   bun scripts/generate-marketplace-bundles.js
  */
 
-import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'fs';
-import { dirname, join } from 'path';
-import { fileURLToPath } from 'url';
+import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -48,6 +48,8 @@ if (existsSync(BUNDLES_DIR)) {
 }
 ensureDir(BUNDLES_DIR);
 
+const missingSkills = [];
+
 // Generate each category bundle
 for (const [category, config] of Object.entries(CATEGORIES.bundles)) {
   const bundleDir = join(BUNDLES_DIR, category);
@@ -62,11 +64,12 @@ for (const [category, config] of Object.entries(CATEGORIES.bundles)) {
     const srcSkill = join(SKILLS_DIR, skillName);
     const destSkill = join(skillsDir, skillName);
 
-    if (existsSync(srcSkill)) {
-      cpSync(srcSkill, destSkill, { recursive: true });
-    } else {
-      console.warn(`  Warning: Skill not found: ${skillName}`);
+    if (!existsSync(srcSkill)) {
+      missingSkills.push(`${category}:${skillName}`);
+      continue;
     }
+
+    cpSync(srcSkill, destSkill, { recursive: true });
   }
 
   // Generate plugin.json
@@ -95,6 +98,14 @@ ${config.description}
 ${skillList}
 `
   );
+}
+
+if (missingSkills.length > 0) {
+  console.error('\nMissing skills in scripts/plugin-categories.json:');
+  for (const missing of missingSkills) {
+    console.error(`  - ${missing}`);
+  }
+  process.exit(1);
 }
 
 console.log(`\n✓ Generated ${Object.keys(CATEGORIES.bundles).length} bundles in: ${BUNDLES_DIR}`);

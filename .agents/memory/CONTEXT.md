@@ -1,6 +1,6 @@
 # Working Context — Skills Repo
 
-last_verified: 2026-04-21
+last_verified: 2026-06-07
 
 ## You Are Working ON the Library
 
@@ -22,7 +22,7 @@ This is NOT a project that uses skills. You are editing/managing the skill libra
 | biome | JSON/JS formatting + linting |
 | shellcheck | Shell script linting |
 | husky | Pre-commit hooks |
-| GitHub Actions | CI — bundle regeneration on master push |
+| GitHub Actions | CI — validation, audit, and bundle regeneration on master push |
 
 ## Common Workflows
 
@@ -56,7 +56,7 @@ bun run inventory
 ### Lint
 
 ```bash
-bun run lint        # markdown
+bun run lint        # markdown, JS/JSON, shell scripts
 bun run lint:fix    # markdown auto-fix
 bun run lint:sh     # shell scripts
 ```
@@ -67,9 +67,6 @@ bun run lint:sh     # shell scripts
 |--------|---------|
 | Full validation | `bun run validate` |
 | Generate marketplace | `bun run marketplace:generate` |
-| Sync marketplace | `bun run sync:marketplace` |
-| Generate single plugin | `bun run generate:plugin` |
-| Generate all plugins | `bun run generate:all` |
 | Count skills/commands | `bun run count` |
 | Check duplicate installs | `bun run inventory` |
 | Clean duplicate installs | `bun run cleanup:global` |
@@ -81,8 +78,7 @@ bun run lint:sh     # shell scripts
 |------|-----------|-------|
 | `skills/*/SKILL.md` | Source of truth | All skill content lives here |
 | `skills/*/plugin.json` | Source (per-skill) | Must match SKILL.md frontmatter |
-| `bundles/*/plugin.json` | Source (curated) | Manually maintained bundle definitions |
-| `plugins/` | Generated | Gitignored, never edit |
+| `bundles/*/plugin.json` | Generated | Committed bundle snapshots |
 | `.claude-plugin/marketplace.json` | Generated | Committed, CI-managed |
 | `scripts/plugin-categories.json` | Source | Bundle → skills mapping |
 | `.agents/SYSTEM/SKILL-STANDARDS.md` | Authoritative spec | Definitive frontmatter reference |

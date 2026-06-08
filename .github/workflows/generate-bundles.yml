@@ -7,8 +7,16 @@ on:
     paths:
       - 'skills/**'
       - 'commands/**'
+      - 'package.json'
+      - 'bun.lock'
+      - 'biome.json'
+      - '.markdownlint.json'
+      - '.markdownlintignore'
+      - '.github/workflows/generate-bundles.yml'
       - 'scripts/plugin-categories.json'
       - 'scripts/generate-marketplace-bundles.js'
+      - 'scripts/generate-marketplace-json.js'
+      - 'scripts/validate-skill-sync.sh'
 
   workflow_dispatch:
 
@@ -26,10 +34,24 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: latest
+          bun-version: 1.3.14
+
+      - name: Install shellcheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
 
       - name: Install dependencies
-        run: bun install
+        run: bun install --frozen-lockfile
+
+      - name: Lint
+        run: bun run lint
+
+      - name: Validate skills
+        run: bun run validate
+
+      - name: Audit dependencies
+        run: bun audit
 
       - name: Generate marketplace bundles
         run: bun run marketplace:generate
@@ -39,7 +61,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add bundles/ .claude-plugin/marketplace.json
-          git diff --staged --quiet || git commit -m "chore: regenerate marketplace bundles and plugins
+          git diff --staged --quiet || git commit -m "chore: regenerate marketplace bundles and catalog
 
           Co-Authored-By: github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
           git push

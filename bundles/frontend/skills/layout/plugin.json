@@ -1,0 +1,12 @@
+{
+  "name": "layout",
+  "version": "2.1.1",
+  "description": "Improve layout, spacing, and visual rhythm. Fixes monotonous grids, inconsistent spacing, and weak v",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

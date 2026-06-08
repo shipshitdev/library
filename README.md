@@ -11,7 +11,7 @@
 ```
 skills/
 ├── skills/              # All skills (170)
-├── commands/            # All commands (35)
+├── commands/            # All commands (8)
 ├── bundles/             # Generated marketplace bundles
 ├── .agents/             # Repo management, memory, meta-skills
 │   ├── SYSTEM/          # Architecture docs, skill standards
@@ -25,7 +25,7 @@ skills/
 ## What's Included
 
 - **Skills**: Specialized agent capabilities for specific domains (e.g., `stripe-implementer`, `nestjs-expert`)
-- **Commands**: Workflow commands for structured tasks (e.g., `code-review`, `deploy`, `mvp-plan`)
+- **Commands**: Workflow commands for structured tasks (e.g., `check-domain`, `security-audit`, `performance`)
 - **Scripts**: Validation, generation, and migration tooling
 
 ## Installation
@@ -57,6 +57,7 @@ npx skills add shipshitdev/skills --agent claude-code codex
 ```bash
 /plugin marketplace add shipshitdev/skills
 /plugin install shipshitdev-startup@shipshitdev    # or any category bundle
+/plugin install shipshitdev-dev-workflow@shipshitdev
 ```
 
 ### For Contributors
@@ -97,37 +98,14 @@ touch skills/my-skill/SKILL.md
 
 | Command | Description |
 |---------|-------------|
-| analyze-codebase | Codebase analysis |
-| api-test | API test generation |
-| bug | Bug capture workflow |
 | check-domain | Domain name generator & availability checker |
 | clean | Cleanup workflow |
-| code-review | Code review |
-| db-setup | MongoDB/Redis setup |
-| de-slop | Clean AI code artifacts |
-| deploy | Deployment workflows |
-| docs-generate | Documentation generation |
-| docs-update | Documentation updates |
-| end | End session |
+| co-founder | Strategic business partner workflow |
 | env-setup | Environment variables |
 | inbox | Process inbox items |
-| launch | Launch workflow |
-| migrate | Database migrations |
-| monitoring-setup | Sentry/Analytics setup |
-| mvp-plan | MVP planning |
-| new-cmd | Create new commands |
-| new-session | Create session files |
 | optimize-prompt | Prompt optimization |
 | performance | Performance analysis |
-| quick-fix | Quick fixes |
-| refactor-code | Code refactoring |
-| review-pr | PR review |
-| scaffold | Project scaffolding |
 | security-audit | Security audit |
-| start | Start session |
-| task | Task management |
-| test | Test tracking |
-| validate | Validation workflow |
 
 ## Skills (170)
 
@@ -226,4 +204,6 @@ Users install directly from GitHub:
 /plugin install shipshitdev-startup@shipshitdev
 /plugin install shipshitdev-testing@shipshitdev
 /plugin install shipshitdev-frontend@shipshitdev
+/plugin install shipshitdev-dev-workflow@shipshitdev
+/plugin install shipshitdev-security@shipshitdev
 ```

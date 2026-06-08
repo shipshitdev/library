@@ -1,0 +1,12 @@
+{
+  "name": "tailwind",
+  "version": "1.0.0",
+  "description": "Tailwind CSS v4 performance optimization and best practices guidelines (formerly tailwindcss-v4-styl",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

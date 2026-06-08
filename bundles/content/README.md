@@ -20,3 +20,4 @@ Content creation and documentation skills
 - `youtube-video-analyst`
 - `copy-validator`
 - `humanizer`
+- `x-algorithm-optimizer`

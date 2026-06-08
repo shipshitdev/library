@@ -1,34 +1,27 @@
 # Repository Architecture
 
-last_verified: 2026-04-21
+last_verified: 2026-06-07
 
 ## Directory Map
 
 ```
 skills-repo/
-├── skills/                          # 216 skills (source of truth)
+├── skills/                          # 164 skills (source of truth)
 │   └── <skill-name>/
 │       ├── SKILL.md                 # Skill definition (frontmatter + body)
-│       └── plugin.json              # Claude Code plugin manifest (generated)
+│       └── plugin.json              # Skill distribution manifest
 │
-├── commands/                        # 26 slash commands (.md files, flat)
+├── commands/                        # 8 slash commands (.md files, flat)
 │   └── <command-name>.md
 │
-├── bundles/                         # 14 themed bundles (generated + curated)
+├── bundles/                         # 16 themed bundles (generated snapshots)
 │   └── <bundle-name>/
 │       ├── plugin.json              # Bundle manifest
-│       └── skills/                  # Symlinks or copies of bundled skills
-│
-├── plugins/                         # GENERATED — gitignored
-│   ├── bundles/@agenticdev/         # 14 bundle packages
-│   └── individual/@agenticdev/      # 245 individual packages
+│       └── skills/                  # Copies of bundled skills
 │
 ├── scripts/                         # Build, validate, generate tooling
-│   ├── generate-bundle.js           # Bundle generation
-│   ├── generate-manifest.js         # plugin.json from SKILL.md frontmatter
-│   ├── generate-plugin.js           # Full plugin package generation
-│   ├── generate-marketplace-*.js    # Marketplace catalog generation
-│   ├── sync-marketplace.js          # Full sync pipeline
+│   ├── generate-marketplace-bundles.js # Bundle snapshot generation
+│   ├── generate-marketplace-json.js # Marketplace catalog generation
 │   ├── validate-skill-sync.sh       # Skill validation (frontmatter, structure)
 │   ├── validate-changed-skills.sh   # Pre-commit hook: validate only changed
 │   ├── cleanup-global-duplicates.sh # Remove duplicate installs from ~/.claude
@@ -73,13 +66,12 @@ skills-repo/
 ## Data Flow
 
 ```
-skills/<name>/SKILL.md    ──→  scripts/generate-manifest.js   ──→  plugin.json (per skill)
-                          ──→  scripts/generate-plugin.js      ──→  plugins/individual/
-                          ──→  scripts/generate-bundle.js      ──→  bundles/<name>/
-                          ──→  scripts/generate-marketplace-*  ──→  .claude-plugin/marketplace.json
+skills/<name>/SKILL.md    ──→  scripts/generate-marketplace-bundles.js  ──→  bundles/<name>/
+skills/<name>/plugin.json ──→  copied into bundle snapshots
+skills/<name>/SKILL.md    ──→  scripts/generate-marketplace-json.js     ──→  .claude-plugin/marketplace.json
 ```
 
-All generation triggered by: `bun run marketplace:generate` or `bun run sync:marketplace`
+All generation is triggered by: `bun run marketplace:generate`
 
 CI auto-runs on push to master when `skills/**`, `commands/**`, or scripts change.
 
@@ -106,7 +98,7 @@ Optional: `license`, `compatibility`, `when_to_use`, `allowed-tools`, `model`, `
 
 ## Bundle Structure
 
-14 bundles: `ai-agents`, `backend`, `branding`, `content`, `frontend`, `github`, `infrastructure`, `payments`, `planning`, `sales`, `session`, `startup`, `testing`, `workspace`
+16 bundles: `ai-agents`, `backend`, `branding`, `content`, `dev-workflow`, `frontend`, `github`, `infrastructure`, `payments`, `planning`, `sales`, `security`, `session`, `startup`, `testing`, `workspace`
 
 Each bundle = curated subset of skills for a domain. Defined in `scripts/plugin-categories.json`.
 
@@ -114,5 +106,5 @@ Each bundle = curated subset of skills for a domain. Defined in `scripts/plugin-
 
 1. **Pre-commit hook** (`.husky/`): runs `validate-changed-skills.sh` on modified skills
 2. **Local full validation**: `bun run validate` → `validate-skill-sync.sh`
-3. **Lint**: `bun run lint` (markdownlint), biome handles JSON
-4. **CI**: GitHub Actions regenerates bundles + marketplace on master push
+3. **Lint**: `bun run lint` (markdownlint, Biome, shellcheck)
+4. **CI**: GitHub Actions validates, audits, then regenerates bundles + marketplace on master push

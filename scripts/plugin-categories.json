@@ -201,6 +201,7 @@
         "gh-review-suggestions",
         "github-actions-author",
         "git-safety",
+        "release-cleanup",
         "release-pr-gates"
       ]
     },
@@ -226,6 +227,7 @@
         "llm-structured-output",
         "production-audit",
         "refactor-code",
+        "release-cleanup",
         "release-pr-gates",
         "review-pr",
         "scaffold",

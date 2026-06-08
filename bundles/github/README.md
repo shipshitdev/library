@@ -19,4 +19,5 @@ GitHub workflow and automation skills
 - `gh-review-suggestions`
 - `github-actions-author`
 - `git-safety`
+- `release-cleanup`
 - `release-pr-gates`

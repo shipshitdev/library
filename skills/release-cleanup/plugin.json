@@ -1,0 +1,12 @@
+{
+  "name": "release-cleanup",
+  "version": "1.0.0",
+  "description": "Verify a release was fully promoted through develop, staging, and master, then prune merged branches and stale worktrees",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

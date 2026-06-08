@@ -26,6 +26,7 @@ Code review, debugging, refactoring, release, and AI-assisted development workfl
 - `llm-structured-output`
 - `production-audit`
 - `refactor-code`
+- `release-cleanup`
 - `release-pr-gates`
 - `review-pr`
 - `scaffold`

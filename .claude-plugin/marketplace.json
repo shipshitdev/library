@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "170 AI agent skills for indie developers building startups",
+  "description": "171 AI agent skills for indie developers building startups",
   "plugins": [
     {
       "name": "shipshitdev-startup",
@@ -719,6 +719,11 @@
       "name": "refactor-code",
       "source": "./skills/refactor-code",
       "description": "Systematic approach to safely refactoring code with tests. Use when user says 'refactor', 'clean up "
+    },
+    {
+      "name": "release-cleanup",
+      "source": "./skills/release-cleanup",
+      "description": "Verify a release was fully promoted through develop, staging, and master/main, then prune merged loc"
     },
     {
       "name": "release-pr-gates",

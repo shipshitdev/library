@@ -22,6 +22,7 @@ Code review, debugging, refactoring, release, and AI-assisted development workfl
 - `de-slop`
 - `debug`
 - `deploy`
+- `execution-debugging`
 - `deployment-composer`
 - `llm-structured-output`
 - `production-audit`

@@ -151,6 +151,7 @@
         "context-fundamentals",
         "context-optimization",
         "context-degradation",
+        "context-engineering",
         "memory-systems",
         "multi-agent-patterns",
         "tool-design",
@@ -187,6 +188,8 @@
         "cto-advisor",
         "business-operator",
         "task-prd-creator",
+        "writing-prds",
+        "prd-quality-gate",
         "rules-capture"
       ]
     },
@@ -223,6 +226,7 @@
         "de-slop",
         "debug",
         "deploy",
+        "execution-debugging",
         "deployment-composer",
         "llm-structured-output",
         "production-audit",

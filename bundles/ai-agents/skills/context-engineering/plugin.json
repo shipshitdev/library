@@ -1,0 +1,12 @@
+{
+  "name": "context-engineering",
+  "version": "1.0.0",
+  "description": "Context protocol for execution agents — read conventions first, classify inputs by trust, surface conflicts, reuse patterns",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

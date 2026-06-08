@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "171 AI agent skills for indie developers building startups",
+  "description": "175 AI agent skills for indie developers building startups",
   "plugins": [
     {
       "name": "shipshitdev-startup",
@@ -261,6 +261,11 @@
       "description": "Recognize, diagnose, and mitigate patterns of context degradation in agent systems. Use when context"
     },
     {
+      "name": "context-engineering",
+      "source": "./skills/context-engineering",
+      "description": "Supplementary context protocol for agents executing in a repo that has a CLAUDE.md / AGENTS.md (or e"
+    },
+    {
       "name": "context-fundamentals",
       "source": "./skills/context-fundamentals",
       "description": "Understand the components, mechanics, and constraints of context in agent systems. Use when designin"
@@ -364,6 +369,11 @@
       "name": "execution-accelerator",
       "source": "./skills/execution-accelerator",
       "description": "Use this skill when users are stuck on a decision, overthinking, experiencing analysis paralysis, or"
+    },
+    {
+      "name": "execution-debugging",
+      "source": "./skills/execution-debugging",
+      "description": "Scoped debugging methodology for when a test or build fails during execution/stabilization. Use to d"
     },
     {
       "name": "execution-validator",
@@ -644,6 +654,11 @@
       "name": "positioning-angles",
       "source": "./skills/positioning-angles",
       "description": "Use this skill when users need to find their unique marketing angle, differentiate from competitors,"
+    },
+    {
+      "name": "prd-quality-gate",
+      "source": "./skills/prd-quality-gate",
+      "description": "PRD completeness validation. Use to check that a PRD (or GitHub issue body that serves as one) conta"
     },
     {
       "name": "pricing-strategist",
@@ -929,6 +944,11 @@
       "name": "workspace-performance-audit",
       "source": "./skills/workspace-performance-audit",
       "description": "Orchestrates comprehensive performance audits across full-stack monorepos. Coordinates performance-e"
+    },
+    {
+      "name": "writing-prds",
+      "source": "./skills/writing-prds",
+      "description": "Use when the user wants to draft, scope, or formalize a feature — \"write a PRD for X\", \"let's plan X"
     },
     {
       "name": "x-algorithm-optimizer",

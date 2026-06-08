@@ -17,6 +17,7 @@ AI agent development and prompt engineering
 - `context-fundamentals`
 - `context-optimization`
 - `context-degradation`
+- `context-engineering`
 - `memory-systems`
 - `multi-agent-patterns`
 - `tool-design`

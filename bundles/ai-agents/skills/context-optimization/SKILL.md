@@ -162,6 +162,7 @@ This skill builds on context-fundamentals and context-degradation. It connects t
 - multi-agent-patterns - Partitioning as isolation
 - evaluation - Measuring optimization effectiveness
 - memory-systems - Offloading context to memory
+- ai-agent-cost-optimizer - Applying context optimization to token and inference spend
 
 ## References
 
@@ -174,6 +175,7 @@ Related skills in this collection:
 - context-fundamentals - Context basics
 - context-degradation - Understanding when to optimize
 - evaluation - Measuring optimization
+- ai-agent-cost-optimizer - Cost-focused context and model-routing audits
 
 External resources:
 

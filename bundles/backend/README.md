@@ -13,5 +13,10 @@ Backend development and API skills
 
 - `api-design-expert`
 - `error-handling-expert`
+- `graphql-architect`
+- `nestjs-expert`
 - `serializer-specialist`
 - `incremental-fetch`
+- `turborepo`
+- `typescript-expert`
+- `typescript-refactor`

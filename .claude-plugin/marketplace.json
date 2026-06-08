@@ -71,6 +71,16 @@
       "description": "GitHub workflow and automation skills"
     },
     {
+      "name": "shipshitdev-security",
+      "source": "./bundles/security",
+      "description": "Security review, dependency safety, and release-risk skills"
+    },
+    {
+      "name": "shipshitdev-dev-workflow",
+      "source": "./bundles/dev-workflow",
+      "description": "Code review, debugging, refactoring, release, and AI-assisted development workflows"
+    },
+    {
       "name": "shipshitdev-session",
       "source": "./bundles/session",
       "description": "Session management and documentation"
@@ -84,6 +94,11 @@
       "name": "advanced-evaluation",
       "source": "./skills/advanced-evaluation",
       "description": "Master LLM-as-a-Judge evaluation techniques including direct scoring, pairwise comparison, rubric ge"
+    },
+    {
+      "name": "agent-architecture-audit",
+      "source": "./skills/agent-architecture-audit",
+      "description": "Audit LLM and agent applications for wrapper regressions, prompt or memory contamination, tool disci"
     },
     {
       "name": "agent-browser",
@@ -101,9 +116,19 @@
       "description": "Add or repair .agents/ project context for an existing repo. Use for AI agent documentation, session"
     },
     {
+      "name": "ai-agent-cost-optimizer",
+      "source": "./skills/ai-agent-cost-optimizer",
+      "description": "Audit and reduce AI agent token and inference spend through context discipline, prompt caching, mode"
+    },
+    {
       "name": "ai-loading-ux",
       "source": "./skills/ai-loading-ux",
       "description": "Design AI loading, thinking, and progress indicator UX. Use when explicitly asked to improve AI wait"
+    },
+    {
+      "name": "ai-regression-testing",
+      "source": "./skills/ai-regression-testing",
+      "description": "Design regression tests for AI-assisted development by targeting model blind spots such as sandbox v"
     },
     {
       "name": "analytics-expert",
@@ -421,14 +446,14 @@
       "description": "Review GitHub pull requests and post precise inline suggested changes with GitHub suggestion blocks."
     },
     {
-      "name": "github-actions-author",
-      "source": "./skills/github-actions-author",
-      "description": "Author, review, and harden GitHub Actions workflows using current official documentation, secure tri"
-    },
-    {
       "name": "git-safety",
       "source": "./skills/git-safety",
       "description": "Git history secret scan."
+    },
+    {
+      "name": "github-actions-author",
+      "source": "./skills/github-actions-author",
+      "description": "Author, review, and harden GitHub Actions workflows using current official documentation, secure tri"
     },
     {
       "name": "graphql-architect",
@@ -626,6 +651,11 @@
       "description": "Use this skill when users need help with pricing strategy, feel they're undercharging, want to raise"
     },
     {
+      "name": "production-audit",
+      "source": "./skills/production-audit",
+      "description": "Audit an application for production readiness using local evidence from code, CI, config, migrations"
+    },
+    {
       "name": "project-init-orchestrator",
       "source": "./skills/project-init-orchestrator",
       "description": "Select the correct project initialization route. Use v0 for new Shipshit.dev product repos; use lowe"
@@ -776,9 +806,19 @@
       "description": "Capture workflows as skills."
     },
     {
+      "name": "skill-comply",
+      "source": "./skills/skill-comply",
+      "description": "Measure whether agents actually follow a skill, rule, command, or agent definition by deriving expec"
+    },
+    {
       "name": "skill-creator",
       "source": "./skills/skill-creator",
       "description": "Guide for creating effective skills. Use when creating a new skill or updating an existing one to ex"
+    },
+    {
+      "name": "skill-scout",
+      "source": "./skills/skill-scout",
+      "description": "Search local, marketplace, repository, package, GitHub, and web sources before creating a new skill "
     },
     {
       "name": "spec-first",

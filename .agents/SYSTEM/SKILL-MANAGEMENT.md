@@ -16,7 +16,7 @@ skills/{skill-name}/
 ├── references/        # Detailed docs, loaded on demand
 ├── scripts/           # Executable code (Python, bash, Node)
 ├── assets/            # Templates, boilerplate, resources
-└── plugin.json        # Generated manifest (do not edit manually)
+└── plugin.json        # Distribution manifest; keep synced with SKILL.md
 ```
 
 ## Writing Rules
@@ -56,8 +56,8 @@ This should be rare. If you find yourself adding many platform blocks, reconside
 
 1. Edit the single SKILL.md
 2. Run the validator to check for platform-specific language
-3. Regenerate manifests if frontmatter changed: `bun run generate:plugin`
-4. Regenerate bundles if skill is in a bundle: `bun run generate:bundle`
+3. Update the skill's `plugin.json` if name, version, or description changed
+4. Regenerate bundles and marketplace catalog: `bun run marketplace:generate`
 
 ## Consolidation Policy
 
@@ -108,22 +108,14 @@ npx skills add shipshitdev/skills -g --agent claude-code cursor codex openclaw -
 npx skills add shipshitdev/skills --skill stripe-implementer -y
 ```
 
-The `generate-manifest.js` script sets compatibility for all platforms. If a skill genuinely cannot work on a platform, add `platforms` to frontmatter:
-
-```yaml
-platforms: [claude-code, cursor]  # only if restricted
-```
-
-Default (no field) = should work in both Claude Code and Codex.
+Default behavior is cross-platform. If a skill genuinely cannot work on a platform, explain that requirement in `compatibility` and isolate platform-specific instructions behind `PLATFORM-SPECIFIC` marker blocks. Do not add unsupported top-level frontmatter fields.
 
 ## Bundle Management
 
 Bundles group skills by category for marketplace distribution:
 
 ```bash
-bun run generate:bundle    # Regenerate bundle directories
-bun run generate:plugin    # Regenerate plugin.json files
-bun run marketplace:generate  # Full marketplace sync
+bun run marketplace:generate  # Regenerate bundle snapshots and marketplace catalog
 ```
 
 Bundle structure is already platform-neutral — no changes needed per platform.

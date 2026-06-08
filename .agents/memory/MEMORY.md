@@ -1,12 +1,12 @@
 # Skills Repo Memory
 
-last_verified: 2026-04-21
+last_verified: 2026-06-08
 
 ## What This Repo Is
 
-Public skills library at `shipshitdev/skills`. 155 skills, 26 commands, 14 bundles. Installable via `npx skills add shipshitdev/skills --skill <name>`. Works with Claude Code, Codex, Cursor, OpenClaw, Gemini.
+Public skills library at `shipshitdev/skills`. 169 skills, 8 commands, 16 bundles. Installable via `npx skills add shipshitdev/skills --skill <name>`. Works with Claude Code, Codex, Cursor, OpenClaw, Gemini.
 
-Published as `@agenticdev/*` packages via generated `plugins/` directory. Marketplace catalog at `.claude-plugin/marketplace.json`.
+Published through committed marketplace bundles in `bundles/` and the generated `.claude-plugin/marketplace.json` catalog. The old generated `plugins/` package tree is retired.
 
 ## Repo Identity
 
@@ -17,14 +17,14 @@ Published as `@agenticdev/*` packages via generated `plugins/` directory. Market
 - **Linting:** markdownlint (markdown), biome (JSON/JS), shellcheck (bash)
 - **CI:** GitHub Actions on push to master — regenerates bundles + marketplace
 
-## Numbers (snapshot 2026-04-21)
+## Numbers (snapshot 2026-06-08)
 
 | Asset | Count | Location |
 |-------|-------|----------|
-| Skills | 155 | `skills/<name>/SKILL.md` |
-| Commands | 26 | `commands/<name>.md` |
-| Bundles | 14 | `bundles/<bundle>/plugin.json` |
-| Scripts | 15 | `scripts/` |
+| Skills | 169 | `skills/<name>/SKILL.md` |
+| Commands | 8 | `commands/<name>.md` |
+| Bundles | 16 | `bundles/<bundle>/plugin.json` |
+| Scripts | 11 | `scripts/` |
 | Prompts | 1 | `prompts/prd-interview.md` |
 
 ## Architecture Decisions
@@ -69,7 +69,7 @@ None currently tracked.
 - `.agents/SYSTEM/SKILL-STANDARDS.md` — authoritative spec doc
 - `.agents/SYSTEM/SKILL-MANAGEMENT.md` — workflow guide
 - `scripts/validate-skill-sync.sh` — validation script
-- `scripts/generate-manifest.js` — manifest generation
-- `scripts/generate-plugin.js` — plugin.json generation
+- `scripts/generate-marketplace-bundles.js` — bundle snapshot generation
+- `scripts/generate-marketplace-json.js` — marketplace catalog generation
 - `.claude-plugin/marketplace.json` — full marketplace catalog (generated)
 - `.github/workflows/generate-bundles.yml` — CI pipeline

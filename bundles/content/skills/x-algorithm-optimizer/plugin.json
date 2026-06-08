@@ -1,0 +1,12 @@
+{
+  "name": "x-algorithm-optimizer",
+  "version": "1.0.0",
+  "description": "Optimize X/Twitter content for algorithm engagement signals based on xai-org/x-algorithm",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

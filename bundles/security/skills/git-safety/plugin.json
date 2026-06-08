@@ -1,0 +1,12 @@
+{
+  "name": "git-safety",
+  "version": "1.0.0",
+  "description": "Scan git history for sensitive files, clean leaked credentials, and set up prevention measures. Use when asked to 'check for secrets', 'scan git history', 'remove .env from history', or 'secure my repo'.",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

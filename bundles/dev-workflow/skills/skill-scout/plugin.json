@@ -1,0 +1,12 @@
+{
+  "name": "skill-scout",
+  "version": "1.0.0",
+  "description": "Search before creating skills or custom implementations and rank reuse options.",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

@@ -13,6 +13,6 @@ fi
 if command -v shellcheck >/dev/null 2>&1; then
   shellcheck "$@"
 else
-  echo "⚠ shellcheck not installed. Install with: brew install shellcheck (macOS) or apt-get install shellcheck (Linux)"
-  exit 0  # Don't fail if shellcheck is not installed
+  echo "shellcheck is not installed. Install with: brew install shellcheck (macOS) or apt-get install -y shellcheck (Linux)" >&2
+  exit 1
 fi

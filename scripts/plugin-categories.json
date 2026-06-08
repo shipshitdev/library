@@ -57,9 +57,20 @@
         "frontend-design",
         "component-library",
         "accessibility",
+        "audit",
+        "clarify",
+        "critique",
         "design-consistency-auditor",
         "html-style",
+        "layout",
+        "polish",
+        "quieter",
+        "react-component-performance",
+        "react-hook-form",
         "theme-factory",
+        "react-patterns",
+        "react-refactor",
+        "react-testing-library",
         "react-native-components",
         "expo-architect",
         "landing-page-vercel",
@@ -68,7 +79,9 @@
         "table-filters",
         "quick-view",
         "nextjs-validator",
+        "shadcn",
         "shadcn-setup",
+        "tailwind",
         "tailwind-validator"
       ]
     },
@@ -77,8 +90,13 @@
       "skills": [
         "api-design-expert",
         "error-handling-expert",
+        "graphql-architect",
+        "nestjs-expert",
         "serializer-specialist",
-        "incremental-fetch"
+        "incremental-fetch",
+        "turborepo",
+        "typescript-expert",
+        "typescript-refactor"
       ]
     },
     "content": {
@@ -92,7 +110,8 @@
         "internal-comms",
         "youtube-video-analyst",
         "copy-validator",
-        "humanizer"
+        "humanizer",
+        "x-algorithm-optimizer"
       ]
     },
     "sales": {
@@ -185,26 +204,47 @@
         "release-pr-gates"
       ]
     },
+    "security": {
+      "description": "Security review, dependency safety, and release-risk skills",
+      "skills": ["security-audit", "security-expert", "git-safety", "open-source-checker"]
+    },
+    "dev-workflow": {
+      "description": "Code review, debugging, refactoring, release, and AI-assisted development workflows",
+      "skills": [
+        "agent-architecture-audit",
+        "agent-config-audit",
+        "ai-agent-cost-optimizer",
+        "ai-regression-testing",
+        "analyze-codebase",
+        "claude-code-guide",
+        "code-review",
+        "commit-summary",
+        "de-slop",
+        "debug",
+        "deploy",
+        "deployment-composer",
+        "llm-structured-output",
+        "production-audit",
+        "refactor-code",
+        "release-pr-gates",
+        "review-pr",
+        "scaffold",
+        "shape",
+        "skill-capture",
+        "skill-comply",
+        "skill-scout"
+      ]
+    },
     "session": {
       "description": "Session management and documentation",
       "skills": [
         "agent-folder-init",
+        "session-end",
+        "session-start",
         "session-documenter",
         "executing-plans",
         "workspace-performance-audit"
       ]
     }
-  },
-  "standalone": [
-    "accessibility",
-    "api-design-expert",
-    "stripe-implementer",
-    "playwright-e2e-init",
-    "docker-expert",
-    "mongodb-migration-expert",
-    "frontend-design",
-    "prompt-engineering",
-    "mcp-builder",
-    "testing-expert"
-  ]
+  }
 }

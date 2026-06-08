@@ -1,6 +1,6 @@
 # Do and Don't — Skills Repo
 
-last_verified: 2026-04-21
+last_verified: 2026-06-07
 
 ## DO
 
@@ -20,12 +20,11 @@ last_verified: 2026-04-21
 ### Commands
 
 - DO put commands as flat `.md` files in `commands/` — no subdirectories
-- DO follow same frontmatter conventions as skills
+- DO use a clear H1 and usage section; commands do not currently use skill frontmatter
 
 ### Generation
 
 - DO run `bun run marketplace:generate` after changing skills/commands
-- DO let CI handle regeneration on master — don't commit generated `plugins/`
 - DO commit `bundles/` and `.claude-plugin/marketplace.json` — CI generates these
 
 ### Git
@@ -46,8 +45,7 @@ last_verified: 2026-04-21
 
 - DON'T create per-platform copies (`.claude/skills/`, `.codex/skills/`) — single source only
 - DON'T nest skill directories (`skills/foo/foo/SKILL.md`) — flat structure
-- DON'T put skills in bundles directly — bundles reference skills from `skills/`
-- DON'T manually edit `plugins/` — it's generated and gitignored
+- DON'T manually edit `bundles/` — regenerate from `scripts/plugin-categories.json`
 - DON'T create `.md` docs unless explicitly asked — no README bloat
 
 ### Frontmatter
@@ -60,7 +58,7 @@ last_verified: 2026-04-21
 ### Git / CI
 
 - DON'T use npm/yarn/pnpm — Bun only
-- DON'T commit `node_modules/`, `plugins/`, `.agents/SESSIONS/`
+- DON'T commit `node_modules/`, `.agents/SESSIONS/`
 - DON'T skip pre-commit hooks (`--no-verify`)
 - DON'T force push to master
 - DON'T commit `.env` files or secrets
@@ -79,4 +77,4 @@ last_verified: 2026-04-21
 - `project-scaffold` merged into `project-init-orchestrator` (2026-04-21)
 - `skill-capture` Phase 3 frontmatter template fixed (2026-04-21)
 - Orphaned nested directories can appear after structure migrations — check with `find skills -mindepth 3`
-- Bundle `plugin.json` files are curated, not generated — treat as source
+- Bundle `plugin.json` files are generated — update `scripts/plugin-categories.json` instead

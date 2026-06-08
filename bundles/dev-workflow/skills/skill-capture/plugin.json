@@ -1,0 +1,12 @@
+{
+  "name": "skill-capture",
+  "version": "1.0.0",
+  "description": "Extracts valuable learnings, patterns, and workflows from conversations and persists them as reusable skill files",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

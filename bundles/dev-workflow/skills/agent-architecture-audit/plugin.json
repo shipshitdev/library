@@ -1,0 +1,12 @@
+{
+  "name": "agent-architecture-audit",
+  "version": "1.0.0",
+  "description": "Audit agent stack failures across prompts, memory, tools, wrappers, and rendering.",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

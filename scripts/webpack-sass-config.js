@@ -3,7 +3,7 @@
  * Use this in all Next.js apps to configure sass-loader properly
  */
 
-const path = require('path');
+const path = require('node:path');
 
 /**
  * Configure webpack for Sass with proper deprecation handling

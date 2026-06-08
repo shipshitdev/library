@@ -3,14 +3,13 @@
  * Generates marketplace.json with all bundles and individual skills
  */
 
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'fs';
-import { dirname, join } from 'path';
-import { fileURLToPath } from 'url';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const SKILLS_DIR = join(ROOT, 'skills');
-const BUNDLES_DIR = join(ROOT, 'bundles');
 const CATEGORIES = JSON.parse(readFileSync(join(__dirname, 'plugin-categories.json'), 'utf-8'));
 
 // Get skill description from SKILL.md frontmatter
@@ -64,7 +63,7 @@ const marketplace = {
   owner: {
     name: 'Ship Shit Dev',
   },
-  description: '100+ AI agent skills for indie developers building startups',
+  description: `${includedSkillCount} AI agent skills for indie developers building startups`,
   plugins,
 };
 

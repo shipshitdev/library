@@ -146,8 +146,8 @@ Should I add this to the permanent rules? [Yes/No/Modify]
 ````
 
 ### 5. On Confirmation
-- **Personal preferences** → append to `~/.claude/CLAUDE.md` (global) under the appropriate section
-- **Project coding standards** → append to the repo-level `CLAUDE.md`
+- **Personal preferences** → append to the user's platform-level instruction file under the appropriate section
+- **Project coding standards** → append to the repo-level agent instruction file (`AGENTS.md`, `CLAUDE.md`, `CODEX.md`, or equivalent)
 - **Durable project facts** (architecture, deployment notes, gotchas) → add/update a file in `.agents/memory/`
 - Remove the entry from `.agents/memory/captured-rules.md` (or mark it PROCESSED)
 
@@ -186,8 +186,8 @@ Should I add this to the permanent rules? [Yes/No/Modify]
 
 | Rule Type | Storage Location |
 |-----------|------------------|
-| Personal preferences | `~/.claude/CLAUDE.md` (global) |
-| Project coding standards | `<repo>/CLAUDE.md` (repo-level) |
+| Personal preferences | User-level platform instruction file |
+| Project coding standards | Repo-level agent instruction file |
 | Durable project facts | `.agents/memory/<topic>.md` |
 | Pending review | `.agents/memory/captured-rules.md` (`status: temporary`) |
 

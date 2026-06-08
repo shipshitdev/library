@@ -348,6 +348,7 @@ Before updating files, answer these questions:
    - Remove or correct stale information
 
 2. **Close or update GitHub Issues** for completed work
+
    ```bash
    gh issue close <number> --comment "Done in <sha>: <summary>"
    ```

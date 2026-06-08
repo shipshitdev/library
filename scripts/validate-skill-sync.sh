@@ -524,6 +524,18 @@ check_line_count() {
     return 0
 }
 
+# Function to check reference directory naming
+check_reference_directory() {
+    local skill_dir="$1"
+
+    if [[ -d "$skill_dir/reference" ]]; then
+        echo -e "  ${YELLOW}⚠${NC} Non-standard reference directory: use 'references/' instead of 'reference/'"
+        return 1
+    fi
+
+    return 0
+}
+
 # Function to validate a single skill
 validate_skill() {
     local skill_name="$1"
@@ -572,6 +584,10 @@ validate_skill() {
         local line_warnings=0
         check_line_count "$skill_file" || line_warnings=$?
         ((skill_warnings += line_warnings, 1))
+
+        local reference_dir_warnings=0
+        check_reference_directory "$SKILLS_DIR/$skill_name" || reference_dir_warnings=$?
+        ((skill_warnings += reference_dir_warnings, 1))
 
         local plugin_warnings=0
         check_plugin_manifest "$SKILLS_DIR/$skill_name" || plugin_warnings=$?

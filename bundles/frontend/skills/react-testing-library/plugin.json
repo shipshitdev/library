@@ -1,0 +1,12 @@
+{
+  "name": "react-testing-library",
+  "version": "1.0.0",
+  "description": "React Testing Library best practices for writing maintainable, user-centric tests. Use when writing,",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

@@ -33,7 +33,7 @@ List all changes made:
 
 **1.3 Check Critical Rules**
 
-For projects, ALWAYS verify against the repo's CLAUDE.md and the global `~/.claude/CLAUDE.md` — these are the canonical sources for project rules and "never do" constraints. The harness loads them automatically; read them if you need to reference specific rules during review.
+For projects, ALWAYS verify against repo-level agent instructions (`AGENTS.md`, `CLAUDE.md`, `CODEX.md`, or equivalent) and the user's platform-level instruction file. These are the canonical sources for project rules and "never do" constraints. The harness loads them automatically; read them if you need to reference specific rules during review.
 
 ### Phase 2: Requirement Verification
 

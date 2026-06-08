@@ -98,7 +98,7 @@ python3 scripts/scaffold.py \
     └── TEMPLATE.md              # Session file template
 ```
 
-**Rules and coding standards** go in `CLAUDE.md` (repo root) and the global `~/.claude/CLAUDE.md` — not inside `.agents/`.
+**Rules and coding standards** go in the repo's agent entry file (`AGENTS.md`, `CLAUDE.md`, or `CODEX.md`) and the user's platform-level instruction file — not inside `.agents/`.
 
 **Task tracking** uses GitHub Issues (`gh issue list`, `gh issue create`) — not local task files.
 
@@ -158,7 +158,7 @@ python3 scripts/scaffold.py \
 
 After scaffolding, customize:
 
-1. `CLAUDE.md` (repo root) - Add project-specific coding standards and "never do" rules
+1. Root agent entry file - Add project-specific coding standards and "never do" rules
 2. `.agents/memory/architecture.md` - Document your architecture decisions
 3. `.agents/memory/entities.md` - Document your data entities
 4. `.agents/memory/deployment.md` - Document deployment steps and gotchas

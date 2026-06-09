@@ -151,6 +151,7 @@
         "context-fundamentals",
         "context-optimization",
         "context-degradation",
+        "context-engineering",
         "memory-systems",
         "multi-agent-patterns",
         "tool-design",
@@ -187,7 +188,10 @@
         "cto-advisor",
         "business-operator",
         "task-prd-creator",
-        "rules-capture"
+        "writing-prds",
+        "prd-quality-gate",
+        "rules-capture",
+        "writing-plans"
       ]
     },
     "github": {
@@ -201,7 +205,10 @@
         "gh-review-suggestions",
         "github-actions-author",
         "git-safety",
-        "release-pr-gates"
+        "release-cleanup",
+        "release-pr-gates",
+        "worktree",
+        "finishing-a-development-branch"
       ]
     },
     "security": {
@@ -222,17 +229,23 @@
         "de-slop",
         "debug",
         "deploy",
+        "execution-debugging",
         "deployment-composer",
         "llm-structured-output",
         "production-audit",
         "refactor-code",
+        "release-cleanup",
         "release-pr-gates",
         "review-pr",
         "scaffold",
         "shape",
         "skill-capture",
         "skill-comply",
-        "skill-scout"
+        "skill-scout",
+        "systematic-debugging",
+        "receiving-code-review",
+        "verification-before-completion",
+        "worktree"
       ]
     },
     "session": {

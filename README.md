@@ -4,13 +4,13 @@
 
 ![Project Type](https://img.shields.io/badge/Project-Skills-blue)
 
-170 AI agent skills for indie developers. Works with Claude Code and OpenAI Codex.
+181 AI agent skills for indie developers. Works with Claude Code and OpenAI Codex.
 
 ## Directory Structure
 
 ```
 skills/
-├── skills/              # All skills (170)
+├── skills/              # All skills (181)
 ├── commands/            # All commands (8)
 ├── bundles/             # Generated marketplace bundles
 ├── .agents/             # Repo management, memory, meta-skills
@@ -129,9 +129,9 @@ touch skills/my-skill/SKILL.md
 
 `changelog-generator`, `content-creator`, `copy-validator`, `copywriter`, `docs`, `humanizer`, `internal-comms`, `nextra-writer`, `youtube-video-analyst`
 
-### Planning (7)
+### Planning (8)
 
-`analytics-expert`, `business-operator`, `cto-advisor`, `roadmap-analyzer`, `rules-capture`, `strategy-expert`, `task-prd-creator`
+`analytics-expert`, `business-operator`, `cto-advisor`, `roadmap-analyzer`, `rules-capture`, `strategy-expert`, `task-prd-creator`, `writing-plans`
 
 ### Frontend & React (28)
 
@@ -161,13 +161,13 @@ touch skills/my-skill/SKILL.md
 
 `advanced-evaluation`, `agent-architecture-audit`, `agent-browser`, `ai-agent-cost-optimizer`, `comment-mode`, `context-degradation`, `context-fundamentals`, `context-optimization`, `evaluation`, `executing-plans`, `mcp-builder`, `memory-systems`, `multi-agent-patterns`, `skill-comply`, `skill-creator`, `spec-first`, `tool-design`
 
-### Dev Workflow (20)
+### Dev Workflow (24)
 
-`agent-config-audit`, `analyze-codebase`, `audit`, `claude-code-guide`, `code-review`, `commit-summary`, `de-slop`, `debug`, `deploy`, `deployment-composer`, `llm-structured-output`, `prompt-engineering`, `refactor-code`, `review-pr`, `scaffold`, `session-end`, `session-start`, `shape`, `skill-capture`, `skill-scout`
+`agent-config-audit`, `analyze-codebase`, `audit`, `claude-code-guide`, `code-review`, `commit-summary`, `de-slop`, `debug`, `deploy`, `deployment-composer`, `llm-structured-output`, `prompt-engineering`, `receiving-code-review`, `refactor-code`, `review-pr`, `scaffold`, `session-end`, `session-start`, `shape`, `skill-capture`, `skill-scout`, `systematic-debugging`, `verification-before-completion`, `worktree`
 
-### GitHub (9)
+### GitHub (12)
 
-`gh-address-comments`, `gh-fix-ci`, `gh-inbox`, `gh-pr-publish`, `gh-project-board`, `gh-review-suggestions`, `github-actions-author`, `git-safety`, `release-pr-gates`
+`finishing-a-development-branch`, `gh-address-comments`, `gh-fix-ci`, `gh-inbox`, `gh-pr-publish`, `gh-project-board`, `gh-review-suggestions`, `github-actions-author`, `git-safety`, `release-cleanup`, `release-pr-gates`, `worktree`
 
 ### Session Management (3)
 

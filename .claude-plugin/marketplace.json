@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "170 AI agent skills for indie developers building startups",
+  "description": "181 AI agent skills for indie developers building startups",
   "plugins": [
     {
       "name": "shipshitdev-startup",
@@ -261,6 +261,11 @@
       "description": "Recognize, diagnose, and mitigate patterns of context degradation in agent systems. Use when context"
     },
     {
+      "name": "context-engineering",
+      "source": "./skills/context-engineering",
+      "description": "Supplementary context protocol for agents executing in a repo that has a CLAUDE.md / AGENTS.md (or e"
+    },
+    {
       "name": "context-fundamentals",
       "source": "./skills/context-fundamentals",
       "description": "Understand the components, mechanics, and constraints of context in agent systems. Use when designin"
@@ -366,6 +371,11 @@
       "description": "Use this skill when users are stuck on a decision, overthinking, experiencing analysis paralysis, or"
     },
     {
+      "name": "execution-debugging",
+      "source": "./skills/execution-debugging",
+      "description": "Scoped debugging methodology for when a test or build fails during execution/stabilization. Use to d"
+    },
+    {
       "name": "execution-validator",
       "source": "./skills/execution-validator",
       "description": "Use this skill when users need to validate a launch plan, assess MVP scope, or determine if they're "
@@ -389,6 +399,11 @@
       "name": "financial-operations-expert",
       "source": "./skills/financial-operations-expert",
       "description": "Use this skill when users need help with business finances, tax planning, bookkeeping, profit/loss a"
+    },
+    {
+      "name": "finishing-a-development-branch",
+      "source": "./skills/finishing-a-development-branch",
+      "description": ">-"
     },
     {
       "name": "frontend-design",
@@ -646,6 +661,11 @@
       "description": "Use this skill when users need to find their unique marketing angle, differentiate from competitors,"
     },
     {
+      "name": "prd-quality-gate",
+      "source": "./skills/prd-quality-gate",
+      "description": "PRD completeness validation. Use to check that a PRD (or GitHub issue body that serves as one) conta"
+    },
+    {
       "name": "pricing-strategist",
       "source": "./skills/pricing-strategist",
       "description": "Use this skill when users need help with pricing strategy, feel they're undercharging, want to raise"
@@ -711,6 +731,11 @@
       "description": "React Testing Library best practices for writing maintainable, user-centric tests. Use when writing,"
     },
     {
+      "name": "receiving-code-review",
+      "source": "./skills/receiving-code-review",
+      "description": ">-"
+    },
+    {
       "name": "redis-caching",
       "source": "./skills/redis-caching",
       "description": "Redis caching, rate limiting, session storage, pub/sub, and production integration patterns for Type"
@@ -719,6 +744,11 @@
       "name": "refactor-code",
       "source": "./skills/refactor-code",
       "description": "Systematic approach to safely refactoring code with tests. Use when user says 'refactor', 'clean up "
+    },
+    {
+      "name": "release-cleanup",
+      "source": "./skills/release-cleanup",
+      "description": "Verify a release was fully promoted through develop, staging, and master/main, then prune merged loc"
     },
     {
       "name": "release-pr-gates",
@@ -846,6 +876,11 @@
       "description": "Use this skill when users need to set up customer support systems, create help docs/FAQs, implement "
     },
     {
+      "name": "systematic-debugging",
+      "source": "./skills/systematic-debugging",
+      "description": ">-"
+    },
+    {
       "name": "table-filters",
       "source": "./skills/table-filters",
       "description": "Designs optimal filtering UX for data tables. Use when building a table that needs filters - analyze"
@@ -916,6 +951,11 @@
       "description": "TypeScript refactoring and modernization guidelines from a principal specialist perspective. This sk"
     },
     {
+      "name": "verification-before-completion",
+      "source": "./skills/verification-before-completion",
+      "description": ">-"
+    },
+    {
       "name": "workflow-automation",
       "source": "./skills/workflow-automation",
       "description": "This skill should be used when users need help designing content workflows, creating process documen"
@@ -924,6 +964,21 @@
       "name": "workspace-performance-audit",
       "source": "./skills/workspace-performance-audit",
       "description": "Orchestrates comprehensive performance audits across full-stack monorepos. Coordinates performance-e"
+    },
+    {
+      "name": "worktree",
+      "source": "./skills/worktree",
+      "description": "Create an isolated git worktree from the correct base branch and check it out into a clean, gitignor"
+    },
+    {
+      "name": "writing-plans",
+      "source": "./skills/writing-plans",
+      "description": ">-"
+    },
+    {
+      "name": "writing-prds",
+      "source": "./skills/writing-prds",
+      "description": "Use when the user wants to draft, scope, or formalize a feature — \"write a PRD for X\", \"let's plan X"
     },
     {
       "name": "x-algorithm-optimizer",

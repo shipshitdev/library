@@ -1,0 +1,12 @@
+{
+  "name": "finishing-a-development-branch",
+  "version": "1.0.0",
+  "description": "Verify tests, detect environment, present merge/PR/cleanup options, execute the chosen path at branch completion.",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

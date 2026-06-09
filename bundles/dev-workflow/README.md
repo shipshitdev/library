@@ -22,10 +22,12 @@ Code review, debugging, refactoring, release, and AI-assisted development workfl
 - `de-slop`
 - `debug`
 - `deploy`
+- `execution-debugging`
 - `deployment-composer`
 - `llm-structured-output`
 - `production-audit`
 - `refactor-code`
+- `release-cleanup`
 - `release-pr-gates`
 - `review-pr`
 - `scaffold`
@@ -33,3 +35,7 @@ Code review, debugging, refactoring, release, and AI-assisted development workfl
 - `skill-capture`
 - `skill-comply`
 - `skill-scout`
+- `systematic-debugging`
+- `receiving-code-review`
+- `verification-before-completion`
+- `worktree`

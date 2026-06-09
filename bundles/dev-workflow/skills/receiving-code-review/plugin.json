@@ -1,0 +1,12 @@
+{
+  "name": "receiving-code-review",
+  "version": "1.0.0",
+  "description": "Evaluate incoming code-review feedback with technical rigor: verify before acting, push back when wrong.",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

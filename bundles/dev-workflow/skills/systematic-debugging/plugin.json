@@ -1,0 +1,12 @@
+{
+  "name": "systematic-debugging",
+  "version": "1.0.0",
+  "description": "Enforce root-cause investigation before any fix: structured four-phase debugging methodology.",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

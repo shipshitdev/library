@@ -17,4 +17,7 @@ Strategy, planning, and analysis skills
 - `cto-advisor`
 - `business-operator`
 - `task-prd-creator`
+- `writing-prds`
+- `prd-quality-gate`
 - `rules-capture`
+- `writing-plans`

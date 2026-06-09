@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "175 AI agent skills for indie developers building startups",
+  "description": "181 AI agent skills for indie developers building startups",
   "plugins": [
     {
       "name": "shipshitdev-startup",
@@ -401,6 +401,11 @@
       "description": "Use this skill when users need help with business finances, tax planning, bookkeeping, profit/loss a"
     },
     {
+      "name": "finishing-a-development-branch",
+      "source": "./skills/finishing-a-development-branch",
+      "description": ">-"
+    },
+    {
       "name": "frontend-design",
       "source": "./skills/frontend-design",
       "description": "Create distinctive, production-grade frontend interfaces with high design quality. Use this skill wh"
@@ -726,6 +731,11 @@
       "description": "React Testing Library best practices for writing maintainable, user-centric tests. Use when writing,"
     },
     {
+      "name": "receiving-code-review",
+      "source": "./skills/receiving-code-review",
+      "description": ">-"
+    },
+    {
       "name": "redis-caching",
       "source": "./skills/redis-caching",
       "description": "Redis caching, rate limiting, session storage, pub/sub, and production integration patterns for Type"
@@ -866,6 +876,11 @@
       "description": "Use this skill when users need to set up customer support systems, create help docs/FAQs, implement "
     },
     {
+      "name": "systematic-debugging",
+      "source": "./skills/systematic-debugging",
+      "description": ">-"
+    },
+    {
       "name": "table-filters",
       "source": "./skills/table-filters",
       "description": "Designs optimal filtering UX for data tables. Use when building a table that needs filters - analyze"
@@ -936,6 +951,11 @@
       "description": "TypeScript refactoring and modernization guidelines from a principal specialist perspective. This sk"
     },
     {
+      "name": "verification-before-completion",
+      "source": "./skills/verification-before-completion",
+      "description": ">-"
+    },
+    {
       "name": "workflow-automation",
       "source": "./skills/workflow-automation",
       "description": "This skill should be used when users need help designing content workflows, creating process documen"
@@ -944,6 +964,16 @@
       "name": "workspace-performance-audit",
       "source": "./skills/workspace-performance-audit",
       "description": "Orchestrates comprehensive performance audits across full-stack monorepos. Coordinates performance-e"
+    },
+    {
+      "name": "worktree",
+      "source": "./skills/worktree",
+      "description": "Create an isolated git worktree from the correct base branch and check it out into a clean, gitignor"
+    },
+    {
+      "name": "writing-plans",
+      "source": "./skills/writing-plans",
+      "description": ">-"
     },
     {
       "name": "writing-prds",

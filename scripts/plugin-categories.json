@@ -190,7 +190,8 @@
         "task-prd-creator",
         "writing-prds",
         "prd-quality-gate",
-        "rules-capture"
+        "rules-capture",
+        "writing-plans"
       ]
     },
     "github": {
@@ -205,7 +206,9 @@
         "github-actions-author",
         "git-safety",
         "release-cleanup",
-        "release-pr-gates"
+        "release-pr-gates",
+        "worktree",
+        "finishing-a-development-branch"
       ]
     },
     "security": {
@@ -238,7 +241,11 @@
         "shape",
         "skill-capture",
         "skill-comply",
-        "skill-scout"
+        "skill-scout",
+        "systematic-debugging",
+        "receiving-code-review",
+        "verification-before-completion",
+        "worktree"
       ]
     },
     "session": {

@@ -12,6 +12,7 @@ following sections as markdown headings (## or ###). Missing sections reduce pla
 quality and risk hallucinated scope.
 
 Required sections:
+
 - Executive Summary
 - Problem Statement
 - Goals
@@ -20,11 +21,13 @@ Required sections:
 - Verification Plan
 
 When the quality gate is ENABLED (blocking):
+
 - Missing any required section → fail immediately with an actionable message
   listing the missing sections.
 - The author must update the PRD and re-run the gate before planning proceeds.
 
 When the quality gate is DISABLED (default, warning-only):
+
 - Missing sections → log a warning.
 - Planning proceeds. The planner should still note the gaps in its output.
 

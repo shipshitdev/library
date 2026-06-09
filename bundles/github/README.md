@@ -21,3 +21,5 @@ GitHub workflow and automation skills
 - `git-safety`
 - `release-cleanup`
 - `release-pr-gates`
+- `worktree`
+- `finishing-a-development-branch`

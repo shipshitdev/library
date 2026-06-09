@@ -35,3 +35,7 @@ Code review, debugging, refactoring, release, and AI-assisted development workfl
 - `skill-capture`
 - `skill-comply`
 - `skill-scout`
+- `systematic-debugging`
+- `receiving-code-review`
+- `verification-before-completion`
+- `worktree`

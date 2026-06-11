@@ -72,7 +72,7 @@ if (!existsSync(outputDir)) {
   mkdirSync(outputDir, { recursive: true });
 }
 const outputPath = join(outputDir, 'marketplace.json');
-writeFileSync(outputPath, JSON.stringify(marketplace, null, 2));
+writeFileSync(outputPath, `${JSON.stringify(marketplace, null, 2)}\n`);
 
 console.log(`Generated marketplace.json with ${plugins.length} plugins:`);
 console.log(`  - ${Object.keys(CATEGORIES.bundles).length} category bundles`);

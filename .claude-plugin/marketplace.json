@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "181 AI agent skills for indie developers building startups",
+  "description": "182 AI agent skills for indie developers building startups",
   "plugins": [
     {
       "name": "shipshitdev-startup",
@@ -394,6 +394,11 @@
       "name": "expo-architect",
       "source": "./skills/expo-architect",
       "description": "Scaffold a production-ready Expo React Native app with working screens, navigation, and optional Cle"
+    },
+    {
+      "name": "feature-intake",
+      "source": "./skills/feature-intake",
+      "description": "Capture a client or stakeholder feature request, turn it into a planner-ready PRD epic with scoped s"
     },
     {
       "name": "financial-operations-expert",

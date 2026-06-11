@@ -24,7 +24,7 @@ function ensureDir(dir) {
 }
 
 function generatePluginJson(name, description) {
-  return JSON.stringify(
+  return `${JSON.stringify(
     {
       name,
       version: '1.0.0',
@@ -37,7 +37,7 @@ function generatePluginJson(name, description) {
     },
     null,
     2
-  );
+  )}\n`;
 }
 
 console.log('Generating marketplace bundles...\n');

@@ -4,14 +4,14 @@
 
 ![Project Type](https://img.shields.io/badge/Project-Skills-blue)
 
-181 AI agent skills for indie developers. Works with Claude Code and OpenAI Codex.
+182 AI agent skills for indie developers. Works with Claude Code and OpenAI Codex.
 
 ## Directory Structure
 
 ```
 skills/
-├── skills/              # All skills (181)
-├── commands/            # All commands (8)
+├── skills/              # All skills (182)
+├── commands/            # All commands (9)
 ├── bundles/             # Generated marketplace bundles
 ├── .agents/             # Repo management, memory, meta-skills
 │   ├── SYSTEM/          # Architecture docs, skill standards
@@ -102,12 +102,13 @@ touch skills/my-skill/SKILL.md
 | clean | Cleanup workflow |
 | co-founder | Strategic business partner workflow |
 | env-setup | Environment variables |
+| feature | Client requirement intake |
 | inbox | Process inbox items |
 | optimize-prompt | Prompt optimization |
 | performance | Performance analysis |
 | security-audit | Security audit |
 
-## Skills (170)
+## Skills (182)
 
 ### Startup (14)
 
@@ -129,9 +130,9 @@ touch skills/my-skill/SKILL.md
 
 `changelog-generator`, `content-creator`, `copy-validator`, `copywriter`, `docs`, `humanizer`, `internal-comms`, `nextra-writer`, `youtube-video-analyst`
 
-### Planning (8)
+### Planning (9)
 
-`analytics-expert`, `business-operator`, `cto-advisor`, `roadmap-analyzer`, `rules-capture`, `strategy-expert`, `task-prd-creator`, `writing-plans`
+`analytics-expert`, `business-operator`, `cto-advisor`, `feature-intake`, `roadmap-analyzer`, `rules-capture`, `strategy-expert`, `task-prd-creator`, `writing-plans`
 
 ### Frontend & React (28)
 
@@ -165,9 +166,9 @@ touch skills/my-skill/SKILL.md
 
 `agent-config-audit`, `analyze-codebase`, `audit`, `claude-code-guide`, `code-review`, `commit-summary`, `de-slop`, `debug`, `deploy`, `deployment-composer`, `llm-structured-output`, `prompt-engineering`, `receiving-code-review`, `refactor-code`, `review-pr`, `scaffold`, `session-end`, `session-start`, `shape`, `skill-capture`, `skill-scout`, `systematic-debugging`, `verification-before-completion`, `worktree`
 
-### GitHub (12)
+### GitHub (13)
 
-`finishing-a-development-branch`, `gh-address-comments`, `gh-fix-ci`, `gh-inbox`, `gh-pr-publish`, `gh-project-board`, `gh-review-suggestions`, `github-actions-author`, `git-safety`, `release-cleanup`, `release-pr-gates`, `worktree`
+`feature-intake`, `finishing-a-development-branch`, `gh-address-comments`, `gh-fix-ci`, `gh-inbox`, `gh-pr-publish`, `gh-project-board`, `gh-review-suggestions`, `github-actions-author`, `git-safety`, `release-cleanup`, `release-pr-gates`, `worktree`
 
 ### Session Management (3)
 

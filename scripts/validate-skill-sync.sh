@@ -55,6 +55,7 @@ agent-config-audit
 agent-folder-init
 deploy
 deployment-composer
+feature-intake
 fullstack-workspace-init
 gh-address-comments
 gh-fix-ci
@@ -89,18 +90,18 @@ check_frontmatter() {
     content=$(cat "$file")
 
     # Check for frontmatter
-    if ! echo "$content" | grep -q "^---$"; then
+    if ! grep -q "^---$" <<< "$content"; then
         echo -e "  ${RED}✗${NC} Missing frontmatter (---)"
         return 1
     fi
 
     # Check for required fields
-    if ! echo "$content" | grep -q "^name:"; then
+    if ! grep -q "^name:" <<< "$content"; then
         echo -e "  ${RED}✗${NC} Missing required 'name' field"
         ((++issues))
     fi
 
-    if ! echo "$content" | grep -q "^description:"; then
+    if ! grep -q "^description:" <<< "$content"; then
         echo -e "  ${RED}✗${NC} Missing required 'description' field"
         ((++issues))
     fi
@@ -254,7 +255,7 @@ check_tool_references() {
     )
 
     for pattern in "${tool_patterns[@]}"; do
-        if echo "$content" | grep -qi "$pattern"; then
+        if grep -qi "$pattern" <<< "$content"; then
             local line_num
             line_num=$(grep -n -i "$pattern" "$file" | head -1 | cut -d: -f1)
             echo -e "  ${YELLOW}⚠${NC} Tool reference: '$pattern' (line $line_num)"
@@ -303,7 +304,7 @@ check_platform_names() {
     )
 
     for pattern in "${platform_patterns[@]}"; do
-        if echo "$content" | grep -q "$pattern"; then
+        if grep -q "$pattern" <<< "$content"; then
             local line_num
             line_num=$(grep -n "$pattern" "$file" | head -1 | cut -d: -f1)
             echo -e "  ${YELLOW}⚠${NC} Platform coupling: '$pattern' (line $line_num)"
@@ -344,7 +345,7 @@ check_platform_paths() {
     )
 
     for pattern in "${path_patterns[@]}"; do
-        if echo "$content" | grep -q "$pattern"; then
+        if grep -q "$pattern" <<< "$content"; then
             local line_num
             line_num=$(grep -n "$pattern" "$file" | head -1 | cut -d: -f1)
             echo -e "  ${YELLOW}⚠${NC} Hardcoded path: '$pattern' (line $line_num)"

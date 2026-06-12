@@ -1,7 +1,7 @@
 {
   "name": "release-cleanup",
-  "version": "1.0.0",
-  "description": "Verify a release was fully promoted through develop, staging, and master, then prune merged branches and stale worktrees",
+  "version": "2.0.0",
+  "description": "Squash-merge-aware release cleanup: verify promotion through develop, staging, and master using GitHub PR merge state, then prune merged branches and stale worktrees",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",

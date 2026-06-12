@@ -12,6 +12,9 @@ plugins/
 # Local settings (personal profiles)
 .claude/settings.local.json
 
+# Transient git worktrees created by the harness
+.claude/worktrees/
+
 # Skills installed by `npx skills add` (project-local copies)
 .claude/skills/
 .codex/skills/

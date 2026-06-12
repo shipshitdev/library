@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "183 AI agent skills for indie developers building startups",
+  "description": "185 AI agent skills for indie developers building startups",
   "plugins": [
     {
       "name": "shipshitdev-startup",
@@ -213,7 +213,7 @@
     {
       "name": "code-review",
       "source": "./skills/code-review",
-      "description": "Code review guidance."
+      "description": "Correctness and security gate for incoming pull requests. Auto-invoked when reviewing a diff, evalua"
     },
     {
       "name": "codebase-advisor",
@@ -413,12 +413,17 @@
     {
       "name": "finishing-a-development-branch",
       "source": "./skills/finishing-a-development-branch",
-      "description": ">-"
+      "description": "Structured \"done coding, now what?\" workflow: verify tests pass, detect the repository environment ("
     },
     {
       "name": "frontend-design",
       "source": "./skills/frontend-design",
       "description": "Create distinctive, production-grade frontend interfaces with high design quality. Use this skill wh"
+    },
+    {
+      "name": "full-code-review",
+      "source": "./skills/full-code-review",
+      "description": "Fan-out PR review across three parallel dimension agents (structural, security, devex/flag-hygiene),"
     },
     {
       "name": "fullstack-workspace-init",
@@ -743,7 +748,7 @@
     {
       "name": "receiving-code-review",
       "source": "./skills/receiving-code-review",
-      "description": ">-"
+      "description": "Evaluate incoming code-review feedback with technical rigor before implementing any change. Verify e"
     },
     {
       "name": "redis-caching",
@@ -881,6 +886,11 @@
       "description": "Implement Stripe payment processing, subscription management, webhook handling, and customer managem"
     },
     {
+      "name": "structural-review",
+      "source": "./skills/structural-review",
+      "description": "Perform a structural and maintainability review of a PR or codebase diff — covering file-size blocke"
+    },
+    {
       "name": "support-systems-architect",
       "source": "./skills/support-systems-architect",
       "description": "Use this skill when users need to set up customer support systems, create help docs/FAQs, implement "
@@ -888,7 +898,7 @@
     {
       "name": "systematic-debugging",
       "source": "./skills/systematic-debugging",
-      "description": ">-"
+      "description": "Enforces root-cause investigation before any fix attempt using a rigorous four-phase methodology: in"
     },
     {
       "name": "table-filters",
@@ -948,7 +958,7 @@
     {
       "name": "turborepo",
       "source": "./skills/turborepo",
-      "description": "|"
+      "description": "Turborepo monorepo build system guidance. Triggers on: `turbo.json`, task pipelines,\n`dependsOn`, ca"
     },
     {
       "name": "typescript-expert",
@@ -963,7 +973,7 @@
     {
       "name": "verification-before-completion",
       "source": "./skills/verification-before-completion",
-      "description": ">-"
+      "description": "Enforce evidence-based completion: no success, done, fixed, or passing claim may be made without fir"
     },
     {
       "name": "workflow-automation",
@@ -983,7 +993,7 @@
     {
       "name": "writing-plans",
       "source": "./skills/writing-plans",
-      "description": ">-"
+      "description": "Turn a spec or requirements doc into a comprehensive, bite-sized implementation plan: map every file"
     },
     {
       "name": "writing-prds",

@@ -25,7 +25,7 @@ Use this command when:
 ### Basic Usage
 
 ```bash
-/check-domain
+/domain
 ```
 
 The AI will:
@@ -38,7 +38,7 @@ The AI will:
 ### With Specific Domain
 
 ```bash
-/check-domain example.com
+/domain example.com
 ```
 
 Checks availability for a specific domain.
@@ -46,14 +46,14 @@ Checks availability for a specific domain.
 ### With Keywords
 
 ```bash
-/check-domain --keywords "productivity app remote teams"
+/domain --keywords "productivity app remote teams"
 ```
 
 Generates domain suggestions based on keywords and checks availability.
 
 ## Instructions for AI
 
-When user invokes `/check-domain`:
+When user invokes `/domain`:
 
 ### Step 1: Gather Requirements
 
@@ -261,7 +261,7 @@ This command leverages:
 
 ## Example Workflow
 
-**User:** `/check-domain --keywords "AI writing assistant"`
+**User:** `/domain --keywords "AI writing assistant"`
 
 **AI Response:**
 

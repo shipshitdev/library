@@ -5,9 +5,9 @@ Scaffold .env files, validate required variables, document secrets.
 ## Usage
 
 ```bash
-/env-setup              # Interactive environment setup
-/env-setup --validate   # Validate existing .env files
-/env-setup --scaffold   # Generate .env template files
+/env              # Interactive environment setup
+/env --validate   # Validate existing .env files
+/env --scaffold   # Generate .env template files
 ```
 
 ## Workflow

@@ -225,6 +225,7 @@
         "ai-agent-cost-optimizer",
         "ai-regression-testing",
         "analyze-codebase",
+        "codebase-advisor",
         "claude-code-guide",
         "code-review",
         "commit-summary",

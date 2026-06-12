@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "184 AI agent skills for indie developers building startups",
+  "description": "185 AI agent skills for indie developers building startups",
   "plugins": [
     {
       "name": "shipshitdev-startup",
@@ -214,6 +214,11 @@
       "name": "code-review",
       "source": "./skills/code-review",
       "description": "Correctness and security gate for incoming pull requests. Auto-invoked when reviewing a diff, evalua"
+    },
+    {
+      "name": "codebase-advisor",
+      "source": "./skills/codebase-advisor",
+      "description": "Survey any codebase as a senior advisor and produce prioritized, self-contained implementation plans"
     },
     {
       "name": "cofounder-evaluator",

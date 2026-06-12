@@ -16,6 +16,7 @@ Code review, debugging, refactoring, release, and AI-assisted development workfl
 - `ai-agent-cost-optimizer`
 - `ai-regression-testing`
 - `analyze-codebase`
+- `codebase-advisor`
 - `claude-code-guide`
 - `code-review`
 - `structural-review`

@@ -1,0 +1,12 @@
+{
+  "name": "codebase-advisor",
+  "version": "1.0.0",
+  "description": "Survey any codebase as a read-only senior advisor and produce prioritized, self-contained implementation plans for other agents to execute. Audits for bugs, security, performance, test coverage, tech debt, migrations, DX, and product direction; can dispatch an executor subagent in an isolated worktree, review its work, and keep the plan backlog alive.",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

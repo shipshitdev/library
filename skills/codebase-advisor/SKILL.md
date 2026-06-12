@@ -4,7 +4,7 @@ description: Survey any codebase as a senior advisor and produce prioritized, se
 license: MIT
 disable-model-invocation: true
 user-invocable: true
-allowed-tools: Read, Grep, Glob, Write, Edit, Task, Bash(git log:*), Bash(git diff:*), Bash(git status:*), Bash(git show:*), Bash(git rev-parse:*), Bash(git merge-base:*), Bash(git branch:*), Bash(find:*), Bash(grep:*), Bash(rg:*), Bash(npm audit:*), Bash(pnpm audit:*), Bash(pip-audit:*), Bash(cargo audit:*), Bash(tsc --noEmit:*)
+allowed-tools: Read, Grep, Glob, Write(plans/**), Write(advisor-plans/**), Edit(plans/**), Edit(advisor-plans/**), Task, Bash(git log:*), Bash(git diff:*), Bash(git status:*), Bash(git show:*), Bash(git rev-parse:*), Bash(git merge-base:*), Bash(git branch --list:*), Bash(git branch --show-current), Bash(find:*), Bash(grep:*), Bash(rg:*), Bash(npm audit), Bash(pnpm audit), Bash(pip-audit), Bash(cargo audit), Bash(tsc --noEmit:*)
 when_to_use: audit this codebase, code audit, find improvements, what should I build next, roadmap, product direction, generate a handoff plan, plan for another agent, security/perf/test-coverage/tech-debt review, review a plan, execute a plan, reconcile plans
 metadata:
   version: "1.0.0"
@@ -35,7 +35,7 @@ This skill is composable and side-effecting; its operating boundary is declared 
 Inputs:
 
 - A target codebase (the current repo / working directory), or an existing `plans/` directory from a prior run.
-- An invocation variant (see below) plus optional effort level (`quick`/`deep`), category focus (`security`/`perf`/`tests`), or `--issues` modifier.
+- An invocation variant (see below) plus optional effort level (`quick`/`standard`/`deep`, default `standard`), category focus (`security`/`perf`/`tests`), or `--issues` modifier.
 
 Outputs:
 

@@ -1,30 +1,23 @@
 ---
 name: outbound-optimizer
-description: Use this skill when users need to improve cold outreach, optimize cold emails or DMs, increase response rates, or turn outbound from spam into revenue. Activates for cold outreach optimization, prospecting strategy, or "my outbound isn't working" problems.
+disable-model-invocation: true
+description: >-
+  Transforms cold outreach from spam into revenue using Hormozi value-first
+  principles. Triggers when a user needs to improve cold emails or DMs,
+  increase response rates, diagnose low-converting outreach sequences, or
+  build a prospecting strategy.
 metadata:
   version: "1.0.0"
-  tags: business, hormozi, outbound, cold-email, prospecting, sales, outreach
+  tags: "business, hormozi, outbound, cold-email, prospecting, sales, outreach"
 ---
 
 # Outbound Optimizer - Cold Outreach Revenue Machine
 
 ## Overview
 
-You are an outbound sales strategist specializing in Alex Hormozi's outbound principles. You help indie founders transform cold outreach from spam into revenue by leading with value, proving personalization, and making zero-commitment offers. Your job is to execute an outreach transformation—not just advise—by diagnosing current messaging and creating high-converting templates.
+Executes an outreach transformation using Alex Hormozi's outbound principles — diagnosing current messaging and producing high-converting templates that lead with value, prove personalization, and make zero-commitment offers.
 
 **Hormozi's Core Principle:** "Outbound is the fastest way to revenue. Most people just suck at it. Lead with value, not pitch."
-
-## When This Activates
-
-This skill auto-activates when:
-
-- User mentions cold email or cold DM performance
-- User asks about improving response rates
-- User says "outbound isn't working" or feels "spammy"
-- User wants to book more meetings from outreach
-- User asks about prospecting or lead generation
-- User mentions LinkedIn outreach or email campaigns
-- User wants to scale outbound sales
 
 ## The Framework: Value-First Outbound
 
@@ -376,6 +369,13 @@ For each prospect, find:
 - 20% close rate = 1-2 customers/week
 
 **That's 4-8 customers/month from outbound alone.**
+
+## Gotchas
+
+- **Never trigger outreach sending automatically.** Generating templates and sequences is safe; actually sending emails or DMs requires explicit user confirmation and a connected sending tool.
+- **Personalization depth vs. volume trade-off:** Sequences generated here are templates — real personalization of the first line must happen per-prospect before sending.
+- **CAN-SPAM / GDPR compliance:** Cold email rules vary by jurisdiction. Always remind the user to include an unsubscribe mechanism and validate legal requirements for their target region.
+- **Domain reputation:** Sending from a primary domain risks deliverability. Recommend a dedicated sending subdomain or separate domain.
 
 ## When to Route Elsewhere
 

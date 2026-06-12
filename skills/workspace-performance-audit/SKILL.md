@@ -1,12 +1,44 @@
 ---
 name: workspace-performance-audit
-description: Orchestrates comprehensive performance audits across full-stack monorepos. Coordinates performance-expert, design-consistency-auditor, accessibility, security-expert, and qa-reviewer skills to audit frontend, backend, database, browser extensions, and shared packages.
+description: Orchestrates comprehensive performance audits across full-stack monorepos. Coordinates performance-expert, design-consistency-auditor, accessibility, security-expert, and qa-reviewer skills to audit frontend, backend, database, browser extensions, and shared packages. Use when asked for a full workspace performance review, monorepo audit, or to identify bottlenecks across frontend, backend, and extensions.
+disable-model-invocation: true
 metadata:
   version: "1.0.0"
   tags: "performance, audit, monorepo"
 ---
 
 # Workspace Performance Audit
+
+## Contract
+
+Inputs:
+
+- Monorepo root path (defaults to current working directory)
+- Optional: target domain(s) to focus on (frontend, backend, database, extension)
+- Optional: audit mode (quick or full)
+
+Outputs:
+
+- Consolidated performance audit report
+- Prioritized recommendations with severity ratings
+
+Creates/Modifies:
+
+- `.agents/memory/performance-audit-YYYY-MM-DD.md` — writes the audit report
+
+External Side Effects:
+
+- None. Read-only analysis only; does not deploy, modify, or install anything.
+
+Confirmation Required:
+
+- Before writing the output report if the target path is outside the current workspace
+
+Delegates To:
+
+- `performance-expert` for metrics and optimization
+- `design-consistency-auditor` for UI/UX consistency
+- `qa-reviewer` for validation and prioritization
 
 ## Overview
 
@@ -73,4 +105,4 @@ Produces reports in `.agents/memory/performance-audit-YYYY-MM-DD.md`
 
 ---
 
-**For detailed phase execution, metric collection commands, report templates, best practices, and example interactions, see:** `references/full-guide.md`
+**For detailed phase execution, metric collection commands, report templates, best practices, and example interactions:** load `${CLAUDE_SKILL_DIR}/references/full-guide.md` when starting a full audit or when a specific phase requires detailed guidance.

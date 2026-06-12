@@ -61,16 +61,16 @@ Delegates To:
 2. Generate the inbox:
 
    ```bash
-   node skills/gh-inbox/scripts/gh-inbox-report.mjs
+   node ${CLAUDE_SKILL_DIR}/scripts/gh-inbox-report.mjs
    ```
 
    Common filters:
 
    ```bash
-   node skills/gh-inbox/scripts/gh-inbox-report.mjs --owner shipshitdev
-   node skills/gh-inbox/scripts/gh-inbox-report.mjs --repo shipshitdev/shipcode
-   node skills/gh-inbox/scripts/gh-inbox-report.mjs --project shipshitdev/1
-   node skills/gh-inbox/scripts/gh-inbox-report.mjs --limit 50
+   node ${CLAUDE_SKILL_DIR}/scripts/gh-inbox-report.mjs --owner shipshitdev
+   node ${CLAUDE_SKILL_DIR}/scripts/gh-inbox-report.mjs --repo shipshitdev/shipcode
+   node ${CLAUDE_SKILL_DIR}/scripts/gh-inbox-report.mjs --project shipshitdev/1
+   node ${CLAUDE_SKILL_DIR}/scripts/gh-inbox-report.mjs --limit 50
    ```
 
 3. Triage order:

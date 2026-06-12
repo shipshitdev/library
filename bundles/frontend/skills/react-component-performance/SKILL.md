@@ -2,13 +2,17 @@
 name: react-component-performance
 description: Diagnose slow React components and suggest targeted performance fixes.
 metadata:
-  risk: safe
-  source: Dimillian/Skills (MIT)
-  date_added: '2026-03-25'
   version: "1.0.0"
+  source: https://github.com/Dimillian/Skills/blob/main/react-component-performance/SKILL.md
+  upstream_repo: Dimillian/Skills
+  upstream_ref: main
+  upstream_commit: 3db84e63d050
+  last_synced: "2026-06-12"
+  license: MIT
   tags: "react, performance, components"
+  risk: safe
+  date_added: "2026-03-25"
 ---
-
 # React Component Performance
 
 ## Overview
@@ -136,9 +140,3 @@ function Summary({ orders }: { orders: Order[] }) {
 ## Example Reference
 
 Load `references/examples.md` when the user wants a concrete refactor example.
-
-## Limitations
-
-- Use this skill only when the task clearly matches the scope described above.
-- Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
-- Stop and ask for clarification if required inputs, permissions, safety boundaries, or success criteria are missing.

@@ -96,26 +96,12 @@ Resolution approaches include explicit conflict marking that identifies contradi
 Research provides concrete data on degradation patterns that inform design decisions.
 
 **RULER Benchmark Findings**
-The RULER benchmark delivers sobering findings: only 50% of models claiming 32K+ context maintain satisfactory performance at 32K tokens. GPT-5.2 shows the least degradation among current models, while many still drop 30+ points at extended contexts. Near-perfect scores on simple needle-in-haystack tests do not translate to real long-context understanding.
+The RULER benchmark delivers sobering findings: only 50% of models claiming 32K+ context maintain satisfactory performance at 32K tokens. Many models drop 30+ points at extended contexts. Near-perfect scores on simple needle-in-haystack tests do not translate to real long-context understanding. Consult current model documentation for up-to-date degradation thresholds — these numbers shift with each model release.
 
-**Model-Specific Degradation Thresholds**
+**General Degradation Patterns**
+Models exhibit distinct failure modes under context pressure. Models with explicit reasoning modes tend to hallucinate less through step-by-step verification at the cost of latency. Larger context windows do not guarantee proportionally better long-context performance — architecture and training matter as much as window size.
 
-| Model | Degradation Onset | Severe Degradation | Notes |
-|-------|-------------------|-------------------|-------|
-| GPT-5.2 | ~64K tokens | ~200K tokens | Best overall degradation resistance with thinking mode |
-| Claude Opus 4.5 | ~100K tokens | ~180K tokens | 200K context window, strong attention management |
-| Claude Sonnet 4.5 | ~80K tokens | ~150K tokens | Optimized for agents and coding tasks |
-| Gemini 3 Pro | ~500K tokens | ~800K tokens | 1M context window, native multimodality |
-| Gemini 3 Flash | ~300K tokens | ~600K tokens | 3x speed of Gemini 2.5, 81.2% MMMU-Pro |
-
-**Model-Specific Behavior Patterns**
-Different models exhibit distinct failure modes under context pressure:
-
-- **Claude 4.5 series**: Lowest hallucination rates with calibrated uncertainty. Claude Opus 4.5 achieves 80.9% on SWE-bench Verified. Tends to refuse or ask clarification rather than fabricate.
-- **GPT-5.2**: Two modes available - instant (fast) and thinking (reasoning). Thinking mode reduces hallucination through step-by-step verification but increases latency.
-- **Gemini 3 Pro/Flash**: Native multimodality with 1M context window. Gemini 3 Flash offers 3x speed improvement over previous generation. Strong at multi-modal reasoning across text, code, images, audio, and video.
-
-These patterns inform model selection for different use cases. High-stakes tasks benefit from Claude 4.5's conservative approach or GPT-5.2's thinking mode; speed-critical tasks may use instant modes.
+These patterns inform model selection for different use cases. High-stakes tasks benefit from models with conservative uncertainty calibration; speed-critical tasks may use faster inference modes.
 
 ### Counterintuitive Findings
 
@@ -230,12 +216,3 @@ External resources:
 - Research on attention mechanisms and context window limitations
 - Studies on the "lost-in-middle" phenomenon
 - Production engineering guides from AI labs
-
----
-
-## Skill Metadata
-
-**Created**: 2025-12-20
-**Last Updated**: 2025-12-20
-**Author**: Agent Skills for Context Engineering Contributors
-**Version**: 1.0.0

@@ -4,11 +4,40 @@ description: Granular feedback on drafts without rewriting. Generates highlighte
 metadata:
   version: "1.0.0"
   tags: "feedback, comments, editing"
+allowed-tools: Bash(open *) Write
+disable-model-invocation: true
 ---
 
 # Comment Mode
 
 Generate highlighted HTML with click-to-reveal comments for granular feedback on text. Alternative to rewrites—user keeps their voice, reviews feedback incrementally.
+
+## Contract
+
+Inputs:
+
+- The draft text to comment on (pasted inline or as a file path)
+- Optional lens: editor feedback, POV simulation (e.g. "as brian would react"), or focused angle (e.g. "word choice only")
+
+Outputs:
+
+- An HTML file at `_private/views/{name}-comments-temp.html` with highlighted spans and click-to-reveal comment overlays
+
+Creates/Modifies:
+
+- Writes `_private/views/{name}-comments-temp.html`
+
+External Side Effects:
+
+- Runs `open _private/views/{name}-comments-temp.html` to launch the file in the default browser
+
+Confirmation Required:
+
+- None — the file is a temp view artifact in `_private/` and does not modify source files
+
+Delegates To:
+
+- None.
 
 ## When to Use
 

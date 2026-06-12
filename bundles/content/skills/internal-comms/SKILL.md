@@ -4,9 +4,14 @@ description: Resources for writing internal communications in company-preferred 
 license: Complete terms in LICENSE.txt
 metadata:
   version: "1.0.0"
+  source: https://github.com/anthropics/skills/blob/main/skills/internal-comms/SKILL.md
+  upstream_repo: anthropics/skills
+  upstream_ref: main
+  upstream_commit: ef740771ac90
+  last_synced: "2026-06-12"
+  license: Apache-2.0
   tags: "communications, writing, updates"
 ---
-
 ## When to use this skill
 
 To write internal communications, use this skill for:

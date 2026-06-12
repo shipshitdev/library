@@ -1,6 +1,6 @@
 ---
 name: husky-test-coverage
-description: Set up or verify Husky git hooks to ensure all tests run and coverage stays above 80% (configurable) for Node.js/TypeScript projects. This skill should be used when users want to enforce test coverage through pre-commit hooks, verify existing Husky/test setup, or configure coverage thresholds for Jest, Vitest, or Mocha test runners.
+description: Sets up or verifies Husky git hooks to enforce test coverage above 80% (configurable) for Node.js/TypeScript projects. Activates when enforcing coverage through pre-commit hooks, verifying existing Husky/test setup, or configuring coverage thresholds for Jest, Vitest, or Mocha test runners.
 metadata:
   version: "1.0.0"
   tags: "husky, testing, coverage"
@@ -63,26 +63,26 @@ This skill should be used when:
 
 ```bash
 # Basic setup (80% coverage threshold, blocks commits below threshold)
-python3 scripts/setup-husky-coverage.py \
+python3 ${CLAUDE_SKILL_DIR}/scripts/setup-husky-coverage.py \
   --root /path/to/project
 
 # Custom threshold (85%)
-python3 scripts/setup-husky-coverage.py \
+python3 ${CLAUDE_SKILL_DIR}/scripts/setup-husky-coverage.py \
   --root /path/to/project \
   --threshold 85
 
 # Warn only (don't block commits)
-python3 scripts/setup-husky-coverage.py \
+python3 ${CLAUDE_SKILL_DIR}/scripts/setup-husky-coverage.py \
   --root /path/to/project \
   --no-fail-on-below
 
 # Skip if no tests found
-python3 scripts/setup-husky-coverage.py \
+python3 ${CLAUDE_SKILL_DIR}/scripts/setup-husky-coverage.py \
   --root /path/to/project \
   --skip-if-no-tests
 
 # Dry run to preview changes
-python3 scripts/setup-husky-coverage.py \
+python3 ${CLAUDE_SKILL_DIR}/scripts/setup-husky-coverage.py \
   --root /path/to/project \
   --dry-run
 ```
@@ -92,7 +92,7 @@ python3 scripts/setup-husky-coverage.py \
 ### Husky Setup
 
 - Installs Husky if not already present
-- Initializes Husky (`npx husky install`)
+- Initializes Husky (`bunx husky install`)
 - Creates `.husky/pre-commit` hook that runs tests with coverage
 - Adds `prepare` script to package.json (if missing)
 
@@ -183,7 +183,7 @@ Alternatively, add to `package.json`:
 **Configuration:**
 
 - Updates or creates `jest.config.json` with coverage thresholds
-- Pre-commit hook: `npm test -- --coverage --watchAll=false`
+- Pre-commit hook: `bun run test -- --coverage --watchAll=false`
 
 **Example jest.config.json:**
 
@@ -210,7 +210,7 @@ Alternatively, add to `package.json`:
 **Configuration:**
 
 - Updates or creates Vitest config with coverage thresholds
-- Pre-commit hook: `npm test -- --coverage --run`
+- Pre-commit hook: `bun run test -- --coverage --run`
 
 **Example vitest.config.ts:**
 
@@ -243,7 +243,7 @@ export default defineConfig({
 **Configuration:**
 
 - Creates or updates `.nycrc.json` for nyc
-- Pre-commit hook: `nyc --reporter=text --reporter=html npm test`
+- Pre-commit hook: `nyc --reporter=text --reporter=html bun run test`
 
 **Example .nycrc.json:**
 
@@ -262,10 +262,9 @@ export default defineConfig({
 
 The skill automatically detects and uses:
 
-- **npm**: `npm run test`
+- **bun**: `bun run test` (preferred)
 - **yarn**: `yarn test`
 - **pnpm**: `pnpm run test`
-- **bun**: `bun run test`
 
 ## Workflow
 
@@ -328,7 +327,7 @@ You don't need to run this skill separately if you used `fullstack-workspace-ini
 If adding to an existing project:
 
 ```bash
-python3 scripts/setup-husky-coverage.py \
+python3 ${CLAUDE_SKILL_DIR}/scripts/setup-husky-coverage.py \
   --root /path/to/project \
   --threshold 80
 ```
@@ -339,7 +338,7 @@ python3 scripts/setup-husky-coverage.py \
 
 ```bash
 # Reinstall Husky
-npx husky install
+bunx husky install
 chmod +x .husky/pre-commit
 ```
 
@@ -380,14 +379,3 @@ The skill uses the first detected runner in priority order: Vitest > Jest > Moch
 - Jest Coverage: https://jestjs.io/docs/configuration#coveragethreshold-object
 - Vitest Coverage: https://vitest.dev/config/#coverage
 - nyc (Istanbul): https://github.com/istanbuljs/nyc
-
----
-
-**When this skill is active**, it will:
-
-1. Discover project test setup and configuration
-2. Detect test runner and coverage tool
-3. Set up or verify Husky installation
-4. Configure coverage thresholds appropriately
-5. Create pre-commit hook that enforces coverage
-6. Provide troubleshooting guidance when needed

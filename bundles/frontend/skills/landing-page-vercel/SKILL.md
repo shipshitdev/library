@@ -1,6 +1,7 @@
 ---
 name: landing-page-vercel
-description: Scaffold a production-ready static landing page with working email capture form, analytics, and responsive design. Deploys instantly to Vercel.
+description: Scaffolds a production-ready static landing page with working email capture form, analytics, and responsive design. Activates on "create landing page", "build a landing page", "launch page for product", or similar requests. Optionally deploys to Vercel on explicit request.
+disable-model-invocation: true
 metadata:
   version: "1.0.0"
   tags: "landing-page, vercel, frontend"
@@ -309,15 +310,12 @@ form.addEventListener('submit', async (e) => {
 ### Vercel (One-click)
 
 ```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
+# Deploy (no global install needed)
 cd my-landing-page
-vercel
+bunx vercel
 
 # Production deploy
-vercel --prod
+bunx vercel --prod
 ```
 
 ### Vercel Configuration (vercel.json)

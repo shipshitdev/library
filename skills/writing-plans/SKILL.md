@@ -4,11 +4,15 @@ description: >-
   Turn a spec or requirements doc into a comprehensive, bite-sized implementation plan: map every file, define 2-5 minute TDD tasks with complete code, and enforce DRY/YAGNI/frequent-commits discipline. Use when you have requirements ready and need a concrete execution plan before touching code, when a feature spans multiple files and needs decomposition, or when you want agentic workers to execute tasks reliably without guessing.
 metadata:
   version: "1.0.0"
+  source: https://github.com/obra/superpowers/blob/main/skills/writing-plans/SKILL.md
+  upstream_repo: obra/superpowers
+  upstream_ref: main
+  upstream_commit: f2cbfbefebbf
+  last_synced: "2026-06-12"
+  license: MIT
   tags: "planning, implementation-plan, tasks, tdd, dry, yagni, decomposition"
-  author: Ship Shit Dev
 when_to_use: "write a plan, create implementation plan, plan this feature, break this into tasks, plan before coding, spec to tasks"
 ---
-
 # Writing Plans
 
 Write a comprehensive implementation plan assuming the implementer has zero context about the codebase and questionable test instincts. Document everything: which files to touch, complete code, exact commands, expected output, and how to verify. Deliver the whole plan as bite-sized checkboxed tasks. DRY. YAGNI. TDD. Frequent commits.

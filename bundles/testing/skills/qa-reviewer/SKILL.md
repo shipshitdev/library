@@ -1,9 +1,14 @@
 ---
 name: qa-reviewer
-description: "AI work QA review."
+description: >-
+  Runs a structured multi-phase verification pass on completed AI agent work —
+  catching bugs, missed requirements, and incorrect assumptions before changes
+  are committed. Triggers on: "check your work", "review this", after complex
+  multi-step implementations, before committing major refactors, or proactively
+  after any task longer than five steps.
 metadata:
   version: "1.0.0"
-  tags: quality-assurance, verification, code-review, accuracy, completeness
+  tags: "quality-assurance, verification, code-review, accuracy, completeness"
 ---
 
 # QA Reviewer: Systematic Work Verification
@@ -92,4 +97,4 @@ grep -r ": any" <files>
 
 ---
 
-**For complete workflow phases, output format template, common issue patterns, and advanced techniques, see:** `references/full-guide.md`
+For complete workflow phases, output format template, common issue patterns, and advanced techniques, load `${CLAUDE_SKILL_DIR}/references/full-guide.md` when performing a comprehensive QA pass or when the task has more than three deliverables.

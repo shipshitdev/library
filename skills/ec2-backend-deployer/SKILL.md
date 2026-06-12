@@ -1,6 +1,7 @@
 ---
 name: ec2-backend-deployer
-description: Expert in deploying backends to EC2 instances using CI/CD pipelines, Docker containers, and GitHub Actions
+description: Deploys backend applications to EC2 instances using Docker, GitHub Actions CI/CD, and Tailscale for secure SSH access. Activates when setting up EC2 deployment pipelines, configuring container registries, or wiring automated deploys for NestJS, Next.js, or Express backends.
+disable-model-invocation: true
 metadata:
   version: "1.0.0"
   tags: "ec2, deployment, backend"

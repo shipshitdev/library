@@ -3,9 +3,14 @@ name: changelog-generator
 description: Automatically creates user-facing changelogs from git commits by analyzing commit history, categorizing changes, and transforming technical commits into clear, customer-friendly release notes. Turns hours of manual changelog writing into minutes of automated generation.
 metadata:
   version: "1.0.0"
+  source: https://github.com/ComposioHQ/awesome-claude-skills/blob/master/changelog-generator/SKILL.md
+  upstream_repo: ComposioHQ/awesome-claude-skills
+  upstream_ref: master
+  upstream_commit: 044d48b594f0
+  last_synced: "2026-06-12"
+  license: Unspecified (no upstream LICENSE)
   tags: "changelog, release-notes, git"
 ---
-
 # Changelog Generator
 
 This skill transforms technical git commits into polished, user-friendly changelogs that your customers and users will actually understand and appreciate.

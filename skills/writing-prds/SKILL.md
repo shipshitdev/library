@@ -1,6 +1,7 @@
 ---
 name: writing-prds
-description: Use when the user wants to draft, scope, or formalize a feature — "write a PRD for X", "let's plan X", "scope this out", "what should X do", or when a tracker issue needs to be fleshed out before an agent plans it. Writes a PRD that a planning agent can consume in one shot without re-elicitation. Do NOT use for code edits, debugging, or PR reviews.
+disable-model-invocation: true
+description: Drafts, scopes, and formalizes features as PRDs — a planning agent can consume the output in one shot without re-elicitation. Triggers on "write a PRD for X", "let's plan X", "scope this out", "what should X do", or when a tracker issue needs to be fleshed out before planning. Do NOT use for code edits, debugging, or PR reviews.
 metadata:
   version: "1.0.0"
   tags: "prd, planning, requirements, spec, github-issue, scoping"

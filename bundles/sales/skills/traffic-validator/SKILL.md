@@ -3,7 +3,7 @@ name: traffic-validator
 description: Validate traffic strategy against Traffic Secrets principles. Assess Dream 100, Work In vs. Buy In, traffic temperature, and audience ownership. Activates for "validate my traffic plan" or traffic assessment questions.
 metadata:
   version: "1.0.0"
-  tags: business, brunson, validation, traffic-secrets, dream-100, audience, acquisition
+  tags: "business, brunson, validation, traffic-secrets, dream-100, audience, acquisition"
 ---
 
 # Traffic Validator - Traffic Secrets Scorecard
@@ -77,4 +77,4 @@ Dream 100 → Work In or Buy In → Hook → Funnel → Own the Audience
 
 ---
 
-**For detailed scoring criteria, output templates, and complete examples:** `references/full-guide.md`
+**For detailed scoring criteria, output templates, and complete examples:** Load `${CLAUDE_SKILL_DIR}/references/full-guide.md` when the user asks for full scoring breakdowns, output templates, or worked examples.

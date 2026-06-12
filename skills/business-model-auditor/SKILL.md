@@ -1,30 +1,22 @@
 ---
 name: business-model-auditor
-description: Use this skill when users need to stress test their business model, identify scale limitations, find bottlenecks, determine if they're trading time for money, or evaluate unit economics. Activates for "can this scale," "what breaks at 10x," or business model viability questions.
+description: >-
+  Stress-tests business models to identify scale limitations, bottlenecks, and
+  unit economics gaps using Hormozi frameworks. Triggers when a user asks "can
+  this scale," "what breaks at 10x," mentions being the bottleneck, wants unit
+  economics reviewed, or asks about business model viability.
 metadata:
   version: "1.0.0"
-  tags: business, hormozi, scale, leverage, unit-economics, bottlenecks, business-model
+  tags: "business, hormozi, scale, leverage, unit-economics, bottlenecks, business-model"
 ---
 
 # Business Model Auditor - Scale Stress Test
 
 ## Overview
 
-You are a business model auditor specializing in Alex Hormozi's scale and leverage principles. You help indie founders identify fatal flaws in their business model before they kill the business. Your job is to execute a stress test—not just advise—by exposing bottlenecks, calculating unit economics, and designing for scale.
+Executes a business model stress test using Alex Hormozi's scale and leverage principles, identifying fatal flaws before they kill the business. Exposes bottlenecks, calculates unit economics, and surfaces design-for-scale recommendations.
 
 **Hormozi's Core Principle:** "A business model is only as good as its constraints. Can this scale without me?"
-
-## When This Activates
-
-This skill auto-activates when:
-
-- User asks "can this scale"
-- User mentions being the bottleneck
-- User asks about unit economics
-- User says "I'm trading time for money"
-- User wonders what breaks at 10x customers
-- User is evaluating business model viability
-- User feels "trapped" by their business
 
 ## The Framework: The Scale Test
 
@@ -179,143 +171,7 @@ For each bottleneck:
 
 ## Output Format
 
-```markdown
-# Business Model Audit: [Business Name]
-
-## Executive Summary
-
-**Model Type:** [Service/Product/Hybrid/SaaS]
-**Health Score:** X/10
-**Primary Issue:** [Biggest bottleneck]
-**Scale Readiness:** [Not ready/Needs work/Ready/Excellent]
-
-## Unit Economics
-
-### Current State
-
-| Metric | Value | Status |
-|--------|-------|--------|
-| Revenue Per Customer | $X | [Good/Bad] |
-| Customer Acquisition Cost | $X | [Good/Bad] |
-| Cost to Deliver | $X | [Good/Bad] |
-| Gross Profit/Customer | $X | [Good/Bad] |
-| LTV:CAC Ratio | X:1 | [Good/Bad] |
-| Gross Margin | X% | [Good/Bad] |
-| Your Hours/Customer | X hrs | [Good/Bad] |
-| Effective Hourly Rate | $X | [Good/Bad] |
-
-### Diagnosis
-[Narrative assessment of unit economics health]
-
-## Time Dependency Assessment
-
-**Time Dependency Score:** X/10
-
-**If You Stopped Working:**
-- Immediate Impact: [What happens day 1]
-- 30-Day Impact: [What happens in a month]
-- 90-Day Impact: [What happens in 3 months]
-
-**Tasks Only You Can Do:**
-1. [Task 1] — [Time spent] — [Can be changed: Y/N]
-2. [Task 2] — [Time spent] — [Can be changed: Y/N]
-3. [Task 3] — [Time spent] — [Can be changed: Y/N]
-
-**Time Independence Opportunities:**
-- [ ] [What could be delegated]
-- [ ] [What could be automated]
-- [ ] [What could be eliminated]
-
-## 10x Stress Test
-
-### What Breaks at Scale
-
-| Scale | First Break | Second Break | Third Break |
-|-------|-------------|--------------|-------------|
-| 2x | [Break point] | | |
-| 5x | [Break point] | [Break point] | |
-| 10x | [Break point] | [Break point] | [Break point] |
-
-### Capacity Limits
-
-**Current Maximum Capacity:** X customers/month
-**Limiting Factor:** [What creates the ceiling]
-**To 10x, You Need:** [What would need to change]
-
-### Margin at Scale
-
-| Scale | Revenue | Costs | Margin |
-|-------|---------|-------|--------|
-| Current | $X | $X | X% |
-| 2x | $X | $X | X% |
-| 5x | $X | $X | X% |
-| 10x | $X | $X | X% |
-
-**Margin Trend:** [Improves/Holds/Erodes] with scale
-
-## Leverage Assessment
-
-| Leverage Type | Current Use | Opportunity |
-|---------------|-------------|-------------|
-| Labor | [None/Some/Heavy] | [How to add] |
-| Capital | [None/Some/Heavy] | [How to add] |
-| Code | [None/Some/Heavy] | [How to add] |
-| Media | [None/Some/Heavy] | [How to add] |
-
-**Leverage Score:** X/4 types active
-
-## Bottleneck Priority List
-
-### Critical (Fix Now)
-1. **[Bottleneck]**
-   - Impact: [Revenue/margin/scale effect]
-   - Fix: [Specific solution]
-   - Cost: [Time/money required]
-   - Priority: [Why this is #1]
-
-### Important (Fix Soon)
-2. **[Bottleneck]**
-   - [Same format]
-
-3. **[Bottleneck]**
-   - [Same format]
-
-### Monitor (Fix Later)
-4. **[Bottleneck]**
-   - [Same format]
-
-## Recommendations
-
-### Immediate Actions (This Week)
-- [ ] [Quick win 1]
-- [ ] [Quick win 2]
-
-### Short-Term (30 Days)
-- [ ] [System to build]
-- [ ] [Leverage to add]
-
-### Long-Term (90 Days)
-- [ ] [Structural change]
-- [ ] [Model evolution]
-
-## Model Evolution Path
-
-**Current State:** [Description]
-**Target State:** [Where to evolve to]
-
-**Path:**
-1. [Step 1] — [Makes this possible]
-2. [Step 2] — [Makes this possible]
-3. [Step 3] — [Makes this possible]
-
-**End State Metrics:**
-| Metric | Current | Target |
-|--------|---------|--------|
-| Time Dependency | X/10 | X/10 |
-| Gross Margin | X% | X% |
-| Effective Hourly | $X | $X |
-| Leverage Score | X/4 | X/4 |
-```
+See `assets/output-template.md` for the full structured report template (load when generating the audit deliverable).
 
 ## Quick Scale Score (100-Point Assessment)
 

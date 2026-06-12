@@ -5,7 +5,8 @@ compatibility: Requires local repository access. GitHub promotion flows require 
 metadata:
   version: "1.0.0"
   tags: "deployment, orchestration, release, ci-cd, github, staging, production"
-allowed-tools: Bash(git *) Bash(gh *) Bash(ls *) Bash(find *) Bash(rg *) Bash(sed *) Bash(cat *)
+allowed-tools: Bash(git *) Bash(gh *) Bash(ls *) Bash(find *) Bash(rg *) Bash(cat *)
+disable-model-invocation: true
 ---
 
 # Deployment Composer

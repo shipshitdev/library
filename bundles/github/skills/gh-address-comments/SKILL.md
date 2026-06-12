@@ -1,6 +1,11 @@
 ---
 name: gh-address-comments
-description: "GitHub PR comment fixes."
+description: >-
+  Resolves GitHub PR review and issue comments by fetching threads, mapping them
+  to code, proposing fixes, and drafting replies for approval. Triggers when the
+  user asks to address PR comments, respond to review feedback, fix review
+  threads, or resolve GitHub comment requests.
+disable-model-invocation: true
 metadata:
   version: "1.0.0"
   tags: "github, pull-requests, review-comments"

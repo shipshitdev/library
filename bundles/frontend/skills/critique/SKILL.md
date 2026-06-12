@@ -6,13 +6,18 @@ argument-hint: "[area (feature, page, component...)]"
 metadata:
   version: "2.1.1"
   tags: "critique, ux, design"
+  source: https://github.com/pbakaus/impeccable/blob/main/skill/reference/critique.md
+  upstream_version: skill-v2.1.1
+  upstream_latest: skill-v3.5.0
+  last_synced: "2026-06-12"
+  license: Apache-2.0
 ---
 
 ## STEPS
 
 ### Step 1: Preparation
 
-Invoke /impeccable, which contains design principles, anti-patterns, and the **Context Gathering Protocol**. Follow the protocol before proceeding. If no design context exists yet, you MUST run /impeccable teach first. Additionally gather: what the interface is trying to accomplish.
+Gather context about the interface under review: what it is trying to accomplish, who uses it, and where to find the relevant source files. If a `.impeccable.md` or a `## Design Context` block in `.github/copilot-instructions.md` exists, read it now for brand and audience. Read the existing design system (CSS / tokens / theme and a representative component) so the critique judges against the project's own conventions rather than generic defaults.
 
 ### Step 2: Gather Assessments
 
@@ -34,7 +39,7 @@ document.title = '[LLM] ' + document.title;
 
 Think like a design director. Evaluate:
 
-**AI Slop Detection (CRITICAL)**: Does this look like every other AI-generated interface? Review against ALL **DON'T** guidelines in the impeccable skill. Check for AI color palette, gradient text, dark glows, glassmorphism, hero metric layouts, identical card grids, generic fonts, and all other tells. **The test**: If someone said "AI made this," would you believe them immediately?
+**AI Slop Detection (CRITICAL)**: Does this look like every other AI-generated interface? Check for the generic indigo/violet palette, gradient text, dark glows, glassmorphism, hero-metric layouts, identical card grids, and generic geometric fonts. **The test**: If someone said "AI made this," would you believe them immediately?
 
 **Holistic Design Review**: visual hierarchy (eye flow, primary action clarity), information architecture (structure, grouping, cognitive load), emotional resonance (does it match brand and audience?), discoverability (are interactive elements obvious?), composition (balance, whitespace, rhythm), typography (hierarchy, readability, font choices), color (purposeful use, cohesion, accessibility), states & edge cases (empty, loading, error, success), microcopy (clarity, tone, helpfulness).
 
@@ -55,58 +60,33 @@ Score each of the 10 heuristics 0-4. This scoring will be presented in the repor
 
 Return structured findings covering: AI slop verdict, heuristic scores, cognitive load assessment, what's working (2-3 items), priority issues (3-5 with what/why/fix), minor observations, and provocative questions.
 
-#### Assessment B: Automated Detection
+#### Assessment B: Automated Pattern Scan
 
-Run the bundled deterministic detector, which flags 25 specific patterns (AI slop tells + general design quality).
+Perform a deterministic scan for AI slop tells and general design quality issues using the tools available.
 
-**CLI scan**:
+**Static file scan** (when source files are accessible):
 
-```bash
-npx impeccable --json [--fast] [target]
-```
+Read HTML, JSX, TSX, Vue, or Svelte files and grep for the following patterns:
 
-- Pass HTML/JSX/TSX/Vue/Svelte files or directories as `[target]` (anything with markup). Do not pass CSS-only files.
-- For URLs, skip the CLI scan (it requires Puppeteer). Use browser visualization instead.
-- For large directories (200+ scannable files), use `--fast` (regex-only, skips jsdom)
-- For 500+ files, narrow scope or ask the user
-- Exit code 0 = clean, 2 = findings
+- Gradient text (`bg-gradient` + `bg-clip-text`, `WebkitBackgroundClip`)
+- Glassmorphism (`backdrop-blur`, `bg-white/10`, `bg-opacity` on overlays)
+- Hero metric layouts (large isolated numbers, `text-6xl`+ standalone stats)
+- Generic AI color palettes (`#6366f1`, `#8b5cf6`, `#f59e0b` as primary colors without customization)
+- Identical card grids (`grid-cols-3` with identical card structure repeated 3+ times)
+- Redundant copy (alt text restating visible text, label + placeholder with same content)
+- Bounce easing (`bounce`, `elastic` in animation classes)
+- Gray text on colored backgrounds
+- Nested cards (card inside card)
 
 **Browser visualization** (when browser automation tools are available AND the target is a viewable page):
 
-The overlay is a **visual aid for the user**. It highlights issues directly in their browser. Do NOT scroll through the page to screenshot overlays. Instead, read the console output to get the results programmatically.
+If the project has a linting or design-check tool configured (check `package.json` scripts), run it. Otherwise, use browser devtools to inspect the live page visually. Create a new tab; do not reuse existing tabs. Label the tab:
 
-1. **Start the live detection server**:
+```javascript
+document.title = '[Human] ' + document.title;
+```
 
-   ```bash
-   npx impeccable live &
-   ```
-
-   Note the port printed to stdout (auto-assigned). Use `--port=PORT` to fix it.
-2. **Create a new tab** and navigate to the page (use dev server URL for local files, or direct URL). Do not reuse existing tabs.
-3. **Label the tab** via `javascript_tool` so the user can distinguish it:
-
-   ```javascript
-   document.title = '[Human] ' + document.title;
-   ```
-
-4. **Scroll to top** to ensure the page is scrolled to the very top before injection
-5. **Inject** via `javascript_tool` (replace PORT with the port from step 1):
-
-   ```javascript
-   const s = document.createElement('script'); s.src = 'http://localhost:PORT/detect.js'; document.head.appendChild(s);
-   ```
-
-6. Wait 2-3 seconds for the detector to render overlays
-7. **Read results from console** using `read_console_messages` with pattern `impeccable`. The detector logs all findings with the `[impeccable]` prefix. Do NOT scroll through the page to take screenshots of the overlays.
-8. **Cleanup**: Stop the live server when done:
-
-   ```bash
-   npx impeccable live stop
-   ```
-
-For multi-view targets, inject on 3-5 representative pages. If injection fails, continue with CLI results only.
-
-Return: CLI findings (JSON), browser console findings (if applicable), and any false positives noted.
+Return: scan findings with file locations and counts, and any false positives noted.
 
 ### Step 3: Generate Combined Critique Report
 
@@ -163,13 +143,13 @@ For each issue, tag with **P0-P3 severity** (consult [heuristics-scoring](refere
 - **[P?] What**: Name the problem clearly
 - **Why it matters**: How this hurts users or undermines goals
 - **Fix**: What to do about it (be concrete)
-- **Suggested command**: Which command could address this (from: /animate, /quieter, /shape, /optimize, /adapt, /clarify, /layout, /distill, /delight, /audit, /harden, /polish, /bolder, /typeset, /critique, /colorize, /overdrive)
+- **Suggested command**: Which available skill or command could address this
 
 #### Persona Red Flags
 >
 > *Consult [personas](references/personas.md)*
 
-Auto-select 2-3 personas most relevant to this interface type (use the selection table in the reference). If `.github/copilot-instructions.md` contains a `## Design Context` section from `impeccable teach`, also generate 1-2 project-specific personas from the audience/brand info.
+Auto-select 2-3 personas most relevant to this interface type (use the selection table in the reference). If `.github/copilot-instructions.md` contains a `## Design Context` section, also generate 1-2 project-specific personas from the audience/brand info.
 
 For each selected persona, walk through the primary user action and list specific red flags found:
 
@@ -235,14 +215,14 @@ List recommended commands in priority order, based on the user's answers:
 
 **Rules for recommendations**:
 
-- Only recommend commands from: /animate, /quieter, /shape, /optimize, /adapt, /clarify, /layout, /distill, /delight, /audit, /harden, /polish, /bolder, /typeset, /critique, /colorize, /overdrive
+- Only recommend commands or skills that are actually available in the current environment
 - Order by the user's stated priorities first, then by impact
 - Each item's description should carry enough context that the command knows what to focus on
 - Map each Priority Issue to the appropriate command
 - Skip commands that would address zero issues
 - If the user chose a limited scope, only include items within that scope
 - If the user marked areas as off-limits, exclude commands that would touch those areas
-- End with `/polish` as the final step if any fixes were recommended
+- End with a polish/cleanup step as the final recommendation if any fixes were recommended
 
 After presenting the summary, tell the user:
 

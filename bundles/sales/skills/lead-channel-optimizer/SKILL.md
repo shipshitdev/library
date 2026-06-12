@@ -300,7 +300,6 @@ Every business has access to these. Master one:
 | `outbound-optimizer` | Deep dive on outbound channel |
 | `leads-researcher` | Find leads for outbound |
 | `offer-architect` | Make offer that converts leads |
-| `analytics-expert` | Track channel performance |
 | `content-creator` | Execute content strategy |
 
 ## Common Mistakes to Avoid

@@ -1,29 +1,23 @@
 ---
 name: business-operator
-description: Use this skill when users manage multiple businesses, need help prioritizing across ventures, want a business health check, or ask "which business should I focus on." Activates for multi-business orchestration, portfolio management, and cross-venture resource allocation.
+description: >-
+  Orchestrates multiple business ventures using Hormozi portfolio frameworks,
+  prioritizing which to focus on and routing to specialized skills. Triggers
+  when a user manages multiple products or businesses, asks "which business
+  should I focus on," needs cross-venture resource allocation, or wants a
+  portfolio-level health check.
 metadata:
   version: "1.0.0"
-  tags: business, hormozi, orchestration, portfolio, multi-business, prioritization
+  tags: "business, hormozi, orchestration, portfolio, multi-business, prioritization"
 ---
 
 # Business Operator - Multi-Business Orchestrator
 
 ## Overview
 
-You are a multi-business operations strategist that orchestrates all Hormozi business frameworks across a portfolio of ventures. You help indie founders run multiple businesses simultaneously by identifying which business needs attention, what specific actions to take, and which specialized skill to deploy.
+Orchestrates Hormozi business frameworks across a portfolio of ventures, identifying which business needs attention, what specific actions to take, and which specialized skill to deploy.
 
 This is the **meta-skill** that coordinates: offer-architect, pricing-strategist, lead-channel-optimizer, retention-engine, constraint-eliminator, business-model-auditor, outbound-optimizer, and execution-accelerator.
-
-## When This Activates
-
-This skill auto-activates when:
-
-- User mentions managing multiple products or businesses
-- User asks "which business should I focus on"
-- User needs help prioritizing across ventures
-- User wants a portfolio-level business review
-- User feels overwhelmed by multiple projects
-- User asks about resource allocation across businesses
 
 ## The Framework
 
@@ -112,51 +106,7 @@ For each business, output:
 
 ## Output Format
 
-```markdown
-# Portfolio Health Report
-
-## Business Rankings (by Priority Score)
-
-1. **[Business A]** - Score: 85/100
-   - Status: Primary Focus
-   - Revenue: $X/month
-   - Issue: [Main bottleneck]
-   - Action: [Specific next step]
-   - Skill Needed: [offer-architect/pricing-strategist/etc.]
-
-2. **[Business B]** - Score: 62/100
-   - Status: Secondary Focus
-   - Revenue: $X/month
-   - Issue: [Main bottleneck]
-   - Action: [Specific next step]
-   - Skill Needed: [skill name]
-
-3. **[Business C]** - Score: 34/100
-   - Status: Maintenance Mode / Consider Killing
-   - Revenue: $X/month
-   - Issue: [Main bottleneck]
-   - Recommendation: [Keep/Kill/Pivot]
-
-## This Week's Focus
-
-### Primary (60% of time): [Business A]
-- [ ] Action 1
-- [ ] Action 2
-- [ ] Action 3
-
-### Secondary (30% of time): [Business B]
-- [ ] Action 1
-- [ ] Action 2
-
-### Explore (10% of time):
-- [ ] [Optional new opportunity or experiment]
-
-## Skill Deployment Queue
-
-Deploy these skills in order:
-1. `[skill-name]` on [Business A] - [Why]
-2. `[skill-name]` on [Business B] - [Why]
-```
+See `assets/output-template.md` for the full Portfolio Health Report template (load when generating the portfolio deliverable).
 
 ## Skill Routing Logic
 
@@ -251,7 +201,6 @@ This skill orchestrates but doesn't replace the specialized skills:
 
 **Also integrates with existing skills:**
 
-- `analytics-expert` - For deep-dive into business metrics
 - `leads-researcher` - For identifying new customer segments
 - `copywriter` - For messaging across businesses
 - `stripe-implementer` - For payment/billing implementation

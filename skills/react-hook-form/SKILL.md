@@ -1,6 +1,12 @@
 ---
 name: react-hook-form
-description: React Hook Form performance optimization for client-side form validation using useForm, useWatch, useController, and useFieldArray. This skill should be used when building client-side controlled forms with React Hook Form library. This skill does NOT cover React 19 Server Actions, useActionState, or server-side form handling (use react-19 skill for those).
+description: >-
+  Provides 41 prioritized performance rules for React Hook Form across form
+  configuration, field subscription, controlled components, validation, and
+  field arrays. Invoke when writing or reviewing forms with useForm, useWatch,
+  useController, or useFieldArray; integrating shadcn/MUI with Controller; or
+  diagnosing unexpected re-renders in RHF-based forms. Covers client-side
+  validation only — does not cover React Server Actions or useActionState.
 metadata:
   version: "1.0.0"
   tags: "react, forms, performance"
@@ -112,9 +118,8 @@ Read individual reference files for detailed explanations and code examples:
 ## Related Skills
 
 - For schema validation with Zod resolver, see `zod` skill
-- For React 19 server actions, see `react-19` skill
 - For UI/UX form design, see `frontend-design` skill
 
 ## Full Compiled Document
 
-For the complete guide with all rules expanded: `AGENTS.md`
+For the complete guide with all rules expanded, see `${CLAUDE_SKILL_DIR}/AGENTS.md` (load when a deep rule reference is needed).

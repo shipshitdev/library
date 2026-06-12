@@ -1,6 +1,11 @@
 ---
 name: gh-fix-ci
-description: "GitHub Actions CI fixes."
+description: >-
+  Diagnoses failing GitHub Actions checks on a PR, identifies root cause, and
+  proposes or applies targeted fixes. Triggers when the user asks to fix CI,
+  diagnose failing checks, fix a failing workflow, address GitHub Actions
+  errors, or get a green build.
+disable-model-invocation: true
 metadata:
   version: "1.0.0"
   tags: "github, ci, actions"

@@ -1,9 +1,14 @@
 ---
 name: skill-capture
-description: "Capture workflows as skills."
+description: >-
+  Extracts valuable workflows, patterns, and domain knowledge from
+  conversations and persists them as reusable SKILL.md files. Triggers on:
+  "save this as a skill", "capture this as a skill", "make this reusable",
+  "this workflow should be reusable", "this was tricky to figure out", "I wish
+  I knew this earlier", or on completion of complex multi-step procedures.
 metadata:
   version: "1.0.0"
-  tags: skills, capture, automation, knowledge-management
+  tags: "skills, capture, automation, knowledge-management"
 ---
 
 # Skill Capture
@@ -292,7 +297,3 @@ The skill activates on these patterns:
 # Learning signals
 (wish I knew|should have known|next time|for future)
 ```
-
----
-
-**When this skill is active**, automatically identify valuable knowledge from the conversation and offer to persist it as reusable skills for future sessions.

@@ -1,6 +1,12 @@
 ---
 name: testing-cicd-init
-description: Add Vitest testing infrastructure and GitHub Actions CI/CD to any TypeScript project. Supports Next.js, NestJS, and React projects with 80% coverage thresholds. Use this skill when setting up tests for a new project or adding CI/CD pipelines.
+disable-model-invocation: true
+description: >-
+  Installs Vitest testing infrastructure and GitHub Actions CI/CD for TypeScript
+  projects (Next.js, NestJS, React). Configures 80% coverage thresholds, test
+  setup files, and Bun-based CI workflows. Use when adding tests to a new
+  project, migrating from Jest to Vitest, or setting up GitHub Actions CI/CD
+  for the first time.
 metadata:
   version: "1.0.0"
   tags: "testing, ci, vitest"
@@ -9,6 +15,40 @@ metadata:
 # Testing & CI/CD Initialization
 
 Automatically sets up comprehensive test infrastructure for TypeScript projects including Vitest, coverage thresholds, and GitHub Actions CI/CD.
+
+## Contract
+
+Inputs:
+
+- Project root directory (current working directory by default).
+- Project type is auto-detected from `package.json` and config files; can be specified explicitly (nextjs, nestjs, react, node).
+
+Outputs:
+
+- `vitest.config.ts` configured for detected environment.
+- Test setup file (`src/test/setup.ts` for Next.js/React, `test/setup.ts` for NestJS).
+- `.github/workflows/ci.yml` with Bun-based pipeline and coverage enforcement.
+- Updated `package.json` scripts (`test`, `test:coverage`, `typecheck`).
+
+Creates/Modifies:
+
+- `vitest.config.ts` (created).
+- Test setup file (created).
+- `.github/workflows/ci.yml` (created or updated).
+- `package.json` scripts section (updated).
+
+External Side Effects:
+
+- Runs `bun add -D` to install Vitest and related testing packages.
+
+Confirmation Required:
+
+- None. All changes are applied immediately on invocation.
+
+Delegates To:
+
+- `husky-test-coverage` skill for adding pre-commit coverage gate (optional, not auto-invoked).
+- `playwright-e2e-init` for E2E layer (optional, not auto-invoked).
 
 ## When to Use
 
@@ -208,14 +248,3 @@ Ensure `bunx tsc --noEmit` passes locally before pushing.
 3. **Use E2E tests sparingly** for critical flows
 4. **Run tests before commits** via Husky
 5. **Monitor coverage trends** in CI
-
----
-
-**When this skill is active**, it will:
-
-1. Detect the project type automatically
-2. Install appropriate testing dependencies
-3. Create properly configured test files
-4. Set up GitHub Actions CI/CD
-5. Configure coverage thresholds
-6. Add test scripts to package.json

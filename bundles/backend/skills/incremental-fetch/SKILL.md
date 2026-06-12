@@ -1,6 +1,11 @@
 ---
 name: incremental-fetch
-description: 'Build resilient data ingestion pipelines from APIs. Use when creating scripts that fetch paginated data from external APIs (Twitter, exchanges, any REST API) and need to track progress, avoid duplicates, handle rate limits, and support both incremental updates and historical backfills. Triggers: ''ingest data from API'', ''pull tweets'', ''fetch historical data'', ''sync from X'', ''build a data pipeline'', ''fetch without re-downloading'', ''resume the download'', ''backfill older data''. NOT for: simple one-shot API calls, websocket/streaming connections, file downloads, or APIs without pagination.'
+description: >-
+  Guides construction of resilient data ingestion pipelines from paginated APIs. Activates on:
+  "ingest data from API", "pull tweets", "fetch historical data", "sync from X",
+  "build a data pipeline", "fetch without re-downloading", "resume the download",
+  "backfill older data". NOT for: simple one-shot API calls, websocket/streaming
+  connections, file downloads, or APIs without pagination.
 metadata:
   version: "1.0.0"
   tags: "data-ingestion, api, pagination"
@@ -68,3 +73,10 @@ This pattern works best with **ID-based pagination** (numeric IDs that can be co
 | **Offset/limit** | Store page number; resume from last saved page |
 
 See [references/patterns.md](references/patterns.md) for schemas and code examples.
+
+## Gotchas
+
+- **Save watermarks only after full success.** If the process crashes mid-run, unsaved watermarks mean the next run re-fetches and deduplicates from scratch — no data loss, but potentially slow. Saving watermarks mid-run causes permanent gaps.
+- **Newest ID may not equal the highest numeric ID.** Some APIs return IDs that are not monotonically increasing (e.g., snowflake IDs with clock drift). Always compare using the API's own ordering guarantees, not numeric comparison.
+- **Backfill mode must not overwrite the `newest_id`.** A backfill run extends history backward; it should update only `oldest_id`. Overwriting `newest_id` during backfill causes duplicate fetches on the next forward update run.
+- **Rate-limit headers vary by API.** Twitter uses `x-rate-limit-reset`; others use `Retry-After`. Check the specific API's response headers before implementing wait logic.

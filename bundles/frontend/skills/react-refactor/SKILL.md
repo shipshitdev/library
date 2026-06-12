@@ -1,6 +1,11 @@
 ---
 name: react-refactor
-description: Architectural refactoring guide for React applications covering component architecture, state architecture, hook patterns, component decomposition, coupling and cohesion, data flow, and refactoring safety. Use when refactoring React codebases, reviewing PRs for architectural issues, decomposing oversized components, or improving module boundaries. Does NOT cover React 19 API usage (see react skill) or performance optimization (see react-optimise skill).
+description: >-
+  Architectural refactoring guide for React applications covering component
+  architecture, state architecture, hook patterns, component decomposition,
+  coupling and cohesion, data flow, and refactoring safety. Triggers when
+  refactoring React codebases, reviewing PRs for architectural issues,
+  decomposing oversized components, or improving module boundaries.
 metadata:
   version: "1.0.0"
   tags: "react, refactoring, architecture"
@@ -107,6 +112,4 @@ Architectural refactoring guide for React applications. Contains 40 rules across
 
 ## Related Skills
 
-- For React 19 API best practices, see `react` skill
-- For application performance optimization, see `react-optimise` skill
 - For client-side form handling, see `react-hook-form` skill

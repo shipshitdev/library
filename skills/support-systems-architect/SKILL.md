@@ -374,7 +374,6 @@ Create templates for common responses:
 | `retention-engine` | Support quality drives retention |
 | `constraint-eliminator` | Support issues reveal friction |
 | `copywriter` | Write clear, helpful docs |
-| `analytics-expert` | Track support metrics |
 
 ## When to Hire Support Help
 

@@ -1,20 +1,14 @@
 ---
 name: monitoring-setup
-description: Expert in setting up Sentry error tracking and Google Analytics for NestJS and Next.js applications. Use this skill when users need monitoring, error tracking, or analytics configuration.
+description: Sets up Sentry error tracking and Google Analytics for NestJS and Next.js applications. Activates when users need to configure error tracking, set up production monitoring, add Google Analytics, or track application errors and user behavior.
 metadata:
   version: "1.0.0"
   tags: "monitoring, sentry, analytics"
 ---
 
-# Monitoring Setup Expert
-
-## Overview
-
-This skill enables AI assistants to set up comprehensive monitoring for NestJS and Next.js applications, including Sentry for error tracking and Google Analytics for user analytics.
+# Monitoring Setup
 
 ## When to Use This Skill
-
-This skill activates when users:
 
 - Need to set up error tracking (Sentry)
 - Want to configure Google Analytics
@@ -25,15 +19,15 @@ This skill activates when users:
 
 ### NestJS Backend
 
-1. Install: `npm install @sentry/node @sentry/profiling-node`
+1. Install: `bun add @sentry/node @sentry/profiling-node`
 2. Initialize in `main.ts` before app creation
 3. Configure DSN via `SENTRY_DSN` environment variable
 4. Set appropriate sample rates for production
 
 ### Next.js Frontend
 
-1. Install: `npm install @sentry/nextjs`
-2. Run: `npx @sentry/wizard@latest -i nextjs`
+1. Install: `bun add @sentry/nextjs`
+2. Run: `bunx @sentry/wizard@latest -i nextjs`
 3. Configure client/server/edge configs
 4. Set `NEXT_PUBLIC_SENTRY_DSN` for client-side
 

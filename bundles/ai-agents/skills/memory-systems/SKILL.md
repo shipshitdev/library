@@ -49,19 +49,7 @@ Knowledge graphs preserve relationships between entities. Instead of isolated do
 Temporal knowledge graphs add validity periods to facts. Each fact has a "valid from" and optionally "valid until" timestamp. This enables time-travel queries that reconstruct knowledge at specific points in time.
 
 **Benchmark Performance Comparison**
-The Deep Memory Retrieval (DMR) benchmark provides concrete performance data across memory architectures:
-
-| Memory System | DMR Accuracy | Retrieval Latency | Notes |
-|---------------|--------------|-------------------|-------|
-| Zep (Temporal KG) | 94.8% | 2.58s | Best accuracy, fast retrieval |
-| MemGPT | 93.4% | Variable | Good general performance |
-| GraphRAG | ~75-85% | Variable | 20-35% gains over baseline RAG |
-| Vector RAG | ~60-70% | Fast | Loses relationship structure |
-| Recursive Summarization | 35.3% | Low | Severe information loss |
-
-Zep demonstrated 90% reduction in retrieval latency compared to full-context baselines (2.58s vs 28.9s for GPT-5.2). This efficiency comes from retrieving only relevant subgraphs rather than entire context history.
-
-GraphRAG achieves approximately 20-35% accuracy gains over baseline RAG in complex reasoning tasks and reduces hallucination by up to 30% through community-based summarization.
+Research provides concrete performance data across memory architectures. Temporal knowledge graph approaches (e.g., Zep) demonstrate the best accuracy and retrieval latency by retrieving only relevant subgraphs rather than entire context history. Graph-based RAG achieves meaningful accuracy gains over baseline vector RAG in complex reasoning tasks and reduces hallucination through community-based summarization. Recursive summarization exhibits severe information loss and performs worst on recall benchmarks. Consult current benchmarks for up-to-date numbers — this area evolves rapidly.
 
 ### Memory Layer Architecture
 
@@ -208,7 +196,7 @@ This skill builds on context-fundamentals. It connects to:
 
 Internal reference:
 
-- [Implementation Reference](./references/implementation.md) - Detailed implementation patterns
+- [Implementation Reference](./references/implementation.md) - Detailed implementation patterns (load when implementing or debugging memory code)
 
 Related skills in this collection:
 
@@ -220,12 +208,3 @@ External resources:
 - Graph database documentation (Neo4j, etc.)
 - Vector store documentation (Pinecone, Weaviate, etc.)
 - Research on knowledge graphs and reasoning
-
----
-
-## Skill Metadata
-
-**Created**: 2025-12-20
-**Last Updated**: 2025-12-20
-**Author**: Agent Skills for Context Engineering Contributors
-**Version**: 1.0.0

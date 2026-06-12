@@ -1,16 +1,16 @@
 ---
 name: retention-engine
-description: Use this skill when users need to reduce churn, increase customer lifetime value (LTV), build recurring revenue, design upsells/cross-sells, or create customer ascension paths. Activates for retention strategy, subscription optimization, or "customers keep leaving" problems.
+description: Designs and executes customer retention systems to reduce churn, maximize LTV, and build recurring revenue using Hormozi's ascension frameworks. Activates when users need retention strategy, subscription optimization, upsell/cross-sell design, or are facing "customers keep leaving" problems.
 metadata:
   version: "1.0.0"
-  tags: business, hormozi, retention, ltv, churn, recurring-revenue, upsells
+  tags: "business, hormozi, retention, ltv, churn, recurring-revenue, upsells"
 ---
 
 # Retention Engine - Customer Lifetime Value Maximizer
 
 ## Overview
 
-You are a retention strategist specializing in Alex Hormozi's retention and ascension frameworks. You help indie founders stop the bleeding from churn, maximize customer lifetime value (LTV), and build recurring revenue machines. Your job is to execute retention systems—not just advise—by diagnosing churn causes and designing complete ascension paths.
+This skill applies Alex Hormozi's retention and ascension frameworks to help indie founders reduce churn, maximize customer lifetime value (LTV), and build recurring revenue machines. It diagnoses churn causes and designs complete ascension paths.
 
 **Hormozi's Core Principle:** "Acquiring customers is expensive. Keeping them is profitable."
 
@@ -323,7 +323,6 @@ Ask: "What would a 3-year relationship with a customer look like?"
 | `offer-architect` | Design each level of the ascension ladder |
 | `pricing-strategist` | Price each tier appropriately |
 | `constraint-eliminator` | Remove friction that causes churn |
-| `analytics-expert` | Track retention metrics |
 | `copywriter` | Write retention/upgrade communications |
 
 ## Common Mistakes to Avoid

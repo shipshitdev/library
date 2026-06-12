@@ -549,6 +549,82 @@ check_reference_directory() {
     return 0
 }
 
+# Function to check upstream provenance hygiene for externally-derived skills.
+# Only skills that declare metadata.source are subject to these checks; in-house
+# skills (no source) are exempt and pass silently. This keeps the upstream
+# reference + last-synced date honest so drift against the original author is
+# visible (see .agents/SYSTEM/UPSTREAM-TRACKING.md).
+check_provenance() {
+    local file="$1"
+    local skill_dir="$2"
+    local warnings=0
+
+    if [[ ! -f "$file" ]]; then
+        return 0
+    fi
+
+    local frontmatter
+    frontmatter=$(get_frontmatter_block "$file")
+
+    if [[ -z "$frontmatter" ]]; then
+        return 0
+    fi
+
+    local source_val
+    source_val=$(awk '
+        /^metadata:$/ { in_metadata = 1; next }
+        in_metadata && /^[A-Za-z0-9_-]+:/ { in_metadata = 0 }
+        in_metadata && /^  source: / { sub(/^  source: /, ""); print; exit }
+    ' <<< "$frontmatter")
+
+    # No source declared -> in-house skill, provenance not required.
+    if [[ -z "$source_val" ]]; then
+        return 0
+    fi
+
+    # 1. README.md must carry an ## Upstream section documenting the source.
+    local readme="$skill_dir/README.md"
+    if [[ ! -f "$readme" ]] || ! grep -q "^## Upstream$" "$readme"; then
+        echo -e "  ${YELLOW}⚠${NC} metadata.source set but README.md has no '## Upstream' section"
+        ((++warnings))
+    fi
+
+    # 2. last_synced must be present.
+    local synced
+    synced=$(awk '
+        /^metadata:$/ { in_metadata = 1; next }
+        in_metadata && /^[A-Za-z0-9_-]+:/ { in_metadata = 0 }
+        in_metadata && /^  last_synced: / { sub(/^  last_synced: /, ""); print; exit }
+    ' <<< "$frontmatter" | tr -d "\"'" | xargs)
+
+    if [[ -z "$synced" ]]; then
+        echo -e "  ${YELLOW}⚠${NC} metadata.source set but metadata.last_synced missing"
+        ((++warnings))
+        return $warnings
+    fi
+
+    # 3. Warn when last_synced is malformed or older than 90 days (re-check upstream).
+    local age_days
+    age_days=$(python3 -c '
+import sys, datetime
+try:
+    d = datetime.date.fromisoformat(sys.argv[1].strip())
+except ValueError:
+    sys.exit(0)
+print((datetime.date.today() - d).days)
+' "$synced" 2>/dev/null || true)
+
+    if [[ -z "$age_days" ]]; then
+        echo -e "  ${YELLOW}⚠${NC} metadata.last_synced is not an ISO date (YYYY-MM-DD): '$synced'"
+        ((++warnings))
+    elif [[ "$age_days" -gt 90 ]]; then
+        echo -e "  ${YELLOW}⚠${NC} Upstream not re-checked in $age_days days (>90); diff against metadata.source and bump last_synced"
+        ((++warnings))
+    fi
+
+    return $warnings
+}
+
 # Function to validate a single skill
 validate_skill() {
     local skill_name="$1"
@@ -568,6 +644,10 @@ validate_skill() {
         local metadata_warnings=0
         check_metadata_fields "$skill_file" || metadata_warnings=$?
         ((skill_warnings += metadata_warnings, 1))
+
+        local provenance_warnings=0
+        check_provenance "$skill_file" "$SKILLS_DIR/$skill_name" || provenance_warnings=$?
+        ((skill_warnings += provenance_warnings, 1))
 
         # Platform-agnostic checks
         local tool_warnings=0

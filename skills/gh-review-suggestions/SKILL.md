@@ -80,7 +80,7 @@ Delegates To:
 4. Validate the target line is in the PR diff:
 
    ```bash
-   node skills/gh-review-suggestions/scripts/diff-line-position.mjs \
+   node ${CLAUDE_SKILL_DIR}/scripts/diff-line-position.mjs \
      --diff /tmp/pr.diff \
      --path src/example.ts \
      --line 42

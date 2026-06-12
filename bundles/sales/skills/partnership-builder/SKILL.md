@@ -66,7 +66,6 @@ Create revenue-generating partnerships for indie businesses: affiliate programs,
 | `outbound-optimizer` | Partner outreach messaging |
 | `copywriter` | Partner landing pages |
 | `offer-architect` | Partner-specific offers |
-| `analytics-expert` | Track performance |
 
 ---
 

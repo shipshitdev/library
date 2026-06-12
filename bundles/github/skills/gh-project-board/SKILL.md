@@ -58,7 +58,7 @@ Delegates To:
 
 Use GitHub Projects v2.
 
-- Board view layout: `BOARD_LAYOUT`
+- Board view layout: `Board`
 - Kanban column field: `Status`
 - Status options: `Backlog`, `Todo`, `In Progress`, `Human Review`, `Done`,
   `Deferred`
@@ -101,7 +101,7 @@ added approval lane even if an older copied board does not have it yet.
    Then normalize the copied board to add any missing approval lane:
 
    ```bash
-   node skills/gh-project-board/scripts/setup-gh-project-board.mjs \
+   node ${CLAUDE_SKILL_DIR}/scripts/setup-gh-project-board.mjs \
      --owner <owner> \
      --project <number> \
      --apply
@@ -110,7 +110,7 @@ added approval lane even if an older copied board does not have it yet.
 4. For an existing board, audit first:
 
    ```bash
-   node skills/gh-project-board/scripts/setup-gh-project-board.mjs \
+   node ${CLAUDE_SKILL_DIR}/scripts/setup-gh-project-board.mjs \
      --owner <owner> \
      --project <number>
    ```
@@ -118,7 +118,7 @@ added approval lane even if an older copied board does not have it yet.
 5. Show the audit summary and get approval before applying:
 
    ```bash
-   node skills/gh-project-board/scripts/setup-gh-project-board.mjs \
+   node ${CLAUDE_SKILL_DIR}/scripts/setup-gh-project-board.mjs \
      --owner <owner> \
      --project <number> \
      --apply
@@ -127,7 +127,7 @@ added approval lane even if an older copied board does not have it yet.
 6. To audit every open project for an owner:
 
    ```bash
-   node skills/gh-project-board/scripts/setup-gh-project-board.mjs \
+   node ${CLAUDE_SKILL_DIR}/scripts/setup-gh-project-board.mjs \
      --owner <owner> \
      --all-open
    ```
@@ -135,7 +135,7 @@ added approval lane even if an older copied board does not have it yet.
    Apply to every open project only when the user explicitly asks:
 
    ```bash
-   node skills/gh-project-board/scripts/setup-gh-project-board.mjs \
+   node ${CLAUDE_SKILL_DIR}/scripts/setup-gh-project-board.mjs \
      --owner <owner> \
      --all-open \
      --apply

@@ -6,15 +6,16 @@ argument-hint: "[area (feature, page, component...)]"
 metadata:
   version: "2.1.1"
   tags: "audit, quality, accessibility"
----
-
-## MANDATORY PREPARATION
-
-Invoke /impeccable — it contains design principles, anti-patterns, and the **Context Gathering Protocol**. Follow the protocol before proceeding — if no design context exists yet, you MUST run /impeccable teach first.
-
+  source: https://github.com/pbakaus/impeccable/blob/main/skill/reference/audit.md
+  upstream_version: skill-v2.1.1
+  upstream_latest: skill-v3.5.0
+  last_synced: "2026-06-12"
+  license: Apache-2.0
 ---
 
 Run systematic **technical** quality checks and generate a comprehensive report. Don't fix issues — document them for other commands to address.
+
+Before scanning, read the existing design system (CSS / tokens / theme and a representative component) so "correct" is measured against the project's own conventions, not generic defaults. If the repo carries design context (`PRODUCT.md`, `DESIGN.md`, `.impeccable.md`, or a `## Design Context` block in `.github/copilot-instructions.md`), read it too.
 
 This is a code-level audit, not a design critique. Check what's measurable and verifiable in the implementation.
 
@@ -72,7 +73,7 @@ Run comprehensive checks across 5 dimensions. Score each dimension 0-4 using the
 
 ### 5. Anti-Patterns (CRITICAL)
 
-Check against ALL the **DON'T** guidelines in the impeccable skill. Look for AI slop tells (AI color palette, gradient text, glassmorphism, hero metrics, card grids, generic fonts) and general design anti-patterns (gray on color, nested cards, bounce easing, redundant copy).
+Look for AI slop tells (generic indigo/violet palette, gradient text, dark glows, glassmorphism, hero-metric layouts, identical 3-card grids, generic geometric fonts) and general design anti-patterns (gray text on colored backgrounds, nested cards, bounce/elastic easing, redundant copy that restates a visible label).
 
 **Score 0-4**: 0=AI slop gallery (5+ tells), 1=Heavy AI aesthetic (3-4 tells), 2=Some tells (1-2 noticeable), 3=Mostly clean (subtle issues only), 4=No AI tells (distinctive, intentional design)
 
@@ -119,7 +120,7 @@ For each issue, document:
 - **Impact**: How it affects users
 - **WCAG/Standard**: Which standard it violates (if applicable)
 - **Recommendation**: How to fix it
-- **Suggested command**: Which command to use (prefer: /animate, /quieter, /shape, /optimize, /adapt, /clarify, /layout, /distill, /delight, /audit, /harden, /polish, /bolder, /typeset, /critique, /colorize, /overdrive)
+- **Suggested command**: Which command or skill to use to fix it
 
 ### Patterns & Systemic Issues
 
@@ -139,7 +140,7 @@ List recommended commands in priority order (P0 first, then P1, then P2):
 1. **[P?] `/command-name`** — Brief description (specific context from audit findings)
 2. **[P?] `/command-name`** — Brief description (specific context)
 
-**Rules**: Only recommend commands from: /animate, /quieter, /shape, /optimize, /adapt, /clarify, /layout, /distill, /delight, /audit, /harden, /polish, /bolder, /typeset, /critique, /colorize, /overdrive. Map findings to the most appropriate command. End with `/polish` as the final step if any fixes were recommended.
+**Rules**: Map findings to the most appropriate available skill or command. End with a polish/cleanup step as the final recommendation if any fixes were recommended.
 
 After presenting the summary, tell the user:
 

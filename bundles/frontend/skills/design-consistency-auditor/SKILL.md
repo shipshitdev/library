@@ -1,9 +1,9 @@
 ---
 name: design-consistency-auditor
-description: Audit and maintain design system consistency, UX/UI patterns, color palettes, and design best practices across frontend applications
+description: Audits and maintains design system consistency across frontend applications — color palettes, UI/UX patterns, component styling, and accessibility. Triggers when asked to audit design consistency, review component styling, check color palette usage, validate accessibility compliance, or identify design debt.
 metadata:
   version: "1.0.0"
-  tags: design, ux, ui, consistency, audit, tailwind, agenticindiedev-ui, accessibility
+  tags: "design, ux, ui, consistency, audit, tailwind, accessibility"
 ---
 
 # Design Consistency Auditor
@@ -40,11 +40,15 @@ Ensures:
 
 ### Component Patterns
 
-- Cards: `.gf-card`
-- App shells: `.gf-app`
-- Modals: `.glass-modal`
-- Inputs: `.glass-input`, `.form-focus`
-- Buttons: `btn btn-primary`, `.btn-secondary`, `btn-ghost`
+Discover the project's component class conventions from its design system or existing codebase. Common patterns to look for:
+
+- Cards: project-specific card class or component (e.g. `card`, `.card`, design-system Card component)
+- App shells / layouts: project-specific shell wrapper class
+- Modals / dialogs: project dialog component pattern
+- Inputs: project form input class or component
+- Buttons: project button variants (primary, secondary, ghost)
+
+Identify the actual class names from the codebase before auditing — do not assume a specific naming convention.
 
 ### Spacing
 

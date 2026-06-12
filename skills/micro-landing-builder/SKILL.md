@@ -1,6 +1,7 @@
 ---
 name: micro-landing-builder
-description: Scaffold, clone, and deploy config-driven NextJS landing pages that use a shared UI components package. Use this skill when creating single or multiple startup landing pages with email capture, analytics, and modern design. Supports batch creation from templates or CSV/JSON files, and automatic Vercel deployment with custom domains. Each landing is a standalone NextJS app driven by an app.json config file.
+description: Scaffolds, clones, and deploys config-driven NextJS landing pages that use a shared UI components package. Use when creating single or multiple startup landing pages with email capture, analytics, and modern design. Supports batch creation from templates or CSV/JSON files and Vercel deployment with custom domains. Each landing is a standalone NextJS app driven by an app.json config file.
+disable-model-invocation: true
 metadata:
   version: "1.0.0"
   tags: "landing-page, nextjs, vercel"
@@ -201,6 +202,8 @@ project2,Project Two,project2.com,Cloud infrastructure
 ## Deployment
 
 ### Single Project
+
+Before running `vercel`, confirm `.vercel/project.json` exists in the landing directory. If it does not exist, stop and ask the user to run `vercel link` manually — do not run it unattended.
 
 ```bash
 cd mystartup

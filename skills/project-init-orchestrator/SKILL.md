@@ -1,9 +1,10 @@
 ---
 name: project-init-orchestrator
-description: Select the correct project initialization route. Use v0 for new Shipshit.dev product repos; use lower-level setup skills only for existing repo repair, customization, or small additions.
+disable-model-invocation: true
+description: Selects the correct project initialization route and orchestrates setup. Triggers on "initialize project", "set up new project", "bootstrap project", or when scaffolding a new Shipshit.dev product repo. Use v0 for new Shipshit.dev product repos; use lower-level setup skills only for existing repo repair, customization, or small additions.
 metadata:
   version: "1.0.0"
-  tags: project-init, scaffolding, orchestration, setup, monorepo
+  tags: "project-init, scaffolding, orchestration, setup, monorepo"
 ---
 
 # Project Init Orchestrator
@@ -184,12 +185,12 @@ npx @shipshitdev/v0 ~/projects/my-saas --agent codex --no-github
 
 ### Linting errors after setup
 
-- Run `npm run lint:fix` to auto-fix
+- Run `bun run lint:fix` to auto-fix
 - Check `.eslintrc.js` matches your stack
 - Verify TypeScript config if using TS
 
 ### Pre-commit hook not running
 
-- Run `npx husky install` manually
+- Run `bunx husky install` manually
 - Check `.husky/pre-commit` exists and is executable
 - Verify `prepare` script in package.json

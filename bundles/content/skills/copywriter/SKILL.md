@@ -1,9 +1,9 @@
 ---
 name: copywriter
-description: Brand voice guardian and conversion-focused copywriter, specializing in direct, no-fluff copy that adapts to project's brand voice
+description: Writes and audits conversion-focused copy that adapts to the project's brand voice. Triggers when writing or editing user-facing text, creating landing pages, auditing marketing copy, updating CTAs or value propositions, or reviewing microcopy for consistency.
 metadata:
   version: "1.0.0"
-  tags: copywriting, brand-voice, marketing, content, conversion, ux-writing
+  tags: "copywriting, brand-voice, marketing, content, conversion, ux-writing"
 ---
 
 # Copywriter Skill
@@ -89,28 +89,30 @@ You are an expert copywriter and brand voice guardian, specializing in direct, c
 
 Format: **Action verb + Outcome + Benefit**
 
-**Examples:**
+**Examples (adapt to project's domain):**
 
 ```
-✅ "Generate AI-powered digital twins with realistic voices and personas for authentic content."
-✅ "Create professional videos from text, images, or prompts. AI handles editing, voiceovers, and effects."
-✅ "Track engagement, reach, and ROI across all channels. Data-driven insights for better content."
+✅ "Automate outreach and qualify leads around the clock."
+✅ "Create professional assets from text, images, or prompts."
+✅ "Track engagement, reach, and ROI across all channels."
 
-❌ "Advanced AI technology for video creation"
+❌ "Advanced AI technology for content creation"
 ❌ "State-of-the-art analytics platform"
 ❌ "Seamlessly integrate with your workflow"
 ```
 
 ### Call-to-Action (CTA) Copy
 
-**Primary CTA**: "Request Access" (for invite-only positioning)
-**Secondary CTAs**: "Contact Sales", "See Demo", "View Pricing"
+**Discover the project's primary CTA style from existing copy.** Common patterns:
+
+- Conversion-stage CTAs: "Get Started", "Request Access", "Start Free Trial"
+- Soft CTAs: "See Demo", "Contact Sales", "View Pricing"
 
 **Rules:**
 
-- Keep CTAs uppercase for prominence: `REQUEST ACCESS`
-- Use action verbs: Request, Get, Start, See, Track
+- Use action verbs: Get, Start, Request, See, Track
 - No vague CTAs like "Learn More" or "Click Here"
+- Match the project's existing CTA capitalization and style conventions
 
 ### Value Propositions
 
@@ -128,15 +130,15 @@ Outcome: "Grow quickly without expanding your team."
 
 **Do:**
 
-- Be transparent: "All purchases final. Credits expire after 12 months. No refunds."
-- Emphasize premium: "Premium content intelligence platform for serious creators"
-- Reinforce exclusivity: "Invite-only"
+- Be transparent about terms: expiry, refund policy, limitations
+- Emphasize premium positioning if that's the project's strategy
 - Show value clearly: Price + What You Get
+- Reinforce the project's positioning (exclusive, open, freemium, etc.)
 
 **Don't:**
 
 - Hide limitations or restrictions
-- Use "affordable", "cheap", "budget-friendly"
+- Use "affordable", "cheap", "budget-friendly" unless it matches brand voice
 - Oversell with "unlimited" unless true
 - Use payment euphemisms
 
@@ -179,7 +181,7 @@ When reviewing copy, check for:
 ### Consistency
 
 - [ ] Brand voice matches guidelines (direct, no fluff)
-- [ ] Terminology is consistent (e.g., "avatar twins" not "AI avatars")
+- [ ] Terminology is consistent (discover project-specific terms from docs)
 - [ ] CTAs follow naming conventions
 - [ ] Tone appropriate for context (marketing vs app UI)
 
@@ -276,9 +278,9 @@ When reviewing copy, check for:
 
 **Before:** "Learn More About Our Solutions"
 
-**After:** "Request Access"
+**After:** "Get Started" (or match the project's primary CTA pattern)
 
-**Why:** Action-oriented, clear next step, reinforces invite-only positioning.
+**Why:** Action-oriented, clear next step, matches the project's conversion positioning.
 
 ---
 
@@ -294,11 +296,11 @@ When reviewing copy, check for:
 
 ### Approved Terms
 
-- **Content intelligence** (not "content marketing platform")
-- **Avatar twins** (not "AI avatars" or "digital humans")
-- **Invite-only** (not "exclusive access" or "limited beta")
-- **Revenue tracking** (not "monetization insights")
-- **AI agents** (not "bots" or "automation tools")
+Discover the project's approved terminology from `.agents/memory/`, brand guidelines, or existing UI copy. Common patterns to watch:
+
+- Prefer specific product nouns over generic tech terms (discover from project docs)
+- Avoid euphemistic rebrands of the same concept ("engagement insights" vs "analytics")
+- Keep technical terms consistent — pick one and stick to it throughout the product
 
 ### Banned Words
 

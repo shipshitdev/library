@@ -259,6 +259,5 @@ Never use `process.env` directly outside config files.
 ## Related skills
 
 - `nestjs-queue-architect` — BullMQ async job patterns
-- `nestjs-testing-expert` — Jest unit + integration testing
 - `mongodb-migration-expert` — schema migrations
 - `error-handling-expert` — global error strategy

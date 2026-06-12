@@ -4,10 +4,15 @@ description: >-
   Enforces root-cause investigation before any fix attempt using a rigorous four-phase methodology: investigate, analyze patterns, hypothesize, implement. Use when encountering any bug, test failure, unexpected behavior, or performance regression — especially under time pressure or after multiple failed fix attempts.
 metadata:
   version: "1.0.0"
+  source: https://github.com/obra/superpowers/blob/main/skills/systematic-debugging/SKILL.md
+  upstream_repo: obra/superpowers
+  upstream_ref: main
+  upstream_commit: 030a222af19c
+  last_synced: "2026-06-12"
+  license: MIT
   tags: "debugging, root-cause, diagnosis, investigation, methodology, hypothesis"
 when_to_use: "bug, broken, not working, test failing, unexpected behavior, regression, fix not working, keeps breaking, investigate, diagnose"
 ---
-
 # Systematic Debugging
 
 ## Core Principle

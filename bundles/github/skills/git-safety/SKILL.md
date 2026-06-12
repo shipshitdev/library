@@ -1,9 +1,17 @@
 ---
 name: git-safety
-description: "Git history secret scan."
+description: >-
+  Scans, cleans, and prevents secrets in git history across four modes: scan
+  (detect sensitive files in the current state and history), clean (rewrite
+  history to remove secrets using git-filter-repo or BFG), prevent (add
+  .gitignore and pre-commit hooks), and full (all three in sequence). Use when
+  the user asks to check for leaked credentials, scrub a secret from git
+  history, force-push a cleaned repo, set up pre-commit secret prevention, or
+  run a full git security audit.
 metadata:
   version: "1.0.0"
   tags: "git, security, secrets"
+disable-model-invocation: true
 ---
 
 # Git Safety Skill

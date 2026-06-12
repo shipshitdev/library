@@ -6,6 +6,7 @@ metadata:
   version: "1.0.0"
   tags: "release, github, pull-request, ci-cd, quality-gates"
 allowed-tools: Bash(git *) Bash(gh *)
+disable-model-invocation: true
 ---
 
 # Release PR Gates

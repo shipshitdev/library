@@ -26,14 +26,16 @@
         "tdd",
         "testing-expert",
         "testing-cicd-init",
-        "nestjs-testing-expert",
         "qa-reviewer",
         "husky-test-coverage"
       ]
     },
     "payments": {
       "description": "Payment processing and financial integrations",
-      "skills": ["stripe-implementer", "financial-operations-expert"]
+      "skills": [
+        "stripe-implementer",
+        "financial-operations-expert"
+      ]
     },
     "infrastructure": {
       "description": "DevOps, cloud, and infrastructure skills",
@@ -47,8 +49,7 @@
         "nestjs-queue-architect",
         "performance-expert",
         "redis-caching",
-        "security-expert",
-        "workflow-automation"
+        "security-expert"
       ]
     },
     "frontend": {
@@ -92,7 +93,6 @@
         "error-handling-expert",
         "graphql-architect",
         "nestjs-expert",
-        "serializer-specialist",
         "incremental-fetch",
         "turborepo",
         "typescript-expert",
@@ -169,7 +169,6 @@
         "project-init-orchestrator",
         "linter-formatter-init",
         "clerk-validator",
-        "plasmo-extension-architect",
         "content-script-developer",
         "package-architect",
         "artifacts-builder",
@@ -184,7 +183,6 @@
       "skills": [
         "roadmap-analyzer",
         "strategy-expert",
-        "analytics-expert",
         "cto-advisor",
         "business-operator",
         "feature-intake",
@@ -215,7 +213,12 @@
     },
     "security": {
       "description": "Security review, dependency safety, and release-risk skills",
-      "skills": ["security-audit", "security-expert", "git-safety", "open-source-checker"]
+      "skills": [
+        "security-audit",
+        "security-expert",
+        "git-safety",
+        "open-source-checker"
+      ]
     },
     "dev-workflow": {
       "description": "Code review, debugging, refactoring, release, and AI-assisted development workflows",
@@ -226,7 +229,6 @@
         "ai-regression-testing",
         "analyze-codebase",
         "codebase-advisor",
-        "claude-code-guide",
         "code-review",
         "structural-review",
         "full-code-review",
@@ -241,7 +243,6 @@
         "refactor-code",
         "release-cleanup",
         "release-pr-gates",
-        "review-pr",
         "scaffold",
         "shape",
         "skill-capture",

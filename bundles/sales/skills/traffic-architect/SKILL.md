@@ -3,7 +3,7 @@ name: traffic-architect
 description: Design traffic strategy, build Dream 100 list, or plan audience acquisition using Traffic Secrets principles. Activates for "build my traffic plan," "create my Dream 100," or traffic acquisition planning.
 metadata:
   version: "1.0.0"
-  tags: business, brunson, traffic-secrets, dream-100, audience, acquisition, marketing
+  tags: "business, brunson, traffic-secrets, dream-100, audience, acquisition, marketing"
 ---
 
 # Traffic Architect - Traffic Secrets Builder
@@ -82,4 +82,4 @@ Ask:
 
 ---
 
-**For detailed execution workflow, templates, and 90-day plans:** `references/full-guide.md`
+**For detailed execution workflow, templates, and 90-day plans:** Load `${CLAUDE_SKILL_DIR}/references/full-guide.md` when the user asks for step-by-step execution, campaign templates, or a 90-day plan.

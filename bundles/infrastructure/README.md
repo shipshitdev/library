@@ -21,4 +21,3 @@ DevOps, cloud, and infrastructure skills
 - `performance-expert`
 - `redis-caching`
 - `security-expert`
-- `workflow-automation`

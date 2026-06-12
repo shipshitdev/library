@@ -3,9 +3,14 @@ name: humanizer
 description: Identify and remove AI writing patterns to make text sound more natural and human. Based on Wikipedia's "Signs of AI writing" patterns. Use when editing AI-generated content or improving writing quality.
 metadata:
   version: "1.0.0"
+  source: https://github.com/ankshvayt/humanizer/blob/main/SKILL.md
+  upstream_repo: ankshvayt/humanizer
+  upstream_ref: main
+  upstream_commit: c5d51c926d24
+  last_synced: "2026-06-12"
+  license: Unspecified (no upstream LICENSE)
   tags: writing, editing, ai-detection, content
 ---
-
 # Humanizer: Remove AI Writing Patterns
 
 You are a writing editor that identifies and removes signs of AI-generated text to make writing sound more natural and human. This guide is based on Wikipedia's "Signs of AI writing" page, maintained by WikiProject AI Cleanup.

@@ -6,19 +6,26 @@ argument-hint: "[feature to shape]"
 metadata:
   version: "2.1.1"
   tags: "ux, planning, design-brief"
----
-
-## MANDATORY PREPARATION
-
-Invoke /impeccable, which contains design principles, anti-patterns, and the **Context Gathering Protocol**. Follow the protocol before proceeding. If no design context exists yet, you MUST run /impeccable teach first.
-
+  source: https://github.com/pbakaus/impeccable/blob/main/skill/reference/shape.md
+  upstream_version: skill-v2.1.1
+  upstream_latest: skill-v3.5.0
+  last_synced: "2026-06-12"
+  license: Apache-2.0
 ---
 
 Shape the UX and UI for a feature before any code is written. This skill produces a **design brief**: a structured artifact that guides implementation through discovery, not guesswork.
 
 **Scope**: Design planning only. This skill does NOT write code. It produces the thinking that makes code good.
 
-**Output**: A design brief that can be handed off to /impeccable craft, /impeccable, or any other implementation skill.
+**Output**: A design brief that can be handed off to any implementation skill.
+
+## Context Gathering
+
+Before the interview, ground yourself in the project so the brief reflects what already exists:
+
+- **Design context** — if the repo carries any of `PRODUCT.md`, `DESIGN.md`, `.impeccable.md`, or a `## Design Context` block in `.github/copilot-instructions.md`, read it. Skip silently if none exist.
+- **Existing system** — read the established design system (CSS / tokens / theme and one representative component or page) to learn the conventions in play. Use what's there; branch out only when the UX wins.
+- **Register** — decide whether design *is* the product (marketing, landing, portfolio → identity and boldness lead) or design *serves* the product (app, dashboard, tool → clarity and restraint lead). This frames every direction choice below.
 
 ## Philosophy
 
@@ -76,7 +83,7 @@ What this is, who it's for, what it needs to accomplish.
 The single most important thing a user should do or understand here.
 
 **3. Design Direction**
-How this should feel. What aesthetic approach fits. Reference the project's design context from `.impeccable.md` and explain how this feature should express it.
+How this should feel. What aesthetic approach fits. Reference the project's design context from `.impeccable.md` or `.github/copilot-instructions.md` (if present) and explain how this feature should express it.
 
 **4. Layout Strategy**
 High-level spatial approach: what gets emphasis, what's secondary, how information flows. Describe the visual hierarchy and rhythm, not specific CSS.
@@ -91,7 +98,7 @@ How users interact with this feature. What happens on click, hover, scroll? What
 What copy, labels, empty state messages, error messages, and microcopy are needed. Note any dynamic content and its realistic ranges.
 
 **8. Recommended References**
-Based on the brief, list which impeccable reference files would be most valuable during implementation (e.g., spatial-design.md for complex layouts, motion-design.md for animated features, interaction-design.md for form-heavy features).
+Based on the brief, list which reference files or documentation would be most valuable during implementation (e.g., spatial design guidance for complex layouts, motion design for animated features, interaction design for form-heavy features).
 
 **9. Open Questions**
 Anything unresolved that the implementer should resolve during build.
@@ -100,4 +107,4 @@ Anything unresolved that the implementer should resolve during build.
 
 ask the user directly to clarify what you cannot infer. Get explicit confirmation of the brief before finishing. If the user disagrees with any part, revisit the relevant discovery questions.
 
-Once confirmed, the brief is complete. The user can now hand it to /impeccable, or use it to guide any other implementation approach. (If the user wants the full discovery-then-build flow in one step, they should use /impeccable craft instead, which runs this skill internally.)
+Once confirmed, the brief is complete. The user can now hand it to any implementation skill or approach.

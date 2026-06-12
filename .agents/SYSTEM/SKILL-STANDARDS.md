@@ -10,12 +10,12 @@ This repo follows the [Agent Skills open standard](https://agentskills.io/specif
 
 | Field | Required | Constraints |
 |-------|----------|-------------|
-| `name` | **Yes** | 1–64 chars. Lowercase letters, numbers, hyphens. No leading/trailing/consecutive hyphens. Must match directory name. |
-| `description` | **Yes** | 1–1024 chars. Describes what the skill does AND when to use it. Front-load key use case. |
+| `name` | **Yes** | 1–64 chars. Lowercase letters, numbers, hyphens. No leading/trailing/consecutive hyphens. No reserved words (`anthropic`, `claude`). Must match directory name. |
+| `description` | **Yes** | 1–1024 chars. Written in third person. Describes what the skill does AND when to use it. Front-load key use case. |
 | `license` | No | License name or reference to bundled LICENSE file. |
 | `compatibility` | No | 1–500 chars. System requirements: target agent, required packages, network needs. Omit if no special requirements. |
 | `metadata` | No | Map of `string → string`. Use for `version`, `tags`, `author`, and any extra data. |
-| `allowed-tools` | No | Space-separated pre-approved tools. Experimental — support varies by agent. |
+| `allowed-tools` | No | Space-separated **auto-approve allowlist** — bypasses the per-use prompt for listed tools. NOT a sandbox: unlisted tools stay callable and fall through to normal permission prompts. Experimental — support varies by agent. |
 
 ### Claude Code extensions — Claude-only fields
 
@@ -26,10 +26,11 @@ This repo follows the [Agent Skills open standard](https://agentskills.io/specif
 | `user-invocable` | `false` = hides from `/` menu. Use for background knowledge skills. |
 | `model` | Override model for this skill. |
 | `effort` | Override effort level: `low`, `medium`, `high`, `xhigh`, `max`. |
-| `context` | `fork` = run in isolated subagent. |
+| `context` | `fork` = run in isolated subagent. Only for skills with an actionable task — a guidelines-only skill returns **empty output** when forked. ⚠️ May not be honored via the Skill tool (issue #17283). |
 | `agent` | Subagent type when `context: fork`. Options: `Explore`, `Plan`, `general-purpose`, or custom. |
 | `hooks` | Lifecycle hooks scoped to this skill. |
-| `paths` | Glob patterns that limit when skill auto-activates. |
+| `disallowed-tools` | Space-separated tools **removed from the pool** while the skill is active (the actual blocking mechanism; `allowed-tools` does not block). Clears on the user's next message. Use for autonomous loops that must never call a tool (e.g. `AskUserQuestion`). |
+| `paths` | Glob patterns that limit when skill auto-activates. ⚠️ **Broken upstream** (issue #49835, as of v2.1.84): skills with `paths` set become undiscoverable. For monorepo scoping use nested `.claude/skills/` dirs instead. |
 | `shell` | Shell for inline commands: `bash` (default) or `powershell`. |
 
 ---
@@ -46,7 +47,7 @@ metadata:
   version: "1.0.0"
   tags: "tag1, tag2, tag3"
   author: Ship Shit Dev
-allowed-tools: Bash(gh *) Bash(git *)
+allowed-tools: Bash(gh pr view:*) Bash(git log:*) Bash(git diff:*)
 # Claude Code extensions below
 when_to_use: "trigger phrase 1, trigger phrase 2, example request"
 disable-model-invocation: true
@@ -81,6 +82,8 @@ skills/my-skill/
 ```
 
 Keep `SKILL.md` focused: under 500 lines. Move anything detailed to `references/`.
+
+Keep references **one level deep**: `SKILL.md` may point at files in `references/`, but those files must not chain on to further files (no A→B→C). Progressive disclosure breaks down when Claude has to follow a trail.
 
 ## Contract blocks for composable skills
 
@@ -141,6 +144,7 @@ description: Helps with PDFs.
 Rules:
 
 - Lead with the capability, follow with the trigger context
+- Write in the third person ("Extracts text from PDFs…", not "I extract…" or "You can…")
 - Include specific keywords users will say
 - Max 1024 chars (spec limit)
 - No filler ("This skill is designed to help you...")
@@ -154,10 +158,13 @@ Rules:
 | `when_to_use` | Description alone doesn't cover all trigger phrases |
 | `disable-model-invocation: true` | Skill has side effects (file writes, git ops, GitHub API calls, deploys) |
 | `user-invocable: false` | Skill is background knowledge, not an action users invoke |
-| `context: fork` | Skill does independent research/exploration that shouldn't see conversation history |
-| `allowed-tools` | Skill needs specific tools without per-use permission prompts |
+| `context: fork` | Skill does independent research/exploration that shouldn't see conversation history (must have an actionable task — guidelines-only forks return empty) |
+| `allowed-tools` | You want to skip the per-use prompt for tools the skill calls repeatedly. Remember it only *auto-approves*, it does not restrict — see note below |
+| `disallowed-tools` | You need to actually **block** a tool while the skill runs (e.g. keep an autonomous loop from calling `AskUserQuestion`) |
 | `effort: high` | Skill requires deep reasoning (architecture decisions, complex debugging) |
-| `paths` | Skill only applies to specific file types or directories |
+| `paths` | ~~Skill only applies to specific file types~~ — avoid until issue #49835 is fixed (sets the skill undiscoverable); use nested `.claude/skills/` dirs instead |
+
+**`allowed-tools` is an allowlist, not a sandbox.** Listing tools only bypasses their permission prompt; every unlisted tool is still callable and just prompts as normal. Narrowing `allowed-tools` does not lock a skill down — use `disallowed-tools`, deny rules, or hooks to actually block. For MCP tools, list the fully-qualified `ServerName:tool_name` so the grant resolves when multiple MCP servers are connected.
 
 ---
 

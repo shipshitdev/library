@@ -142,6 +142,7 @@ check_frontmatter_fields() {
         "compatibility"
         "metadata"
         "allowed-tools"
+        "disallowed-tools"
         "when_to_use"
         "disable-model-invocation"
         "user-invocable"
@@ -173,6 +174,16 @@ check_frontmatter_fields() {
             local line_num
             line_num=$(grep -n "^$field:" "$file" | head -1 | cut -d: -f1)
             echo -e "  ${YELLOW}⚠${NC} Unsupported top-level frontmatter field: '$field' (line $line_num)"
+            ((++warnings))
+        fi
+
+        # paths is documented but broken upstream (Claude Code issue #49835, as of
+        # v2.1.84): skills with paths set become undiscoverable. Warn until fixed;
+        # use a nested .claude/skills/ directory for monorepo scoping instead.
+        if [[ "$field" == "paths" ]]; then
+            local paths_line
+            paths_line=$(grep -n "^paths:" "$file" | head -1 | cut -d: -f1)
+            echo -e "  ${YELLOW}⚠${NC} 'paths' field is broken upstream (issue #49835) — skills with it set become undiscoverable; use nested .claude/skills/ instead (line $paths_line)"
             ((++warnings))
         fi
     done <<< "$frontmatter"

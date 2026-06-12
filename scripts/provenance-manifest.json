@@ -198,7 +198,7 @@
       "last_synced": "2026-06-12",
       "license": "MIT",
       "mode": "rolling",
-      "modifications": "Vendored at v1.0.0 (2025-12-20). Upstream has since advanced to ~v2.2.0 (2026-05-15) with an added routing framework and gotchas sections — worth porting on next sync."
+      "modifications": "Ported to upstream v2.2.0 (2026-05-15 corpus, commit cbc2c978133d) on 2026-06-12 — body, references, and scripts now match upstream, including the routing framework and gotchas sections. Cross-references to upstream sibling skills not vendored here (context-compression, filesystem-context, project-development, latent-briefing) were removed so routing only names skills present in this marketplace."
     },
     {
       "skill": "context-optimization",
@@ -211,7 +211,7 @@
       "last_synced": "2026-06-12",
       "license": "MIT",
       "mode": "rolling",
-      "modifications": "Vendored at v1.0.0 (2025-12-20). Upstream has since advanced to ~v2.1.0 (2026-05-15) — worth porting on next sync."
+      "modifications": "Ported to upstream v2.1.0 (2026-05-15 corpus, commit cbc2c978133d) on 2026-06-12 — body, references, and scripts now match upstream. Cross-references to upstream sibling skills not vendored here (context-compression, filesystem-context, project-development, latent-briefing) were removed so routing only names skills present in this marketplace."
     },
     {
       "skill": "humanizer",

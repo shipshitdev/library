@@ -89,12 +89,12 @@ Agent workflow skills. **The prior `author: Ship Shit Dev` frontmatter on three 
 
 ### muratcankoylan/Agent-Skills-for-Context-Engineering — MIT — `rolling` (`main`)
 
-Local copies are **v1.0.0 (2025-12-20)**; upstream has since advanced — port on next sync.
+Ported to upstream v2.x on **2026-06-12** (commit `cbc2c978133d`, 2026-05-15 corpus): body, references, and scripts now match upstream. Cross-references to upstream sibling skills **not vendored here** (`context-compression`, `filesystem-context`, `project-development`, `latent-briefing`) were stripped so routing only names skills present in this marketplace. Re-check by diffing the upstream path since `cbc2c978133d`.
 
-| Skill | Synced commit | Upstream now |
-|-------|---------------|--------------|
-| context-fundamentals | `cbc2c978133d` | ~v2.2.0 (routing framework + gotchas added) |
-| context-optimization | `cbc2c978133d` | ~v2.1.0 |
+| Skill | Synced commit | Local version |
+|-------|---------------|---------------|
+| context-fundamentals | `cbc2c978133d` | v2.2.0 (routing framework + gotchas) |
+| context-optimization | `cbc2c978133d` | v2.1.0 |
 
 ### pproenca/dot-skills — MIT — `rolling` (`master`)
 

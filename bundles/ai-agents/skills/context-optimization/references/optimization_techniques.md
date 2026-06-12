@@ -269,3 +269,4 @@ KV-cache optimization should improve cost and latency:
 - 70%+ cache hit rate for stable workloads
 - 50%+ cost reduction from cache hits
 - 40%+ latency reduction from cache hits
+

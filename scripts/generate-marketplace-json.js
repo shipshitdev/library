@@ -12,17 +12,46 @@ const ROOT = join(__dirname, '..');
 const SKILLS_DIR = join(ROOT, 'skills');
 const CATEGORIES = JSON.parse(readFileSync(join(__dirname, 'plugin-categories.json'), 'utf-8'));
 
-// Get skill description from SKILL.md frontmatter
+// Get skill description from SKILL.md frontmatter.
+// Handles plain/quoted single-line values AND YAML block scalars
+// (folded `>`/`>-` and literal `|`/`|-`), which the previous single-line
+// regex captured as the literal indicator (e.g. ">-") instead of the text.
 function getSkillDescription(skillName) {
   const skillPath = join(SKILLS_DIR, skillName, 'SKILL.md');
   if (!existsSync(skillPath)) return null;
 
   const content = readFileSync(skillPath, 'utf-8');
-  const match = content.match(/^---\n[\s\S]*?description:\s*(.+?)\n[\s\S]*?---/);
-  if (match) {
-    return match[1].trim().replace(/^["']|["']$/g, '');
+  const fmMatch = content.match(/^---\n([\s\S]*?)\n---/);
+  if (!fmMatch) return null;
+
+  const lines = fmMatch[1].split('\n');
+  const idx = lines.findIndex((l) => /^description:\s*/.test(l));
+  if (idx === -1) return null;
+
+  const keyIndent = lines[idx].match(/^(\s*)/)[1].length;
+  let value = lines[idx].replace(/^description:\s*/, '');
+  const blockMatch = value.match(/^([>|])[+-]?\s*$/);
+
+  if (blockMatch) {
+    const folded = blockMatch[1] === '>';
+    const parts = [];
+    for (let i = idx + 1; i < lines.length; i += 1) {
+      const line = lines[i];
+      if (line.trim() === '') {
+        parts.push('');
+        continue;
+      }
+      const indent = line.match(/^(\s*)/)[1].length;
+      if (indent <= keyIndent) break; // dedent → next frontmatter key
+      parts.push(line.trim());
+    }
+    while (parts.length && parts[parts.length - 1] === '') parts.pop();
+    value = folded ? parts.join(' ') : parts.join('\n');
+  } else {
+    value = value.replace(/^["']|["']$/g, '');
   }
-  return null;
+
+  return value.trim() || null;
 }
 
 const plugins = [];

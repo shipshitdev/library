@@ -18,6 +18,8 @@ Code review, debugging, refactoring, release, and AI-assisted development workfl
 - `analyze-codebase`
 - `claude-code-guide`
 - `code-review`
+- `structural-review`
+- `full-code-review`
 - `commit-summary`
 - `de-slop`
 - `debug`

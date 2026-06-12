@@ -1,0 +1,12 @@
+{
+  "name": "full-code-review",
+  "version": "1.0.0",
+  "description": "End-to-end orchestrated PR review: parallel structural/security/devex agents, adversarial verify, Opus synthesis.",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

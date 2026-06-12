@@ -34,7 +34,7 @@ After porting anything worth bringing home: bump `metadata.upstream_commit` (or 
 
 ---
 
-## Bucket 1 — External upstreams (26 skills, public + trackable)
+## Bucket 1 — External upstreams (32 skills, public + trackable)
 
 These derive from third-party public repos. Diff against the pinned marker to find new upstream work.
 
@@ -89,12 +89,25 @@ Agent workflow skills. **The prior `author: Ship Shit Dev` frontmatter on three 
 
 ### muratcankoylan/Agent-Skills-for-Context-Engineering — MIT — `rolling` (`main`)
 
-Ported to upstream v2.x on **2026-06-12** (commit `cbc2c978133d`, 2026-05-15 corpus): body, references, and scripts now match upstream. Cross-references to upstream sibling skills **not vendored here** (`context-compression`, `filesystem-context`, `project-development`, `latent-briefing`) were stripped so routing only names skills present in this marketplace. Re-check by diffing the upstream path since `cbc2c978133d`.
+Eight skills derive from this repo, all verified by fetching the live upstream file (MIT confirmed via the GitHub license API). Two were **ported forward** to the upstream v2.x corpus; six remain at their **v1.0.0 import** and are tracked for a future port.
+
+**Ported to upstream v2.x on 2026-06-12** (corpus commit `cbc2c978133d`, 2026-05-15): body, references, and scripts match upstream. Cross-references to upstream siblings **not vendored here** (`context-compression`, `filesystem-context`, `project-development`, `latent-briefing`) were stripped so routing only names skills present in this marketplace. Re-check by diffing the upstream path since `cbc2c978133d`.
 
 | Skill | Synced commit | Local version |
 |-------|---------------|---------------|
 | context-fundamentals | `cbc2c978133d` | v2.2.0 (routing framework + gotchas) |
 | context-optimization | `cbc2c978133d` | v2.1.0 |
+
+**Tracked at v1.0.0 — port pending.** Imported 2026-01-20 (this repo's commit `ef42a98`) at the v1.0.0-era content. Each is pinned to the earliest upstream commit at its path — a verified ancestor of the vendored body — **not** to current upstream HEAD, because the bodies have not been ported. The 90-day staleness validator warning on these is expected and correct until they are ported. To port any one: diff its upstream path on `main` since the pinned commit, bring the additions home (Gotchas sections, `claim-*` evidence IDs, "Do not activate" routing), strip refs to non-vendored siblings, then bump `upstream_commit` + `last_synced`.
+
+| Skill | Pinned commit | Local | Upstream now | Notable upstream additions |
+|-------|---------------|-------|--------------|----------------------------|
+| context-degradation | `969441a5996a` | v1.0.0 | v2.1.0 | Gotchas (7), claim-* IDs, Examples 3-4, negative activation boundaries |
+| memory-systems | `969441a5996a` | v1.0.0 | v4.1.0 | Production-framework + benchmark tables, Gotchas (8), Error Recovery — largest drift |
+| multi-agent-patterns | `969441a5996a` | v1.0.0 | v2.1.0 | Gotchas (8), "Do not activate", de-specified token table. Local-only "Dispatching Parallel Agents" — preserve on port |
+| tool-design | `969441a5996a` | v1.0.0 | v2.2.0 | "Build for Future Models", Tool Audit Checklist, Gotchas (4→9) |
+| evaluation | `969441a5996a` | v1.0.0 | v1.2.0 | Deterministic-validation, Examples 3-4, Gotchas (8), softened % claims |
+| advanced-evaluation | `0b9a3b81bfea` | v1.0.0 | v2.1.0 | Prompt templates, Metric Selection table, worked JSON examples, Guidelines (10), Gotchas (8), Scaling |
 
 ### pproenca/dot-skills — MIT — `rolling` (`master`)
 

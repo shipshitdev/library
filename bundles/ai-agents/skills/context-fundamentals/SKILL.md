@@ -191,13 +191,16 @@ Read this skill first to build the mental models; read the operational skill tha
 ## References
 
 Internal reference:
+
 - [Context Components Reference](./references/context-components.md) - Read when: debugging a specific context component (system prompts, tool definitions, message history, tool outputs) or implementing chunking, observation masking, or budget allocation tables
 
 Related skills in this collection:
+
 - context-degradation - Read when: agent performance drops as conversations grow or context fills beyond 60% capacity
 - context-optimization - Read when: token costs are too high or compaction/compression strategies are needed
 
 External resources:
+
 - Anthropic's "Effective Context Engineering for AI Agents" — production patterns for compaction, sub-agents, and hybrid retrieval
 - Research on transformer attention mechanisms and the lost-in-the-middle effect
 - Tokenomics research on agentic software engineering token distribution

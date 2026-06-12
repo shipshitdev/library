@@ -9,13 +9,17 @@ description: >-
   or abandoned.
 metadata:
   version: "1.0.0"
+  source: https://github.com/obra/superpowers/blob/main/skills/finishing-a-development-branch/SKILL.md
+  upstream_repo: obra/superpowers
+  upstream_ref: main
+  upstream_commit: f2cbfbefebbf
+  last_synced: "2026-06-12"
+  license: MIT
   tags: "git, branch, merge, pull-request, workflow, worktree, cleanup"
-  author: Ship Shit Dev
 allowed-tools: Bash(git *) Bash(gh *)
 disable-model-invocation: true
 when_to_use: "finish branch, done coding, ready to merge, create PR, close branch, wrap up feature, branch cleanup, integration workflow"
 ---
-
 # Finishing a Development Branch
 
 Guide completion of development work by presenting clear options and handling

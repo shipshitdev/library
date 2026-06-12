@@ -4,9 +4,14 @@ description: Suite of tools for creating elaborate, multi-component claude.ai HT
 license: Complete terms in LICENSE.txt
 metadata:
   version: "1.0.0"
+  source: https://github.com/anthropics/skills/blob/main/skills/web-artifacts-builder/SKILL.md
+  upstream_repo: anthropics/skills
+  upstream_ref: main
+  upstream_commit: ef740771ac90
+  last_synced: "2026-06-12"
+  license: Apache-2.0
   tags: "artifacts, frontend, html"
 ---
-
 # Artifacts Builder
 
 To build powerful frontend claude.ai artifacts, follow these steps:

@@ -6,11 +6,16 @@ argument-hint: "[area (feature, page, component...)]"
 metadata:
   version: "2.1.1"
   tags: "audit, quality, accessibility"
+  source: https://github.com/pbakaus/impeccable/blob/main/skill/reference/audit.md
+  upstream_version: skill-v2.1.1
+  upstream_latest: skill-v3.5.0
+  last_synced: "2026-06-12"
+  license: Apache-2.0
 ---
 
 Run systematic **technical** quality checks and generate a comprehensive report. Don't fix issues — document them for other commands to address.
 
-If the `/impeccable` skill is available, load it first for design principles and the **Context Gathering Protocol**. Otherwise proceed with the built-in checks below.
+Before scanning, read the existing design system (CSS / tokens / theme and a representative component) so "correct" is measured against the project's own conventions, not generic defaults. If the repo carries design context (`PRODUCT.md`, `DESIGN.md`, `.impeccable.md`, or a `## Design Context` block in `.github/copilot-instructions.md`), read it too.
 
 This is a code-level audit, not a design critique. Check what's measurable and verifiable in the implementation.
 
@@ -68,7 +73,7 @@ Run comprehensive checks across 5 dimensions. Score each dimension 0-4 using the
 
 ### 5. Anti-Patterns (CRITICAL)
 
-Look for AI slop tells (AI color palette, gradient text, glassmorphism, hero metrics, card grids, generic fonts) and general design anti-patterns (gray on color, nested cards, bounce easing, redundant copy). If the `/impeccable` skill is available, consult its DON'T guidelines for a full list.
+Look for AI slop tells (generic indigo/violet palette, gradient text, dark glows, glassmorphism, hero-metric layouts, identical 3-card grids, generic geometric fonts) and general design anti-patterns (gray text on colored backgrounds, nested cards, bounce/elastic easing, redundant copy that restates a visible label).
 
 **Score 0-4**: 0=AI slop gallery (5+ tells), 1=Heavy AI aesthetic (3-4 tells), 2=Some tells (1-2 noticeable), 3=Mostly clean (subtle issues only), 4=No AI tells (distinctive, intentional design)
 

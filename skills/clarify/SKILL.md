@@ -6,15 +6,22 @@ argument-hint: "[target]"
 metadata:
   version: "2.1.1"
   tags: "ux-writing, copy, clarity"
+  source: https://github.com/pbakaus/impeccable/blob/main/skill/reference/clarify.md
+  upstream_version: skill-v2.1.1
+  upstream_latest: skill-v3.5.0
+  last_synced: "2026-06-12"
+  license: Apache-2.0
 ---
 
 Identify and improve unclear, confusing, or poorly written interface text to make the product easier to understand and use.
 
-## MANDATORY PREPARATION
+## Context Gathering
 
-Invoke /impeccable — it contains design principles, anti-patterns, and the **Context Gathering Protocol**. Follow the protocol before proceeding — if no design context exists yet, you MUST run /impeccable teach first. Additionally gather: audience technical level and users' mental state in context.
+Before assessing copy, gather the context that determines what "clear" means here:
 
----
+- **Design context** — if the repo carries `PRODUCT.md`, `DESIGN.md`, `.impeccable.md`, or a `## Design Context` block in `.github/copilot-instructions.md`, read it for voice and audience. Skip silently if none exist.
+- **Audience** — technical level (engineer, general consumer, first-time user) and the user's mental state at this moment (stressed mid-error, confident on success, rushed during checkout). Tone follows from this.
+- **Existing voice** — skim a handful of existing strings in the product so improvements match the established terminology instead of introducing a second dialect.
 
 ## Assess Current Copy
 

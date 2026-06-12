@@ -9,9 +9,14 @@ disable-model-invocation: true
 license: Complete terms in LICENSE.txt
 metadata:
   version: "1.0.0"
+  source: https://github.com/anthropics/skills/blob/main/skills/mcp-builder/SKILL.md
+  upstream_repo: anthropics/skills
+  upstream_ref: main
+  upstream_commit: ef740771ac90
+  last_synced: "2026-06-12"
+  license: Apache-2.0
   tags: "mcp, tools, agents"
 ---
-
 # MCP Server Development Guide
 
 ## Overview

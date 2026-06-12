@@ -4,12 +4,16 @@ description: >-
   Evaluate incoming code-review feedback with technical rigor before implementing any change. Verify each point against the codebase, push back with reasoning when the reviewer is wrong, and never perform empty agreement. Use when you receive a review, before touching any code, especially when feedback seems unclear or technically questionable.
 metadata:
   version: "1.0.0"
+  source: https://github.com/obra/superpowers/blob/main/skills/receiving-code-review/SKILL.md
+  upstream_repo: obra/superpowers
+  upstream_ref: main
+  upstream_commit: 1455ac0631e2
+  last_synced: "2026-06-12"
+  license: MIT
   tags: "code-review, feedback, review-response, pushback, verification"
-  author: Ship Shit Dev
 allowed-tools: Bash(git *) Bash(gh *)
 when_to_use: "receiving review feedback, addressing PR comments, responding to reviewer, evaluating suggestions, pushing back on feedback"
 ---
-
 # Receiving Code Review
 
 ## Core Principle

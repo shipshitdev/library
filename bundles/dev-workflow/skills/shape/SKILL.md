@@ -6,13 +6,26 @@ argument-hint: "[feature to shape]"
 metadata:
   version: "2.1.1"
   tags: "ux, planning, design-brief"
+  source: https://github.com/pbakaus/impeccable/blob/main/skill/reference/shape.md
+  upstream_version: skill-v2.1.1
+  upstream_latest: skill-v3.5.0
+  last_synced: "2026-06-12"
+  license: Apache-2.0
 ---
 
 Shape the UX and UI for a feature before any code is written. This skill produces a **design brief**: a structured artifact that guides implementation through discovery, not guesswork.
 
 **Scope**: Design planning only. This skill does NOT write code. It produces the thinking that makes code good.
 
-**Output**: A design brief that can be handed off to any implementation skill. If the `/impeccable` skill is available, load it first for design principles and the Context Gathering Protocol — otherwise proceed with the built-in discovery questions below.
+**Output**: A design brief that can be handed off to any implementation skill.
+
+## Context Gathering
+
+Before the interview, ground yourself in the project so the brief reflects what already exists:
+
+- **Design context** — if the repo carries any of `PRODUCT.md`, `DESIGN.md`, `.impeccable.md`, or a `## Design Context` block in `.github/copilot-instructions.md`, read it. Skip silently if none exist.
+- **Existing system** — read the established design system (CSS / tokens / theme and one representative component or page) to learn the conventions in play. Use what's there; branch out only when the UX wins.
+- **Register** — decide whether design *is* the product (marketing, landing, portfolio → identity and boldness lead) or design *serves* the product (app, dashboard, tool → clarity and restraint lead). This frames every direction choice below.
 
 ## Philosophy
 

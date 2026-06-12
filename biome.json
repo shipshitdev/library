@@ -16,7 +16,8 @@
       "skills/**/plugin.json",
       "!**/node_modules",
       "!bundles/**/skills",
-      "!plugins"
+      "!plugins",
+      "!scripts/**/*.workflow.js"
     ]
   },
   "formatter": {

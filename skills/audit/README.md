@@ -1,0 +1,19 @@
+# audit
+
+Run systematic technical quality checks (accessibility, performance, theming, responsive design, anti-patterns) and generate a scored P0–P3 report.
+
+## Upstream
+
+Derived from **[pbakaus/impeccable](https://github.com/pbakaus/impeccable)** (Apache-2.0).
+
+| Field | Value |
+|-------|-------|
+| Source | [`skill/reference/audit.md`](https://github.com/pbakaus/impeccable/blob/main/skill/reference/audit.md) |
+| Forked at | `skill-v2.1.1` |
+| Upstream latest | `skill-v3.5.0` |
+| Last synced | 2026-06-12 |
+| License | Apache-2.0 |
+
+**Local modifications:** removed the hard dependency on the parent `/impeccable` orchestrator skill (not part of this marketplace) and inlined a self-contained Context Gathering summary plus the AI-slop DON'T list, so the skill runs standalone.
+
+**Checking for upstream changes:** when *Upstream latest* is ahead of *Forked at*, diff [`skill/reference/audit.md`](https://github.com/pbakaus/impeccable/blob/main/skill/reference/audit.md) against tag `skill-v2.1.1`, port anything worth bringing home, then bump `metadata.upstream_version` and `metadata.last_synced` in `SKILL.md` and this table.

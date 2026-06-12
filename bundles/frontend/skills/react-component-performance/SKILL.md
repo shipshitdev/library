@@ -3,12 +3,16 @@ name: react-component-performance
 description: Diagnose slow React components and suggest targeted performance fixes.
 metadata:
   version: "1.0.0"
+  source: https://github.com/Dimillian/Skills/blob/main/react-component-performance/SKILL.md
+  upstream_repo: Dimillian/Skills
+  upstream_ref: main
+  upstream_commit: 3db84e63d050
+  last_synced: "2026-06-12"
+  license: MIT
   tags: "react, performance, components"
   risk: safe
-  source: "Dimillian/Skills (MIT)"
   date_added: "2026-03-25"
 ---
-
 # React Component Performance
 
 ## Overview

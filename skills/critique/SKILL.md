@@ -6,13 +6,18 @@ argument-hint: "[area (feature, page, component...)]"
 metadata:
   version: "2.1.1"
   tags: "critique, ux, design"
+  source: https://github.com/pbakaus/impeccable/blob/main/skill/reference/critique.md
+  upstream_version: skill-v2.1.1
+  upstream_latest: skill-v3.5.0
+  last_synced: "2026-06-12"
+  license: Apache-2.0
 ---
 
 ## STEPS
 
 ### Step 1: Preparation
 
-Gather context about the interface under review: what it is trying to accomplish, who uses it, and where to find the relevant source files. If a `.impeccable.md` or `.github/copilot-instructions.md` file exists with a `## Design Context` section, read it now. If available, run `/impeccable` to load design principles and the Context Gathering Protocol — otherwise proceed with the built-in guidelines below.
+Gather context about the interface under review: what it is trying to accomplish, who uses it, and where to find the relevant source files. If a `.impeccable.md` or a `## Design Context` block in `.github/copilot-instructions.md` exists, read it now for brand and audience. Read the existing design system (CSS / tokens / theme and a representative component) so the critique judges against the project's own conventions rather than generic defaults.
 
 ### Step 2: Gather Assessments
 
@@ -34,7 +39,7 @@ document.title = '[LLM] ' + document.title;
 
 Think like a design director. Evaluate:
 
-**AI Slop Detection (CRITICAL)**: Does this look like every other AI-generated interface? Check for AI color palette, gradient text, dark glows, glassmorphism, hero metric layouts, identical card grids, generic fonts, and all other tells. If the `/impeccable` skill is available, also consult its full DON'T guidelines. **The test**: If someone said "AI made this," would you believe them immediately?
+**AI Slop Detection (CRITICAL)**: Does this look like every other AI-generated interface? Check for the generic indigo/violet palette, gradient text, dark glows, glassmorphism, hero-metric layouts, identical card grids, and generic geometric fonts. **The test**: If someone said "AI made this," would you believe them immediately?
 
 **Holistic Design Review**: visual hierarchy (eye flow, primary action clarity), information architecture (structure, grouping, cognitive load), emotional resonance (does it match brand and audience?), discoverability (are interactive elements obvious?), composition (balance, whitespace, rhythm), typography (hierarchy, readability, font choices), color (purposeful use, cohesion, accessibility), states & edge cases (empty, loading, error, success), microcopy (clarity, tone, helpfulness).
 
@@ -144,7 +149,7 @@ For each issue, tag with **P0-P3 severity** (consult [heuristics-scoring](refere
 >
 > *Consult [personas](references/personas.md)*
 
-Auto-select 2-3 personas most relevant to this interface type (use the selection table in the reference). If `.github/copilot-instructions.md` contains a `## Design Context` section from `impeccable teach`, also generate 1-2 project-specific personas from the audience/brand info.
+Auto-select 2-3 personas most relevant to this interface type (use the selection table in the reference). If `.github/copilot-instructions.md` contains a `## Design Context` section, also generate 1-2 project-specific personas from the audience/brand info.
 
 For each selected persona, walk through the primary user action and list specific red flags found:
 

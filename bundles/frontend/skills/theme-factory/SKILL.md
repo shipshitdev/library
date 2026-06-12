@@ -4,10 +4,14 @@ description: Toolkit for styling artifacts with a theme. These artifacts can be 
 license: Complete terms in LICENSE.txt
 metadata:
   version: "1.0.0"
+  source: https://github.com/anthropics/skills/blob/main/skills/theme-factory/SKILL.md
+  upstream_repo: anthropics/skills
+  upstream_ref: main
+  upstream_commit: ef740771ac90
+  last_synced: "2026-06-12"
+  license: Apache-2.0
   tags: "themes, design, styling"
 ---
-
-
 # Theme Factory Skill
 
 This skill provides a curated collection of professional font and color themes themes, each with carefully selected color palettes and font pairings. Once a theme is chosen, it can be applied to any artifact.

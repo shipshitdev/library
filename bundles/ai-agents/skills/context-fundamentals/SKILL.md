@@ -3,9 +3,14 @@ name: context-fundamentals
 description: Understand the components, mechanics, and constraints of context in agent systems. Use when designing agent architectures, debugging context-related failures, or optimizing context usage.
 metadata:
   version: "1.0.0"
+  source: https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/blob/main/skills/context-fundamentals/SKILL.md
+  upstream_repo: muratcankoylan/Agent-Skills-for-Context-Engineering
+  upstream_ref: main
+  upstream_commit: cbc2c978133d
+  last_synced: "2026-06-12"
+  license: MIT
   tags: "context, agents, architecture"
 ---
-
 # Context Engineering Fundamentals
 
 Context is the complete state available to a language model at inference time. It includes everything the model can attend to when generating responses: system instructions, tool definitions, retrieved documents, message history, and tool outputs. Understanding context fundamentals is prerequisite to effective context engineering.

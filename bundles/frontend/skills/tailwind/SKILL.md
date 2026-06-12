@@ -8,9 +8,14 @@ description: >-
   optimization.
 metadata:
   version: "1.0.0"
+  source: https://github.com/pproenca/dot-skills/blob/master/skills/.curated/tailwind/SKILL.md
+  upstream_repo: pproenca/dot-skills
+  upstream_ref: master
+  upstream_commit: 91a64a6e7d49
+  last_synced: "2026-06-12"
+  license: MIT
   tags: "tailwind, css, frontend"
 ---
-
 # Community Tailwind CSS v4 Best Practices
 
 Comprehensive performance optimization guide for Tailwind CSS v4 applications. Contains 44 rules across 8 categories, prioritized by impact to guide automated refactoring and code generation.

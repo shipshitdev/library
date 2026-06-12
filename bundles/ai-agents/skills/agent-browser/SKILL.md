@@ -4,9 +4,14 @@ description: Automates browser interactions for web testing, form filling, scree
 allowed-tools: Bash(agent-browser:*)
 metadata:
   version: "1.0.0"
+  source: https://github.com/vercel-labs/agent-browser/blob/main/skills/agent-browser/SKILL.md
+  upstream_repo: vercel-labs/agent-browser
+  upstream_ref: main
+  upstream_commit: d33bdb36f3f7
+  last_synced: "2026-06-12"
+  license: Apache-2.0
   tags: "browser, automation, testing"
 ---
-
 # Browser Automation with agent-browser
 
 ## Contract

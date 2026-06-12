@@ -3,7 +3,6 @@ name: react-patterns
 description: Modern React patterns and principles. Hooks, composition, performance, TypeScript best practices.
 metadata:
   risk: safe
-  source: community
   date_added: '2026-02-27'
   version: "1.0.0"
   tags: "react, patterns, frontend"

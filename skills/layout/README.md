@@ -1,0 +1,19 @@
+# layout
+
+Improve layout, spacing, and visual rhythm — fix monotonous grids, inconsistent spacing, and weak visual hierarchy.
+
+## Upstream
+
+Derived from **[pbakaus/impeccable](https://github.com/pbakaus/impeccable)** (Apache-2.0).
+
+| Field | Value |
+|-------|-------|
+| Source | [`skill/reference/layout.md`](https://github.com/pbakaus/impeccable/blob/main/skill/reference/layout.md) |
+| Forked at | `skill-v2.1.1` |
+| Upstream latest | `skill-v3.5.0` |
+| Last synced | 2026-06-12 |
+| License | Apache-2.0 |
+
+**Local modifications:** vendored as a standalone marketplace plugin. No behavioral changes from upstream beyond provenance metadata; this skill never invoked `/impeccable`.
+
+**Checking for upstream changes:** when *Upstream latest* is ahead of *Forked at*, diff [`skill/reference/layout.md`](https://github.com/pbakaus/impeccable/blob/main/skill/reference/layout.md) against tag `skill-v2.1.1`, port anything worth bringing home, then bump `metadata.upstream_version` and `metadata.last_synced` in `SKILL.md` and this table.

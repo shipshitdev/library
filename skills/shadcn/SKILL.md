@@ -7,9 +7,14 @@ description: >-
   tables, theming, or component composition patterns.
 metadata:
   version: "1.0.0"
+  source: https://github.com/pproenca/dot-skills/blob/master/skills/.curated/shadcn/SKILL.md
+  upstream_repo: pproenca/dot-skills
+  upstream_ref: master
+  upstream_commit: b94ecb3dae52
+  last_synced: "2026-06-12"
+  license: MIT
   tags: "shadcn, ui, react"
 ---
-
 # shadcn/ui Community Best Practices
 
 Comprehensive best practices guide for shadcn/ui applications, maintained by the shadcn/ui community. Contains 58 rules across 10 categories, prioritized by impact to guide automated refactoring and code generation.

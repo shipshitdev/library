@@ -4,9 +4,14 @@ description: Guide for creating effective skills. Use when creating a new skill 
 license: Complete terms in LICENSE.txt
 metadata:
   version: "1.0.0"
+  source: https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md
+  upstream_repo: anthropics/skills
+  upstream_ref: main
+  upstream_commit: b0cbd3df1533
+  last_synced: "2026-06-12"
+  license: Apache-2.0
   tags: "skills, creation, agents"
 ---
-
 # Skill Creator
 
 This skill provides guidance for creating effective skills.

@@ -6,6 +6,11 @@ argument-hint: "[target]"
 metadata:
   version: "2.1.1"
   tags: "visual-design, refinement, ui"
+  source: https://github.com/pbakaus/impeccable/blob/main/skill/reference/quieter.md
+  upstream_version: skill-v2.1.1
+  upstream_latest: skill-v3.5.0
+  last_synced: "2026-06-12"
+  license: Apache-2.0
 ---
 
 Reduce visual intensity in designs that are too bold, aggressive, or overstimulating, creating a more refined and approachable aesthetic without losing effectiveness.

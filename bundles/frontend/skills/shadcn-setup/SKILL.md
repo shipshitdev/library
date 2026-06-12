@@ -1,14 +1,54 @@
 ---
 name: shadcn-setup
-description: Set up shadcn/ui component library with Tailwind CSS v4 configuration. Handles installation, initialization, theme configuration, and common component setup. Use when starting a new Next.js/React project that needs a component library.
+disable-model-invocation: true
+description: >-
+  Sets up shadcn/ui with Tailwind CSS v4 CSS-first configuration — installs
+  packages, generates globals.css with @theme tokens, creates components.json,
+  and adds the cn() utility. Use when starting a new Next.js or React project
+  that needs a shadcn component library, or migrating from shadcn + Tailwind v3.
 metadata:
   version: "1.0.0"
-  tags: shadcn, ui, components, tailwind, react, nextjs
+  tags: "shadcn, ui, components, tailwind, react, nextjs"
 ---
 
 # shadcn/ui Setup
 
 Sets up shadcn/ui with proper Tailwind CSS v4 configuration. This skill ensures you get the modern CSS-first setup, not the deprecated v3 approach.
+
+## Contract
+
+Inputs:
+
+- Project root directory (defaults to current working directory).
+- Optional: theme name (zinc, slate, stone, etc.), component list, router type (app-router or pages-router).
+
+Outputs:
+
+- `globals.css` with `@import "tailwindcss"` and full `@theme` token block.
+- `components.json` with CSS-first shadcn config.
+- `src/lib/utils.ts` with `cn()` helper.
+- Installed packages: `class-variance-authority`, `clsx`, `tailwind-merge`, `lucide-react`, `tailwindcss`, `@tailwindcss/postcss`.
+
+Creates/Modifies:
+
+- `src/app/globals.css` (created or overwritten).
+- `components.json` (created or overwritten).
+- `src/lib/utils.ts` (created).
+- `package.json` (dependencies updated via `bun add`).
+- `postcss.config.mjs` (created if absent).
+
+External Side Effects:
+
+- Runs `bun add` to install packages.
+- Runs `bunx shadcn@latest add` for any specified components.
+
+Confirmation Required:
+
+- None. Running this skill applies all changes immediately. Review the component list before invoking in an existing project.
+
+Delegates To:
+
+- `bunx shadcn@latest add` for individual component installation.
 
 ## Purpose
 
@@ -29,20 +69,18 @@ Sets up shadcn/ui with proper Tailwind CSS v4 configuration. This skill ensures 
 ## Quick Start
 
 ```bash
-# Full setup (recommended)
-python3 scripts/setup.py --root .
+# Install core dependencies
+bun add class-variance-authority clsx tailwind-merge lucide-react
+bun add -D tailwindcss @tailwindcss/postcss
 
-# With specific theme
-python3 scripts/setup.py --root . --theme zinc
+# Initialize shadcn (CSS-first, no tailwind.config)
+bunx shadcn@latest init
 
 # Install specific components
-python3 scripts/setup.py --root . --components button,card,input,dialog
+bunx shadcn@latest add button card input dialog
 
-# Next.js App Router (default)
-python3 scripts/setup.py --root . --app-router
-
-# Next.js Pages Router
-python3 scripts/setup.py --root . --pages-router
+# Or install an essential starter set
+bunx shadcn@latest add button card input label dialog dropdown-menu toast
 ```
 
 ## What Gets Installed
@@ -84,118 +122,9 @@ project/
 
 ## Tailwind v4 + shadcn CSS Configuration
 
-The skill generates a CSS-first configuration:
+The skill generates a CSS-first configuration using `@import "tailwindcss"` and an `@theme` block with all shadcn color tokens and border-radius variables.
 
-```css
-/* src/app/globals.css */
-@import "tailwindcss";
-
-@theme {
-  /* Base colors */
-  --color-background: hsl(0 0% 100%);
-  --color-foreground: hsl(222.2 84% 4.9%);
-
-  /* Card */
-  --color-card: hsl(0 0% 100%);
-  --color-card-foreground: hsl(222.2 84% 4.9%);
-
-  /* Popover */
-  --color-popover: hsl(0 0% 100%);
-  --color-popover-foreground: hsl(222.2 84% 4.9%);
-
-  /* Primary */
-  --color-primary: hsl(222.2 47.4% 11.2%);
-  --color-primary-foreground: hsl(210 40% 98%);
-
-  /* Secondary */
-  --color-secondary: hsl(210 40% 96.1%);
-  --color-secondary-foreground: hsl(222.2 47.4% 11.2%);
-
-  /* Muted */
-  --color-muted: hsl(210 40% 96.1%);
-  --color-muted-foreground: hsl(215.4 16.3% 46.9%);
-
-  /* Accent */
-  --color-accent: hsl(210 40% 96.1%);
-  --color-accent-foreground: hsl(222.2 47.4% 11.2%);
-
-  /* Destructive */
-  --color-destructive: hsl(0 84.2% 60.2%);
-  --color-destructive-foreground: hsl(210 40% 98%);
-
-  /* Border & Input */
-  --color-border: hsl(214.3 31.8% 91.4%);
-  --color-input: hsl(214.3 31.8% 91.4%);
-  --color-ring: hsl(222.2 84% 4.9%);
-
-  /* Chart colors */
-  --color-chart-1: hsl(12 76% 61%);
-  --color-chart-2: hsl(173 58% 39%);
-  --color-chart-3: hsl(197 37% 24%);
-  --color-chart-4: hsl(43 74% 66%);
-  --color-chart-5: hsl(27 87% 67%);
-
-  /* Border radius */
-  --radius-sm: 0.25rem;
-  --radius-md: 0.375rem;
-  --radius-lg: 0.5rem;
-  --radius-xl: 0.75rem;
-  --radius-2xl: 1rem;
-  --radius-full: 9999px;
-
-  /* Sidebar (if using sidebar component) */
-  --color-sidebar: hsl(0 0% 98%);
-  --color-sidebar-foreground: hsl(240 5.3% 26.1%);
-  --color-sidebar-primary: hsl(240 5.9% 10%);
-  --color-sidebar-primary-foreground: hsl(0 0% 98%);
-  --color-sidebar-accent: hsl(240 4.8% 95.9%);
-  --color-sidebar-accent-foreground: hsl(240 5.9% 10%);
-  --color-sidebar-border: hsl(220 13% 91%);
-  --color-sidebar-ring: hsl(217.2 91.2% 59.8%);
-}
-
-/* Dark mode */
-@media (prefers-color-scheme: dark) {
-  @theme {
-    --color-background: hsl(222.2 84% 4.9%);
-    --color-foreground: hsl(210 40% 98%);
-    --color-card: hsl(222.2 84% 4.9%);
-    --color-card-foreground: hsl(210 40% 98%);
-    --color-popover: hsl(222.2 84% 4.9%);
-    --color-popover-foreground: hsl(210 40% 98%);
-    --color-primary: hsl(210 40% 98%);
-    --color-primary-foreground: hsl(222.2 47.4% 11.2%);
-    --color-secondary: hsl(217.2 32.6% 17.5%);
-    --color-secondary-foreground: hsl(210 40% 98%);
-    --color-muted: hsl(217.2 32.6% 17.5%);
-    --color-muted-foreground: hsl(215 20.2% 65.1%);
-    --color-accent: hsl(217.2 32.6% 17.5%);
-    --color-accent-foreground: hsl(210 40% 98%);
-    --color-destructive: hsl(0 62.8% 30.6%);
-    --color-destructive-foreground: hsl(210 40% 98%);
-    --color-border: hsl(217.2 32.6% 17.5%);
-    --color-input: hsl(217.2 32.6% 17.5%);
-    --color-ring: hsl(212.7 26.8% 83.9%);
-    --color-sidebar: hsl(240 5.9% 10%);
-    --color-sidebar-foreground: hsl(240 4.8% 95.9%);
-    --color-sidebar-primary: hsl(224.3 76.3% 48%);
-    --color-sidebar-primary-foreground: hsl(0 0% 100%);
-    --color-sidebar-accent: hsl(240 3.7% 15.9%);
-    --color-sidebar-accent-foreground: hsl(240 4.8% 95.9%);
-    --color-sidebar-border: hsl(240 3.7% 15.9%);
-  }
-}
-
-/* Base styles */
-* {
-  border-color: var(--color-border);
-}
-
-body {
-  background-color: var(--color-background);
-  color: var(--color-foreground);
-}
-```
+See `${CLAUDE_SKILL_DIR}/references/shadcn-theme-tokens.md` for the full token block (load when constructing the globals.css file).
 
 ## Available Themes
 
@@ -221,16 +150,13 @@ Install commonly used components:
 
 ```bash
 # Essential set
-python3 scripts/setup.py --root . \
-  --components button,card,input,label,dialog,dropdown-menu,toast
+bunx shadcn@latest add button card input label dialog dropdown-menu toast
 
 # Form-focused
-python3 scripts/setup.py --root . \
-  --components form,input,label,select,checkbox,radio-group,switch,textarea
+bunx shadcn@latest add form input label select checkbox radio-group switch textarea
 
 # Dashboard
-python3 scripts/setup.py --root . \
-  --components card,table,tabs,badge,avatar,dropdown-menu,sheet,sidebar
+bunx shadcn@latest add card table tabs badge avatar dropdown-menu sheet sidebar
 ```
 
 ## components.json Configuration
@@ -379,10 +305,15 @@ export function cn(...inputs: ClassValue[]) {
 
 ## Validation
 
-After setup, run the Tailwind v4 validator:
+After setup, verify no v3 patterns were introduced:
 
 ```bash
-python3 scripts/validate.py --root . --verbose
-```
+# Should return nothing (no v3 tailwind.config files)
+find . -name "tailwind.config.*" -not -path "*/node_modules/*"
 
-This ensures no v3 patterns were accidentally introduced.
+# Should return nothing (no @apply directives)
+grep -r "@apply" src/ --include="*.css" 2>/dev/null
+
+# Verify the @import directive is present
+grep "@import \"tailwindcss\"" src/app/globals.css
+```

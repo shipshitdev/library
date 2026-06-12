@@ -17,7 +17,6 @@ Code review, debugging, refactoring, release, and AI-assisted development workfl
 - `ai-regression-testing`
 - `analyze-codebase`
 - `codebase-advisor`
-- `claude-code-guide`
 - `code-review`
 - `structural-review`
 - `full-code-review`
@@ -32,7 +31,6 @@ Code review, debugging, refactoring, release, and AI-assisted development workfl
 - `refactor-code`
 - `release-cleanup`
 - `release-pr-gates`
-- `review-pr`
 - `scaffold`
 - `shape`
 - `skill-capture`

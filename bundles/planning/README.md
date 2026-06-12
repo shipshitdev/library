@@ -13,7 +13,6 @@ Strategy, planning, and analysis skills
 
 - `roadmap-analyzer`
 - `strategy-expert`
-- `analytics-expert`
 - `cto-advisor`
 - `business-operator`
 - `feature-intake`

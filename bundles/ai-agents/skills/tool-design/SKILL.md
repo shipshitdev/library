@@ -65,40 +65,7 @@ Consolidation is not universally correct. Tools with fundamentally different beh
 
 The consolidation principle, taken to its logical extreme, leads to architectural reduction: removing most specialized tools in favor of primitive, general-purpose capabilities. Production evidence shows this approach can outperform sophisticated multi-tool architectures.
 
-**The File System Agent Pattern**
-Instead of building custom tools for data exploration, schema lookup, and query validation, provide direct file system access through a single command execution tool. The agent uses standard Unix utilities (grep, cat, find, ls) to explore, understand, and operate on your system.
-
-This works because:
-
-1. File systems are a proven abstraction that models understand deeply
-2. Standard tools have predictable, well-documented behavior
-3. The agent can chain primitives flexibly rather than being constrained to predefined workflows
-4. Good documentation in files replaces the need for summarization tools
-
-**When Reduction Outperforms Complexity**
-Reduction works when:
-
-- Your data layer is well-documented and consistently structured
-- The model has sufficient reasoning capability to navigate complexity
-- Your specialized tools were constraining rather than enabling the model
-- You're spending more time maintaining scaffolding than improving outcomes
-
-Reduction fails when:
-
-- Your underlying data is messy, inconsistent, or poorly documented
-- The domain requires specialized knowledge the model lacks
-- Safety constraints require limiting what the agent can do
-- Operations are truly complex and benefit from structured workflows
-
-**Stop Constraining Reasoning**
-A common anti-pattern is building tools to "protect" the model from complexity. Pre-filtering context, constraining options, wrapping interactions in validation logic. These guardrails often become liabilities as models improve.
-
-The question to ask: are your tools enabling new capabilities, or are they constraining reasoning the model could handle on its own?
-
-**Build for Future Models**
-Models improve faster than tooling can keep up. An architecture optimized for today's model may be over-constrained for tomorrow's. Build minimal architectures that can benefit from model improvements rather than sophisticated architectures that lock in current limitations.
-
-See [Architectural Reduction Case Study](./references/architectural_reduction.md) for production evidence.
+See [Architectural Reduction Case Study](./references/architectural_reduction.md) for production evidence, implementation patterns, and decision criteria (load when evaluating whether to simplify an existing tool set).
 
 ### Tool Description Engineering
 
@@ -288,6 +255,13 @@ def search(query):
 11. Invest in documentation quality over tooling sophistication
 12. Build minimal architectures that benefit from model improvements
 
+## Gotchas
+
+- **MCP tool "not found" errors**: Almost always caused by omitting the server prefix. Always use `ServerName:tool_name` fully qualified format when multiple MCP servers are available.
+- **Consolidation backfires on unrelated tools**: Bundling tools with fundamentally different behaviors (e.g., read vs. write, user-facing vs. internal) into one tool increases agent confusion rather than reducing it. Only consolidate when the combined tool has a single clear use trigger.
+- **Reduction requires documentation quality first**: Removing specialized tools in favor of primitives only works when the underlying data layer is well-structured and legible. Reduction applied to messy schemas produces faster wrong answers.
+- **Token-efficient formats must still be actionable**: Choosing a concise response format to save tokens is counterproductive if the agent must call the tool again for missing information. Default to detailed for decision-critical operations.
+
 ## Integration
 
 This skill connects to:
@@ -314,12 +288,3 @@ External resources:
 - Framework tool conventions
 - API design best practices for agents
 - Vercel d0 agent architecture case study
-
----
-
-## Skill Metadata
-
-**Created**: 2025-12-20
-**Last Updated**: 2025-12-23
-**Author**: Agent Skills for Context Engineering Contributors
-**Version**: 1.1.0

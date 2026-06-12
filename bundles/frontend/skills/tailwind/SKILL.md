@@ -1,6 +1,11 @@
 ---
 name: tailwind
-description: Tailwind CSS v4 performance optimization and best practices guidelines (formerly tailwindcss-v4-style). This skill should be used when writing, reviewing, or refactoring Tailwind CSS v4 code to ensure optimal build performance, minimal CSS output, and correct usage of v4 features. Triggers on tasks involving Tailwind configuration, @theme directive, utility classes, responsive design, dark mode, container queries, or CSS generation optimization.
+description: >-
+  Provides Tailwind CSS v4 performance optimization and best practices
+  guidelines. Triggers when writing, reviewing, or refactoring Tailwind CSS v4
+  code; when working with Tailwind configuration, @theme directive, utility
+  classes, responsive design, dark mode, container queries, or CSS generation
+  optimization.
 metadata:
   version: "1.0.0"
   tags: "tailwind, css, frontend"
@@ -110,15 +115,10 @@ Read individual reference files for detailed explanations and code examples:
 - [Section definitions](references/_sections.md) - Category structure and impact levels
 - [Rule template](assets/templates/_template.md) - Template for adding new rules
 
-## Full Compiled Document
-
-For a complete guide with all rules expanded, see [AGENTS.md](AGENTS.md).
-
 ## Reference Files
 
 | File | Description |
 |------|-------------|
-| [AGENTS.md](AGENTS.md) | Complete compiled guide with all rules |
 | [references/_sections.md](references/_sections.md) | Category definitions and ordering |
 | [assets/templates/_template.md](assets/templates/_template.md) | Template for new rules |
 | [metadata.json](metadata.json) | Version and reference information |

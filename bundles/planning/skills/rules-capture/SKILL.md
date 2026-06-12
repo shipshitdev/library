@@ -1,9 +1,15 @@
 ---
 name: rules-capture
-description: "Capture reusable user rules."
+description: >-
+  Automatically detects and documents user preferences, coding standards, and
+  workflow rules from conversation — capturing them to
+  `.agents/memory/captured-rules.md` for promotion to permanent project or
+  user rules. Triggers on: "always do X", "never do X", "from now on", "the
+  rule is", "stop doing X", "I prefer", frustration indicators, or any
+  correction to AI behavior.
 metadata:
   version: "1.0.0"
-  tags: preferences, rules, documentation, automation
+  tags: "preferences, rules, documentation, automation"
 ---
 
 # Rules Capture Skill
@@ -279,6 +285,3 @@ The skill activates on these regex patterns:
 (what's the (rule|standard|convention) for|how should I|which way is)\s+.+
 ```
 
----
-
-**When this skill is active**, you will automatically capture and document any rules, preferences, or standards the user expresses, ensuring nothing is forgotten between sessions.

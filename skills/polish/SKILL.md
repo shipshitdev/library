@@ -8,12 +8,6 @@ metadata:
   tags: "polish, ui, quality"
 ---
 
-## MANDATORY PREPARATION
-
-Invoke /impeccable — it contains design principles, anti-patterns, and the **Context Gathering Protocol**. Follow the protocol before proceeding — if no design context exists yet, you MUST run /impeccable teach first. Additionally gather: quality bar (MVP vs flagship).
-
----
-
 Perform a meticulous final pass to catch all the small details that separate good work from great work. The difference between shipped and polished.
 
 ## Design System Discovery

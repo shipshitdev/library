@@ -28,7 +28,7 @@ Invoke this skill when asked to:
 - "Help me plan the product roadmap"
 - "What features are missing for our target customers?"
 - "Evaluate our competitive positioning"
-- "What do we need to focus on to serve SMBs creating UGC?"
+- "What do we need to focus on to better serve our target customers?"
 
 ## Analysis Workflow
 
@@ -56,13 +56,13 @@ packages/*/                - Shared packages
 - Database schemas (data models reveal supported features)
 - Configuration files (feature flags, settings)
 
-**Use grep/glob to find:**
+**Use grep/glob to find domain-relevant patterns.** Derive search terms from the project's ICP and value proposition — common patterns include:
 
-- Video editing features: `pattern: "edit|timeline|trim|cut|transition"`
-- Avatar features: `pattern: "avatar|character|persona|voice"`
-- Export features: `pattern: "export|format|platform|render"`
-- Template features: `pattern: "template|preset|brand"`
-- AI features: `pattern: "ai|generate|auto|openai|anthropic"`
+- Core product actions: `pattern: "create|generate|publish|export|analyze"`
+- Automation features: `pattern: "auto|schedule|batch|queue"`
+- Collaboration features: `pattern: "share|invite|team|permission|role"`
+- Integration features: `pattern: "connect|sync|import|webhook|api"`
+- AI features: `pattern: "ai|generate|openai|anthropic|llm"`
 
 #### 1.2 User Context Integration
 
@@ -75,23 +75,18 @@ Ask the user:
 
 #### 1.3 Feature Inventory Creation
 
-Organize discovered features into categories from `references/feature-categories.md`:
+Organize discovered features into categories appropriate for the project's domain. If a `references/feature-categories.md` exists in the skill or project, use it. Otherwise derive categories from the product's core value areas — common cross-domain categories include:
 
-1. Content Input & Ideation
-2. AI Avatar Creation & Management
-3. Video Editing & Assembly
-4. Visual Enhancement & Effects
-5. Text, Captions & Typography
-6. Audio & Music
-7. Platform Optimization & Export
-8. Templates & Brand Management
-9. Collaboration & Workflow
-10. Asset Management & Media Library
-11. AI & Automation Features
-12. Analytics & Performance
-13. Learning & Support
-14. Integration & Ecosystem
-15. E-commerce & Monetization
+1. Core Product Actions (the primary job the user hires the product for)
+2. AI & Automation Features
+3. Collaboration & Workflow
+4. Templates & Reuse
+5. Analytics & Performance
+6. Integration & Ecosystem
+7. Asset / Content Management
+8. Settings, Permissions & Admin
+9. Onboarding & Learning
+10. Monetization & Billing
 
 For each feature, note:
 
@@ -99,30 +94,26 @@ For each feature, note:
 - **Quality**: Production-ready, Beta, Prototype, Needs improvement
 - **Location**: Where found in codebase (file paths)
 
-### Step 2: Load ICP and Editor Needs Context
+### Step 2: Load ICP Context
 
-Read the reference documents to understand requirements:
+Read the reference documents to understand requirements. Check the skill's `references/` directory and the project's `.agents/memory/` for:
 
-**Required reading:**
+- `references/icp-profile.md` (if present) — deep understanding of target customer needs
+- `references/feature-categories.md` (if present) — feature taxonomy
+- Any project-specific ICP or persona docs in `.agents/memory/`
 
-- `references/icp-profile.md` - Deep understanding of target customer needs
-- `references/editor-needs.md` - What editors need for great social content
-- `references/feature-categories.md` - Comprehensive feature taxonomy
+If no reference documents exist, derive the ICP from:
 
-**Key focus areas from ICP:**
+- Product documentation and README
+- Existing user-facing copy (pricing page, landing page, onboarding)
+- Any product strategy docs in the codebase
 
-1. **AI Avatar Army**: Creating multiple avatars, consistency, customization
-2. **User Empowerment**: Self-service creation, templates, intuitive UX
-3. **UGC at Scale**: Volume, speed, platform-native content
-4. **Team Collaboration**: Multi-user, approvals, brand consistency
+**Key ICP dimensions to identify for any product:**
 
-**Critical editor needs:**
-
-- Platform-specific optimization (TikTok, Instagram, YouTube)
-- Fast pacing and trending effects
-- Text overlays and captions
-- Audio/music integration
-- Quick variations for A/B testing
+1. **Primary job-to-be-done**: What is the core outcome the user hires the product for?
+2. **User empowerment**: Can users self-serve, or do they need support at every step?
+3. **Scale needs**: Does the ICP need volume, speed, batch processing?
+4. **Collaboration**: Single-user or team, approvals, brand governance?
 
 ### Step 3: Gap Analysis
 
@@ -160,8 +151,8 @@ Highlight gaps where:
 
 1. ICP Need Priority = CRITICAL AND Gap Severity = CRITICAL/HIGH
 2. Feature is table stakes for competitors
-3. Feature directly enables "AI avatar army" or "user empowerment"
-4. Feature required for platform-native content (TikTok, Instagram, etc.)
+3. Feature directly enables the product's core differentiator or user empowerment story
+4. Feature required for the ICP's primary delivery channel or platform
 
 ### Step 4: Generate Prioritized Backlog
 
@@ -234,15 +225,13 @@ Group features into high-level strategic focus areas.
 
 #### 5.1 Theme Identification
 
-Analyze feature clusters to identify 3-5 strategic themes, such as:
+Analyze feature clusters to identify 3-5 strategic themes based on the discovered ICP and product goals. Derive theme names from the product's own language and vision. Common structural patterns:
 
-**Example themes:**
-
-- **"AI Avatar Arsenal"**: Building the avatar creation and management system
-- **"Platform-Native Mastery"**: Optimizing for TikTok, Instagram, YouTube
-- **"Team Empowerment Engine"**: Collaboration, templates, workflows
-- **"Speed to Market"**: Automation, batch processing, quick variations
-- **"Editor's Toolkit"**: Core editing capabilities for creators
+- **Core capability theme**: Building or completing the primary product value
+- **Scale / efficiency theme**: Automation, batch processing, speed improvements
+- **Collaboration theme**: Multi-user, approvals, brand governance
+- **Integration / ecosystem theme**: Connecting to external tools and platforms
+- **Analytics / insight theme**: Measurement, reporting, optimization
 
 #### 5.2 Theme Structure
 
@@ -278,7 +267,7 @@ For each theme, provide:
 Recommend theme focus order based on:
 
 1. **Foundation themes first**: Core platform capabilities required for everything else
-2. **Differentiator themes next**: Unique value props (e.g., AI avatar army)
+2. **Differentiator themes next**: Unique value props that set the product apart
 3. **Enhancement themes last**: Improvements to existing capabilities
 
 ### Step 6: Output Assembly
@@ -349,20 +338,18 @@ Combine all analysis into a comprehensive report:
 1. **Don't just list features**: Explain WHY each feature matters for ICP
 2. **Don't ignore existing features**: Give credit for what already exists
 3. **Don't treat all gaps equally**: Not all missing features are critical
-4. **Don't forget the "AI avatar army" vision**: This is a key differentiator
-5. **Don't overlook platform-specific needs**: TikTok ≠ YouTube
+4. **Don't forget the product's core differentiator**: Ground every recommendation in the unique value prop
+5. **Don't overlook platform or channel-specific needs**: Different delivery channels have different requirements
 6. **Don't assume features work well**: Existing features might have quality gaps
 
 ## Resources
 
 ### references/
 
-Three comprehensive reference documents inform the analysis:
+If `references/` exists in this skill's directory, load relevant documents at the start of analysis. Common useful reference files:
 
-- **icp-profile.md**: Detailed profile of target customers (SMBs creating UGC with AI, empowering users, building AI avatar armies). Includes pain points, core needs, success metrics, and buying journey.
+- **icp-profile.md**: Detailed profile of target customers — pain points, core needs, success metrics, buying journey. If absent, derive ICP from project docs.
 
-- **editor-needs.md**: Comprehensive breakdown of what video editors need to create great content for social platforms (TikTok, Instagram, YouTube). Covers editing capabilities, platform-specific requirements, audio/visual needs, and competitive benchmarks.
+- **feature-categories.md**: Taxonomy of feature categories for the product domain. Provides framework for organizing discovered features and identifying gaps systematically. If absent, derive categories from the product's core value areas (see Step 1.3).
 
-- **feature-categories.md**: Taxonomy of 15 feature categories typical in AI UGC platforms. Provides framework for organizing discovered features and identifying gaps systematically.
-
-Load these references at the start of analysis to inform all evaluation and recommendations.
+When no reference files exist, derive the same information from the project's own documentation, existing copy, and codebase before proceeding with the analysis.

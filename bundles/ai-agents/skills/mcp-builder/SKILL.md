@@ -1,6 +1,11 @@
 ---
 name: mcp-builder
-description: Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).
+description: >-
+  Creates high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with
+  external services through well-designed tools. Activates on: "build an MCP server", "create
+  MCP tools", "integrate API via MCP", "write a FastMCP server", "add MCP to Claude", or any
+  request to wrap an external API as LLM-callable tools in Python or Node/TypeScript.
+disable-model-invocation: true
 license: Complete terms in LICENSE.txt
 metadata:
   version: "1.0.0"
@@ -61,15 +66,15 @@ Before diving into implementation, understand how to design tools for AI agents 
 - Let agent feedback drive tool improvements
 - Prototype quickly and iterate based on actual agent performance
 
-#### 1.3 Study MCP Protocol Documentation
+#### 1.2 Study MCP Protocol Documentation
 
 **Fetch the latest MCP protocol documentation:**
 
 Use WebFetch to load: `https://modelcontextprotocol.io/llms-full.txt`
 
-This comprehensive document contains the complete MCP specification and guidelines.
+This document contains the complete MCP specification. Note: the URL may change as the spec evolves — if the fetch fails, search for the current MCP docs URL.
 
-#### 1.4 Study Framework Documentation
+#### 1.3 Study Framework Documentation
 
 **Load and read the following reference files:**
 
@@ -85,7 +90,7 @@ This comprehensive document contains the complete MCP specification and guidelin
 - **TypeScript SDK Documentation**: Use WebFetch to load `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`
 - [⚡ TypeScript Implementation Guide](./references/node_mcp_server.md) - Node/TypeScript-specific best practices and examples
 
-#### 1.5 Exhaustively Study API Documentation
+#### 1.4 Exhaustively Study API Documentation
 
 To integrate a service, read through **ALL** available API documentation:
 
@@ -98,7 +103,7 @@ To integrate a service, read through **ALL** available API documentation:
 
 **To gather comprehensive information, use web search and the WebFetch tool as needed.**
 
-#### 1.6 Create a Comprehensive Implementation Plan
+#### 1.5 Create a Comprehensive Implementation Plan
 
 Based on your research, create a detailed plan that includes:
 
@@ -216,7 +221,7 @@ For each tool in the plan:
 - TypeScript strict mode enabled
 - No `any` types - use proper types
 - Explicit Promise<T> return types
-- Build process configured (`npm run build`)
+- Build process configured (`bun run build`)
 
 ---
 
@@ -254,7 +259,7 @@ To ensure quality, review the code for:
 
 **For Node/TypeScript:**
 
-- Run `npm run build` and ensure it completes without errors
+- Run `bun run build` and ensure it completes without errors
 - Verify dist/index.js is created
 - To manually test: Run server in tmux, then test with evaluation harness in main process
 - Or use the evaluation harness directly (it manages the server for stdio transport)
@@ -311,6 +316,15 @@ Create an XML file with this structure:
 <!-- More qa_pairs... -->
 </evaluation>
 ```
+
+---
+
+## Gotchas
+
+- **Running the server directly hangs the process.** MCP servers block on stdio/stdin waiting for requests indefinitely. Never run `python server.py` or `node dist/index.js` in your main process. Use `tmux` to background the server, or use the evaluation harness which manages the server subprocess.
+- **Live URL references can go stale.** The MCP protocol documentation URL (`modelcontextprotocol.io/llms-full.txt`) and the GitHub SDK README URLs may move between versions. If a WebFetch fails, search for the current URL rather than assuming the skill path is correct.
+- **TypeScript builds must be re-run after every source change.** `dist/index.js` is the artifact the MCP runtime loads. Editing `.ts` files without running `bun run build` means the runtime is still running the old version.
+- **Tool annotations are hints, not enforced contracts.** `readOnlyHint: true` does not prevent a tool from writing data — it only signals intent to the LLM. Enforce safety in the tool implementation itself.
 
 ---
 

@@ -1,9 +1,10 @@
 ---
 name: de-slop
-description: "AI artifact cleanup."
+description: Removes AI-generated artifacts and code sloppiness from a codebase — console statements, `any` types, unused imports, commented-out code, debug statements, and redundant comments. Use when asked to clean up AI-generated code, remove slop, fix code quality issues, or tidy up a codebase after AI-assisted development.
+disable-model-invocation: true
 metadata:
   version: "1.0.0"
-  tags: code-quality, cleanup, ai-artifacts, maintenance
+  tags: "code-quality, cleanup, ai-artifacts, maintenance"
 ---
 
 # De-Slop
@@ -59,11 +60,11 @@ bun run test
 
 Log cleanup in today's session file (`.agents/SESSIONS/YYYY-MM-DD.md`) with packages cleaned and artifact counts.
 
-## Options
+## Scope
 
-- Default: clean current package/project
-- `--all`: clean across entire monorepo
-- `--check`: dry run, show what would be cleaned
+- Default: clean the current package/project directory
+- To clean across an entire monorepo, explicitly ask for all packages
+- To preview without making changes, ask for a dry run first
 
 ## Safety Rules
 

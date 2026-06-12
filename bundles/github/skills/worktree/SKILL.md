@@ -7,6 +7,7 @@ metadata:
   tags: "git, worktree, branch, isolation, parallel, workspace"
   author: Ship Shit Dev
 allowed-tools: Bash(git *)
+disable-model-invocation: true
 when_to_use: "make a worktree, create a worktree, new worktree, isolated workspace, parallel workspace, work on this separately, branch off current work, spin up a sibling checkout, run another agent on this repo"
 ---
 

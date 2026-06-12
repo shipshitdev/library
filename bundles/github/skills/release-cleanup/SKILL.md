@@ -6,6 +6,7 @@ metadata:
   version: "2.0.0"
   tags: "git, cleanup, branches, worktrees, release, prune, ci-cd, squash-merge"
 allowed-tools: Bash(git *) Bash(gh *) Bash(jq *)
+disable-model-invocation: true
 ---
 
 # Release Cleanup

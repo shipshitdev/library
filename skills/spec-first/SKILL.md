@@ -1,12 +1,44 @@
 ---
 name: spec-first
-description: Use when building anything non-trivial. Enforces a spec → plan → execute → verify loop that prevents "looks right" failures. Creates spec.md, todo.md, and decisions.md before writing code.
+description: Enforces a spec → plan → execute → verify loop before writing code, preventing "looks right" failures. Activates on "build X", "implement...", "add a feature that...", or any multi-file/unclear-requirements request. Creates spec.md, todo.md, and decisions.md as durable artifacts.
 metadata:
   version: "1.0.0"
   tags: "specification, planning, execution"
 ---
 
 # Spec-First Development
+
+## Contract
+
+Inputs:
+
+- User request describing a feature, project, or non-trivial implementation task.
+
+Outputs:
+
+- Stage A framing with 3 approaches and tradeoffs.
+- Draft `spec-[feature-name].md` content for `.agents/memory/`.
+- Draft `todo.md` checklist with per-step verification commands.
+
+Creates/Modifies:
+
+- `.agents/memory/spec-[feature-name].md` (spec artifact).
+- `.agents/memory/decisions-[feature-name].md` (decision log).
+- GitHub Issue (checklist body for active todo tracking).
+
+External Side Effects:
+
+- Creates GitHub Issues via the gh CLI when creating todo tracking.
+
+Confirmation Required:
+
+- Before creating GitHub Issues.
+- Before proceeding from Stage C to Stage D (execution).
+
+Delegates To:
+
+- `task-prd-creator` for PRD-style issue creation.
+- `executing-plans` for Stage D autonomous execution.
 
 A structured workflow for LLM-assisted coding that delays implementation until decisions are explicit.
 
@@ -91,19 +123,19 @@ Unit/integration boundaries, fixtures, golden files, what must be mocked.
 # [Feature Name] TODO
 
 - [ ] Add project scaffolding (build/run/test commands)
-  Verify: `npm run build && npm test`
+  Verify: `bun run build && bun run test`
 
 - [ ] Implement module X with interface Y
-  Verify: `npm test -- --grep "module X"`
+  Verify: `bun run test -- --grep "module X"`
 
 - [ ] Add tests for edge cases A/B/C
-  Verify: `npm test -- --grep "edge cases"`
+  Verify: `bun run test -- --grep "edge cases"`
 
 - [ ] Wire integration
-  Verify: `npm run integration`
+  Verify: `bun run integration`
 
 - [ ] Add docs
-  Verify: `npm run docs && open docs/index.html`
+  Verify: `bun run docs && open docs/index.html`
 ```
 
 Each item must be independently checkable. This prevents "looks right" progress.

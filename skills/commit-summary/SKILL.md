@@ -125,6 +125,13 @@ Delegates To:
 - Verification commands are not placed in the commit message unless the repo
   convention asks for them.
 
+## Gotchas
+
+- **`git add .` can stage unintended files.** If `.gitignore` does not exclude `node_modules`, `.env*`, or build artifacts, always prefer `git add <specific-paths>`. Verify with `git diff --staged --stat` before committing.
+- **Breaking-change footer is case-sensitive.** The token must be exactly `BREAKING CHANGE:` (with a space, all caps) for tools like `semantic-release` and `conventional-changelog` to detect it. `BREAKING-CHANGE:` is not equivalent.
+- **Amended commits rewrite history.** Never amend a commit that has already been pushed to a shared branch. If the commit exists on the remote, create a new fix commit instead.
+- **Co-authored-by trailers conflict with repo conventions.** Some repos (including this project) explicitly forbid `Co-Authored-By` trailers. Check `CLAUDE.md` or recent commit history for the project convention before adding them.
+
 ## Examples
 
 - `feat(auth): add password reset flow`

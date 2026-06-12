@@ -12,6 +12,7 @@ metadata:
   tags: "git, branch, merge, pull-request, workflow, worktree, cleanup"
   author: Ship Shit Dev
 allowed-tools: Bash(git *) Bash(gh *)
+disable-model-invocation: true
 when_to_use: "finish branch, done coding, ready to merge, create PR, close branch, wrap up feature, branch cleanup, integration workflow"
 ---
 
@@ -22,6 +23,37 @@ the chosen workflow end-to-end.
 
 **Core principle:** Verify tests → Detect environment → Present options →
 Execute choice → Clean up.
+
+## Contract
+
+Inputs:
+
+- A completed branch or worktree, the project's test results, and the user's
+  chosen integration path (merge / PR / keep / discard).
+
+Outputs:
+
+- The executed integration action plus a summary of what happened and where the
+  work now lives.
+
+Creates/Modifies:
+
+- Git branches, merge commits, and pull requests; removes worktrees during
+  cleanup.
+
+External Side Effects:
+
+- `git push`, `gh pr create`, branch deletion, and worktree removal.
+
+Confirmation Required:
+
+- Before discarding a branch, running any force operation, or removing a
+  worktree that still holds uncommitted work.
+
+Delegates To:
+
+- `git-safety` for history secret scrubbing before publishing.
+- `code-review` for a pre-merge correctness pass when requested.
 
 ## The Process
 

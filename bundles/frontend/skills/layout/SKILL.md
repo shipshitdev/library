@@ -10,12 +10,6 @@ metadata:
 
 Assess and improve layout and spacing that feels monotonous, crowded, or structurally weak — turning generic arrangements into intentional, rhythmic compositions.
 
-## MANDATORY PREPARATION
-
-Invoke /impeccable — it contains design principles, anti-patterns, and the **Context Gathering Protocol**. Follow the protocol before proceeding — if no design context exists yet, you MUST run /impeccable teach first.
-
----
-
 ## Assess Current Layout
 
 Analyze what's weak about the current spatial design:
@@ -48,8 +42,6 @@ Analyze what's weak about the current spatial design:
 **CRITICAL**: Layout problems are often the root cause of interfaces feeling "off" even when colors and fonts are fine. Space is a design material — use it with intention.
 
 ## Plan Layout Improvements
-
-Consult the `spatial-design.md` reference from the impeccable skill for detailed guidance on grids, rhythm, and container queries.
 
 Create a systematic plan:
 

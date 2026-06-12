@@ -1,6 +1,7 @@
 ---
 name: devcontainer-setup
-description: Set up a .devcontainer for VS Code with Docker, Claude Code CLI support, and configurable options. Use when the user asks to "set up devcontainer", "add docker development environment", "configure dev container", or needs to containerize their development workflow.
+description: Scaffolds a complete VS Code Dev Container configuration with Docker, docker-compose, and optional Claude Code CLI support. Activates when asked to "set up devcontainer", "add docker development environment", "configure dev container", or containerize a development workflow.
+disable-model-invocation: true
 metadata:
   version: "1.0.0"
   tags: "devcontainer, docker, setup"
@@ -209,8 +210,8 @@ cd /workspace/{{PROJECT_DIR}}
 {{INSTALL_COMMAND}}
 
 {{#if CLAUDE_CODE_SUPPORT}}
-# Install Claude Code CLI
-npm install -g @anthropic-ai/claude-code
+# Install Claude Code CLI (run via bunx to avoid global installs)
+# Use: bunx @anthropic-ai/claude-code to invoke claude
 
 # Fix Claude config symlinks to point to container paths
 # The host symlinks point to /Users/... which don't exist in container

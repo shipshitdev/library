@@ -1,9 +1,14 @@
 ---
 name: session-documenter
-description: "Session documentation workflow."
+description: >-
+  Documents work, decisions, and context from the current session by writing
+  structured entries to `.agents/SESSIONS/YYYY-MM-DD.md`. Triggers on
+  `/start`, `/end`, "document this session", "save session notes", or
+  automatically at session wrap-up to capture decisions, files changed,
+  mistakes, and next steps.
 metadata:
   version: "1.0.0"
-  tags: session, documentation, workflow, productivity
+  tags: "session, documentation, workflow, productivity"
 ---
 
 # Session Documenter Skill

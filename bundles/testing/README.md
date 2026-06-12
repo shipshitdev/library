@@ -15,6 +15,5 @@ Testing, QA, and CI/CD automation skills
 - `tdd`
 - `testing-expert`
 - `testing-cicd-init`
-- `nestjs-testing-expert`
 - `qa-reviewer`
 - `husky-test-coverage`

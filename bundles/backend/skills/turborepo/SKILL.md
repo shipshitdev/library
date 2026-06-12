@@ -9,7 +9,7 @@ description: |
   monorepo, shares code between apps, runs changed packages, debugs cache behavior,
   or works in an `apps/` plus `packages/` workspace.
 metadata:
-  version: "2.9.7-canary.12"
+  version: "1.0.0"
   tags: "turborepo, monorepo, build, caching, ci"
 ---
 
@@ -205,4 +205,4 @@ Use `turbo watch` for file-change loops, not `turbo run ... --watch` patterns im
 
 ## Source Documentation
 
-Based on official Turborepo docs: `apps/docs/content/docs/` — https://turborepo.dev/docs
+Based on official Turborepo docs (library v2.9.7-canary.12): `apps/docs/content/docs/` — https://turborepo.dev/docs

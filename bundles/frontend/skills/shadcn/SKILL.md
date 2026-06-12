@@ -1,6 +1,10 @@
 ---
 name: shadcn
-description: shadcn/ui component library best practices and patterns (formerly shadcn-ui). This skill should be used when writing, reviewing, or refactoring shadcn/ui components to ensure proper architecture, accessibility, and performance. Triggers on tasks involving Radix primitives, Tailwind styling, form validation with React Hook Form, data tables, theming, or component composition patterns.
+description: >-
+  Provides shadcn/ui component library best practices and patterns. Triggers
+  when writing, reviewing, or refactoring shadcn/ui components; when working
+  with Radix primitives, Tailwind styling, React Hook Form validation, data
+  tables, theming, or component composition patterns.
 metadata:
   version: "1.0.0"
   tags: "shadcn, ui, react"
@@ -133,15 +137,10 @@ Read individual reference files for detailed explanations and code examples:
 - [Section definitions](references/_sections.md) - Category structure and impact levels
 - [Rule template](assets/templates/_template.md) - Template for adding new rules
 
-## Full Compiled Document
-
-For a single-file reference containing all rules, see [AGENTS.md](AGENTS.md).
-
 ## Reference Files
 
 | File | Description |
 |------|-------------|
-| [AGENTS.md](AGENTS.md) | Complete compiled guide with all rules |
 | [references/_sections.md](references/_sections.md) | Category definitions and ordering |
 | [assets/templates/_template.md](assets/templates/_template.md) | Template for new rules |
 | [metadata.json](metadata.json) | Version and reference information |

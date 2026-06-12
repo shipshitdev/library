@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "185 AI agent skills for indie developers building startups",
+  "description": "178 AI agent skills for indie developers building startups",
   "plugins": [
     {
       "name": "shipshitdev-startup",
@@ -131,11 +131,6 @@
       "description": "Design regression tests for AI-assisted development by targeting model blind spots such as sandbox v"
     },
     {
-      "name": "analytics-expert",
-      "source": "./skills/analytics-expert",
-      "description": "This skill should be used when users need help analyzing content analytics data, creating reports, i"
-    },
-    {
       "name": "analyze-codebase",
       "source": "./skills/analyze-codebase",
       "description": "Generate comprehensive codebase analysis covering architecture, security, performance, and code qual"
@@ -178,12 +173,12 @@
     {
       "name": "business-model-auditor",
       "source": "./skills/business-model-auditor",
-      "description": "Use this skill when users need to stress test their business model, identify scale limitations, find"
+      "description": "Stress-tests business models to identify scale limitations, bottlenecks, and unit economics gaps usi"
     },
     {
       "name": "business-operator",
       "source": "./skills/business-operator",
-      "description": "Use this skill when users manage multiple businesses, need help prioritizing across ventures, want a"
+      "description": "Orchestrates multiple business ventures using Hormozi portfolio frameworks, prioritizing which to fo"
     },
     {
       "name": "changelog-generator",
@@ -199,11 +194,6 @@
       "name": "clarify",
       "source": "./skills/clarify",
       "description": "Improve unclear UX copy, error messages, microcopy, labels, and instructions to make interfaces easi"
-    },
-    {
-      "name": "claude-code-guide",
-      "source": "./skills/claude-code-guide",
-      "description": "To provide a comprehensive reference for configuring and using Claude Code (the agentic coding tool)"
     },
     {
       "name": "clerk-validator",
@@ -288,7 +278,7 @@
     {
       "name": "copywriter",
       "source": "./skills/copywriter",
-      "description": "Brand voice guardian and conversion-focused copywriter, specializing in direct, no-fluff copy that a"
+      "description": "Writes and audits conversion-focused copy that adapts to the project's brand voice. Triggers when wr"
     },
     {
       "name": "critique",
@@ -303,7 +293,7 @@
     {
       "name": "de-slop",
       "source": "./skills/de-slop",
-      "description": "AI artifact cleanup."
+      "description": "Removes AI-generated artifacts and code sloppiness from a codebase — console statements, `any` types"
     },
     {
       "name": "debug",
@@ -323,12 +313,12 @@
     {
       "name": "design-consistency-auditor",
       "source": "./skills/design-consistency-auditor",
-      "description": "Audit and maintain design system consistency, UX/UI patterns, color palettes, and design best practi"
+      "description": "Audits and maintains design system consistency across frontend applications — color palettes, UI/UX "
     },
     {
       "name": "devcontainer-setup",
       "source": "./skills/devcontainer-setup",
-      "description": "Set up a .devcontainer for VS Code with Docker, Claude Code CLI support, and configurable options. U"
+      "description": "Scaffolds a complete VS Code Dev Container configuration with Docker, docker-compose, and optional C"
     },
     {
       "name": "docker-expert",
@@ -348,7 +338,7 @@
     {
       "name": "ec2-backend-deployer",
       "source": "./skills/ec2-backend-deployer",
-      "description": "Expert in deploying backends to EC2 instances using CI/CD pipelines, Docker containers, and GitHub A"
+      "description": "Deploys backend applications to EC2 instances using Docker, GitHub Actions CI/CD, and Tailscale for "
     },
     {
       "name": "email-finder",
@@ -448,12 +438,12 @@
     {
       "name": "gh-address-comments",
       "source": "./skills/gh-address-comments",
-      "description": "GitHub PR comment fixes."
+      "description": "Resolves GitHub PR review and issue comments by fetching threads, mapping them to code, proposing fi"
     },
     {
       "name": "gh-fix-ci",
       "source": "./skills/gh-fix-ci",
-      "description": "GitHub Actions CI fixes."
+      "description": "Diagnoses failing GitHub Actions checks on a PR, identifies root cause, and proposes or applies targ"
     },
     {
       "name": "gh-inbox",
@@ -478,7 +468,7 @@
     {
       "name": "git-safety",
       "source": "./skills/git-safety",
-      "description": "Git history secret scan."
+      "description": "Scans, cleans, and prevents secrets in git history across four modes: scan (detect sensitive files i"
     },
     {
       "name": "github-actions-author",
@@ -503,7 +493,7 @@
     {
       "name": "husky-test-coverage",
       "source": "./skills/husky-test-coverage",
-      "description": "Set up or verify Husky git hooks to ensure all tests run and coverage stays above 80% (configurable)"
+      "description": "Sets up or verifies Husky git hooks to enforce test coverage above 80% (configurable) for Node.js/Ty"
     },
     {
       "name": "idea-validator",
@@ -513,7 +503,7 @@
     {
       "name": "incremental-fetch",
       "source": "./skills/incremental-fetch",
-      "description": "Build resilient data ingestion pipelines from APIs. Use when creating scripts that fetch paginated d"
+      "description": "Guides construction of resilient data ingestion pipelines from paginated APIs. Activates on: \"ingest"
     },
     {
       "name": "internal-comms",
@@ -523,7 +513,7 @@
     {
       "name": "landing-page-vercel",
       "source": "./skills/landing-page-vercel",
-      "description": "Scaffold a production-ready static landing page with working email capture form, analytics, and resp"
+      "description": "Scaffolds a production-ready static landing page with working email capture form, analytics, and res"
     },
     {
       "name": "layout",
@@ -558,7 +548,7 @@
     {
       "name": "mcp-builder",
       "source": "./skills/mcp-builder",
-      "description": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact wi"
+      "description": "Creates high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external"
     },
     {
       "name": "memory-systems",
@@ -568,7 +558,7 @@
     {
       "name": "micro-landing-builder",
       "source": "./skills/micro-landing-builder",
-      "description": "Scaffold, clone, and deploy config-driven NextJS landing pages that use a shared UI components packa"
+      "description": "Scaffolds, clones, and deploys config-driven NextJS landing pages that use a shared UI components pa"
     },
     {
       "name": "mongodb-atlas-checker",
@@ -583,7 +573,7 @@
     {
       "name": "monitoring-setup",
       "source": "./skills/monitoring-setup",
-      "description": "Expert in setting up Sentry error tracking and Google Analytics for NestJS and Next.js applications."
+      "description": "Sets up Sentry error tracking and Google Analytics for NestJS and Next.js applications. Activates wh"
     },
     {
       "name": "multi-agent-patterns",
@@ -604,11 +594,6 @@
       "name": "nestjs-queue-architect",
       "source": "./skills/nestjs-queue-architect",
       "description": "Queue job management patterns, processors, and async workflows for video/image processing"
-    },
-    {
-      "name": "nestjs-testing-expert",
-      "source": "./skills/nestjs-testing-expert",
-      "description": "Testing patterns for NestJS apps using Jest, covering unit, integration, and e2e tests."
     },
     {
       "name": "nextjs-validator",
@@ -638,7 +623,7 @@
     {
       "name": "outbound-optimizer",
       "source": "./skills/outbound-optimizer",
-      "description": "Use this skill when users need to improve cold outreach, optimize cold emails or DMs, increase respo"
+      "description": "Transforms cold outreach from spam into revenue using Hormozi value-first principles. Triggers when "
     },
     {
       "name": "package-architect",
@@ -654,11 +639,6 @@
       "name": "performance-expert",
       "source": "./skills/performance-expert",
       "description": "Expert in performance optimization for React, Next.js, NestJS applications covering frontend renderi"
-    },
-    {
-      "name": "plasmo-extension-architect",
-      "source": "./skills/plasmo-extension-architect",
-      "description": "Architect Chrome MV3 extensions using Plasmo, including messaging, storage, and UI surfaces."
     },
     {
       "name": "playwright-e2e-init",
@@ -693,7 +673,7 @@
     {
       "name": "project-init-orchestrator",
       "source": "./skills/project-init-orchestrator",
-      "description": "Select the correct project initialization route. Use v0 for new Shipshit.dev product repos; use lowe"
+      "description": "Selects the correct project initialization route and orchestrates setup. Triggers on \"initialize pro"
     },
     {
       "name": "prompt-engineering",
@@ -703,12 +683,12 @@
     {
       "name": "qa-reviewer",
       "source": "./skills/qa-reviewer",
-      "description": "AI work QA review."
+      "description": "Runs a structured multi-phase verification pass on completed AI agent work — catching bugs, missed r"
     },
     {
       "name": "quick-view",
       "source": "./skills/quick-view",
-      "description": "HTML review page generation."
+      "description": "Generates minimal HTML pages to review structured data in a browser with maximum readability. Trigge"
     },
     {
       "name": "quieter",
@@ -723,7 +703,7 @@
     {
       "name": "react-hook-form",
       "source": "./skills/react-hook-form",
-      "description": "React Hook Form performance optimization for client-side form validation using useForm, useWatch, us"
+      "description": "Provides 41 prioritized performance rules for React Hook Form across form configuration, field subsc"
     },
     {
       "name": "react-native-components",
@@ -773,12 +753,7 @@
     {
       "name": "retention-engine",
       "source": "./skills/retention-engine",
-      "description": "Use this skill when users need to reduce churn, increase customer lifetime value (LTV), build recurr"
-    },
-    {
-      "name": "review-pr",
-      "source": "./skills/review-pr",
-      "description": "Pull request review checklist."
+      "description": "Designs and executes customer retention systems to reduce churn, maximize LTV, and build recurring r"
     },
     {
       "name": "roadmap-analyzer",
@@ -788,7 +763,7 @@
     {
       "name": "rules-capture",
       "source": "./skills/rules-capture",
-      "description": "Capture reusable user rules."
+      "description": "Automatically detects and documents user preferences, coding standards, and workflow rules from conv"
     },
     {
       "name": "scaffold",
@@ -811,14 +786,9 @@
       "description": "Expert in application security, OWASP Top 10, authentication, authorization, data protection, and se"
     },
     {
-      "name": "serializer-specialist",
-      "source": "./skills/serializer-specialist",
-      "description": "Expert in JSON:API serialization patterns using ts-jsonapi or similar libraries."
-    },
-    {
       "name": "session-documenter",
       "source": "./skills/session-documenter",
-      "description": "Session documentation workflow."
+      "description": "Documents work, decisions, and context from the current session by writing structured entries to `.a"
     },
     {
       "name": "session-end",
@@ -828,17 +798,17 @@
     {
       "name": "session-start",
       "source": "./skills/session-start",
-      "description": "Session context loading."
+      "description": "Loads critical project context and recent session history at the start of each session or after `/cl"
     },
     {
       "name": "shadcn",
       "source": "./skills/shadcn",
-      "description": "shadcn/ui component library best practices and patterns (formerly shadcn-ui). This skill should be u"
+      "description": "Provides shadcn/ui component library best practices and patterns. Triggers when writing, reviewing, "
     },
     {
       "name": "shadcn-setup",
       "source": "./skills/shadcn-setup",
-      "description": "Set up shadcn/ui component library with Tailwind CSS v4 configuration. Handles installation, initial"
+      "description": "Sets up shadcn/ui with Tailwind CSS v4 CSS-first configuration — installs packages, generates global"
     },
     {
       "name": "shape",
@@ -848,7 +818,7 @@
     {
       "name": "skill-capture",
       "source": "./skills/skill-capture",
-      "description": "Capture workflows as skills."
+      "description": "Extracts valuable workflows, patterns, and domain knowledge from conversations and persists them as "
     },
     {
       "name": "skill-comply",
@@ -868,7 +838,7 @@
     {
       "name": "spec-first",
       "source": "./skills/spec-first",
-      "description": "Use when building anything non-trivial. Enforces a spec → plan → execute → verify loop that prevents"
+      "description": "Enforces a spec → plan → execute → verify loop before writing code, preventing \"looks right\" failure"
     },
     {
       "name": "startup-icp-definer",
@@ -908,7 +878,7 @@
     {
       "name": "tailwind",
       "source": "./skills/tailwind",
-      "description": "Tailwind CSS v4 performance optimization and best practices guidelines (formerly tailwindcss-v4-styl"
+      "description": "Provides Tailwind CSS v4 performance optimization and best practices guidelines. Triggers when writi"
     },
     {
       "name": "tailwind-validator",
@@ -928,7 +898,7 @@
     {
       "name": "testing-cicd-init",
       "source": "./skills/testing-cicd-init",
-      "description": "Add Vitest testing infrastructure and GitHub Actions CI/CD to any TypeScript project. Supports Next."
+      "description": "Installs Vitest testing infrastructure and GitHub Actions CI/CD for TypeScript projects (Next.js, Ne"
     },
     {
       "name": "testing-expert",
@@ -963,7 +933,7 @@
     {
       "name": "typescript-expert",
       "source": "./skills/typescript-expert",
-      "description": "TypeScript and JavaScript expert with deep knowledge of type-level programming, performance optimiza"
+      "description": "Resolves TypeScript and JavaScript problems across type-level programming, performance, monorepo man"
     },
     {
       "name": "typescript-refactor",
@@ -974,11 +944,6 @@
       "name": "verification-before-completion",
       "source": "./skills/verification-before-completion",
       "description": "Enforce evidence-based completion: no success, done, fixed, or passing claim may be made without fir"
-    },
-    {
-      "name": "workflow-automation",
-      "source": "./skills/workflow-automation",
-      "description": "This skill should be used when users need help designing content workflows, creating process documen"
     },
     {
       "name": "workspace-performance-audit",
@@ -998,12 +963,12 @@
     {
       "name": "writing-prds",
       "source": "./skills/writing-prds",
-      "description": "Use when the user wants to draft, scope, or formalize a feature — \"write a PRD for X\", \"let's plan X"
+      "description": "Drafts, scopes, and formalizes features as PRDs — a planning agent can consume the output in one sho"
     },
     {
       "name": "x-algorithm-optimizer",
       "source": "./skills/x-algorithm-optimizer",
-      "description": "Optimize X/Twitter content for algorithm engagement signals. Based on xai-org/x-algorithm's Grok tra"
+      "description": "Optimizes X/Twitter content for algorithm engagement signals using xai-org/x-algorithm's Grok transf"
     },
     {
       "name": "youtube-video-analyst",

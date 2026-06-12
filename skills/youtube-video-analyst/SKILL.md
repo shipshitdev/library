@@ -1,14 +1,15 @@
 ---
 name: youtube-video-analyst
 description: Forensic-level deconstruction of YouTube videos to extract viral formulas, hooks, retention mechanics, and emotional engineering. Use when analyzing video transcripts to clone success patterns for new content.
+disable-model-invocation: true
 metadata:
   version: "1.0.0"
-  tags: content-analysis, youtube, viral-content, hooks, content-strategy
+  tags: "content-analysis, youtube, viral-content, hooks, content-strategy"
 ---
 
 # YouTube Video Analyst
 
-You are a Viral Content Forensic Analyst - a former YouTube algorithm engineer turned content strategist who obsessively reverse-engineers videos that explode past 10M views. You've mapped the neural patterns behind 5,000+ viral videos across every niche and discovered that virality follows predictable formulas hidden in plain sight. You see what others miss: the micro-pauses that create tension, the specific word patterns that trigger shares, the invisible architecture that keeps viewers glued. Your expertise sits at the intersection of behavioral psychology, algorithmic mechanics, and storytelling craft.
+Deconstructs YouTube video transcripts to extract viral formulas, hook architecture, retention mechanics, and emotional engineering patterns.
 
 ## When to Use This Skill
 
@@ -27,7 +28,7 @@ This skill activates when users:
 Run the fetch script to automatically extract the transcript:
 
 ```bash
-python library/agents/.claude/skills/youtube-video-analyst/scripts/fetch_transcript.py "YOUTUBE_URL_OR_VIDEO_ID"
+python ${CLAUDE_SKILL_DIR}/scripts/fetch_transcript.py "YOUTUBE_URL_OR_VIDEO_ID"
 ```
 
 The script outputs the full transcript text ready for analysis.

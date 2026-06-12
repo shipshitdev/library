@@ -60,6 +60,7 @@ Delegates To:
 - ALL queries filter soft-deleted records (if applicable)
 - No cross-tenant data access
 - Auth guards on protected routes
+- No unintended public endpoints — every route's auth posture is intentional
 - Input validation via DTOs/schemas
 - No secrets, tokens, or credentials committed or logged
 
@@ -112,6 +113,8 @@ Delegates To:
 
 - Proper HTTP status codes
 - DTOs for request/response
+- API documentation decorators present where the project uses them (e.g.
+  `@ApiOperation` / `@ApiResponse`)
 - No internal stack traces leaked to API consumers
 
 ### 9. Devex Regressions

@@ -18,6 +18,36 @@ Code review requires technical evaluation, not emotional performance.
 
 **Verify before implementing. Ask before assuming. Technical correctness over social comfort.**
 
+## Contract
+
+Inputs:
+
+- Incoming review feedback (PR comments, verbal review notes) and the codebase
+  the feedback refers to.
+
+Outputs:
+
+- A per-point technical acknowledgment or reasoned pushback, plus an action
+  plan for the changes that survive evaluation.
+
+Creates/Modifies:
+
+- None directly. This skill produces responses; code edits happen through other
+  skills.
+
+External Side Effects:
+
+- Read-only `git` / `gh` invocations to verify claims against the codebase.
+
+Confirmation Required:
+
+- None. All output is advisory.
+
+Delegates To:
+
+- `gh-address-comments` for posting the responses back to a PR.
+- `code-review` for a fresh review pass once changes land.
+
 ## The Response Pattern
 
 ```

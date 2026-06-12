@@ -15,7 +15,6 @@ Project setup and workspace initialization
 - `project-init-orchestrator`
 - `linter-formatter-init`
 - `clerk-validator`
-- `plasmo-extension-architect`
 - `content-script-developer`
 - `package-architect`
 - `artifacts-builder`

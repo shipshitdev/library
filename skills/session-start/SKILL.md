@@ -1,9 +1,14 @@
 ---
 name: session-start
-description: "Session context loading."
+description: >-
+  Loads critical project context and recent session history at the start of
+  each session or after `/clear` — reads `.agents/memory/` source-of-truth
+  files, surfaces open next steps from the latest session log, and activates
+  the session-documenter. Triggers on: session start, `/clear`, "load context",
+  "start session", or first message in a new Claude Code session.
 metadata:
   version: "1.1.0"
-  tags: session, workflow, context, productivity
+  tags: "session, workflow, context, productivity"
 ---
 
 # Session Start
@@ -48,16 +53,8 @@ Delegates To:
 
 Read the repo's memory files at `.agents/memory/`. These are the source of truth
 for current project context: architecture, deployment state, migrations, known
-gotchas, and operating decisions.
-
-- Each memory file carries `last_verified: YYYY-MM-DD`. If that date is >30 days
-  old, re-verify before citing.
-- Files with `status: temporary`: always check whether they are still valid
-  before relying on them.
-
-Critical rules, communication preferences, and quality standards live in
-`CLAUDE.md` (repo + global) and global memory — already loaded by the harness.
-Do not look for a separate preferences file.
+gotchas, and operating decisions. Apply the staleness and temporary-file checks
+defined in the global `CLAUDE.md` / `MEMORY.md` before citing any entry.
 
 ### 2. Read Today's Session File
 

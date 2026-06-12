@@ -5,7 +5,7 @@ license: MIT
 metadata:
   version: "1.0.0"
   tags: "testing, tdd, red-green-refactor, quality"
-  author: "Ship Shit Dev"
+  author: "Matt Pocock (MIT), adapted by Ship Shit Dev"
 ---
 
 # Test-Driven Development
@@ -141,8 +141,3 @@ available verification and note the residual risk.
 - [ ] Narrow verification command passes.
 - [ ] Relevant broader suite, typecheck, or lint command passes when practical.
 - [ ] No unrelated refactor or broad rewrite was bundled into the slice.
-
-## Attribution
-
-This workflow adapts red-green-refactor and vertical-slice guidance from
-Matt Pocock's MIT-licensed `tdd` skill.

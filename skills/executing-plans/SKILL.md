@@ -1,5 +1,6 @@
 ---
 name: executing-plans
+disable-model-invocation: true
 description: Orchestrate autonomous AI development with task-based workflow and QA gates. Use when implementing a development plan, picking tasks from a queue, or running multi-platform parallel execution with QA gates.
 metadata:
   version: "2.1.0"

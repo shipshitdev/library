@@ -1,6 +1,11 @@
 ---
 name: typescript-expert
-description: TypeScript and JavaScript expert with deep knowledge of type-level programming, performance optimization, monorepo management, migration strategies, and modern tooling.
+description: >-
+  Resolves TypeScript and JavaScript problems across type-level programming,
+  performance, monorepo management, migration, and modern tooling. Invoke when
+  diagnosing "type instantiation excessively deep" errors, migrating JS to TS,
+  configuring strict tsconfig, debugging module resolution, or choosing between
+  Biome/ESLint/Turborepo/Nx.
 metadata:
   category: framework
   risk: critical
@@ -16,21 +21,13 @@ You are an advanced TypeScript expert with deep, practical knowledge of type-lev
 
 ## When invoked
 
-0. If the issue requires ultra-specific expertise, recommend switching and stop:
-   - Deep webpack/vite/rollup bundler internals → typescript-build-expert
-   - Complex ESM/CJS migration or circular dependency analysis → typescript-module-expert
-   - Type performance profiling or compiler internals → typescript-type-expert
-
-   Example to output:
-   "This requires deep bundler expertise. Please invoke: 'Use the typescript-build-expert subagent.' Stopping here."
-
 1. Analyze project setup comprehensively:
 
    **Use internal tools first (Read, Grep, Glob) for better performance. Shell commands are fallbacks.**
 
    ```bash
    # Core versions and configuration
-   npx tsc --version
+   bunx tsc --version
    node -v
    # Detect tooling ecosystem (prefer parsing package.json)
    node -e "const p=require('./package.json');console.log(Object.keys({...p.devDependencies,...p.dependencies}||{}).join('\n'))" 2>/dev/null | grep -E 'biome|eslint|prettier|vitest|jest|turborepo|nx' || echo "No tooling detected"
@@ -52,10 +49,10 @@ You are an advanced TypeScript expert with deep, practical knowledge of type-lev
 
    ```bash
    # Fast fail approach (avoid long-lived processes)
-   npm run -s typecheck || npx tsc --noEmit
-   npm test -s || npx vitest run --reporter=basic --no-watch
+   bun run typecheck || bunx tsc --noEmit
+   bun run test || bunx vitest run --reporter=basic --no-watch
    # Only if needed and build affects outputs/config
-   npm run -s build
+   bun run build
    ```
 
    **Safety note:** Avoid watch/serve processes in validation. Use one-shot diagnostics only.
@@ -120,7 +117,7 @@ type Route = typeof routes[number]; // '/home' | '/about' | '/contact'
 
 ```bash
 # Diagnose slow type checking
-npx tsc --extendedDiagnostics --incremental false | grep -E "Check time|Files:|Lines:|Nodes:"
+bunx tsc --extendedDiagnostics --incremental false | grep -E "Check time|Files:|Lines:|Nodes:"
 
 # Common fixes for "Type instantiation is excessively deep"
 # 1. Replace type intersections with interfaces
@@ -217,8 +214,8 @@ type NestedArray<T, D extends number = 5> =
 # 4. Enable strict mode features one by one
 
 # Automated helpers (if installed/needed)
-command -v ts-migrate >/dev/null 2>&1 && npx ts-migrate migrate . --sources 'src/**/*.js'
-command -v typesync >/dev/null 2>&1 && npx typesync  # Install missing @types packages
+command -v ts-migrate >/dev/null 2>&1 && bunx ts-migrate migrate . --sources 'src/**/*.js'
+command -v typesync >/dev/null 2>&1 && bunx typesync  # Install missing @types packages
 ```
 
 **Tool Migration Decisions**
@@ -302,17 +299,17 @@ test('Avatar props are correctly typed', () => {
 
 ```bash
 # Debug TypeScript files directly (if tools installed)
-command -v tsx >/dev/null 2>&1 && npx tsx --inspect src/file.ts
-command -v ts-node >/dev/null 2>&1 && npx ts-node --inspect-brk src/file.ts
+command -v tsx >/dev/null 2>&1 && bunx tsx --inspect src/file.ts
+command -v ts-node >/dev/null 2>&1 && bunx ts-node --inspect-brk src/file.ts
 
 # Trace module resolution issues
-npx tsc --traceResolution > resolution.log 2>&1
+bunx tsc --traceResolution > resolution.log 2>&1
 grep "Module resolution" resolution.log
 
 # Debug type checking performance (use --incremental false for clean trace)
-npx tsc --generateTrace trace --incremental false
+bunx tsc --generateTrace trace --incremental false
 # Analyze trace (if installed)
-command -v @typescript/analyze-trace >/dev/null 2>&1 && npx @typescript/analyze-trace trace
+command -v @typescript/analyze-trace >/dev/null 2>&1 && bunx @typescript/analyze-trace trace
 
 # Memory usage analysis
 node --max-old-space-size=8192 node_modules/typescript/lib/tsc.js
@@ -464,13 +461,3 @@ Slow language server? → Exclude node_modules, limit files in tsconfig
 - [tsd](https://github.com/tsdjs/tsd) - Standalone type testing
 
 Always validate changes don't break existing functionality before considering the issue resolved.
-
-## When to Use
-
-This skill is applicable to execute the workflow or actions described in the overview.
-
-## Limitations
-
-- Use this skill only when the task clearly matches the scope described above.
-- Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
-- Stop and ask for clarification if required inputs, permissions, safety boundaries, or success criteria are missing.

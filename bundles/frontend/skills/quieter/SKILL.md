@@ -10,12 +10,6 @@ metadata:
 
 Reduce visual intensity in designs that are too bold, aggressive, or overstimulating, creating a more refined and approachable aesthetic without losing effectiveness.
 
-## MANDATORY PREPARATION
-
-Invoke /impeccable — it contains design principles, anti-patterns, and the **Context Gathering Protocol**. Follow the protocol before proceeding — if no design context exists yet, you MUST run /impeccable teach first.
-
----
-
 ## Assess Current State
 
 Analyze what makes the design feel too intense:

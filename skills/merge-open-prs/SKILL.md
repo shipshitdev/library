@@ -28,8 +28,9 @@ Inputs:
 
 - Repository root with a git remote and open GitHub pull requests
 - A develop branch on the remote (auto-detected), or an explicit base override
-- Optional mode: `review` (review only), `merge` (review + merge), or `full`
-  (review + merge + prune, the default)
+- Optional `review` argument (plan only, merge nothing) and/or `--no-prune` flag
+  (merge, but skip the prune). With neither, the run is the full sweep: review +
+  merge + prune.
 
 Outputs:
 
@@ -179,7 +180,7 @@ Print one consolidated plan, then stop and wait for an explicit yes:
   `CHECKS_FAILING`, `CHECKS_PENDING`, `REVIEW_BLOCKED`).
 - The merge method and whether head branches will be deleted on merge.
 
-In `review` mode, end here — report verdicts and the plan, merge nothing.
+With the `review` argument, end here — report verdicts and the plan, merge nothing.
 
 Do not proceed to Phase 4 until the user confirms the printed plan. If the user
 opts to include an excluded PR (e.g. to merge despite pending checks), require
@@ -215,28 +216,30 @@ git fetch --all --prune
 
 ## Phase 5: Prune (Delegated)
 
-In `full` mode (default), hand off to `release-cleanup` in `prune` mode once the
-merges have landed. It re-derives what is provably merged with its squash-aware
-merge oracle, prints its own dry-run plan, and requires its own confirmation
-before deleting any local branch, remote branch, or worktree. Do not delete
-branches or worktrees directly from this skill beyond the per-PR
+By default (no `--no-prune`), hand off to `release-cleanup` in `prune` mode once
+the merges have landed. It re-derives what is provably merged with its
+squash-aware merge oracle, prints its own dry-run plan, and requires its own
+confirmation before deleting any local branch, remote branch, or worktree. Do not
+delete branches or worktrees directly from this skill beyond the per-PR
 `--delete-branch` already done in Phase 4.
 
 If any PR was left unmerged (conflicted, failing, or skipped), tell
 `release-cleanup` to treat those branches as in-flight so they are not pruned.
 
-In `merge` mode, stop after Phase 4 and report; do not prune.
+With `--no-prune`, stop after Phase 4 and report; do not prune.
 
-## Modes
+## Arguments
 
-- `merge-open-prs review` — Phases 1-3. Review every open PR into develop and
+- `merge-open-prs` — Phases 1-5. Review, confirm, merge, then delegate prune to
+  `release-cleanup`. The full sweep. (Default.)
+- `merge-open-prs review` — Phases 1-3. Review every open PR into the base and
   print the plan. Merge nothing, prune nothing.
-- `merge-open-prs merge` — Phases 1-4. Review, confirm, merge. No prune.
-- `merge-open-prs` or `merge-open-prs full` — Phases 1-5. Review, confirm, merge,
-  then delegate prune to `release-cleanup`. (Default.)
+- `merge-open-prs --no-prune` — Phases 1-4. Review, confirm, merge; skip the prune.
+- `merge-open-prs <base>` — run against an explicit base branch instead of develop
+  (after confirming that branch exists). Combines with `review` and `--no-prune`.
 
-If the user scopes the run ("only PRs labeled X", "skip the prune", "merge
-mode"), honor it: still review and gate, but restrict the candidate set or stop
+If the user scopes the run ("only PRs labeled X", "skip the prune"), honor it:
+still review and gate, but restrict the candidate set or stop
 before the phase they excluded.
 
 ## Final Status

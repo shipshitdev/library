@@ -7,11 +7,14 @@ behind. One confirm-gated sweep instead of merging PRs one by one.
 ## Usage
 
 ```bash
-/merge          # review all open PRs into develop, merge approved, then prune (default)
-/merge review   # review only — print the plan, merge nothing
-/merge merge    # review + merge, skip the prune
-/merge <base>   # use an explicit base branch instead of develop
+/merge              # review all open PRs into develop, merge approved, then prune (default)
+/merge review       # review only — print the plan, merge nothing
+/merge --no-prune   # review + merge, but skip the prune step
+/merge <base>       # use an explicit base branch instead of develop
 ```
+
+`review` and `--no-prune` combine with an explicit base, e.g.
+`/merge staging --no-prune` or `/merge review staging`.
 
 ## Workflow
 

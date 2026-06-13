@@ -27,6 +27,7 @@ Code review, debugging, refactoring, release, and AI-assisted development workfl
 - `execution-debugging`
 - `deployment-composer`
 - `llm-structured-output`
+- `merge-open-prs`
 - `production-audit`
 - `refactor-code`
 - `release-cleanup`

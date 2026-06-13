@@ -263,12 +263,12 @@
     {
       "name": "context-fundamentals",
       "source": "./skills/context-fundamentals",
-      "description": "Understand the components, mechanics, and constraints of context in agent systems. Use when designin"
+      "description": "This skill should be used to explain or reason about the foundational concepts of context engineerin"
     },
     {
       "name": "context-optimization",
       "source": "./skills/context-optimization",
-      "description": "Apply optimization techniques to extend effective context capacity. Use when context limits constrai"
+      "description": "This skill should be used for improving context efficiency: context budgeting, observation masking, "
     },
     {
       "name": "copy-validator",

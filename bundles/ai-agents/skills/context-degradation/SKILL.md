@@ -3,9 +3,14 @@ name: context-degradation
 description: Recognize, diagnose, and mitigate patterns of context degradation in agent systems. Use when context grows large, agent performance degrades unexpectedly, or debugging agent failures.
 metadata:
   version: "1.0.0"
+  source: https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/blob/main/skills/context-degradation/SKILL.md
+  upstream_repo: muratcankoylan/Agent-Skills-for-Context-Engineering
+  upstream_ref: main
+  upstream_commit: 969441a5996a
+  last_synced: "2026-01-20"
+  license: MIT
   tags: "context, agents, reliability"
 ---
-
 # Context Degradation Patterns
 
 Language models exhibit predictable degradation patterns as context length increases. Understanding these patterns is essential for diagnosing failures and designing resilient systems. Context degradation is not a binary state but a continuum of performance degradation that manifests in several distinct ways.

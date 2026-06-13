@@ -3,9 +3,14 @@ name: evaluation
 description: Build evaluation frameworks for agent systems. Use when testing agent performance, validating context engineering choices, or measuring improvements over time.
 metadata:
   version: "1.0.0"
+  source: https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/blob/main/skills/evaluation/SKILL.md
+  upstream_repo: muratcankoylan/Agent-Skills-for-Context-Engineering
+  upstream_ref: main
+  upstream_commit: 969441a5996a
+  last_synced: "2026-01-20"
+  license: MIT
   tags: "evaluation, agents, testing"
 ---
-
 # Evaluation Methods for Agent Systems
 
 Evaluation of agent systems requires different approaches than traditional software or even standard language model applications. Agents make dynamic decisions, are non-deterministic between runs, and often lack single correct answers. Effective evaluation must account for these characteristics while providing actionable feedback. A robust evaluation framework enables continuous improvement, catches regressions, and validates that context engineering choices achieve intended effects.

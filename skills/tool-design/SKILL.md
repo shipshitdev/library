@@ -3,9 +3,14 @@ name: tool-design
 description: Design tools that agents can use effectively, including when to reduce tool complexity. Use when creating, optimizing, or reducing the set of tools available to an agent.
 metadata:
   version: "1.0.0"
+  source: https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/blob/main/skills/tool-design/SKILL.md
+  upstream_repo: muratcankoylan/Agent-Skills-for-Context-Engineering
+  upstream_ref: main
+  upstream_commit: 969441a5996a
+  last_synced: "2026-01-20"
+  license: MIT
   tags: "tools, agents, architecture"
 ---
-
 # Tool Design for Agents
 
 Tools are the primary mechanism through which agents interact with the world. They define the contract between deterministic systems and non-deterministic agents. Unlike traditional software APIs designed for developers, tool APIs must be designed for language models that reason about intent, infer parameter values, and generate calls from natural language requests. Poor tool design creates failure modes that no amount of prompt engineering can fix. Effective tool design follows specific principles that account for how agents perceive and use tools.

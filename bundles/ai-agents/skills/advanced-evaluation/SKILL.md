@@ -3,9 +3,14 @@ name: advanced-evaluation
 description: Master LLM-as-a-Judge evaluation techniques including direct scoring, pairwise comparison, rubric generation, and bias mitigation. Use when building evaluation systems, comparing model outputs, or establishing quality standards for AI-generated content.
 metadata:
   version: "1.0.0"
+  source: https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/blob/main/skills/advanced-evaluation/SKILL.md
+  upstream_repo: muratcankoylan/Agent-Skills-for-Context-Engineering
+  upstream_ref: main
+  upstream_commit: 0b9a3b81bfea
+  last_synced: "2026-01-20"
+  license: MIT
   tags: evaluation, llm-as-judge, quality, bias-mitigation
 ---
-
 # Advanced Evaluation
 
 LLM-as-a-Judge techniques for evaluating AI outputs. Not a single technique but a family of approaches - choosing the right one and mitigating biases is the core competency.

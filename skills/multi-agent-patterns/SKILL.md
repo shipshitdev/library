@@ -3,9 +3,14 @@ name: multi-agent-patterns
 description: Design multi-agent architectures for complex tasks. Use when single-agent context limits are exceeded, when tasks decompose naturally into subtasks, or when specializing agents improves quality.
 metadata:
   version: "1.0.0"
+  source: https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/blob/main/skills/multi-agent-patterns/SKILL.md
+  upstream_repo: muratcankoylan/Agent-Skills-for-Context-Engineering
+  upstream_ref: main
+  upstream_commit: 969441a5996a
+  last_synced: "2026-01-20"
+  license: MIT
   tags: "multi-agent, architecture, agents"
 ---
-
 # Multi-Agent Architecture Patterns
 
 Multi-agent architectures distribute work across multiple language model instances, each with its own context window. When designed well, this distribution enables capabilities beyond single-agent limits. When designed poorly, it introduces coordination overhead that negates benefits. The critical insight is that sub-agents exist primarily to isolate context, not to anthropomorphize role division.

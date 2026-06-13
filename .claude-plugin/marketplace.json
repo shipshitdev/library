@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "178 AI agent skills for indie developers building startups",
+  "description": "179 AI agent skills for indie developers building startups",
   "plugins": [
     {
       "name": "shipshitdev-startup",
@@ -554,6 +554,11 @@
       "name": "memory-systems",
       "source": "./skills/memory-systems",
       "description": "Design and implement memory architectures for agent systems. Use when building agents that need to p"
+    },
+    {
+      "name": "merge-open-prs",
+      "source": "./skills/merge-open-prs",
+      "description": "Review every open pull request targeting the develop branch, merge the approved ones into develop, t"
     },
     {
       "name": "micro-landing-builder",

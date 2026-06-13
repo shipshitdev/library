@@ -164,7 +164,10 @@ class VectorStore:
         identical texts always produce identical vectors. Uses a local
         RNG to avoid corrupting global numpy random state.
         """
-        rng = np.random.default_rng(hash(text) % (2**32))
+        seed = int.from_bytes(
+            hashlib.sha256(text.encode("utf-8")).digest()[:8], "big"
+        ) % (2**32)
+        rng = np.random.default_rng(seed)
         return rng.standard_normal(self.dimension)
 
     def _time_key(self, timestamp: Any) -> str:
@@ -530,6 +533,8 @@ class IntegratedMemorySystem:
         filters: Dict[str, Any] = {"session_id": self.session_id}
         if entity_filter:
             filters["entity"] = entity_filter
+        if time_filter:
+            filters.update(time_filter)
 
         results: List[Dict[str, Any]] = self.vector_store.search(
             query, limit=limit, filters=filters

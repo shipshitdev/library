@@ -7,6 +7,7 @@ This document provides implementation details for memory system components.
 ### Basic Vector Store
 
 ```python
+import hashlib
 import numpy as np
 from typing import List, Dict, Any
 import json
@@ -70,8 +71,9 @@ class VectorStore:
     def _embed(self, text: str) -> np.ndarray:
         """Generate deterministic pseudo-embedding for demonstration.
         In production, replace with actual embedding model."""
-        np.random.seed(hash(text) % (2**32))
-        vec = np.random.randn(self.dimension)
+        seed = int.from_bytes(hashlib.sha256(text.encode("utf-8")).digest()[:8], "big")
+        rng = np.random.default_rng(seed)
+        vec = rng.standard_normal(self.dimension)
         return vec / (np.linalg.norm(vec) + 1e-8)
     
     def _matches_filters(self, metadata: Dict, filters: Dict) -> bool:

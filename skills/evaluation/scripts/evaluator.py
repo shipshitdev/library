@@ -14,6 +14,7 @@ Typical usage::
     print(summary)
 """
 
+from collections import deque
 from typing import Dict, List, Any, Optional
 from dataclasses import dataclass
 from enum import Enum
@@ -131,7 +132,7 @@ class AgentEvaluator:
 
     def __init__(self, rubric: Optional[Dict[str, RubricDimension]] = None) -> None:
         self.rubric: Dict[str, RubricDimension] = rubric or DEFAULT_RUBRIC
-        self.evaluation_history: List[Dict[str, Any]] = []
+        self.evaluation_history: deque[Dict[str, Any]] = deque(maxlen=10_000)
 
     def evaluate(
         self,
@@ -506,7 +507,7 @@ class ProductionMonitor:
 
         self.sample_rate: float = sample_rate
         self._rng: random.Random = random.Random()
-        self.samples: List[Dict[str, Any]] = []
+        self.samples: deque[Dict[str, Any]] = deque(maxlen=50_000)
         self.alert_thresholds: Dict[str, float] = {
             "pass_rate_warning": 0.85,
             "pass_rate_critical": 0.70,
@@ -614,7 +615,7 @@ if __name__ == "__main__":
     runner = EvaluationRunner(evaluator, test_set)
     summary = runner.run_all(verbose=True)
 
-    print(f"\n--- Summary ---")
+    print("\n--- Summary ---")
     print(f"Total: {summary['total_tests']}")
     print(f"Passed: {summary['passed']}")
     print(f"Failed: {summary['failed']}")
@@ -622,6 +623,6 @@ if __name__ == "__main__":
     print(f"Dimension averages: {summary['dimension_averages']}")
 
     if summary["failures"]:
-        print(f"\nFailures:")
+        print("\nFailures:")
         for f in summary["failures"]:
             print(f"  - {f['test']}: {f['score']:.2f}")

@@ -270,6 +270,9 @@ class SupervisorAgent:
             for msg in messages:
                 if msg.message_type == MessageType.RESPONSE:
                     results.append(msg.content)
+                else:
+                    # Re-queue non-RESPONSE messages to avoid dropping them
+                    self.communication.send(msg)
 
         final_result = self.aggregate_results(results)
 
@@ -338,12 +341,16 @@ class HandoffProtocol:
     def accept_handoff(self, agent_id: str) -> Optional[AgentMessage]:
         """Accept the first pending handoff for an agent, if any."""
         messages = self.communication.receive(agent_id)
+        handoff: Optional[AgentMessage] = None
 
         for msg in messages:
-            if msg.message_type == MessageType.HANDOVER:
-                return msg
+            if handoff is None and msg.message_type == MessageType.HANDOVER:
+                handoff = msg
+            else:
+                # Re-queue non-HANDOVER (and extra HANDOVER) messages to avoid dropping them
+                self.communication.send(msg)
 
-        return None
+        return handoff
 
     def transfer_with_state(
         self,
@@ -375,12 +382,19 @@ class HandoffProtocol:
         # In production, replace sleep with async await + timeout
         time.sleep(0.1)
         ack = self.communication.receive(from_agent)
+        ack_received = False
 
-        return any(
-            m.message_type == MessageType.RESPONSE
-            and m.content.get("status") == "handoff_received"
-            for m in ack
-        )
+        for m in ack:
+            if (
+                m.message_type == MessageType.RESPONSE
+                and m.content.get("status") == "handoff_received"
+            ):
+                ack_received = True
+            else:
+                # Re-queue non-ACK messages to avoid dropping them
+                self.communication.send(m)
+
+        return ack_received
 
 
 # ---------------------------------------------------------------------------
@@ -425,12 +439,27 @@ class ConsensusManager:
         if topic_id not in self.votes:
             raise ValueError(f"Unknown topic: {topic_id}")
 
+        if not (0.0 <= confidence <= 1.0):
+            raise ValueError(
+                f"confidence must be between 0.0 and 1.0, got {confidence}"
+            )
+
         for vote in self.votes[topic_id]:
             if vote["agent"] == agent_id:
+                allowed = vote.get("options", [])
+                if selection not in allowed:
+                    raise ValueError(
+                        f"Invalid selection '{selection}' for topic '{topic_id}'. "
+                        f"Allowed options: {allowed}"
+                    )
                 vote["status"] = "cast"
                 vote["selection"] = selection
                 vote["confidence"] = confidence
-                break
+                return
+
+        raise ValueError(
+            f"Agent '{agent_id}' is not registered for topic '{topic_id}'"
+        )
 
     def calculate_weighted_consensus(self, topic_id: str) -> Dict[str, Any]:
         """Calculate weighted consensus from cast votes.

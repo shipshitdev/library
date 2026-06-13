@@ -134,10 +134,11 @@ def detect_lost_in_middle(
     }
 
     at_risk_count = 0
-    total_critical = len(critical_positions)
+    valid_critical = 0
 
     for pos in critical_positions:
-        if pos < len(attention_distribution):
+        if 0 <= pos < len(attention_distribution):
+            valid_critical += 1
             region = attention_distribution[pos]["region"]
             if region == "attention_degraded":
                 results["at_risk"].append(pos)
@@ -145,15 +146,15 @@ def detect_lost_in_middle(
             else:
                 results["safe"].append(pos)
 
-    if total_critical > 0:
-        results["degradation_score"] = at_risk_count / total_critical
+    if valid_critical > 0:
+        results["degradation_score"] = at_risk_count / valid_critical
 
     if results["at_risk"]:
         results["recommendations"].extend([
             "Move critical information to attention-favored positions",
             "Use explicit markers to highlight critical information",
             "Consider splitting context to reduce middle section",
-            f"{at_risk_count}/{total_critical} critical items are in degraded region",
+            f"{at_risk_count}/{valid_critical} critical items are in degraded region",
         ])
 
     return results
@@ -200,10 +201,14 @@ def analyze_context_structure(context: str) -> Dict[str, object]:
     middle_start = int(n * 0.3)
     middle_end = int(n * 0.7)
 
-    middle_content = sum(
-        s["length"] for s in sections
-        if s["start"] >= middle_start and s["start"] <= middle_end
-    )
+    middle_content = 0
+    for s in sections:
+        section_start = int(s["start"])
+        section_end = section_start + int(s["length"]) - 1
+        overlap_start = max(section_start, middle_start)
+        overlap_end = min(section_end, middle_end)
+        if overlap_start <= overlap_end:
+            middle_content += overlap_end - overlap_start + 1
 
     middle_ratio = middle_content / n if n > 0 else 0
     return {

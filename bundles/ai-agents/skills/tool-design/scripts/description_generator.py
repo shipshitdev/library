@@ -303,27 +303,27 @@ class ErrorMessageGenerator:
     why, and how to correct the call.
     """
 
-    TEMPLATES: Dict[str, str] = {
-        "NOT_FOUND": json.dumps({
+    TEMPLATES: Dict[str, Dict[str, str]] = {
+        "NOT_FOUND": {
             "error": "{error_code}",
             "message": "{specific_message}",
             "resolution": "{how_to_resolve}",
             "example": "{correct_format}",
-        }, indent=2),
+        },
 
-        "INVALID_INPUT": json.dumps({
+        "INVALID_INPUT": {
             "error": "{error_code}",
             "message": "Invalid {field}: {received_value}",
             "expected_format": "{expected_format}",
             "resolution": "Provide value matching {expected_format}",
-        }, indent=2),
+        },
 
-        "RATE_LIMITED": json.dumps({
+        "RATE_LIMITED": {
             "error": "{error_code}",
             "message": "Rate limit exceeded",
             "retry_after": "{seconds}",
             "resolution": "Wait {seconds} seconds before retrying",
-        }, indent=2),
+        },
     }
 
     def generate(self, error_type: str, context: Dict[str, str]) -> str:
@@ -332,8 +332,9 @@ class ErrorMessageGenerator:
         Use when: a tool needs to return a structured error that an agent
         can parse and act on.
         """
-        template: str = self.TEMPLATES.get(error_type, self.TEMPLATES["INVALID_INPUT"])
-        return template.format(**context)
+        template = self.TEMPLATES.get(error_type, self.TEMPLATES["INVALID_INPUT"])
+        rendered = {k: v.format(**context) for k, v in template.items()}
+        return json.dumps(rendered, indent=2)
 
 
 # ---------------------------------------------------------------------------

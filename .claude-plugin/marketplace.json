@@ -93,7 +93,7 @@
     {
       "name": "advanced-evaluation",
       "source": "./skills/advanced-evaluation",
-      "description": "Master LLM-as-a-Judge evaluation techniques including direct scoring, pairwise comparison, rubric ge"
+      "description": "Design and operate LLM-as-a-Judge evaluation systems using direct scoring, pairwise comparison, rubr"
     },
     {
       "name": "agent-architecture-audit",
@@ -553,7 +553,7 @@
     {
       "name": "memory-systems",
       "source": "./skills/memory-systems",
-      "description": "Design and implement memory architectures for agent systems. Use when building agents that need to p"
+      "description": "Design and implement memory architectures for agent systems that persist state across sessions, main"
     },
     {
       "name": "micro-landing-builder",

@@ -104,7 +104,7 @@ async def compare_with_bias_mitigation(response_a, response_b, prompt, criteria,
 For complex evaluations, use a hierarchical approach:
 
 ```
-Quick Screen (cheap model) → Detailed Evaluation (expensive model) → Human Review (edge cases)
+Quick Screen (cheaper model) → Detailed Evaluation (capable model) → Human Review (edge cases)
 ```
 
 ### Quick Screen Implementation
@@ -113,7 +113,7 @@ Quick Screen (cheap model) → Detailed Evaluation (expensive model) → Human R
 async def quick_screen(response, prompt, threshold=0.7):
     """Fast, cheap screening for obvious passes/fails."""
     result = await generate_text(
-        model='gpt-5.2',  # Cheaper model
+        model='your-fast-screening-model',  # Use a cost-effective model for screening
         prompt=f"Rate 0-1 if this response adequately addresses the prompt:\n\nPrompt: {prompt}\n\nResponse: {response}",
         temperature=0
     )
@@ -127,7 +127,7 @@ async def quick_screen(response, prompt, threshold=0.7):
 async def detailed_evaluation(response, prompt, criteria):
     """Full evaluation for borderline or important cases."""
     result = await generate_text(
-        model='gpt-5.2',  # More capable model
+        model='your-capable-evaluation-model',  # Use a more capable model for edge cases
         system=DETAILED_EVALUATION_PROMPT,
         prompt=build_detailed_prompt(response, prompt, criteria),
         temperature=0.3

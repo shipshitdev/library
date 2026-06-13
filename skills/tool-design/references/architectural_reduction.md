@@ -40,8 +40,6 @@ The reduced system included:
 The agent explores the semantic layer using standard Unix tools:
 
 ```python
-from vercel_sandbox import Sandbox
-
 sandbox = Sandbox.create()
 await sandbox.write_files(semantic_layer_files)
 
@@ -205,6 +203,6 @@ Architectural reduction is not universally applicable, but the principle challen
 
 ## References
 
-- Vercel Engineering: "We removed 80% of our agent's tools" (December 2025)
+- Agent Engineering: "We removed 80% of our agent's tools" (December 2025)
 - AI SDK ToolLoopAgent documentation
-- Vercel Sandbox documentation
+- Sandboxed execution environment documentation

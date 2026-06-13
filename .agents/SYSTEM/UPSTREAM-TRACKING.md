@@ -89,7 +89,7 @@ Agent workflow skills. **The prior `author: Ship Shit Dev` frontmatter on three 
 
 ### muratcankoylan/Agent-Skills-for-Context-Engineering — MIT — `rolling` (`main`)
 
-Eight skills derive from this repo, all verified by fetching the live upstream file (MIT confirmed via the GitHub license API). Two were **ported forward** to the upstream v2.x corpus; six remain at their **v1.0.0 import** and are tracked for a future port.
+Eight skills derive from this repo, all verified by fetching the live upstream file (MIT confirmed via the GitHub license API). All eight have now been **ported forward** to the upstream v2.x corpus: two on 2026-06-12 (synced commit `cbc2c978133d`), the remaining six on 2026-06-13 (synced commit `25e1fa79a33f`).
 
 **Ported to upstream v2.x on 2026-06-12** (corpus commit `cbc2c978133d`, 2026-05-15): body and references match upstream. Cross-references to upstream siblings **not vendored here** (`context-compression`, `filesystem-context`, `project-development`, `latent-briefing`) were stripped so routing only names skills present in this marketplace. One local divergence from upstream: `context-optimization/scripts/compaction.py` carries two hardening fixes (CodeRabbit-flagged, candidates to push back upstream) — `ContextBudget` rejects `total_limit <= 0` and scales its reserved buffer so `reservation_limit` stays non-negative; `calculate_cache_metrics` debits the unhit remainder of a partial cache hit from `misses` (upstream counted only the hit fraction, inflating `hit_rate`). Re-check by diffing the upstream path since `cbc2c978133d`, ignoring those two functions.
 
@@ -98,16 +98,16 @@ Eight skills derive from this repo, all verified by fetching the live upstream f
 | context-fundamentals | `cbc2c978133d` | v2.2.0 (routing framework + gotchas) |
 | context-optimization | `cbc2c978133d` | v2.1.0 |
 
-**Tracked at v1.0.0 — port pending.** Imported 2026-01-20 (this repo's commit `ef42a98`) at the v1.0.0-era content. Each is pinned to the earliest upstream commit at its path — a verified ancestor of the vendored body — **not** to current upstream HEAD, because the bodies have not been ported. The 90-day staleness validator warning on these is expected and correct until they are ported. To port any one: diff its upstream path on `main` since the pinned commit, bring the additions home (Gotchas sections, `claim-*` evidence IDs, "Do not activate" routing), strip refs to non-vendored siblings, then bump `upstream_commit` + `last_synced`.
+**Ported to upstream HEAD on 2026-06-13** (synced commit `25e1fa79a33f`). Originally imported 2026-01-20 (this repo's commit `ef42a98`) at v1.0.0-era content; now brought forward to current upstream HEAD. Each carries the upstream additions home — Gotchas sections, `claim-*` evidence IDs, "Do not activate" routing, and the expanded tables/examples each gained. Cross-references to upstream siblings **not vendored here** (`context-compression`, `filesystem-context`, `project-development`, `latent-briefing`, `hosted-agents`, `bdi-mental-states`, `harness-engineering`) were stripped so routing names only marketplace skills; cross-links to vendored siblings (`tool-design`, `evaluation`, `context-fundamentals`, `context-optimization`) were retained. Local divergences preserved: `multi-agent-patterns` keeps its local-only "Dispatching Parallel Agents" section (no upstream equivalent); `tool-design` genericizes Vercel-specific case-study/Sandbox references (retains a `claude-opus-4.5` name in one code example); `advanced-evaluation` renamed `references/full-guide.md` → `references/evaluation-pipeline.md` to match upstream; carried-forward upstream improvements include `context-degradation`'s numpy→stdlib detector rewrite and `evaluation`'s citation-detection regex fix. Re-check by diffing each upstream path on `main` since `25e1fa79a33f`.
 
-| Skill | Pinned commit | Local | Upstream now | Notable upstream additions |
-|-------|---------------|-------|--------------|----------------------------|
-| context-degradation | `969441a5996a` | v1.0.0 | v2.1.0 | Gotchas (7), claim-* IDs, Examples 3-4, negative activation boundaries |
-| memory-systems | `969441a5996a` | v1.0.0 | v4.1.0 | Production-framework + benchmark tables, Gotchas (8), Error Recovery — largest drift |
-| multi-agent-patterns | `969441a5996a` | v1.0.0 | v2.1.0 | Gotchas (8), "Do not activate", de-specified token table. Local-only "Dispatching Parallel Agents" — preserve on port |
-| tool-design | `969441a5996a` | v1.0.0 | v2.2.0 | "Build for Future Models", Tool Audit Checklist, Gotchas (4→9) |
-| evaluation | `969441a5996a` | v1.0.0 | v1.2.0 | Deterministic-validation, Examples 3-4, Gotchas (8), softened % claims |
-| advanced-evaluation | `0b9a3b81bfea` | v1.0.0 | v2.1.0 | Prompt templates, Metric Selection table, worked JSON examples, Guidelines (10), Gotchas (8), Scaling |
+| Skill | Synced commit | Local version | Notable upstream content carried |
+|-------|---------------|---------------|----------------------------------|
+| context-degradation | `25e1fa79a33f` | v2.1.0 | Gotchas (7), claim-* IDs, Examples 3-4, Model-Specific Degradation Thresholds table |
+| memory-systems | `25e1fa79a33f` | v4.1.0 | Production-framework + benchmark tables, Gotchas (8), Error Recovery — largest drift |
+| multi-agent-patterns | `25e1fa79a33f` | v2.1.0 | Gotchas (8), "Do not activate", de-specified token table; local-only Dispatching Parallel Agents preserved |
+| tool-design | `25e1fa79a33f` | v2.2.0 | "Build for Future Models", Tool Audit Checklist, Gotchas (4→9) |
+| evaluation | `25e1fa79a33f` | v1.2.0 | Deterministic-validation, Examples 3-4, Gotchas (8), softened % claims, citation-regex fix |
+| advanced-evaluation | `25e1fa79a33f` | v2.1.0 | Prompt templates, Metric Selection table, worked JSON examples, Guidelines (10), Gotchas (8), Scaling |
 
 ### pproenca/dot-skills — MIT — `rolling` (`master`)
 
@@ -122,10 +122,10 @@ Two external upstreams ship **no LICENSE file** — content is all-rights-reserv
 
 | Skill | Upstream | Status |
 |-------|----------|--------|
-| changelog-generator | ComposioHQ/awesome-claude-skills | no LICENSE — **review before relying on it** |
-| humanizer | ankshvayt/humanizer | no LICENSE — **review before relying on it** |
+| changelog-generator | ComposioHQ/awesome-claude-skills | no LICENSE — **license requested 2026-06-13** ([issue #1069](https://github.com/ComposioHQ/awesome-claude-skills/issues/1069), awaiting maintainer) |
+| humanizer | ankshvayt/humanizer | no LICENSE — **license requested 2026-06-13** ([issue #1](https://github.com/ankshvayt/humanizer/issues/1), awaiting maintainer) |
 
-These are tracked for *provenance*, not cleared for *redistribution*. Decide whether to keep, relicense-on-request, or replace.
+These are tracked for *provenance*, not cleared for *redistribution*. A license-request issue is open on each upstream (above); until a maintainer adds an explicit OSS license, decide whether to keep, relicense-on-request, or replace.
 
 ---
 
@@ -167,4 +167,4 @@ Everything else (≈148 of 178) is Ship Shit Dev's own work — the solo-founder
 - **Adding a new import:** record provenance in `scripts/provenance-manifest.json`, run `python3 scripts/apply-provenance.py scripts/provenance-manifest.json`, then add a row here.
 - **Source of truth for ports:** git commit messages (e.g. PR #16 documented the original spec-pipeline ports) are the highest-precision provenance signal — consult them before trusting frontmatter labels, which have been wrong before.
 
-*Last updated: 2026-06-12.*
+*Last updated: 2026-06-13.*

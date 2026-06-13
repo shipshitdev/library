@@ -348,6 +348,8 @@ class ContextBudget:
     """
 
     def __init__(self, total_limit: int) -> None:
+        if total_limit <= 0:
+            raise ValueError("total_limit must be > 0")
         self.total_limit = total_limit
         self.allocated: Dict[str, int] = {
             "system_prompt": 0,
@@ -357,7 +359,9 @@ class ContextBudget:
             "tool_outputs": 0,
             "other": 0,
         }
-        self.reserved = 5000  # Reserved buffer
+        # Reserved buffer, scaled so it never exceeds the budget (keeps
+        # reservation_limit non-negative for small total_limit values).
+        self.reserved = min(5000, max(1, int(total_limit * 0.1)))
         self.reservation_limit = total_limit - self.reserved
 
     def allocate(self, category: str, amount: int) -> bool:
@@ -475,7 +479,9 @@ def calculate_cache_metrics(
         token_count = req.get("token_count", 0)
 
         if prefix in cache:
-            hits += token_count * cache[prefix].get("hit_ratio", 0)
+            hit_ratio = max(0.0, min(1.0, float(cache[prefix].get("hit_ratio", 0))))
+            hits += token_count * hit_ratio
+            misses += token_count * (1.0 - hit_ratio)
         else:
             misses += token_count
 

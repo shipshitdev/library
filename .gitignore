@@ -53,3 +53,7 @@ plugins/
 .vibe/
 .windsurf/
 .zencoder/
+
+# Python
+__pycache__/
+*.py[cod]

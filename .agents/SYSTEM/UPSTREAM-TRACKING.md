@@ -91,7 +91,7 @@ Agent workflow skills. **The prior `author: Ship Shit Dev` frontmatter on three 
 
 Eight skills derive from this repo, all verified by fetching the live upstream file (MIT confirmed via the GitHub license API). Two were **ported forward** to the upstream v2.x corpus; six remain at their **v1.0.0 import** and are tracked for a future port.
 
-**Ported to upstream v2.x on 2026-06-12** (corpus commit `cbc2c978133d`, 2026-05-15): body, references, and scripts match upstream. Cross-references to upstream siblings **not vendored here** (`context-compression`, `filesystem-context`, `project-development`, `latent-briefing`) were stripped so routing only names skills present in this marketplace. Re-check by diffing the upstream path since `cbc2c978133d`.
+**Ported to upstream v2.x on 2026-06-12** (corpus commit `cbc2c978133d`, 2026-05-15): body and references match upstream. Cross-references to upstream siblings **not vendored here** (`context-compression`, `filesystem-context`, `project-development`, `latent-briefing`) were stripped so routing only names skills present in this marketplace. One local divergence from upstream: `context-optimization/scripts/compaction.py` carries two hardening fixes (CodeRabbit-flagged, candidates to push back upstream) — `ContextBudget` rejects `total_limit <= 0` and scales its reserved buffer so `reservation_limit` stays non-negative; `calculate_cache_metrics` debits the unhit remainder of a partial cache hit from `misses` (upstream counted only the hit fraction, inflating `hit_rate`). Re-check by diffing the upstream path since `cbc2c978133d`, ignoring those two functions.
 
 | Skill | Synced commit | Local version |
 |-------|---------------|---------------|

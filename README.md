@@ -11,7 +11,7 @@
 ```
 skills/
 ├── skills/              # All skills (182)
-├── commands/            # All commands (10)
+├── commands/            # All commands (11)
 ├── bundles/             # Generated marketplace bundles
 ├── .agents/             # Repo management, memory, meta-skills
 │   ├── SYSTEM/          # Architecture docs, skill standards
@@ -104,7 +104,8 @@ touch skills/my-skill/SKILL.md
 | env-setup | Environment variables |
 | feature | Client requirement intake |
 | inbox | Process inbox items |
-| merge | Review and land open PRs into develop |
+| merge | Review and land open PRs into the trunk |
+| release | Cut a trunk release with patch notes |
 | optimize-prompt | Prompt optimization |
 | performance | Performance analysis |
 | security-audit | Security audit |

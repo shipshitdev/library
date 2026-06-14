@@ -997,7 +997,7 @@ name: Secret Scanning
 
 on:
   push:
-    branches: [main, master, develop]
+    branches: [main, master]
   pull_request:
     branches: [main, master]
 

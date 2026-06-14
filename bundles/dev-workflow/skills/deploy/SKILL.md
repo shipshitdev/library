@@ -2,7 +2,7 @@
 name: deploy
 description: Run deployment workflows for web applications (staging, production). Use when user says 'deploy', 'push to staging', 'release', 'ship it', or 'go live'.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: deployment, devops, ci-cd, production, staging
 ---
 
@@ -90,24 +90,22 @@ Actions.
 
 ### To Staging
 
-1. Ensure develop/main CI is green
-2. Create PR to staging branch (if applicable)
-3. Wait for CI to pass
-4. Merge when green
+1. Ensure trunk CI is green
+2. Trigger deploy to staging environment from the trunk (no staging branch)
+3. Wait for CI and staging health checks to pass
 
 ### To Production
 
-1. Ensure staging CI is green
-2. Create PR to production branch
-3. **Require explicit confirmation** — production is critical
-4. Merge and monitor deployment
+1. Ensure staging environment is healthy
+2. **Require explicit confirmation** — production is critical
+3. Deploy to production environment from the trunk
+4. Monitor deployment
 5. Watch health endpoints and error tracking for 15 minutes
 
 ### Hotfix Flow
 
-1. Branch `hotfix/xxx` off production branch
-2. Fix -> PR to production -> deploy
-3. Merge hotfix back into develop
+1. Branch `hotfix/xxx` off the trunk (default branch)
+2. Fix -> PR to trunk -> merge -> deploy to production
 
 ## Post-Deployment Verification
 

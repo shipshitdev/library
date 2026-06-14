@@ -22,7 +22,7 @@ If you change `@repo/ui`, packages that import `@repo/ui` (like `apps/web`) need
 
 ```bash
 # Use a different base branch
-turbo run build --affected --affected-base=origin/develop
+turbo run build --affected --affected-base=origin/main
 
 # Use a different head (current state)
 turbo run build --affected --affected-head=HEAD~5
@@ -142,7 +142,7 @@ turbo run build --filter=web --filter=api   # runs in both
 | Goal                               | Command                                                     |
 | ---------------------------------- | ----------------------------------------------------------- |
 | Changed + dependents (recommended) | `turbo run build --affected`                                |
-| Custom base branch                 | `turbo run build --affected --affected-base=origin/develop` |
+| Custom base branch                 | `turbo run build --affected --affected-base=origin/main` |
 | Only changed (no dependents)       | `turbo run build --filter=[origin/main]`                    |
 | Changed + dependencies             | `turbo run build --filter=[origin/main]...`                 |
 | Since last commit                  | `turbo run build --filter=...[HEAD^1]`                      |

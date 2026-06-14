@@ -11,7 +11,7 @@
 ```
 skills/
 ├── skills/              # All skills (182)
-├── commands/            # All commands (11)
+├── commands/            # All commands (12)
 ├── bundles/             # Generated marketplace bundles
 ├── .agents/             # Repo management, memory, meta-skills
 │   ├── SYSTEM/          # Architecture docs, skill standards
@@ -98,6 +98,7 @@ touch skills/my-skill/SKILL.md
 
 | Command | Description |
 |---------|-------------|
+| bug | File a GitHub bug issue |
 | check-domain | Domain name generator & availability checker |
 | clean | Cleanup workflow |
 | co-founder | Strategic business partner workflow |

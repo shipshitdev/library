@@ -11,6 +11,7 @@ GitHub workflow and automation skills
 
 ## Included Skills
 
+- `bug`
 - `gh-address-comments`
 - `gh-fix-ci`
 - `gh-inbox`

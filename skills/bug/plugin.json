@@ -1,0 +1,12 @@
+{
+  "name": "bug",
+  "version": "1.0.0",
+  "description": "File a GitHub issue of type Bug from a description: structures a clear bug report (summary, repro, expected vs actual, environment), previews it, then on confirmation creates the issue with the Bug issue type, falling back to a bug label when the repo has no issue types",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

@@ -1,0 +1,12 @@
+{
+  "name": "release",
+  "version": "1.0.0",
+  "description": "Cut a release from the trunk (default branch): derive the next semantic version from commits since the last tag, generate plain-English patch notes, then on confirmation tag the trunk and publish a GitHub release. Trunk-based — no develop/staging promotion",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://github.com/shipshitdev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

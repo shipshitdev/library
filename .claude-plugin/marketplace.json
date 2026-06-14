@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "179 AI agent skills for indie developers building startups",
+  "description": "180 AI agent skills for indie developers building startups",
   "plugins": [
     {
       "name": "shipshitdev-startup",
@@ -308,7 +308,7 @@
     {
       "name": "deployment-composer",
       "source": "./skills/deployment-composer",
-      "description": "Compose deployment workflows from smaller skills and repo signals, including release PR promotion, C"
+      "description": "Compose deployment workflows from smaller skills and repo signals, including trunk-based releases, C"
     },
     {
       "name": "design-consistency-auditor",
@@ -558,7 +558,7 @@
     {
       "name": "merge-open-prs",
       "source": "./skills/merge-open-prs",
-      "description": "Review every open pull request targeting the develop branch, merge the approved ones into develop, t"
+      "description": "Review every open pull request targeting the default/trunk branch, merge the approved ones into the "
     },
     {
       "name": "micro-landing-builder",
@@ -746,14 +746,19 @@
       "description": "Systematic approach to safely refactoring code with tests. Use when user says 'refactor', 'clean up "
     },
     {
+      "name": "release",
+      "source": "./skills/release",
+      "description": "Cut a release from the trunk (default branch) and generate plain-English patch notes. Determines the"
+    },
+    {
       "name": "release-cleanup",
       "source": "./skills/release-cleanup",
-      "description": "Verify a release was fully promoted through develop, staging, and master/main, then prune merged loc"
+      "description": "Verify a release branch is provably merged into the trunk (default branch) via the squash-aware GitH"
     },
     {
       "name": "release-pr-gates",
       "source": "./skills/release-pr-gates",
-      "description": "Promote releases through GitHub pull requests between develop, staging, and master/main branches, in"
+      "description": "Gate a release on the trunk — verify required CI checks are green, then cut a release (semver tag + "
     },
     {
       "name": "retention-engine",

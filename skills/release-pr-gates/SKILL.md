@@ -1,9 +1,9 @@
 ---
 name: release-pr-gates
-description: Promote releases through GitHub pull requests between develop, staging, and master/main branches, including branch discovery, target selection, PR creation, and waiting for required quality gates. Use when the user asks to release, promote develop, open a release PR, push to staging, promote staging to production, or wait for GitHub checks to go green.
+description: Gate a release on the trunk — verify required CI checks are green, then cut a release (semver tag + GitHub release) or open a release PR into the default branch. Deployment to staging and production environments is driven by CI/CD pipelines and tags, not branch PRs. Use when the user asks to release, open a release PR, cut a tag, wait for GitHub checks to go green, or verify the trunk is ready to release.
 compatibility: Requires git and GitHub CLI gh access to the target repository.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   tags: "release, github, pull-request, ci-cd, quality-gates"
 allowed-tools: Bash(git *) Bash(gh *)
 disable-model-invocation: true
@@ -11,41 +11,46 @@ disable-model-invocation: true
 
 # Release PR Gates
 
-Promote code through protected branches with GitHub pull requests and wait for
-quality gates before reporting the release as ready.
+Verify required CI checks are green on the trunk, then cut a release (semver
+tag + GitHub release) or open a release PR targeting the default branch.
+Staging and production are deployment environments driven by CI/CD and tags —
+not long-lived branches.
 
 ## Contract
 
 Inputs:
 
 - Repository root with git remote
-- Source branch and target branch, or permission to auto-detect release branches
-- Optional existing PR number
+- Optional: source feature/release branch (defaults to trunk HEAD)
+- Optional: semver tag to cut, or existing PR number
 
 Outputs:
 
-- PR URL or existing PR reused
-- Source/target branch summary
+- PR URL or existing PR reused, OR tag + GitHub release URL
+- Source and target branch summary
 - Quality gate status
 - Failing check summary when gates fail
 
 Creates/Modifies:
 
-- May create a GitHub release PR
+- May create a GitHub release PR targeting the default branch
+- May create a semver tag and GitHub release
 - May create a local PR body file
-- Does not merge unless explicitly confirmed
+- Does not merge or tag unless explicitly confirmed
 
 External Side Effects:
 
 - Reads and writes GitHub pull request state
 - Watches GitHub checks
 - Reads GitHub Actions logs for failures
+- Creates GitHub releases and tags
 
 Confirmation Required:
 
 - Before creating a PR unless the user explicitly asked to open a release PR
 - Before marking a PR ready when repository convention is unclear
-- Before merging into `master` or `main`
+- Before merging into the default branch
+- Before creating a tag or GitHub release
 - Before rerunning workflows
 
 Delegates To:
@@ -56,14 +61,14 @@ Delegates To:
 
 ## Use Case
 
-Use this skill for release promotion flows such as:
+Use this skill for trunk-based release flows:
 
-- `develop` -> `staging` -> `master`
-- `develop` -> `staging` -> `main`
-- `develop` -> `master` when no `staging` branch exists
-- `develop` -> `main` when no `staging` branch exists
+- Verify the trunk (default branch) is green, then cut a semver tag + release
+- Open a short-lived release branch PR into the trunk and wait for gates
+- Wait for required checks to pass on any open PR targeting the trunk
 
-Always discover the repository's real branches before choosing the PR target.
+Staging and production deployments are triggered by CI/CD rules or tag pushes —
+not by merging between long-lived branches.
 
 ## Preconditions
 
@@ -82,40 +87,37 @@ Always discover the repository's real branches before choosing the PR target.
    git fetch --all --prune
    ```
 
-3. Identify the repository and default branch:
+3. Identify the repository and default branch (the trunk):
 
    ```bash
-   gh repo view --json nameWithOwner,defaultBranchRef
+   gh repo view --json nameWithOwner,defaultBranchRef --jq '{repo:.nameWithOwner,trunk:.defaultBranchRef.name}'
    ```
 
-4. List release branches on the remote:
+   Fallback if GitHub CLI is unavailable:
 
    ```bash
-   git branch -r --list 'origin/develop' 'origin/staging' 'origin/master' 'origin/main'
+   git symbolic-ref refs/remotes/origin/HEAD | sed 's|refs/remotes/origin/||'
    ```
 
-Stop and explain the blocker if `develop` does not exist. This release flow
-starts from `develop` by default.
+4. Confirm the trunk is ahead of or at the expected state:
+
+   ```bash
+   git log --oneline origin/<trunk> -10
+   ```
 
 ## Branch Target Rules
 
-Choose the PR base in this order:
+All PRs target the trunk (default branch). Choose the head in this order:
 
-1. If the user explicitly names a base branch, use it after confirming it exists
-   on the remote.
-2. If `origin/staging` exists, open the release PR from `develop` to `staging`.
-3. If `origin/staging` does not exist, open the release PR from `develop` to
-   `master` when `origin/master` exists.
-4. If `origin/master` does not exist, open the release PR from `develop` to
-   `main` when `origin/main` exists.
-5. If none of these targets exist, stop and report the available remote branches.
+1. If the user names a source branch, use it after confirming it exists on the
+   remote. The base is always the trunk.
+2. If no source branch is named and the user is on a short-lived feature or
+   release branch, open a PR from that branch into the trunk.
+3. If already on the trunk, skip the PR step and proceed directly to cutting the
+   release tag after gates pass.
 
-For a second production promotion after staging has gone green, use:
-
-- `staging` -> `master` when `master` exists
-- `staging` -> `main` when `master` does not exist and `main` exists
-
-Require explicit user confirmation before merging into `master` or `main`.
+There are no `develop`, `staging`, or other long-lived promotion branches.
+Require explicit user confirmation before merging into the trunk.
 
 ## Release PR Workflow
 
@@ -124,37 +126,37 @@ Require explicit user confirmation before merging into `master` or `main`.
    cheap to run locally:
 
    ```bash
-   bun run format || npm run format || npx biome check --write .
+   bun run format || npm run format || bunx biome check --write .
    bun run lint || npm run lint || bunx turbo lint
-   bun run typecheck || bun run type-check || npm run typecheck || npm run type-check || npx tsc --noEmit
+   bun run typecheck || bun run type-check || npm run typecheck || npm run type-check || bunx tsc --noEmit
    ```
 
    Fix failures before pushing. Do not open a release PR with known local
    format, lint, or type errors.
 
-2. Inspect branch divergence:
+2. Inspect divergence between the source branch and the trunk:
 
    ```bash
-   git log --oneline origin/<base>..origin/<head>
-   git diff --stat origin/<base>...origin/<head>
+   git log --oneline origin/<trunk>..origin/<head>
+   git diff --stat origin/<trunk>...origin/<head>
    ```
 
-3. Check for an existing open PR:
+3. Check for an existing open PR targeting the trunk:
 
    ```bash
-   gh pr list --head <head> --base <base> --state open --json number,title,url,headRefName,baseRefName
+   gh pr list --head <head> --base <trunk> --state open --json number,title,url,headRefName,baseRefName
    ```
 
 4. If no open PR exists, create one:
 
    ```bash
-   gh pr create --head <head> --base <base> --title "Release: <head> to <base>" --body-file <body-file>
+   gh pr create --head <head> --base <trunk> --title "Release: <head> → <trunk>" --body-file <body-file>
    ```
 
    The PR body should include:
 
-   - Source and target branches
-   - Commit summary from `<base>..<head>`
+   - Source branch and trunk target
+   - Commit summary from `<trunk>..<head>`
    - Local checks already run, if any
    - Release risk notes or migrations, if visible from commits
 
@@ -193,23 +195,45 @@ gh run view <run-id> --log
 
 Do not rerun workflows unless the user asks.
 
+## Cutting the Release
+
+After gates pass and the PR is merged (or if releasing directly from the trunk),
+cut a semver tag and GitHub release:
+
+1. Confirm the tag with the user before creating it.
+2. Create the tag on the trunk HEAD:
+
+   ```bash
+   git tag v<semver> origin/<trunk>
+   git push origin v<semver>
+   ```
+
+3. Create the GitHub release:
+
+   ```bash
+   gh release create v<semver> --title "v<semver>" --notes-file <release-notes-file> --target <trunk>
+   ```
+
+Deployment to staging and production environments is then triggered
+automatically by CI/CD pipelines that react to the tag — not by merging into
+additional long-lived branches.
+
 ## Merge Policy
 
-- Do not merge production PRs without explicit confirmation.
+- Do not merge into the trunk without explicit confirmation.
 - Do not bypass failing required checks.
-- If staging exists, prefer a staged rollout: `develop` -> `staging`, then
-  `staging` -> production after gates are green.
-- If staging does not exist, use the direct `develop` -> production PR and make
-  the missing staging branch explicit in the final status.
+- Do not create release tags without explicit confirmation.
+- There is no promotion PR chain between long-lived branches. Once the trunk PR
+  is merged and the tag is pushed, CI/CD handles environment promotion.
 
 ## Final Status
 
 Report:
 
-- Repository
-- PR URL
-- Source and target branches
-- Whether this was a staged or direct production release
+- Repository and trunk branch
+- PR URL (if applicable)
+- Source branch and trunk target
+- Tag and GitHub release URL (if cut)
 - Quality gate state
 - Any failing check names and root cause summary
-- Whether user confirmation is needed to merge
+- Whether user confirmation is needed to merge or tag

@@ -1,33 +1,32 @@
 ---
 name: merge-open-prs
-description: Review every open pull request targeting the develop branch, merge the approved ones into develop, then prune the merged branches and stale worktrees left behind. Confirmation-gated and squash-merge aware via delegated cleanup. Use when the user asks to merge all open PRs into develop, review and land the open PRs, batch-merge to develop and clean up afterward, or runs /merge.
+description: Review every open pull request targeting the default/trunk branch, merge the approved ones into the trunk, then prune the merged branches and stale worktrees left behind. Confirmation-gated and squash-merge aware via delegated cleanup. Use when the user asks to merge all open PRs, review and land the open PRs, batch-merge to the trunk and clean up afterward, or runs /merge.
 compatibility: Requires git, GitHub CLI gh, and jq access to the target repository.
 metadata:
-  version: "1.0.0"
-  tags: "git, github, pull-request, merge, review, develop, cleanup, batch"
+  version: "1.1.0"
+  tags: "git, github, pull-request, merge, review, trunk, cleanup, batch"
 allowed-tools: Bash(git *) Bash(gh *) Bash(jq *)
 disable-model-invocation: true
 ---
 
 # Merge Open PRs
 
-Review every open pull request aimed at the develop branch, merge the ones that
-pass review and CI into develop, then tidy up the branches and worktrees the
-merges leave behind. This is an orchestrator: it reviews with `code-review`,
+Review every open pull request aimed at the default/trunk branch, merge the ones
+that pass review and CI into the trunk, then tidy up the branches and worktrees
+the merges leave behind. This is an orchestrator: it reviews with `code-review`,
 merges with `gh`, and prunes with `release-cleanup`. It never bypasses a failing
 gate and never deletes work that is not provably merged.
 
 This skill is standalone and manually triggerable (exposed as `/merge`). It does
-not promote develop onward to staging or production (use `release-pr-gates`) and
-does not deploy (use `deploy`). It lands the open feature/fix PRs onto develop
-and cleans up.
+not cut a release (use the `release` skill to tag from trunk) and does not deploy
+(use `deploy`). It lands the open feature/fix PRs onto the trunk and cleans up.
 
 ## Contract
 
 Inputs:
 
 - Repository root with a git remote and open GitHub pull requests
-- A develop branch on the remote (auto-detected), or an explicit base override
+- The default/trunk branch auto-detected from the remote, or an explicit base override
 - Optional `review` argument (plan only, merge nothing) and/or `--no-prune` flag
   (merge, but skip the prune). With neither, the run is the full sweep: review +
   merge + prune.
@@ -42,7 +41,7 @@ Outputs:
 
 Creates/Modifies:
 
-- Merges approved open PRs into the develop branch through GitHub
+- Merges approved open PRs into the trunk branch through GitHub
 - Deletes each merged PR's head branch (`--delete-branch`)
 - Delegates local branch, remote branch, and worktree pruning to `release-cleanup`
 - Never merges a draft, a conflicted PR, or a PR with failing required checks
@@ -52,7 +51,7 @@ External Side Effects:
 
 - Reads PR, check, and review state from GitHub; merges PRs and deletes remote
   branches via `gh`
-- Does not deploy, promote up the branch chain, or rewrite history
+- Does not deploy, cut a release, or rewrite history
 
 Confirmation Required:
 
@@ -68,25 +67,26 @@ Delegates To:
 - `code-review` to review each open PR before it is merged
 - `gh-fix-ci` when a PR's required checks are failing and the user wants them fixed
 - `release-cleanup` to prune merged branches and stale worktrees after merges land
-- `release-pr-gates` to promote develop onward to staging or production once the
-  open PRs are merged
+- `release` to cut a semver tag and GitHub release from the trunk once PRs are merged
 
 ## When to Use
 
-- To review and land all open PRs targeting develop in one pass, then clean up
-- After a sprint, to clear the develop queue: review, merge the green ones, prune
+- To review and land all open PRs targeting the trunk in one pass, then clean up
+- After a sprint, to clear the trunk queue: review, merge the green ones, prune
 - When the user wants one confirm-gated sweep instead of merging PRs one by one
 
-Do not use this skill to promote develop up the release chain or to force-merge
-PRs that fail review or CI. It only lands PRs that pass their gates.
+Do not use this skill to cut a release or force-merge PRs that fail review or CI.
+It only lands PRs that pass their gates. To cut a release, use the `release` skill
+to tag from trunk after the PRs are merged.
 
 ## Safety Model
 
 Hard rules:
 
-1. The merge base is **develop**. If develop does not exist on the remote, STOP
-   and report — this flow is develop-centric. Honor an explicit base override only
-   after confirming that branch exists on the remote.
+1. The merge base is the **default/trunk branch**, auto-detected via
+   `gh repo view --json defaultBranchRef --jq .defaultBranchRef.name`. If the
+   detected branch is absent on the remote, STOP and report. Honor an explicit
+   base override only after confirming that branch exists on the remote.
 2. **Drafts are never merged.** Report and skip.
 3. **Conflicted PRs are never merged.** A PR whose `mergeable` is `CONFLICTING`
    is reported and skipped; the author must rebase first.
@@ -101,29 +101,31 @@ Hard rules:
 7. No deletion happens here beyond the merged PR's own head branch. All other
    branch and worktree pruning is delegated to `release-cleanup`, which gates it.
 
-## Phase 1: Discover Open PRs Into Develop
+## Phase 1: Discover Open PRs Into the Trunk
 
 ```bash
 gh auth status -h github.com
 git status -sb
 git fetch --all --prune
 gh repo view --json nameWithOwner,defaultBranchRef,mergeCommitAllowed,squashMergeAllowed,rebaseMergeAllowed
-git branch -r --list 'origin/develop'
+DEFAULT_BRANCH=$(gh repo view --json defaultBranchRef --jq .defaultBranchRef.name)
+git branch -r --list "origin/$DEFAULT_BRANCH"
 ```
 
-If `origin/develop` is absent, STOP and report the available remote branches. If
-the user passed an explicit base, confirm it exists before continuing.
+If the detected trunk branch is absent on the remote, STOP and report the
+available remote branches. If the user passed an explicit base, confirm it exists
+before continuing.
 
-Snapshot every open PR targeting develop in one query — this drives the rest of
+Snapshot every open PR targeting the trunk in one query — this drives the rest of
 the run:
 
 ```bash
-gh pr list --base develop --state open --limit 200 \
+gh pr list --base "$DEFAULT_BRANCH" --state open --limit 200 \
   --json number,title,headRefName,isDraft,mergeable,mergeStateStatus,reviewDecision,statusCheckRollup,url \
   > /tmp/mop_prs.json
 ```
 
-Raise `--limit` if there are more than 200 open PRs into develop.
+Raise `--limit` if there are more than 200 open PRs into the trunk.
 
 Pick the merge method once from the repository's allowed modes (prefer squash so
 cleanup's squash-aware oracle stays consistent):
@@ -232,11 +234,12 @@ With `--no-prune`, stop after Phase 4 and report; do not prune.
 
 - `merge-open-prs` — Phases 1-5. Review, confirm, merge, then delegate prune to
   `release-cleanup`. The full sweep. (Default.)
-- `merge-open-prs review` — Phases 1-3. Review every open PR into the base and
+- `merge-open-prs review` — Phases 1-3. Review every open PR into the trunk and
   print the plan. Merge nothing, prune nothing.
 - `merge-open-prs --no-prune` — Phases 1-4. Review, confirm, merge; skip the prune.
-- `merge-open-prs <base>` — run against an explicit base branch instead of develop
-  (after confirming that branch exists). Combines with `review` and `--no-prune`.
+- `merge-open-prs <base>` — run against an explicit base branch instead of the
+  auto-detected trunk (after confirming that branch exists). Combines with `review`
+  and `--no-prune`.
 
 If the user scopes the run ("only PRs labeled X", "skip the prune"), honor it:
 still review and gate, but restrict the candidate set or stop
@@ -246,11 +249,11 @@ before the phase they excluded.
 
 Report:
 
-- Repository and the base branch used (develop or the confirmed override)
+- Repository and the base branch used (auto-detected trunk or the confirmed override)
 - Merge method used
 - PRs merged, with numbers and titles
 - PRs excluded, grouped by reason (draft, conflicting, checks, review-blocked)
 - Any merge that failed mid-batch and why
 - The `release-cleanup` prune summary, or that pruning was skipped
 - What the user should decide next (e.g. rebase a conflicted PR, fix CI via
-  `gh-fix-ci`, or promote develop onward via `release-pr-gates`)
+  `gh-fix-ci`, or cut a release from trunk via the `release` skill)

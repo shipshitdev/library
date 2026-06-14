@@ -1,7 +1,7 @@
 {
   "name": "release-pr-gates",
-  "version": "1.0.0",
-  "description": "Promote release PRs through develop, staging, and production branches while waiting for CI gates",
+  "version": "1.1.0",
+  "description": "Gate a release on the trunk — verify required CI checks are green, then cut a release tag or open a release PR into the default branch",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",

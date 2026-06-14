@@ -1,9 +1,9 @@
 ---
 name: deployment-composer
-description: Compose deployment workflows from smaller skills and repo signals, including release PR promotion, CI quality gates, provider deployment, post-deploy verification, rollback, and failed-check diagnosis. Use when the user asks for a deployment plan, release workflow, ship-to-staging/production flow, or a smart deploy process across GitHub, Vercel, EC2, Docker, or custom CI.
-compatibility: Requires local repository access. GitHub promotion flows require gh and git access.
+description: Compose deployment workflows from smaller skills and repo signals, including trunk-based releases, CI quality gates, provider deployment, post-deploy verification, rollback, and failed-check diagnosis. Use when the user asks for a deployment plan, release workflow, ship-to-staging/production environments, or a smart deploy process across GitHub, Vercel, EC2, Docker, or custom CI.
+compatibility: Requires local repository access. GitHub release flows require gh and git access.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   tags: "deployment, orchestration, release, ci-cd, github, staging, production"
 allowed-tools: Bash(git *) Bash(gh *) Bash(ls *) Bash(find *) Bash(rg *) Bash(cat *)
 disable-model-invocation: true
@@ -64,7 +64,7 @@ Delegates To:
 
 | Stage | Use |
 |-------|-----|
-| `release-pr-gates` | GitHub release PRs, branch discovery, staging/master/main promotion, waiting for checks |
+| `release-pr-gates` | GitHub release PRs, branch discovery, gate + cut releases on the trunk, waiting for checks |
 | `deploy` | General staging/production deploy checklist, local quality gates, post-deploy monitoring |
 | `gh-fix-ci` | Failed GitHub Actions checks on release or deploy PRs |
 | `ec2-backend-deployer` | Docker + GitHub Actions + EC2 backend deployment setup |
@@ -94,8 +94,7 @@ gh workflow list
 Capture:
 
 - Current branch and dirty worktree state
-- Remote branches: `develop`, `staging`, `main`, `master`
-- Default branch
+- Default (trunk) branch and remote branch list
 - CI provider and required checks
 - Deploy provider: Vercel, EC2/Docker, GitHub Actions, custom scripts, or unknown
 - Package manager and quality commands
@@ -103,13 +102,13 @@ Capture:
 
 ## Routing Rules
 
-### Release Promotion
+### Release
 
-If the user wants to promote code between long-lived branches:
+If the user wants to cut a release:
 
-1. Use `release-pr-gates`.
-2. Prefer `develop` -> `staging` when `staging` exists.
-3. Fall back to `develop` -> `master/main` when `staging` is absent.
+1. Use `release-pr-gates` to gate the release on the trunk (default branch).
+2. A short-lived feature or fix branch is merged into the trunk via PR; the release is then cut from the trunk as a semver tag + GitHub release.
+3. `staging` and `production` are deployment environments driven by CI/tags — not git branches.
 4. Wait for quality gates before calling the release ready.
 5. Use `gh-fix-ci` if checks fail.
 
@@ -172,7 +171,7 @@ If the release needs user-facing notes or a PR body:
 - Never hide a dirty worktree; identify whether local changes are part of the deploy.
 - Never bypass branch protection or required checks.
 - Never merge or deploy production without explicit confirmation.
-- Never assume `staging` exists; verify remote branches.
+- Never assume a `staging` environment is configured; verify CI/deployment settings.
 - Never call skipped or absent checks green.
 - Prefer existing repo scripts and workflows over inventing new deploy commands.
 - If a provider cannot be identified, stop after discovery and report what is missing.

@@ -1,20 +1,20 @@
 ---
 name: release-cleanup
-description: Verify a release was fully promoted through develop, staging, and master/main, then prune merged local and remote branches and stale git worktrees. Squash-merge aware — uses GitHub PR merge state as the merge oracle, not commit ancestry. Use when the user asks to clean up branches after a deploy, prune worktrees, remove merged branches, tidy up after promoting develop to staging to master, or confirm nothing stale was left behind before pruning.
+description: Verify a release branch is provably merged into the trunk (default branch) via the squash-aware GitHub PR merge oracle, then prune merged local and remote feature branches and stale git worktrees. Squash-merge aware — uses GitHub PR merge state as the merge oracle, not commit ancestry. Use when the user asks to clean up branches after a deploy, prune worktrees, remove merged branches, or confirm nothing stale was left behind before pruning.
 compatibility: Requires git, GitHub CLI gh, and jq access to the target repository.
 metadata:
-  version: "2.0.0"
-  tags: "git, cleanup, branches, worktrees, release, prune, ci-cd, squash-merge"
+  version: "2.1.0"
+  tags: "git, cleanup, branches, worktrees, release, prune, ci-cd, squash-merge, trunk-based"
 allowed-tools: Bash(git *) Bash(gh *) Bash(jq *)
 disable-model-invocation: true
 ---
 
 # Release Cleanup
 
-Confirm a release was fully promoted up the branch chain, then prune the branches
-and git worktrees that promotion left behind. Verification is a hard gate: never
-prune until each branch's work is proven to have reached the production branch and
-no in-flight work is stranded.
+Confirm a release branch's work has reached the trunk (default branch), then prune
+the feature branches and git worktrees that are no longer needed. Verification is a
+hard gate: never prune until each branch's work is proven to have reached the trunk
+and no in-flight work is stranded.
 
 This skill is standalone and manually triggerable. It does not promote code (use
 `release-pr-gates` for that) and does not deploy (use `deploy`). It runs after a
@@ -51,13 +51,13 @@ deleted.
 Inputs:
 
 - Repository root with a git remote
-- Branch chain to verify, or permission to auto-detect (`develop` -> `staging` -> `master`/`main`)
+- Trunk (default branch) to verify against — auto-detected via `gh repo view --json defaultBranchRef` if not supplied
 - Optional mode: `verify` (gate only), `dry-run` (default, plan only), or `prune` (execute after confirmation)
 
 Outputs:
 
-- Promotion verification result per chain hop (complete / incomplete), with a squash caveat where ancestry and PR state disagree
-- Branch classification: prunable (in prod), merged-but-not-yet-promoted, in-flight (open PR), and genuinely stranded
+- Verification result: whether each feature branch's work is provably in the trunk, with a squash caveat where ancestry and PR state disagree
+- Branch classification: prunable (in trunk), merged-but-not-yet-in-trunk, in-flight (open PR), and genuinely stranded
 - Prune plan: local branches, remote branches, and worktrees that are safe to remove
 - Final summary of what was removed and what was skipped
 
@@ -82,15 +82,15 @@ Confirmation Required:
 
 Delegates To:
 
-- `release-pr-gates` when the chain is NOT fully promoted and the user wants to finish the promotion first
-- `gh-fix-ci` when a promotion PR is still open with failing checks
+- `release-pr-gates` when a branch is NOT yet merged into the trunk and the user wants to open or land the PR first
+- `gh-fix-ci` when a PR targeting the trunk is still open with failing checks
 - `git-safety` when a branch about to be pruned may contain secrets in history worth scrubbing first
 
 ## When to Use
 
-- After promoting `develop` -> `staging` -> `master` and you want to delete the merged feature/release branches and worktrees
-- Manually, any time, to verify the chain is fully promoted and see what is safe to prune
-- To confirm "nothing is stale" — that every branch intended for the release actually reached the production branch — before tidying up
+- After merging a feature or release PR into the trunk and you want to delete the merged feature branches and worktrees
+- Manually, any time, to verify the trunk is up to date and see what is safe to prune
+- To confirm "nothing is stale" — that every branch intended for the release actually reached the trunk — before tidying up
 
 Do not use this skill to promote code or to delete unmerged work. It only removes
 what is provably in the production branch.
@@ -100,7 +100,7 @@ what is provably in the production branch.
 Protected branches are never deleted:
 
 ```
-develop  staging  master  main  + the currently checked-out branch + HEAD
+master  main  (trunk / default branch)  + the currently checked-out branch + HEAD
 ```
 
 Hard rules:
@@ -126,17 +126,14 @@ gh auth status -h github.com
 git status -sb
 git remote -v
 git fetch --all --prune
-gh repo view --json nameWithOwner,defaultBranchRef
-git branch -r --list 'origin/develop' 'origin/staging' 'origin/master' 'origin/main'
+gh repo view --json nameWithOwner,defaultBranchRef --jq '.defaultBranchRef.name'
 ```
 
-Determine the chain from the branches that actually exist on the remote:
+Determine the trunk from the repo metadata:
 
-- Production branch = `master` if it exists, else `main`, else the repo default branch.
-- Chain = the subset of `develop` -> `staging` -> production that exists.
-- If neither `develop` nor `staging` exists (e.g. a master-only repo), the chain
-  collapses to "everything is merged into the production branch" and verification
-  checks only that.
+- Trunk = the repo's default branch as returned by `gh repo view --json defaultBranchRef --jq .defaultBranchRef.name`. Never hardcode `master` or `main`.
+- All feature/release branches are short-lived and eventually merged into the trunk.
+- Verification checks only that each candidate branch's work has reached the trunk.
 
 Snapshot every PR once — this is the data the Merge Oracle runs against:
 
@@ -148,38 +145,29 @@ gh pr list --state all --limit 1000 \
 
 Raise `--limit` if the repo has more open+closed PRs than that.
 
-## Phase 2: Promotion Verification (Hard Gate)
+## Phase 2: Trunk Verification (Hard Gate)
 
-### 2a. Trunk hops
+### 2a. Check candidate branches against the trunk
 
-Prove each trunk hop carries no un-promoted commits. Ancestry is the first signal,
-but trunk promotions are occasionally squash-merged too, so corroborate any
-non-empty result against the latest merged promotion PR for that hop before
-declaring the release incomplete.
+For each candidate branch (feature branches targeted for cleanup), verify that its
+work has reached the trunk. Ancestry is the first signal, but squash merges require
+corroboration against the latest merged PR for that branch before declaring work missing.
 
 ```bash
-# develop -> staging
-git log --oneline origin/staging..origin/develop
-gh pr list --base staging --head develop --state merged --limit 1 \
-  --json number,mergedAt,mergeCommit
+TRUNK=$(gh repo view --json defaultBranchRef --jq .defaultBranchRef.name)
 
-# staging -> production
-git log --oneline origin/master..origin/staging
-gh pr list --base master --head staging --state merged --limit 1 \
+# Show commits on a candidate branch not yet in the trunk
+git log --oneline origin/${TRUNK}..origin/<branch>
+# Check the PR that merged this branch into the trunk
+gh pr list --base ${TRUNK} --head <branch> --state merged --limit 1 \
   --json number,mergedAt,mergeCommit
 ```
 
-When `staging` does not exist, check `develop` against production directly
-(`origin/master..origin/develop` + the `--base master --head develop` PR).
+Interpreting a non-empty result:
 
-Interpreting a non-empty hop:
-
-- The listed commits are genuine direct commits on the lower branch not yet in the
-  upper one => promotion INCOMPLETE. Report the commits and STOP.
-- The listed commits all belong to PRs already squash-merged up the chain => an
-  ancestry artifact, not a real gap. Note the caveat and treat the hop as complete.
-- Distinguish the two by checking whether each ahead-commit's PR (if any) is already
-  merged into the upper branch.
+- Commits exist on the branch that are genuine direct commits not yet in the trunk => NOT MERGED. Report and STOP.
+- All listed commits belong to a PR already squash-merged into the trunk => ancestry artifact, not a real gap. Treat as merged.
+- Distinguish the two by checking whether each ahead-commit's PR is already merged into the trunk.
 
 ### 2b. Branch classification (the "nothing is stale" check)
 
@@ -187,7 +175,8 @@ Run the Merge Oracle over every non-protected remote branch. Do NOT use
 `git branch -r --no-merged` for this — it lies on squash repos.
 
 ```bash
-PROD=origin/master   # or origin/main per Phase 1
+TRUNK=$(gh repo view --json defaultBranchRef --jq .defaultBranchRef.name)
+PROD="origin/${TRUNK}"
 
 classify_branch() {        # arg: branch name without origin/
   local b="$1" rec st mc base num
@@ -197,8 +186,7 @@ classify_branch() {        # arg: branch name without origin/
   if [ -z "$rec" ] || [ "$rec" = "null" ]; then
     git merge-base --is-ancestor "refs/remotes/origin/$b" "$PROD" 2>/dev/null \
       && { echo "PRUNABLE_NO_PR_FF"; return; }
-    git merge-base --is-ancestor "refs/remotes/origin/$b" origin/develop 2>/dev/null \
-      && echo "IN_DEVELOP_NO_PR" || echo "STRANDED_NO_PR"
+    echo "STRANDED_NO_PR"
     return
   fi
 
@@ -214,11 +202,11 @@ classify_branch() {        # arg: branch name without origin/
               || echo "STRANDED_CLOSED_UNMERGED(#$num)";;
     MERGED)
       if [ -n "$mc" ] && git merge-base --is-ancestor "$mc" "$PROD" 2>/dev/null; then
-        echo "PRUNABLE_IN_PROD(#$num)"
+        echo "PRUNABLE_IN_TRUNK(#$num)"
       elif git merge-base --is-ancestor "refs/remotes/origin/$b" "$PROD" 2>/dev/null; then
-        echo "PRUNABLE_IN_PROD(#$num)"
+        echo "PRUNABLE_IN_TRUNK(#$num)"
       else
-        echo "MERGED_NOT_YET_IN_PROD(#$num->$base)"
+        echo "MERGED_NOT_YET_IN_TRUNK(#$num->$base)"
       fi;;
   esac
 }
@@ -227,28 +215,27 @@ classify_branch() {        # arg: branch name without origin/
 git branch -r --format '%(refname:short)' \
   | grep -v -- '->' \
   | sed 's#^origin/##' \
-  | grep -vxE 'origin|develop|staging|master|main|HEAD' \
+  | grep -vxE "origin|${TRUNK}|HEAD" \
   | while read -r b; do printf '%-50s %s\n' "$b" "$(classify_branch "$b")"; done
 ```
 
 Buckets and what they mean:
 
-- `PRUNABLE_*` — work is in the production branch. Safe to prune.
-- `MERGED_NOT_YET_IN_PROD` — PR merged into develop/staging but not yet promoted to
-  production. NOT prunable yet; this is a real "release not fully promoted" signal
-  for that branch. Report it.
+- `PRUNABLE_*` — work is in the trunk. Safe to prune.
+- `MERGED_NOT_YET_IN_TRUNK` — PR was merged into an intermediate branch that has not
+  yet been merged into the trunk. NOT prunable yet; this is a real "not yet in trunk"
+  signal for that branch. Report it.
 - `IN_FLIGHT_OPEN_PR` — open PR. In progress. Skip, never prune.
-- `IN_DEVELOP_NO_PR` — landed on develop with no PR (direct push). Treat like
-  develop content; prune only if also in prod by ancestry.
-- `STRANDED_*` — no merged PR and not in develop. **Genuinely forgotten work.**
+- `STRANDED_*` — no merged PR and not in the trunk. **Genuinely forgotten work.**
   Report loudly, never prune.
 
 Gate outcome:
 
-- Any real (non-artifact) incomplete trunk hop => STOP. Offer `release-pr-gates`.
+- Any real (non-artifact) branch not yet in the trunk => STOP. Offer `release-pr-gates`.
 - Any `STRANDED_*` branch => report as a warning; the user decides whether it was
   meant to ship. This is the "nothing is stale" guarantee.
-- Trunk hops complete (or only artifacts) and stranded set understood => continue.
+- All candidate branches confirmed in trunk (or only squash-artifacts) and stranded
+  set understood => continue.
 
 ## Phase 3: Build the Prune Plan (Dry-Run, Default)
 
@@ -256,8 +243,9 @@ The prunable remote set is exactly the branches the oracle tagged `PRUNABLE_*` i
 Phase 2b. Now compute the local and worktree sets the same way.
 
 ```bash
+TRUNK=$(gh repo view --json defaultBranchRef --jq .defaultBranchRef.name)
 CURRENT="$(git symbolic-ref --quiet --short HEAD || echo)"
-PROTECT="develop|staging|master|main|${CURRENT:-__none__}"
+PROTECT="${TRUNK}|${CURRENT:-__none__}"
 
 # Local branches — classify each with the SAME oracle (reuse classify_branch,
 # but test the LOCAL ref, not origin/, for the ancestry fallback).
@@ -290,7 +278,7 @@ For each worktree other than the main checkout, classify it:
 
 Print the plan as three explicit lists — local branches, remote branches,
 worktree paths — each annotated with the oracle verdict and PR number, plus a
-skipped list with reasons (`MERGED_NOT_YET_IN_PROD`, `IN_FLIGHT_OPEN_PR`,
+skipped list with reasons (`MERGED_NOT_YET_IN_TRUNK`, `IN_FLIGHT_OPEN_PR`,
 `STRANDED_*`, dirty worktree). Then stop and ask for confirmation. In `dry-run`
 (default) and `verify` modes, end here.
 
@@ -327,7 +315,7 @@ Rules during execution:
 
 ## Modes
 
-- `release-cleanup verify` — Phase 1 + 2 only. Report promotion status and the branch classification. No plan, no deletion.
+- `release-cleanup verify` — Phase 1 + 2 only. Report trunk verification status and the branch classification. No plan, no deletion.
 - `release-cleanup` or `release-cleanup dry-run` — Phases 1-3. Verify, then print the prune plan. No deletion. (Default.)
 - `release-cleanup prune` — Phases 1-4. Verify, print plan, confirm, then delete.
 
@@ -339,10 +327,10 @@ and execution to the requested resource types.
 
 Report:
 
-- Repository and production branch used
-- Each trunk hop's result (complete / incomplete / squash-artifact)
+- Repository and trunk (default branch) used
+- Verification result for each candidate branch (in trunk / not yet in trunk / squash-artifact)
 - Genuinely stranded branches (`STRANDED_*`), if any
-- Branches merged but not yet promoted to prod (`MERGED_NOT_YET_IN_PROD`), if any
+- Branches with open or unmerged PRs not yet in the trunk (`MERGED_NOT_YET_IN_TRUNK`), if any
 - Local branches deleted / skipped (with reasons, and whether `-D` was needed)
 - Remote branches deleted / skipped (with reasons)
 - Worktrees removed / skipped (with reasons)

@@ -1,9 +1,9 @@
 ---
 name: worktree
-description: Create an isolated git worktree from the correct base branch and check it out into a clean, gitignored directory. Use when the user asks to make a worktree, spin up a parallel/isolated workspace, work on something without disturbing the current checkout, branch off the current work, or run multiple agents on the same repo at once. Picks the base branch smartly — the current feature branch when you are on one, otherwise the develop integration branch — so worktrees continue your in-progress work by default instead of forking from the wrong place.
+description: Create an isolated git worktree from the correct base branch and check it out into a clean, gitignored directory. Use when the user asks to make a worktree, spin up a parallel/isolated workspace, work on something without disturbing the current checkout, branch off the current work, or run multiple agents on the same repo at once. Picks the base branch smartly — the current feature branch when you are on one, otherwise the repository's default/trunk branch — so worktrees continue your in-progress work by default instead of forking from the wrong place.
 compatibility: Requires git 2.5+ (worktree support).
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "git, worktree, branch, isolation, parallel, workspace"
   author: Ship Shit Dev
 allowed-tools: Bash(git *)
@@ -66,27 +66,25 @@ The base is resolved in this order. **Local tips only — no automatic fetch.**
    is not one of the protected/integration branches, the worktree forks from it.
    This is the default: you stay on your in-progress work and explore a sibling
    line without disturbing the current checkout.
-3. **On a protected branch or detached HEAD → branch off `develop`.** If the
-   current branch is `master`, `main`, `develop`, or `staging`, or HEAD is
-   detached, fork from the integration branch instead of an integration branch's
-   tip-as-feature. Prefer local `develop`; if no `develop` exists, fall back to
-   the repository's default branch.
+3. **On a protected branch or detached HEAD → branch off the default/trunk branch.**
+   If the current branch is `master` or `main`, or HEAD is detached, fork from
+   the repository's default branch (auto-detected). Never use `develop` or
+   `staging` as a long-lived integration base in a trunk-based workflow.
 
 ```text
 current branch          ->  base the worktree forks from
 ----------------------      ----------------------------
 feat/foo  (feature)     ->  feat/foo        (continue current work)
 bugfix/x  (feature)     ->  bugfix/x        (continue current work)
-master / main           ->  develop         (or default branch if no develop)
-develop / staging       ->  develop
-detached HEAD           ->  develop         (or default branch if no develop)
+master / main           ->  default branch  (trunk)
+detached HEAD           ->  default branch  (trunk)
 explicit "from <base>"  ->  <base>          (always wins)
 ```
 
-Protected/integration set (never used as a "feature" base in step 2):
+Protected/trunk set (never used as a "feature" base in step 2):
 
 ```
-master  main  develop  staging
+master  main
 ```
 
 ## Phase 1: Verify Repo and Resolve Inputs
@@ -108,34 +106,28 @@ Resolve the **new branch name**:
 ## Phase 2: Resolve the Base Branch
 
 ```bash
-PROTECTED='master|main|develop|staging'
+PROTECTED='master|main'
 
-# Integration fallback, resolved to a ref that actually exists locally.
-# Prefer local develop, then the remote-tracking origin/develop (still local,
-# no fetch), then the repo's default branch.
-if git show-ref --verify --quiet refs/heads/develop; then
-  FALLBACK=develop
-elif git show-ref --verify --quiet refs/remotes/origin/develop; then
-  FALLBACK=origin/develop   # new branch will fork from and track origin/develop
-else
-  DEF="$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD | sed 's#^origin/##')"
-  DEF="${DEF:-master}"
-  git show-ref --verify --quiet "refs/heads/$DEF" && FALLBACK="$DEF" || FALLBACK="origin/$DEF"
-fi
+# Default/trunk branch fallback — resolved to a ref that actually exists locally.
+# Auto-detect the repo's default branch; never hardcode develop or staging.
+DEF="$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null | sed 's#^origin/##')"
+DEF="${DEF:-$(git symbolic-ref --quiet --short HEAD 2>/dev/null)}"
+DEF="${DEF:-master}"
+git show-ref --verify --quiet "refs/heads/$DEF" && FALLBACK="$DEF" || FALLBACK="origin/$DEF"
 
 # Apply the precedence. BASE is the start-point ref passed to `git worktree add`.
 if [ -n "$EXPLICIT_BASE" ]; then
   BASE="$EXPLICIT_BASE"
 elif printf '%s\n' "$CURRENT" | grep -qxE "$PROTECTED" || [ "$CURRENT" = DETACHED ]; then
-  BASE="$FALLBACK"          # on a protected/detached ref -> integration branch
+  BASE="$FALLBACK"          # on trunk or detached HEAD -> default/trunk branch
 else
   BASE="$CURRENT"           # on a feature branch -> continue current work
 fi
 echo "Base: $BASE  (current: $CURRENT)"
 ```
 
-`BASE` is always a concrete start-point (a local branch like `develop`, a
-remote-tracking ref like `origin/develop`, or the user's explicit base). Report
+`BASE` is always a concrete start-point (a local branch like `master`, a
+remote-tracking ref like `origin/main`, or the user's explicit base). Report
 the resolved base and the reason before creating anything.
 
 ## Phase 3: Freshness Check (warn, do not fetch)

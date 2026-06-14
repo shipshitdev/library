@@ -30,6 +30,7 @@ Code review, debugging, refactoring, release, and AI-assisted development workfl
 - `merge-open-prs`
 - `production-audit`
 - `refactor-code`
+- `release`
 - `release-cleanup`
 - `release-pr-gates`
 - `scaffold`

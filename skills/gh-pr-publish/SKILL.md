@@ -5,7 +5,7 @@ compatibility: Requires git and GitHub CLI gh access to the target repository.
 disable-model-invocation: true
 allowed-tools: Bash(git *) Bash(gh *)
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "github, pull-requests, publishing"
 ---
 
@@ -53,7 +53,7 @@ Delegates To:
 
 - `commit-summary` to create a Conventional Commit
 - `gh-fix-ci` when PR checks fail
-- `release-pr-gates` for develop/staging/production promotion PRs
+- `release-pr-gates` / `release` for trunk-based releases
 - `gh-project-board` when the PR must be added to a project board
 
 ## Workflow
@@ -69,8 +69,8 @@ Delegates To:
    ```
 
 2. Protect default branches:
-   - If on `main`, `master`, `develop`, or `staging`, create a feature branch
-     before committing unless the user explicitly requested a release PR.
+   - If on the default/trunk branch (or detached HEAD), create a feature branch
+     before committing unless the user explicitly requested a release.
    - Use branch prefix `codex/` unless the repo has a stronger convention.
    - Never rewrite shared branch history.
 

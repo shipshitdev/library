@@ -182,6 +182,19 @@ Decide which slices are in scope before writing sub-issues:
 Default product features to backend + frontend + e2e unless the requirement is
 clearly narrower. Keep sub-issues small enough for one focused PR.
 
+**Testing bar (non-negotiable — encode in the PRD Acceptance Criteria):**
+
+- Integration tests cover every in-scope backend boundary (API↔DB,
+  service↔queue, external integrations, auth).
+- An end-to-end test proves the workflow whenever backend and frontend are both
+  `IN`.
+- Automated coverage on the code this feature adds or changes stays at or above
+  80%.
+
+Drop any single test type only with a one-line reason in `Non-Functional
+Requirements`; never silently. A pure copy/static change may scope to
+coverage-only with that reason.
+
 ### 6. Draft The Parent PRD
 
 Use the issue body as the PRD. Do not add YAML frontmatter to issue bodies.
@@ -218,6 +231,9 @@ Use the issue body as the PRD. Do not add YAML frontmatter to issue bodies.
 ## Acceptance Criteria
 - [ ] <Human-checkable completion condition>
 - [ ] <Edge case or failure state is handled>
+- [ ] Integration tests cover every in-scope backend boundary (API↔DB, service↔queue, external integrations) and pass.
+- [ ] End-to-end test proves the full user workflow (required when backend + frontend are both `IN`) — or `N/A - <reason>`.
+- [ ] Automated coverage on added/changed code is ≥80%.
 
 ## Out of Scope
 - <Boundary agents must not cross>
@@ -237,7 +253,9 @@ Use the issue body as the PRD. Do not add YAML frontmatter to issue bodies.
 - [ ] `[e2e]` <title> - #<n>
 
 ## Verification Plan
-- tests: <test suites or files that must exist/pass>
+- integration tests: <boundaries covered; suites/files that must exist and pass>
+- e2e tests: <workflow proven end to end; suite/file> | or `N/A - <reason>`
+- coverage: ≥80% on added/changed code (<command/tool that reports it>)
 - manual: <manual QA steps or stakeholder demo checks>
 
 ## Risks & Open Questions
@@ -251,7 +269,8 @@ Each sub-issue should include:
 - Parent epic link
 - Scope for that slice only
 - Acceptance criteria
-- Tests or verification for that slice
+- Tests for that slice: integration tests for `[backend]` boundaries, the e2e
+  test for `[e2e]`, and the slice's share of the ≥80% coverage bar
 - Out-of-scope notes to prevent overlap with sibling issues
 
 Use titles like:
@@ -273,6 +292,9 @@ Do not create issues until the draft passes these checks:
 - Success criteria and acceptance criteria are pass/fail.
 - Every `IN` layer has a sub-issue.
 - Every `N/A` layer has a reason.
+- Acceptance Criteria include integration tests for in-scope backend boundaries,
+  an e2e test for full-stack flows, and ≥80% coverage on added/changed code, or a
+  one-line reason for any omission.
 - Open questions are visible in `Risks & Open Questions`.
 - Duplicate search results have been considered.
 

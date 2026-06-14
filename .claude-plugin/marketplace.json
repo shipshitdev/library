@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "180 AI agent skills for indie developers building startups",
+  "description": "181 AI agent skills for indie developers building startups",
   "plugins": [
     {
       "name": "shipshitdev-startup",
@@ -164,6 +164,11 @@
       "name": "brand-architect",
       "source": "./skills/brand-architect",
       "description": "Use this skill when users need to develop brand strategy, choose a company name, define brand positi"
+    },
+    {
+      "name": "bug",
+      "source": "./skills/bug",
+      "description": "File a GitHub issue of type Bug from a description — structures a clear bug report (summary, steps t"
     },
     {
       "name": "bun-validator",

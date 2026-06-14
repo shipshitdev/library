@@ -196,6 +196,7 @@
     "github": {
       "description": "GitHub workflow and automation skills",
       "skills": [
+        "bug",
         "gh-address-comments",
         "gh-fix-ci",
         "gh-inbox",

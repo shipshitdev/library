@@ -1,0 +1,79 @@
+name: Agent Dispatch
+
+# Autonomous label-driven dispatch (Phase 2 of the dev loop).
+#
+# A human opts an issue into agent execution by applying the `ready-for-agent`
+# label. That fires this workflow, which runs the executing-plans loop headlessly
+# on that one issue: claim -> branch -> implement -> qa-reviewer -> PR -> Testing.
+#
+# Auth: subscription OAuth token only (CLAUDE_CODE_OAUTH_TOKEN), never an API key.
+#   Generate with `claude setup-token`, store as a repo secret. If ANTHROPIC_API_KEY
+#   is also set it takes precedence and bills metered API — so do not set it here.
+#
+# Trust boundary: only issues a human deliberately labels are processed. Issue
+# title/body remain untrusted (prompt-injection surface); they are read by the
+# action, never interpolated into the shell or the prompt below.
+
+on:
+  issues:
+    types: [labeled]
+
+# One run per issue; a re-applied label will not start a second concurrent run.
+concurrency:
+  group: agent-dispatch-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+# Least privilege: just enough to comment, label, branch, and open a PR.
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  run-agent:
+    if: github.event.label.name == 'ready-for-agent'
+    runs-on: blacksmith-4vcpu-ubuntu-2404
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Run dev-loop agent on the labeled issue
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Surface live progress as a tracking comment on the issue.
+          track_progress: "true"
+          # Load the loop's runtime skills from the shipshitdev marketplace so
+          # executing-plans + qa-reviewer are available headlessly. In a consumer
+          # repo that already installs these another way, drop these two inputs.
+          plugin_marketplaces: |
+            https://github.com/shipshitdev/skills.git
+          plugins: |
+            shipshitdev-session@shipshitdev
+            shipshitdev-testing@shipshitdev
+          # Issue number is a trusted integer — safe to interpolate. Title/body are
+          # NOT interpolated; the action reads them itself.
+          prompt: |
+            Run the autonomous dev loop on issue #${{ github.event.issue.number }} in this repository.
+
+            Follow the `executing-plans` skill exactly (this issue already carries the
+            `ready-for-agent` dispatch gate, so treat it as opted-in):
+
+            1. Claim it: add the `claimed` label and a comment with an ISO-8601
+               `Claimed-By` / `Claimed-At` timestamp.
+            2. Read the issue body, the linked PRD, and ALL comments (prior rejection
+               and triage notes carry essential context).
+            3. Create branch `feature/${{ github.event.issue.number }}-<slug>`.
+            4. Implement the vertical slice. Use TDD for behavior changes.
+            5. Run the `qa-reviewer` skill before finishing; tick the QA checklist.
+            6. Open a PR whose body says `Closes #${{ github.event.issue.number }}`.
+            7. Transition the labels: remove `status:todo`, `claimed`, and
+               `ready-for-agent`; add `status:testing`.
+
+            This is an AFK run: do not stop to ask questions. If a genuine human
+            decision (HITL) is required that is not answered in the issue or its
+            comments, post a comment explaining what is blocked, remove the `claimed`
+            label to release the issue, and stop without opening a PR.

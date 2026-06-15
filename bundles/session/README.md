@@ -16,4 +16,5 @@ Session management and documentation
 - `session-start`
 - `session-documenter`
 - `executing-plans`
+- `setup-agent-routing`
 - `workspace-performance-audit`

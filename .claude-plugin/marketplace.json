@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "181 AI agent skills for indie developers building startups",
+  "description": "182 AI agent skills for indie developers building startups",
   "plugins": [
     {
       "name": "shipshitdev-startup",
@@ -814,6 +814,11 @@
       "name": "session-start",
       "source": "./skills/session-start",
       "description": "Loads critical project context and recent session history at the start of each session or after `/cl"
+    },
+    {
+      "name": "setup-agent-routing",
+      "source": "./skills/setup-agent-routing",
+      "description": "Sets up an `## Agent skills` routing block in CLAUDE.md/AGENTS.md plus docs/agents/ so the dev-loop "
     },
     {
       "name": "shadcn",

@@ -1,0 +1,10 @@
+{
+  "name": "shipshitdev-dev-loop",
+  "version": "1.0.0",
+  "description": "Ship the autonomous gh + Claude + Codex dev loop: PRD → plan → board-driven execution → QA → PR (the workflow ShipCode productizes)",
+  "author": "Ship Shit Dev",
+  "license": "MIT",
+  "skills": {
+    "path": "./skills"
+  }
+}

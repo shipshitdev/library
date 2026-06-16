@@ -3,7 +3,7 @@ name: writing-prds
 disable-model-invocation: true
 description: Drafts, scopes, and formalizes features as PRDs — a planning agent can consume the output in one shot without re-elicitation. Triggers on "write a PRD for X", "let's plan X", "scope this out", "what should X do", or when a tracker issue needs to be fleshed out before planning. Do NOT use for code edits, debugging, or PR reviews.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   tags: "prd, planning, requirements, spec, github-issue, scoping"
 ---
 
@@ -45,7 +45,7 @@ metadata.
 Use native tracker / project-board fields instead:
 
 - **Issue type:** `Feature`, `Bug`, or `Task`.
-- **Status:** `Todo`, `In Progress`, `Done`, or `On hold`.
+- **Status:** `Backlog`, `In Progress`, `Human Review`, `Done`, or `Deferred`.
 - **Priority:** `P0`, `P1`, `P2`, or `P3`.
 - **Complexity:** `Low`, `Medium`, or `High`.
 - **Blast radius:** `Contained`, `Cross-package`, `Cross-app`, or `Infra`.

@@ -3,7 +3,7 @@ name: setup-agent-routing
 description: Sets up an `## Agent skills` routing block in CLAUDE.md/AGENTS.md plus docs/agents/ so the dev-loop skills (executing-plans, feature-intake, writing-prds, qa-reviewer) know this repo's GitHub issue tracker, kanban label vocabulary, and domain doc layout. Run once per repo before first use of the loop, or when those skills appear to lack tracker, label, or domain context.
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   tags: "setup, routing, github, labels, dev-loop"
   author: Ship Shit Dev
 allowed-tools: Bash(git remote*) Bash(gh label list*) Bash(gh project list*) Bash(gh repo view*)
@@ -62,7 +62,7 @@ Delegates To:
 1. An `## Agent skills` block in `CLAUDE.md` (preferred) or `AGENTS.md`.
 2. Three docs under `docs/agents/`:
    - `issue-tracker.md` — how issues are created, read, labeled, and placed on the board.
-   - `triage-labels.md` — the full label vocabulary, including the `ready-for-agent` / `ready-for-codex` dispatch gates.
+   - `triage-labels.md` — the full label vocabulary, including the `dispatch:claude` / `dispatch:codex` / `dispatch:openrouter` dispatch gates (status lives on the board, not a label).
    - `domain.md` — the domain glossary layout (single- or multi-context).
 
 The block in `CLAUDE.md`/`AGENTS.md` is a thin index; the real detail lives in
@@ -90,27 +90,30 @@ Summarize present/missing state in one short block. Then walk the three decision
 at once.
 
 **A. Issue tracker.** Default: GitHub Issues + a GitHub Projects kanban
-(Backlog / To Do / Testing / Done), detected from the `origin` remote. Confirm the
+(Backlog / In Progress / Human Review / Done / Deferred), detected from the `origin` remote. Confirm the
 repo `owner/name` and the project board number. If the remote is not GitHub, ask
 how work is tracked instead of assuming.
 
 **B. Label vocabulary.** Show the canonical set (below) and let the user override the
 strings. The roles are fixed; the exact label text is theirs to rename.
 
+Status is the board `Status` field (Backlog / In Progress / Human Review / Done / Deferred), the sole
+source of truth — it is **not** a label. The labels that ride alongside it:
+
 | Label | Role |
 | ----- | ---- |
-| `status:todo` | In the To Do column — backlog-ready, not yet dispatched. |
-| `status:testing` | Implemented, awaiting human QA. |
-| `claimed` | An agent currently holds the issue (30-min claim lock). |
+| `claim:active` | An agent currently holds the issue (30-min claim lock). |
+| `loop:planning` / `loop:executing` / `loop:testing` / `loop:shipping` | AI-loop sub-phase inside the In Progress column (observability). |
 | `priority:high` / `priority:medium` / `priority:low` | Queue ordering. |
 | `rejection:N` | QA rejection count; bumped on each kickback. |
-| `ready-for-agent` | **Dispatch gate → Claude lane.** Human opt-in: the agent only runs on issues that carry it. |
-| `ready-for-codex` | **Dispatch gate → Codex/GPT lane.** The Codex-lane twin; apply at most one gate per issue. |
-| `feature` | Created by `feature-intake` on PRD epics and sub-issues. |
+| `dispatch:claude` | **Dispatch gate → Claude lane.** Human opt-in: the agent only runs on issues that carry it. |
+| `dispatch:codex` | **Dispatch gate → Codex/GPT lane.** The Codex-lane twin; apply at most one gate per issue. |
+| `dispatch:openrouter` | **Dispatch gate → OpenRouter lane.** Hosts Codex CLI via OpenRouter; apply at most one gate per issue. |
+| `type:feature` | Created by `feature-intake` on PRD epics and sub-issues. |
 
 Also explain the **AFK / HITL** body markers (not labels): `AFK` = an agent can
 finish from written context; `HITL` = a human decision is required. HITL issues must
-never receive a dispatch gate (`ready-for-agent` or `ready-for-codex`).
+never receive a dispatch gate (`dispatch:claude`, `dispatch:codex`, or `dispatch:openrouter`).
 
 **C. Domain docs layout.** Single-context (`CONTEXT.md` at root) vs. multi-context
 (`CONTEXT-MAP.md` indexing several `CONTEXT.md` files). Default to single-context for
@@ -140,14 +143,15 @@ File-selection rules (copied from the conventions that make this safe):
 
 ### Issue tracker
 
-GitHub Issues + GitHub Projects kanban (Backlog / To Do / Testing / Done) on
+GitHub Issues + GitHub Projects kanban (Backlog / In Progress / Human Review / Done / Deferred) on
 `<owner>/<repo>`, project #<N>. See `docs/agents/issue-tracker.md`.
 
 ### Triage labels
 
-`status:todo` · `status:testing` · `claimed` · `priority:*` · `rejection:*` ·
-`ready-for-agent` (Claude gate) · `ready-for-codex` (Codex gate). See
-`docs/agents/triage-labels.md`.
+`claim:active` · `loop:*` (AI-loop phases) · `priority:*` · `rejection:*` ·
+`type:feature` · `dispatch:claude` (Claude gate) · `dispatch:codex` (Codex gate) ·
+`dispatch:openrouter` (OpenRouter gate). Status is the board `Status` field, not a
+label. See `docs/agents/triage-labels.md`.
 
 ### Domain docs
 
@@ -165,5 +169,5 @@ GitHub Issues + GitHub Projects kanban (Backlog / To Do / Testing / Done) on
 - Never write any file before the user approves the drafts.
 - Update in place; never duplicate an existing `## Agent skills` block or `docs/agents/*.md`.
 - Keep the `CLAUDE.md`/`AGENTS.md` block as a thin index — detail lives in `docs/agents/`.
-- `ready-for-agent` / `ready-for-codex` are the human opt-in dispatch gates. HITL issues never carry either.
+- `dispatch:claude` / `dispatch:codex` / `dispatch:openrouter` are the human opt-in dispatch gates. HITL issues never carry any.
 - Do not invent a project board number — read it live with `gh project list` or ask.

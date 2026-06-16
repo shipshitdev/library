@@ -120,7 +120,7 @@ gh issue create \
 [PRD content here]
 BODY
 )" \
-  --label "feature" \
+  --label "type:feature" \
   --assignee "@me"
 ```
 

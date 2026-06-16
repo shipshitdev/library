@@ -2,13 +2,22 @@ name: Agent Dispatch
 
 # Autonomous label-driven dispatch (Phase 2 of the dev loop).
 #
-# A human opts an issue into agent execution by applying the `ready-for-agent`
+# A human opts an issue into agent execution by applying the `dispatch:claude`
 # label. That fires this workflow, which runs the executing-plans loop headlessly
 # on that one issue: claim -> branch -> implement -> qa-reviewer -> PR -> Testing.
 #
-# Auth: subscription OAuth token only (CLAUDE_CODE_OAUTH_TOKEN), never an API key.
-#   Generate with `claude setup-token`, store as a repo secret. If ANTHROPIC_API_KEY
-#   is also set it takes precedence and bills metered API — so do not set it here.
+# Status lives on the GitHub Projects board `Status` field (Backlog / In Progress /
+# Human Review / Done / Deferred), not in labels. The claim step flips the board to
+# In Progress; completion flips it to Human Review and auto-assigns the reviewer. The
+# AI-loop sub-phases (planning/executing/testing/shipping) are `loop:*` labels inside
+# In Progress. Board node ids come from the committed .github/agent-loop.env.
+#
+# Auth (two tokens):
+#   - CLAUDE_CODE_OAUTH_TOKEN — subscription OAuth, never an API key. Generate with
+#     `claude setup-token`, store as a repo secret. If ANTHROPIC_API_KEY is also set
+#     it takes precedence and bills metered API — so do not set it here.
+#   - PROJECTS_TOKEN — a `project`-scoped PAT used as github_token, because the
+#     Actions default GITHUB_TOKEN cannot read/write an org-owned Projects v2 board.
 #
 # Trust boundary: only issues a human deliberately labels are processed. Issue
 # title/body remain untrusted (prompt-injection surface); they are read by the
@@ -31,8 +40,8 @@ permissions:
 
 jobs:
   run-agent:
-    if: github.event.label.name == 'ready-for-agent'
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    if: github.event.label.name == 'dispatch:claude'
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -43,7 +52,8 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # project-scoped PAT: the default GITHUB_TOKEN cannot write an org board.
+          github_token: ${{ secrets.PROJECTS_TOKEN }}
           # Surface live progress as a tracking comment on the issue.
           track_progress: "true"
           # Load the loop's runtime skills from the shipshitdev marketplace so
@@ -65,20 +75,47 @@ jobs:
             Run the autonomous dev loop on issue #${{ github.event.issue.number }} in this repository.
 
             Follow the `executing-plans` skill exactly (this issue already carries the
-            `ready-for-agent` dispatch gate, so treat it as opted-in):
+            `dispatch:claude` dispatch gate, so treat it as opted-in). The board `Status`
+            field is the human-facing column; the AI-loop sub-phases are `loop:*` labels.
+            Helpers (issue number is a trusted integer; GITHUB_ACTOR is a validated handle):
 
-            1. Claim it: add the `claimed` label and a comment with an ISO-8601
-               `Claimed-By` / `Claimed-At` timestamp.
+            ```bash
+            source .github/agent-loop.env
+            N=${{ github.event.issue.number }}
+            set_status() { local id; id=$(gh project item-list "$PROJECT_NUMBER" \
+              --owner "$PROJECT_OWNER" --format json -L 500 \
+              | jq -r --argjson n "$N" '.items[] | select(.content.number == $n) | .id'); \
+              gh project item-edit --id "$id" --field-id "$STATUS_FIELD_ID" \
+              --project-id "$PROJECT_NODE_ID" --single-select-option-id "$1"; }
+            ```
+
+            1. Claim it: move the board Status to **In Progress**, add `claim:active` +
+               `loop:planning`, and comment an ISO-8601 `Claimed-By` / `Claimed-At` stamp.
+               `set_status "$STATUS_IN_PROGRESS_OPTION_ID"; gh issue edit "$N" --add-label "claim:active,loop:planning"`
             2. Read the issue body, the linked PRD, and ALL comments (prior rejection
                and triage notes carry essential context).
-            3. Create branch `feature/${{ github.event.issue.number }}-<slug>`.
+            3. Create branch `feature/$N-<slug>`. As you progress, advance the phase
+               label: `loop:planning` → `loop:executing` (implementing) → `loop:testing`
+               (qa + tests) → `loop:shipping` (PR), e.g.
+               `gh issue edit "$N" --remove-label "loop:planning" --add-label "loop:executing"`.
             4. Implement the vertical slice. Use TDD for behavior changes.
             5. Run the `qa-reviewer` skill before finishing; tick the QA checklist.
-            6. Open a PR whose body says `Closes #${{ github.event.issue.number }}`.
-            7. Transition the labels: remove `status:todo`, `claimed`, and
-               `ready-for-agent`; add `status:testing`.
+            6. Open a PR whose body says `Closes #$N`.
+            7. Hand off to a human: move the board Status to **Human Review**, assign the
+               reviewer (the gate-applier), and clear the gate/claim/phase labels:
+
+               ```bash
+               set_status "$STATUS_HUMAN_REVIEW_OPTION_ID"
+               gh issue edit "$N" --add-assignee "$GITHUB_ACTOR" \
+                 --remove-label "claim:active,dispatch:claude,loop:shipping"
+               ```
 
             This is an AFK run: do not stop to ask questions. If a genuine human
             decision (HITL) is required that is not answered in the issue or its
-            comments, post a comment explaining what is blocked, remove the `claimed`
+            comments, post a comment explaining what is blocked, remove the `claim:active`
+            and any `loop:*` label to release the issue, and stop without opening a PR.
+
+            This is an AFK run: do not stop to ask questions. If a genuine human
+            decision (HITL) is required that is not answered in the issue or its
+            comments, post a comment explaining what is blocked, remove the `claim:active`
             label to release the issue, and stop without opening a PR.

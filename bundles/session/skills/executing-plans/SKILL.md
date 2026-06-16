@@ -96,7 +96,11 @@ Before an issue enters `status:todo`, make sure it is ready for an agent:
 
 When an agent runs `/loop`:
 
-1. Lists open issues labeled `status:todo` via `gh issue list --label status:todo`
+1. Lists candidates carrying **both** `ready-for-agent` and `status:todo` via
+   `gh issue list --label "ready-for-agent" --label "status:todo"`.
+   `ready-for-agent` is the human opt-in dispatch gate — an issue sits inert in To
+   Do until a human applies it, so the loop never runs work nobody opted in. See
+   `docs/agents/triage-labels.md` in the target repo for the full vocabulary.
 2. Sorts by priority label (High > Medium > Low)
 3. Skips issues already assigned with a `claimed` label added < 30 min ago (check the claim comment timestamp)
 4. Assigns itself and adds a `claimed` label + comment with ISO timestamp
@@ -111,7 +115,7 @@ gh issue comment <number> --body "Claimed-By: claude-cli | Claimed-At: $(date -u
 Agent works on the task:
 
 1. Reads the issue body and linked PRD issue/URL
-2. Reads all comments, especially prior rejection or triage notes
+2. Reads all comments, especially prior rejection or triage notes. **If a comment is headed `## Implementation Plan`, treat it as the authoritative step-by-step plan and follow its tasks in order** (this is where `writing-plans` posts the plan — see that skill).
 3. Checks `.agents/SESSIONS/` for related past work
 4. Checks `.out-of-scope/` if the issue appears to revive a previously rejected enhancement
 5. Chooses the narrowest verification loop before editing
@@ -132,13 +136,13 @@ Before moving to Testing:
 
 Agent finalizes:
 
-1. Removes `status:todo` label, adds `status:testing` label
+1. Removes `status:todo`, `claimed`, and `ready-for-agent` labels, adds
+   `status:testing` label (clearing the dispatch gate so QA, not the loop, owns it next)
 2. Posts a completion comment with timestamp and final summary
-3. Removes the `claimed` label
-4. Prompts for next action
+3. Prompts for next action
 
 ```bash
-gh issue edit <number> --remove-label "status:todo,claimed" --add-label "status:testing"
+gh issue edit <number> --remove-label "status:todo,claimed,ready-for-agent" --add-label "status:testing"
 gh issue comment <number> --body "Completed-At: $(date -u +%Y-%m-%dT%H:%M:%SZ)\n\n**Summary:** ..."
 ```
 
@@ -150,19 +154,23 @@ In the GitHub Projects board (or `gh issue list --label status:testing`):
 2. Open the issue to see agent notes and the linked PR
 3. Check the PR diff
 4. **Approve**: Remove `status:testing`, close the issue (or move to Done column)
-5. **Reject**: Remove `status:testing`, add `status:todo`, post a rejection comment with notes
+5. **Reject**: Remove `status:testing`, add `status:todo` and `ready-for-agent`
+   (re-arming the gate — the reject is your deliberate "try again"), post a
+   rejection comment with notes
 
 ### 7. Rejection Handling
 
 When rejected:
 
-1. Issue moves back to To Do (`status:todo` label restored)
+1. Issue moves back to To Do (`status:todo` restored) and the gate is re-armed
+   (`ready-for-agent` restored), so the loop re-picks it up
 2. Rejection count bumped via label (`rejection:1`, `rejection:2`, …) or tracked in comments
 3. Rejection note added as a comment on the issue
 4. Next `/loop` picks up the issue with full comment history as context
 
 If the rejection means the requested enhancement should not be built, do not
-keep cycling it through To Do. Close it as `wontfix` and, when the reasoning is
+keep cycling it through To Do. Leave `ready-for-agent` off, close it as `wontfix`,
+and, when the reasoning is
 durable, record the concept under `.out-of-scope/<concept>.md` so future triage
 does not re-litigate the same request.
 

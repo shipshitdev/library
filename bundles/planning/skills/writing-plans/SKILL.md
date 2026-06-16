@@ -3,7 +3,7 @@ name: writing-plans
 description: >-
   Turn a spec or requirements doc into a comprehensive, bite-sized implementation plan: map every file, define 2-5 minute TDD tasks with complete code, and enforce DRY/YAGNI/frequent-commits discipline. Use when you have requirements ready and need a concrete execution plan before touching code, when a feature spans multiple files and needs decomposition, or when you want agentic workers to execute tasks reliably without guessing.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   source: https://github.com/obra/superpowers/blob/main/skills/writing-plans/SKILL.md
   upstream_repo: obra/superpowers
   upstream_ref: main
@@ -143,20 +143,49 @@ After writing the complete plan, review it against the spec before handing it of
 
 If you find issues, fix them inline. Then hand off.
 
-## Saving the Plan
+## Storing the Plan
 
-Save the plan to a file in the project before execution. A sensible default location is `docs/plans/YYYY-MM-DD-<feature-name>.md`, but defer to any project convention or user preference.
+**Post the plan as a comment on the work/PRD issue** — the same GitHub issue the
+PRD lives on (or the work item the loop will pick up). The issue is the single
+source of truth: the executor and both dispatch lanes read the issue body, the
+linked PRD, and all comments, so a plan posted as a comment crosses to CI for
+either engine. Do **not** save the plan to a local `docs/plans/*.md` file — that
+file desyncs from the project the moment work starts and never reaches the loop.
+
+- The comment **must start with the heading `## Implementation Plan`** so the
+  executor can find it among the issue's comments.
+- Post it with the plan markdown piped on stdin:
+
+  ```bash
+  gh issue comment <N> --body-file -   # plan markdown on stdin
+  ```
+
+- **Show the drafted plan first. Post only on approval** — never post speculatively.
+- The plan is the *how*; the PRD body is the *what*. Keep the plan out of the PRD
+  body — a comment co-locates the two on one issue without polluting the body.
+- **No connected tracker?** Agree on the single canonical location with the user
+  before writing — never default to a throwaway `docs/plans/` file.
+- **Long plans:** if the plan exceeds one comment's limit (~65k chars), post it as
+  sequential `## Implementation Plan (n/m)` comments rather than truncating.
 
 ## Execution Handoff
 
-After saving the plan, offer the user two execution paths:
+The plan lives on the issue, so hand off via the dispatch gate, not a file.
 
-> **Plan saved. Two options for execution:**
->
+> **Plan posted to issue #N.** To dispatch it, move the issue to **To Do**
+> (`status:todo`) and apply one gate: `ready-for-agent` (Claude lane) or
+> `ready-for-codex` (Codex lane). The loop claims it, reads the
+> `## Implementation Plan` comment, and works it task by task.
+
+For execution **outside** the loop (working the plan directly in this session),
+offer the two standalone paths — both read the plan from the issue comment, not a
+file:
+
 > **1. Subagent-per-task (recommended)** — dispatch a fresh subagent for each task with a review checkpoint between tasks. Faster iteration, isolated context per task, catches drift early.
 >
 > **2. Inline execution** — work through tasks sequentially in the current session, checking off each step before moving to the next.
 >
 > Which approach?
 
-Whichever path the user chooses, enforce strict task-by-task execution: complete every checkbox in a task before starting the next task. No skipping steps. No batching tasks.
+Whichever path runs, enforce strict task-by-task execution: complete every
+checkbox in a task before starting the next task. No skipping steps. No batching tasks.

@@ -196,6 +196,7 @@ If any gate fails, keep it in draft/on-hold workflow state and do not mark it re
 2. Verify the issue is ready through native project state — never plan a draft/on-hold issue.
 3. Translate directly: Executive Summary → objective, Success Criteria → acceptance criteria, Out of Scope → out-of-scope, complexity field → estimated complexity.
 4. The plan phase owns file changes and step breakdown — do not copy those out of the PRD (there shouldn't be any).
+5. The resulting plan is posted back as a `## Implementation Plan` comment on the same issue (see `writing-plans`) — it lives on the issue, not in a local file, so it stays in sync with the PRD and reaches the loop.
 
 ### When the user says "update the X PRD"
 

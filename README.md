@@ -11,7 +11,7 @@
 ```
 skills/
 ├── skills/              # All skills (182)
-├── commands/            # All commands (12)
+├── commands/            # All commands (13)
 ├── bundles/             # Generated marketplace bundles
 ├── .agents/             # Repo management, memory, meta-skills
 │   ├── SYSTEM/          # Architecture docs, skill standards
@@ -93,6 +93,7 @@ touch skills/my-skill/SKILL.md
 - `.agents/SYSTEM/SKILL-MANAGEMENT.md` - Single-source skill workflow
 - `.agents/SYSTEM/ARCHITECTURE.md` - .agents folder structure
 - `.agents/SYSTEM/PLATFORM-ADAPTATIONS.md` - Claude vs Codex writing guide
+- `.agents/SYSTEM/AI-DEV-LOOP.md` - Label-driven autonomous dev loop (`/loop` + agent-dispatch)
 
 ## Commands
 
@@ -105,6 +106,7 @@ touch skills/my-skill/SKILL.md
 | env-setup | Environment variables |
 | feature | Client requirement intake |
 | inbox | Process inbox items |
+| loop | Claim and work one agent-ready issue end-to-end |
 | merge | Review and land open PRs into the trunk |
 | release | Cut a trunk release with patch notes |
 | optimize-prompt | Prompt optimization |
@@ -173,9 +175,9 @@ touch skills/my-skill/SKILL.md
 
 `feature-intake`, `finishing-a-development-branch`, `gh-address-comments`, `gh-fix-ci`, `gh-inbox`, `gh-pr-publish`, `gh-project-board`, `gh-review-suggestions`, `github-actions-author`, `git-safety`, `release-cleanup`, `release-pr-gates`, `worktree`
 
-### Session Management (3)
+### Session Management (4)
 
-`agent-folder-init`, `session-documenter`, `workspace-performance-audit`
+`agent-folder-init`, `session-documenter`, `setup-agent-routing`, `workspace-performance-audit`
 
 ### Workspace Setup (12)
 

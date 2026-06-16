@@ -1,0 +1,9 @@
+# actionlint configuration.
+#
+# Register the Blacksmith managed-runner labels this repo uses so actionlint
+# stops flagging them as unknown. These are not GitHub-hosted labels, so
+# actionlint cannot know them without this list (see generate-bundles.yml and
+# agent-dispatch.yml, both of which run on Blacksmith).
+self-hosted-runner:
+  labels:
+    - blacksmith-4vcpu-ubuntu-2404

@@ -5,17 +5,20 @@
 
 ## Status is a board field, not a label
 
-Where an issue sits — **Backlog / To Do / Testing / Done** — is the GitHub Projects
-board `Status` single-select field, the sole source of truth. There are no
-`status:*` labels. The labels below ride alongside the board.
+Where an issue sits — **Backlog / In Progress / Human Review / Done / Deferred** —
+is the GitHub Projects board `Status` single-select field, the sole source of truth.
+These are the human-facing columns; there are no `status:*` labels. The AI loop's own
+sub-phases ride as `loop:*` labels inside In Progress. The labels below ride
+alongside the board.
 
 ## Label vocabulary
 
 | Label | Role |
 | ----- | ---- |
 | `claim:active` | An agent currently holds the issue. Paired with a timestamped claim comment (30-min lock). |
+| `loop:planning` / `loop:executing` / `loop:testing` / `loop:shipping` | AI-loop sub-phase **inside the In Progress column** (observability; mirrors ShipCode's `shipcode:pipeline:*`). |
 | `priority:high` / `priority:medium` / `priority:low` | Queue ordering. High is picked first. |
-| `rejection:N` | QA rejection count, bumped on each kickback from Testing → To Do. |
+| `rejection:N` | QA rejection count, bumped on each kickback from Human Review → Backlog. |
 | `dispatch:claude` | **Dispatch gate → Claude lane (human opt-in).** Nothing runs autonomously until a human applies this. |
 | `dispatch:codex` | **Dispatch gate → Codex/GPT lane (human opt-in).** The Codex-lane twin of `dispatch:claude`; apply at most one gate per issue. |
 | `type:feature` | Applied by `feature-intake` to PRD epics and their sub-issues. |
@@ -34,19 +37,22 @@ Both are applied **by a human**, deliberately — never automatically by
 is identical for either gate (substitute the gate label you used):
 
 - **Candidate query:** an agent works an issue only when it carries a gate label
-  **and** sits in the board's **To Do** column (opted in **and** in To Do).
+  **and** sits in the board's **Backlog** column (opted in **and** in Backlog).
 - **Local pull** (`/loop`, Claude only): lists `dispatch:claude` issues, intersects
-  them with the board's To Do column, sorts by priority, and claims one.
+  them with the board's Backlog column, sorts by priority, and claims one.
+- **On claim:** the agent flips the board `Status` to **In Progress** and advances
+  the `loop:*` phase labels as it works.
 - **Push dispatch** (GitHub Actions): applying `dispatch:claude` fires
   `agent-dispatch.yml`; applying `dispatch:codex` fires `codex-dispatch.yml`.
-- **On completion:** the agent flips the board `Status` to **Testing** and removes
-  `claim:active` and the gate label it ran under.
+- **On completion:** the agent flips the board `Status` to **Human Review**,
+  auto-assigns the reviewer, and removes `claim:active`, the gate label, and the
+  `loop:*` label.
 
-This keeps the safety property: an issue sits inert in To Do until a human opts it
+This keeps the safety property: an issue sits inert in Backlog until a human opts it
 into execution. On QA **rejection**, the reviewer's reject action re-arms the gate
-(sets `Status` back to To Do + re-applies the gate label) so the loop retries — the
+(sets `Status` back to Backlog + re-applies the gate label) so the loop retries — the
 reject is the deliberate "try again". To stop a rejected issue instead, leave the
-gate off and close it `wontfix`.
+gate off and move it to **Deferred** (or close it `wontfix`).
 
 ## AFK vs HITL (body markers, not labels)
 

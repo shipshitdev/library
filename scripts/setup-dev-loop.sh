@@ -7,14 +7,14 @@ set -euo pipefail
 # One-shot, idempotent setup for label-driven autonomous execution. Two engine
 # lanes share one label contract: the Claude lane (dispatch:claude) and the
 # Codex/GPT lane (dispatch:codex). Status is NOT a label — it is the GitHub
-# Projects board `Status` field (Backlog / To Do / Testing / Done), the sole
+# Projects board `Status` field (Backlog / In Progress / Human Review / Done / Deferred), the sole
 # source of truth, which this script provisions.
 #   1. Migrates legacy label names in place, then creates the dispatch label
 #      vocabulary (claim:active, priority:*, rejection:N, dispatch:claude,
 #      dispatch:codex, type:feature, wontfix). The two old status:* labels are
 #      deleted — status moves to the board.
 #   2. Provisions the Projects board: creates-or-reuses the project, normalizes
-#      its Status options to Backlog/To Do/Testing/Done, and writes the board's
+#      its Status options to Backlog/In Progress/Human Review/Done/Deferred, and writes the board's
 #      node ids to .github/agent-loop.env (non-secret) for the workflows + /loop.
 #   3. Installs the Phase-2 push workflows (.github/workflows/agent-dispatch.yml
 #      for Claude, codex-dispatch.yml for Codex).
@@ -42,7 +42,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WORKFLOW_DIR="${SCRIPT_DIR}/../.github/workflows"
-# Board normalizer (sets the Status options to the 4-column model).
+# Board normalizer (sets the Status options to the 5-column model).
 BOARD_SCRIPT="${SCRIPT_DIR}/../skills/gh-project-board/scripts/setup-gh-project-board.mjs"
 
 # Phase-2 push workflows installed into the target repo (one per engine lane).
@@ -51,9 +51,9 @@ WORKFLOWS=(
   "codex-dispatch.yml"
 )
 
-# The 4-column board model. The board Status field is the SOLE source of truth
+# The 5-column board model. The board Status field is the SOLE source of truth
 # for where an issue sits — there are no status:* labels.
-BOARD_STATUS="Backlog,To Do,Testing,Done"
+BOARD_STATUS="Backlog,In Progress,Human Review,Done,Deferred"
 # Title used to create-or-reuse the project when --project is not given.
 PROJECT_TITLE="Dev Loop"
 
@@ -92,11 +92,15 @@ LABELS=(
   "priority:high|b60205|Queue ordering — picked first"
   "priority:medium|d93f0b|Queue ordering — picked after high"
   "priority:low|0e8a16|Queue ordering — picked last"
-  "rejection:1|e99695|QA rejection count — 1st kickback from Testing"
-  "rejection:2|e99695|QA rejection count — 2nd kickback from Testing"
-  "rejection:3|e99695|QA rejection count — 3rd kickback from Testing"
+  "rejection:1|e99695|QA rejection count — 1st kickback from Human Review"
+  "rejection:2|e99695|QA rejection count — 2nd kickback from Human Review"
+  "rejection:3|e99695|QA rejection count — 3rd kickback from Human Review"
   "dispatch:claude|006b75|Dispatch gate (human opt-in) — Claude lane runs only on issues carrying this"
   "dispatch:codex|10a37f|Dispatch gate (human opt-in) — Codex/GPT lane runs only on issues carrying this"
+  "loop:planning|c5def5|AI-loop phase — reading the issue/PRD and planning (inside In Progress)"
+  "loop:executing|c5def5|AI-loop phase — implementing the change on a branch (inside In Progress)"
+  "loop:testing|c5def5|AI-loop phase — running qa-reviewer + automated tests/e2e (inside In Progress)"
+  "loop:shipping|c5def5|AI-loop phase — opening the PR (inside In Progress)"
   "type:feature|a2eeef|Applied by feature-intake to PRD epics and their sub-issues"
   "wontfix|ffffff|Closed; will not be actioned"
 )
@@ -237,14 +241,14 @@ install_workflows() {
 # Step 2.5 — provision the GitHub Projects board (status source of truth)
 # ============================================================================
 
-# Create-or-reuse the project, normalize its Status options to the 4-column model,
+# Create-or-reuse the project, normalize its Status options to the 5-column model,
 # and write the board's node ids to .github/agent-loop.env so the workflows + /loop
 # can flip Status via `gh project item-edit`. Status is a board field, not a label.
 # Needs the user's gh auth to carry the `project` scope (local runs do; CI uses the
 # PROJECTS_TOKEN secret instead).
 provision_board() {
   local owner repo_root num node_id fields_json status_field_id env_file
-  local backlog_id todo_id testing_id done_id
+  local backlog_id in_progress_id human_review_id done_id deferred_id
   owner="${REPO%%/*}"
   repo_root="$(git rev-parse --show-toplevel 2>/dev/null || true)"
   env_file="${repo_root:-.}/.github/agent-loop.env"
@@ -275,7 +279,7 @@ provision_board() {
     info "reusing project #${num} under ${owner}"
   fi
 
-  # 2. Normalize the Status options to exactly Backlog/To Do/Testing/Done. Pass
+  # 2. Normalize the Status options to exactly Backlog/In Progress/Human Review/Done/Deferred. Pass
   #    --status explicitly to pin the column set regardless of the normalizer's
   #    default; --exact prunes any other option, --apply writes (default is dry-run).
   info "normalizing board #${num} Status options to: ${BOARD_STATUS}"
@@ -287,9 +291,10 @@ provision_board() {
   status_field_id="$(jq -r '.fields[] | select(.name == "Status") | .id' <<<"$fields_json")"
   _opt_id() { jq -r --arg n "$1" '.fields[] | select(.name == "Status") | .options[]? | select(.name == $n) | .id' <<<"$fields_json"; }
   backlog_id="$(_opt_id "Backlog")"
-  todo_id="$(_opt_id "To Do")"
-  testing_id="$(_opt_id "Testing")"
+  in_progress_id="$(_opt_id "In Progress")"
+  human_review_id="$(_opt_id "Human Review")"
   done_id="$(_opt_id "Done")"
+  deferred_id="$(_opt_id "Deferred")"
 
   mkdir -p "$(dirname "$env_file")"
   cat >"$env_file" <<EOF
@@ -301,9 +306,10 @@ PROJECT_NUMBER=${num}
 PROJECT_NODE_ID=${node_id}
 STATUS_FIELD_ID=${status_field_id}
 STATUS_BACKLOG_OPTION_ID=${backlog_id}
-STATUS_TODO_OPTION_ID=${todo_id}
-STATUS_TESTING_OPTION_ID=${testing_id}
+STATUS_IN_PROGRESS_OPTION_ID=${in_progress_id}
+STATUS_HUMAN_REVIEW_OPTION_ID=${human_review_id}
 STATUS_DONE_OPTION_ID=${done_id}
+STATUS_DEFERRED_OPTION_ID=${deferred_id}
 EOF
   log "board ids written: ${env_file}"
 }
@@ -381,15 +387,15 @@ print_routing_step() {
 print_summary() {
   echo ""
   log "Dev-loop setup complete on ${REPO}"
-  $DO_LABELS   && echo "  • Labels:    dispatch:claude / dispatch:codex / claim:active / type:feature / priority:* / rejection:* (status:* deleted)"
-  $DO_BOARD    && echo "  • Board:     Status field normalized to Backlog/To Do/Testing/Done; ids in .github/agent-loop.env"
+  $DO_LABELS   && echo "  • Labels:    dispatch:claude / dispatch:codex / claim:active / loop:* (AI-loop phases) / type:feature / priority:* / rejection:*"
+  $DO_BOARD    && echo "  • Board:     Status normalized to Backlog/In Progress/Human Review/Done/Deferred; ids in .github/agent-loop.env"
   $DO_WORKFLOW && echo "  • Workflows: agent-dispatch.yml (dispatch:claude) + codex-dispatch.yml (dispatch:codex)"
   $DO_SECRETS  && echo "  • Secrets:   CLAUDE_CODE_OAUTH_TOKEN (Claude) + OPENAI_API_KEY (Codex) + PROJECTS_TOKEN (board write)"
   echo "  • Variables: AGENT_MODEL / CODEX_MODEL / CODEX_EFFORT (set with gh variable set)"
   echo "  • Routing:   run /setup-agent-routing in Claude Code"
   echo ""
   echo "  How to drive it:"
-  echo "    1. Move an issue to the board's To Do column (Status field — not a label)."
+  echo "    1. Put an issue in the board's Backlog column (Status field — not a label)."
   echo "    2. Apply dispatch:claude (Claude lane) OR dispatch:codex (Codex lane)."
   echo "    3. Phase 1 (local):  run  /loop   to claim + work one issue (Claude)."
   echo "    4. Phase 2 (push):   the gate label alone fires its dispatch workflow headlessly."
@@ -424,7 +430,7 @@ What it does:
      type:feature, wontfix). The two status:* labels are deleted — status moves
      to the board.
   2. Provisions the Projects board: creates-or-reuses the project, normalizes
-     its Status options to Backlog/To Do/Testing/Done, and writes the board node
+     its Status options to Backlog/In Progress/Human Review/Done/Deferred, and writes the board node
      ids to .github/agent-loop.env (non-secret).
   3. Installs the Phase-2 push workflows: agent-dispatch.yml (Claude lane,
      dispatch:claude) and codex-dispatch.yml (Codex lane, dispatch:codex).

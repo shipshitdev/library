@@ -86,6 +86,11 @@
       "description": "Session management and documentation"
     },
     {
+      "name": "shipshitdev-dev-loop",
+      "source": "./bundles/dev-loop",
+      "description": "Ship the autonomous gh + Claude + Codex dev loop: PRD → plan → board-driven execution → QA → PR (the workflow ShipCode productizes)"
+    },
+    {
       "name": "accessibility",
       "source": "./skills/accessibility",
       "description": "Expert in web accessibility (WCAG 2.1 AA compliance) for React/Next.js applications, ensuring all pr"
@@ -463,7 +468,7 @@
     {
       "name": "gh-project-board",
       "source": "./skills/gh-project-board",
-      "description": "Configure GitHub Projects v2 kanban boards with Ship Shit Dev defaults: the Backlog / To Do / Testin"
+      "description": "Configure GitHub Projects v2 kanban boards with Ship Shit Dev defaults: the Backlog / In Progress / "
     },
     {
       "name": "gh-review-suggestions",

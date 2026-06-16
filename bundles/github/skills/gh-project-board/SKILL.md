@@ -1,6 +1,6 @@
 ---
 name: gh-project-board
-description: "Configure GitHub Projects v2 kanban boards with Ship Shit Dev defaults: the Backlog / To Do / Testing / Done Status columns (the dev-loop board-as-truth model) and P0-P3 Priority. Use when setting up, copying, auditing, or normalizing GitHub project boards."
+description: "Configure GitHub Projects v2 kanban boards with Ship Shit Dev defaults: the Backlog / In Progress / Human Review / Done / Deferred Status columns (the dev-loop board-as-truth model) and P0-P3 Priority. Use when setting up, copying, auditing, or normalizing GitHub project boards."
 compatibility: Requires GitHub CLI gh with project scope. The bundled normalizer script runs with Node.js or Bun.
 disable-model-invocation: true
 allowed-tools: Bash(gh *) Bash(node *) Bash(bun *)
@@ -60,15 +60,18 @@ Use GitHub Projects v2.
 
 - Board view layout: `Board`
 - Kanban column field: `Status`
-- Status options: `Backlog`, `To Do`, `Testing`, `Done` — the dev-loop
-  board-as-truth model, where `Testing` is the human-QA column
+- Status options: `Backlog`, `In Progress`, `Human Review`, `Done`, `Deferred` —
+  the dev-loop board-as-truth model. `In Progress` holds the running AI loop
+  (its `loop:planning/executing/testing/shipping` sub-phases are labels, not
+  columns); `Human Review` is the human PR-review gate
 - Priority field: `Priority`
 - Priority options: `P0 🔥`, `P1`, `P2`, `P3`
 
 The Ship Shit Dev reference board is
-`https://github.com/orgs/shipshitdev/projects/1`. `Testing` is the human-QA /
-approval column; an older board that still uses a `Human Review` (or `In Progress`
-/ `Deferred`) lane should be normalized to the four-column model.
+`https://github.com/orgs/shipshitdev/projects/1`. `Human Review` is the human gate
+column; automated testing is a phase inside `In Progress` (label `loop:testing` +
+CI on the PR), not its own column. An older board with `To Do` / `Testing` lanes
+should be normalized to the five-column model.
 
 ## Workflow
 
@@ -144,16 +147,16 @@ approval column; an older board that still uses a `Human Review` (or `In Progres
 
 ## Normalizer Options
 
-- `--status "Backlog,To Do,Testing,Done"` overrides the Status option list (this
-  is the default — the dev-loop four-column model).
+- `--status "Backlog,In Progress,Human Review,Done,Deferred"` overrides the Status
+  option list (this is the default — the dev-loop five-column model).
 - `--priority "P0,P1,P2,P3"` uses ASCII-only priority names.
 - `--exact` removes non-canonical options after explicit approval.
 - `--include-closed` includes closed projects when used with `--all-open`.
 
 ## Rules
 
-- `Testing` is the human-QA `Status` column (it replaces the older `Human Review`
-  lane), not a label.
+- `Human Review` is the human-gate `Status` column, not a label. Automated testing
+  is a phase inside `In Progress` (the `loop:testing` label + PR CI), not a column.
 - Preserve unknown Status or Priority options unless the user explicitly asks
   for exact normalization.
 - Preserve existing option IDs when renaming or recoloring options so existing

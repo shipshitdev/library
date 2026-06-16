@@ -16,8 +16,9 @@ loop you trigger, not a daemon.
 
 Use the `executing-plans` skill.
 
-**Step 0 — load the board ids.** Status lives on the GitHub Projects board, not in
-labels, so source the committed board node ids first:
+**Step 0 — load the board ids.** Status lives on the GitHub Projects board (columns
+Backlog · In Progress · Human Review · Done · Deferred), not in labels, so source the
+committed board node ids first:
 
 ```bash
 source .github/agent-loop.env   # PROJECT_OWNER, PROJECT_NUMBER, STATUS_*_OPTION_ID, …
@@ -30,34 +31,37 @@ source .github/agent-loop.env   # PROJECT_OWNER, PROJECT_NUMBER, STATUS_*_OPTION
    - `--list` → list candidates and stop. Do not claim.
    - _(no argument)_ → claim and work one issue.
 2. Build the candidate queue. A candidate carries the `dispatch:claude` gate (the
-   human opt-in) **and** sits in the board's **To Do** column:
+   human opt-in) **and** sits in the board's **Backlog** column:
 
    ```bash
    # Gate-labeled issues (human opt-in).
    gh issue list --label "dispatch:claude" \
      --json number,title,labels,assignees,comments --jq '.'
-   # Numbers currently in the board's To Do column.
+   # Numbers currently in the board's Backlog column.
    gh project item-list "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --format json -L 500 \
-     | jq -r '.items[] | select(.status == "To Do") | .content.number'
+     | jq -r '.items[] | select(.status == "Backlog") | .content.number'
    ```
 
-   Keep only the gate-labeled issues whose number appears in the To Do set.
+   Keep only the gate-labeled issues whose number appears in the Backlog set.
 
 3. Sort by priority (`priority:high` > `priority:medium` > `priority:low`). Skip any
    issue whose most recent claim comment is < 30 minutes old (active claim).
-4. Follow `executing-plans` for the chosen issue: claim it → branch
-   `feature/<n>-<slug>` → implement → run `qa-reviewer` → open a PR with `Closes #<n>`
-   → move it to Testing.
-5. On completion, flip the board Status to **Testing** and clear the gate + claim
-   labels (status is a board field, not a label):
+4. Claim the chosen issue: flip the board Status to **In Progress**, add
+   `claim:active` + `loop:planning`, and comment a `Claimed-At` timestamp. Then work
+   it per `executing-plans`: branch `feature/<n>-<slug>` → implement → run
+   `qa-reviewer` → open a PR with `Closes #<n>`, advancing the phase label as you go
+   (`loop:planning → loop:executing → loop:testing → loop:shipping`).
+5. On completion, flip the board Status to **Human Review**, assign the reviewer
+   (so it lands in their queue), and clear the gate / claim / phase labels:
 
    ```bash
    ITEM_ID=$(gh project item-list "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" \
      --format json -L 500 | jq -r --argjson n <n> \
      '.items[] | select(.content.number == $n) | .id')
    gh project item-edit --id "$ITEM_ID" --field-id "$STATUS_FIELD_ID" \
-     --project-id "$PROJECT_NODE_ID" --single-select-option-id "$STATUS_TESTING_OPTION_ID"
-   gh issue edit <n> --remove-label "claim:active,dispatch:claude"
+     --project-id "$PROJECT_NODE_ID" --single-select-option-id "$STATUS_HUMAN_REVIEW_OPTION_ID"
+   gh issue edit <n> --add-assignee "<reviewer>" \
+     --remove-label "claim:active,dispatch:claude,loop:shipping"
    ```
 
 6. Return control to the user. If no candidates exist, say so and exit cleanly.
@@ -69,7 +73,8 @@ source .github/agent-loop.env   # PROJECT_OWNER, PROJECT_NUMBER, STATUS_*_OPTION
 - Never touch `HITL` issues — they lack `dispatch:claude` by design.
 - `--status` and `--list` are read-only; they never claim, edit, or comment.
 - The dispatch gate is `dispatch:claude`; the kanban columns are the board's
-  **Status** field (Backlog / To Do / Testing / Done), not labels. See
+  **Status** field (Backlog / In Progress / Human Review / Done / Deferred), not
+  labels. The AI-loop sub-phases are `loop:*` labels inside In Progress. See
   `docs/agents/triage-labels.md` and `docs/agents/issue-tracker.md` in the target repo.
 - `/loop` is the **Claude lane**. The Codex/GPT lane (`dispatch:codex`) is
   push-only — it runs via `codex-dispatch.yml` on GitHub Actions, not locally here.

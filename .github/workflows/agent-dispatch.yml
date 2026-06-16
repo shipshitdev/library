@@ -6,10 +6,11 @@ name: Agent Dispatch
 # label. That fires this workflow, which runs the executing-plans loop headlessly
 # on that one issue: claim -> branch -> implement -> qa-reviewer -> PR -> Testing.
 #
-# Status lives on the GitHub Projects board `Status` field (Backlog / To Do /
-# Testing / Done), not in labels — the completion step flips the board to Testing,
-# it never touches a status label. The board's node ids come from the committed
-# .github/agent-loop.env (written by setup-dev-loop.sh).
+# Status lives on the GitHub Projects board `Status` field (Backlog / In Progress /
+# Human Review / Done / Deferred), not in labels. The claim step flips the board to
+# In Progress; completion flips it to Human Review and auto-assigns the reviewer. The
+# AI-loop sub-phases (planning/executing/testing/shipping) are `loop:*` labels inside
+# In Progress. Board node ids come from the committed .github/agent-loop.env.
 #
 # Auth (two tokens):
 #   - CLAUDE_CODE_OAUTH_TOKEN — subscription OAuth, never an API key. Generate with
@@ -74,30 +75,45 @@ jobs:
             Run the autonomous dev loop on issue #${{ github.event.issue.number }} in this repository.
 
             Follow the `executing-plans` skill exactly (this issue already carries the
-            `dispatch:claude` dispatch gate, so treat it as opted-in):
+            `dispatch:claude` dispatch gate, so treat it as opted-in). The board `Status`
+            field is the human-facing column; the AI-loop sub-phases are `loop:*` labels.
+            Helpers (issue number is a trusted integer; GITHUB_ACTOR is a validated handle):
 
-            1. Claim it: add the `claim:active` label and a comment with an ISO-8601
-               `Claimed-By` / `Claimed-At` timestamp.
+            ```bash
+            source .github/agent-loop.env
+            N=${{ github.event.issue.number }}
+            set_status() { local id; id=$(gh project item-list "$PROJECT_NUMBER" \
+              --owner "$PROJECT_OWNER" --format json -L 500 \
+              | jq -r --argjson n "$N" '.items[] | select(.content.number == $n) | .id'); \
+              gh project item-edit --id "$id" --field-id "$STATUS_FIELD_ID" \
+              --project-id "$PROJECT_NODE_ID" --single-select-option-id "$1"; }
+            ```
+
+            1. Claim it: move the board Status to **In Progress**, add `claim:active` +
+               `loop:planning`, and comment an ISO-8601 `Claimed-By` / `Claimed-At` stamp.
+               `set_status "$STATUS_IN_PROGRESS_OPTION_ID"; gh issue edit "$N" --add-label "claim:active,loop:planning"`
             2. Read the issue body, the linked PRD, and ALL comments (prior rejection
                and triage notes carry essential context).
-            3. Create branch `feature/${{ github.event.issue.number }}-<slug>`.
+            3. Create branch `feature/$N-<slug>`. As you progress, advance the phase
+               label: `loop:planning` → `loop:executing` (implementing) → `loop:testing`
+               (qa + tests) → `loop:shipping` (PR), e.g.
+               `gh issue edit "$N" --remove-label "loop:planning" --add-label "loop:executing"`.
             4. Implement the vertical slice. Use TDD for behavior changes.
             5. Run the `qa-reviewer` skill before finishing; tick the QA checklist.
-            6. Open a PR whose body says `Closes #${{ github.event.issue.number }}`.
-            7. Move the issue to Testing on the board (status is a board field, not a
-               label). Source the committed board ids and flip the Status field:
+            6. Open a PR whose body says `Closes #$N`.
+            7. Hand off to a human: move the board Status to **Human Review**, assign the
+               reviewer (the gate-applier), and clear the gate/claim/phase labels:
 
                ```bash
-               source .github/agent-loop.env
-               ITEM_ID=$(gh project item-list "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" \
-                 --format json -L 500 \
-                 | jq -r '.items[] | select(.content.number == ${{ github.event.issue.number }}) | .id')
-               gh project item-edit --id "$ITEM_ID" --field-id "$STATUS_FIELD_ID" \
-                 --project-id "$PROJECT_NODE_ID" --single-select-option-id "$STATUS_TESTING_OPTION_ID"
+               set_status "$STATUS_HUMAN_REVIEW_OPTION_ID"
+               gh issue edit "$N" --add-assignee "$GITHUB_ACTOR" \
+                 --remove-label "claim:active,dispatch:claude,loop:shipping"
                ```
 
-               Then clear the gate + claim labels:
-               `gh issue edit ${{ github.event.issue.number }} --remove-label "claim:active,dispatch:claude"`.
+            This is an AFK run: do not stop to ask questions. If a genuine human
+            decision (HITL) is required that is not answered in the issue or its
+            comments, post a comment explaining what is blocked, remove the `claim:active`
+            and any `loop:*` label to release the issue, and stop without opening a PR.
 
             This is an AFK run: do not stop to ask questions. If a genuine human
             decision (HITL) is required that is not answered in the issue or its

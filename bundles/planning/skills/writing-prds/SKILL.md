@@ -45,7 +45,7 @@ metadata.
 Use native tracker / project-board fields instead:
 
 - **Issue type:** `Feature`, `Bug`, or `Task`.
-- **Status:** `Backlog`, `To Do`, `Testing`, or `Done`.
+- **Status:** `Backlog`, `In Progress`, `Human Review`, `Done`, or `Deferred`.
 - **Priority:** `P0`, `P1`, `P2`, or `P3`.
 - **Complexity:** `Low`, `Medium`, or `High`.
 - **Blast radius:** `Contained`, `Cross-package`, `Cross-app`, or `Infra`.

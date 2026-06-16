@@ -90,19 +90,20 @@ Summarize present/missing state in one short block. Then walk the three decision
 at once.
 
 **A. Issue tracker.** Default: GitHub Issues + a GitHub Projects kanban
-(Backlog / To Do / Testing / Done), detected from the `origin` remote. Confirm the
+(Backlog / In Progress / Human Review / Done / Deferred), detected from the `origin` remote. Confirm the
 repo `owner/name` and the project board number. If the remote is not GitHub, ask
 how work is tracked instead of assuming.
 
 **B. Label vocabulary.** Show the canonical set (below) and let the user override the
 strings. The roles are fixed; the exact label text is theirs to rename.
 
-Status is the board `Status` field (Backlog / To Do / Testing / Done), the sole
+Status is the board `Status` field (Backlog / In Progress / Human Review / Done / Deferred), the sole
 source of truth — it is **not** a label. The labels that ride alongside it:
 
 | Label | Role |
 | ----- | ---- |
 | `claim:active` | An agent currently holds the issue (30-min claim lock). |
+| `loop:planning` / `loop:executing` / `loop:testing` / `loop:shipping` | AI-loop sub-phase inside the In Progress column (observability). |
 | `priority:high` / `priority:medium` / `priority:low` | Queue ordering. |
 | `rejection:N` | QA rejection count; bumped on each kickback. |
 | `dispatch:claude` | **Dispatch gate → Claude lane.** Human opt-in: the agent only runs on issues that carry it. |
@@ -141,14 +142,14 @@ File-selection rules (copied from the conventions that make this safe):
 
 ### Issue tracker
 
-GitHub Issues + GitHub Projects kanban (Backlog / To Do / Testing / Done) on
+GitHub Issues + GitHub Projects kanban (Backlog / In Progress / Human Review / Done / Deferred) on
 `<owner>/<repo>`, project #<N>. See `docs/agents/issue-tracker.md`.
 
 ### Triage labels
 
-`claim:active` · `priority:*` · `rejection:*` · `type:feature` ·
-`dispatch:claude` (Claude gate) · `dispatch:codex` (Codex gate). Status is the
-board `Status` field, not a label. See `docs/agents/triage-labels.md`.
+`claim:active` · `loop:*` (AI-loop phases) · `priority:*` · `rejection:*` ·
+`type:feature` · `dispatch:claude` (Claude gate) · `dispatch:codex` (Codex gate).
+Status is the board `Status` field, not a label. See `docs/agents/triage-labels.md`.
 
 ### Domain docs
 

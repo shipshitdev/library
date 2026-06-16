@@ -5,19 +5,23 @@
 
 Work is tracked as **GitHub Issues** on `<owner>/<repo>`, visualized on a
 **GitHub Projects** kanban board (project #`<N>`) with columns
-**Backlog → To Do → Testing → Done**.
+**Backlog → In Progress → Human Review → Done** (plus **Deferred** for parked work).
 
 ## Column → state + board Status map
 
 Status is the board `Status` field (a Projects v2 single-select), the sole source
 of truth — not a label.
 
-| Column  | Issue state | Board `Status` |
-| ------- | ----------- | -------------- |
-| Backlog | open        | Backlog        |
-| To Do   | open        | To Do          |
-| Testing | open        | Testing        |
-| Done    | closed      | Done           |
+| Column       | Issue state | Board `Status` |
+| ------------ | ----------- | -------------- |
+| Backlog      | open        | Backlog        |
+| In Progress  | open        | In Progress    |
+| Human Review | open        | Human Review   |
+| Done         | closed      | Done           |
+| Deferred     | open        | Deferred       |
+
+These are the human-facing columns; the AI loop's sub-phases ride as `loop:*` labels
+inside In Progress.
 
 Issue state (open/closed) plus the board `Status` field drive column placement.
 The `gh` CLI is the agent's interface for every task operation; the board node ids
@@ -32,12 +36,12 @@ gh issue create --title "<title>" --body-file /tmp/body.md --label "type:feature
 # Read one issue with full comment history (rejection + triage notes live here)
 gh issue view <number> --comments
 
-# List the dispatch queue: the gate label intersected with the board's To Do column
+# List the dispatch queue: the gate label intersected with the board's Backlog column
 # (see triage-labels.md for the dispatch:claude / dispatch:codex gates)
 source .github/agent-loop.env
 gh issue list --label "dispatch:claude" --json number,title,labels,assignees --jq '.'
 gh project item-list "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --format json -L 500 \
-  | jq -r '.items[] | select(.status == "To Do") | .content.number'
+  | jq -r '.items[] | select(.status == "Backlog") | .content.number'
 
 # Comment (progress updates, claim stamps, completion summaries)
 gh issue comment <number> --body "..."

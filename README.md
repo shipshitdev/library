@@ -27,6 +27,45 @@ skills/
 - **Skills**: Specialized agent capabilities for specific domains (e.g., `stripe-implementer`, `nestjs-expert`)
 - **Commands**: Workflow commands for structured tasks (e.g., `check-domain`, `security-audit`, `performance`)
 - **Scripts**: Validation, generation, and migration tooling
+- **The Dev Loop**: a board-driven autonomous workflow that ships software with
+  `gh` + Claude + Codex (see below)
+
+## The Dev Loop — ship software with gh + Claude + Codex
+
+The flagship workflow: a **board-driven autonomous dev loop** that turns a GitHub
+issue into a reviewed PR, with you as architect/reviewer. It is the open, `gh`-driven
+version of **ShipCode**'s pipeline — same stages, no app required.
+
+- **Plan** (human): `feature-intake` → `writing-prds` / `writing-plans` write the PRD
+  and implementation plan onto the issue.
+- **Dispatch** (human opt-in): apply `dispatch:claude` (Claude lane) or
+  `dispatch:codex` (Codex lane) to a **Backlog** issue.
+- **Execute** (AI): the loop claims it → **In Progress** → branch → implement →
+  `qa-reviewer` + tests → PR, advancing `loop:*` phase labels as it goes.
+- **Review** (human): the PR lands in **Human Review**, auto-assigned to you. Merge =
+  Done; reject = back to Backlog.
+
+Board columns are for humans (**Backlog · In Progress · Human Review · Done ·
+Deferred**); the AI loop's sub-phases ride as `loop:*` labels. Status is the GitHub
+Projects board `Status` field — the single source of truth.
+
+```bash
+# 1. Install the dev-loop bundle (every skill the loop needs)
+/plugin marketplace add shipshitdev/skills
+/plugin install shipshitdev-dev-loop@shipshitdev
+
+# 2. Provision your repo: labels + board + workflows + secrets (idempotent)
+bash scripts/setup-dev-loop.sh            # --dry-run to preview
+
+# 3. Write your repo's routing block (tracker + labels + domain). In Claude Code:
+/setup-agent-routing
+
+# 4. Drive it
+/loop                                     # Phase 1: local pull (Claude lane)
+# …or apply dispatch:claude / dispatch:codex to fire Phase 2 (GitHub Actions)
+```
+
+Full reference: [`.agents/SYSTEM/AI-DEV-LOOP.md`](.agents/SYSTEM/AI-DEV-LOOP.md).
 
 ## Installation
 
@@ -215,4 +254,6 @@ Users install directly from GitHub:
 # Autonomous dev loop (executing-plans, setup-agent-routing, feature-intake, writing-prds, …)
 /plugin install shipshitdev-session@shipshitdev
 /plugin install shipshitdev-planning@shipshitdev
+# The whole dev loop in one bundle (feature-intake → executing-plans → qa-reviewer …)
+/plugin install shipshitdev-dev-loop@shipshitdev
 ```

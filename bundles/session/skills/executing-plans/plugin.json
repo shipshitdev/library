@@ -1,6 +1,6 @@
 {
   "name": "executing-plans",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Orchestrate autonomous AI development with task-based workflow and QA gates",
   "author": {
     "name": "Ship Shit Dev",

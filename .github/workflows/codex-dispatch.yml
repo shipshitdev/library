@@ -1,0 +1,78 @@
+name: Codex Dispatch
+
+# Parallel GPT/Codex lane of the dev loop. A human applies `ready-for-codex`
+# (instead of `ready-for-agent`) to route an issue to Codex rather than Claude.
+# Same label contract, same claim/branch/QA/PR flow — different engine.
+#
+# Auth: OPENAI_API_KEY repo secret. Model + reasoning effort are NOT secrets, so
+# they come from repo VARIABLES (Settings -> Variables): CODEX_MODEL (e.g. a
+# gpt-5.5 id) and CODEX_EFFORT (e.g. xhigh). Leave either unset for Codex's
+# defaults — empty is valid for both inputs.
+#
+# Trust boundary: only issues a human deliberately labels are processed. Issue
+# title/body remain untrusted (prompt-injection surface); the issue number is a
+# trusted integer and is the only interpolated field.
+
+on:
+  issues:
+    types: [labeled]
+
+# One run per issue; a re-applied label will not start a second concurrent run.
+concurrency:
+  group: codex-dispatch-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+# Least privilege: just enough to comment, label, branch, and open a PR.
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  run-codex:
+    if: github.event.label.name == 'ready-for-codex'
+    runs-on: blacksmith-4vcpu-ubuntu-2404
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Run dev-loop agent (Codex) on the labeled issue
+        uses: openai/codex-action@v1
+        env:
+          # git / gh operations inside the run authenticate with this.
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          # Non-sensitive — driven by repo variables. Empty = Codex defaults.
+          model: ${{ vars.CODEX_MODEL }}
+          effort: ${{ vars.CODEX_EFFORT }}
+          sandbox: workspace-write
+          safety-strategy: drop-sudo
+          # The 7 steps below ARE the executing-plans contract, inlined so the run
+          # is self-contained even where the skill file is not loaded for Codex.
+          prompt: |
+            Run the autonomous dev loop on issue #${{ github.event.issue.number }} in this repository.
+
+            This issue already carries the `ready-for-codex` dispatch gate, so treat
+            it as opted-in. Follow these steps exactly:
+
+            1. Claim it: add the `claimed` label and a comment with an ISO-8601
+               `Claimed-By` / `Claimed-At` timestamp.
+            2. Read the issue body, the linked PRD, and ALL comments (prior rejection
+               and triage notes carry essential context).
+            3. Create branch `feature/${{ github.event.issue.number }}-<slug>`.
+            4. Implement the vertical slice. Use TDD for behavior changes.
+            5. Run the project's QA checklist (lint, tests, types, regressions)
+               before finishing.
+            6. Open a PR whose body says `Closes #${{ github.event.issue.number }}`
+               with `gh pr create` (GH_TOKEN is set in the environment).
+            7. Transition the labels: remove `status:todo`, `claimed`, and
+               `ready-for-codex`; add `status:testing`.
+
+            This is an AFK run: do not stop to ask questions. If a genuine human
+            decision (HITL) is required that is not answered in the issue or its
+            comments, post a comment explaining what is blocked, remove the `claimed`
+            label to release the issue, and stop without opening a PR.

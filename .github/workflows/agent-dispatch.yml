@@ -54,6 +54,11 @@ jobs:
           plugins: |
             shipshitdev-session@shipshitdev
             shipshitdev-testing@shipshitdev
+          # Model is non-sensitive, so drive it from a repo VARIABLE (Settings ->
+          # Variables) rather than a secret — change it without editing this file.
+          # Set AGENT_MODEL to e.g. claude-opus-4-8; defaults to Sonnet if unset.
+          # v1 has no `model:` input — the model is passed through claude_args.
+          claude_args: --model ${{ vars.AGENT_MODEL || 'claude-sonnet-4-6' }}
           # Issue number is a trusted integer — safe to interpolate. Title/body are
           # NOT interpolated; the action reads them itself.
           prompt: |

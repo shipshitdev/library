@@ -51,3 +51,5 @@ Use the `executing-plans` skill.
 - `--status` and `--list` are read-only; they never claim, edit, or comment.
 - The dispatch gate is `ready-for-agent`; the kanban columns stay `status:todo` /
   `status:testing`. See `docs/agents/triage-labels.md` in the target repo.
+- `/loop` is the **Claude lane**. The Codex/GPT lane (`ready-for-codex`) is
+  push-only — it runs via `codex-dispatch.yml` on GitHub Actions, not locally here.

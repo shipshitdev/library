@@ -1,13 +1,19 @@
 name: Codex Dispatch
 
-# Parallel GPT/Codex lane of the dev loop. A human applies `ready-for-codex`
-# (instead of `ready-for-agent`) to route an issue to Codex rather than Claude.
+# Parallel GPT/Codex lane of the dev loop. A human applies `dispatch:codex`
+# (instead of `dispatch:claude`) to route an issue to Codex rather than Claude.
 # Same label contract, same claim/branch/QA/PR flow — different engine.
 #
-# Auth: OPENAI_API_KEY repo secret. Model + reasoning effort are NOT secrets, so
-# they come from repo VARIABLES (Settings -> Variables): CODEX_MODEL (e.g. a
-# gpt-5.5 id) and CODEX_EFFORT (e.g. xhigh). Leave either unset for Codex's
-# defaults — empty is valid for both inputs.
+# Status lives on the GitHub Projects board `Status` field (Backlog / To Do /
+# Testing / Done), not in labels — the completion step flips the board to Testing.
+# The board's node ids come from the committed .github/agent-loop.env.
+#
+# Auth: OPENAI_API_KEY repo secret for the model; PROJECTS_TOKEN (a `project`-scoped
+# PAT) for the in-run `gh` calls, because the default GITHUB_TOKEN cannot read/write
+# an org-owned Projects v2 board. Model + reasoning effort are NOT secrets, so they
+# come from repo VARIABLES (Settings -> Variables): CODEX_MODEL (e.g. a gpt-5.5 id)
+# and CODEX_EFFORT (e.g. xhigh). Leave either unset for Codex's defaults — empty is
+# valid for both inputs.
 #
 # Trust boundary: only issues a human deliberately labels are processed. Issue
 # title/body remain untrusted (prompt-injection surface); the issue number is a
@@ -30,8 +36,8 @@ permissions:
 
 jobs:
   run-codex:
-    if: github.event.label.name == 'ready-for-codex'
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    if: github.event.label.name == 'dispatch:codex'
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -41,9 +47,11 @@ jobs:
       - name: Run dev-loop agent (Codex) on the labeled issue
         uses: openai/codex-action@v1
         env:
-          # git / gh operations inside the run authenticate with this.
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # git / gh operations inside the run authenticate with this. It must be a
+          # project-scoped PAT — the board Status write in step 7 needs it; the
+          # default GITHUB_TOKEN cannot touch an org-owned Projects v2 board.
+          GH_TOKEN: ${{ secrets.PROJECTS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PROJECTS_TOKEN }}
         with:
           openai-api-key: ${{ secrets.OPENAI_API_KEY }}
           # Non-sensitive — driven by repo variables. Empty = Codex defaults.
@@ -56,10 +64,10 @@ jobs:
           prompt: |
             Run the autonomous dev loop on issue #${{ github.event.issue.number }} in this repository.
 
-            This issue already carries the `ready-for-codex` dispatch gate, so treat
+            This issue already carries the `dispatch:codex` dispatch gate, so treat
             it as opted-in. Follow these steps exactly:
 
-            1. Claim it: add the `claimed` label and a comment with an ISO-8601
+            1. Claim it: add the `claim:active` label and a comment with an ISO-8601
                `Claimed-By` / `Claimed-At` timestamp.
             2. Read the issue body, the linked PRD, and ALL comments (prior rejection
                and triage notes carry essential context).
@@ -69,10 +77,22 @@ jobs:
                before finishing.
             6. Open a PR whose body says `Closes #${{ github.event.issue.number }}`
                with `gh pr create` (GH_TOKEN is set in the environment).
-            7. Transition the labels: remove `status:todo`, `claimed`, and
-               `ready-for-codex`; add `status:testing`.
+            7. Move the issue to Testing on the board (status is a board field, not a
+               label). Source the committed board ids and flip the Status field:
+
+               ```bash
+               source .github/agent-loop.env
+               ITEM_ID=$(gh project item-list "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" \
+                 --format json -L 500 \
+                 | jq -r '.items[] | select(.content.number == ${{ github.event.issue.number }}) | .id')
+               gh project item-edit --id "$ITEM_ID" --field-id "$STATUS_FIELD_ID" \
+                 --project-id "$PROJECT_NODE_ID" --single-select-option-id "$STATUS_TESTING_OPTION_ID"
+               ```
+
+               Then clear the gate + claim labels:
+               `gh issue edit ${{ github.event.issue.number }} --remove-label "claim:active,dispatch:codex"`.
 
             This is an AFK run: do not stop to ask questions. If a genuine human
             decision (HITL) is required that is not answered in the issue or its
-            comments, post a comment explaining what is blocked, remove the `claimed`
+            comments, post a comment explaining what is blocked, remove the `claim:active`
             label to release the issue, and stop without opening a PR.

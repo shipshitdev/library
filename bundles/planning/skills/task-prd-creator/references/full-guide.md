@@ -214,7 +214,7 @@ Users can download any report as CSV in one click.
 **Dependencies:** None
 BODY
 )" \
-  --label "feature" \
+  --label "type:feature" \
   --assignee "@me"
 ```
 

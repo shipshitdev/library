@@ -37,16 +37,19 @@ The AI Development Loop enables fully autonomous feature development where:
                     └───────────┘
 ```
 
-Columns map to GitHub Issues state + labels:
+Columns map to GitHub Issues state + the board `Status` field — the **sole source
+of truth** for where an issue sits. There are no `status:*` labels:
 
-| Column  | Issue state | Label            |
-| ------- | ----------- | ---------------- |
-| Backlog | open        | _(none)_         |
-| To Do   | open        | `status:todo`    |
-| Testing | open        | `status:testing` |
-| Done    | closed      | _(none needed)_  |
+| Column  | Issue state | Board `Status` |
+| ------- | ----------- | -------------- |
+| Backlog | open        | Backlog        |
+| To Do   | open        | To Do          |
+| Testing | open        | Testing        |
+| Done    | closed      | Done           |
 
-Use a GitHub Projects board with these columns for a visual Kanban view.
+The board is a GitHub Projects v2 board; its `Status` single-select field drives
+column placement. The board's node ids (project id, `Status` field id, per-option
+ids) live in `.github/agent-loop.env`, written by `setup-dev-loop.sh`.
 
 ## Task Lifecycle
 
@@ -79,12 +82,14 @@ Each task is a GitHub Issue. The issue body carries structured metadata:
 Create issues with:
 
 ```bash
-gh issue create --title "[Feature Name]" --body "..." --label "status:todo" --assignee "@me"
+gh issue create --title "[Feature Name]" --body "..." --assignee "@me"
+# Place it on the board and set Status = To Do (status is a board field, not a label):
+gh project item-add "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --url <issue-url>
 ```
 
 ### Agent-ready issue contract
 
-Before an issue enters `status:todo`, make sure it is ready for an agent:
+Before an issue enters the **To Do** column, make sure it is ready for an agent:
 
 - It has an agent brief or PRD link with current behavior, desired behavior, acceptance criteria, verification, and out of scope.
 - It identifies key public contracts: API shape, CLI command, UI behavior, config key, data model, or generated artifact.
@@ -96,17 +101,25 @@ Before an issue enters `status:todo`, make sure it is ready for an agent:
 
 When an agent runs `/loop`:
 
-1. Lists candidates carrying **both** `ready-for-agent` and `status:todo` via
-   `gh issue list --label "ready-for-agent" --label "status:todo"`.
-   `ready-for-agent` is the human opt-in dispatch gate — an issue sits inert in To
-   Do until a human applies it, so the loop never runs work nobody opted in. See
-   `docs/agents/triage-labels.md` in the target repo for the full vocabulary.
+1. Lists candidates carrying the `dispatch:claude` gate **and** sitting in the
+   board's **To Do** column. `dispatch:claude` is the human opt-in dispatch gate —
+   an issue sits inert in To Do until a human applies it, so the loop never runs
+   work nobody opted in. Source `.github/agent-loop.env` first, then intersect the
+   two sets (see `docs/agents/triage-labels.md` for the full vocabulary):
+
+   ```bash
+   source .github/agent-loop.env
+   gh issue list --label "dispatch:claude" --json number,title,labels,assignees,comments --jq '.'
+   gh project item-list "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --format json -L 500 \
+     | jq -r '.items[] | select(.status == "To Do") | .content.number'
+   ```
+
 2. Sorts by priority label (High > Medium > Low)
-3. Skips issues already assigned with a `claimed` label added < 30 min ago (check the claim comment timestamp)
-4. Assigns itself and adds a `claimed` label + comment with ISO timestamp
+3. Skips issues already assigned with a `claim:active` label added < 30 min ago (check the claim comment timestamp)
+4. Assigns itself and adds a `claim:active` label + comment with ISO timestamp
 
 ```bash
-gh issue edit <number> --add-label "claimed"
+gh issue edit <number> --add-label "claim:active"
 gh issue comment <number> --body "Claimed-By: claude-cli | Claimed-At: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
 ```
 
@@ -136,25 +149,32 @@ Before moving to Testing:
 
 Agent finalizes:
 
-1. Removes `status:todo`, `claimed`, and `ready-for-agent` labels, adds
-   `status:testing` label (clearing the dispatch gate so QA, not the loop, owns it next)
+1. Moves the board `Status` to **Testing** and removes the `claim:active` and
+   `dispatch:claude` labels (clearing the dispatch gate so QA, not the loop, owns
+   it next). Status is a board field — no status label is touched.
 2. Posts a completion comment with timestamp and final summary
 3. Prompts for next action
 
 ```bash
-gh issue edit <number> --remove-label "status:todo,claimed,ready-for-agent" --add-label "status:testing"
+source .github/agent-loop.env
+ITEM_ID=$(gh project item-list "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --format json -L 500 \
+  | jq -r --argjson n <number> '.items[] | select(.content.number == $n) | .id')
+gh project item-edit --id "$ITEM_ID" --field-id "$STATUS_FIELD_ID" \
+  --project-id "$PROJECT_NODE_ID" --single-select-option-id "$STATUS_TESTING_OPTION_ID"
+gh issue edit <number> --remove-label "claim:active,dispatch:claude"
 gh issue comment <number> --body "Completed-At: $(date -u +%Y-%m-%dT%H:%M:%SZ)\n\n**Summary:** ..."
 ```
 
 ### 6. QA Gate (Your Turn)
 
-In the GitHub Projects board (or `gh issue list --label status:testing`):
+On the GitHub Projects board (filter the **Testing** column):
 
 1. Review the Testing column
 2. Open the issue to see agent notes and the linked PR
 3. Check the PR diff
-4. **Approve**: Remove `status:testing`, close the issue (or move to Done column)
-5. **Reject**: Remove `status:testing`, add `status:todo` and `ready-for-agent`
+4. **Approve**: set board `Status` = Done and close the issue (merging the PR with
+   `Closes #<n>` does both)
+5. **Reject**: set board `Status` = To Do and re-apply `dispatch:claude`
    (re-arming the gate — the reject is your deliberate "try again"), post a
    rejection comment with notes
 
@@ -162,14 +182,14 @@ In the GitHub Projects board (or `gh issue list --label status:testing`):
 
 When rejected:
 
-1. Issue moves back to To Do (`status:todo` restored) and the gate is re-armed
-   (`ready-for-agent` restored), so the loop re-picks it up
+1. Issue moves back to To Do (board `Status` = To Do) and the gate is re-armed
+   (`dispatch:claude` restored), so the loop re-picks it up
 2. Rejection count bumped via label (`rejection:1`, `rejection:2`, …) or tracked in comments
 3. Rejection note added as a comment on the issue
 4. Next `/loop` picks up the issue with full comment history as context
 
 If the rejection means the requested enhancement should not be built, do not
-keep cycling it through To Do. Leave `ready-for-agent` off, close it as `wontfix`,
+keep cycling it through To Do. Leave `dispatch:claude` off, close it as `wontfix`,
 and, when the reasoning is
 durable, record the concept under `.out-of-scope/<concept>.md` so future triage
 does not re-litigate the same request.
@@ -188,7 +208,7 @@ does not re-litigate the same request.
 
 Multiple platforms can work simultaneously:
 
-- Each claims different issues (assignee + `claimed` label)
+- Each claims different issues (assignee + `claim:active` label)
 - Claim comments with timestamps prevent conflicts (30-min lock)
 - Shared state lives in GitHub Issues — visible to all platforms
 
@@ -197,7 +217,7 @@ Multiple platforms can work simultaneously:
 When rate limited:
 
 1. Agent posts progress to the issue as a comment
-2. Removes the `claimed` label (releases claim)
+2. Removes the `claim:active` label (releases claim)
 3. Suggests switching platform
 4. User continues with different platform; new agent reads comment history for context
 
@@ -205,10 +225,10 @@ When rate limited:
 
 ### Morning QA Session
 
-1. Open the GitHub Projects board (or run `gh issue list --label status:testing`)
+1. Open the GitHub Projects board and filter the **Testing** column
 2. Review issues in the Testing column
-3. Approve good work → close the issue (Done)
-4. Reject with notes → comment + restore `status:todo` label
+3. Approve good work → set `Status` = Done, close the issue
+4. Reject with notes → comment + set `Status` = To Do and re-apply `dispatch:claude`
 
 ### Throughout Day
 
@@ -221,9 +241,11 @@ claude
 ```
 
 ```bash
-# Quick queue check at any time
-gh issue list --label status:todo --assignee @me
-gh issue list --label status:testing
+# Quick queue check at any time (status is a board column, not a label)
+source .github/agent-loop.env
+gh project item-list "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --format json -L 500 \
+  | jq -r '.items[] | select(.status == "To Do" or .status == "Testing")
+           | "\(.status)\t#\(.content.number)\t\(.content.title)"'
 ```
 
 ### Rate Limit Strategy
@@ -269,7 +291,7 @@ Important: `/loop` is NOT a background process.
 Claims expire after 30 minutes:
 
 - Check the `Claimed-At` timestamp in the most recent claim comment on the issue
-- If > 30 min old and `claimed` label is still present, the claim is stale — safe to take over
+- If > 30 min old and `claim:active` label is still present, the claim is stale — safe to take over
 - Handles agent crashes and rate limit interruptions
 - Previous comments provide full context for pickup by any platform
 

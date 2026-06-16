@@ -2,13 +2,21 @@ name: Agent Dispatch
 
 # Autonomous label-driven dispatch (Phase 2 of the dev loop).
 #
-# A human opts an issue into agent execution by applying the `ready-for-agent`
+# A human opts an issue into agent execution by applying the `dispatch:claude`
 # label. That fires this workflow, which runs the executing-plans loop headlessly
 # on that one issue: claim -> branch -> implement -> qa-reviewer -> PR -> Testing.
 #
-# Auth: subscription OAuth token only (CLAUDE_CODE_OAUTH_TOKEN), never an API key.
-#   Generate with `claude setup-token`, store as a repo secret. If ANTHROPIC_API_KEY
-#   is also set it takes precedence and bills metered API — so do not set it here.
+# Status lives on the GitHub Projects board `Status` field (Backlog / To Do /
+# Testing / Done), not in labels — the completion step flips the board to Testing,
+# it never touches a status label. The board's node ids come from the committed
+# .github/agent-loop.env (written by setup-dev-loop.sh).
+#
+# Auth (two tokens):
+#   - CLAUDE_CODE_OAUTH_TOKEN — subscription OAuth, never an API key. Generate with
+#     `claude setup-token`, store as a repo secret. If ANTHROPIC_API_KEY is also set
+#     it takes precedence and bills metered API — so do not set it here.
+#   - PROJECTS_TOKEN — a `project`-scoped PAT used as github_token, because the
+#     Actions default GITHUB_TOKEN cannot read/write an org-owned Projects v2 board.
 #
 # Trust boundary: only issues a human deliberately labels are processed. Issue
 # title/body remain untrusted (prompt-injection surface); they are read by the
@@ -31,8 +39,8 @@ permissions:
 
 jobs:
   run-agent:
-    if: github.event.label.name == 'ready-for-agent'
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    if: github.event.label.name == 'dispatch:claude'
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -43,7 +51,8 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # project-scoped PAT: the default GITHUB_TOKEN cannot write an org board.
+          github_token: ${{ secrets.PROJECTS_TOKEN }}
           # Surface live progress as a tracking comment on the issue.
           track_progress: "true"
           # Load the loop's runtime skills from the shipshitdev marketplace so
@@ -65,9 +74,9 @@ jobs:
             Run the autonomous dev loop on issue #${{ github.event.issue.number }} in this repository.
 
             Follow the `executing-plans` skill exactly (this issue already carries the
-            `ready-for-agent` dispatch gate, so treat it as opted-in):
+            `dispatch:claude` dispatch gate, so treat it as opted-in):
 
-            1. Claim it: add the `claimed` label and a comment with an ISO-8601
+            1. Claim it: add the `claim:active` label and a comment with an ISO-8601
                `Claimed-By` / `Claimed-At` timestamp.
             2. Read the issue body, the linked PRD, and ALL comments (prior rejection
                and triage notes carry essential context).
@@ -75,10 +84,22 @@ jobs:
             4. Implement the vertical slice. Use TDD for behavior changes.
             5. Run the `qa-reviewer` skill before finishing; tick the QA checklist.
             6. Open a PR whose body says `Closes #${{ github.event.issue.number }}`.
-            7. Transition the labels: remove `status:todo`, `claimed`, and
-               `ready-for-agent`; add `status:testing`.
+            7. Move the issue to Testing on the board (status is a board field, not a
+               label). Source the committed board ids and flip the Status field:
+
+               ```bash
+               source .github/agent-loop.env
+               ITEM_ID=$(gh project item-list "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" \
+                 --format json -L 500 \
+                 | jq -r '.items[] | select(.content.number == ${{ github.event.issue.number }}) | .id')
+               gh project item-edit --id "$ITEM_ID" --field-id "$STATUS_FIELD_ID" \
+                 --project-id "$PROJECT_NODE_ID" --single-select-option-id "$STATUS_TESTING_OPTION_ID"
+               ```
+
+               Then clear the gate + claim labels:
+               `gh issue edit ${{ github.event.issue.number }} --remove-label "claim:active,dispatch:claude"`.
 
             This is an AFK run: do not stop to ask questions. If a genuine human
             decision (HITL) is required that is not answered in the issue or its
-            comments, post a comment explaining what is blocked, remove the `claimed`
+            comments, post a comment explaining what is blocked, remove the `claim:active`
             label to release the issue, and stop without opening a PR.

@@ -305,8 +305,8 @@ Show the parent and sub-issue draft. Wait for approval before writing to GitHub.
 After approval, create the parent first, then sub-issues:
 
 ```bash
-gh issue create --title "<short imperative title>" --body-file /tmp/parent-prd.md --label "feature"
-gh issue create --title "[backend] <title>" --body-file /tmp/backend.md --label "feature"
+gh issue create --title "<short imperative title>" --body-file /tmp/parent-prd.md --label "type:feature"
+gh issue create --title "[backend] <title>" --body-file /tmp/backend.md --label "type:feature"
 ```
 
 Link sub-issues using the repository's supported GitHub sub-issue API or tracker

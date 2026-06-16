@@ -5,32 +5,45 @@ set -euo pipefail
 # setup-dev-loop.sh — provision the AI dev loop on a GitHub repo
 #
 # One-shot, idempotent setup for label-driven autonomous execution. Two engine
-# lanes share one label contract: the Claude lane (ready-for-agent) and the
-# Codex/GPT lane (ready-for-codex).
-#   1. Creates the dispatch label vocabulary (status:*, priority:*, claimed,
-#      ready-for-agent, ready-for-codex, rejection:N, feature, wontfix).
-#   2. Installs the Phase-2 push workflows (.github/workflows/agent-dispatch.yml
+# lanes share one label contract: the Claude lane (dispatch:claude) and the
+# Codex/GPT lane (dispatch:codex). Status is NOT a label — it is the GitHub
+# Projects board `Status` field (Backlog / To Do / Testing / Done), the sole
+# source of truth, which this script provisions.
+#   1. Migrates legacy label names in place, then creates the dispatch label
+#      vocabulary (claim:active, priority:*, rejection:N, dispatch:claude,
+#      dispatch:codex, type:feature, wontfix). The two old status:* labels are
+#      deleted — status moves to the board.
+#   2. Provisions the Projects board: creates-or-reuses the project, normalizes
+#      its Status options to Backlog/To Do/Testing/Done, and writes the board's
+#      node ids to .github/agent-loop.env (non-secret) for the workflows + /loop.
+#   3. Installs the Phase-2 push workflows (.github/workflows/agent-dispatch.yml
 #      for Claude, codex-dispatch.yml for Codex).
-#   3. Arms the Phase-2 auth secrets — CLAUDE_CODE_OAUTH_TOKEN (subscription
-#      OAuth, never an API key) and OPENAI_API_KEY (Codex lane).
-#   4. Prints the `gh variable set` commands for model selection (AGENT_MODEL,
+#   4. Arms the auth secrets — CLAUDE_CODE_OAUTH_TOKEN (subscription OAuth, never
+#      an API key), OPENAI_API_KEY (Codex lane), and PROJECTS_TOKEN (a project-
+#      scoped PAT the workflows use to write the board; the default GITHUB_TOKEN
+#      cannot touch an org-owned Projects v2 board).
+#   5. Prints the `gh variable set` commands for model selection (AGENT_MODEL,
 #      CODEX_MODEL, CODEX_EFFORT) — non-sensitive, so repo VARIABLES not secrets.
-#   5. Points you at /setup-agent-routing for the per-repo routing block.
+#   6. Points you at /setup-agent-routing for the per-repo routing block.
 #
 # Operates on the current repo by default (resolved via `gh`); override with
-# --repo owner/name. Safe to re-run — labels use --force, workflows are copied
-# in place, secrets are left alone if already set.
+# --repo owner/name. Safe to re-run — labels use --force, the board normalize is
+# idempotent, workflows are copied in place, secrets are left alone if already set.
 #
 # Usage:
 #   setup-dev-loop.sh                       # set up the current repo
 #   setup-dev-loop.sh --repo owner/name     # target a specific repo
+#   setup-dev-loop.sh --project 7           # reuse an existing board number
 #   setup-dev-loop.sh --dry-run             # preview without changing anything
+#   setup-dev-loop.sh --skip-board          # skip board provisioning
 #   setup-dev-loop.sh --skip-secrets        # skip the auth-secret steps
 #   setup-dev-loop.sh --help
 # ============================================================================
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WORKFLOW_DIR="${SCRIPT_DIR}/../.github/workflows"
+# Board normalizer (sets the Status options to the 4-column model).
+BOARD_SCRIPT="${SCRIPT_DIR}/../skills/gh-project-board/scripts/setup-gh-project-board.mjs"
 
 # Phase-2 push workflows installed into the target repo (one per engine lane).
 WORKFLOWS=(
@@ -38,10 +51,18 @@ WORKFLOWS=(
   "codex-dispatch.yml"
 )
 
+# The 4-column board model. The board Status field is the SOLE source of truth
+# for where an issue sits — there are no status:* labels.
+BOARD_STATUS="Backlog,To Do,Testing,Done"
+# Title used to create-or-reuse the project when --project is not given.
+PROJECT_TITLE="Dev Loop"
+
 REPO=""
 REPO_FLAG=()
+PROJECT_NUMBER=""
 DO_LABELS=true
 DO_WORKFLOW=true
+DO_BOARD=true
 DO_SECRETS=true
 DRY_RUN=false
 VERBOSE=false
@@ -63,22 +84,36 @@ vlog()   { $VERBOSE && echo -e "${BLUE}[v]${NC} $*" || true; }
 # ============================================================================
 # Dispatch label vocabulary — name|color|description.
 # Mirrors skills/setup-agent-routing/references/triage-labels.md.
+# Status is the board's Status field, not a label, so no status:* entries here.
 # ============================================================================
 
 LABELS=(
-  "status:todo|1d76db|To Do column — backlog-ready, not yet opted into agent execution"
-  "status:testing|fbca04|Testing column — implemented, awaiting human QA"
-  "claimed|5319e7|An agent currently holds this issue (30-min claim lock)"
+  "claim:active|5319e7|An agent currently holds this issue (30-min claim lock)"
   "priority:high|b60205|Queue ordering — picked first"
   "priority:medium|d93f0b|Queue ordering — picked after high"
   "priority:low|0e8a16|Queue ordering — picked last"
   "rejection:1|e99695|QA rejection count — 1st kickback from Testing"
   "rejection:2|e99695|QA rejection count — 2nd kickback from Testing"
   "rejection:3|e99695|QA rejection count — 3rd kickback from Testing"
-  "ready-for-agent|006b75|Dispatch gate (human opt-in) — Claude lane runs only on issues carrying this"
-  "ready-for-codex|10a37f|Dispatch gate (human opt-in) — Codex/GPT lane runs only on issues carrying this"
-  "feature|a2eeef|Applied by feature-intake to PRD epics and their sub-issues"
+  "dispatch:claude|006b75|Dispatch gate (human opt-in) — Claude lane runs only on issues carrying this"
+  "dispatch:codex|10a37f|Dispatch gate (human opt-in) — Codex/GPT lane runs only on issues carrying this"
+  "type:feature|a2eeef|Applied by feature-intake to PRD epics and their sub-issues"
   "wontfix|ffffff|Closed; will not be actioned"
+)
+
+# Legacy → new name migrations, applied IN PLACE before seeding so existing
+# issues keep their label (gh label edit preserves assignments). old|new.
+LABEL_RENAMES=(
+  "ready-for-agent|dispatch:claude"
+  "ready-for-codex|dispatch:codex"
+  "claimed|claim:active"
+  "feature|type:feature"
+)
+
+# Legacy labels retired entirely — status now lives on the board.
+LABEL_DELETES=(
+  "status:todo"
+  "status:testing"
 )
 
 # ============================================================================
@@ -111,6 +146,38 @@ resolve_repo() {
 # ============================================================================
 # Step 1 — labels
 # ============================================================================
+
+# Rename legacy labels in place (preserves assignments on open issues) and delete
+# the retired status:* labels. Runs BEFORE create_labels so the new names are not
+# already taken when `gh label edit` tries to rename onto them. Idempotent: on a
+# fresh repo the legacy labels are absent and every step is a harmless no-op.
+migrate_labels() {
+  info "Migrating legacy label names in place on ${REPO}"
+  local entry old new name
+  for entry in "${LABEL_RENAMES[@]}"; do
+    IFS='|' read -r old new <<<"$entry"
+    if $DRY_RUN; then
+      dry "gh label edit '${old}' --name '${new}'  (migrates the label on all open issues)"
+      continue
+    fi
+    if gh label edit "$old" --name "$new" "${REPO_FLAG[@]}" >/dev/null 2>&1; then
+      log "renamed label: ${old} -> ${new}"
+    else
+      vlog "no legacy label '${old}' to rename (fresh repo or already migrated)"
+    fi
+  done
+  for name in "${LABEL_DELETES[@]}"; do
+    if $DRY_RUN; then
+      dry "gh label delete '${name}' --yes  (status moves to the board)"
+      continue
+    fi
+    if gh label delete "$name" --yes "${REPO_FLAG[@]}" >/dev/null 2>&1; then
+      log "deleted retired status label: ${name}"
+    else
+      vlog "no legacy label '${name}' to delete"
+    fi
+  done
+}
 
 create_labels() {
   info "Creating/updating ${#LABELS[@]} dispatch labels on ${REPO}"
@@ -167,7 +234,82 @@ install_workflows() {
 }
 
 # ============================================================================
-# Step 3 — auth secrets (Phase-2 auth, one per engine lane)
+# Step 2.5 — provision the GitHub Projects board (status source of truth)
+# ============================================================================
+
+# Create-or-reuse the project, normalize its Status options to the 4-column model,
+# and write the board's node ids to .github/agent-loop.env so the workflows + /loop
+# can flip Status via `gh project item-edit`. Status is a board field, not a label.
+# Needs the user's gh auth to carry the `project` scope (local runs do; CI uses the
+# PROJECTS_TOKEN secret instead).
+provision_board() {
+  local owner repo_root num node_id fields_json status_field_id env_file
+  local backlog_id todo_id testing_id done_id
+  owner="${REPO%%/*}"
+  repo_root="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+  env_file="${repo_root:-.}/.github/agent-loop.env"
+
+  if $DRY_RUN; then
+    dry "resolve-or-create project '${PROJECT_TITLE}' under ${owner} (or reuse --project ${PROJECT_NUMBER:-<auto>})"
+    dry "node ${BOARD_SCRIPT} --owner ${owner} --project <num> --status \"${BOARD_STATUS}\" --exact --apply"
+    dry "write board node ids (PROJECT_NODE_ID, STATUS_FIELD_ID, STATUS_*_OPTION_ID) to ${env_file}"
+    return
+  fi
+
+  command -v node >/dev/null 2>&1 || { err "node not found — needed to normalize the board"; return 1; }
+  command -v jq   >/dev/null 2>&1 || { err "jq not found — needed to read board ids"; return 1; }
+  [[ -f "$BOARD_SCRIPT" ]] || { err "board normalizer missing: ${BOARD_SCRIPT}"; return 1; }
+
+  # 1. Resolve the project number: explicit --project wins; else reuse a project
+  #    titled "$PROJECT_TITLE"; else create + link one.
+  num="$PROJECT_NUMBER"
+  if [[ -z "$num" ]]; then
+    num="$(gh project list --owner "$owner" --format json 2>/dev/null \
+      | jq -r --arg t "$PROJECT_TITLE" 'first(.projects[] | select(.title == $t) | .number) // empty')"
+  fi
+  if [[ -z "$num" ]]; then
+    info "creating project '${PROJECT_TITLE}' under ${owner}"
+    num="$(gh project create --owner "$owner" --title "$PROJECT_TITLE" --format json | jq -r '.number')"
+    gh project link "$num" --owner "$owner" --repo "$REPO" >/dev/null 2>&1 || true
+  else
+    info "reusing project #${num} under ${owner}"
+  fi
+
+  # 2. Normalize the Status options to exactly Backlog/To Do/Testing/Done. The
+  #    normalizer defaults to a 6-option set, so --status is mandatory; --exact
+  #    prunes any other option, --apply writes (default is dry-run).
+  info "normalizing board #${num} Status options to: ${BOARD_STATUS}"
+  node "$BOARD_SCRIPT" --owner "$owner" --project "$num" --status "$BOARD_STATUS" --exact --apply
+
+  # 3. Read the live field + option ids and write the non-secret env file.
+  node_id="$(gh project view "$num" --owner "$owner" --format json | jq -r '.id')"
+  fields_json="$(gh project field-list "$num" --owner "$owner" --format json)"
+  status_field_id="$(jq -r '.fields[] | select(.name == "Status") | .id' <<<"$fields_json")"
+  _opt_id() { jq -r --arg n "$1" '.fields[] | select(.name == "Status") | .options[]? | select(.name == $n) | .id' <<<"$fields_json"; }
+  backlog_id="$(_opt_id "Backlog")"
+  todo_id="$(_opt_id "To Do")"
+  testing_id="$(_opt_id "Testing")"
+  done_id="$(_opt_id "Done")"
+
+  mkdir -p "$(dirname "$env_file")"
+  cat >"$env_file" <<EOF
+# Generated by setup-dev-loop.sh — committed, NON-SECRET board node ids.
+# Workflows + /loop source this to flip the board Status field. Only PROJECTS_TOKEN
+# is secret. Re-run setup-dev-loop.sh to regenerate after the board changes.
+PROJECT_OWNER=${owner}
+PROJECT_NUMBER=${num}
+PROJECT_NODE_ID=${node_id}
+STATUS_FIELD_ID=${status_field_id}
+STATUS_BACKLOG_OPTION_ID=${backlog_id}
+STATUS_TODO_OPTION_ID=${todo_id}
+STATUS_TESTING_OPTION_ID=${testing_id}
+STATUS_DONE_OPTION_ID=${done_id}
+EOF
+  log "board ids written: ${env_file}"
+}
+
+# ============================================================================
+# Step 3 — auth secrets (Phase-2 auth, one per engine lane + board write)
 # ============================================================================
 
 # setup_one_secret <NAME> <hint>
@@ -201,12 +343,17 @@ setup_one_secret() {
 }
 
 setup_secrets() {
-  # Claude lane (ready-for-agent). Subscription OAuth only — never an API key.
+  # Claude lane (dispatch:claude). Subscription OAuth only — never an API key.
   setup_one_secret "CLAUDE_CODE_OAUTH_TOKEN" \
     "Claude lane — generate with:  claude setup-token   (uses your Claude subscription, never an API key)"
-  # Codex/GPT lane (ready-for-codex). Skip if you only run the Claude lane.
+  # Codex/GPT lane (dispatch:codex). Skip if you only run the Claude lane.
   setup_one_secret "OPENAI_API_KEY" \
     "Codex lane — an OpenAI API key from https://platform.openai.com/api-keys (skip if you only use the Claude lane)"
+  # Board write (both lanes). A project-scoped PAT — the default GITHUB_TOKEN
+  # cannot read/write an org-owned Projects v2 board. YOU paste it at the hidden
+  # gh prompt; it is never generated, echoed, or stored by this script.
+  setup_one_secret "PROJECTS_TOKEN" \
+    "Board write — a PAT with 'project' scope (classic: project + repo; or fine-grained: org Projects read/write + repo write). Create at https://github.com/settings/tokens"
 }
 
 # ============================================================================
@@ -238,15 +385,16 @@ print_routing_step() {
 print_summary() {
   echo ""
   log "Dev-loop setup complete on ${REPO}"
-  $DO_LABELS   && echo "  • Labels:    dispatch vocabulary created/updated (incl. ready-for-codex)"
-  $DO_WORKFLOW && echo "  • Workflows: agent-dispatch.yml (ready-for-agent) + codex-dispatch.yml (ready-for-codex)"
-  $DO_SECRETS  && echo "  • Secrets:   CLAUDE_CODE_OAUTH_TOKEN (Claude) + OPENAI_API_KEY (Codex)"
+  $DO_LABELS   && echo "  • Labels:    dispatch:claude / dispatch:codex / claim:active / type:feature / priority:* / rejection:* (status:* deleted)"
+  $DO_BOARD    && echo "  • Board:     Status field normalized to Backlog/To Do/Testing/Done; ids in .github/agent-loop.env"
+  $DO_WORKFLOW && echo "  • Workflows: agent-dispatch.yml (dispatch:claude) + codex-dispatch.yml (dispatch:codex)"
+  $DO_SECRETS  && echo "  • Secrets:   CLAUDE_CODE_OAUTH_TOKEN (Claude) + OPENAI_API_KEY (Codex) + PROJECTS_TOKEN (board write)"
   echo "  • Variables: AGENT_MODEL / CODEX_MODEL / CODEX_EFFORT (set with gh variable set)"
   echo "  • Routing:   run /setup-agent-routing in Claude Code"
   echo ""
   echo "  How to drive it:"
-  echo "    1. Move an issue to To Do (status:todo)."
-  echo "    2. Apply ready-for-agent (Claude lane) OR ready-for-codex (Codex lane)."
+  echo "    1. Move an issue to the board's To Do column (Status field — not a label)."
+  echo "    2. Apply dispatch:claude (Claude lane) OR dispatch:codex (Codex lane)."
   echo "    3. Phase 1 (local):  run  /loop   to claim + work one issue (Claude)."
   echo "    4. Phase 2 (push):   the gate label alone fires its dispatch workflow headlessly."
   echo ""
@@ -260,11 +408,14 @@ setup-dev-loop.sh — provision the AI dev loop on a GitHub repo
 Usage:
   setup-dev-loop.sh                     Set up the current repo
   setup-dev-loop.sh --repo owner/name   Target a specific repo
+  setup-dev-loop.sh --project 7         Reuse an existing board number
   setup-dev-loop.sh --dry-run           Preview without changing anything
 
 Options:
   --repo <owner/name>   Target repo (default: detected from the current remote)
-  --skip-labels         Do not create/update labels
+  --project <number>    Reuse this board instead of creating/finding one
+  --skip-labels         Do not migrate/create labels
+  --skip-board          Do not provision the Projects board
   --skip-workflow       Do not install the dispatch workflows
   --skip-secrets        Do not touch the auth secrets
   --dry-run             Preview changes without executing
@@ -272,15 +423,21 @@ Options:
   --help                Show this help
 
 What it does:
-  1. Creates the dispatch labels (status:*, priority:*, claimed,
-     ready-for-agent, ready-for-codex, rejection:N, feature, wontfix).
-  2. Installs the Phase-2 push workflows: agent-dispatch.yml (Claude lane,
-     ready-for-agent) and codex-dispatch.yml (Codex lane, ready-for-codex).
-  3. Arms the auth secrets: CLAUDE_CODE_OAUTH_TOKEN (subscription OAuth) and
-     OPENAI_API_KEY (Codex lane).
-  4. Prints the gh variable set commands for model selection (AGENT_MODEL,
+  1. Migrates legacy labels in place, then creates the dispatch labels
+     (claim:active, priority:*, rejection:N, dispatch:claude, dispatch:codex,
+     type:feature, wontfix). The two status:* labels are deleted — status moves
+     to the board.
+  2. Provisions the Projects board: creates-or-reuses the project, normalizes
+     its Status options to Backlog/To Do/Testing/Done, and writes the board node
+     ids to .github/agent-loop.env (non-secret).
+  3. Installs the Phase-2 push workflows: agent-dispatch.yml (Claude lane,
+     dispatch:claude) and codex-dispatch.yml (Codex lane, dispatch:codex).
+  4. Arms the auth secrets: CLAUDE_CODE_OAUTH_TOKEN (subscription OAuth),
+     OPENAI_API_KEY (Codex lane), and PROJECTS_TOKEN (project-scoped PAT for the
+     board write — the default GITHUB_TOKEN cannot touch an org board).
+  5. Prints the gh variable set commands for model selection (AGENT_MODEL,
      CODEX_MODEL, CODEX_EFFORT) — non-sensitive, so repo variables not secrets.
-  5. Points you at /setup-agent-routing for the per-repo routing block.
+  6. Points you at /setup-agent-routing for the per-repo routing block.
 
 Examples:
   setup-dev-loop.sh
@@ -297,7 +454,9 @@ main() {
   while [[ $# -gt 0 ]]; do
     case "$1" in
       --repo)             REPO="$2"; shift 2 ;;
+      --project)          PROJECT_NUMBER="$2"; shift 2 ;;
       --skip-labels)      DO_LABELS=false; shift ;;
+      --skip-board)       DO_BOARD=false; shift ;;
       --skip-workflow)    DO_WORKFLOW=false; shift ;;
       --skip-workflows)   DO_WORKFLOW=false; shift ;;
       --skip-secrets)     DO_SECRETS=false; shift ;;
@@ -315,7 +474,8 @@ main() {
   $DRY_RUN && warn "DRY RUN — no changes will be made"
   info "Setting up the AI dev loop on ${REPO}"
 
-  $DO_LABELS   && create_labels
+  $DO_LABELS   && { migrate_labels; create_labels; }
+  $DO_BOARD    && provision_board
   $DO_WORKFLOW && install_workflows
   $DO_SECRETS  && setup_secrets
   print_variables_step

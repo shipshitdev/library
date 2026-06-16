@@ -7,30 +7,37 @@ Work is tracked as **GitHub Issues** on `<owner>/<repo>`, visualized on a
 **GitHub Projects** kanban board (project #`<N>`) with columns
 **Backlog → To Do → Testing → Done**.
 
-## Column → state + label map
+## Column → state + board Status map
 
-| Column  | Issue state | Label            |
-| ------- | ----------- | ---------------- |
-| Backlog | open        | _(none)_         |
-| To Do   | open        | `status:todo`    |
-| Testing | open        | `status:testing` |
-| Done    | closed      | _(none needed)_  |
+Status is the board `Status` field (a Projects v2 single-select), the sole source
+of truth — not a label.
 
-Issue state (open/closed) plus labels drive column placement. The `gh` CLI is the
-agent's interface for every task operation.
+| Column  | Issue state | Board `Status` |
+| ------- | ----------- | -------------- |
+| Backlog | open        | Backlog        |
+| To Do   | open        | To Do          |
+| Testing | open        | Testing        |
+| Done    | closed      | Done           |
+
+Issue state (open/closed) plus the board `Status` field drive column placement.
+The `gh` CLI is the agent's interface for every task operation; the board node ids
+live in `.github/agent-loop.env`.
 
 ## Command vocabulary
 
 ```bash
 # Create (use --body-file with a heredoc/temp file for multi-line PRDs)
-gh issue create --title "<title>" --body-file /tmp/body.md --label "feature"
+gh issue create --title "<title>" --body-file /tmp/body.md --label "type:feature"
 
 # Read one issue with full comment history (rejection + triage notes live here)
 gh issue view <number> --comments
 
-# List the dispatch queue (see triage-labels.md for the ready-for-agent gate)
-gh issue list --label "ready-for-agent" --label "status:todo" \
-  --json number,title,labels,assignees --jq '.'
+# List the dispatch queue: the gate label intersected with the board's To Do column
+# (see triage-labels.md for the dispatch:claude / dispatch:codex gates)
+source .github/agent-loop.env
+gh issue list --label "dispatch:claude" --json number,title,labels,assignees --jq '.'
+gh project item-list "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --format json -L 500 \
+  | jq -r '.items[] | select(.status == "To Do") | .content.number'
 
 # Comment (progress updates, claim stamps, completion summaries)
 gh issue comment <number> --body "..."
@@ -51,7 +58,7 @@ gh project item-add <N> --owner <owner> --url <issue-url>
 
 # Discover field + item IDs live — never hard-code them
 gh project field-list <N> --owner <owner> --format json
-gh project item-list <N> --owner <owner> --limit 100 --format json
+gh project item-list <N> --owner <owner> -L 500 --format json   # default limit is 30
 ```
 
 Use live field IDs from `gh project field-list` and item IDs from

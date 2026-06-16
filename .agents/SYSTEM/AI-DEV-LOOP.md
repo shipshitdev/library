@@ -1,18 +1,22 @@
 # The AI Dev Loop
 
-Label-driven autonomous task execution with a human opt-in gate and a human QA
-gate. A human moves an issue to **To Do** and applies one dispatch-gate label,
-and an agent claims it, works it on a branch, and opens a PR that lands the issue
-in **Testing** for review.
+Board-driven autonomous task execution with a human opt-in gate and a human QA
+gate. A human moves an issue to **To Do** on the board and applies one
+dispatch-gate label, and an agent claims it, works it on a branch, and opens a PR
+that lands the issue in **Testing** for review.
+
+**Status is a board field, not a label.** Where an issue sits — Backlog / To Do /
+Testing / Done — is the GitHub Projects v2 `Status` single-select field, the sole
+source of truth. There are no `status:*` labels.
 
 **Two engine lanes, one contract.** The gate label picks the engine:
 
-- `ready-for-agent` → **Claude lane** (`anthropics/claude-code-action`).
-- `ready-for-codex` → **Codex/GPT lane** (`openai/codex-action`).
+- `dispatch:claude` → **Claude lane** (`anthropics/claude-code-action`).
+- `dispatch:codex` → **Codex/GPT lane** (`openai/codex-action`).
 
-Both obey the identical claim → branch → implement → QA → PR → `status:testing`
-flow. An issue carries at most one gate at a time. Everything below applies to
-both lanes; the engine-specific bits are called out where they differ.
+Both obey the identical claim → branch → implement → QA → PR → **Testing** flow.
+An issue carries at most one gate at a time. Everything below applies to both
+lanes; the engine-specific bits are called out where they differ.
 
 Two ways to run it, same contract:
 
@@ -51,16 +55,16 @@ sidecar to drift out of sync.
 
 **One invocation = one task.** The loop is NOT a daemon. Each run:
 
-1. Builds the candidate queue: issues carrying **both** `ready-for-agent` **and**
-   `status:todo`.
-2. Claims the top-priority candidate — adds the `claimed` label and a timestamped
-   claim comment (a 30-minute lock).
+1. Builds the candidate queue: issues carrying the `dispatch:claude` gate **and**
+   sitting in the board's **To Do** column.
+2. Claims the top-priority candidate — adds the `claim:active` label and a
+   timestamped claim comment (a 30-minute lock).
 3. Implements the slice on a `feature/<n>-<slug>` branch (TDD for behavior).
 4. Runs the `qa-reviewer` skill (lint, tests, types, regressions).
-5. Opens a PR with `Closes #<n>` and transitions the labels to `status:testing`.
+5. Opens a PR with `Closes #<n>` and flips the board `Status` to **Testing**.
 6. Exits. The human reviews the PR.
 
-`ready-for-agent` is the safety property: nothing runs until a human deliberately
+`dispatch:claude` is the safety property: nothing runs until a human deliberately
 opts an issue in. An issue can sit in **To Do** untouched indefinitely.
 
 ## Workflow diagram
@@ -68,49 +72,53 @@ opts an issue in. An issue can sit in **To Do** untouched indefinitely.
 ```
 ┌───────────────────────────────────────────────────────────────────┐
 │                          THE AI DEV LOOP                            │
+│              (Status = board field, gate = label)                  │
 └───────────────────────────────────────────────────────────────────┘
 
    BACKLOG          TO DO              TESTING            DONE
   ┌───────┐       ┌─────────┐        ┌─────────┐       ┌───────┐
-  │       │       │status:  │        │status:  │       │       │
-  │ Ideas │ ───▶  │todo     │ ─────▶ │testing  │ ───▶  │  ✓    │
-  │       │       │+ready-  │  loop  │         │ merge │       │
-  └───────┘       │for-agent│        └─────────┘       └───────┘
+  │Status:│       │Status:  │        │Status:  │       │Status:│
+  │Backlog│ ───▶  │To Do    │ ─────▶ │Testing  │ ───▶  │ Done  │
+  │       │       │+dispatch│  loop  │         │ merge │  ✓    │
+  └───────┘       │:claude  │        └─────────┘       └───────┘
                   └─────────┘             │
                        ▲                  │ QA reject
                        │   re-arm gate    ▼
-                       │  (status:todo + ready-for-agent,
+                       │  (Status→To Do + dispatch:claude,
                        └───  rejection:N bumped)
 ```
 
-The human controls the two gates: applying `ready-for-agent` (start) and merging
+The human controls the two gates: applying `dispatch:claude` (start) and merging
 or rejecting the PR (finish).
 
 ## Label vocabulary
 
+Status is **not** in this table — it is the board `Status` field. These are the
+labels that ride alongside it:
+
 | Label | Role |
 | ----- | ---- |
-| `status:todo` | In the **To Do** column — backlog-ready, not yet opted in. |
-| `status:testing` | Implemented; in **Testing**, awaiting human QA. |
-| `claimed` | An agent holds the issue. Paired with a timestamped claim comment (30-min lock). |
+| `claim:active` | An agent holds the issue. Paired with a timestamped claim comment (30-min lock). |
 | `priority:high` / `priority:medium` / `priority:low` | Queue ordering. High first. |
 | `rejection:N` | QA rejection count, bumped on each kickback from Testing → To Do. |
-| `ready-for-agent` | **Dispatch gate → Claude lane (human opt-in).** Nothing runs autonomously until a human applies it. |
-| `ready-for-codex` | **Dispatch gate → Codex/GPT lane (human opt-in).** The Codex-lane twin of `ready-for-agent`; apply at most one gate per issue. |
-| `feature` | Applied by `feature-intake` to PRD epics and their sub-issues. |
+| `dispatch:claude` | **Dispatch gate → Claude lane (human opt-in).** Nothing runs autonomously until a human applies it. |
+| `dispatch:codex` | **Dispatch gate → Codex/GPT lane (human opt-in).** The Codex-lane twin of `dispatch:claude`; apply at most one gate per issue. |
+| `type:feature` | Applied by `feature-intake` to PRD epics and their sub-issues. |
 | `wontfix` | Closed; will not be actioned. |
 
 **AFK vs HITL are body markers, not labels.** Mark each issue body `AFK` (an agent
 can finish from written context) or `HITL` (a human decision is required
-mid-task). **HITL issues must never receive `ready-for-agent`** — split the human
+mid-task). **HITL issues must never receive a dispatch gate** — split the human
 decision out of the implementation work at creation time so the loop only ever
 picks up work it can finish.
 
 ## One-time setup (per repo)
 
 ```bash
-# 1. Provision labels + both Phase-2 workflows + the auth secrets (idempotent).
-bash scripts/setup-dev-loop.sh            # or: --repo owner/name, --dry-run
+# 1. Provision labels + the board + both Phase-2 workflows + the auth secrets.
+#    Migrates legacy labels, deletes status:*, normalizes the board Status field
+#    to Backlog/To Do/Testing/Done, and writes .github/agent-loop.env (idempotent).
+bash scripts/setup-dev-loop.sh            # or: --repo owner/name, --project N, --dry-run
 
 # 2. Pick which model each lane runs (repo VARIABLES, not secrets — optional):
 gh variable set AGENT_MODEL  --body claude-opus-4-8   # Claude lane; defaults to Sonnet
@@ -122,14 +130,23 @@ gh variable set CODEX_EFFORT --body xhigh             # Codex reasoning effort
 /setup-agent-routing
 ```
 
-`setup-dev-loop.sh` creates the label vocabulary above, copies both
-`agent-dispatch.yml` and `codex-dispatch.yml` into `.github/workflows/`, arms
-`CLAUDE_CODE_OAUTH_TOKEN` (Claude lane) and `OPENAI_API_KEY` (Codex lane), and
-prints the `gh variable set` commands for model selection. `/setup-agent-routing`
-writes the `## Agent skills` block into `CLAUDE.md`/`AGENTS.md` plus
-`docs/agents/{issue-tracker,triage-labels,domain}.md`, so `executing-plans`,
-`feature-intake`, `writing-prds`, and `qa-reviewer` can operate in a repo they
-have never seen.
+`setup-dev-loop.sh` creates the label vocabulary above, provisions the Projects
+board (Status options Backlog/To Do/Testing/Done) and writes its node ids to
+`.github/agent-loop.env`, copies both `agent-dispatch.yml` and `codex-dispatch.yml`
+into `.github/workflows/`, arms `CLAUDE_CODE_OAUTH_TOKEN` (Claude lane),
+`OPENAI_API_KEY` (Codex lane), and `PROJECTS_TOKEN` (the `project`-scoped PAT the
+workflows use to write the board), and prints the `gh variable set` commands for
+model selection. `/setup-agent-routing` writes the `## Agent skills` block into
+`CLAUDE.md`/`AGENTS.md` plus `docs/agents/{issue-tracker,triage-labels,domain}.md`,
+so `executing-plans`, `feature-intake`, `writing-prds`, and `qa-reviewer` can
+operate in a repo they have never seen.
+
+**Board auth: `PROJECTS_TOKEN`, not `GITHUB_TOKEN`.** The Actions default token
+cannot read or write an org-owned Projects v2 board, so the dispatch workflows use
+a `project`-scoped PAT stored as the `PROJECTS_TOKEN` secret. You create and paste
+it at the setup script's hidden prompt; it is never generated or echoed by the
+tooling. Local `/loop` runs under your own `gh` auth, which already has `project`
+scope — no PAT needed locally.
 
 **Model selection is a repo variable, never hardcoded or secret.** The model id
 is non-sensitive, so it lives in **Settings → Variables** (`AGENT_MODEL`,
@@ -139,53 +156,63 @@ Only auth tokens are secrets.
 ## Phase 1 — local pull (`/loop`)
 
 ```bash
-/loop            # claim and work one ready-for-agent issue
+/loop            # claim and work one dispatch:claude issue
 /loop --status   # show the task this agent currently holds (read-only)
-/loop --list     # list ready-for-agent candidates by priority (read-only)
+/loop --list     # list dispatch:claude candidates by priority (read-only)
 ```
 
-The candidate query is the dispatch contract:
+The candidate query is the dispatch contract — the gate label intersected with the
+board's To Do column:
 
 ```bash
-gh issue list --label "ready-for-agent" --label "status:todo" \
+source .github/agent-loop.env
+gh issue list --label "dispatch:claude" \
   --json number,title,labels,assignees,comments --jq '.'
+gh project item-list "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --format json -L 500 \
+  | jq -r '.items[] | select(.status == "To Do") | .content.number'
 ```
 
 Sort by `priority:high` > `priority:medium` > `priority:low`. Skip any issue whose
 most recent claim comment is younger than 30 minutes (an active claim). On
-completion, transition the labels:
+completion, flip the board `Status` to Testing and clear the gate + claim labels:
 
 ```bash
-gh issue edit <n> --remove-label "status:todo,claimed,ready-for-agent" \
-  --add-label "status:testing"
+ITEM_ID=$(gh project item-list "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --format json -L 500 \
+  | jq -r --argjson n <n> '.items[] | select(.content.number == $n) | .id')
+gh project item-edit --id "$ITEM_ID" --field-id "$STATUS_FIELD_ID" \
+  --project-id "$PROJECT_NODE_ID" --single-select-option-id "$STATUS_TESTING_OPTION_ID"
+gh issue edit <n> --remove-label "claim:active,dispatch:claude"
 ```
 
 ## Phase 2 — push dispatch (GitHub Actions)
 
 Two workflows, one per engine lane. Both run on `issues: labeled`, gate on their
 own label, key concurrency per issue, and run the same `executing-plans` contract
-headlessly on the one labeled issue.
+headlessly on the one labeled issue. Both authenticate `gh` with `PROJECTS_TOKEN`
+so the completion step can write the board.
 
 ### Claude lane — `agent-dispatch.yml`
 
-Gates on `if: github.event.label.name == 'ready-for-agent'` and runs via
+Gates on `if: github.event.label.name == 'dispatch:claude'` and runs via
 `anthropics/claude-code-action@v1`.
 
-- **Auth: `CLAUDE_CODE_OAUTH_TOKEN` only.** Generate it with `claude setup-token`
-  (billed to a Claude subscription) and store it as a repo secret. **Never set
-  `ANTHROPIC_API_KEY`** — it takes precedence and bills metered API.
+- **Auth: `CLAUDE_CODE_OAUTH_TOKEN`** for the model (generate with
+  `claude setup-token`, billed to a Claude subscription — **never set
+  `ANTHROPIC_API_KEY`**, which takes precedence and bills metered API) and
+  **`PROJECTS_TOKEN`** as `github_token` for the board write.
 - **Model:** `claude_args: --model ${{ vars.AGENT_MODEL || 'claude-sonnet-4-6' }}`.
   v1 has no `model:` input, so the model rides `claude_args`. `AGENT_MODEL` is a
   repo variable; unset → Sonnet.
 
 ### Codex lane — `codex-dispatch.yml`
 
-Gates on `if: github.event.label.name == 'ready-for-codex'` and runs via
+Gates on `if: github.event.label.name == 'dispatch:codex'` and runs via
 `openai/codex-action@v1` with `sandbox: workspace-write` and
 `safety-strategy: drop-sudo`.
 
-- **Auth: `OPENAI_API_KEY` repo secret.** `GH_TOKEN`/`GITHUB_TOKEN` are set in the
-  step env so `gh` works inside the run.
+- **Auth: `OPENAI_API_KEY`** for the model; `GH_TOKEN`/`GITHUB_TOKEN` are set to
+  `PROJECTS_TOKEN` in the step env so `gh` (including the board write) works inside
+  the run.
 - **Model:** `model: ${{ vars.CODEX_MODEL }}` and `effort: ${{ vars.CODEX_EFFORT }}`
   — both repo variables. Leave either unset for Codex's defaults (empty is valid).
 - The 7-step `executing-plans` contract is inlined into the workflow `prompt:` so
@@ -203,17 +230,22 @@ Gates on `if: github.event.label.name == 'ready-for-codex'` and runs via
 
 After the loop completes, review the PRs / issues sitting in **Testing**:
 
-- **Approve:** merge the PR — the issue closes via `Closes #<n>`.
-- **Reject:** request changes, then re-arm the gate so the loop retries — restore
-  `status:todo` + `ready-for-agent` and bump `rejection:N`. The reject is the
-  deliberate "try again".
+- **Approve:** merge the PR — the issue closes via `Closes #<n>`; set board
+  `Status` = Done.
+- **Reject:** request changes, then re-arm the gate so the loop retries — set board
+  `Status` = To Do, re-apply `dispatch:claude`, and bump `rejection:N`. The reject
+  is the deliberate "try again".
 
 ```bash
-# Reject → re-queue
-gh issue edit <n> --remove-label "status:testing" \
-  --add-label "status:todo,ready-for-agent,rejection:1"
+# Reject → re-queue (set Status=To Do on the board, then re-arm the gate)
+source .github/agent-loop.env
+ITEM_ID=$(gh project item-list "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --format json -L 500 \
+  | jq -r --argjson n <n> '.items[] | select(.content.number == $n) | .id')
+gh project item-edit --id "$ITEM_ID" --field-id "$STATUS_FIELD_ID" \
+  --project-id "$PROJECT_NODE_ID" --single-select-option-id "$STATUS_TODO_OPTION_ID"
+gh issue edit <n> --add-label "dispatch:claude,rejection:1"
 
-# Stop a rejected issue instead: leave ready-for-agent off and close it.
+# Stop a rejected issue instead: leave dispatch:claude off and close it.
 gh issue close <n> --comment "..." && gh issue edit <n> --add-label "wontfix"
 ```
 
@@ -224,22 +256,22 @@ any tool pick up where another left off.
 
 | Scenario | What happens |
 | -------- | ------------ |
-| Agent completes the task | PR opened, issue moves to `status:testing`. |
+| Agent completes the task | PR opened, board `Status` moves to Testing. |
 | Agent rate-limited / crashes | Claim comment ages out (30 min); the issue is reclaimable. |
 | Switch editors mid-flight | The other agent sees the stale claim and reclaims the issue. |
-| QA rejects | Gate re-armed (`status:todo` + `ready-for-agent`, `rejection:N`). |
+| QA rejects | Gate re-armed (`Status` = To Do + `dispatch:claude`, `rejection:N`). |
 
-All platforms read/write the same GitHub Issues and `.agents/SESSIONS/` files, so
-no external coordination service is needed.
+All platforms read/write the same GitHub Issues, board, and `.agents/SESSIONS/`
+files, so no external coordination service is needed.
 
 ## Why this works
 
 | Benefit | How |
 | ------- | --- |
-| Human opt-in | Nothing runs until a human applies `ready-for-agent`. |
+| Human opt-in | Nothing runs until a human applies `dispatch:claude`. |
 | HITL safety | HITL issues never carry the gate, so the loop only takes finishable work. |
-| No external deps | GitHub Issues + labels + file-based sessions. |
-| Multi-platform | Any tool can read/write Markdown and `gh`. |
+| Single source of truth | Status lives only on the board field — labels never duplicate it. |
+| Multi-platform | Any tool can read/write Markdown, the board, and `gh`. |
 | Handles failure | The 30-minute claim lock makes stalled work reclaimable. |
 | Human oversight | The Testing gate requires PR review before Done. |
 
@@ -249,8 +281,8 @@ no external coordination service is needed.
 | ----------- | ------ |
 | `/loop` | Claim and work one task locally, Claude lane (Phase 1). |
 | `/loop --status` / `/loop --list` | Read-only: show the held task / list candidates. |
-| `agent-dispatch.yml` | Push dispatch on `ready-for-agent` — Claude lane (Phase 2). |
-| `codex-dispatch.yml` | Push dispatch on `ready-for-codex` — Codex/GPT lane (Phase 2). |
+| `agent-dispatch.yml` | Push dispatch on `dispatch:claude` — Claude lane (Phase 2). |
+| `codex-dispatch.yml` | Push dispatch on `dispatch:codex` — Codex/GPT lane (Phase 2). |
 | `executing-plans` skill | The loop's runtime behavior (claim → branch → QA → PR). |
 | `qa-reviewer` skill | The QA gate run before every PR. |
 | `feature-intake` / `writing-prds` skills | Create the PRD epics + sub-issues the loop consumes. |

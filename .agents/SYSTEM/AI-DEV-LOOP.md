@@ -40,6 +40,13 @@ So the gate label hands a fully-planned issue to the **executor**; planning
 already happened (human-driven) and QA happens twice — once by the executor
 (automated checklist) and once by the human (PR review).
 
+Both planning artifacts live **on the issue**, never in a local file:
+`writing-prds` stores the PRD in the issue **body**, and `writing-plans` posts the
+implementation plan as a `## Implementation Plan` **comment** on the same issue.
+Because the executor and both dispatch lanes read the issue body plus all
+comments, the plan crosses to CI for either engine — there is no `docs/plans/`
+sidecar to drift out of sync.
+
 ## Concept
 
 **One invocation = one task.** The loop is NOT a daemon. Each run:

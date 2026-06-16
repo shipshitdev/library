@@ -62,7 +62,7 @@ Delegates To:
 1. An `## Agent skills` block in `CLAUDE.md` (preferred) or `AGENTS.md`.
 2. Three docs under `docs/agents/`:
    - `issue-tracker.md` — how issues are created, read, labeled, and placed on the board.
-   - `triage-labels.md` — the full label vocabulary, including the `ready-for-agent` dispatch gate.
+   - `triage-labels.md` — the full label vocabulary, including the `ready-for-agent` / `ready-for-codex` dispatch gates.
    - `domain.md` — the domain glossary layout (single- or multi-context).
 
 The block in `CLAUDE.md`/`AGENTS.md` is a thin index; the real detail lives in
@@ -104,12 +104,13 @@ strings. The roles are fixed; the exact label text is theirs to rename.
 | `claimed` | An agent currently holds the issue (30-min claim lock). |
 | `priority:high` / `priority:medium` / `priority:low` | Queue ordering. |
 | `rejection:N` | QA rejection count; bumped on each kickback. |
-| `ready-for-agent` | **Dispatch gate.** Human opt-in: the agent only runs on issues that carry it. |
+| `ready-for-agent` | **Dispatch gate → Claude lane.** Human opt-in: the agent only runs on issues that carry it. |
+| `ready-for-codex` | **Dispatch gate → Codex/GPT lane.** The Codex-lane twin; apply at most one gate per issue. |
 | `feature` | Created by `feature-intake` on PRD epics and sub-issues. |
 
 Also explain the **AFK / HITL** body markers (not labels): `AFK` = an agent can
 finish from written context; `HITL` = a human decision is required. HITL issues must
-never receive `ready-for-agent`.
+never receive a dispatch gate (`ready-for-agent` or `ready-for-codex`).
 
 **C. Domain docs layout.** Single-context (`CONTEXT.md` at root) vs. multi-context
 (`CONTEXT-MAP.md` indexing several `CONTEXT.md` files). Default to single-context for
@@ -145,7 +146,8 @@ GitHub Issues + GitHub Projects kanban (Backlog / To Do / Testing / Done) on
 ### Triage labels
 
 `status:todo` · `status:testing` · `claimed` · `priority:*` · `rejection:*` ·
-`ready-for-agent` (dispatch gate). See `docs/agents/triage-labels.md`.
+`ready-for-agent` (Claude gate) · `ready-for-codex` (Codex gate). See
+`docs/agents/triage-labels.md`.
 
 ### Domain docs
 
@@ -163,5 +165,5 @@ GitHub Issues + GitHub Projects kanban (Backlog / To Do / Testing / Done) on
 - Never write any file before the user approves the drafts.
 - Update in place; never duplicate an existing `## Agent skills` block or `docs/agents/*.md`.
 - Keep the `CLAUDE.md`/`AGENTS.md` block as a thin index — detail lives in `docs/agents/`.
-- `ready-for-agent` is always the human opt-in dispatch gate. HITL issues never carry it.
+- `ready-for-agent` / `ready-for-codex` are the human opt-in dispatch gates. HITL issues never carry either.
 - Do not invent a project board number — read it live with `gh project list` or ask.

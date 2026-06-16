@@ -115,7 +115,7 @@ gh issue comment <number> --body "Claimed-By: claude-cli | Claimed-At: $(date -u
 Agent works on the task:
 
 1. Reads the issue body and linked PRD issue/URL
-2. Reads all comments, especially prior rejection or triage notes
+2. Reads all comments, especially prior rejection or triage notes. **If a comment is headed `## Implementation Plan`, treat it as the authoritative step-by-step plan and follow its tasks in order** (this is where `writing-plans` posts the plan — see that skill).
 3. Checks `.agents/SESSIONS/` for related past work
 4. Checks `.out-of-scope/` if the issue appears to revive a previously rejected enhancement
 5. Chooses the narrowest verification loop before editing

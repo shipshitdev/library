@@ -76,5 +76,6 @@ source .github/agent-loop.env   # PROJECT_OWNER, PROJECT_NUMBER, STATUS_*_OPTION
   **Status** field (Backlog / In Progress / Human Review / Done / Deferred), not
   labels. The AI-loop sub-phases are `loop:*` labels inside In Progress. See
   `docs/agents/triage-labels.md` and `docs/agents/issue-tracker.md` in the target repo.
-- `/loop` is the **Claude lane**. The Codex/GPT lane (`dispatch:codex`) is
-  push-only — it runs via `codex-dispatch.yml` on GitHub Actions, not locally here.
+- `/loop` is the **Claude lane**. The Codex/GPT lane (`dispatch:codex`) and the
+  OpenRouter lane (`dispatch:openrouter`) are push-only — they run via
+  `codex-dispatch.yml` / `openrouter-dispatch.yml` on GitHub Actions, not locally here.

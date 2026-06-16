@@ -4,9 +4,10 @@ set -euo pipefail
 # ============================================================================
 # setup-dev-loop.sh — provision the AI dev loop on a GitHub repo
 #
-# One-shot, idempotent setup for label-driven autonomous execution. Two engine
-# lanes share one label contract: the Claude lane (dispatch:claude) and the
-# Codex/GPT lane (dispatch:codex). Status is NOT a label — it is the GitHub
+# One-shot, idempotent setup for label-driven autonomous execution. Three engine
+# lanes share one label contract: the Claude lane (dispatch:claude), the Codex/GPT
+# lane (dispatch:codex), and the OpenRouter lane (dispatch:openrouter). Status is NOT
+# a label — it is the GitHub
 # Projects board `Status` field (Backlog / In Progress / Human Review / Done / Deferred), the sole
 # source of truth, which this script provisions.
 #   1. Migrates legacy label names in place, then creates the dispatch label
@@ -49,6 +50,7 @@ BOARD_SCRIPT="${SCRIPT_DIR}/../skills/gh-project-board/scripts/setup-gh-project-
 WORKFLOWS=(
   "agent-dispatch.yml"
   "codex-dispatch.yml"
+  "openrouter-dispatch.yml"
 )
 
 # The 5-column board model. The board Status field is the SOLE source of truth
@@ -97,6 +99,7 @@ LABELS=(
   "rejection:3|e99695|QA rejection count — 3rd kickback from Human Review"
   "dispatch:claude|006b75|Dispatch gate (human opt-in) — Claude lane runs only on issues carrying this"
   "dispatch:codex|10a37f|Dispatch gate (human opt-in) — Codex/GPT lane runs only on issues carrying this"
+  "dispatch:openrouter|8250df|Dispatch gate (human opt-in) — OpenRouter lane (Codex CLI via OpenRouter) runs only on issues carrying this"
   "loop:planning|c5def5|AI-loop phase — reading the issue/PRD and planning (inside In Progress)"
   "loop:executing|c5def5|AI-loop phase — implementing the change on a branch (inside In Progress)"
   "loop:testing|c5def5|AI-loop phase — running qa-reviewer + automated tests/e2e (inside In Progress)"
@@ -355,7 +358,10 @@ setup_secrets() {
   # Codex/GPT lane (dispatch:codex). Skip if you only run the Claude lane.
   setup_one_secret "OPENAI_API_KEY" \
     "Codex lane — an OpenAI API key from https://platform.openai.com/api-keys (skip if you only use the Claude lane)"
-  # Board write (both lanes). A project-scoped PAT — the default GITHUB_TOKEN
+  # OpenRouter lane (dispatch:openrouter). Skip if you only run Claude/Codex.
+  setup_one_secret "OPENROUTER_API_KEY" \
+    "OpenRouter lane — an OpenRouter API key from https://openrouter.ai/keys (skip if you don't use the OpenRouter lane)"
+  # Board write (all lanes). A project-scoped PAT — the default GITHUB_TOKEN
   # cannot read/write an org-owned Projects v2 board. YOU paste it at the hidden
   # gh prompt; it is never generated, echoed, or stored by this script.
   setup_one_secret "PROJECTS_TOKEN" \
@@ -376,6 +382,8 @@ print_variables_step() {
   echo "      # Codex lane (leave unset for Codex defaults):"
   echo "      gh variable set CODEX_MODEL  --body gpt-5.5         ${REPO_FLAG[*]}"
   echo "      gh variable set CODEX_EFFORT --body xhigh           ${REPO_FLAG[*]}"
+  echo "      # OpenRouter lane (defaults to openrouter/auto if unset):"
+  echo "      gh variable set OPENROUTER_MODEL --body openrouter/auto ${REPO_FLAG[*]}"
 }
 
 print_routing_step() {
@@ -389,8 +397,8 @@ print_summary() {
   log "Dev-loop setup complete on ${REPO}"
   $DO_LABELS   && echo "  • Labels:    dispatch:claude / dispatch:codex / claim:active / loop:* (AI-loop phases) / type:feature / priority:* / rejection:*"
   $DO_BOARD    && echo "  • Board:     Status normalized to Backlog/In Progress/Human Review/Done/Deferred; ids in .github/agent-loop.env"
-  $DO_WORKFLOW && echo "  • Workflows: agent-dispatch.yml (dispatch:claude) + codex-dispatch.yml (dispatch:codex)"
-  $DO_SECRETS  && echo "  • Secrets:   CLAUDE_CODE_OAUTH_TOKEN (Claude) + OPENAI_API_KEY (Codex) + PROJECTS_TOKEN (board write)"
+  $DO_WORKFLOW && echo "  • Workflows: agent-dispatch (dispatch:claude) + codex-dispatch (dispatch:codex) + openrouter-dispatch (dispatch:openrouter)"
+  $DO_SECRETS  && echo "  • Secrets:   CLAUDE_CODE_OAUTH_TOKEN + OPENAI_API_KEY + OPENROUTER_API_KEY + PROJECTS_TOKEN (board write)"
   echo "  • Variables: AGENT_MODEL / CODEX_MODEL / CODEX_EFFORT (set with gh variable set)"
   echo "  • Routing:   run /setup-agent-routing in Claude Code"
   echo ""
@@ -433,10 +441,12 @@ What it does:
      its Status options to Backlog/In Progress/Human Review/Done/Deferred, and writes the board node
      ids to .github/agent-loop.env (non-secret).
   3. Installs the Phase-2 push workflows: agent-dispatch.yml (Claude lane,
-     dispatch:claude) and codex-dispatch.yml (Codex lane, dispatch:codex).
+     dispatch:claude), codex-dispatch.yml (Codex lane, dispatch:codex), and
+     openrouter-dispatch.yml (OpenRouter lane, dispatch:openrouter).
   4. Arms the auth secrets: CLAUDE_CODE_OAUTH_TOKEN (subscription OAuth),
-     OPENAI_API_KEY (Codex lane), and PROJECTS_TOKEN (project-scoped PAT for the
-     board write — the default GITHUB_TOKEN cannot touch an org board).
+     OPENAI_API_KEY (Codex lane), OPENROUTER_API_KEY (OpenRouter lane), and
+     PROJECTS_TOKEN (project-scoped PAT for the board write — the default
+     GITHUB_TOKEN cannot touch an org board).
   5. Prints the gh variable set commands for model selection (AGENT_MODEL,
      CODEX_MODEL, CODEX_EFFORT) — non-sensitive, so repo variables not secrets.
   6. Points you at /setup-agent-routing for the per-repo routing block.

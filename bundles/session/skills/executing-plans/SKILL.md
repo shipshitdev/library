@@ -170,7 +170,7 @@ Agent finalizes:
 
 1. Moves the board `Status` to **Human Review**, **assigns the reviewer** (so the PR
    lands in their queue), and removes `claim:active`, the gate label it ran under
-   (`dispatch:claude` for the Claude lane / `dispatch:codex` for Codex), and the
+   (`dispatch:claude` / `dispatch:codex` / `dispatch:openrouter`), and the
    `loop:shipping` phase label. Status is a board field — no status label is touched.
 2. Posts a completion comment with timestamp and final summary
 3. Prompts for next action

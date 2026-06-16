@@ -38,8 +38,9 @@ version of **ShipCode**'s pipeline — same stages, no app required.
 
 - **Plan** (human): `feature-intake` → `writing-prds` / `writing-plans` write the PRD
   and implementation plan onto the issue.
-- **Dispatch** (human opt-in): apply `dispatch:claude` (Claude lane) or
-  `dispatch:codex` (Codex lane) to a **Backlog** issue.
+- **Dispatch** (human opt-in): apply `dispatch:claude` (Claude lane),
+  `dispatch:codex` (Codex lane), or `dispatch:openrouter` (OpenRouter lane) to a
+  **Backlog** issue.
 - **Execute** (AI): the loop claims it → **In Progress** → branch → implement →
   `qa-reviewer` + tests → PR, advancing `loop:*` phase labels as it goes.
 - **Review** (human): the PR lands in **Human Review**, auto-assigned to you. Merge =

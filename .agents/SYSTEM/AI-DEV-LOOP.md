@@ -12,12 +12,14 @@ show exactly where the agent is. This mirrors **ShipCode** (the productized vers
 of this workflow): macro columns for humans, `shipcode:pipeline:*` sub-state labels
 for the loop; this repo is the open, `gh`-driven version of the same pipeline.
 
-**Two engine lanes, one contract.** The gate label picks the engine:
+**Three engine lanes, one contract.** The gate label picks the engine:
 
 - `dispatch:claude` → **Claude lane** (`anthropics/claude-code-action`).
 - `dispatch:codex` → **Codex/GPT lane** (`openai/codex-action`).
+- `dispatch:openrouter` → **OpenRouter lane** (Codex CLI pointed at OpenRouter's
+  OpenAI-compatible API via a custom provider).
 
-(ShipCode equivalents: `shipcode:agent:claude` / `shipcode:agent:codex`.) Both obey
+(ShipCode equivalents: `shipcode:agent:{claude,codex,openrouter}`.) All obey
 the identical claim → branch → implement → QA → PR → **Human Review** flow. An issue
 carries at most one gate at a time.
 
@@ -106,6 +108,7 @@ labels that ride alongside it:
 | `rejection:N` | QA rejection count, bumped on each kickback from Human Review → Backlog. |
 | `dispatch:claude` | **Dispatch gate → Claude lane (human opt-in).** Nothing runs autonomously until a human applies it. |
 | `dispatch:codex` | **Dispatch gate → Codex/GPT lane (human opt-in).** Apply at most one gate per issue. |
+| `dispatch:openrouter` | **Dispatch gate → OpenRouter lane (human opt-in).** Codex CLI via OpenRouter; at most one gate per issue. |
 | `type:feature` | Applied by `feature-intake` to PRD epics and their sub-issues. |
 | `wontfix` | Closed; will not be actioned (often paired with the Deferred column). |
 
@@ -201,6 +204,21 @@ Gates on `if: github.event.label.name == 'dispatch:codex'`, runs via
 - **Model:** `model: ${{ vars.CODEX_MODEL }}` / `effort: ${{ vars.CODEX_EFFORT }}`.
 - The contract is inlined into the workflow `prompt:` so the run is self-contained.
 
+### OpenRouter lane — `openrouter-dispatch.yml`
+
+Gates on `if: github.event.label.name == 'dispatch:openrouter'`. OpenRouter has no
+dedicated coding action, so this lane **hosts the Codex CLI and points it at
+OpenRouter** via a custom model provider — a setup step writes `~/.codex/config.toml`
+(`base_url = https://openrouter.ai/api/v1`, `wire_api = "chat"`), then
+`openai/codex-action@v1` runs the same inlined contract.
+
+- **Auth:** `OPENROUTER_API_KEY` for the model (read by the provider's `env_key`);
+  `GH_TOKEN`/`GITHUB_TOKEN` = `PROJECTS_TOKEN` for the board write.
+- **Model:** `model: ${{ vars.OPENROUTER_MODEL || 'openrouter/auto' }}` (e.g.
+  `openrouter/auto`, `openrouter/free`, `qwen/qwen3-coder:free`).
+- **Status:** unverified end-to-end — this is the documented OpenRouter + Codex-CLI
+  integration, but smoke-test it on a throwaway repo before relying on it.
+
 ### Shared properties
 
 - **Auto-assign:** the completion step assigns the gate-applier (`$GITHUB_ACTOR`) so
@@ -262,6 +280,7 @@ tool pick up where another left off.
 | `/loop` | Claim and work one task locally, Claude lane (Phase 1). |
 | `agent-dispatch.yml` | Push dispatch on `dispatch:claude` — Claude lane (Phase 2). |
 | `codex-dispatch.yml` | Push dispatch on `dispatch:codex` — Codex/GPT lane (Phase 2). |
+| `openrouter-dispatch.yml` | Push dispatch on `dispatch:openrouter` — OpenRouter lane (Phase 2). |
 | `executing-plans` skill | The loop's runtime behavior (claim → branch → QA → PR). |
 | `qa-reviewer` skill | The QA gate run before every PR. |
 | `feature-intake` / `writing-prds` skills | Create the PRD epics + sub-issues the loop consumes. |

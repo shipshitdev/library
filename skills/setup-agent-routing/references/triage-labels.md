@@ -21,6 +21,7 @@ alongside the board.
 | `rejection:N` | QA rejection count, bumped on each kickback from Human Review → Backlog. |
 | `dispatch:claude` | **Dispatch gate → Claude lane (human opt-in).** Nothing runs autonomously until a human applies this. |
 | `dispatch:codex` | **Dispatch gate → Codex/GPT lane (human opt-in).** The Codex-lane twin of `dispatch:claude`; apply at most one gate per issue. |
+| `dispatch:openrouter` | **Dispatch gate → OpenRouter lane (human opt-in).** Hosts the Codex CLI pointed at OpenRouter; apply at most one gate per issue. |
 | `type:feature` | Applied by `feature-intake` to PRD epics and their sub-issues. |
 | `wontfix` | Closed; will not be actioned. Record durable reasoning under `.out-of-scope/`. |
 
@@ -31,6 +32,7 @@ you apply picks the engine:
 
 - `dispatch:claude` → **Claude lane** (`anthropics/claude-code-action`).
 - `dispatch:codex` → **Codex/GPT lane** (`openai/codex-action`).
+- `dispatch:openrouter` → **OpenRouter lane** (Codex CLI via OpenRouter's OpenAI-compatible API).
 
 Both are applied **by a human**, deliberately — never automatically by
 `feature-intake` or any creation step. Apply at most one gate per issue. The flow

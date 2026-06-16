@@ -1,6 +1,6 @@
 {
   "name": "writing-plans",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Turn a spec into a bite-sized TDD implementation plan with mapped files, exact code, and frequent commits.",
   "author": {
     "name": "Ship Shit Dev",

@@ -1,6 +1,6 @@
 # Loop - Autonomous task execution
 
-Claim the next agent-ready issue from the GitHub queue and work it end-to-end:
+Claim the next `dispatch:claude` issue from the GitHub queue and work it end-to-end:
 branch, implement, QA, PR. One invocation handles exactly one task — this is a pull
 loop you trigger, not a daemon.
 

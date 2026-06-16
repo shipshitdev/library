@@ -243,7 +243,7 @@ ITEM_ID=$(gh project item-list "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --form
   | jq -r --argjson n <n> '.items[] | select(.content.number == $n) | .id')
 gh project item-edit --id "$ITEM_ID" --field-id "$STATUS_FIELD_ID" \
   --project-id "$PROJECT_NODE_ID" --single-select-option-id "$STATUS_TODO_OPTION_ID"
-gh issue edit <n> --add-label "dispatch:claude,rejection:1"
+gh issue edit <n> --add-label "dispatch:claude,rejection:1"   # bump rejection:N on each successive kickback
 
 # Stop a rejected issue instead: leave dispatch:claude off and close it.
 gh issue close <n> --comment "..." && gh issue edit <n> --add-label "wontfix"

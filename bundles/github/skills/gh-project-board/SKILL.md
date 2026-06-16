@@ -1,11 +1,11 @@
 ---
 name: gh-project-board
-description: "Configure GitHub Projects v2 kanban boards with Ship Shit Dev defaults: Status columns, Human Review and Deferred lanes, and P0-P3 Priority. Use when setting up, copying, auditing, or normalizing GitHub project boards."
+description: "Configure GitHub Projects v2 kanban boards with Ship Shit Dev defaults: the Backlog / To Do / Testing / Done Status columns (the dev-loop board-as-truth model) and P0-P3 Priority. Use when setting up, copying, auditing, or normalizing GitHub project boards."
 compatibility: Requires GitHub CLI gh with project scope. The bundled normalizer script runs with Node.js or Bun.
 disable-model-invocation: true
 allowed-tools: Bash(gh *) Bash(node *) Bash(bun *)
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   tags: "github, projects, kanban, triage"
 ---
 
@@ -60,14 +60,15 @@ Use GitHub Projects v2.
 
 - Board view layout: `Board`
 - Kanban column field: `Status`
-- Status options: `Backlog`, `Todo`, `In Progress`, `Human Review`, `Done`,
-  `Deferred`
+- Status options: `Backlog`, `To Do`, `Testing`, `Done` — the dev-loop
+  board-as-truth model, where `Testing` is the human-QA column
 - Priority field: `Priority`
 - Priority options: `P0 🔥`, `P1`, `P2`, `P3`
 
 The Ship Shit Dev reference board is
-`https://github.com/orgs/shipshitdev/projects/1`. Treat `Human Review` as the
-added approval lane even if an older copied board does not have it yet.
+`https://github.com/orgs/shipshitdev/projects/1`. `Testing` is the human-QA /
+approval column; an older board that still uses a `Human Review` (or `In Progress`
+/ `Deferred`) lane should be normalized to the four-column model.
 
 ## Workflow
 
@@ -143,15 +144,16 @@ added approval lane even if an older copied board does not have it yet.
 
 ## Normalizer Options
 
-- `--status "Todo,In Progress,Human Review,Done,Deferred"` overrides the
-  Status option list.
+- `--status "Backlog,To Do,Testing,Done"` overrides the Status option list (this
+  is the default — the dev-loop four-column model).
 - `--priority "P0,P1,P2,P3"` uses ASCII-only priority names.
 - `--exact` removes non-canonical options after explicit approval.
 - `--include-closed` includes closed projects when used with `--all-open`.
 
 ## Rules
 
-- Treat `Human Review` as a `Status` column, not a label.
+- `Testing` is the human-QA `Status` column (it replaces the older `Human Review`
+  lane), not a label.
 - Preserve unknown Status or Priority options unless the user explicitly asks
   for exact normalization.
 - Preserve existing option IDs when renaming or recoloring options so existing

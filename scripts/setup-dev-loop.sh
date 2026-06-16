@@ -275,9 +275,9 @@ provision_board() {
     info "reusing project #${num} under ${owner}"
   fi
 
-  # 2. Normalize the Status options to exactly Backlog/To Do/Testing/Done. The
-  #    normalizer defaults to a 6-option set, so --status is mandatory; --exact
-  #    prunes any other option, --apply writes (default is dry-run).
+  # 2. Normalize the Status options to exactly Backlog/To Do/Testing/Done. Pass
+  #    --status explicitly to pin the column set regardless of the normalizer's
+  #    default; --exact prunes any other option, --apply writes (default is dry-run).
   info "normalizing board #${num} Status options to: ${BOARD_STATUS}"
   node "$BOARD_SCRIPT" --owner "$owner" --project "$num" --status "$BOARD_STATUS" --exact --apply
 
@@ -355,10 +355,6 @@ setup_secrets() {
   setup_one_secret "PROJECTS_TOKEN" \
     "Board write — a PAT with 'project' scope (classic: project + repo; or fine-grained: org Projects read/write + repo write). Create at https://github.com/settings/tokens"
 }
-
-# ============================================================================
-# Step 4 — routing block (delegated to the skill)
-# ============================================================================
 
 # ============================================================================
 # Step 4 — model selection (repo VARIABLES, not secrets)

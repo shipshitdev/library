@@ -149,9 +149,10 @@ Before moving to Testing:
 
 Agent finalizes:
 
-1. Moves the board `Status` to **Testing** and removes the `claim:active` and
-   `dispatch:claude` labels (clearing the dispatch gate so QA, not the loop, owns
-   it next). Status is a board field — no status label is touched.
+1. Moves the board `Status` to **Testing** and removes the `claim:active` label
+   plus the gate label it ran under — `dispatch:claude` for the Claude lane, or
+   `dispatch:codex` for the Codex lane (clearing the dispatch gate so QA, not the
+   loop, owns it next). Status is a board field — no status label is touched.
 2. Posts a completion comment with timestamp and final summary
 3. Prompts for next action
 
@@ -172,8 +173,9 @@ On the GitHub Projects board (filter the **Testing** column):
 1. Review the Testing column
 2. Open the issue to see agent notes and the linked PR
 3. Check the PR diff
-4. **Approve**: set board `Status` = Done and close the issue (merging the PR with
-   `Closes #<n>` does both)
+4. **Approve**: merge the PR — `Closes #<n>` closes the issue — then set board
+   `Status` = Done (or let the board's built-in "item closed → Done" automation do
+   it, if that workflow is enabled on the project)
 5. **Reject**: set board `Status` = To Do and re-apply `dispatch:claude`
    (re-arming the gate — the reject is your deliberate "try again"), post a
    rejection comment with notes
@@ -195,6 +197,12 @@ durable, record the concept under `.out-of-scope/<concept>.md` so future triage
 does not re-litigate the same request.
 
 ## Multi-Platform Strategy
+
+Only **Claude** and **Codex** are formal dispatch lanes — each has its own gate
+label (`dispatch:claude` / `dispatch:codex`) and push workflow. **Cursor** below is
+an informal, manual fallback: you drive it by hand from its editor: there is no
+`dispatch:cursor` gate, no workflow, and no automated board write. It shares the
+same issues + 30-minute claim lock, so it can pick up where another tool left off.
 
 ### Platform Strengths
 

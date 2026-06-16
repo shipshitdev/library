@@ -463,7 +463,7 @@
     {
       "name": "gh-project-board",
       "source": "./skills/gh-project-board",
-      "description": "Configure GitHub Projects v2 kanban boards with Ship Shit Dev defaults: Status columns, Human Review"
+      "description": "Configure GitHub Projects v2 kanban boards with Ship Shit Dev defaults: the Backlog / To Do / Testin"
     },
     {
       "name": "gh-review-suggestions",

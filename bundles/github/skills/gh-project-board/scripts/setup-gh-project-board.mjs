@@ -2,6 +2,7 @@
 
 import { execFileSync } from 'node:child_process';
 
+// The dev-loop board-as-truth model: four columns, Testing = the human-QA gate.
 const DEFAULT_STATUS_OPTIONS = [
   {
     name: 'Backlog',
@@ -9,29 +10,19 @@ const DEFAULT_STATUS_OPTIONS = [
     description: 'Not ready or not scheduled yet',
   },
   {
-    name: 'Todo',
+    name: 'To Do',
     color: 'GREEN',
-    description: "This item hasn't been started",
+    description: 'Ready for an agent to pick up',
   },
   {
-    name: 'In Progress',
+    name: 'Testing',
     color: 'YELLOW',
-    description: 'This is actively being worked on',
-  },
-  {
-    name: 'Human Review',
-    color: 'BLUE',
-    description: 'Waiting for human review or approval',
+    description: 'Implemented; awaiting human QA',
   },
   {
     name: 'Done',
     color: 'PURPLE',
     description: 'This has been completed',
-  },
-  {
-    name: 'Deferred',
-    color: 'GRAY',
-    description: 'Parked for later',
   },
 ];
 
@@ -170,7 +161,7 @@ function printHelp() {
   node setup-gh-project-board.mjs --owner <owner> --all-open [--apply]
 
 Options:
-  --status "Backlog,Todo,In Progress,Human Review,Done,Deferred"
+  --status "Backlog,To Do,Testing,Done"
   --priority "P0 🔥,P1,P2,P3"
   --exact             Remove non-canonical options after approval.
   --include-closed    Include closed projects when processing all projects.

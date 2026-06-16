@@ -1,6 +1,6 @@
 {
   "name": "gh-project-board",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Configure GitHub Projects kanban boards with Status columns and P0-P3 Priority fields.",
   "author": {
     "name": "Ship Shit Dev",

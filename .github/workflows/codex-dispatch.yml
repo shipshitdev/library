@@ -41,12 +41,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Run dev-loop agent (Codex) on the labeled issue
-        uses: openai/codex-action@v1
+        uses: openai/codex-action@e0fdf01220eb9a88167c4898839d273e3f2609d1 # v1
         env:
           # git / gh operations inside the run authenticate with this. It must be a
           # project-scoped PAT — the board Status write in step 7 needs it; the

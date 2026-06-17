@@ -4,7 +4,7 @@ disable-model-invocation: true
 description: Drafts, scopes, and formalizes features as PRDs — a planning agent can consume the output in one shot without re-elicitation. Triggers on "write a PRD for X", "let's plan X", "scope this out", "what should X do", or when a tracker issue needs to be fleshed out before planning. Do NOT use for code edits, debugging, or PR reviews.
 metadata:
   version: "1.1.0"
-  tags: "prd, planning, requirements, spec, github-issue, scoping"
+  tags: "prd, planning, requirements, spec, scoping"
 ---
 
 # Writing PRDs
@@ -22,9 +22,8 @@ field mechanics below to whatever tracker you use.
 ## Storage Location
 
 **Prefer making the tracker issue body the PRD.** One document per work item, one
-location: the body of an issue in the project's tracker (a GitHub issue is the
-recommended default). Avoid scattering PRDs across local sidecar files that drift
-out of sync the moment work starts.
+location: the body of an issue in the project's tracker. Avoid scattering PRDs
+across local sidecar files that drift out of sync the moment work starts.
 
 - **Create** a PRD by creating an issue whose body is clean PRD markdown.
 - **Edit** a PRD by editing that issue's body.
@@ -71,7 +70,7 @@ The issue title is what the board shows most of the time. Keep it short.
 Bad:
 
 - `Open draft PR during execution and ingest PR feedback into stabilization loop`
-- `Treat CI failures as blocker state on GitHub issue tasks`
+- `Treat CI failures as blocker state on issue tasks`
 
 Better:
 
@@ -176,7 +175,7 @@ If any gate fails, keep it in draft/on-hold workflow state and do not mark it re
    - What's the complexity gut feel (low/medium/high) and why?
    - Any hard constraints — deadlines, other projects in flight, package boundaries?
 
-3. **Check for an existing issue.** If using GitHub, run `gh issue list --search "<keywords>" --state all` in the target repo. If a matching issue already exists, ask whether to edit it or create a fresh one.
+3. **Check for an existing issue.** Search the project's tracker by keywords and state. If a matching issue already exists, ask whether to edit it or create a fresh one.
 
 4. **Kebab-case the PRD name.** If the proposed name has spaces, camelCase, or punctuation, kebab-case it: `"Notification Center"` → `notification-center`. This slug goes in the `# PRD:` heading.
 
@@ -186,13 +185,13 @@ If any gate fails, keep it in draft/on-hold workflow state and do not mark it re
 
 7. **Run the quality gates** against the draft. If any fail, keep the issue in draft/on-hold workflow state and tell the user which gates failed. If they all pass, mark it ready through native project state.
 
-8. **Create the issue (with user approval).** Show the drafted body first. On approval, create it — e.g. `gh issue create --title "<Human Readable Title>" --body-file -` with the PRD markdown piped on stdin.
+8. **Create the issue (with user approval).** Show the drafted body first. On approval, create it through the tracker's native issue creation flow, using the PRD markdown as the issue body.
 
 9. **Confirm the outcome** to the user with the issue URL. Suggest the next step: "Ready to hand this to the planner? Say: plan issue #N".
 
 ### When the user says "plan the X PRD"
 
-1. Fetch the current issue body (e.g. `gh issue view <N> --json body --jq .body`). Read it fully before producing anything.
+1. Fetch the current issue body from the tracker. Read it fully before producing anything.
 2. Verify the issue is ready through native project state — never plan a draft/on-hold issue.
 3. Translate directly: Executive Summary → objective, Success Criteria → acceptance criteria, Out of Scope → out-of-scope, complexity field → estimated complexity.
 4. The plan phase owns file changes and step breakdown — do not copy those out of the PRD (there shouldn't be any).
@@ -202,7 +201,7 @@ If any gate fails, keep it in draft/on-hold workflow state and do not mark it re
 
 1. Fetch the current issue body (prefer the tracker's live read to guarantee freshness).
 2. Make the requested edit in a scratch buffer.
-3. Write it back (e.g. `gh issue edit <N> --body-file -`). The tracker records the edit history automatically.
+3. Write it back through the tracker's native edit flow. The tracker records the edit history automatically.
 4. If the change invalidates an in-flight plan (new acceptance criterion, new out-of-scope item), flag that explicitly — the user may want to kill the thread and re-plan.
 
 ## Anti-Patterns
@@ -219,7 +218,7 @@ Observed failure modes — do not repeat:
 
 ## Minimal Example
 
-The text below is the exact issue body to push (e.g. `gh issue create --body-file -`). Tracker metadata belongs in native fields, not in this body.
+The text below is the exact issue body to publish. Tracker metadata belongs in native fields, not in this body.
 
 ```markdown
 # PRD: copy-issue-url-action

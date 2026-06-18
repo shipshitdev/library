@@ -81,7 +81,11 @@ warn()   { echo -e "${YELLOW}[!]${NC} $*"; }
 err()    { echo -e "${RED}[✗]${NC} $*" >&2; }
 info()   { echo -e "${BLUE}[i]${NC} $*"; }
 dry()    { echo -e "${YELLOW}[dry-run]${NC} $*"; }
-vlog()   { $VERBOSE && echo -e "${BLUE}[v]${NC} $*" || true; }
+vlog() {
+  if $VERBOSE; then
+    echo -e "${BLUE}[v]${NC} $*"
+  fi
+}
 
 # ============================================================================
 # Dispatch label vocabulary — name|color|description.

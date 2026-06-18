@@ -1,6 +1,6 @@
 ---
 name: prd-quality-gate
-description: PRD completeness validation. Use to check that a PRD (or GitHub issue body that serves as one) contains the required sections before it is handed to a planning/execution agent, so the plan is built from a complete spec instead of hallucinated scope. Run it as a blocking gate or a warning-only lint.
+description: PRD completeness validation. Use to check that a PRD (or issue body that serves as one) contains the required sections before it is handed to a planning/execution agent, so the plan is built from a complete spec instead of hallucinated scope. Run it as a blocking gate or a warning-only lint.
 metadata:
   version: "1.0.0"
   tags: "prd, planning, validation, quality-gate, spec, requirements"

@@ -92,7 +92,7 @@ const marketplace = {
   owner: {
     name: 'Ship Shit Dev',
   },
-  description: `${includedSkillCount} AI agent skills for indie developers building startups`,
+  description: `${includedSkillCount} AI agent skills for development workflows`,
   plugins,
 };
 

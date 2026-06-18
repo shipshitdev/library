@@ -82,12 +82,14 @@ Valid extension fields:
 1. Read the SKILL.md frontmatter
 2. Check `name` matches parent directory name
 3. Check `description` exists and is under 1024 chars
-4. Check `version`/`tags` are NOT top-level (must be inside `metadata:`)
-5. Check for forbidden fields (`auto_activate`, `auto_trigger`, `risk`)
-6. Check for escaped backtick fences in content
-7. Check for hardcoded paths (`/workspace/`, project-specific paths)
-8. Run `bunx markdownlint-cli` on the file
-9. Run `./scripts/validate-skill-sync.sh` for cross-validation
+4. Check `description` plus `when_to_use` is under 1536 chars
+5. Check `plugin.json` description is present and under 100 chars
+6. Check `version`/`tags` are NOT top-level (must be inside `metadata:`)
+7. Check for forbidden fields (`auto_activate`, `auto_trigger`, `risk`)
+8. Check for escaped backtick fences in content
+9. Check for hardcoded paths (`/workspace/`, project-specific paths)
+10. Run `bunx markdownlint-cli` on the file
+11. Run `./scripts/validate-skill-sync.sh` for cross-validation
 
 ## Quick Validation Command
 

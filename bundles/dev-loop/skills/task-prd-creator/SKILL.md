@@ -46,7 +46,8 @@ Delegates To:
 - `spec-first` when implementation constraints are still unclear
 - `tdd` when the work should be executed test-first
 - `gh-fix-ci` for CI failures after implementation
-- `strategy-expert` for roadmap-level planning
+- `roadmap-analyzer` for roadmap-level planning
+- `cto-advisor` for technical strategy and architecture tradeoffs
 
 ## Step 1: Detect workflow preference
 
@@ -164,4 +165,5 @@ Show the draft PRD. Wait for "looks good" or edits. Then create.
 - `spec-first` — spec-driven development before writing code
 - `tdd` — red-green-refactor execution for tasks with clear behavior
 - `gh-fix-ci` — fix CI on existing PRs
-- `strategy-expert` — broader roadmap and content planning
+- `roadmap-analyzer` — broader roadmap planning
+- `cto-advisor` — technical strategy and architecture tradeoffs

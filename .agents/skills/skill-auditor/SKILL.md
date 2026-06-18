@@ -21,7 +21,7 @@ Find skills that overlap and should be consolidated:
 
 - Compare descriptions for semantic similarity
 - Check for skills with near-identical `when_to_use` triggers
-- Flag naming collisions (e.g., `copywriter` vs `copywriting`)
+- Flag naming collisions (e.g., `react-patterns` vs `react-refactor`)
 
 ### 2. Spec Compliance
 

@@ -125,6 +125,75 @@ get_frontmatter_block() {
     ' "$file"
 }
 
+# Function to check description length constraints documented in SKILL-STANDARDS.md
+check_description_constraints() {
+    local file="$1"
+    local warnings=0
+
+    if [[ ! -f "$file" ]]; then
+        return 0
+    fi
+
+    local findings
+    findings=$(python3 - "$file" <<'PY'
+import pathlib
+import re
+import sys
+
+path = pathlib.Path(sys.argv[1])
+text = path.read_text()
+if not text.startswith("---\n"):
+    sys.exit(0)
+
+end = text.find("\n---", 4)
+if end == -1:
+    sys.exit(0)
+
+frontmatter = text[4:end]
+lines = frontmatter.splitlines()
+
+def scalar(key: str) -> str:
+    for i, line in enumerate(lines):
+        if not line.startswith(f"{key}:"):
+            continue
+
+        value = line.split(":", 1)[1].strip()
+        if re.fullmatch(r"[>|][+-]?", value):
+            parts = []
+            for nxt in lines[i + 1:]:
+                if nxt and not nxt.startswith((" ", "\t")):
+                    break
+                parts.append(nxt.strip())
+            return " ".join(part for part in parts if part).strip()
+
+        return value.strip().strip("\"'")
+    return ""
+
+description = scalar("description")
+when_to_use = scalar("when_to_use")
+
+if len(description) == 0:
+    print("description is empty")
+elif len(description) > 1024:
+    print(f"description is {len(description)} chars (>1024)")
+
+combined_len = len(description) + len(when_to_use)
+if combined_len > 1536:
+    print(f"description + when_to_use is {combined_len} chars (>1536)")
+PY
+)
+
+    if [[ -n "$findings" ]]; then
+        while IFS= read -r finding; do
+            [[ -n "$finding" ]] || continue
+            echo -e "  ${YELLOW}⚠${NC} $finding"
+            ((++warnings))
+        done <<< "$findings"
+    fi
+
+    return $warnings
+}
+
 # Function to check for unsupported top-level frontmatter fields
 check_frontmatter_fields() {
     local file="$1"
@@ -515,13 +584,44 @@ check_contract_requirements() {
 # Function to check skill-local plugin manifest exists for distribution
 check_plugin_manifest() {
     local skill_dir="$1"
+    local warnings=0
+    local plugin_json="$skill_dir/plugin.json"
 
-    if [[ ! -f "$skill_dir/plugin.json" ]]; then
+    if [[ ! -f "$plugin_json" ]]; then
         echo -e "  ${YELLOW}⚠${NC} Missing plugin.json manifest"
         return 1
     fi
 
-    return 0
+    local findings
+    findings=$(python3 - "$plugin_json" <<'PY'
+import json
+import pathlib
+import sys
+
+path = pathlib.Path(sys.argv[1])
+try:
+    data = json.loads(path.read_text())
+except json.JSONDecodeError as exc:
+    print(f"plugin.json is invalid JSON: {exc}")
+    sys.exit(0)
+
+description = data.get("description", "")
+if not isinstance(description, str) or not description.strip():
+    print("plugin.json description is empty")
+elif len(description) > 100:
+    print(f"plugin.json description is {len(description)} chars (>100)")
+PY
+)
+
+    if [[ -n "$findings" ]]; then
+        while IFS= read -r finding; do
+            [[ -n "$finding" ]] || continue
+            echo -e "  ${YELLOW}⚠${NC} $finding"
+            ((++warnings))
+        done <<< "$findings"
+    fi
+
+    return $warnings
 }
 
 # Function to check SKILL.md line count
@@ -641,6 +741,10 @@ validate_skill() {
     local skill_file="$SKILLS_DIR/$skill_name/SKILL.md"
     if [[ -f "$skill_file" ]]; then
         check_frontmatter "$skill_file" || skill_issues=$?
+
+        local description_warnings=0
+        check_description_constraints "$skill_file" || description_warnings=$?
+        ((skill_warnings += description_warnings, 1))
 
         local frontmatter_warnings=0
         check_frontmatter_fields "$skill_file" || frontmatter_warnings=$?

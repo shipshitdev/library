@@ -1,24 +1,5 @@
 {
   "bundles": {
-    "startup": {
-      "description": "Skills for validating ideas, planning MVPs, and launching startups",
-      "skills": [
-        "idea-validator",
-        "mvp-architect",
-        "market-sizer",
-        "pricing-strategist",
-        "business-model-auditor",
-        "cofounder-evaluator",
-        "startup-icp-definer",
-        "fundraise-advisor",
-        "early-hiring-advisor",
-        "offer-architect",
-        "offer-validator",
-        "constraint-eliminator",
-        "execution-accelerator",
-        "execution-validator"
-      ]
-    },
     "testing": {
       "description": "Testing, QA, and CI/CD automation skills",
       "skills": [
@@ -33,8 +14,7 @@
     "payments": {
       "description": "Payment processing and financial integrations",
       "skills": [
-        "stripe-implementer",
-        "financial-operations-expert"
+        "stripe-implementer"
       ]
     },
     "infrastructure": {
@@ -80,6 +60,7 @@
         "table-filters",
         "quick-view",
         "nextjs-validator",
+        "nextra-writer",
         "shadcn",
         "shadcn-setup",
         "tailwind",
@@ -97,49 +78,6 @@
         "turborepo",
         "typescript-expert",
         "typescript-refactor"
-      ]
-    },
-    "content": {
-      "description": "Content creation and documentation skills",
-      "skills": [
-        "copywriter",
-        "content-creator",
-        "nextra-writer",
-        "docs",
-        "changelog-generator",
-        "internal-comms",
-        "youtube-video-analyst",
-        "copy-validator",
-        "humanizer",
-        "x-algorithm-optimizer"
-      ]
-    },
-    "sales": {
-      "description": "Sales, leads, and outreach skills",
-      "skills": [
-        "leads-researcher",
-        "email-finder",
-        "lead-channel-optimizer",
-        "outbound-optimizer",
-        "competitive-intelligence-analyst",
-        "partnership-builder",
-        "retention-engine",
-        "support-systems-architect",
-        "channel-validator",
-        "funnel-architect",
-        "funnel-validator",
-        "traffic-architect",
-        "traffic-validator"
-      ]
-    },
-    "branding": {
-      "description": "Brand strategy and naming skills",
-      "skills": [
-        "brand-architect",
-        "search-domain-validator",
-        "expert-architect",
-        "expert-validator",
-        "positioning-angles"
       ]
     },
     "ai-agents": {
@@ -182,9 +120,7 @@
       "description": "Strategy, planning, and analysis skills",
       "skills": [
         "roadmap-analyzer",
-        "strategy-expert",
         "cto-advisor",
-        "business-operator",
         "feature-intake",
         "task-prd-creator",
         "writing-prds",
@@ -236,11 +172,13 @@
         "structural-review",
         "full-code-review",
         "commit-summary",
+        "changelog-generator",
         "de-slop",
         "debug",
         "deploy",
         "execution-debugging",
         "deployment-composer",
+        "docs",
         "llm-structured-output",
         "merge-open-prs",
         "production-audit",
@@ -272,7 +210,7 @@
       ]
     },
     "dev-loop": {
-      "description": "Ship the autonomous gh + Claude + Codex dev loop: PRD → plan → board-driven execution → QA → PR (the workflow ShipCode productizes)",
+      "description": "Autonomous GitHub issue-to-PR loop with PRDs, plans, board dispatch, QA, and review",
       "skills": [
         "feature-intake",
         "writing-prds",

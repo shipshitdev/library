@@ -361,7 +361,7 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
 <button onClick={handleDelete}>Delete Video</button>
 <button onClick={handleSave}>Save</button>
 
-// ❌ Bad: Vague button text (see copywriter skill)
+// ❌ Bad: Vague button text
 <button onClick={handleAction}>Submit</button>
 <button onClick={handleClose}>OK</button>
 ```

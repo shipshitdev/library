@@ -4,14 +4,14 @@
 
 ![Project Type](https://img.shields.io/badge/Project-Skills-blue)
 
-182 AI agent skills for indie developers. Works with Claude Code, OpenAI Codex, and Cursor.
+140 AI agent skills for development workflows. Works with Claude Code, OpenAI Codex, and Cursor.
 
 ## Directory Structure
 
 ```
 skills/
-├── skills/              # All skills (182)
-├── commands/            # All commands (13)
+├── skills/              # All skills (140)
+├── commands/            # All commands (11)
 ├── bundles/             # Generated marketplace bundles
 ├── .agents/             # Repo management, memory, meta-skills
 │   ├── SYSTEM/          # Architecture docs, skill standards
@@ -24,11 +24,16 @@ skills/
 
 ## What's Included
 
-- **Skills**: Specialized agent capabilities for specific domains (e.g., `stripe-implementer`, `nestjs-expert`)
-- **Commands**: Workflow commands for structured tasks (e.g., `check-domain`, `security-audit`, `performance`)
-- **Scripts**: Validation, generation, and migration tooling
 - **The Dev Loop**: a board-driven autonomous workflow that ships software with
-  `gh` + Claude + Codex (see below)
+  `gh` + Claude + Codex.
+- **Engineering Workflows**: code review, debugging, QA, release, GitHub triage,
+  branch cleanup, production audit, and CI repair.
+- **Implementation Specialists**: frontend, backend, infrastructure, security,
+  testing, payments, and workspace setup skills.
+- **Agent Engineering**: context engineering, memory systems, evaluation,
+  multi-agent patterns, MCP building, and prompt/tool design.
+- **Maintenance Tooling**: scripts that validate skills, regenerate bundles, and
+  keep the marketplace catalog aligned with source.
 
 ## The Dev Loop — ship software with gh + Claude + Codex
 
@@ -96,8 +101,11 @@ npx skills add shipshitdev/skills --agent claude-code codex cursor
 
 ```bash
 /plugin marketplace add shipshitdev/skills
-/plugin install shipshitdev-startup@shipshitdev    # or any category bundle
+/plugin install shipshitdev-dev-loop@shipshitdev
 /plugin install shipshitdev-dev-workflow@shipshitdev
+/plugin install shipshitdev-github@shipshitdev
+/plugin install shipshitdev-testing@shipshitdev
+/plugin install shipshitdev-security@shipshitdev
 ```
 
 ### For Contributors
@@ -135,102 +143,84 @@ touch skills/my-skill/SKILL.md
 - `.agents/SYSTEM/PLATFORM-ADAPTATIONS.md` - Claude vs Codex writing guide
 - `.agents/SYSTEM/AI-DEV-LOOP.md` - Board-driven autonomous dev loop (`/loop` + agent-dispatch)
 
-## Commands
+## Development Commands
 
 | Command | Description |
 |---------|-------------|
 | bug | File a GitHub bug issue |
-| check-domain | Domain name generator & availability checker |
-| clean | Cleanup workflow |
-| co-founder | Strategic business partner workflow |
-| env-setup | Environment variables |
-| feature | Client requirement intake |
-| inbox | Process inbox items |
-| loop | Claim and work one dispatch:claude issue end-to-end |
+| clean | Clean completed tasks and consolidate session files |
+| env | Scaffold and validate environment variables |
+| feature | Capture requirements into PRD epics and GitHub issues |
+| inbox | Capture quick tasks into a project inbox |
+| loop | Claim and work one dispatch issue end-to-end |
 | merge | Review and land open PRs into the trunk |
+| performance | Analyze frontend, backend, database, and infrastructure performance |
+| prompt | Optimize prompts for AI generation |
 | release | Cut a trunk release with patch notes |
-| optimize-prompt | Prompt optimization |
-| performance | Performance analysis |
-| security-audit | Security audit |
+| scan | Run dependency, code, config, and OWASP security scans |
 
-## Skills (182)
+## Skills (140)
 
-### Startup (14)
+### Dev Loop (9)
 
-`business-model-auditor`, `cofounder-evaluator`, `constraint-eliminator`, `early-hiring-advisor`, `execution-accelerator`, `execution-validator`, `fundraise-advisor`, `idea-validator`, `market-sizer`, `mvp-architect`, `offer-architect`, `offer-validator`, `pricing-strategist`, `startup-icp-definer`
+`feature-intake`, `writing-prds`, `writing-plans`, `prd-quality-gate`, `task-prd-creator`, `executing-plans`, `setup-agent-routing`, `gh-project-board`, `qa-reviewer`
 
-### Sales (13)
+### Dev Workflow (33)
 
-`channel-validator`, `competitive-intelligence-analyst`, `email-finder`, `funnel-architect`, `funnel-validator`, `lead-channel-optimizer`, `leads-researcher`, `outbound-optimizer`, `partnership-builder`, `retention-engine`, `support-systems-architect`, `traffic-architect`, `traffic-validator`
+`agent-architecture-audit`, `agent-config-audit`, `ai-agent-cost-optimizer`, `ai-regression-testing`, `analyze-codebase`, `codebase-advisor`, `code-review`, `structural-review`, `full-code-review`, `commit-summary`, `changelog-generator`, `de-slop`, `debug`, `deploy`, `execution-debugging`, `deployment-composer`, `docs`, `llm-structured-output`, `merge-open-prs`, `production-audit`, `refactor-code`, `release`, `release-cleanup`, `release-pr-gates`, `scaffold`, `shape`, `skill-capture`, `skill-comply`, `skill-scout`, `systematic-debugging`, `receiving-code-review`, `verification-before-completion`, `worktree`
 
-### Marketing & CRO (1)
+### GitHub (16)
 
-`x-algorithm-optimizer`
+`bug`, `gh-address-comments`, `gh-fix-ci`, `gh-inbox`, `gh-pr-publish`, `gh-project-board`, `gh-review-suggestions`, `github-actions-author`, `git-safety`, `feature-intake`, `merge-open-prs`, `release`, `release-cleanup`, `release-pr-gates`, `worktree`, `finishing-a-development-branch`
 
-### Branding (5)
+### Testing (6)
 
-`brand-architect`, `expert-architect`, `expert-validator`, `positioning-angles`, `search-domain-validator`
+`playwright-e2e-init`, `tdd`, `testing-expert`, `testing-cicd-init`, `qa-reviewer`, `husky-test-coverage`
 
-### Content (9)
+### Frontend & React (30)
 
-`changelog-generator`, `content-creator`, `copy-validator`, `copywriter`, `docs`, `humanizer`, `internal-comms`, `nextra-writer`, `youtube-video-analyst`
-
-### Planning (10)
-
-`business-operator`, `cto-advisor`, `feature-intake`, `prd-quality-gate`, `roadmap-analyzer`, `rules-capture`, `strategy-expert`, `task-prd-creator`, `writing-plans`, `writing-prds`
-
-### Frontend & React (28)
-
-`accessibility`, `ai-loading-ux`, `clarify`, `component-library`, `critique`, `design-consistency-auditor`, `expo-architect`, `frontend-design`, `html-style`, `landing-page-vercel`, `layout`, `micro-landing-builder`, `nextjs-validator`, `polish`, `quick-view`, `quieter`, `react-component-performance`, `react-hook-form`, `react-native-components`, `react-patterns`, `react-refactor`, `react-testing-library`, `shadcn`, `shadcn-setup`, `table-filters`, `tailwind`, `tailwind-validator`, `theme-factory`
+`frontend-design`, `component-library`, `accessibility`, `audit`, `clarify`, `critique`, `design-consistency-auditor`, `html-style`, `layout`, `polish`, `quieter`, `react-component-performance`, `react-hook-form`, `theme-factory`, `react-patterns`, `react-refactor`, `react-testing-library`, `react-native-components`, `expo-architect`, `landing-page-vercel`, `micro-landing-builder`, `ai-loading-ux`, `table-filters`, `quick-view`, `nextjs-validator`, `nextra-writer`, `shadcn`, `shadcn-setup`, `tailwind`, `tailwind-validator`
 
 ### Backend & Data (8)
 
-`api-design-expert`, `error-handling-expert`, `graphql-architect`, `incremental-fetch`, `nestjs-expert`, `turborepo`, `typescript-expert`, `typescript-refactor`
+`api-design-expert`, `error-handling-expert`, `graphql-architect`, `nestjs-expert`, `incremental-fetch`, `turborepo`, `typescript-expert`, `typescript-refactor`
 
-### Infrastructure (11)
+### Infrastructure (10)
 
-`aws-infrastructure`, `docker-expert`, `ec2-backend-deployer`, `mongodb-atlas-checker`, `mongodb-migration-expert`, `monitoring-setup`, `nestjs-queue-architect`, `performance-expert`, `production-audit`, `redis-caching`, `security-expert`
+`docker-expert`, `aws-infrastructure`, `ec2-backend-deployer`, `mongodb-migration-expert`, `mongodb-atlas-checker`, `monitoring-setup`, `nestjs-queue-architect`, `performance-expert`, `redis-caching`, `security-expert`
 
-### Payments (2)
+### Security (4)
 
-`financial-operations-expert`, `stripe-implementer`
+`security-audit`, `security-expert`, `git-safety`, `open-source-checker`
 
-### Security (1)
+### AI Agents (15)
 
-`security-audit`
-
-### Testing (7)
-
-`ai-regression-testing`, `husky-test-coverage`, `playwright-e2e-init`, `qa-reviewer`, `tdd`, `testing-cicd-init`, `testing-expert`
-
-### AI Agents (17)
-
-`advanced-evaluation`, `agent-architecture-audit`, `agent-browser`, `ai-agent-cost-optimizer`, `comment-mode`, `context-degradation`, `context-engineering`, `context-fundamentals`, `context-optimization`, `evaluation`, `mcp-builder`, `memory-systems`, `multi-agent-patterns`, `skill-comply`, `skill-creator`, `spec-first`, `tool-design`
-
-### Dev Workflow (26)
-
-`agent-config-audit`, `analyze-codebase`, `audit`, `code-review`, `codebase-advisor`, `commit-summary`, `de-slop`, `debug`, `deploy`, `deployment-composer`, `execution-debugging`, `full-code-review`, `llm-structured-output`, `merge-open-prs`, `prompt-engineering`, `receiving-code-review`, `refactor-code`, `release`, `scaffold`, `shape`, `skill-capture`, `skill-scout`, `structural-review`, `systematic-debugging`, `verification-before-completion`, `worktree`
-
-### GitHub (14)
-
-`bug`, `feature-intake`, `finishing-a-development-branch`, `gh-address-comments`, `gh-fix-ci`, `gh-inbox`, `gh-pr-publish`, `gh-project-board`, `gh-review-suggestions`, `github-actions-author`, `git-safety`, `release-cleanup`, `release-pr-gates`, `worktree`
-
-### Session Management (7)
-
-`agent-folder-init`, `executing-plans`, `session-documenter`, `session-end`, `session-start`, `setup-agent-routing`, `workspace-performance-audit`
+`prompt-engineering`, `mcp-builder`, `skill-creator`, `context-fundamentals`, `context-optimization`, `context-degradation`, `context-engineering`, `memory-systems`, `multi-agent-patterns`, `tool-design`, `evaluation`, `advanced-evaluation`, `comment-mode`, `spec-first`, `agent-browser`
 
 ### Workspace Setup (11)
 
-`artifacts-builder`, `biome-validator`, `bun-validator`, `clerk-validator`, `content-script-developer`, `devcontainer-setup`, `fullstack-workspace-init`, `linter-formatter-init`, `open-source-checker`, `package-architect`, `project-init-orchestrator`
+`fullstack-workspace-init`, `project-init-orchestrator`, `linter-formatter-init`, `clerk-validator`, `content-script-developer`, `package-architect`, `artifacts-builder`, `open-source-checker`, `devcontainer-setup`, `biome-validator`, `bun-validator`
+
+### Planning & PRDs (8)
+
+`roadmap-analyzer`, `cto-advisor`, `feature-intake`, `task-prd-creator`, `writing-prds`, `prd-quality-gate`, `rules-capture`, `writing-plans`
+
+### Payments & Product Integrations (1)
+
+`stripe-implementer`
+
+### Session Management (7)
+
+`agent-folder-init`, `session-end`, `session-start`, `session-documenter`, `executing-plans`, `setup-agent-routing`, `workspace-performance-audit`
 
 ## How Skills Adapt to Projects
 
 Skills are **adaptive** - they scan project documentation to understand:
 
 - Project architecture and structure
-- Brand voice and tone
+- Tooling, scripts, and CI conventions
 - Existing patterns and conventions
-- Terminology and style
+- Domain terminology and implementation constraints
 
 If a project has its own skill, the generic skill will collaborate with or defer to it.
 
@@ -247,14 +237,14 @@ Users install directly from GitHub:
 /plugin marketplace add shipshitdev/skills
 
 # Install category bundles
-/plugin install shipshitdev-startup@shipshitdev
+/plugin install shipshitdev-dev-loop@shipshitdev
+/plugin install shipshitdev-dev-workflow@shipshitdev
+/plugin install shipshitdev-github@shipshitdev
 /plugin install shipshitdev-testing@shipshitdev
 /plugin install shipshitdev-frontend@shipshitdev
-/plugin install shipshitdev-dev-workflow@shipshitdev
+/plugin install shipshitdev-backend@shipshitdev
+/plugin install shipshitdev-infrastructure@shipshitdev
 /plugin install shipshitdev-security@shipshitdev
-# Autonomous dev loop (executing-plans, setup-agent-routing, feature-intake, writing-prds, …)
 /plugin install shipshitdev-session@shipshitdev
 /plugin install shipshitdev-planning@shipshitdev
-# The whole dev loop in one bundle (feature-intake → executing-plans → qa-reviewer …)
-/plugin install shipshitdev-dev-loop@shipshitdev
 ```

@@ -4,11 +4,11 @@ description: Survey any codebase as a senior advisor and produce prioritized, se
 license: MIT
 disable-model-invocation: true
 user-invocable: true
-allowed-tools: Read, Grep, Glob, Write(plans/**), Write(advisor-plans/**), Edit(plans/**), Edit(advisor-plans/**), Task, Bash(git log:*), Bash(git diff:*), Bash(git status:*), Bash(git show:*), Bash(git rev-parse:*), Bash(git merge-base:*), Bash(git branch --list:*), Bash(git branch --show-current), Bash(find:*), Bash(grep:*), Bash(rg:*), Bash(npm audit), Bash(pnpm audit), Bash(pip-audit), Bash(cargo audit), Bash(tsc --noEmit:*)
+allowed-tools: Read, Grep, Glob, Write(plans/**), Edit(plans/**), Task, Bash(git log:*), Bash(git diff:*), Bash(git status:*), Bash(git show:*), Bash(git rev-parse:*), Bash(git merge-base:*), Bash(git branch --list:*), Bash(git branch --show-current), Bash(find:*), Bash(grep:*), Bash(rg:*), Bash(npm audit), Bash(pnpm audit), Bash(pip-audit), Bash(cargo audit), Bash(tsc --noEmit:*), Bash(command -v gh), Bash(gh auth status:*), Bash(gh repo view --json visibility:*), Bash(gh issue create:*)
 when_to_use: audit this codebase, code audit, find improvements, what should I build next, roadmap, product direction, generate a handoff plan, plan for another agent, security/perf/test-coverage/tech-debt review, review a plan, execute a plan, reconcile plans
 metadata:
   version: "1.0.0"
-  tags: audit, planning, codebase-review, handoff-plans, orchestration, read-only
+  tags: "audit, planning, codebase-review, handoff-plans, orchestration, read-only"
   author: Ship Shit Dev
   adapted_from: "shadcn/improve (MIT) — https://github.com/shadcn/improve"
 ---
@@ -44,7 +44,7 @@ Outputs:
 
 Creates/Modifies:
 
-- `plans/` (or `advisor-plans/` if `plans/` is already taken for another purpose) in the target repo: a `README.md` index plus `NNN-*.md` plan files. Never modifies source code.
+- `plans/` in the target repo: a `README.md` index plus `NNN-*.md` plan files. Never modifies source code.
 
 External Side Effects:
 
@@ -132,7 +132,7 @@ plans/
 
 **Excerpts come from your own reads, never from a subagent's report.** Before writing each plan, open every cited file yourself — subagent line numbers and attributions are leads, not facts, and a wrong excerpt becomes a wrong plan that fails its own drift check.
 
-Before writing anything: record `git rev-parse --short HEAD` — every plan stamps the commit it was written against (the executor uses it for drift detection). If `plans/` already exists from a previous run, **reconcile, don't duplicate**: read `plans/README.md`, keep numbering monotonic, skip findings already planned or listed as rejected, and mark superseded plans stale in the index. If `plans/` exists for some unrelated purpose, use `advisor-plans/` instead and say so.
+Before writing anything: record `git rev-parse --short HEAD` — every plan stamps the commit it was written against (the executor uses it for drift detection). If `plans/` already exists from a previous run, **reconcile, don't duplicate**: read `plans/README.md`, keep numbering monotonic, skip findings already planned or listed as rejected, and mark superseded plans stale in the index. If `plans/` exists for some unrelated purpose, stop and ask for the canonical plan directory before writing.
 
 Write each plan **for the weakest plausible executor**. That means:
 

@@ -1,11 +1,11 @@
 {
   "name": "writing-prds",
   "version": "1.1.0",
-  "description": "Write a PRD a planning agent can consume in one shot — tracker-issue-as-PRD, section template, title discipline, and quality gates",
+  "description": "Write one-shot PRDs for planning agents with tracker issue and quality gates.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",
-    "url": "https://github.com/shipshitdev"
+    "url": "https://shipshit.dev"
   },
   "license": "MIT",
   "skills": "."

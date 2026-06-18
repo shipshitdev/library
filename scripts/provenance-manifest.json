@@ -136,19 +136,6 @@
       "modifications": "Vendored from Anthropic's official skills repo as a standalone marketplace plugin. No behavioral changes beyond provenance metadata."
     },
     {
-      "skill": "internal-comms",
-      "desc": "Draft internal communications — status reports, leadership updates, newsletters, incident reports — in company formats.",
-      "source": "https://github.com/anthropics/skills/blob/main/skills/internal-comms/SKILL.md",
-      "source_path": "skills/internal-comms/SKILL.md",
-      "upstream_repo": "anthropics/skills",
-      "upstream_ref": "main",
-      "upstream_commit": "ef740771ac90",
-      "last_synced": "2026-06-12",
-      "license": "Apache-2.0",
-      "mode": "rolling",
-      "modifications": "Vendored from Anthropic's official skills repo as a standalone marketplace plugin. No behavioral changes beyond provenance metadata."
-    },
-    {
       "skill": "react-component-performance",
       "desc": "Diagnose and fix React component render performance — memoization, ref stability, and re-render tracing.",
       "source": "https://github.com/Dimillian/Skills/blob/main/react-component-performance/SKILL.md",
@@ -290,19 +277,6 @@
       "license": "MIT",
       "mode": "rolling",
       "modifications": "Imported 2026-01-20 (this repo's commit ef42a98) from muratcankoylan/Agent-Skills-for-Context-Engineering at v1.0.0-era content (then pinned to creation commit 0b9a3b81bfea). Ported forward 2026-06-13 to upstream HEAD (commit 25e1fa79a33f); local body now tracks upstream v2.1.0 — carried full direct-scoring and pairwise prompt templates, the Metric Selection Framework table, three worked JSON examples, a 10-item Guidelines section, 8-entry Gotchas, a Scaling Evaluation section, the claim-advanced-evaluation-position-swap ID, and a fully rewritten scripts/evaluation_example.py. references/full-guide.md was renamed to references/evaluation-pipeline.md to match upstream. Reference to a sibling not vendored here (harness-engineering) was stripped; cross-links to tool-design (vendored) are retained. Local divergence: gpt-5.2 and claude-4-5-sonnet model names in references were genericized. To diff: compare the upstream path on main since commit 25e1fa79a33f."
-    },
-    {
-      "skill": "humanizer",
-      "desc": "Identify and remove AI writing patterns to make text sound natural — based on Wikipedia's \"Signs of AI writing\".",
-      "source": "https://github.com/ankshvayt/humanizer/blob/main/SKILL.md",
-      "source_path": "SKILL.md",
-      "upstream_repo": "ankshvayt/humanizer",
-      "upstream_ref": "main",
-      "upstream_commit": "c5d51c926d24",
-      "last_synced": "2026-06-12",
-      "license": "Unspecified (no upstream LICENSE)",
-      "mode": "rolling",
-      "modifications": "Vendored from ankshvayt/humanizer (24 numbered patterns, verbatim overlap). NOTE: upstream repo ships NO LICENSE file — all-rights-reserved by default; redistribution permission unconfirmed. Flag for review."
     },
     {
       "skill": "shadcn",

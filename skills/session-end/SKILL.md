@@ -18,12 +18,12 @@ Document your session before clearing context. This is a TWO-STEP process: `/ses
 
 Inputs:
 
-- Current session context and changed-file summary
+- Redacted session context and changed-file summary
 - Pending tasks, blockers, decisions, and reusable rules/workflows
 
 Outputs:
 
-- Saved session documentation
+- Saved session documentation with secrets removed
 - Clear next-step instruction for context reset
 
 Creates/Modifies:
@@ -52,8 +52,8 @@ Delegates To:
 
 When invoked, immediately:
 
-1. Run the `session-documenter` skill to save all session context
-2. Let it complete — it will document tasks, decisions, files changed, patterns, and mistakes
+1. Run the `session-documenter` skill to save a redacted session summary
+2. Let it complete — it will document tasks, decisions, files changed, patterns, and mistakes without storing secrets
 3. Confirm documentation saved
 
 > **Cross-platform note**: If your agent platform doesn't support skill invocation, follow the session-documenter workflow manually by reading the `session-documenter` skill definition.
@@ -79,6 +79,9 @@ Your session is safely preserved and will be loaded on next /session-start.
 - **ONE FILE PER DAY**: Session documenter appends to the same day's file
 - **Multiple invocations**: Each one adds a new session entry
 - **Does NOT clear context**: User must run `/clear` manually after
+- **Redaction is mandatory**: Do not store API keys, tokens, passwords, cookies,
+  private credentials, or secret values from the conversation. Replace them with
+  `[REDACTED_SECRET]` and summarize the surrounding context.
 
 ## Related Skills
 

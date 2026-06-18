@@ -25,13 +25,16 @@ Inputs:
 
 Outputs:
 
-- Captured pending rule with quote, extracted rule, scope, and status
+- Captured pending rule with a redacted supporting quote, extracted rule, scope,
+  and status
 - Recommendation for permanent storage location
 
 Creates/Modifies:
 
 - Pending capture appended to `.agents/memory/captured-rules.md` (marked `status: temporary`)
 - Permanent rules only after explicit confirmation
+- Secret-like values are never written verbatim. Redact tokens, passwords, API
+  keys, cookies, and private credentials before saving or echoing a capture.
 
 External Side Effects:
 
@@ -114,9 +117,9 @@ Append to `.agents/memory/captured-rules.md` (create the file if absent, with a 
 ````markdown
 ### [YYYY-MM-DD HH:MM] - [Category]: [Short Title]
 
-**User said:**
+**User said (redacted):**
 
-> "[Exact quote from user]"
+> "[Short supporting quote with secrets replaced by [REDACTED_SECRET]]"
 
 **Rule extracted:**
 
@@ -198,6 +201,16 @@ Should I add this to the permanent rules? [Yes/No/Modify]
 | Pending review | `.agents/memory/captured-rules.md` (`status: temporary`) |
 
 ---
+
+## Redaction Rules
+
+Before writing or displaying a captured quote:
+
+- Replace API keys, tokens, passwords, cookies, private URLs, and credentials
+  with `[REDACTED_SECRET]`.
+- Keep only the shortest quote needed to justify the rule. Summarize the rest.
+- If the rule itself is about handling a secret, capture the policy, not the
+  secret value.
 
 ## Auto-Capture File Format
 
@@ -284,4 +297,3 @@ The skill activates on these regex patterns:
 # Questions about standards
 (what's the (rule|standard|convention) for|how should I|which way is)\s+.+
 ```
-

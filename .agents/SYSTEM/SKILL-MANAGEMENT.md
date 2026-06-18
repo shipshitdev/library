@@ -102,7 +102,7 @@ Skills are distributed via `npx skills add`:
 
 ```bash
 # Install for all platforms
-npx skills add shipshitdev/skills -g --agent claude-code cursor codex openclaw --skill '*' -y
+npx skills add shipshitdev/skills -g --agent claude-code codex cursor --skill '*' -y
 
 # Install specific skill
 npx skills add shipshitdev/skills --skill stripe-implementer -y

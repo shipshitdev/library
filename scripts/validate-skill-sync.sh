@@ -107,6 +107,11 @@ check_frontmatter() {
         ((++issues))
     fi
 
+    if grep -Eq '^description: [^>|"'"'"'].*: ' <<< "$content"; then
+        echo -e "  ${RED}✗${NC} Plain description contains ': ' — quote it or use a folded block so YAML parsers do not skip the skill"
+        ((++issues))
+    fi
+
     return $issues
 }
 

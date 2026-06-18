@@ -4,6 +4,7 @@ description: |
   Regenerate the README.md skills table from the filesystem.
   Run after adding, removing, or renaming skills.
 metadata:
+  internal: true
   version: "1.0.0"
   tags: "readme, sync, maintenance, automation"
 ---

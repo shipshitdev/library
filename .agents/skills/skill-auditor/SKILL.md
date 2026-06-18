@@ -4,6 +4,7 @@ description: |
   Audit the skills library for duplicates, stale content, spec violations, and structural issues.
   Run periodically or before releases.
 metadata:
+  internal: true
   version: "1.0.0"
   tags: "audit, skills, quality, maintenance"
 ---

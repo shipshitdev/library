@@ -4,7 +4,7 @@
 
 ![Project Type](https://img.shields.io/badge/Project-Skills-blue)
 
-182 AI agent skills for indie developers. Works with Claude Code and OpenAI Codex.
+182 AI agent skills for indie developers. Works with Claude Code, OpenAI Codex, and Cursor.
 
 ## Directory Structure
 
@@ -73,8 +73,8 @@ Full reference: [`.agents/SYSTEM/AI-DEV-LOOP.md`](.agents/SYSTEM/AI-DEV-LOOP.md)
 ### Quick Install (Recommended)
 
 ```bash
-# Install all skills globally for Claude Code and Codex
-npx skills add shipshitdev/skills -g --agent claude-code codex --skill '*' -y
+# Install all skills globally for Claude Code, Codex, and Cursor
+npx skills add shipshitdev/skills -g --agent claude-code codex cursor --skill '*' -y
 
 # Install specific skills
 npx skills add shipshitdev/skills -g --skill stripe-implementer -y
@@ -89,7 +89,7 @@ npx skills add shipshitdev/skills --list
 ### Project-local Install
 
 ```bash
-npx skills add shipshitdev/skills --agent claude-code codex
+npx skills add shipshitdev/skills --agent claude-code codex cursor
 ```
 
 ### Claude Code Plugin (Alternative)
@@ -105,7 +105,7 @@ npx skills add shipshitdev/skills --agent claude-code codex
 ```bash
 git clone https://github.com/shipshitdev/skills.git ~/shipshitdev-skills
 cd ~/shipshitdev-skills
-npx skills add . -g --agent claude-code codex --skill '*' -y
+npx skills add . -g --agent claude-code codex cursor --skill '*' -y
 ```
 
 ## Adding Skills & Commands

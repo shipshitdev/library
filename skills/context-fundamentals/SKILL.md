@@ -1,6 +1,13 @@
 ---
 name: context-fundamentals
-description: This skill should be used to explain or reason about the foundational concepts of context engineering: what context is, the anatomy of a context window, how attention mechanics work, the U-shaped attention curve, why context quality matters more than quantity, and the mental models needed to interpret every other context-engineering decision. Use this for conceptual explanation, onboarding, and background reading. Route operational work to the specialized skills: debugging attention failures goes to context-degradation, and token-efficiency work goes to context-optimization.
+description: >-
+  Explain or reason about foundational context engineering concepts: what
+  context is, the anatomy of a context window, attention mechanics, the U-shaped
+  attention curve, why context quality matters more than quantity, and the
+  mental models needed to interpret context-engineering decisions. Use for
+  conceptual explanation, onboarding, and background reading. Route operational
+  work to context-degradation for attention failures and context-optimization
+  for token-efficiency work.
 metadata:
   version: "2.2.0"
   source: https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/blob/main/skills/context-fundamentals/SKILL.md

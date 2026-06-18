@@ -180,7 +180,7 @@ Organization: {{organizationId}}
 
 ### Feature Documentation
 
-- **Session Files:** `.agents/SESSIONS/YYYY-MM-DD.md` (includes flowchart)
+- **Session Files:** `.agents/sessions/YYYY-MM-DD.md` (includes flowchart)
 - **Project Memory:** `.agents/memory/*.md` (major architectural decisions and patterns)
 
 ## Quality Checklist

@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "140 AI agent skills for development workflows",
+  "description": "141 AI agent skills for development workflows",
   "plugins": [
     {
       "name": "shipshitdev-testing",
@@ -213,12 +213,12 @@
     {
       "name": "context-fundamentals",
       "source": "./skills/context-fundamentals",
-      "description": "This skill should be used to explain or reason about the foundational concepts of context engineerin"
+      "description": "Explain or reason about foundational context engineering concepts: what context is, the anatomy of a"
     },
     {
       "name": "context-optimization",
       "source": "./skills/context-optimization",
-      "description": "This skill should be used for improving context efficiency: context budgeting, observation masking, "
+      "description": "Improve context efficiency through context budgeting, observation masking, prefix or KV-cache strate"
     },
     {
       "name": "critique",
@@ -384,6 +384,11 @@
       "name": "incremental-fetch",
       "source": "./skills/incremental-fetch",
       "description": "Guides construction of resilient data ingestion pipelines from paginated APIs. Activates on: \"ingest"
+    },
+    {
+      "name": "interview",
+      "source": "./skills/interview",
+      "description": "Conducts a repo-grounded discovery interview before PRD writing, feature intake, UX shaping, or impl"
     },
     {
       "name": "landing-page-vercel",
@@ -618,7 +623,7 @@
     {
       "name": "session-end",
       "source": "./skills/session-end",
-      "description": "Session wrap-up documentation."
+      "description": "Save session wrap-up documentation before clearing context by running the session-documenter workflo"
     },
     {
       "name": "session-start",

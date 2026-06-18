@@ -11,6 +11,7 @@ Autonomous GitHub issue-to-PR loop with PRDs, plans, board dispatch, QA, and rev
 
 ## Included Skills
 
+- `interview`
 - `feature-intake`
 - `writing-prds`
 - `writing-plans`

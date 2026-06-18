@@ -4,7 +4,7 @@ last_verified: 2026-06-18
 
 ## What This Repo Is
 
-Public skills library at `shipshitdev/skills`. 140 skills, 11 commands, 13 bundles. Installable via `npx skills add shipshitdev/skills --skill <name>`. Works with Claude Code, Codex, Cursor, OpenClaw, Gemini.
+Public skills library at `shipshitdev/skills`. 141 skills, 11 commands, 13 bundles. Installable via `npx skills add shipshitdev/skills --skill <name>`. Works with Claude Code, Codex, Cursor, OpenClaw, Gemini.
 
 Published through committed marketplace bundles in `bundles/` and the generated `.claude-plugin/marketplace.json` catalog. The old generated `plugins/` package tree is retired.
 
@@ -21,7 +21,7 @@ Published through committed marketplace bundles in `bundles/` and the generated 
 
 | Asset | Count | Location |
 |-------|-------|----------|
-| Skills | 140 | `skills/<name>/SKILL.md` |
+| Skills | 141 | `skills/<name>/SKILL.md` |
 | Commands | 11 | `commands/<name>.md` |
 | Bundles | 13 | `bundles/<bundle>/plugin.json` |
 | Scripts | 15 | `scripts/` |
@@ -35,7 +35,7 @@ One `skills/` directory at root. No per-platform copies. Platform-neutral writin
 
 ### Agent Skills Spec Compliance (2026-04-21)
 
-Follow agentskills.io/specification as base. Claude Code extensions (`when_to_use`, `disable-model-invocation`, `allowed-tools`, etc.) added on top. `version`/`tags` go inside `metadata:` block as strings, not top-level. See `.agents/SYSTEM/SKILL-STANDARDS.md`.
+Follow agentskills.io/specification as base. Claude Code extensions (`when_to_use`, `disable-model-invocation`, `allowed-tools`, etc.) added on top. `version`/`tags` go inside `metadata:` block as strings, not top-level. See `.agents/memory/system/skill-standards.md`.
 
 ### External Skills Imported (2026-04-21)
 
@@ -66,8 +66,8 @@ None currently tracked.
 
 ## Key Files
 
-- `.agents/SYSTEM/SKILL-STANDARDS.md` — authoritative spec doc
-- `.agents/SYSTEM/SKILL-MANAGEMENT.md` — workflow guide
+- `.agents/memory/system/skill-standards.md` — authoritative spec doc
+- `.agents/memory/system/skill-management.md` — workflow guide
 - `scripts/validate-skill-sync.sh` — validation script
 - `scripts/generate-marketplace-bundles.js` — bundle snapshot generation
 - `scripts/generate-marketplace-json.js` — marketplace catalog generation

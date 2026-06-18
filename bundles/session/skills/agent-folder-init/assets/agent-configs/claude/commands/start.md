@@ -20,7 +20,7 @@ Read today's session to understand what was already done before `/clear`:
 
 ```bash
 TODAY=$(date +%Y-%m-%d)
-cat .agents/SESSIONS/$TODAY.md 2>/dev/null || echo "No session file for today yet"
+cat .agents/sessions/$TODAY.md 2>/dev/null || echo "No session file for today yet"
 ```
 
 If the file exists, this shows:
@@ -42,7 +42,7 @@ The `session-documenter` skill will automatically activate and track:
 - Patterns established
 - Mistakes and fixes
 
-Documentation is written to `.agents/SESSIONS/YYYY-MM-DD.md` after each task completion.
+Documentation is written to `.agents/sessions/YYYY-MM-DD.md` after each task completion.
 
 **No manual action required** - this happens automatically.
 
@@ -90,7 +90,7 @@ This command ensures consistent behavior across sessions by:
 ## What Gets Loaded
 
 1. **`.agents/memory/*.md`** — durable project context (architecture, deployment, migrations, gotchas, entities)
-2. **Today's session file** (`.agents/SESSIONS/YYYY-MM-DD.md`) — what was done earlier today before `/clear`
+2. **Today's session file** (`.agents/sessions/YYYY-MM-DD.md`) — what was done earlier today before `/clear`
 3. **GitHub Issues** — open backlog via `gh issue list`
 
 Rules and preferences are loaded automatically by the harness via CLAUDE.md — no manual step needed.

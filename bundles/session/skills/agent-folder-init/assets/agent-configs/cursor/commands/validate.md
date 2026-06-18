@@ -35,7 +35,7 @@
 
 - [ ] `.agents/README.md` exists
 - [ ] `.agents/memory/` directory exists
-- [ ] `.agents/SESSIONS/` directory exists
+- [ ] `.agents/sessions/` directory exists
 
 #### Per-Project (if monorepo)
 
@@ -59,7 +59,7 @@ echo "Checking workspace files..."
 WORKSPACE_FILES=(
   ".agents/README.md"
   ".agents/memory"
-  ".agents/SESSIONS"
+  ".agents/sessions"
 )
 
 for file in "${WORKSPACE_FILES[@]}"; do
@@ -145,15 +145,15 @@ When user runs `/validate sessions`:
 
 ```bash
 # Check workspace sessions
-violations=$(find .agents/SESSIONS -type f -name "*.md" \
+violations=$(find .agents/sessions -type f -name "*.md" \
   ! -name "README.md" \
   ! -name "TEMPLATE.md" \
   ! -regex ".*/[0-9]{4}-[0-9]{2}-[0-9]{2}\.md")
 
 # Check all project sessions
 for project in [project-1] [project-2] [project-3]; do
-  if [ -d "$project/.agents/SESSIONS" ]; then
-    violations+=$(find "$project/.agents/SESSIONS" -type f -name "*.md" \
+  if [ -d "$project/.agents/sessions" ]; then
+    violations+=$(find "$project/.agents/sessions" -type f -name "*.md" \
       ! -name "README.md" \
       ! -name "TEMPLATE.md" \
       ! -regex ".*/[0-9]{4}-[0-9]{2}-[0-9]{2}\.md")
@@ -193,9 +193,9 @@ For each violation:
 **Example:**
 
 ```bash
-# Violation: .agents/SESSIONS/CODE-AUDIT-2025-10-09.md
+# Violation: .agents/sessions/CODE-AUDIT-2025-10-09.md
 # Date extracted: 2025-10-09
-# Target file: .agents/SESSIONS/2025-10-09.md
+# Target file: .agents/sessions/2025-10-09.md
 
 # If 2025-10-09.md exists:
 cat CODE-AUDIT-2025-10-09.md >> 2025-10-09.md

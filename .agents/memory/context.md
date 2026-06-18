@@ -81,11 +81,11 @@ bun run lint:sh     # shell scripts
 | `bundles/*/plugin.json` | Generated | Committed bundle snapshots |
 | `.claude-plugin/marketplace.json` | Generated | Committed, CI-managed |
 | `scripts/plugin-categories.json` | Source | Bundle → skills mapping |
-| `.agents/SYSTEM/SKILL-STANDARDS.md` | Authoritative spec | Definitive frontmatter reference |
+| `.agents/memory/system/skill-standards.md` | Authoritative spec | Definitive frontmatter reference |
 
 ## Session Protocol
 
-1. Check `.agents/SESSIONS/<today>.md` at start
+1. Check `.agents/sessions/<today>.md` at start
 2. Document before `/clear`: files changed, decisions, incomplete work
-3. Save to `.agents/SESSIONS/YYYY-MM-DD.md`
+3. Save to `.agents/sessions/YYYY-MM-DD.md`
 4. Never save secrets to session files

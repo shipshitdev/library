@@ -21,7 +21,7 @@ Inputs:
 
 - Project root
 - Current date
-- Existing `.agents/memory/` and `.agents/SESSIONS/` files
+- Existing `.agents/memory/` and `.agents/sessions/` files
 
 Outputs:
 
@@ -60,7 +60,7 @@ defined in the global `CLAUDE.md` / `MEMORY.md` before citing any entry.
 
 Read today's session to understand what was already done before `/clear`:
 
-Read today's session file at `.agents/SESSIONS/YYYY-MM-DD.md` (where YYYY-MM-DD
+Read today's session file at `.agents/sessions/YYYY-MM-DD.md` (where YYYY-MM-DD
 is today's date).
 
 If the file exists, it shows tasks completed, decisions made, files changed,

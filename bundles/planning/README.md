@@ -13,6 +13,7 @@ Strategy, planning, and analysis skills
 
 - `roadmap-analyzer`
 - `cto-advisor`
+- `interview`
 - `feature-intake`
 - `task-prd-creator`
 - `writing-prds`

@@ -20,7 +20,7 @@ Close out completed work tracked in GitHub Issues so the open backlog stays accu
 2. Close each with a short completion comment linking the session:
 
 ```bash
-gh issue close <number> --comment "Completed — see .agents/SESSIONS/[date].md for details."
+gh issue close <number> --comment "Completed — see .agents/sessions/[date].md for details."
 ```
 
 1. Log closed issues to today's session file
@@ -43,7 +43,7 @@ Merge daily sessions into monthly, monthly into yearly.
 
 ### Safety
 
-- Create backup before modifying: `.agents/SESSIONS/backups/`
+- Create backup before modifying: `.agents/sessions/backups/`
 - Preserve `README.md`
 - Dry-run mode available — preview without changes
 

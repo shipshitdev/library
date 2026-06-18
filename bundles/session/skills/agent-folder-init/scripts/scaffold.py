@@ -89,7 +89,7 @@ def create_minimal_structure(agent_dir: Path, project_name: str, tech_stack: str
 
     dirs = [
         "memory",
-        "SESSIONS",
+        "sessions",
     ]
 
     for d in dirs:
@@ -105,7 +105,7 @@ This is the `.agents/` folder — source of truth for AI agent context, session 
 ## Structure
 
 - `memory/` - Durable project facts, one topic per `*.md` file. Each file carries `last_verified: YYYY-MM-DD`.
-- `SESSIONS/` - Daily session logs (`YYYY-MM-DD.md`). Multiple sessions on the same day go in the same file.
+- `sessions/` - Daily session logs (`YYYY-MM-DD.md`). Multiple sessions on the same day go in the same file.
 
 ## For AI Agents
 
@@ -133,11 +133,11 @@ This file provides entry points for AI agents.
 
 ## Documentation
 
-All durable project context is in `.agents/memory/`. Session logs are in `.agents/SESSIONS/`.
+All durable project context is in `.agents/memory/`. Session logs are in `.agents/sessions/`.
 
 - `.agents/README.md` - Navigation hub
 - `.agents/memory/` - Durable project facts (source of truth)
-- `.agents/SESSIONS/` - Daily session history
+- `.agents/sessions/` - Daily session history
 
 ## Rules & Standards
 
@@ -149,7 +149,7 @@ Use GitHub Issues for task tracking: `gh issue list`, `gh issue create`.
 
 ## Sessions
 
-Document all work in `.agents/SESSIONS/YYYY-MM-DD.md` (one file per day).
+Document all work in `.agents/sessions/YYYY-MM-DD.md` (one file per day).
 """
 
     claude_content = f"""# {project_name}
@@ -162,7 +162,7 @@ Read `.agents/memory/` for durable project facts before starting work.
 
 ## Sessions
 
-Document all work in `.agents/SESSIONS/YYYY-MM-DD.md` (one file per day).
+Document all work in `.agents/sessions/YYYY-MM-DD.md` (one file per day).
 
 ## Task Tracking
 
@@ -177,7 +177,7 @@ Codex-specific entry point.
 
 - `.agents/README.md` - Start here
 - `.agents/memory/` - Durable project facts (source of truth)
-- `.agents/SESSIONS/` - Daily session history
+- `.agents/sessions/` - Daily session history
 
 ## Task Tracking
 

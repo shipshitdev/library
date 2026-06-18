@@ -155,7 +155,7 @@
 
 ```
 - [ ] .agents/memory/ updated (if architectural change)
-- [ ] Session file created in .agents/SESSIONS/
+- [ ] Session file created in .agents/sessions/
 - [ ] GitHub Issue closed or commented (if applicable)
 - [ ] Comments for complex logic
 - [ ] README updated if needed

@@ -15,7 +15,7 @@ last_verified: 2026-06-07
 - DO write imperative style — "Analyze the code" not "You should analyze"
 - DO keep SKILL.md under 500 lines
 - DO run `bun run validate` after adding/modifying skills
-- DO check `.agents/SYSTEM/SKILL-STANDARDS.md` for authoritative spec
+- DO check `.agents/memory/system/skill-standards.md` for authoritative spec
 
 ### Commands
 
@@ -58,7 +58,7 @@ last_verified: 2026-06-07
 ### Git / CI
 
 - DON'T use npm/yarn/pnpm — Bun only
-- DON'T commit `node_modules/`, `.agents/SESSIONS/`
+- DON'T commit `node_modules/`, `.agents/sessions/`
 - DON'T skip pre-commit hooks (`--no-verify`)
 - DON'T force push to master
 - DON'T commit `.env` files or secrets

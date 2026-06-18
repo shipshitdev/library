@@ -2,7 +2,7 @@
 name: session-documenter
 description: >-
   Documents work, decisions, and context from the current session by writing
-  structured entries to `.agents/SESSIONS/YYYY-MM-DD.md`. Triggers on
+  structured entries to `.agents/sessions/YYYY-MM-DD.md`. Triggers on
   `/start`, `/end`, "document this session", "save session notes", or
   automatically at session wrap-up to capture decisions, files changed,
   mistakes, and next steps.
@@ -25,12 +25,12 @@ Inputs:
 
 Outputs:
 
-- Appended session entry in `.agents/SESSIONS/YYYY-MM-DD.md` with secrets removed
+- Appended session entry in `.agents/sessions/YYYY-MM-DD.md` with secrets removed
 - Related summary/task updates when needed
 
 Creates/Modifies:
 
-- `.agents/SESSIONS/` daily session file
+- `.agents/sessions/` daily session file
 - `.agents/memory/*.md` when a decision changes durable project context (architecture, deployment, migrations, gotchas)
 
 External Side Effects:
@@ -57,7 +57,7 @@ Delegates To:
 
 ## How It Works
 
-1. **`/start`** - Creates `.agents/SESSIONS/YYYY-MM-DD.md` if missing, or loads existing context
+1. **`/start`** - Creates `.agents/sessions/YYYY-MM-DD.md` if missing, or loads existing context
 2. **During session** - You tell me what to track: decisions, files changed, mistakes
 3. **`/end`** - I write a redacted session entry with flowcharts, decisions, next steps
 
@@ -66,8 +66,8 @@ Delegates To:
 ### Session File Naming (ONE FILE PER DAY)
 
 ```
-✅ CORRECT: .agents/SESSIONS/2025-11-15.md
-❌ WRONG:   .agents/SESSIONS/2025-11-15-feature-name.md
+✅ CORRECT: .agents/sessions/2025-11-15.md
+❌ WRONG:   .agents/sessions/2025-11-15-feature-name.md
 ```
 
 Multiple sessions same day → Same file, Session 1, Session 2, etc.

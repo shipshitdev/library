@@ -425,7 +425,7 @@ print_summary() {
   echo "    3. Phase 1 (local):  run  /loop   to claim + work one issue (Claude)."
   echo "    4. Phase 2 (push):   the gate label alone fires its dispatch workflow headlessly."
   echo ""
-  echo "  Full loop reference: .agents/SYSTEM/AI-DEV-LOOP.md"
+  echo "  Full loop reference: .agents/memory/system/ai-dev-loop.md"
 }
 
 usage() {

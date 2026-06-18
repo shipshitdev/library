@@ -29,7 +29,7 @@ This command ensures comprehensive tracking of all work, decisions, and context 
 | --------------------- | -------------------------------------------- |
 | Migration/Task status | GitHub Issues (gh issue create)              |
 | Architecture docs     | `.agents/memory/[topic].md`                   |
-| Session notes         | `.agents/SESSIONS/YYYY-MM-DD.md`              |
+| Session notes         | `.agents/sessions/YYYY-MM-DD.md`              |
 
 **BEFORE creating ANY .md file, ask yourself:**
 
@@ -51,22 +51,22 @@ Updates all critical documentation files to track:
 
 **CRITICAL: ONE FILE PER DAY - NOT MULTIPLE FILES!**
 
-**Location:** `/.agents/SESSIONS/YYYY-MM-DD.md`
+**Location:** `/.agents/sessions/YYYY-MM-DD.md`
 
 **Naming:** `YYYY-MM-DD.md` (e.g., `2025-10-08.md`)
 
 **WRONG:**
 
 ```
-.agents/SESSIONS/2025-10-08-feature-1.md
-.agents/SESSIONS/2025-10-08-feature-2.md
-.agents/SESSIONS/2025-10-08-bugfix.md
+.agents/sessions/2025-10-08-feature-1.md
+.agents/sessions/2025-10-08-feature-2.md
+.agents/sessions/2025-10-08-bugfix.md
 ```
 
 **CORRECT:**
 
 ```
-.agents/SESSIONS/2025-10-08.md  ← ONE file with MULTIPLE sessions
+.agents/sessions/2025-10-08.md  ← ONE file with MULTIPLE sessions
 ```
 
 **File Structure:**
@@ -251,9 +251,9 @@ Before updating files, answer these questions:
 
 **REMEMBER: ONE FILE PER DAY, NOT MULTIPLE FILES!**
 
-**Files MUST go in `.agents/SESSIONS/` - NEVER at workspace root!**
+**Files MUST go in `.agents/sessions/` - NEVER at workspace root!**
 
-1. **Create or update `.agents/SESSIONS/YYYY-MM-DD.md`** (today's date)
+1. **Create or update `.agents/sessions/YYYY-MM-DD.md`** (today's date)
    - **Filename:** `YYYY-MM-DD.md` (NO descriptive suffix!)
    - **If file doesn't exist:** Create new file with first session + 3-5 word summary
    - **If file exists:** Add new session at TOP of file, update total count
@@ -407,7 +407,7 @@ After making changes, verify the build compiles successfully:
 
 ### Daily Session File Template
 
-**ONE FILE PER DAY: `/.agents/SESSIONS/YYYY-MM-DD.md` (not YYYY-MM-DD-description.md)**
+**ONE FILE PER DAY: `/.agents/sessions/YYYY-MM-DD.md` (not YYYY-MM-DD-description.md)**
 
 **If new file:**
 
@@ -610,7 +610,7 @@ Before ending session, ensure these are documented:
 
 **Updates:**
 
-1. Create or update `/.agents/SESSIONS/2025-10-07.md`:
+1. Create or update `/.agents/sessions/2025-10-07.md`:
 
    ```markdown
    # Sessions: 2025-10-07

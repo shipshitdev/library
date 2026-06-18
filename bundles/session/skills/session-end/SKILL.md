@@ -1,6 +1,10 @@
 ---
 name: session-end
-description: "Session wrap-up documentation."
+description: >-
+  Save session wrap-up documentation before clearing context by running the
+  session-documenter workflow and writing `.agents/sessions/YYYY-MM-DD.md`.
+  Use when ending a session, preparing to run `/clear`, or asked to document
+  what changed before context is reset.
 metadata:
   version: "1.0.0"
   tags: session, workflow, documentation, productivity
@@ -24,7 +28,7 @@ Outputs:
 
 Creates/Modifies:
 
-- `.agents/SESSIONS/YYYY-MM-DD.md`
+- `.agents/sessions/YYYY-MM-DD.md`
 - Related `.agents/` task or summary files when delegated to `session-documenter`
 
 External Side Effects:
@@ -59,7 +63,7 @@ When invoked, immediately:
 After documentation is complete, tell the user:
 
 ```
-Session documented to .agents/SESSIONS/YYYY-MM-DD.md
+Session documented to .agents/sessions/YYYY-MM-DD.md
 
 NEXT STEP: Run /clear to clear the conversation context.
 Your session is safely preserved and will be loaded on next /session-start.

@@ -35,7 +35,7 @@ DATE=$(date +%Y-%m-%d)
 1. **Create task file:**
 
 ```bash
-TASK_FILE=".agents/SESSIONS/${DATE}-tasks.md"
+TASK_FILE=".agents/sessions/${DATE}-tasks.md"
 ```
 
 1. **Use simple template:**
@@ -89,7 +89,7 @@ TASK_FILE=".agents/SESSIONS/${DATE}-tasks.md"
 
 ## File Output
 
-**Location:** `.agents/SESSIONS/YYYY-MM-DD-tasks.md`
+**Location:** `.agents/sessions/YYYY-MM-DD-tasks.md`
 
 **Structure:**
 
@@ -236,7 +236,7 @@ TASK_FILE=".agents/SESSIONS/${DATE}-tasks.md"
 
 ### File Not Created
 
-- Check `.agents/SESSIONS/` directory exists
+- Check `.agents/sessions/` directory exists
 - Verify write permissions
 - Check date format
 

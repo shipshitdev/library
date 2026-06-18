@@ -172,8 +172,8 @@ file desyncs from the project the moment work starts and never reaches the loop.
 
 The plan lives on the issue, so hand off via the dispatch gate, not a file.
 
-> **Plan posted to issue #N.** To dispatch it, move the issue to **To Do** on the
-> board (set `Status` = To Do) and apply one gate: `dispatch:claude` (Claude lane)
+> **Plan posted to issue #N.** To dispatch it, move the issue to **Backlog** on the
+> board (set `Status` = Backlog) and apply one gate: `dispatch:claude` (Claude lane)
 > or `dispatch:codex` (Codex lane). The loop claims it, reads the
 > `## Implementation Plan` comment, and works it task by task.
 

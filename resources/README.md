@@ -1,6 +1,6 @@
 # resources/
 
-First-hand reference material for working in this repo. Unlike `.agents/SYSTEM/` (this repo's *own* operating standards), `resources/` holds **extracted upstream guidance** — what Anthropic and OpenAI themselves publish — kept separate so the source of truth is unambiguous.
+First-hand reference material for working in this repo. Unlike `.agents/memory/system/` (this repo's own operating standards), `resources/` holds **extracted upstream guidance** — what Anthropic and OpenAI themselves publish — kept separate so the source of truth is unambiguous.
 
 ## skill-authoring/
 
@@ -18,7 +18,7 @@ Official skill-authoring guidance, extracted from 13 first-hand vendor sources a
 ## How to use
 
 - Writing or reviewing a skill: start with [checklist.md](skill-authoring/checklist.md), reach for [frontmatter-field-spec.md](skill-authoring/frontmatter-field-spec.md) on field questions.
-- This repo's own conventions (platform-neutral writing, Contract blocks, validation) live in `.agents/SYSTEM/` and take precedence for repo work; `resources/` is the upstream ground truth those conventions are built on.
+- This repo's own conventions (platform-neutral writing, Contract blocks, validation) live in `.agents/memory/system/` and take precedence for repo work; `resources/` is the upstream ground truth those conventions are built on.
 
 ## Maintenance
 

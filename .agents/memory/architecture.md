@@ -1,20 +1,20 @@
 # Repository Architecture
 
-last_verified: 2026-06-07
+last_verified: 2026-06-18
 
 ## Directory Map
 
 ```
 skills-repo/
-├── skills/                          # 164 skills (source of truth)
+├── skills/                          # 141 skills (source of truth)
 │   └── <skill-name>/
 │       ├── SKILL.md                 # Skill definition (frontmatter + body)
 │       └── plugin.json              # Skill distribution manifest
 │
-├── commands/                        # 8 slash commands (.md files, flat)
+├── commands/                        # 11 slash commands (.md files, flat)
 │   └── <command-name>.md
 │
-├── bundles/                         # 16 themed bundles (generated snapshots)
+├── bundles/                         # 13 themed bundles (generated snapshots)
 │   └── <bundle-name>/
 │       ├── plugin.json              # Bundle manifest
 │       └── skills/                  # Copies of bundled skills
@@ -39,13 +39,13 @@ skills-repo/
 ├── .agents/                         # AI agent workspace
 │   ├── README.md                    # Agent entry point
 │   ├── memory/                      # Persistent memory (this dir)
-│   ├── SESSIONS/                    # Session logs (gitignored)
-│   └── SYSTEM/                      # Project docs
-│       ├── ARCHITECTURE.md          # .agents/ folder structure
-│       ├── AI-DEV-LOOP.md           # /loop workflow
-│       ├── SKILL-STANDARDS.md       # Skill authoring spec
-│       ├── SKILL-MANAGEMENT.md      # Sync workflow
-│       └── PLATFORM-ADAPTATIONS.md  # Claude vs Codex differences
+│   │   └── system/                  # Project docs and standards
+│   │       ├── architecture.md      # .agents/ folder structure
+│   │       ├── ai-dev-loop.md       # /loop workflow
+│   │       ├── skill-standards.md   # Skill authoring spec
+│   │       ├── skill-management.md  # Sync workflow
+│   │       └── platform-adaptations.md # Claude vs Codex differences
+│   └── sessions/                    # Historical session logs
 │
 ├── .claude/                         # Claude Code config
 │   ├── rules/CLAUDE_RULES.md        # Project rules
@@ -98,7 +98,7 @@ Optional: `license`, `compatibility`, `when_to_use`, `allowed-tools`, `model`, `
 
 ## Bundle Structure
 
-16 bundles: `ai-agents`, `backend`, `branding`, `content`, `dev-workflow`, `frontend`, `github`, `infrastructure`, `payments`, `planning`, `sales`, `security`, `session`, `startup`, `testing`, `workspace`
+13 bundles: `ai-agents`, `backend`, `dev-loop`, `dev-workflow`, `frontend`, `github`, `infrastructure`, `payments`, `planning`, `security`, `session`, `testing`, `workspace`
 
 Each bundle = curated subset of skills for a domain. Defined in `scripts/plugin-categories.json`.
 

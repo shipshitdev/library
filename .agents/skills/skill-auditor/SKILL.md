@@ -27,7 +27,7 @@ Find skills that overlap and should be consolidated:
 
 For each SKILL.md, check:
 
-- Frontmatter follows Agent Skills spec (see `.agents/SYSTEM/SKILL-STANDARDS.md`)
+- Frontmatter follows Agent Skills spec (see `.agents/memory/system/skill-standards.md`)
 - `version`/`tags` inside `metadata:` block, not top-level
 - No forbidden fields (`auto_activate`, `auto_trigger`, `risk`)
 - `metadata.tags` is a comma-separated string, not YAML list

@@ -4,18 +4,18 @@
 
 ![Project Type](https://img.shields.io/badge/Project-Skills-blue)
 
-140 AI agent skills for development workflows. Works with Claude Code, OpenAI Codex, and Cursor.
+141 AI agent skills for development workflows. Works with Claude Code, OpenAI Codex, and Cursor.
 
 ## Directory Structure
 
 ```
 skills/
-├── skills/              # All skills (140)
+├── skills/              # All skills (141)
 ├── commands/            # All commands (11)
 ├── bundles/             # Generated marketplace bundles
 ├── .agents/             # Repo management, memory, meta-skills
-│   ├── SYSTEM/          # Architecture docs, skill standards
-│   ├── memory/          # Repo decisions and context
+│   ├── memory/          # Repo decisions, context, and system docs
+│   ├── sessions/        # Historical session logs
 │   └── skills/          # Meta-skills for maintaining this repo
 ├── .claude/             # Claude Code config (agents, rules)
 ├── .codex/              # Codex CLI config
@@ -71,7 +71,7 @@ bash scripts/setup-dev-loop.sh            # --dry-run to preview
 # …or apply dispatch:claude / dispatch:codex to fire Phase 2 (GitHub Actions)
 ```
 
-Full reference: [`.agents/SYSTEM/AI-DEV-LOOP.md`](.agents/SYSTEM/AI-DEV-LOOP.md).
+Full reference: [`.agents/memory/system/ai-dev-loop.md`](.agents/memory/system/ai-dev-loop.md).
 
 ## Installation
 
@@ -137,11 +137,11 @@ touch skills/my-skill/SKILL.md
 
 ## Documentation
 
-- `.agents/SYSTEM/SKILL-STANDARDS.md` - Agent Skills spec + Claude Code extensions
-- `.agents/SYSTEM/SKILL-MANAGEMENT.md` - Single-source skill workflow
-- `.agents/SYSTEM/ARCHITECTURE.md` - .agents folder structure
-- `.agents/SYSTEM/PLATFORM-ADAPTATIONS.md` - Claude vs Codex writing guide
-- `.agents/SYSTEM/AI-DEV-LOOP.md` - Board-driven autonomous dev loop (`/loop` + agent-dispatch)
+- `.agents/memory/system/skill-standards.md` - Agent Skills spec + Claude Code extensions
+- `.agents/memory/system/skill-management.md` - Single-source skill workflow
+- `.agents/memory/system/architecture.md` - .agents folder structure
+- `.agents/memory/system/platform-adaptations.md` - Claude vs Codex writing guide
+- `.agents/memory/system/ai-dev-loop.md` - Board-driven autonomous dev loop (`/loop` + agent-dispatch)
 
 ## Development Commands
 
@@ -159,11 +159,11 @@ touch skills/my-skill/SKILL.md
 | release | Cut a trunk release with patch notes |
 | scan | Run dependency, code, config, and OWASP security scans |
 
-## Skills (140)
+## Skills (141)
 
-### Dev Loop (9)
+### Dev Loop (10)
 
-`feature-intake`, `writing-prds`, `writing-plans`, `prd-quality-gate`, `task-prd-creator`, `executing-plans`, `setup-agent-routing`, `gh-project-board`, `qa-reviewer`
+`interview`, `feature-intake`, `writing-prds`, `writing-plans`, `prd-quality-gate`, `task-prd-creator`, `executing-plans`, `setup-agent-routing`, `gh-project-board`, `qa-reviewer`
 
 ### Dev Workflow (33)
 
@@ -201,9 +201,9 @@ touch skills/my-skill/SKILL.md
 
 `fullstack-workspace-init`, `project-init-orchestrator`, `linter-formatter-init`, `clerk-validator`, `content-script-developer`, `package-architect`, `artifacts-builder`, `open-source-checker`, `devcontainer-setup`, `biome-validator`, `bun-validator`
 
-### Planning & PRDs (8)
+### Planning & PRDs (9)
 
-`roadmap-analyzer`, `cto-advisor`, `feature-intake`, `task-prd-creator`, `writing-prds`, `prd-quality-gate`, `rules-capture`, `writing-plans`
+`roadmap-analyzer`, `cto-advisor`, `interview`, `feature-intake`, `task-prd-creator`, `writing-prds`, `prd-quality-gate`, `rules-capture`, `writing-plans`
 
 ### Payments & Product Integrations (1)
 

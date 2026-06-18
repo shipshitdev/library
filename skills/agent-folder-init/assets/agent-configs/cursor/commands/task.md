@@ -246,7 +246,7 @@ After creation, note the issue number (e.g., `#42`) for reference in session not
 **AI Actions:**
 
 1. Update `.agents/memory/` files if architectural changes were made
-2. Add session entry to `.agents/SESSIONS/YYYY-MM-DD.md`
+2. Add session entry to `.agents/sessions/YYYY-MM-DD.md`
 3. Close or update the GitHub Issue:
 
    ```bash

@@ -111,7 +111,7 @@ All commands assume this lean structure:
 .agents/
 ├── README.md
 ├── memory/      ← durable project context (one topic per *.md file)
-└── SESSIONS/    ← daily logs YYYY-MM-DD.md
+└── sessions/    ← daily logs YYYY-MM-DD.md
 ```
 
 **Rules are in CLAUDE.md** (repo-level + global `~/.claude/CLAUDE.md`), loaded automatically.
@@ -159,7 +159,7 @@ Follow the naming convention:
 
 ## Notes
 
-- Commands use the lean `.agents/` structure (memory/ + SESSIONS/ only)
+- Commands use the lean `.agents/` structure (memory/ + sessions/ only)
 - Task management goes through GitHub Issues — no local task files
 - Project rules and preferences live in CLAUDE.md (repo-level + global)
 - Only project paths need adaptation (`[frontend-project]`, `[backend-project]`)

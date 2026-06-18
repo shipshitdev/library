@@ -121,6 +121,7 @@
       "skills": [
         "roadmap-analyzer",
         "cto-advisor",
+        "interview",
         "feature-intake",
         "task-prd-creator",
         "writing-prds",
@@ -212,6 +213,7 @@
     "dev-loop": {
       "description": "Autonomous GitHub issue-to-PR loop with PRDs, plans, board dispatch, QA, and review",
       "skills": [
+        "interview",
         "feature-intake",
         "writing-prds",
         "writing-plans",

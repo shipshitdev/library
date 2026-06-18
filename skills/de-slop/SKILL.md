@@ -58,7 +58,7 @@ bun run test
 
 ### Step 5: Document
 
-Log cleanup in today's session file (`.agents/SESSIONS/YYYY-MM-DD.md`) with packages cleaned and artifact counts.
+Log cleanup in today's session file (`.agents/sessions/YYYY-MM-DD.md`) with packages cleaned and artifact counts.
 
 ## Scope
 

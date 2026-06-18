@@ -19,7 +19,7 @@ Read the files most relevant to today's work. Rules and preferences are already 
 Read today's session to understand what was already done before `/clear`:
 
 ```bash
-cat .agents/SESSIONS/$(date +%Y-%m-%d).md
+cat .agents/sessions/$(date +%Y-%m-%d).md
 ```
 
 If the file exists, this shows:
@@ -41,7 +41,7 @@ The `session-documenter` skill will automatically activate and track:
 - Patterns established
 - Mistakes and fixes
 
-Documentation is written to `.agents/SESSIONS/YYYY-MM-DD.md` after each task completion.
+Documentation is written to `.agents/sessions/YYYY-MM-DD.md` after each task completion.
 
 **No manual action required** - this happens automatically.
 
@@ -96,7 +96,7 @@ This command ensures consistent behavior across sessions by:
 ## What Gets Loaded
 
 1. **`.agents/memory/*.md`**: Durable project facts (architecture, deployment, migrations, gotchas)
-2. **Today's session file** (`.agents/SESSIONS/YYYY-MM-DD.md`):
+2. **Today's session file** (`.agents/sessions/YYYY-MM-DD.md`):
    - What was done earlier today (before /clear)
    - Context continuity across /clear boundaries
 

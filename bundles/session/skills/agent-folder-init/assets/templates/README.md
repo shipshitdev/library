@@ -11,7 +11,7 @@ This is the `.agents/` folder — source of truth for AI agent context, session 
 ├── README.md                    # This file — navigation hub
 ├── memory/
 │   └── README.md                # Source of truth for durable project facts
-└── SESSIONS/
+└── sessions/
     ├── README.md                # Session format guide
     └── TEMPLATE.md              # Session file template
 ```
@@ -21,7 +21,7 @@ This is the `.agents/` folder — source of truth for AI agent context, session 
 ### Before Starting Work
 
 1. Read `.agents/memory/` files relevant to the current task
-2. Check today's session file (if exists): `SESSIONS/{{DATE}}.md`
+2. Check today's session file (if exists): `sessions/{{DATE}}.md`
 3. Check open tasks: `gh issue list`
 
 ### During Work
@@ -32,13 +32,13 @@ This is the `.agents/` folder — source of truth for AI agent context, session 
 
 ### After Work
 
-- Update the session file in `SESSIONS/`
+- Update the session file in `sessions/`
 - Update any `.agents/memory/` files whose facts changed
 - Note next steps
 
 ## Session Files
 
-**ONE FILE PER DAY:** `SESSIONS/YYYY-MM-DD.md`
+**ONE FILE PER DAY:** `sessions/YYYY-MM-DD.md`
 
 Multiple sessions on the same day go in the same file as Session 1, Session 2, etc.
 

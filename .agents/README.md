@@ -7,20 +7,18 @@ You are working **ON the library**, not in a project that uses it.
 | Need to... | Look at... |
 |------------|------------|
 | Find tasks | GitHub Issues |
-| Check past context | `SESSIONS/` |
-| Read docs | `SYSTEM/` |
+| Check past context | `sessions/` |
+| Read docs | `memory/system/` |
 
 ## Structure
 
 ```
 .agents/
 ├── README.md          # You are here
-├── SESSIONS/          # Context preservation
-└── SYSTEM/            # All documentation
-    ├── ARCHITECTURE.md         # .agents/ folder explained
-    ├── AI-DEV-LOOP.md          # The /loop workflow
-    ├── PLATFORM-ADAPTATIONS.md # Claude vs Codex differences
-    └── SKILL-MANAGEMENT.md     # Sync workflow
+├── memory/            # Durable context + system docs
+│   └── system/        # Architecture docs, standards, workflows
+├── sessions/          # Context preservation
+└── skills/            # Meta-skills for maintaining this repo
 ```
 
 ## This Repository
@@ -39,15 +37,21 @@ library/
 ### Adding a New Skill
 
 1. Create in `skills/skill-name/SKILL.md`
-2. Update main README.md skill table
+2. Update `scripts/plugin-categories.json` if it belongs in a bundle
+3. Run `bun run marketplace:generate`
 
 ### Running the Dev Loop
 
-See `SYSTEM/AI-DEV-LOOP.md`
+See `memory/system/ai-dev-loop.md`
+
+### Task Tracking
+
+Plans and implementation state live on GitHub issues and PRs, not in local
+`.agents/plans/` files.
 
 ## Session Documentation
 
-Before ending a session, document in `SESSIONS/YYYY-MM-DD.md`:
+Before ending a session, document in `sessions/YYYY-MM-DD.md`:
 
 - Files changed
 - Decisions made

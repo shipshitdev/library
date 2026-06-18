@@ -300,7 +300,7 @@ After:
 
 ```bash
 # Create session entry
-cat >> .agents/SESSIONS/$(date +%Y-%m-%d).md << EOF
+cat >> .agents/sessions/$(date +%Y-%m-%d).md << EOF
 
 ## Refactoring: [Component/Service Name]
 

@@ -411,7 +411,7 @@ async generatePost(prompt: string) {
 ### 9. Documentation Review
 
 ```
-- [ ] Session file created (`.agents/SESSIONS/YYYY-MM-DD.md`)
+- [ ] Session file created (`.agents/sessions/YYYY-MM-DD.md`)
 - [ ] Flowchart included (for complex features)
 - [ ] .agents/memory/ updated (if architectural change)
 - [ ] GitHub Issue closed or commented (if applicable)

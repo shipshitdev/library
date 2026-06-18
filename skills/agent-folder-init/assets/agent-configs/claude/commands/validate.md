@@ -17,9 +17,9 @@ Checks that the `.agents/` folder follows the canonical lean structure.
 
 - Required files exist (`.agents/README.md`)
 - `.agents/memory/` exists and contains at least one `.md` file
-- `.agents/SESSIONS/` exists
+- `.agents/sessions/` exists
 - Each memory file carries a `last_verified` date
-- None of the old layout directories exist (any of: `SYSTEM/`, `TASKS/`, `PRDS/`, `SOP/`, `EXAMPLES/`, `FEEDBACK/` inside `.agents/`)
+- None of the old layout directories exist (any of: `memory/system/`, `TASKS/`, `PRDS/`, `SOP/`, `EXAMPLES/`, `FEEDBACK/` inside `.agents/`)
 
 ### Canonical Structure
 
@@ -27,7 +27,7 @@ Checks that the `.agents/` folder follows the canonical lean structure.
 .agents/
 ├── README.md
 ├── memory/      ← durable project facts, one topic per *.md file
-└── SESSIONS/    ← daily logs YYYY-MM-DD.md
+└── sessions/    ← daily logs YYYY-MM-DD.md
 ```
 
 Rules and preferences live in `CLAUDE.md` (repo-level and `~/.claude/CLAUDE.md`), not inside `.agents/`.

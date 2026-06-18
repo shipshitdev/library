@@ -17,8 +17,9 @@ The `.agents/` folder solves these with file-based state that any AI platform ca
 ```
 .agents/
 ├── README.md          # Quick-start for AI agents (entry point)
-├── SESSIONS/          # Context preservation across sessions
-└── SYSTEM/            # Project documentation (you are here)
+├── memory/            # Durable project context
+│   └── system/        # Project documentation and workflow standards
+└── sessions/          # Context preservation across sessions
 ```
 
 ### README.md
@@ -29,14 +30,14 @@ The entry point. AI agents read this first to understand:
 - Where to find documentation
 - How to manage tasks and sessions
 
-Keep it short. Link to SYSTEM/ docs for details.
+Keep it short. Link to `memory/system/` docs for details.
 
-### SESSIONS/
+### sessions/
 
 Preserves context when sessions end. Each file is a dated snapshot:
 
 ```
-SESSIONS/
+sessions/
 ├── 2024-01-15.md      # What happened on Jan 15
 ├── 2024-01-16.md      # What happened on Jan 16
 └── ...
@@ -68,20 +69,23 @@ Brief description of what was accomplished.
 
 **When to write:** Before ending any non-trivial session. Before `/clear`.
 
-### SYSTEM/
+### memory/system/
 
-Project documentation. Everything an AI agent needs to understand the project:
+Project documentation and durable workflow standards. Everything an AI agent needs
+to understand the project:
 
 ```
-SYSTEM/
-├── ARCHITECTURE.md        # This file - .agents/ folder structure
-├── AI-DEV-LOOP.md         # The /loop workflow
-├── PRD.md                 # Product Requirements (optional)
-├── PLATFORM-ADAPTATIONS.md
-└── SKILL-MANAGEMENT.md
+memory/system/
+├── architecture.md        # This file - .agents/ folder structure
+├── ai-dev-loop.md         # The /loop workflow
+├── skill-standards.md     # Skill authoring rules
+├── platform-adaptations.md
+└── skill-management.md
 ```
 
-**Rule:** All project documentation lives here. No scattered docs.
+**Rule:** Durable system documentation lives here. Repo-specific durable facts live
+one level up in `memory/`. No `.agents/plans/`; plans and task state live on
+GitHub issues and PRs.
 
 ## Task Tracking
 
@@ -110,6 +114,6 @@ All platforms read/write the same files.
 |------------|------------|
 | Understand the project | `.agents/README.md` |
 | Find what to work on | GitHub Issues |
-| Check past context | `.agents/SESSIONS/` |
-| Read project docs | `.agents/SYSTEM/` |
-| Run the dev loop | `AI-DEV-LOOP.md` |
+| Check past context | `.agents/sessions/` |
+| Read project docs | `.agents/memory/system/` |
+| Run the dev loop | `.agents/memory/system/ai-dev-loop.md` |

@@ -12,7 +12,7 @@ This is the shipshitdev/skills repo: 140 AI agent skills for Claude Code, Codex,
 
 ## Rules
 
-- Follow the Agent Skills spec: `.agents/SYSTEM/SKILL-STANDARDS.md`
+- Follow the Agent Skills spec: `.agents/memory/system/skill-standards.md`
 - `version`/`tags` go inside `metadata:` block as quoted strings, never top-level
 - No `auto_activate`, `auto_trigger`, or `risk` fields
 - Skills are platform-neutral: no tool names, imperative style
@@ -30,4 +30,4 @@ This is the shipshitdev/skills repo: 140 AI agent skills for Claude Code, Codex,
 
 1. Read the SKILL.md you'll modify
 2. Find 3+ similar skills to follow their patterns
-3. Check `.agents/memory/MEMORY.md` for repo decisions
+3. Check `.agents/memory/memory.md` for repo decisions

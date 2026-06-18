@@ -437,7 +437,7 @@ find . -name "*.e2e-spec.ts" | wc -l
 ### Key Files
 
 - **Project memory:** `.agents/memory/*.md`
-- **Sessions:** `.agents/SESSIONS/`
+- **Sessions:** `.agents/sessions/`
 
 ### Metrics
 

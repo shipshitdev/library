@@ -187,7 +187,7 @@ def create_agents_md(name: str) -> str:
 
         ## Context
 
-        Durable project facts live in `.agents/memory/`. Session logs are in `.agents/SESSIONS/`.
+        Durable project facts live in `.agents/memory/`. Session logs are in `.agents/sessions/`.
     """)
 
 
@@ -207,7 +207,7 @@ def create_claude_md(name: str) -> str:
 
         ## Project Context
 
-        Durable project facts live in `.agents/memory/`. Session logs are in `.agents/SESSIONS/`.
+        Durable project facts live in `.agents/memory/`. Session logs are in `.agents/sessions/`.
     """)
 
 

@@ -48,7 +48,7 @@ Delegates To:
 
 This skill scaffolds a lean AI agent documentation system including:
 
-- Session tracking (daily files in `.agents/SESSIONS/`)
+- Session tracking (daily files in `.agents/sessions/`)
 - Durable project context in `.agents/memory/` (one topic per file)
 - Agent config folders (.claude, .codex, .cursor) with commands, rules, and agents
 
@@ -93,7 +93,7 @@ python3 scripts/scaffold.py \
 ├── README.md                    # Navigation hub
 ├── memory/
 │   └── README.md                # Source of truth for durable project facts
-└── SESSIONS/
+└── sessions/
     ├── README.md                # Session format guide
     └── TEMPLATE.md              # Session file template
 ```
@@ -151,7 +151,7 @@ python3 scripts/scaffold.py \
 
 ### Session Files
 
-- **One file per day**: `SESSIONS/YYYY-MM-DD.md`
+- **One file per day**: `sessions/YYYY-MM-DD.md`
 - Multiple sessions same day use Session 1, Session 2, etc. in the same file.
 
 ## Customization

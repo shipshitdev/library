@@ -658,7 +658,7 @@ check_reference_directory() {
 # Only skills that declare metadata.source are subject to these checks; in-house
 # skills (no source) are exempt and pass silently. This keeps the upstream
 # reference + last-synced date honest so drift against the original author is
-# visible (see .agents/SYSTEM/UPSTREAM-TRACKING.md).
+# visible (see .agents/memory/system/upstream-tracking.md).
 check_provenance() {
     local file="$1"
     local skill_dir="$2"

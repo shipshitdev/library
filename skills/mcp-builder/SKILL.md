@@ -87,12 +87,12 @@ This document contains the complete MCP specification. Note: the URL may change 
 
 **For Python implementations, also load:**
 
-- **Python SDK Documentation**: Use WebFetch to load `https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/main/README.md`
+- **Python SDK Documentation**: Use WebFetch to load `https://py.sdk.modelcontextprotocol.io/`
 - [🐍 Python Implementation Guide](./references/python_mcp_server.md) - Python-specific best practices and examples
 
 **For Node/TypeScript implementations, also load:**
 
-- **TypeScript SDK Documentation**: Use WebFetch to load `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`
+- **TypeScript SDK Documentation**: Use WebFetch to load `https://ts.sdk.modelcontextprotocol.io/`
 - [⚡ TypeScript Implementation Guide](./references/node_mcp_server.md) - Node/TypeScript-specific best practices and examples
 
 #### 1.4 Exhaustively Study API Documentation
@@ -352,8 +352,8 @@ Load these resources as needed during development:
 
 ### SDK Documentation (Load During Phase 1/2)
 
-- **Python SDK**: Fetch from `https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/main/README.md`
-- **TypeScript SDK**: Fetch from `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`
+- **Python SDK**: Fetch from `https://py.sdk.modelcontextprotocol.io/`
+- **TypeScript SDK**: Fetch from `https://ts.sdk.modelcontextprotocol.io/`
 
 ### Language-Specific Implementation Guides (Load During Phase 2)
 

@@ -39,7 +39,7 @@ gh issue view <number> --comments
 # List the dispatch queue: the gate label intersected with the board's Backlog column
 # (see triage-labels.md for the dispatch:claude / dispatch:codex gates)
 source .github/agent-loop.env
-gh issue list --label "dispatch:claude" --json number,title,labels,assignees --jq '.'
+gh issue list --label "dispatch:claude" --json number,labels,assignees --jq '.'
 gh project item-list "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --format json -L 500 \
   | jq -r '.items[] | select(.status == "Backlog") | .content.number'
 

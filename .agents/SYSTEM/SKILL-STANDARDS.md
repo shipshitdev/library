@@ -176,11 +176,11 @@ Required for distribution via `npx skills add`. Keep this committed file synced 
 {
   "name": "my-skill",
   "version": "1.0.0",
-  "description": "Short description (shown in npx skills registry). Max ~100 chars.",
+  "description": "Short description (shown in npx skills registry). Max 100 chars.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",
-    "url": "https://github.com/shipshitdev"
+    "url": "https://shipshit.dev"
   },
   "license": "MIT",
   "skills": "."

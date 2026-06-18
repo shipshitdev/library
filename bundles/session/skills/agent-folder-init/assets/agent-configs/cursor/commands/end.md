@@ -4,7 +4,7 @@
 
 ## What This Command Does
 
-1. **Activates the `session-documenter` skill** to save all session context to `.agents/SESSIONS/YYYY-MM-DD.md`
+1. **Activates the `session-documenter` skill** to save a redacted session summary to `.agents/SESSIONS/YYYY-MM-DD.md`
 2. **Tells you to manually run `/clear`** (Claude Code's built-in command) to clear the context
 
 **Note:** `/end` only documents. You must manually run `/clear` (built-in) after `/end` completes to actually clear the conversation context.
@@ -135,7 +135,7 @@ Your session is safely preserved and will be loaded when you run /start again.
 
 Simply run `/clear` directly without running `/end` first.
 
-**WARNING:** Clearing without documentation means you lose all session context.
+**WARNING:** Clearing without documentation means you lose unsaved session context.
 Best practice is to ALWAYS run `/end` before `/clear`.
 
 ---

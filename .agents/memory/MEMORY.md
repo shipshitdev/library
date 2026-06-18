@@ -1,10 +1,10 @@
 # Skills Repo Memory
 
-last_verified: 2026-06-08
+last_verified: 2026-06-18
 
 ## What This Repo Is
 
-Public skills library at `shipshitdev/skills`. 169 skills, 8 commands, 16 bundles. Installable via `npx skills add shipshitdev/skills --skill <name>`. Works with Claude Code, Codex, Cursor, OpenClaw, Gemini.
+Public skills library at `shipshitdev/skills`. 140 skills, 11 commands, 13 bundles. Installable via `npx skills add shipshitdev/skills --skill <name>`. Works with Claude Code, Codex, Cursor, OpenClaw, Gemini.
 
 Published through committed marketplace bundles in `bundles/` and the generated `.claude-plugin/marketplace.json` catalog. The old generated `plugins/` package tree is retired.
 
@@ -17,15 +17,15 @@ Published through committed marketplace bundles in `bundles/` and the generated 
 - **Linting:** markdownlint (markdown), biome (JSON/JS), shellcheck (bash)
 - **CI:** GitHub Actions on push to master — regenerates bundles + marketplace
 
-## Numbers (snapshot 2026-06-08)
+## Numbers (snapshot 2026-06-18)
 
 | Asset | Count | Location |
 |-------|-------|----------|
-| Skills | 169 | `skills/<name>/SKILL.md` |
-| Commands | 8 | `commands/<name>.md` |
-| Bundles | 16 | `bundles/<bundle>/plugin.json` |
-| Scripts | 11 | `scripts/` |
-| Prompts | 1 | `prompts/prd-interview.md` |
+| Skills | 140 | `skills/<name>/SKILL.md` |
+| Commands | 11 | `commands/<name>.md` |
+| Bundles | 13 | `bundles/<bundle>/plugin.json` |
+| Scripts | 15 | `scripts/` |
+| Prompts | 2 | `prompts/` |
 
 ## Architecture Decisions
 
@@ -54,7 +54,7 @@ All referenced external repos now internal — no external dependencies:
 
 | Decision | Rationale |
 |----------|-----------|
-| Keep copywriter + copywriting separate | copywriter = brand-aware persona, copywriting = guardrailed landing page copy |
+| Move content/GTM skills out of Shipshit | Shipshit is dev-workflow focused; content and GTM strategy skills live in Genfeed |
 | Merge clean-code + code-refactoring-refactor-clean → refactor-code | refactor-code is best-developed; others are weaker duplicates |
 | Keep all 5 security skills | Distinct: expert persona, audit workflow, API-specific, backend impl, frontend impl |
 | Keep react-patterns + react-refactor + react-component-performance | Cleanly separated by concern |

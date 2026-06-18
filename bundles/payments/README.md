@@ -12,4 +12,3 @@ Payment processing and financial integrations
 ## Included Skills
 
 - `stripe-implementer`
-- `financial-operations-expert`

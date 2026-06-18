@@ -2,9 +2,9 @@
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",
-    "url": "https://github.com/shipshitdev"
+    "url": "https://shipshit.dev"
   },
-  "description": "Build resilient data ingestion pipelines from APIs. Use when creating scripts that fetch paginated data from an API.",
+  "description": "Build resilient paginated API ingestion and incremental fetch pipelines.",
   "license": "MIT",
   "name": "incremental-fetch",
   "skills": ".",

@@ -1,11 +1,11 @@
 {
   "name": "release-cleanup",
   "version": "2.1.0",
-  "description": "Squash-merge-aware release cleanup: verify feature branches are provably merged into the trunk (default branch) via GitHub PR merge state, then prune merged branches and stale worktrees",
+  "description": "Verify squash-merged branches and prune merged branches and stale worktrees.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",
-    "url": "https://github.com/shipshitdev"
+    "url": "https://shipshit.dev"
   },
   "license": "MIT",
   "skills": "."

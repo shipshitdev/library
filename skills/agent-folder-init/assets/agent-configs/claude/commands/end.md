@@ -4,7 +4,7 @@
 
 ## What This Command Does
 
-1. **Activates the session-documenter skill** to save all session context to .agents/SESSIONS/YYYY-MM-DD.md
+1. **Activates the session-documenter skill** to save a redacted session summary to .agents/SESSIONS/YYYY-MM-DD.md
 2. **Tells you to manually run /clear** (Claude Code built-in command) to clear the context
 
 ## Workflow
@@ -17,7 +17,7 @@ When user types /end, activate session-documenter skill to:
 - Save decisions made with rationale
 - Record files created/modified/deleted
 - Note patterns established
-- Write everything to .agents/SESSIONS/YYYY-MM-DD.md
+- Write the redacted summary to .agents/SESSIONS/YYYY-MM-DD.md
 
 ### Step 2: Remind User to Clear Manually
 

@@ -1,11 +1,11 @@
 {
   "name": "setup-agent-routing",
   "version": "1.1.0",
-  "description": "Write an `## Agent skills` routing block and docs/agents/ so the dev-loop skills know a repo's tracker, labels, and domain layout.",
+  "description": "Write repo agent-routing docs for dev-loop tracker, labels, and domain layout.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",
-    "url": "https://github.com/shipshitdev"
+    "url": "https://shipshit.dev"
   },
   "license": "MIT",
   "skills": "."

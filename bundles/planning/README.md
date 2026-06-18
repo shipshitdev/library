@@ -12,9 +12,7 @@ Strategy, planning, and analysis skills
 ## Included Skills
 
 - `roadmap-analyzer`
-- `strategy-expert`
 - `cto-advisor`
-- `business-operator`
 - `feature-intake`
 - `task-prd-creator`
 - `writing-prds`

@@ -1,11 +1,11 @@
 {
   "name": "merge-open-prs",
   "version": "1.1.0",
-  "description": "Review every open PR targeting the default/trunk branch, merge the approved ones into the trunk, then delegate branch and worktree pruning to release-cleanup. Confirmation-gated and squash-merge aware",
+  "description": "Review and merge approved trunk PRs, then delegate branch and worktree cleanup.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",
-    "url": "https://github.com/shipshitdev"
+    "url": "https://shipshit.dev"
   },
   "license": "MIT",
   "skills": "."

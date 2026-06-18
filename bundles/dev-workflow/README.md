@@ -21,11 +21,13 @@ Code review, debugging, refactoring, release, and AI-assisted development workfl
 - `structural-review`
 - `full-code-review`
 - `commit-summary`
+- `changelog-generator`
 - `de-slop`
 - `debug`
 - `deploy`
 - `execution-debugging`
 - `deployment-composer`
+- `docs`
 - `llm-structured-output`
 - `merge-open-prs`
 - `production-audit`

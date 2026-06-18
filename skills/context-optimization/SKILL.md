@@ -1,6 +1,10 @@
 ---
 name: context-optimization
-description: This skill should be used for improving context efficiency: context budgeting, observation masking, prefix or KV-cache strategy, partitioning, token-cost reduction, retrieval scoping, and extending effective context capacity without lowering answer quality.
+description: >-
+  Improve context efficiency through context budgeting, observation masking,
+  prefix or KV-cache strategy, partitioning, token-cost reduction, retrieval
+  scoping, and extending effective context capacity without lowering answer
+  quality.
 metadata:
   version: "2.1.0"
   source: https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/blob/main/skills/context-optimization/SKILL.md

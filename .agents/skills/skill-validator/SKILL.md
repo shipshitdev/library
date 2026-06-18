@@ -4,6 +4,7 @@ description: |
   Validate SKILL.md files against the Agent Skills spec and Claude Code extensions.
   Run on new or modified skills before committing.
 metadata:
+  internal: true
   version: "1.0.0"
   tags: "validation, skills, spec-compliance, quality"
 ---

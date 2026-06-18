@@ -3,7 +3,7 @@ name: deploy
 description: Run deployment workflows for web applications (staging, production). Use when user says 'deploy', 'push to staging', 'release', 'ship it', or 'go live'.
 metadata:
   version: "1.0.1"
-  tags: deployment, devops, ci-cd, production, staging
+  tags: "deployment, devops, ci-cd, production, staging"
 ---
 
 # Deploy

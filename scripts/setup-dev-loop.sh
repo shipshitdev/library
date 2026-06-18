@@ -254,7 +254,11 @@ provision_board() {
   local backlog_id in_progress_id human_review_id done_id deferred_id
   owner="${REPO%%/*}"
   repo_root="$(git rev-parse --show-toplevel 2>/dev/null || true)"
-  env_file="${repo_root:-.}/.github/agent-loop.env"
+  if [[ -z "$repo_root" ]]; then
+    err "Not inside the target repository working tree; cannot write .github/agent-loop.env"
+    return 1
+  fi
+  env_file="${repo_root}/.github/agent-loop.env"
 
   if $DRY_RUN; then
     dry "resolve-or-create project '${PROJECT_TITLE}' under ${owner} (or reuse --project ${PROJECT_NUMBER:-<auto>})"
@@ -298,6 +302,19 @@ provision_board() {
   human_review_id="$(_opt_id "Human Review")"
   done_id="$(_opt_id "Done")"
   deferred_id="$(_opt_id "Deferred")"
+
+  local missing_ids=()
+  [[ -z "$node_id" ]] && missing_ids+=("PROJECT_NODE_ID")
+  [[ -z "$status_field_id" ]] && missing_ids+=("STATUS_FIELD_ID")
+  [[ -z "$backlog_id" ]] && missing_ids+=("STATUS_BACKLOG_OPTION_ID")
+  [[ -z "$in_progress_id" ]] && missing_ids+=("STATUS_IN_PROGRESS_OPTION_ID")
+  [[ -z "$human_review_id" ]] && missing_ids+=("STATUS_HUMAN_REVIEW_OPTION_ID")
+  [[ -z "$done_id" ]] && missing_ids+=("STATUS_DONE_OPTION_ID")
+  [[ -z "$deferred_id" ]] && missing_ids+=("STATUS_DEFERRED_OPTION_ID")
+  if ((${#missing_ids[@]} > 0)); then
+    err "Failed to resolve board IDs: ${missing_ids[*]}. Aborting env file write."
+    return 1
+  fi
 
   mkdir -p "$(dirname "$env_file")"
   cat >"$env_file" <<EOF
@@ -458,6 +475,15 @@ Examples:
 USAGE
 }
 
+require_option_value() {
+  local flag="$1" value="${2-}"
+  if [[ -z "$value" || "$value" == --* ]]; then
+    err "Missing value for ${flag}"
+    usage
+    exit 1
+  fi
+}
+
 # ============================================================================
 # Main
 # ============================================================================
@@ -465,8 +491,8 @@ USAGE
 main() {
   while [[ $# -gt 0 ]]; do
     case "$1" in
-      --repo)             REPO="$2"; shift 2 ;;
-      --project)          PROJECT_NUMBER="$2"; shift 2 ;;
+      --repo)             require_option_value "$1" "${2-}"; REPO="$2"; shift 2 ;;
+      --project)          require_option_value "$1" "${2-}"; PROJECT_NUMBER="$2"; shift 2 ;;
       --skip-labels)      DO_LABELS=false; shift ;;
       --skip-board)       DO_BOARD=false; shift ;;
       --skip-workflow)    DO_WORKFLOW=false; shift ;;

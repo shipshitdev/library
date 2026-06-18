@@ -1,11 +1,11 @@
 {
   "name": "worktree",
   "version": "1.0.1",
-  "description": "Create an isolated git worktree off the right base branch (current feature branch, else the default/trunk branch) in a clean gitignored directory",
+  "description": "Create an isolated git worktree from the correct base branch in a clean directory.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",
-    "url": "https://github.com/shipshitdev"
+    "url": "https://shipshit.dev"
   },
   "license": "MIT",
   "skills": "."

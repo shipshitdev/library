@@ -73,7 +73,6 @@ Agent workflow skills. **The prior `author: Ship Shit Dev` frontmatter on three 
 | skill-creator | `b0cbd3df1533` | |
 | artifacts-builder | `ef740771ac90` | upstream name is `web-artifacts-builder`; shared-UI import repointed to `@agenticindiedev/ui` |
 | theme-factory | `ef740771ac90` | |
-| internal-comms | `ef740771ac90` | |
 
 ### Dimillian/Skills — MIT — `rolling` (`main`)
 
@@ -118,14 +117,13 @@ Eight skills derive from this repo, all verified by fetching the live upstream f
 
 ### ⚠️ License flags
 
-Two external upstreams ship **no LICENSE file** — content is all-rights-reserved by default and redistribution permission is unconfirmed. Verified by hand (GitHub license API returns 404, repo root has no LICENSE/COPYING):
+One external upstream ships **no LICENSE file** — content is all-rights-reserved by default and redistribution permission is unconfirmed. Verified by hand (GitHub license API returns 404, repo root has no LICENSE/COPYING):
 
 | Skill | Upstream | Status |
 |-------|----------|--------|
 | changelog-generator | ComposioHQ/awesome-claude-skills | no LICENSE — **license requested 2026-06-13** ([issue #1069](https://github.com/ComposioHQ/awesome-claude-skills/issues/1069), awaiting maintainer) |
-| humanizer | ankshvayt/humanizer | no LICENSE — **license requested 2026-06-13** ([issue #1](https://github.com/ankshvayt/humanizer/issues/1), awaiting maintainer) |
 
-These are tracked for *provenance*, not cleared for *redistribution*. A license-request issue is open on each upstream (above); until a maintainer adds an explicit OSS license, decide whether to keep, relicense-on-request, or replace.
+This is tracked for *provenance*, not cleared for *redistribution*. A license-request issue is open on the upstream (above); until a maintainer adds an explicit OSS license, decide whether to keep, relicense-on-request, or replace.
 
 ---
 
@@ -150,14 +148,13 @@ Not third-party — no external author to track — but worth recording so they 
 
 | Skill | Note |
 |-------|------|
-| x-algorithm-optimizer | Re-homed from Vincent's own public `shipshitdev/library` (commit `c4345ca`, "import 40 external skills"). Own work — no third-party upstream. |
 | executing-plans | Name collides with obra/superpowers' `executing-plans`, but this is the marketplace's own in-house skill (v2.1.0), **not** a port. Do not auto-attribute it to superpowers. |
 
 ---
 
-## Bucket 4 — In-house original (≈148 skills)
+## Bucket 4 — In-house original (≈113 skills)
 
-Everything else (≈148 of 178) is Ship Shit Dev's own work — the solo-founder GTM + engineering toolkit. No upstream, no `metadata.source`, validator-exempt. These were classified by a 144-agent verification sweep that defaulted to in-house and only marked a skill external after fetching and matching a real upstream file.
+Everything else (≈113 of 140) is Ship Shit Dev's own development workflow toolkit. No upstream, no `metadata.source`, validator-exempt. These were classified by a verification sweep that defaulted to in-house and only marked a skill external after fetching and matching a real upstream file.
 
 ---
 
@@ -167,4 +164,4 @@ Everything else (≈148 of 178) is Ship Shit Dev's own work — the solo-founder
 - **Adding a new import:** record provenance in `scripts/provenance-manifest.json`, run `python3 scripts/apply-provenance.py scripts/provenance-manifest.json`, then add a row here.
 - **Source of truth for ports:** git commit messages (e.g. PR #16 documented the original spec-pipeline ports) are the highest-precision provenance signal — consult them before trusting frontmatter labels, which have been wrong before.
 
-*Last updated: 2026-06-13.*
+*Last updated: 2026-06-18.*

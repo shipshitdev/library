@@ -1,11 +1,11 @@
 {
   "name": "task-prd-creator",
   "version": "1.1.0",
-  "description": "Write well-structured PRDs and tasks. Creates GitHub issues, sub-issues, or local files based on user workflow.",
+  "description": "Write PRDs and tasks as GitHub issues, sub-issues, or local planning files.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",
-    "url": "https://github.com/shipshitdev"
+    "url": "https://shipshit.dev"
   },
   "license": "MIT",
   "skills": "."

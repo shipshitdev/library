@@ -493,7 +493,7 @@ Find input by label.
 
 ```bash
 agent-browser find label "Email" fill "user@test.com"
-agent-browser find label "Password" fill "secret123"
+agent-browser find label "Password" fill "<test-password-placeholder>"
 ```
 
 ### find first / nth
@@ -551,7 +551,7 @@ agent-browser set offline off
 Set extra HTTP headers.
 
 ```bash
-agent-browser set headers '{"X-Custom-Header": "value"}'
+agent-browser set headers '{"X-Test-Run": "true"}'
 ```
 
 ### set credentials
@@ -559,7 +559,7 @@ agent-browser set headers '{"X-Custom-Header": "value"}'
 Set HTTP basic auth credentials.
 
 ```bash
-agent-browser set credentials username password
+agent-browser set credentials <test-user> <test-password-placeholder>
 ```
 
 ### set media
@@ -582,7 +582,7 @@ Manage cookies.
 
 ```bash
 agent-browser cookies                     # Get all
-agent-browser cookies set name value      # Set cookie
+agent-browser cookies set test_mode true  # Set non-sensitive cookie
 agent-browser cookies get name            # Get specific
 agent-browser cookies clear               # Clear all
 agent-browser cookies clear --name foo    # Clear specific
@@ -713,7 +713,7 @@ Execute JavaScript in page context.
 ```bash
 agent-browser eval "document.title"
 agent-browser eval "window.scrollY"
-agent-browser eval "localStorage.getItem('token')"
+agent-browser eval "Object.keys(localStorage)"
 agent-browser eval "document.querySelectorAll('.item').length"
 ```
 
@@ -783,7 +783,7 @@ agent-browser trace stop trace.zip
 agent-browser open https://app.com/login
 agent-browser snapshot -i
 agent-browser fill @e1 "username"
-agent-browser fill @e2 "password"
+agent-browser fill @e2 "<test-password-placeholder>"
 agent-browser click @e3
 agent-browser wait --url "**/dashboard"
 agent-browser state save auth.json

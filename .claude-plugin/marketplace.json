@@ -3,13 +3,8 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "182 AI agent skills for indie developers building startups",
+  "description": "140 AI agent skills for development workflows",
   "plugins": [
-    {
-      "name": "shipshitdev-startup",
-      "source": "./bundles/startup",
-      "description": "Skills for validating ideas, planning MVPs, and launching startups"
-    },
     {
       "name": "shipshitdev-testing",
       "source": "./bundles/testing",
@@ -34,21 +29,6 @@
       "name": "shipshitdev-backend",
       "source": "./bundles/backend",
       "description": "Backend development and API skills"
-    },
-    {
-      "name": "shipshitdev-content",
-      "source": "./bundles/content",
-      "description": "Content creation and documentation skills"
-    },
-    {
-      "name": "shipshitdev-sales",
-      "source": "./bundles/sales",
-      "description": "Sales, leads, and outreach skills"
-    },
-    {
-      "name": "shipshitdev-branding",
-      "source": "./bundles/branding",
-      "description": "Brand strategy and naming skills"
     },
     {
       "name": "shipshitdev-ai-agents",
@@ -88,7 +68,7 @@
     {
       "name": "shipshitdev-dev-loop",
       "source": "./bundles/dev-loop",
-      "description": "Ship the autonomous gh + Claude + Codex dev loop: PRD → plan → board-driven execution → QA → PR (the workflow ShipCode productizes)"
+      "description": "Autonomous GitHub issue-to-PR loop with PRDs, plans, board dispatch, QA, and review"
     },
     {
       "name": "accessibility",
@@ -166,11 +146,6 @@
       "description": "Validate Biome 2.3+ configuration and detect outdated patterns. Ensures proper schema version, domai"
     },
     {
-      "name": "brand-architect",
-      "source": "./skills/brand-architect",
-      "description": "Use this skill when users need to develop brand strategy, choose a company name, define brand positi"
-    },
-    {
       "name": "bug",
       "source": "./skills/bug",
       "description": "File a GitHub issue of type Bug from a description — structures a clear bug report (summary, steps t"
@@ -181,24 +156,9 @@
       "description": "Validate Bun workspace configuration and detect common monorepo issues. Ensures proper workspace set"
     },
     {
-      "name": "business-model-auditor",
-      "source": "./skills/business-model-auditor",
-      "description": "Stress-tests business models to identify scale limitations, bottlenecks, and unit economics gaps usi"
-    },
-    {
-      "name": "business-operator",
-      "source": "./skills/business-operator",
-      "description": "Orchestrates multiple business ventures using Hormozi portfolio frameworks, prioritizing which to fo"
-    },
-    {
       "name": "changelog-generator",
       "source": "./skills/changelog-generator",
       "description": "Automatically creates user-facing changelogs from git commits by analyzing commit history, categoriz"
-    },
-    {
-      "name": "channel-validator",
-      "source": "./skills/channel-validator",
-      "description": "Use this skill when users need to validate their marketing channel strategy, assess channel focus, o"
     },
     {
       "name": "clarify",
@@ -221,11 +181,6 @@
       "description": "Survey any codebase as a senior advisor and produce prioritized, self-contained implementation plans"
     },
     {
-      "name": "cofounder-evaluator",
-      "source": "./skills/cofounder-evaluator",
-      "description": "Use this skill when users need to evaluate potential co-founders, assess founder compatibility, desi"
-    },
-    {
       "name": "comment-mode",
       "source": "./skills/comment-mode",
       "description": "Granular feedback on drafts without rewriting. Generates highlighted HTML with click-to-reveal inlin"
@@ -236,24 +191,9 @@
       "description": "Generate Conventional Commit messages from staged or unstaged git changes, split unrelated changes i"
     },
     {
-      "name": "competitive-intelligence-analyst",
-      "source": "./skills/competitive-intelligence-analyst",
-      "description": "Use this skill when users need to analyze competitors, monitor market movements, benchmark features/"
-    },
-    {
       "name": "component-library",
       "source": "./skills/component-library",
       "description": "Expert React/Next.js component architect specializing in creating consistent, reusable, and maintain"
-    },
-    {
-      "name": "constraint-eliminator",
-      "source": "./skills/constraint-eliminator",
-      "description": "Use this skill when users need to remove customer friction, improve customer success, handle objecti"
-    },
-    {
-      "name": "content-creator",
-      "source": "./skills/content-creator",
-      "description": "Expert content creator specializing in newsletters and tweets that capture your authentic voice. Cre"
     },
     {
       "name": "content-script-developer",
@@ -279,16 +219,6 @@
       "name": "context-optimization",
       "source": "./skills/context-optimization",
       "description": "This skill should be used for improving context efficiency: context budgeting, observation masking, "
-    },
-    {
-      "name": "copy-validator",
-      "source": "./skills/copy-validator",
-      "description": "Use this skill when users need to validate sales copy, landing page text, email sequences, or market"
-    },
-    {
-      "name": "copywriter",
-      "source": "./skills/copywriter",
-      "description": "Writes and audits conversion-focused copy that adapts to the project's brand voice. Triggers when wr"
     },
     {
       "name": "critique",
@@ -341,19 +271,9 @@
       "description": "Creates clear, concise technical documentation for software projects, runbooks, and developer guides"
     },
     {
-      "name": "early-hiring-advisor",
-      "source": "./skills/early-hiring-advisor",
-      "description": "Use this skill when users need to make early hires, build their founding team, determine compensatio"
-    },
-    {
       "name": "ec2-backend-deployer",
       "source": "./skills/ec2-backend-deployer",
       "description": "Deploys backend applications to EC2 instances using Docker, GitHub Actions CI/CD, and Tailscale for "
-    },
-    {
-      "name": "email-finder",
-      "source": "./skills/email-finder",
-      "description": "This skill should be used when users need to find email addresses associated with a domain. It activ"
     },
     {
       "name": "error-handling-expert",
@@ -371,29 +291,9 @@
       "description": "Orchestrate autonomous AI development with task-based workflow and QA gates. Use when implementing a"
     },
     {
-      "name": "execution-accelerator",
-      "source": "./skills/execution-accelerator",
-      "description": "Use this skill when users are stuck on a decision, overthinking, experiencing analysis paralysis, or"
-    },
-    {
       "name": "execution-debugging",
       "source": "./skills/execution-debugging",
       "description": "Scoped debugging methodology for when a test or build fails during execution/stabilization. Use to d"
-    },
-    {
-      "name": "execution-validator",
-      "source": "./skills/execution-validator",
-      "description": "Use this skill when users need to validate a launch plan, assess MVP scope, or determine if they're "
-    },
-    {
-      "name": "expert-architect",
-      "source": "./skills/expert-architect",
-      "description": "Use this skill when users need to build their positioning, develop their attractive character, or cr"
-    },
-    {
-      "name": "expert-validator",
-      "source": "./skills/expert-validator",
-      "description": "Validate positioning, authority, and messaging strategy using Expert Secrets principles. Assess Attr"
     },
     {
       "name": "expo-architect",
@@ -404,11 +304,6 @@
       "name": "feature-intake",
       "source": "./skills/feature-intake",
       "description": "Capture a client or stakeholder feature request, turn it into a planner-ready PRD epic with scoped s"
-    },
-    {
-      "name": "financial-operations-expert",
-      "source": "./skills/financial-operations-expert",
-      "description": "Use this skill when users need help with business finances, tax planning, bookkeeping, profit/loss a"
     },
     {
       "name": "finishing-a-development-branch",
@@ -429,21 +324,6 @@
       "name": "fullstack-workspace-init",
       "source": "./skills/fullstack-workspace-init",
       "description": "Initialize Shipshit.dev full-stack product workspaces through npx @shipshitdev/v0, then customize an"
-    },
-    {
-      "name": "fundraise-advisor",
-      "source": "./skills/fundraise-advisor",
-      "description": "Use this skill when users need to raise funding, create a pitch deck, prepare for investor meetings,"
-    },
-    {
-      "name": "funnel-architect",
-      "source": "./skills/funnel-architect",
-      "description": "Use this skill when users need to design a sales funnel, map a value ladder, or create a customer jo"
-    },
-    {
-      "name": "funnel-validator",
-      "source": "./skills/funnel-validator",
-      "description": "Use this skill when users need to validate an existing sales funnel, landing page sequence, or custo"
     },
     {
       "name": "gh-address-comments",
@@ -496,29 +376,14 @@
       "description": "Apply opinionated styling to barebones HTML. Use when user has plain/unstyled HTML and wants to appl"
     },
     {
-      "name": "humanizer",
-      "source": "./skills/humanizer",
-      "description": "Identify and remove AI writing patterns to make text sound more natural and human. Based on Wikipedi"
-    },
-    {
       "name": "husky-test-coverage",
       "source": "./skills/husky-test-coverage",
       "description": "Sets up or verifies Husky git hooks to enforce test coverage above 80% (configurable) for Node.js/Ty"
     },
     {
-      "name": "idea-validator",
-      "source": "./skills/idea-validator",
-      "description": "Validate startup ideas using Hexa's Opportunity Memo framework and Perceived Created Value (PCV) met"
-    },
-    {
       "name": "incremental-fetch",
       "source": "./skills/incremental-fetch",
       "description": "Guides construction of resilient data ingestion pipelines from paginated APIs. Activates on: \"ingest"
-    },
-    {
-      "name": "internal-comms",
-      "source": "./skills/internal-comms",
-      "description": "Resources for writing internal communications in company-preferred formats. Use when asked to draft "
     },
     {
       "name": "landing-page-vercel",
@@ -531,16 +396,6 @@
       "description": "Improve layout, spacing, and visual rhythm. Fixes monotonous grids, inconsistent spacing, and weak v"
     },
     {
-      "name": "lead-channel-optimizer",
-      "source": "./skills/lead-channel-optimizer",
-      "description": "Use this skill when users need to optimize lead generation channels, identify highest-ROI marketing "
-    },
-    {
-      "name": "leads-researcher",
-      "source": "./skills/leads-researcher",
-      "description": "This skill should be used when users need to research leads, find company information, discover cont"
-    },
-    {
       "name": "linter-formatter-init",
       "source": "./skills/linter-formatter-init",
       "description": "Set up Biome (default) or ESLint + Prettier, Vitest testing, and pre-commit hooks for any JavaScript"
@@ -549,11 +404,6 @@
       "name": "llm-structured-output",
       "source": "./skills/llm-structured-output",
       "description": "Design prompts, schemas, validation, and recovery logic for reliable machine-readable model outputs."
-    },
-    {
-      "name": "market-sizer",
-      "source": "./skills/market-sizer",
-      "description": "Use this skill when users need to calculate market size (TAM/SAM/SOM), assess market opportunity, va"
     },
     {
       "name": "mcp-builder",
@@ -596,11 +446,6 @@
       "description": "Design multi-agent architectures for complex tasks. Use when single-agent context limits are exceede"
     },
     {
-      "name": "mvp-architect",
-      "source": "./skills/mvp-architect",
-      "description": "Use this skill when users need to scope an MVP, define minimum viable features, plan early product d"
-    },
-    {
       "name": "nestjs-expert",
       "source": "./skills/nestjs-expert",
       "description": "NestJS architecture, modules, DI, guards, interceptors, pipes, MongoDB/Mongoose integration, auth, a"
@@ -621,34 +466,14 @@
       "description": "Expert in creating clear, comprehensive technical documentation with Nextra (Next.js-based docs fram"
     },
     {
-      "name": "offer-architect",
-      "source": "./skills/offer-architect",
-      "description": "Use this skill when users need to create irresistible offers, design value stacks, optimize product/"
-    },
-    {
-      "name": "offer-validator",
-      "source": "./skills/offer-validator",
-      "description": "Validate existing offers using Hormozi's Value Equation. Scores offers, exposes weaknesses, and prov"
-    },
-    {
       "name": "open-source-checker",
       "source": "./skills/open-source-checker",
       "description": "Expert in detecting private information, secrets, API keys, credentials, and sensitive data in codeb"
     },
     {
-      "name": "outbound-optimizer",
-      "source": "./skills/outbound-optimizer",
-      "description": "Transforms cold outreach from spam into revenue using Hormozi value-first principles. Triggers when "
-    },
-    {
       "name": "package-architect",
       "source": "./skills/package-architect",
       "description": "Design and maintain TypeScript packages in a monorepo, including exports and build configuration."
-    },
-    {
-      "name": "partnership-builder",
-      "source": "./skills/partnership-builder",
-      "description": "Build revenue-generating partnerships including affiliate programs, integration partnerships, resell"
     },
     {
       "name": "performance-expert",
@@ -666,19 +491,9 @@
       "description": "Performs a final quality pass fixing alignment, spacing, consistency, and micro-detail issues before"
     },
     {
-      "name": "positioning-angles",
-      "source": "./skills/positioning-angles",
-      "description": "Use this skill when users need to find their unique marketing angle, differentiate from competitors,"
-    },
-    {
       "name": "prd-quality-gate",
       "source": "./skills/prd-quality-gate",
       "description": "PRD completeness validation. Use to check that a PRD (or GitHub issue body that serves as one) conta"
-    },
-    {
-      "name": "pricing-strategist",
-      "source": "./skills/pricing-strategist",
-      "description": "Use this skill when users need help with pricing strategy, feel they're undercharging, want to raise"
     },
     {
       "name": "production-audit",
@@ -771,11 +586,6 @@
       "description": "Gate a release on the trunk — verify required CI checks are green, then cut a release (semver tag + "
     },
     {
-      "name": "retention-engine",
-      "source": "./skills/retention-engine",
-      "description": "Designs and executes customer retention systems to reduce churn, maximize LTV, and build recurring r"
-    },
-    {
       "name": "roadmap-analyzer",
       "source": "./skills/roadmap-analyzer",
       "description": "Analyze project features against ICP (Ideal Customer Profile) needs to identify gaps and recommend r"
@@ -789,11 +599,6 @@
       "name": "scaffold",
       "source": "./skills/scaffold",
       "description": "Generate incremental local code modules following existing codebase patterns. Use for endpoints, com"
-    },
-    {
-      "name": "search-domain-validator",
-      "source": "./skills/search-domain-validator",
-      "description": "This skill should be used when users need to validate domain name format, check domain availability,"
     },
     {
       "name": "security-audit",
@@ -866,16 +671,6 @@
       "description": "Enforces a spec → plan → execute → verify loop before writing code, preventing \"looks right\" failure"
     },
     {
-      "name": "startup-icp-definer",
-      "source": "./skills/startup-icp-definer",
-      "description": "Use this skill when users need to define their ideal customer profile, identify target personas, map"
-    },
-    {
-      "name": "strategy-expert",
-      "source": "./skills/strategy-expert",
-      "description": "Content strategy expert covering persona building, competitive analysis, content planning/calendars,"
-    },
-    {
       "name": "stripe-implementer",
       "source": "./skills/stripe-implementer",
       "description": "Implement Stripe payment processing, subscription management, webhook handling, and customer managem"
@@ -884,11 +679,6 @@
       "name": "structural-review",
       "source": "./skills/structural-review",
       "description": "Perform a structural and maintainability review of a PR or codebase diff — covering file-size blocke"
-    },
-    {
-      "name": "support-systems-architect",
-      "source": "./skills/support-systems-architect",
-      "description": "Use this skill when users need to set up customer support systems, create help docs/FAQs, implement "
     },
     {
       "name": "systematic-debugging",
@@ -941,16 +731,6 @@
       "description": "Design tools that agents can use effectively, including when to reduce tool complexity. Use when cre"
     },
     {
-      "name": "traffic-architect",
-      "source": "./skills/traffic-architect",
-      "description": "Design traffic strategy, build Dream 100 list, or plan audience acquisition using Traffic Secrets pr"
-    },
-    {
-      "name": "traffic-validator",
-      "source": "./skills/traffic-validator",
-      "description": "Validate traffic strategy against Traffic Secrets principles. Assess Dream 100, Work In vs. Buy In, "
-    },
-    {
       "name": "turborepo",
       "source": "./skills/turborepo",
       "description": "Turborepo monorepo build system guidance. Triggers on: `turbo.json`, task pipelines,\n`dependsOn`, ca"
@@ -989,16 +769,6 @@
       "name": "writing-prds",
       "source": "./skills/writing-prds",
       "description": "Drafts, scopes, and formalizes features as PRDs — a planning agent can consume the output in one sho"
-    },
-    {
-      "name": "x-algorithm-optimizer",
-      "source": "./skills/x-algorithm-optimizer",
-      "description": "Optimizes X/Twitter content for algorithm engagement signals using xai-org/x-algorithm's Grok transf"
-    },
-    {
-      "name": "youtube-video-analyst",
-      "source": "./skills/youtube-video-analyst",
-      "description": "Forensic-level deconstruction of YouTube videos to extract viral formulas, hooks, retention mechanic"
     }
   ]
 }

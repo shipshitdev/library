@@ -36,6 +36,7 @@ Frontend development and design skills
 - `table-filters`
 - `quick-view`
 - `nextjs-validator`
+- `nextra-writer`
 - `shadcn`
 - `shadcn-setup`
 - `tailwind`

@@ -19,13 +19,13 @@ Document work, decisions, and context with explicit commands.
 
 Inputs:
 
-- Current session context
+- Current session context, redacted for secret-like values
 - Files changed, decisions made, blockers, and next steps
 - Optional task or PRD references
 
 Outputs:
 
-- Appended session entry in `.agents/SESSIONS/YYYY-MM-DD.md`
+- Appended session entry in `.agents/SESSIONS/YYYY-MM-DD.md` with secrets removed
 - Related summary/task updates when needed
 
 Creates/Modifies:
@@ -59,7 +59,7 @@ Delegates To:
 
 1. **`/start`** - Creates `.agents/SESSIONS/YYYY-MM-DD.md` if missing, or loads existing context
 2. **During session** - You tell me what to track: decisions, files changed, mistakes
-3. **`/end`** - I write the full session entry with flowcharts, decisions, next steps
+3. **`/end`** - I write a redacted session entry with flowcharts, decisions, next steps
 
 ## Critical Rules
 
@@ -79,6 +79,16 @@ Include flowchart for:
 - New features
 - Feature modifications
 - Multi-component bug fixes
+
+### Redaction (MANDATORY)
+
+Before writing session notes:
+
+- Replace API keys, tokens, passwords, cookies, private credentials, and secret
+  values with `[REDACTED_SECRET]`.
+- Summarize sensitive command output instead of copying it verbatim.
+- Do not store full request/response payloads if they contain personal data,
+  private URLs, or credentials; record only the decision-relevant fields.
 
 ## Session Entry Structure
 

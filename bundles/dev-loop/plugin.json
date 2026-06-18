@@ -1,7 +1,7 @@
 {
   "name": "shipshitdev-dev-loop",
   "version": "1.0.0",
-  "description": "Ship the autonomous gh + Claude + Codex dev loop: PRD → plan → board-driven execution → QA → PR (the workflow ShipCode productizes)",
+  "description": "Autonomous GitHub issue-to-PR loop with PRDs, plans, board dispatch, QA, and review",
   "author": "Ship Shit Dev",
   "license": "MIT",
   "skills": {

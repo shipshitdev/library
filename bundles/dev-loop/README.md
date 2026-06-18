@@ -1,6 +1,6 @@
 # Ship Shit Dev - Dev-loop Bundle
 
-Ship the autonomous gh + Claude + Codex dev loop: PRD → plan → board-driven execution → QA → PR (the workflow ShipCode productizes)
+Autonomous GitHub issue-to-PR loop with PRDs, plans, board dispatch, QA, and review
 
 ## Installation
 

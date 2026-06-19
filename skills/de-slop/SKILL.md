@@ -1,6 +1,6 @@
 ---
 name: de-slop
-description: Removes AI-generated artifacts and code sloppiness from a codebase — console statements, `any` types, unused imports, commented-out code, debug statements, and redundant comments. Use when asked to clean up AI-generated code, remove slop, fix code quality issues, or tidy up a codebase after AI-assisted development.
+description: Removes AI-generated artifacts and code sloppiness from a codebase — console statements, `any` types, unused imports, commented-out code, debug statements, redundant comments, unnecessary defensive try-catch on trusted paths, and over-nesting that should use early returns. Can scope to only the lines introduced on the current branch (diff-only) or sweep the whole tree. Use when asked to clean up AI-generated code, remove slop, fix code quality issues, or tidy up a codebase after AI-assisted development.
 disable-model-invocation: true
 metadata:
   version: "1.0.0"
@@ -20,6 +20,10 @@ Remove AI-generated artifacts and code sloppiness while maintaining project stru
 5. **Temporary/debug code** — Remove TODO/FIXME debug statements
 6. **Obvious AI comments** — Remove redundant comments
 7. **Unused variables** — Remove if truly unused
+8. **Unnecessary defensive checks** — Remove try-catch and null guards on trusted
+   internal paths that cannot actually fail; keep guards on real external boundaries
+9. **Over-nesting** — Collapse deep `if`/`else` pyramids into early returns, matching
+   the surrounding file's existing style
 
 ## Workflow
 
@@ -65,6 +69,33 @@ Log cleanup in today's session file (`.agents/sessions/YYYY-MM-DD.md`) with pack
 - Default: clean the current package/project directory
 - To clean across an entire monorepo, explicitly ask for all packages
 - To preview without making changes, ask for a dry run first
+
+### Diff-only mode (`--changed`)
+
+To clean only what the current branch introduced — the safest scope for a PR, and
+the right default when tidying after AI-assisted work on a branch — restrict edits
+to the changed lines rather than the whole tree:
+
+```bash
+BASE="$(git merge-base HEAD origin/HEAD 2>/dev/null || git merge-base HEAD main 2>/dev/null || git merge-base HEAD master)"
+git diff --name-only "$BASE"..HEAD           # files this branch touched
+git diff "$BASE"..HEAD                         # the exact introduced lines
+```
+
+Only de-slop the files (and ideally the hunks) that appear in that diff. Do not
+touch pre-existing slop elsewhere in the tree in this mode — that keeps the cleanup
+reviewable and scoped to your own change. Fall back to whole-tree cleanup only when
+explicitly asked.
+
+## Modes
+
+- **default** — clean the current package/project directory and apply the fixes
+- **`--changed`** — clean only the files/hunks this branch introduced (the diff-only
+  mode above); the safest scope for a PR
+- **`all`** — sweep every package in a monorepo, processing each separately
+- **`dry-run`** — run detection only: report every artifact that would be cleaned,
+  grouped by type with counts, and make no edits. Combine with any scope, e.g.
+  dry-run over `--changed`.
 
 ## Safety Rules
 

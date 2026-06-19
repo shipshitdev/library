@@ -17,3 +17,4 @@ Testing, QA, and CI/CD automation skills
 - `testing-cicd-init`
 - `qa-reviewer`
 - `husky-test-coverage`
+- `test-runner`

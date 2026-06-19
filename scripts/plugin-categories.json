@@ -8,7 +8,8 @@
         "testing-expert",
         "testing-cicd-init",
         "qa-reviewer",
-        "husky-test-coverage"
+        "husky-test-coverage",
+        "test-runner"
       ]
     },
     "payments": {
@@ -148,7 +149,9 @@
         "release-cleanup",
         "release-pr-gates",
         "worktree",
-        "finishing-a-development-branch"
+        "finishing-a-development-branch",
+        "pr-comments",
+        "fix-merge-conflicts"
       ]
     },
     "security": {
@@ -174,6 +177,7 @@
         "full-code-review",
         "commit-summary",
         "changelog-generator",
+        "standup",
         "de-slop",
         "debug",
         "deploy",

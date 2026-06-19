@@ -2,8 +2,8 @@
 name: spec-first
 description: Enforces a spec → plan → execute → verify loop before writing code, preventing "looks right" failures. Activates on "build X", "implement...", "add a feature that...", or any multi-file/unclear-requirements request. Creates spec.md, todo.md, and decisions.md as durable artifacts.
 metadata:
-  version: "1.0.0"
-  tags: "specification, planning, execution"
+  version: "1.1.0"
+  tags: "specification, planning, execution, ears"
 ---
 
 # Spec-First Development
@@ -106,8 +106,9 @@ Libraries, architecture, persistence choices, constraints.
 Timeouts, retries, partial failures, invalid input, concurrency, idempotency.
 
 ## Acceptance Criteria
-Bullet list of testable statements. Avoid "should be fast."
-Prefer: "processes 1k items under 2s on M1 Mac."
+Bullet list of EARS statements (`WHEN`/`WHILE`/`WHERE`/`IF … THE SYSTEM SHALL …`,
+or a bare `THE SYSTEM SHALL …`) — testable, pass/fail, no judgement.
+Avoid "should be fast." Prefer: "WHEN given 1k items THE SYSTEM SHALL process them under 2s on M1 Mac."
 
 ## Test Plan
 Unit/integration boundaries, fixtures, golden files, what must be mocked.

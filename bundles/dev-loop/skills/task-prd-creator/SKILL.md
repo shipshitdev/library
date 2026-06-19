@@ -4,8 +4,8 @@ description: 'Create a well-written PRD, task, or GitHub issue/sub-issue for a f
 disable-model-invocation: true
 allowed-tools: Bash(gh *)
 metadata:
-  version: "1.1.0"
-  tags: "tasks, prd, github"
+  version: "1.2.0"
+  tags: "tasks, prd, github, ears"
 ---
 
 # Task & PRD Creator
@@ -82,10 +82,10 @@ A good PRD has:
 - **Problem** — why this exists, what breaks without it
 - **Goal** — one sentence, measurable outcome
 - **Scope** — what's in, what's explicitly out
-- **Acceptance criteria** — testable, not vague
+- **Acceptance criteria** — EARS (`WHEN/WHILE/WHERE/IF … THE SYSTEM SHALL …`), testable, not vague
 - **Technical notes** — approach, risks, dependencies
 
-Keep it tight. No filler. Acceptance criteria must be checkable by a human.
+Keep it tight. No filler. Acceptance criteria must be EARS-shaped and checkable by a human.
 
 ### Agent-ready issue rules
 

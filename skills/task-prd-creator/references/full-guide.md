@@ -36,9 +36,9 @@ Skip sections that don't apply. Never leave placeholder text in.
 
 ## Acceptance criteria
 
-- [ ] [Specific, testable condition — can a human verify this?]
-- [ ] [Another condition]
-- [ ] [Edge case handled]
+- [ ] WHEN [trigger] THE SYSTEM SHALL [observable response].
+- [ ] WHILE [state] THE SYSTEM SHALL [response].
+- [ ] IF [edge or failure condition] THEN THE SYSTEM SHALL [handled response].
 
 ## Technical notes
 
@@ -84,8 +84,8 @@ context.
 
 ## Acceptance criteria
 
-- [ ] [Specific, independently verifiable condition]
-- [ ] [Specific, independently verifiable condition]
+- [ ] WHEN [trigger] THE SYSTEM SHALL [observable response].
+- [ ] IF [edge condition] THEN THE SYSTEM SHALL [handled response].
 
 ## Verification
 
@@ -120,7 +120,7 @@ Break large work into independently grabbable slices:
 
 ## Acceptance criteria
 
-- [ ] [Demoable or mechanically verifiable result]
+- [ ] WHEN [trigger] THE SYSTEM SHALL [demoable, mechanically verifiable result].
 
 ## Verification
 
@@ -204,10 +204,10 @@ Users can download any report as CSV in one click.
 - Custom column selection
 
 ## Acceptance criteria
-- [ ] Export button visible on report detail page
-- [ ] Downloaded file is valid CSV with headers
-- [ ] Large reports (10k+ rows) don't timeout
-- [ ] Empty reports download as headers-only CSV
+- [ ] WHERE a report detail page is shown THE SYSTEM SHALL display an Export button.
+- [ ] WHEN a user exports a report THE SYSTEM SHALL produce a valid CSV file with a header row.
+- [ ] WHEN a report has 10k+ rows THE SYSTEM SHALL complete the export without timing out.
+- [ ] IF a report has no rows THEN THE SYSTEM SHALL download a headers-only CSV.
 
 ## Technical notes
 **Approach:** Stream response, don't buffer full dataset in memory

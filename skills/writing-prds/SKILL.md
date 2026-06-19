@@ -3,8 +3,8 @@ name: writing-prds
 disable-model-invocation: true
 description: Drafts, scopes, and formalizes features as PRDs — a planning agent can consume the output in one shot without re-elicitation. Triggers on "write a PRD for X", "let's plan X", "scope this out", "what should X do", or when a tracker issue needs to be fleshed out before planning. Do NOT use for code edits, debugging, or PR reviews.
 metadata:
-  version: "1.1.0"
-  tags: "prd, planning, requirements, spec, scoping"
+  version: "1.2.0"
+  tags: "prd, planning, requirements, spec, scoping, ears"
 ---
 
 # Writing PRDs
@@ -100,7 +100,8 @@ Avoid "users might want..." — if you can't name the user, you don't have a pro
 
 ## User Stories
 - As a <role>, I want <capability> so that <outcome>.
-- Each story ends with "**Acceptance:**" followed by 1–3 concrete checks.
+- Each story ends with "**Acceptance:**" followed by 1–3 EARS criteria
+  (`WHEN <trigger> THE SYSTEM SHALL <response>`) — same syntax as Acceptance Criteria below.
 
 ## Functional Requirements
 <Numbered list. Each item must be verifiable by reading code or running it.
@@ -110,10 +111,15 @@ NO implementation details — "the system must do X", not "use Zustand to do X".
 <Performance, accessibility, error-handling, offline, observability.
 Only list the ones that actually matter for this feature.>
 
-## Success Criteria
-<The bar the verification phase will check against.
-Every bullet here becomes an acceptance criterion the verifier asserts on.
-Write them like test assertions.>
+## Acceptance Criteria
+<The bar the verification phase will check against. Write every bullet in EARS
+syntax (Easy Approach to Requirements Syntax) so it parses unambiguously and is
+pass/fail without judgement. Each bullet becomes an assertion the verifier checks:
+- Event:    WHEN <trigger> THE SYSTEM SHALL <response>.
+- State:    WHILE <state> THE SYSTEM SHALL <response>.
+- Unwanted: IF <condition> THEN THE SYSTEM SHALL <response>.
+- Optional: WHERE <feature enabled> THE SYSTEM SHALL <response>.
+- Always:   THE SYSTEM SHALL <invariant>.>
 
 ## Out of Scope
 <Be ruthless. Future-proofs the review phase against scope creep.>
@@ -140,7 +146,7 @@ A PRD is read by the planning agent. Every section has a downstream consumer:
 |---|---|---|
 | Executive Summary | Plan objective | Plan display, PR title, board card |
 | Goals + Functional Requirements | Plan steps | Planner decomposition |
-| Success Criteria | Acceptance criteria | Verification phase |
+| Acceptance Criteria | Acceptance criteria (EARS) | Verification phase |
 | Out of Scope | Plan out-of-scope list | Review phase (rejects scope creep) |
 | Complexity field | Estimated complexity | Review rubric, retry budget |
 | Verification Plan | Verification prompt input | Verification phase |
@@ -154,7 +160,7 @@ Before marking a PRD ready for a planner to consume, every one of these must be 
 
 - [ ] No placeholder text (`TODO`, `TBD`, `<fill this in>`) remains in any section.
 - [ ] `Goals` has at least one measurable bullet.
-- [ ] `Success Criteria` has at least one bullet, and every bullet is **verifiable without judgement** — it either passes or fails. "Feels fast" is not verifiable. "p95 latency < 300ms on the issues query" is.
+- [ ] `Acceptance Criteria` has at least one bullet, every bullet is written in **EARS** syntax (`WHEN`/`WHILE`/`WHERE`/`IF … THE SYSTEM SHALL …`, or a bare `THE SYSTEM SHALL …`), and each is **verifiable without judgement** — it either passes or fails. "Feels fast" is not verifiable. "WHEN the issues query runs THE SYSTEM SHALL return p95 latency < 300ms" is.
 - [ ] `Out of Scope` has at least one bullet. Empty `Out of Scope` is a tell that the author didn't scope the feature.
 - [ ] `User Stories` has at least one story with explicit Acceptance bullets.
 - [ ] Every external dependency in `Dependencies` is named (package, PRD path, or URL), not described vaguely.
@@ -193,7 +199,7 @@ If any gate fails, keep it in draft/on-hold workflow state and do not mark it re
 
 1. Fetch the current issue body from the tracker. Read it fully before producing anything.
 2. Verify the issue is ready through native project state — never plan a draft/on-hold issue.
-3. Translate directly: Executive Summary → objective, Success Criteria → acceptance criteria, Out of Scope → out-of-scope, complexity field → estimated complexity.
+3. Translate directly: Executive Summary → objective, Acceptance Criteria → acceptance criteria, Out of Scope → out-of-scope, complexity field → estimated complexity.
 4. The plan phase owns file changes and step breakdown — do not copy those out of the PRD (there shouldn't be any).
 5. The resulting plan is posted back as a `## Implementation Plan` comment on the same issue (see `writing-plans`) — it lives on the issue, not in a local file, so it stays in sync with the PRD and reaches the loop.
 
@@ -209,7 +215,7 @@ If any gate fails, keep it in draft/on-hold workflow state and do not mark it re
 Observed failure modes — do not repeat:
 
 - **PRD full of implementation details.** Writing `use TanStack Query v5 for caching` in Functional Requirements. The PRD describes the *what*; the plan owns the *how*. This leaks into review and causes the reviewer to flag the plan for violating the PRD, which the planner then "fixes" by copying the implementation detail verbatim. Dead loop.
-- **Success Criteria written as vibes.** "Users should find the flow intuitive." Unverifiable → verification retries forever.
+- **Acceptance Criteria written as vibes.** "Users should find the flow intuitive." Unverifiable → verification retries forever. Force it into EARS: `WHEN the import completes THE SYSTEM SHALL display a success toast within 200ms`.
 - **Empty Out of Scope.** Always a sign the author is planning to sneak scope in later. Force the listing.
 - **Authoring a PRD with nowhere to put it.** If there's no agreed canonical location, the PRD becomes an orphan document that drifts out of sync. Decide the location first.
 - **Editing a cached copy instead of the source.** If your tracker caches issue bodies locally, the cache is downstream of the tracker, not upstream. Always edit via the tracker's API/CLI, never the cache.
@@ -250,9 +256,11 @@ through the issue detail view. This is pure friction — the URL is already know
 - As a developer pasting issue links into chat, I want to copy an issue's
   URL without leaving the board, so that I don't break my flow.
   **Acceptance:**
-  - Right-click on a card surfaces a context menu including "Copy URL".
-  - Clicking it results in the URL being on the system clipboard.
-  - A toast appears within 200ms confirming the copy.
+  - WHEN a user right-clicks a board card THE SYSTEM SHALL display a context
+    menu including a "Copy URL" action.
+  - WHEN a user clicks "Copy URL" THE SYSTEM SHALL write the issue's URL to the
+    system clipboard.
+  - WHEN the copy succeeds THE SYSTEM SHALL display a confirmation toast within 200ms.
 
 ## Functional Requirements
 1. The card component must support a right-click context menu.
@@ -264,11 +272,13 @@ through the issue detail view. This is pure friction — the URL is already know
 - Clipboard write must succeed or fail cleanly — no silent failures. On
   permission denial, surface an error toast.
 
-## Success Criteria
-- Right-clicking any card opens a context menu with a "Copy URL" item.
-- Clicking "Copy URL" puts the exact canonical issue URL on the clipboard.
-- A success toast appears when the copy succeeds.
-- An error toast appears if the clipboard API rejects the write.
+## Acceptance Criteria
+- WHEN a user right-clicks any board card THE SYSTEM SHALL open a context menu
+  containing a "Copy URL" item.
+- WHEN a user clicks "Copy URL" THE SYSTEM SHALL place the exact canonical issue
+  URL on the clipboard.
+- WHEN the clipboard write succeeds THE SYSTEM SHALL display a success toast.
+- IF the clipboard API rejects the write THEN THE SYSTEM SHALL display an error toast.
 
 ## Out of Scope
 - Copying other fields (title, body, branch name).

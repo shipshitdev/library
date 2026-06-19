@@ -3,8 +3,9 @@ name: structural-review
 description: >-
   Perform a structural and maintainability review of a PR or codebase diff —
   covering file-size blockers, abstraction quality, layer violations, type
-  structural discipline, spaghetti branching, non-atomic mutations, and
-  stack-specific hygiene (Bun, Tailwind v4, Next.js 16, shadcn/ui). Use when
+  structural discipline, spaghetti branching, non-atomic mutations,
+  stack-specific hygiene (Bun, Tailwind v4, Next.js 16, shadcn/ui), design
+  purity (code-judo), and directness over magic (no speculative generality). Use when
   asked to review code quality, maintainability, structural health, or
   architecture of a change. Orthogonal to /code-review (which owns correctness
   bugs and CLAUDE.md compliance) — run after correctness passes or in parallel
@@ -231,7 +232,7 @@ Order findings by severity:
 ## Structural Review
 
 ### Blockers (must fix before merge)
-[File-size violations, non-atomic mutations, stack regressions (middleware.ts, tailwind config, npm/yarn usage), bare unknown without guard]
+[File-size violations, non-atomic mutations, stack regressions (middleware.ts, tailwind config, npm/yarn usage), bare unknown without guard, design-purity simplifications that also remove a correctness footgun]
 
 ### Request Changes (significant structural debt)
 [Abstraction-earns-keep failures, canonical-layer violations, spaghetti branching, sequential orchestration smells, inline interfaces, missed design-purity simplifications, speculative generality / magic indirection]

@@ -45,11 +45,14 @@ const REVIEW_CHANGED_FILES = redactSensitiveText(typeof CHANGED_FILES === "undef
 // ── Phase 1: parallel dimension reviewers ─────────────────────────────────
 // NOTE ON RUBRIC DUPLICATION: Workflow scripts run in a sandbox with no
 // filesystem access, so these reviewer prompts cannot import the canonical
-// rubrics at runtime. The structural prompt below is a condensed mirror of
-// skills/structural-review/SKILL.md, and the security prompt mirrors
-// skills/security-audit. Those skills are the source of truth — when an axis
-// changes there (e.g. design-purity / directness-vs-magic), reflect the
-// high-signal checks here too.
+// rubrics at runtime. They are a CURATED SUBSET, not a 1:1 mirror — axes are
+// deliberately partitioned across the three reviewers to avoid overlap, so the
+// structural prompt omits canonical axes owned elsewhere (axis 6 non-atomic
+// mutations -> harness correctness; axis 8 stack hygiene -> the devex reviewer
+// below). Where a check maps to a canonical axis it carries that axis's NUMBER
+// from skills/structural-review/SKILL.md (hence the gaps in 1,2,3,4,5,7,9,10);
+// security mirrors skills/security-audit. Those skills are the source of truth
+// — when a high-signal axis changes there, reflect it here too.
 log("Phase 1: Parallel dimension review");
 
 const [structuralResult, securityResult, devexResult] = await parallel([
@@ -60,7 +63,9 @@ const [structuralResult, securityResult, devexResult] = await parallel([
 maintainability issues in this codebase (Next.js 16, Bun, TypeScript strict,
 Tailwind v4, shadcn/ui).
 
-Check for:
+Check for (numbers are canonical structural-review axis numbers; this is a
+curated subset, so 6 and 8 are intentionally absent — owned by the harness and
+the devex reviewer):
 1. File size — files crossing ~1000 lines in this PR are a blocker; name the
    file and line count.
 2. Thin abstractions — helpers that are identity functions, one-liner renames,
@@ -71,19 +76,27 @@ Check for:
 4. Layer violations — mutations in React components instead of server actions;
    derived client state not in a hook; raw \`<button>\`/\`<input>\` when shadcn
    Button/Input is already imported in the same file.
-5. Circular dependency introduction — flag if an import in this diff creates an
-   obvious circular dep cycle.
-6. Dead code — exported symbols introduced but never referenced in the diff
-   scope.
-7. Test quality — tests that only assert code runs (no behavioral assertion);
-   snapshot tests that will never fail; external integrations with no contract
-   test coverage.
-8. Design purity — the same behavior expressed with materially less structure:
+5. Type structural discipline — bare \`unknown\` without an adjacent type guard
+   (deferred \`any\`); interfaces defined inline in a component/service file
+   instead of a colocated \`*.types.ts\`. (Leave \`as X\`-without-comment to the
+   devex reviewer.)
+7. Sequential orchestration smell — a new function with 5+ sequential \`await\`
+   calls and no extracted named phases; extract phases so each is testable.
+9. Design purity — the same behavior expressed with materially less structure:
    a state machine/branch tree a derived value would replace, or a special case
    that collapses into a default. Reframe and delete beats polish ("code-judo").
-9. Directness vs magic — speculative generality (a generic mechanism for one
+10. Directness vs magic — speculative generality (a generic mechanism for one
    concrete caller), hidden assumptions (implicit ordering, globals, reflection),
    or indirection that hides control flow without an invariant that earns it.
+
+Also flag (structural territory code-review delegates to this pass, no canonical
+axis number):
+- Circular dependency introduction — an import in this diff creating an obvious
+  circular dep cycle.
+- Dead code — exported symbols introduced but never referenced in the diff scope.
+- Test quality — tests that only assert code runs (no behavioral assertion);
+  snapshot tests that will never fail; external integrations with no contract
+  test coverage.
 
 High-conviction findings only. Exclude bugs, security issues, and CLAUDE.md
 rule violations (other reviewers or the harness cover those).

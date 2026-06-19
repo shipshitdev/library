@@ -14,9 +14,11 @@ command instead of remembering which review skill fits which scope.
 /review commits <N>      # review the last N commits (HEAD~N..HEAD)
 /review <duration>       # review commits in a time window: 24h, 7d, 2w
 /review --deep [target]  # full multi-dimension review (structural + security + devex) on any target
+/review --structural [target]  # structural/maintainability lens only (the thermo-nuclear pass)
 ```
 
-`--deep` combines with any target, e.g. `/review --deep 142`, `/review --deep commits 5`.
+`--deep` and `--structural` combine with any target, e.g. `/review --deep 142`,
+`/review --structural commits 5`. They are mutually exclusive; `--deep` wins if both are given.
 
 ## Depth
 
@@ -25,6 +27,9 @@ command instead of remembering which review skill fits which scope.
 - **`--deep`:** the `full-code-review` skill — three parallel lenses
   (structural, security, devex/flags), adversarial verification, Opus synthesis.
   Use for high-risk changes or production-readiness passes.
+- **`--structural`:** the `structural-review` skill alone — the
+  structural/maintainability "thermo-nuclear" lens (file size, abstraction,
+  layering, design purity, directness-vs-magic), without the security/devex fan-out.
 
 ## Workflow
 
@@ -32,12 +37,15 @@ Use the `review-dispatch` skill. It resolves the target, gathers the diff(s)
 with read-only `git`/`gh`, routes to the chosen depth, and renders the verdict.
 
 1. **Parse the argument** into a target mode (none / PR# / `pr <n>` / `prs` /
-   `commits <n>` / duration) and a depth flag (`--deep` present or not).
-2. **Resolve the target to diffs** — branch vs trunk, `gh pr diff`, a commit
+   `commits <n>` / duration) and a depth flag (`--deep`, `--structural`, or
+   default quick).
+2. **Detect the trunk** — resolve the default branch and verify it exists before
+   diffing; stop and ask for a base if it can't be resolved.
+3. **Resolve the target to diffs** — branch vs trunk, `gh pr diff`, a commit
    range, or a `git log --since` window.
-3. **Route by depth** — apply `code-review` (quick) or `full-code-review`
-   (deep) to each resolved diff.
-4. **Render** — a single verdict for one target, or a summary table (one verdict
+4. **Route by depth** — apply `code-review` (quick), `full-code-review` (deep),
+   or `structural-review` (structural) to each resolved diff.
+5. **Render** — a single verdict for one target, or a summary table (one verdict
    line per PR) for `prs`, with a `/review <PR#>` drill-down hint.
 
 ## Gates

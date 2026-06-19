@@ -12,7 +12,7 @@ metadata:
   tags: "code-review, dispatcher, pull-requests, commits, orchestration"
   author: Ship Shit Dev
 allowed-tools: Bash(git *) Bash(gh *)
-when_to_use: "/review, review prs, review all open PRs, review the last N commits, review 24h of changes, review this PR, review my changes, which review for this scope"
+when_to_use: "/review, review prs, review all open PRs, review the last N commits, review 24h of changes, run the structural lens, which review for this scope"
 ---
 
 # Review Dispatch
@@ -27,7 +27,8 @@ multi-dimension pass lives in `full-code-review`. Read-only throughout.
 Inputs:
 
 - A single argument string (may be empty) parsed into a target mode and an
-  optional `--deep` flag.
+  optional depth flag: `--deep` for the multi-dimension pass, `--structural`
+  for the structural lens alone. Default depth is the quick gate.
 
 Outputs:
 
@@ -55,12 +56,16 @@ Delegates To:
 
 - `code-review` for the default quick gate.
 - `full-code-review` for `--deep` (its Workflow runs the parallel lenses).
+- `structural-review` for `--structural` (the structural/maintainability lens
+  alone — the "thermo-nuclear" pass, no security/devex fan-out).
 
 ## Step 1 — Parse the Argument
 
 Resolve the raw argument into `(mode, depth)`.
 
-- `--deep` present anywhere → `depth = deep`, strip it; otherwise `depth = quick`.
+- `--deep` present anywhere → `depth = deep`; `--structural` → `depth =
+  structural`; otherwise `depth = quick`. Strip the flag before parsing the
+  target. The two flags are mutually exclusive — if both appear, `--deep` wins.
 - Remaining token(s):
 
 | Argument | Mode | Resolution |
@@ -78,10 +83,15 @@ the Usage block — do not guess.
 ## Step 2 — Detect the Trunk
 
 ```bash
-gh repo view --json defaultBranchRef --jq .defaultBranchRef.name 2>/dev/null \
+TRUNK=$(gh repo view --json defaultBranchRef --jq .defaultBranchRef.name 2>/dev/null \
   || git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null | sed 's@^origin/@@' \
-  || echo main
+  || echo main)
+# Verify the resolved trunk actually exists on the remote before diffing against it.
+git rev-parse --verify --quiet "origin/$TRUNK" >/dev/null || TRUNK=""
 ```
+
+If `TRUNK` cannot be verified (empty), **stop and ask the user for the base
+branch** — do not silently diff against a guessed `origin/main`.
 
 ## Step 3 — Resolve the Target to Diffs
 
@@ -89,30 +99,43 @@ Gather `DIFF` (full unified diff) and `CHANGED_FILES` (name list) per mode. All
 commands are read-only.
 
 ```bash
-# working — branch vs trunk, plus anything uncommitted
+# working — committed-vs-trunk AND uncommitted, concatenated into ONE labeled DIFF
 git fetch --quiet --all --prune
-git diff "origin/$TRUNK...HEAD"        # committed-but-unmerged
-git diff HEAD                          # uncommitted (append if non-empty)
+{ echo "===== committed (origin/$TRUNK...HEAD) ====="; git diff "origin/$TRUNK...HEAD";
+  echo "===== uncommitted (working tree) =====";       git diff HEAD; }   # → DIFF
+# CHANGED_FILES = union of `git diff --name-only` for both ranges.
 
-# pr <n>
-gh pr view "$N" --json number,title,baseRefName,headRefName,changedFiles,additions,deletions
+# pr <n> — fetch state FIRST and bail on a non-open PR before diffing
+gh pr view "$N" --json number,title,state,isDraft,baseRefName,headRefName,changedFiles,additions,deletions
+# If .state is MERGED or CLOSED → report it and stop; do not call `gh pr diff`.
 gh pr diff "$N"
 
-# all-prs — enumerate, then resolve each like `pr <n>`
-gh pr list --state open --json number,title,headRefName,isDraft --jq '.[]'
+# all-prs — enumerate open, NON-draft PRs at the source (no diff fetched for drafts)
+gh pr list --state open --json number,title,headRefName,isDraft \
+  --jq '[.[] | select(.isDraft == false)] | .[]'
+# then resolve each like `pr <n>`
 
-# commits <N>
+# commits <N> — cap N to available history so HEAD~N never overflows
+TOTAL=$(git rev-list --count HEAD)
+(( N > TOTAL )) && { echo "Only $TOTAL commits exist — capping N to $TOTAL."; N=$TOTAL; }
 git diff "HEAD~$N...HEAD"
 git diff --name-only "HEAD~$N...HEAD"
 
-# since <duration>  (translate 24h/7d/2w → git --since)
-RANGE_SHA=$(git rev-list -1 --before="$DURATION_AGO" HEAD)   # boundary commit
-git log --since="$DURATION_AGO" --oneline                    # scope summary
+# since <duration> — translate the shorthand to a date git understands FIRST
+#   (git does NOT parse "24h"/"7d"/"2w"; raw tokens silently resolve to the epoch)
+case "$DURATION" in
+  *h) AGO="${DURATION%h} hours ago" ;;
+  *d) AGO="${DURATION%d} days ago" ;;
+  *w) AGO="${DURATION%w} weeks ago" ;;
+esac
+RANGE_SHA=$(git rev-list -1 --before="$AGO" HEAD)              # last commit before the window
+[ -z "$RANGE_SHA" ] && RANGE_SHA=$(git rev-list --max-parents=0 HEAD)  # all history in-window → root
+git log --since="$AGO" --oneline                              # scope summary
 git diff "$RANGE_SHA...HEAD"
 ```
 
-If a resolved diff is empty (no commits in window, PR already merged, clean
-tree), say so plainly and stop — do not invent findings.
+If a resolved diff is empty (no commits in window, clean tree) or a PR is
+already merged/closed, say so plainly and stop — do not invent findings.
 
 ## Step 4 — Route by Depth
 
@@ -120,6 +143,9 @@ tree), say so plainly and stop — do not invent findings.
   `CHANGED_FILES`.
 - **deep →** run the `full-code-review` skill, passing `DIFF` and
   `CHANGED_FILES` into its Workflow.
+- **structural →** apply the `structural-review` skill alone to the gathered
+  `DIFF` (the structural/maintainability "thermo-nuclear" lens — no
+  security/devex fan-out).
 
 For multi-target modes (`all-prs`), loop the chosen engine over each PR.
 

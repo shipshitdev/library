@@ -20,6 +20,7 @@ Code review, debugging, refactoring, release, and AI-assisted development workfl
 - `code-review`
 - `structural-review`
 - `full-code-review`
+- `review-dispatch`
 - `commit-summary`
 - `changelog-generator`
 - `de-slop`

@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "141 AI agent skills for development workflows",
+  "description": "142 AI agent skills for development workflows",
   "plugins": [
     {
       "name": "shipshitdev-testing",
@@ -589,6 +589,11 @@
       "name": "release-pr-gates",
       "source": "./skills/release-pr-gates",
       "description": "Gate a release on the trunk — verify required CI checks are green, then cut a release (semver tag + "
+    },
+    {
+      "name": "review-dispatch",
+      "source": "./skills/review-dispatch",
+      "description": "Single front door for code review. Resolves a target — working-tree changes, one PR, all open PRs, t"
     },
     {
       "name": "roadmap-analyzer",

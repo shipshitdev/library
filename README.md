@@ -4,14 +4,14 @@
 
 ![Project Type](https://img.shields.io/badge/Project-Skills-blue)
 
-141 AI agent skills for development workflows. Works with Claude Code, OpenAI Codex, and Cursor.
+142 AI agent skills for development workflows. Works with Claude Code, OpenAI Codex, and Cursor.
 
 ## Directory Structure
 
 ```
 skills/
-├── skills/              # All skills (141)
-├── commands/            # All commands (11)
+├── skills/              # All skills (142)
+├── commands/            # All commands (17)
 ├── bundles/             # Generated marketplace bundles
 ├── .agents/             # Repo management, memory, meta-skills
 │   ├── memory/          # Repo decisions, context, and system docs
@@ -147,27 +147,33 @@ touch skills/my-skill/SKILL.md
 
 | Command | Description |
 |---------|-------------|
+| address | Resolve PR review comments — propose fixes and replies |
 | bug | File a GitHub bug issue |
 | clean | Clean completed tasks and consolidate session files |
 | env | Scaffold and validate environment variables |
 | feature | Capture requirements into PRD epics and GitHub issues |
+| fix-ci | Diagnose and fix failing CI checks on a PR |
 | inbox | Capture quick tasks into a project inbox |
 | loop | Claim and work one dispatch issue end-to-end |
 | merge | Review and land open PRs into the trunk |
 | performance | Analyze frontend, backend, database, and infrastructure performance |
+| pr | Create, update, and publish a pull request |
 | prompt | Optimize prompts for AI generation |
+| qa | Run a structured verification pass before commit |
 | release | Cut a trunk release with patch notes |
+| review | Review changes, a PR, all open PRs, or recent commits |
 | scan | Run dependency, code, config, and OWASP security scans |
+| suggest | Post inline suggested changes on a PR |
 
-## Skills (141)
+## Skills (142)
 
 ### Dev Loop (10)
 
 `interview`, `feature-intake`, `writing-prds`, `writing-plans`, `prd-quality-gate`, `task-prd-creator`, `executing-plans`, `setup-agent-routing`, `gh-project-board`, `qa-reviewer`
 
-### Dev Workflow (33)
+### Dev Workflow (34)
 
-`agent-architecture-audit`, `agent-config-audit`, `ai-agent-cost-optimizer`, `ai-regression-testing`, `analyze-codebase`, `codebase-advisor`, `code-review`, `structural-review`, `full-code-review`, `commit-summary`, `changelog-generator`, `de-slop`, `debug`, `deploy`, `execution-debugging`, `deployment-composer`, `docs`, `llm-structured-output`, `merge-open-prs`, `production-audit`, `refactor-code`, `release`, `release-cleanup`, `release-pr-gates`, `scaffold`, `shape`, `skill-capture`, `skill-comply`, `skill-scout`, `systematic-debugging`, `receiving-code-review`, `verification-before-completion`, `worktree`
+`agent-architecture-audit`, `agent-config-audit`, `ai-agent-cost-optimizer`, `ai-regression-testing`, `analyze-codebase`, `codebase-advisor`, `code-review`, `structural-review`, `full-code-review`, `review-dispatch`, `commit-summary`, `changelog-generator`, `de-slop`, `debug`, `deploy`, `execution-debugging`, `deployment-composer`, `docs`, `llm-structured-output`, `merge-open-prs`, `production-audit`, `refactor-code`, `release`, `release-cleanup`, `release-pr-gates`, `scaffold`, `shape`, `skill-capture`, `skill-comply`, `skill-scout`, `systematic-debugging`, `receiving-code-review`, `verification-before-completion`, `worktree`
 
 ### GitHub (16)
 

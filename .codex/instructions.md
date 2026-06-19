@@ -2,7 +2,7 @@
 
 See `AGENTS.md` at repo root for full instructions.
 
-This is the shipshitdev/skills repo — a library of 164 AI agent skills.
+This is the shipshitdev/skills repo — a library of 146 AI agent skills.
 
 ## Key References
 

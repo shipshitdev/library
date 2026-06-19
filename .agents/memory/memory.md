@@ -50,6 +50,16 @@ All referenced external repos now internal — no external dependencies:
 | resend/resend-skills + email-best-practices | 5 resend-* email skills |
 | sickn33/antigravity-awesome-skills | 20 cherry-picked skills (JS, NestJS, Prisma, security, marketing, etc.) |
 
+### Session Logs Are Local-Only (2026-06-19)
+
+`.agents/sessions/` is **gitignored** in this repo — session logs stay local,
+not committed (public open-source repo). This overrides the global ritual that
+commits session logs per-repo. Do NOT `git add -f` session docs here. The
+durable equivalent that *does* get committed is decisions in
+`.agents/memory/*.md`. (Fixed a case bug: the rule was `.agents/SESSIONS/` and
+silently matched nothing on Linux; 10 previously-tracked session files were
+`git rm --cached`.)
+
 ### EARS Acceptance Criteria (2026-06-19)
 
 PRD/spec skills standardize acceptance criteria on **EARS** (Easy Approach to

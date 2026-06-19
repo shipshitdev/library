@@ -1,0 +1,12 @@
+{
+  "name": "pr-comments",
+  "version": "1.0.0",
+  "description": "Fetch a PR's review comments as a read-only, severity-tagged, priority-ordered digest.",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://shipshit.dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

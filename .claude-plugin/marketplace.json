@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "142 AI agent skills for development workflows",
+  "description": "146 AI agent skills for development workflows",
   "plugins": [
     {
       "name": "shipshitdev-testing",
@@ -311,6 +311,11 @@
       "description": "Structured \"done coding, now what?\" workflow: verify tests pass, detect the repository environment ("
     },
     {
+      "name": "fix-merge-conflicts",
+      "source": "./skills/fix-merge-conflicts",
+      "description": "Resolve git merge conflicts correctness-first, then prove the tree still builds. Use when a merge, r"
+    },
+    {
       "name": "frontend-design",
       "source": "./skills/frontend-design",
       "description": "Create distinctive, production-grade frontend interfaces with high design quality. Use this skill wh"
@@ -494,6 +499,11 @@
       "name": "polish",
       "source": "./skills/polish",
       "description": "Performs a final quality pass fixing alignment, spacing, consistency, and micro-detail issues before"
+    },
+    {
+      "name": "pr-comments",
+      "source": "./skills/pr-comments",
+      "description": "Fetch a pull request's review and discussion comments and return a read-only digest — grouped by thr"
     },
     {
       "name": "prd-quality-gate",
@@ -681,6 +691,11 @@
       "description": "Enforces a spec → plan → execute → verify loop before writing code, preventing \"looks right\" failure"
     },
     {
+      "name": "standup",
+      "source": "./skills/standup",
+      "description": "Summarize what you personally shipped over a time window from git history — an engineer standup or w"
+    },
+    {
       "name": "stripe-implementer",
       "source": "./skills/stripe-implementer",
       "description": "Implement Stripe payment processing, subscription management, webhook handling, and customer managem"
@@ -719,6 +734,11 @@
       "name": "tdd",
       "source": "./skills/tdd",
       "description": "Test-driven development workflow for feature work and bug fixes. Use when the user asks for TDD, red"
+    },
+    {
+      "name": "test-runner",
+      "source": "./skills/test-runner",
+      "description": "Run a project's tests at the right scope — changed-only, focused, full, type-check, or e2e — then, o"
     },
     {
       "name": "testing-cicd-init",

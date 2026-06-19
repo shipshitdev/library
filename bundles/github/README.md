@@ -27,3 +27,5 @@ GitHub workflow and automation skills
 - `release-pr-gates`
 - `worktree`
 - `finishing-a-development-branch`
+- `pr-comments`
+- `fix-merge-conflicts`

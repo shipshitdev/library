@@ -3,9 +3,6 @@ node_modules/
 # Generated marketplace output
 plugins/
 
-# Agent sessions (ignored for open source projects)
-.agents/SESSIONS/
-
 # macOS
 .DS_Store
 

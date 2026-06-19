@@ -69,6 +69,7 @@ Delegates To:
 
 - `code-review` to review each open PR before it is merged
 - `gh-fix-ci` when a PR's required checks are failing and the user wants them fixed
+- `fix-merge-conflicts` when a conflicted PR should be resolved rather than skipped
 - `release-cleanup` to prune merged branches and stale worktrees after merges land
 - `release` to cut a semver tag and GitHub release from the trunk once PRs are merged
 
@@ -92,7 +93,9 @@ Hard rules:
    base override only after confirming that branch exists on the remote.
 2. **Drafts are never merged.** Report and skip.
 3. **Conflicted PRs are never merged.** A PR whose `mergeable` is `CONFLICTING`
-   is reported and skipped; the author must rebase first.
+   is reported and skipped; the author must rebase first. If the user wants to
+   clear the conflict instead of skipping, hand off to the `fix-merge-conflicts`
+   skill (it resolves correctness-first and rebuilds before continuing).
 4. **Failing or pending required checks block the merge.** Such a PR is excluded
    from the default plan. Merge it only if the user explicitly confirms that
    specific PR after seeing the failing checks.

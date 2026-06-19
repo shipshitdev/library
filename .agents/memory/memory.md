@@ -1,6 +1,6 @@
 # Skills Repo Memory
 
-last_verified: 2026-06-18
+last_verified: 2026-06-19
 
 ## What This Repo Is
 
@@ -49,6 +49,21 @@ All referenced external repos now internal — no external dependencies:
 | expo/skills | 10 expo-* mobile skills |
 | resend/resend-skills + email-best-practices | 5 resend-* email skills |
 | sickn33/antigravity-awesome-skills | 20 cherry-picked skills (JS, NestJS, Prisma, security, marketing, etc.) |
+
+### EARS Acceptance Criteria (2026-06-19)
+
+PRD/spec skills standardize acceptance criteria on **EARS** (Easy Approach to
+Requirements Syntax): `WHEN/WHILE/WHERE/IF … THE SYSTEM SHALL …`, or a bare
+`THE SYSTEM SHALL …`. `prd-quality-gate` validates each Acceptance Criteria
+bullet against this grammar (regex `^\s*(\d+\.\s*)?(WHEN|WHILE|WHERE|IF|THE
+SYSTEM)\b.*\bSHALL\b`); default stays warning-only. The canonical
+verifiable-outcomes section is `Acceptance Criteria` (the former
+`Success Criteria` in `writing-prds`/`feature-intake` was renamed/merged — they
+are now one EARS section; testing bars live in `Verification Plan`). Applies to
+`writing-prds`, `prd-quality-gate`, `feature-intake`, `spec-first`,
+`task-prd-creator`. Rationale: skills are read by AI coding agents, where vague
+prose criteria cause drift; EARS is the de-facto agent-spec grammar (Kiro-origin,
+not a ratified standard — the gate regex is the single point to adjust if it shifts).
 
 ### Consolidation Decisions (2026-04-21)
 

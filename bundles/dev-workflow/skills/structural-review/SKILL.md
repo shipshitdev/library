@@ -164,6 +164,56 @@ These are not style notes — they are regressions introduced by the PR that mus
 
 **Severity:** All Blocker.
 
+### 9. Design Purity — Same Behavior, Cleaner Shape
+
+The sharpest structural question is not "is this correct?" but "could this same
+behavior be expressed with materially less structure?" A change that ships the
+right behavior on top of avoidable complexity is a missed simplification, and
+missed simplifications compound.
+
+**Flag when:**
+
+- A new state machine, config object, or branch tree encodes a decision that a
+  single derived value or default would express.
+- A special case is added where collapsing it into the general path (a sensible
+  default, an early return) would delete the branch entirely.
+- A refactor reshuffles code without reducing the number of moving parts a
+  reader must hold at once.
+
+**Preferred remedy:** Reframe the state model. Collapse the special case into a
+default. Deletion and collapse beat polishing — "code-judo" the complexity
+category out of existence rather than tidying it.
+
+**Phrase:** "This three-state flag collapses to one derived boolean — the same
+behavior with a whole branch deleted. Reframe rather than polish."
+
+**Severity:** Request Changes (Blocker when the simpler form also removes a
+correctness footgun).
+
+### 10. Directness vs Magic
+
+Prefer the obvious mechanism over the clever one. Over-generic abstractions,
+hidden assumptions, and indirection that hides control flow cost more to read
+than they save to write.
+
+**Flag when:**
+
+- A generic/parameterized mechanism is introduced for a single concrete caller
+  ("speculative generality").
+- Behavior depends on a hidden assumption — implicit ordering, a global, a
+  naming convention, reflection/metaprogramming — that a reader cannot see at
+  the call site.
+- Indirection (dynamic dispatch, event indirection, deep config) replaces a
+  direct call without an invariant that earns it.
+
+**Preferred remedy:** Inline to the direct form for the one real caller. Make
+the assumption explicit at the boundary, or remove the magic.
+
+**Phrase:** "Generic registry for a single handler — delete it, call the handler
+directly. Add the abstraction back when the second caller actually arrives."
+
+**Severity:** Request Changes.
+
 ## What to Ignore
 
 - Style preferences not rooted in a structural defect (indentation, naming micro-variations).
@@ -184,7 +234,7 @@ Order findings by severity:
 [File-size violations, non-atomic mutations, stack regressions (middleware.ts, tailwind config, npm/yarn usage), bare unknown without guard]
 
 ### Request Changes (significant structural debt)
-[Abstraction-earns-keep failures, canonical-layer violations, spaghetti branching, sequential orchestration smells, inline interfaces]
+[Abstraction-earns-keep failures, canonical-layer violations, spaghetti branching, sequential orchestration smells, inline interfaces, missed design-purity simplifications, speculative generality / magic indirection]
 
 ### Minor (low-debt, flag for awareness)
 [as X casts without comments, small layer suggestions with obvious inlines]

@@ -26,7 +26,9 @@ Use the `merge-open-prs` skill.
 2. Snapshot every open PR targeting the trunk (number, draft state, mergeability,
    checks, review decision).
 3. Classify each: draft, conflicting, checks failing/pending, or candidate.
-4. Review every candidate with the `code-review` skill against its diff.
+4. Review every candidate with the `code-review` skill against its diff — the
+   same per-PR quick gate `/review prs` runs report-only (via `review-dispatch`).
+   Use `/review prs` when you want the sweep without merging.
 5. Print one consolidated plan — the PRs that will merge versus the excluded ones
    with a reason each — and wait for explicit confirmation.
 6. Merge the approved PRs into the trunk (oldest first), deleting each head branch.

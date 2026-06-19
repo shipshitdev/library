@@ -43,6 +43,13 @@ const REVIEW_DIFF = redactSensitiveText(typeof DIFF === "undefined" ? "" : DIFF)
 const REVIEW_CHANGED_FILES = redactSensitiveText(typeof CHANGED_FILES === "undefined" ? "" : CHANGED_FILES);
 
 // ── Phase 1: parallel dimension reviewers ─────────────────────────────────
+// NOTE ON RUBRIC DUPLICATION: Workflow scripts run in a sandbox with no
+// filesystem access, so these reviewer prompts cannot import the canonical
+// rubrics at runtime. The structural prompt below is a condensed mirror of
+// skills/structural-review/SKILL.md, and the security prompt mirrors
+// skills/security-audit. Those skills are the source of truth — when an axis
+// changes there (e.g. design-purity / directness-vs-magic), reflect the
+// high-signal checks here too.
 log("Phase 1: Parallel dimension review");
 
 const [structuralResult, securityResult, devexResult] = await parallel([
@@ -71,6 +78,12 @@ Check for:
 7. Test quality — tests that only assert code runs (no behavioral assertion);
    snapshot tests that will never fail; external integrations with no contract
    test coverage.
+8. Design purity — the same behavior expressed with materially less structure:
+   a state machine/branch tree a derived value would replace, or a special case
+   that collapses into a default. Reframe and delete beats polish ("code-judo").
+9. Directness vs magic — speculative generality (a generic mechanism for one
+   concrete caller), hidden assumptions (implicit ordering, globals, reflection),
+   or indirection that hides control flow without an invariant that earns it.
 
 High-conviction findings only. Exclude bugs, security issues, and CLAUDE.md
 rule violations (other reviewers or the harness cover those).

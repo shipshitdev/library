@@ -417,7 +417,7 @@ ANTHROPIC_API_KEY=your_key_here
 OPENAI_API_KEY=your_key_here
 
 # Database
-DATABASE_URL=postgresql://user:password@localhost:5432/dbname
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:5432/DBNAME
 
 # Auth
 JWT_SECRET=generate_a_secure_random_string

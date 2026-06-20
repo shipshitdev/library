@@ -31,7 +31,7 @@ Verify MongoDB Atlas setup and configuration. Identifies configuration issues, m
 ### 2. Connection String Format
 
 ```
-mongodb+srv://<username>:<password>@<cluster-host>/<database>?retryWrites=true&w=majority
+mongodb+srv://USERNAME:PASSWORD@CLUSTER-HOST/DATABASE?retryWrites=true&w=majority
 ```
 
 ### 3. Driver Installation

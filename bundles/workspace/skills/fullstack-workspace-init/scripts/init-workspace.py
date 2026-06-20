@@ -1691,8 +1691,8 @@ def generate_env_example() -> str:
     return dedent("""\
         # Database - MongoDB Atlas (recommended for production)
         # Get your connection string from: https://cloud.mongodb.com
-        # Format: mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<database>?retryWrites=true&w=majority
-        MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/myapp?retryWrites=true&w=majority
+        # Format: mongodb+srv://USERNAME:PASSWORD@CLUSTER.mongodb.net/DATABASE?retryWrites=true&w=majority
+        MONGODB_URI=mongodb+srv://USERNAME:PASSWORD@cluster.mongodb.net/myapp?retryWrites=true&w=majority
 
         # Clerk Authentication
         CLERK_SECRET_KEY=sk_test_xxxxx

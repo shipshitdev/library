@@ -119,7 +119,7 @@ export class AppModule {}
 
 ```bash
 # Add to .env.local (Next.js) or .env (NestJS)
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database?retryWrites=true&w=majority
+MONGODB_URI=mongodb+srv://USERNAME:PASSWORD@cluster.mongodb.net/database?retryWrites=true&w=majority
 ```
 
 ### Issue 2: Wrong Protocol

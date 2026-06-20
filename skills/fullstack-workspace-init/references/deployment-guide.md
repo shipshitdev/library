@@ -247,7 +247,7 @@ health() {
 5. **Configure Environment**
 
    ```env
-   MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<database>?retryWrites=true&w=majority
+   MONGODB_URI=mongodb+srv://USERNAME:PASSWORD@CLUSTER.mongodb.net/DATABASE?retryWrites=true&w=majority
    ```
 
    Replace `<username>`, `<password>`, `<cluster>`, and `<database>` with your values

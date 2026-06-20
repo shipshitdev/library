@@ -1650,7 +1650,7 @@ NODE_ENV=production
 PORT=3001
 
 # Database
-MONGODB_URI=mongodb+srv://user:pass@cluster.mongodb.net/db
+MONGODB_URI=mongodb+srv://USER:PASSWORD@cluster.mongodb.net/db
 
 # Redis
 REDIS_URL=redis://localhost:6379

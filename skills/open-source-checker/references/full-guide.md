@@ -26,10 +26,10 @@ API keys are the most common leaked secret. Check for:
 ### 1.2 Database Credentials
 
 - Connection strings with embedded passwords
-- MongoDB URIs: `mongodb+srv://user:password@...`
-- PostgreSQL: `postgresql://user:password@host:port/db`
-- MySQL: `mysql://user:password@host:port/db`
-- Redis: `redis://:password@host:port`
+- MongoDB URIs: `mongodb+srv://USER:PASSWORD@HOST`
+- PostgreSQL: `postgresql://USER:PASSWORD@HOST:PORT/DB`
+- MySQL: `mysql://USER:PASSWORD@HOST:PORT/DB`
+- Redis: `redis://:PASSWORD@HOST:PORT`
 
 ### 1.3 Private Keys and Certificates
 
@@ -1303,7 +1303,7 @@ git push origin --force --all
 
 ```bash
 # .env.example (safe to commit)
-DATABASE_URL=postgresql://user:password@localhost:5432/mydb
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:5432/MYDB
 OPENAI_API_KEY=your_openai_key_here
 STRIPE_SECRET_KEY=your_stripe_key_here
 

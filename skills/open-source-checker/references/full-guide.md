@@ -1308,7 +1308,7 @@ OPENAI_API_KEY=your_openai_key_here
 STRIPE_SECRET_KEY=your_stripe_key_here
 
 # .env (NEVER commit)
-DATABASE_URL=postgresql://realuser:realpassword@prod.example.com:5432/proddb
+DATABASE_URL=postgresql://USER:PASSWORD@prod.example.com:5432/proddb
 OPENAI_API_KEY=sk-abc123...
 STRIPE_SECRET_KEY=sk_live_abc123...
 ```

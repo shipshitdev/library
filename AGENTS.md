@@ -1,6 +1,6 @@
 # Skills Repo — Agent Instructions
 
-This is the shipshitdev/skills repo: 146 AI agent skills for Claude Code, Codex, and Cursor.
+This is the shipshitdev/skills repo: 147 AI agent skills for Claude Code, Codex, and Cursor.
 
 ## Repo Structure
 

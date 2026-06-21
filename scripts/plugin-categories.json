@@ -9,7 +9,8 @@
         "testing-cicd-init",
         "qa-reviewer",
         "husky-test-coverage",
-        "test-runner"
+        "test-runner",
+        "test-dispatch"
       ]
     },
     "payments": {
@@ -65,7 +66,8 @@
         "shadcn",
         "shadcn-setup",
         "tailwind",
-        "tailwind-validator"
+        "tailwind-validator",
+        "design-dispatch"
       ]
     },
     "backend": {
@@ -99,7 +101,8 @@
         "comment-mode",
         "spec-first",
         "agent-browser",
-        "codex-image-gen"
+        "codex-image-gen",
+        "agent-dispatch"
       ]
     },
     "workspace": {
@@ -129,7 +132,8 @@
         "writing-prds",
         "prd-quality-gate",
         "rules-capture",
-        "writing-plans"
+        "writing-plans",
+        "prd-dispatch"
       ]
     },
     "github": {
@@ -147,6 +151,7 @@
         "feature-intake",
         "merge-open-prs",
         "release",
+        "release-dispatch",
         "release-cleanup",
         "release-pr-gates",
         "worktree",
@@ -191,6 +196,7 @@
         "production-audit",
         "refactor-code",
         "release",
+        "release-dispatch",
         "release-cleanup",
         "release-pr-gates",
         "scaffold",
@@ -201,7 +207,9 @@
         "systematic-debugging",
         "receiving-code-review",
         "verification-before-completion",
-        "worktree"
+        "worktree",
+        "skill-dispatch",
+        "deploy-dispatch"
       ]
     },
     "session": {

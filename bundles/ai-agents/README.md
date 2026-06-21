@@ -27,3 +27,4 @@ AI agent development and prompt engineering
 - `spec-first`
 - `agent-browser`
 - `codex-image-gen`
+- `agent-dispatch`

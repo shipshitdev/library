@@ -1,0 +1,12 @@
+{
+  "name": "release-dispatch",
+  "version": "1.0.0",
+  "description": "Single front door for releases — routes gates/cut/notes/cleanup to the right release engine.",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://shipshit.dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

@@ -4,14 +4,14 @@
 
 ![Project Type](https://img.shields.io/badge/Project-Skills-blue)
 
-147 AI agent skills for development workflows. Works with Claude Code, OpenAI Codex, and Cursor.
+154 AI agent skills for development workflows. Works with Claude Code, OpenAI Codex, and Cursor.
 
 ## Directory Structure
 
 ```
 skills/
-├── skills/              # All skills (147)
-├── commands/            # All commands (21)
+├── skills/              # All skills (154)
+├── commands/            # All commands (28)
 ├── bundles/             # Generated marketplace bundles
 ├── .agents/             # Repo management, memory, meta-skills
 │   ├── memory/          # Repo decisions, context, and system docs
@@ -148,9 +148,13 @@ touch skills/my-skill/SKILL.md
 | Command | Description |
 |---------|-------------|
 | address | Resolve PR review comments — propose fixes and replies |
+| agent | Audit, configure, scaffold, and route agents and subagents |
+| board | Set up, audit, or normalize a GitHub Projects v2 board |
 | bug | File a GitHub bug issue |
 | clean | Clean completed tasks and consolidate session files |
 | codex-loop | Claim and work one dispatch:codex issue locally via codex exec |
+| deploy | Deploy the app and provision infrastructure |
+| design | Review and refine UI — audit, critique, polish, layout |
 | deslop | Remove AI slop and tells from code |
 | env | Scaffold and validate environment variables |
 | feature | Capture requirements into PRD epics and GitHub issues |
@@ -160,36 +164,39 @@ touch skills/my-skill/SKILL.md
 | merge | Review and land open PRs into the trunk |
 | performance | Analyze frontend, backend, database, and infrastructure performance |
 | pr | Create, update, and publish a pull request |
+| prd | Create specs, PRDs, and feature plans |
 | prompt | Optimize prompts for AI generation |
 | qa | Run a structured verification pass before commit |
 | release | Cut a trunk release with patch notes |
 | review | Review changes, a PR, all open PRs, or recent commits |
 | scan | Run dependency, code, config, and OWASP security scans |
+| skill | Author, capture, test, and scout agent skills |
 | standup | Summarize what you shipped over a time window |
 | suggest | Post inline suggested changes on a PR |
+| test | Run, author, and set up tests |
 | tests | Run the right tests and turn red green |
 
-## Skills (147)
+## Skills (154)
 
 ### Dev Loop (10)
 
 `interview`, `feature-intake`, `writing-prds`, `writing-plans`, `prd-quality-gate`, `task-prd-creator`, `executing-plans`, `setup-agent-routing`, `gh-project-board`, `qa-reviewer`
 
-### Dev Workflow (35)
+### Dev Workflow (38)
 
-`agent-architecture-audit`, `agent-config-audit`, `ai-agent-cost-optimizer`, `ai-regression-testing`, `analyze-codebase`, `codebase-advisor`, `code-review`, `structural-review`, `full-code-review`, `review-dispatch`, `commit-summary`, `changelog-generator`, `standup`, `de-slop`, `debug`, `deploy`, `execution-debugging`, `deployment-composer`, `docs`, `llm-structured-output`, `merge-open-prs`, `production-audit`, `refactor-code`, `release`, `release-cleanup`, `release-pr-gates`, `scaffold`, `shape`, `skill-capture`, `skill-comply`, `skill-scout`, `systematic-debugging`, `receiving-code-review`, `verification-before-completion`, `worktree`
+`agent-architecture-audit`, `agent-config-audit`, `ai-agent-cost-optimizer`, `ai-regression-testing`, `analyze-codebase`, `codebase-advisor`, `code-review`, `structural-review`, `full-code-review`, `review-dispatch`, `commit-summary`, `changelog-generator`, `standup`, `de-slop`, `debug`, `deploy`, `execution-debugging`, `deployment-composer`, `docs`, `llm-structured-output`, `merge-open-prs`, `production-audit`, `refactor-code`, `release`, `release-dispatch`, `release-cleanup`, `release-pr-gates`, `scaffold`, `shape`, `skill-capture`, `skill-comply`, `skill-scout`, `systematic-debugging`, `receiving-code-review`, `verification-before-completion`, `worktree`, `skill-dispatch`, `deploy-dispatch`
 
 ### GitHub (18)
 
-`bug`, `gh-address-comments`, `gh-fix-ci`, `gh-inbox`, `gh-pr-publish`, `gh-project-board`, `gh-review-suggestions`, `github-actions-author`, `git-safety`, `feature-intake`, `merge-open-prs`, `release`, `release-cleanup`, `release-pr-gates`, `worktree`, `finishing-a-development-branch`, `pr-comments`, `fix-merge-conflicts`
+`bug`, `gh-address-comments`, `gh-fix-ci`, `gh-inbox`, `gh-pr-publish`, `gh-project-board`, `gh-review-suggestions`, `github-actions-author`, `git-safety`, `feature-intake`, `merge-open-prs`, `release`, `release-dispatch`, `release-cleanup`, `release-pr-gates`, `worktree`, `finishing-a-development-branch`, `pr-comments`, `fix-merge-conflicts`
 
-### Testing (7)
+### Testing (8)
 
-`playwright-e2e-init`, `tdd`, `testing-expert`, `testing-cicd-init`, `qa-reviewer`, `husky-test-coverage`, `test-runner`
+`playwright-e2e-init`, `tdd`, `testing-expert`, `testing-cicd-init`, `qa-reviewer`, `husky-test-coverage`, `test-runner`, `test-dispatch`
 
-### Frontend & React (30)
+### Frontend & React (31)
 
-`frontend-design`, `component-library`, `accessibility`, `audit`, `clarify`, `critique`, `design-consistency-auditor`, `html-style`, `layout`, `polish`, `quieter`, `react-component-performance`, `react-hook-form`, `theme-factory`, `react-patterns`, `react-refactor`, `react-testing-library`, `react-native-components`, `expo-architect`, `landing-page-vercel`, `micro-landing-builder`, `ai-loading-ux`, `table-filters`, `quick-view`, `nextjs-validator`, `nextra-writer`, `shadcn`, `shadcn-setup`, `tailwind`, `tailwind-validator`
+`frontend-design`, `component-library`, `accessibility`, `audit`, `clarify`, `critique`, `design-consistency-auditor`, `html-style`, `layout`, `polish`, `quieter`, `react-component-performance`, `react-hook-form`, `theme-factory`, `react-patterns`, `react-refactor`, `react-testing-library`, `react-native-components`, `expo-architect`, `landing-page-vercel`, `micro-landing-builder`, `ai-loading-ux`, `table-filters`, `quick-view`, `nextjs-validator`, `nextra-writer`, `shadcn`, `shadcn-setup`, `tailwind`, `tailwind-validator`, `design-dispatch`
 
 ### Backend & Data (8)
 
@@ -203,17 +210,17 @@ touch skills/my-skill/SKILL.md
 
 `security-audit`, `security-expert`, `git-safety`, `open-source-checker`
 
-### AI Agents (16)
+### AI Agents (17)
 
-`prompt-engineering`, `mcp-builder`, `skill-creator`, `context-fundamentals`, `context-optimization`, `context-degradation`, `context-engineering`, `memory-systems`, `multi-agent-patterns`, `tool-design`, `evaluation`, `advanced-evaluation`, `comment-mode`, `spec-first`, `agent-browser`, `codex-image-gen`
+`prompt-engineering`, `mcp-builder`, `skill-creator`, `context-fundamentals`, `context-optimization`, `context-degradation`, `context-engineering`, `memory-systems`, `multi-agent-patterns`, `tool-design`, `evaluation`, `advanced-evaluation`, `comment-mode`, `spec-first`, `agent-browser`, `agent-dispatch`, `codex-image-gen`
 
 ### Workspace Setup (11)
 
 `fullstack-workspace-init`, `project-init-orchestrator`, `linter-formatter-init`, `clerk-validator`, `content-script-developer`, `package-architect`, `artifacts-builder`, `open-source-checker`, `devcontainer-setup`, `biome-validator`, `bun-validator`
 
-### Planning & PRDs (9)
+### Planning & PRDs (10)
 
-`roadmap-analyzer`, `cto-advisor`, `interview`, `feature-intake`, `task-prd-creator`, `writing-prds`, `prd-quality-gate`, `rules-capture`, `writing-plans`
+`roadmap-analyzer`, `cto-advisor`, `interview`, `feature-intake`, `task-prd-creator`, `writing-prds`, `prd-quality-gate`, `rules-capture`, `writing-plans`, `prd-dispatch`
 
 ### Payments & Product Integrations (1)
 

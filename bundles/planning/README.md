@@ -20,3 +20,4 @@ Strategy, planning, and analysis skills
 - `prd-quality-gate`
 - `rules-capture`
 - `writing-plans`
+- `prd-dispatch`

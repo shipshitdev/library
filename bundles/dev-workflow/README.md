@@ -35,6 +35,7 @@ Code review, debugging, refactoring, release, and AI-assisted development workfl
 - `production-audit`
 - `refactor-code`
 - `release`
+- `release-dispatch`
 - `release-cleanup`
 - `release-pr-gates`
 - `scaffold`
@@ -46,3 +47,5 @@ Code review, debugging, refactoring, release, and AI-assisted development workfl
 - `receiving-code-review`
 - `verification-before-completion`
 - `worktree`
+- `skill-dispatch`
+- `deploy-dispatch`

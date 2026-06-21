@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "146 AI agent skills for development workflows",
+  "description": "147 AI agent skills for development workflows",
   "plugins": [
     {
       "name": "shipshitdev-testing",
@@ -594,6 +594,11 @@
       "name": "release-cleanup",
       "source": "./skills/release-cleanup",
       "description": "Verify a release branch is provably merged into the trunk (default branch) via the squash-aware GitH"
+    },
+    {
+      "name": "release-dispatch",
+      "source": "./skills/release-dispatch",
+      "description": "Single front door for releases. Parses a subcommand — gates, cut, notes, or cleanup — and routes to "
     },
     {
       "name": "release-pr-gates",

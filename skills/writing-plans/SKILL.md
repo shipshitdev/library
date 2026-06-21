@@ -147,7 +147,7 @@ If you find issues, fix them inline. Then hand off.
 
 **Post the plan as a comment on the work/PRD issue** — the same GitHub issue the
 PRD lives on (or the work item the loop will pick up). The issue is the single
-source of truth: the executor and both dispatch lanes read the issue body, the
+source of truth: the executor and all execution lanes read the issue body, the
 linked PRD, and all comments, so a plan posted as a comment crosses to CI for
 either engine. Do **not** save the plan to a local `docs/plans/*.md` file — that
 file desyncs from the project the moment work starts and never reaches the loop.

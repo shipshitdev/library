@@ -98,7 +98,8 @@
         "advanced-evaluation",
         "comment-mode",
         "spec-first",
-        "agent-browser"
+        "agent-browser",
+        "codex-image-gen"
       ]
     },
     "workspace": {

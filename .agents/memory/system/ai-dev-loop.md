@@ -23,6 +23,12 @@ for the loop; this repo is the open, `gh`-driven version of the same pipeline.
 the identical claim → branch → implement → QA → PR → **Human Review** flow. An issue
 carries at most one gate at a time.
 
+Upstream of those execution gates is an optional **planning gate**, `dispatch:plan`:
+a human applies it to a Backlog issue to have the Claude lane draft an
+`## Implementation Plan` comment via `writing-plans` and stop for human review. It
+never executes and never applies an execution gate — a human approves the plan, then
+opts the issue into one of the engine lanes. See "Planning gate" below.
+
 Two ways to run it, same contract:
 
 - **Phase 1 — local pull (`/loop`).** You trigger one task at a time from your
@@ -41,14 +47,14 @@ The loop has the classic planner → executor → QA split, but it lives at the
 
 | Role | Skill(s) | Who runs it |
 | ---- | -------- | ----------- |
-| **Planner** | `feature-intake` → `writing-prds` / `writing-plans` | Human, before the gate. Creates the issue + PRD + acceptance criteria. |
+| **Planner** | `feature-intake` → `writing-prds` / `writing-plans` | Human, before the gate — or the `dispatch:plan` gate drafts the plan for human review. Creates the issue + PRD + acceptance criteria + plan. |
 | **Executor** | `executing-plans` | The dispatched agent (Claude or Codex). What the loop runs. |
 | **QA** | `qa-reviewer` | The executor runs it before opening the PR; the human reviews after. |
 
 Both planning artifacts live **on the issue**, never in a local file: `writing-prds`
 stores the PRD in the issue **body**, and `writing-plans` posts the implementation
-plan as a `## Implementation Plan` **comment**. The executor and both dispatch lanes
-read the body plus all comments, so the plan crosses to CI for either engine.
+plan as a `## Implementation Plan` **comment**. The executor and every dispatch lane
+read the body plus all comments, so the plan crosses to CI for any engine.
 
 ## Concept
 
@@ -106,6 +112,7 @@ labels that ride alongside it:
 | `loop:planning` / `loop:executing` / `loop:testing` / `loop:shipping` | AI-loop sub-phase **inside In Progress** (observability; mirrors `shipcode:pipeline:*`). |
 | `priority:high` / `priority:medium` / `priority:low` | Queue ordering. High first. |
 | `rejection:N` | QA rejection count, bumped on each kickback from Human Review → Backlog. |
+| `dispatch:plan` | **Planning gate (human opt-in).** Drafts an `## Implementation Plan` comment via `writing-plans` and stops at Human Review; applies no execution gate. |
 | `dispatch:claude` | **Dispatch gate → Claude lane (human opt-in).** Nothing runs autonomously until a human applies it. |
 | `dispatch:codex` | **Dispatch gate → Codex/GPT lane (human opt-in).** Apply at most one gate per issue. |
 | `dispatch:openrouter` | **Dispatch gate → OpenRouter lane (human opt-in).** Codex CLI via OpenRouter; at most one gate per issue. |
@@ -114,12 +121,14 @@ labels that ride alongside it:
 
 **AFK vs HITL are body markers, not labels.** Mark each issue body `AFK` (an agent
 can finish from written context) or `HITL` (a human decision is required mid-task).
-**HITL issues must never receive a dispatch gate.**
+**HITL issues must never receive any dispatch gate** — neither the execution gates
+(`dispatch:claude` / `dispatch:codex` / `dispatch:openrouter`) nor the planning gate
+(`dispatch:plan`).
 
 ## One-time setup (per repo)
 
 ```bash
-# 1. Provision labels + the board + both Phase-2 workflows + the auth secrets.
+# 1. Provision labels + the board + all four Phase-2 workflows + the auth secrets.
 #    Normalizes the board Status to Backlog/In Progress/Human Review/Done/Deferred
 #    and writes .github/agent-loop.env (idempotent).
 bash scripts/setup-dev-loop.sh            # or: --repo owner/name, --project N, --dry-run
@@ -136,8 +145,9 @@ gh variable set CODEX_EFFORT --body xhigh             # Codex reasoning effort
 
 `setup-dev-loop.sh` creates the label vocabulary above, provisions the Projects
 board (Status options Backlog/In Progress/Human Review/Done/Deferred) and writes its
-node ids to `.github/agent-loop.env`, copies both dispatch workflows into
-`.github/workflows/`, and arms `CLAUDE_CODE_OAUTH_TOKEN` (Claude lane),
+node ids to `.github/agent-loop.env`, copies all four dispatch workflows
+(`plan-dispatch.yml` plus the three execution lanes) into `.github/workflows/`, and
+arms `CLAUDE_CODE_OAUTH_TOKEN` (Claude lane),
 `OPENAI_API_KEY` (Codex lane), and `PROJECTS_TOKEN` (the `project`-scoped PAT the
 workflows use to write the board).
 
@@ -179,12 +189,37 @@ gh issue edit <n> --add-assignee "<reviewer>" \
   --remove-label "claim:active,dispatch:claude,loop:shipping"
 ```
 
+The Codex lane has a local twin, **`/codex-loop`**, with identical claim semantics:
+it claims one `dispatch:codex` Backlog issue (same 30-minute lock, shared with
+`/loop` and the push workflows) and runs the same contract through `codex exec`. Use
+it for local Codex iteration without going through GitHub Actions.
+
 ## Phase 2 — push dispatch (GitHub Actions)
 
-Two workflows, one per engine lane. Both run on `issues: labeled`, gate on their own
-label, key concurrency per issue, and run the same `executing-plans` contract
-headlessly. Both authenticate `gh` with `PROJECTS_TOKEN` so the claim and completion
-steps can write the board.
+Each gate label is also a push workflow: three execution lanes (`agent-dispatch.yml`,
+`codex-dispatch.yml`, `openrouter-dispatch.yml`) plus the planning gate
+(`plan-dispatch.yml`). All run on `issues: labeled`, gate on their own label, key
+concurrency per issue, and authenticate `gh` with `PROJECTS_TOKEN` so the claim and
+completion steps can write the board. The three execution lanes run the
+`executing-plans` contract; the planning lane runs `writing-plans` and stops at plan
+review.
+
+### Planning lane — `plan-dispatch.yml`
+
+Gates on `if: github.event.label.name == 'dispatch:plan'`, runs via
+`anthropics/claude-code-action@v1` like the Claude lane, but on the `writing-plans`
+contract instead of `executing-plans`.
+
+- **What it does:** claims the issue (board → In Progress, `claim:active` +
+  `loop:planning`), drafts a plan, and posts/updates a trusted `## Implementation
+  Plan` maintainer comment.
+- **Handoff:** clears `dispatch:plan` and the `claim:active` / `loop:*` labels it
+  used, moves board `Status` to **Human Review**, and assigns the gate-applier. It
+  applies **no** execution gate — a human approves the plan, moves the issue back to
+  Backlog, and applies one of the three execution gates. Planning never auto-advances
+  into execution.
+- **Auth/model:** same as the Claude lane — `CLAUDE_CODE_OAUTH_TOKEN` for the model,
+  `PROJECTS_TOKEN` as `github_token`, `claude_args: --model ${{ vars.AGENT_MODEL || 'claude-sonnet-4-6' }}`.
 
 ### Claude lane — `agent-dispatch.yml`
 
@@ -278,6 +313,8 @@ tool pick up where another left off.
 | Entry point | Effect |
 | ----------- | ------ |
 | `/loop` | Claim and work one task locally, Claude lane (Phase 1). |
+| `/codex-loop` | Claim and work one task locally via `codex exec`, Codex lane (Phase 1). |
+| `plan-dispatch.yml` | Push dispatch on `dispatch:plan` — drafts a plan for review, no execution (Phase 2). |
 | `agent-dispatch.yml` | Push dispatch on `dispatch:claude` — Claude lane (Phase 2). |
 | `codex-dispatch.yml` | Push dispatch on `dispatch:codex` — Codex/GPT lane (Phase 2). |
 | `openrouter-dispatch.yml` | Push dispatch on `dispatch:openrouter` — OpenRouter lane (Phase 2). |

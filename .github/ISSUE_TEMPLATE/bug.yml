@@ -1,0 +1,32 @@
+name: Bug report
+description: Something isn't working
+type: Bug
+labels: ["bug"]
+projects: ["shipshitdev/7"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What's wrong
+      description: What did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: Minimal steps. Include the skill/command and the agent (Claude Code, Codex, Cursor).
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Environment
+      description: OS, agent + version, and anything else relevant.
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: >
+        Status and Priority are set on the **Dev Loop** board after creation
+        (auto-defaulted + `needs-triage` if you leave them).

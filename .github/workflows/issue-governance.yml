@@ -1,0 +1,101 @@
+name: Issue Governance
+
+# Enforce that every issue always carries the four required fields:
+#   board membership · Status · Priority · Type
+# GitHub cannot block issue creation on missing fields, so this auto-fills
+# sane defaults for any empty field and flags the issue `needs-triage` for a
+# human to set real values. Idempotent: it only writes when a field is empty,
+# so once an issue is compliant it stops touching it.
+#
+# Board writes need a project-scoped PAT — the default GITHUB_TOKEN cannot
+# read/write an org-owned Projects v2 board. Store it as the PROJECTS_TOKEN
+# repo secret (same token the dev-loop workflows use).
+
+on:
+  issues:
+    types: [opened, reopened, transferred, edited, labeled, unlabeled, demilestoned, assigned]
+
+permissions:
+  issues: write
+  contents: read
+
+concurrency:
+  group: issue-governance-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+env:
+  PROJECT_OWNER: shipshitdev
+  PROJECT_NUMBER: "7" # Dev Loop board
+  DEFAULT_PRIORITY: "P2" # matched against the board's Priority options
+  DEFAULT_TYPE: "Task" # org issue type: Task | Bug | Feature
+
+jobs:
+  enforce:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enforce board + status + priority + type
+        env:
+          GH_TOKEN: ${{ secrets.PROJECTS_TOKEN }}
+          ISSUE: ${{ github.event.issue.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          if [ -z "${GH_TOKEN:-}" ]; then
+            echo "::error::PROJECTS_TOKEN secret is not set — cannot read/write the org board. See workflow header."
+            exit 1
+          fi
+
+          # --- resolve board ids ---
+          NODE=$(gh project view "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --format json | jq -r '.id')
+          FL=$(gh project field-list "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --format json)
+          SF=$(echo "$FL" | jq -r '.fields[]|select(.name=="Status").id')
+          SB=$(echo "$FL" | jq -r '.fields[]|select(.name=="Status").options[]|select(.name|test("Backlog")).id')
+          PF=$(echo "$FL" | jq -r '.fields[]|select(.name=="Priority").id')
+          PD=$(echo "$FL" | jq -r --arg p "$DEFAULT_PRIORITY" '.fields[]|select(.name=="Priority").options[]|select(.name|test($p)).id')
+
+          IURL=$(gh issue view "$ISSUE" -R "$REPO" --json url -q .url)
+          FLAGS=""
+
+          # --- 1. ensure the issue is on the board ---
+          ITEMS=$(gh project item-list "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --format json -L 800)
+          ITEM=$(echo "$ITEMS" | jq -r --arg u "$IURL" '.items[]|select(.content.url==$u).id' | head -1)
+          if [ -z "$ITEM" ]; then
+            ITEM=$(gh project item-add "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --url "$IURL" --format json | jq -r '.id')
+            FLAGS="${FLAGS}added to board; "
+            ITEMS=$(gh project item-list "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --format json -L 800)
+          fi
+          IV=$(echo "$ITEMS" | jq -r --arg u "$IURL" '.items[]|select(.content.url==$u)')
+          CUR_STATUS=$(echo "$IV" | jq -r '.status // ""')
+          CUR_PRI=$(echo "$IV" | jq -r '.priority // ""')
+
+          # --- 2. Status default ---
+          if [ -z "$CUR_STATUS" ]; then
+            gh project item-edit --id "$ITEM" --project-id "$NODE" --field-id "$SF" --single-select-option-id "$SB"
+            FLAGS="${FLAGS}Status=Backlog; "
+          fi
+
+          # --- 3. Priority default ---
+          if [ -z "$CUR_PRI" ]; then
+            gh project item-edit --id "$ITEM" --project-id "$NODE" --field-id "$PF" --single-select-option-id "$PD"
+            FLAGS="${FLAGS}Priority=${DEFAULT_PRIORITY} (default); "
+          fi
+
+          # --- 4. Type default (native issue type) ---
+          CUR_TYPE=$(gh issue view "$ISSUE" -R "$REPO" --json issueType -q '.issueType.name // ""')
+          if [ -z "$CUR_TYPE" ]; then
+            gh issue edit "$ISSUE" -R "$REPO" --type "$DEFAULT_TYPE"
+            FLAGS="${FLAGS}Type=${DEFAULT_TYPE} (default); "
+          fi
+
+          # --- 5. flag + comment only when something was auto-filled ---
+          if [ -n "$FLAGS" ]; then
+            gh issue edit "$ISSUE" -R "$REPO" --add-label needs-triage || true
+            {
+              echo "🤖 **Issue governance** auto-filled required fields: ${FLAGS%; }."
+              echo ""
+              echo "Set the real values — board **Status**/**Priority** and the issue **Type** — then remove the \`needs-triage\` label."
+            } | gh issue comment "$ISSUE" -R "$REPO" --body-file -
+            echo "Auto-filled: ${FLAGS%; }"
+          else
+            echo "Issue #$ISSUE already compliant — no changes."
+          fi

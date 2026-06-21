@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "147 AI agent skills for development workflows",
+  "description": "153 AI agent skills for development workflows",
   "plugins": [
     {
       "name": "shipshitdev-testing",
@@ -94,6 +94,11 @@
       "name": "agent-config-audit",
       "source": "./skills/agent-config-audit",
       "description": "Audit and sync AI agent configuration files (CLAUDE.md, CODEX.md, AGENTS.md, .cursorrules, hooks, se"
+    },
+    {
+      "name": "agent-dispatch",
+      "source": "./skills/agent-dispatch",
+      "description": "Single front door for agent/subagent architecture, config, and setup. Parses a subcommand — audit, c"
     },
     {
       "name": "agent-folder-init",
@@ -246,6 +251,11 @@
       "description": "Run deployment workflows for web applications (staging, production). Use when user says 'deploy', 'p"
     },
     {
+      "name": "deploy-dispatch",
+      "source": "./skills/deploy-dispatch",
+      "description": "Single front door for deployment and infra provisioning. Parses a subcommand — app, compose, ec2, mo"
+    },
+    {
       "name": "deployment-composer",
       "source": "./skills/deployment-composer",
       "description": "Compose deployment workflows from smaller skills and repo signals, including trunk-based releases, C"
@@ -254,6 +264,11 @@
       "name": "design-consistency-auditor",
       "source": "./skills/design-consistency-auditor",
       "description": "Audits and maintains design system consistency across frontend applications — color palettes, UI/UX "
+    },
+    {
+      "name": "design-dispatch",
+      "source": "./skills/design-dispatch",
+      "description": "Single front door for UI/design review and refinement. Parses a subcommand — audit, clarify, critiqu"
     },
     {
       "name": "devcontainer-setup",
@@ -506,6 +521,11 @@
       "description": "Fetch a pull request's review and discussion comments and return a read-only digest — grouped by thr"
     },
     {
+      "name": "prd-dispatch",
+      "source": "./skills/prd-dispatch",
+      "description": "Single front door for product specs, PRDs, and feature planning. Parses a subcommand — new, spec, ga"
+    },
+    {
       "name": "prd-quality-gate",
       "source": "./skills/prd-quality-gate",
       "description": "PRD completeness validation. Use to check that a PRD (or issue body that serves as one) contains the"
@@ -686,6 +706,11 @@
       "description": "Guide for creating effective skills. Use when creating a new skill or updating an existing one to ex"
     },
     {
+      "name": "skill-dispatch",
+      "source": "./skills/skill-dispatch",
+      "description": "Single front door for authoring and maintaining agent skills. Parses a subcommand — create, capture,"
+    },
+    {
       "name": "skill-scout",
       "source": "./skills/skill-scout",
       "description": "Search local, marketplace, repository, package, GitHub, and web sources before creating a new skill "
@@ -739,6 +764,11 @@
       "name": "tdd",
       "source": "./skills/tdd",
       "description": "Test-driven development workflow for feature work and bug fixes. Use when the user asks for TDD, red"
+    },
+    {
+      "name": "test-dispatch",
+      "source": "./skills/test-dispatch",
+      "description": "Single front door for testing. Parses a subcommand — run, qa, tdd, e2e, coverage, init, or regressio"
     },
     {
       "name": "test-runner",

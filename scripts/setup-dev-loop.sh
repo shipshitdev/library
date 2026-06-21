@@ -11,14 +11,16 @@ set -euo pipefail
 # Projects board `Status` field (Backlog / In Progress / Human Review / Done / Deferred), the sole
 # source of truth, which this script provisions.
 #   1. Migrates legacy label names in place, then creates the dispatch label
-#      vocabulary (claim:active, priority:*, rejection:N, dispatch:claude,
-#      dispatch:codex, type:feature, wontfix). The two old status:* labels are
-#      deleted — status moves to the board.
+#      vocabulary (claim:active, priority:*, rejection:N, dispatch:plan,
+#      dispatch:claude, dispatch:codex, dispatch:openrouter, type:feature,
+#      wontfix). The two old status:* labels are deleted — status moves to the
+#      board.
 #   2. Provisions the Projects board: creates-or-reuses the project, normalizes
 #      its Status options to Backlog/In Progress/Human Review/Done/Deferred, and writes the board's
 #      node ids to .github/agent-loop.env (non-secret) for the workflows + /loop.
-#   3. Installs the Phase-2 push workflows (.github/workflows/agent-dispatch.yml
-#      for Claude, codex-dispatch.yml for Codex).
+#   3. Installs the Phase-2 push workflows (.github/workflows/plan-dispatch.yml
+#      for the planning gate, agent-dispatch.yml for Claude, codex-dispatch.yml
+#      for Codex, openrouter-dispatch.yml for OpenRouter).
 #   4. Arms the auth secrets — CLAUDE_CODE_OAUTH_TOKEN (subscription OAuth, never
 #      an API key), OPENAI_API_KEY (Codex lane), and PROJECTS_TOKEN (a project-
 #      scoped PAT the workflows use to write the board; the default GITHUB_TOKEN
@@ -46,8 +48,10 @@ WORKFLOW_DIR="${SCRIPT_DIR}/../.github/workflows"
 # Board normalizer (sets the Status options to the 5-column model).
 BOARD_SCRIPT="${SCRIPT_DIR}/../skills/gh-project-board/scripts/setup-gh-project-board.mjs"
 
-# Phase-2 push workflows installed into the target repo (one per engine lane).
+# Phase-2 push workflows installed into the target repo: one planning gate
+# (plan-dispatch.yml, dispatch:plan) plus one execution lane per engine.
 WORKFLOWS=(
+  "plan-dispatch.yml"
   "agent-dispatch.yml"
   "codex-dispatch.yml"
   "openrouter-dispatch.yml"
@@ -104,6 +108,7 @@ LABELS=(
   "dispatch:claude|006b75|Dispatch gate (human opt-in) — Claude lane runs only on issues carrying this"
   "dispatch:codex|10a37f|Dispatch gate (human opt-in) — Codex/GPT lane runs only on issues carrying this"
   "dispatch:openrouter|8250df|Dispatch gate (human opt-in) — OpenRouter lane (Codex CLI via OpenRouter) runs only on issues carrying this"
+  "dispatch:plan|fbca04|Planning gate (human opt-in) — drafts an Implementation Plan for human review; applies NO execution gate"
   "loop:planning|c5def5|AI-loop phase — reading the issue/PRD and planning (inside In Progress)"
   "loop:executing|c5def5|AI-loop phase — implementing the change on a branch (inside In Progress)"
   "loop:testing|c5def5|AI-loop phase — running qa-reviewer + automated tests/e2e (inside In Progress)"
@@ -416,18 +421,21 @@ print_routing_step() {
 print_summary() {
   echo ""
   log "Dev-loop setup complete on ${REPO}"
-  $DO_LABELS   && echo "  • Labels:    dispatch:claude / dispatch:codex / claim:active / loop:* (AI-loop phases) / type:feature / priority:* / rejection:*"
+  $DO_LABELS   && echo "  • Labels:    dispatch:plan / dispatch:claude / dispatch:codex / claim:active / loop:* (AI-loop phases) / type:feature / priority:* / rejection:*"
   $DO_BOARD    && echo "  • Board:     Status normalized to Backlog/In Progress/Human Review/Done/Deferred; ids in .github/agent-loop.env"
-  $DO_WORKFLOW && echo "  • Workflows: agent-dispatch (dispatch:claude) + codex-dispatch (dispatch:codex) + openrouter-dispatch (dispatch:openrouter)"
+  $DO_WORKFLOW && echo "  • Workflows: plan-dispatch (dispatch:plan) + agent-dispatch (dispatch:claude) + codex-dispatch (dispatch:codex) + openrouter-dispatch (dispatch:openrouter)"
   $DO_SECRETS  && echo "  • Secrets:   CLAUDE_CODE_OAUTH_TOKEN + OPENAI_API_KEY + OPENROUTER_API_KEY + PROJECTS_TOKEN (board write)"
   echo "  • Variables: AGENT_MODEL / CODEX_MODEL / CODEX_EFFORT (set with gh variable set)"
   echo "  • Routing:   run /setup-agent-routing in Claude Code"
   echo ""
   echo "  How to drive it:"
   echo "    1. Put an issue in the board's Backlog column (Status field — not a label)."
-  echo "    2. Apply dispatch:claude (Claude lane) OR dispatch:codex (Codex lane)."
-  echo "    3. Phase 1 (local):  run  /loop   to claim + work one issue (Claude)."
-  echo "    4. Phase 2 (push):   the gate label alone fires its dispatch workflow headlessly."
+  echo "    2. (Optional) Apply dispatch:plan to have an agent draft an Implementation"
+  echo "       Plan comment for your review; it lands the issue in Human Review and"
+  echo "       applies no execution gate. Approve it: move back to Backlog, then gate it."
+  echo "    3. Apply dispatch:claude (Claude lane) OR dispatch:codex (Codex lane)."
+  echo "    4. Phase 1 (local):  run  /loop   to claim + work one issue (Claude)."
+  echo "    5. Phase 2 (push):   the gate label alone fires its dispatch workflow headlessly."
   echo ""
   echo "  Full loop reference: .agents/memory/system/ai-dev-loop.md"
 }
@@ -455,15 +463,16 @@ Options:
 
 What it does:
   1. Migrates legacy labels in place, then creates the dispatch labels
-     (claim:active, priority:*, rejection:N, dispatch:claude, dispatch:codex,
-     type:feature, wontfix). The two status:* labels are deleted — status moves
-     to the board.
+     (claim:active, priority:*, rejection:N, dispatch:plan, dispatch:claude,
+     dispatch:codex, dispatch:openrouter, type:feature, wontfix). The two
+     status:* labels are deleted — status moves to the board.
   2. Provisions the Projects board: creates-or-reuses the project, normalizes
      its Status options to Backlog/In Progress/Human Review/Done/Deferred, and writes the board node
      ids to .github/agent-loop.env (non-secret).
-  3. Installs the Phase-2 push workflows: agent-dispatch.yml (Claude lane,
-     dispatch:claude), codex-dispatch.yml (Codex lane, dispatch:codex), and
-     openrouter-dispatch.yml (OpenRouter lane, dispatch:openrouter).
+  3. Installs the Phase-2 push workflows: plan-dispatch.yml (planning gate,
+     dispatch:plan), agent-dispatch.yml (Claude lane, dispatch:claude),
+     codex-dispatch.yml (Codex lane, dispatch:codex), and openrouter-dispatch.yml
+     (OpenRouter lane, dispatch:openrouter).
   4. Arms the auth secrets: CLAUDE_CODE_OAUTH_TOKEN (subscription OAuth),
      OPENAI_API_KEY (Codex lane), OPENROUTER_API_KEY (OpenRouter lane), and
      PROJECTS_TOKEN (project-scoped PAT for the board write — the default

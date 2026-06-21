@@ -4,14 +4,14 @@
 
 ![Project Type](https://img.shields.io/badge/Project-Skills-blue)
 
-153 AI agent skills for development workflows. Works with Claude Code, OpenAI Codex, and Cursor.
+154 AI agent skills for development workflows. Works with Claude Code, OpenAI Codex, and Cursor.
 
 ## Directory Structure
 
 ```
 skills/
-├── skills/              # All skills (153)
-├── commands/            # All commands (27)
+├── skills/              # All skills (154)
+├── commands/            # All commands (28)
 ├── bundles/             # Generated marketplace bundles
 ├── .agents/             # Repo management, memory, meta-skills
 │   ├── memory/          # Repo decisions, context, and system docs
@@ -152,6 +152,7 @@ touch skills/my-skill/SKILL.md
 | board | Set up, audit, or normalize a GitHub Projects v2 board |
 | bug | File a GitHub bug issue |
 | clean | Clean completed tasks and consolidate session files |
+| codex-loop | Claim and work one dispatch:codex issue locally via codex exec |
 | deploy | Deploy the app and provision infrastructure |
 | design | Review and refine UI — audit, critique, polish, layout |
 | deslop | Remove AI slop and tells from code |
@@ -175,7 +176,7 @@ touch skills/my-skill/SKILL.md
 | test | Run, author, and set up tests |
 | tests | Run the right tests and turn red green |
 
-## Skills (153)
+## Skills (154)
 
 ### Dev Loop (10)
 
@@ -209,9 +210,9 @@ touch skills/my-skill/SKILL.md
 
 `security-audit`, `security-expert`, `git-safety`, `open-source-checker`
 
-### AI Agents (16)
+### AI Agents (17)
 
-`prompt-engineering`, `mcp-builder`, `skill-creator`, `context-fundamentals`, `context-optimization`, `context-degradation`, `context-engineering`, `memory-systems`, `multi-agent-patterns`, `tool-design`, `evaluation`, `advanced-evaluation`, `comment-mode`, `spec-first`, `agent-browser`, `agent-dispatch`
+`prompt-engineering`, `mcp-builder`, `skill-creator`, `context-fundamentals`, `context-optimization`, `context-degradation`, `context-engineering`, `memory-systems`, `multi-agent-patterns`, `tool-design`, `evaluation`, `advanced-evaluation`, `comment-mode`, `spec-first`, `agent-browser`, `agent-dispatch`, `codex-image-gen`
 
 ### Workspace Setup (11)
 

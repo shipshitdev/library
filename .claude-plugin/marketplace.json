@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "153 AI agent skills for development workflows",
+  "description": "154 AI agent skills for development workflows",
   "plugins": [
     {
       "name": "shipshitdev-testing",
@@ -184,6 +184,11 @@
       "name": "codebase-advisor",
       "source": "./skills/codebase-advisor",
       "description": "Survey any codebase as a senior advisor and produce prioritized, self-contained implementation plans"
+    },
+    {
+      "name": "codex-image-gen",
+      "source": "./skills/codex-image-gen",
+      "description": "Generate raster images (icons, illustrations, textures, app icons) from a text prompt by driving the"
     },
     {
       "name": "comment-mode",

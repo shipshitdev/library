@@ -26,4 +26,5 @@ AI agent development and prompt engineering
 - `comment-mode`
 - `spec-first`
 - `agent-browser`
+- `codex-image-gen`
 - `agent-dispatch`

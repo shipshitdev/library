@@ -101,6 +101,7 @@
         "comment-mode",
         "spec-first",
         "agent-browser",
+        "codex-image-gen",
         "agent-dispatch"
       ]
     },

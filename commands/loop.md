@@ -72,10 +72,18 @@ source .github/agent-loop.env   # PROJECT_OWNER, PROJECT_NUMBER, STATUS_*_OPTION
 - Respect the 30-minute claim lock; treat older claims as stale and reclaimable.
 - Never touch `HITL` issues — they lack `dispatch:claude` by design.
 - `--status` and `--list` are read-only; they never claim, edit, or comment.
+- `/loop` executes; it never plans. To get a reviewed plan first, apply the
+  `dispatch:plan` planning gate: an agent drafts an `## Implementation Plan` comment
+  (via `plan-dispatch.yml`) and stops at **Human Review** without applying an
+  execution gate. A human approves the plan, then moves the issue back to Backlog and
+  applies `dispatch:claude` so `/loop` can pick it up. `/loop` reads that trusted
+  `## Implementation Plan` comment if present.
 - The dispatch gate is `dispatch:claude`; the kanban columns are the board's
   **Status** field (Backlog / In Progress / Human Review / Done / Deferred), not
   labels. The AI-loop sub-phases are `loop:*` labels inside In Progress. See
   `docs/agents/triage-labels.md` and `docs/agents/issue-tracker.md` in the target repo.
-- `/loop` is the **Claude lane**. The Codex/GPT lane (`dispatch:codex`) and the
-  OpenRouter lane (`dispatch:openrouter`) are push-only — they run via
-  `codex-dispatch.yml` / `openrouter-dispatch.yml` on GitHub Actions, not locally here.
+- `/loop` is the **Claude lane**. The Codex/GPT lane (`dispatch:codex`) has a local
+  twin — run **`/codex-loop`** to claim and work one `dispatch:codex` issue locally
+  via `codex exec`, symmetric with `/loop`. Both lanes also run as push workflows
+  (`agent-dispatch.yml` / `codex-dispatch.yml`); the OpenRouter lane
+  (`dispatch:openrouter`) remains push-only via `openrouter-dispatch.yml`.

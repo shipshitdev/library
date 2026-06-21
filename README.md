@@ -11,7 +11,7 @@
 ```
 skills/
 ├── skills/              # All skills (152)
-├── commands/            # All commands (26)
+├── commands/            # All commands (27)
 ├── bundles/             # Generated marketplace bundles
 ├── .agents/             # Repo management, memory, meta-skills
 │   ├── memory/          # Repo decisions, context, and system docs
@@ -149,6 +149,7 @@ touch skills/my-skill/SKILL.md
 |---------|-------------|
 | address | Resolve PR review comments — propose fixes and replies |
 | agent | Audit, configure, scaffold, and route agents and subagents |
+| board | Set up, audit, or normalize a GitHub Projects v2 board |
 | bug | File a GitHub bug issue |
 | clean | Clean completed tasks and consolidate session files |
 | deploy | Deploy the app and provision infrastructure |

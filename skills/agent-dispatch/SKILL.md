@@ -1,0 +1,116 @@
+---
+name: agent-dispatch
+description: >-
+  Single front door for agent/subagent architecture, config, and setup. Parses a
+  subcommand — audit, config, init, or route — and routes to the right engine:
+  agent-architecture-audit (diagnose LLM wrapper and agent failures),
+  agent-config-audit (audit and sync AI agent config files across workspaces),
+  agent-folder-init (add or repair .agents/ project context for a repo), or
+  setup-agent-routing (write a machine-readable routing block in CLAUDE.md/AGENTS.md).
+  Backs the /agent command. Use when asked to audit an agent system, check config
+  drift, initialize agent docs, or wire up routing, and the action must be picked
+  from an argument like "audit", "config", "init", or "route".
+metadata:
+  version: "1.0.0"
+  tags: "agents, dispatcher, architecture, config, setup, routing, orchestration"
+  author: Ship Shit Dev
+when_to_use: "/agent, agent audit, config audit, init agent folder, setup agent routing, audit LLM wrappers, check agent config drift, add .agents/ folder, wire up dev-loop routing"
+disable-model-invocation: true
+---
+
+# Agent Dispatch
+
+The router behind `/agent`. It owns one job: turn a subcommand into the right
+agent action and delegate. It does **not** contain agent, config, or setup logic of
+its own — architecture diagnosis lives in `agent-architecture-audit`, config-file
+audit and sync lives in `agent-config-audit`, `.agents/` scaffolding lives in
+`agent-folder-init`, and dev-loop routing setup lives in `setup-agent-routing`.
+
+## Contract
+
+Inputs:
+
+- A single argument string (may be empty) parsed into a `mode`.
+
+Outputs:
+
+- For `audit`: a severity-ranked findings report diagnosing LLM wrapper and agent
+  failures, with a layer-by-layer fix plan.
+- For `config`: an audit report covering CLAUDE.md, CODEX.md, AGENTS.md,
+  .cursorrules, hooks, and settings, with proposed fixes.
+- For `init`: a scaffolded `.agents/` folder structure plus root agent entry
+  files, with a summary of files created versus skipped.
+- For `route`: a drafted `## Agent skills` routing block in CLAUDE.md/AGENTS.md
+  and seeded `docs/agents/` reference files.
+- For _(empty)_: a one-line domain status summary and the Usage block.
+
+Creates/Modifies:
+
+- Nothing directly. The delegated skill performs any mutation behind its own
+  confirmation gate.
+
+External Side Effects:
+
+- None by default. The delegated skills may read git remotes, `gh` APIs, or
+  workspace files when resolving routing state.
+
+Confirmation Required:
+
+- This skill is explicit-invoke only (`disable-model-invocation`). Each delegated
+  skill owns its own confirmation gate before writing files or changing config.
+  This router does not relax them.
+
+Delegates To:
+
+- `agent-architecture-audit` for `audit` (diagnose LLM and agent wrapper failures).
+- `agent-config-audit` for `config` (audit and sync agent config files).
+- `agent-folder-init` for `init` (scaffold or repair the `.agents/` folder).
+- `setup-agent-routing` for `route` (write the dev-loop routing block).
+
+## Step 1 — Parse the Subcommand
+
+Resolve the raw argument into a `mode`.
+
+| Argument | Mode | Delegates to |
+|---|---|---|
+| _(empty)_ | `status` | none — print a one-line domain summary + Usage block |
+| `audit` | `audit` | `agent-architecture-audit` |
+| `config` | `config` | `agent-config-audit` |
+| `init` | `init` | `agent-folder-init` |
+| `route` | `route` | `setup-agent-routing` |
+
+If the argument matches none of these, report the unrecognized input and print
+the Usage block — do not guess a mode.
+
+## Step 2 — Route
+
+- **status →** print a one-line summary of the agent domain (no mutation), then
+  show the Usage block.
+- **audit →** apply the `agent-architecture-audit` skill.
+- **config →** apply the `agent-config-audit` skill.
+- **init →** apply the `agent-folder-init` skill.
+- **route →** apply the `setup-agent-routing` skill.
+
+Each delegated skill owns its own preconditions and confirmation gate. This
+router does not relax them.
+
+## Usage
+
+```bash
+/agent              # status: one-line domain summary + usage
+/agent audit        # diagnose LLM wrapper regressions, prompt/memory contamination, tool discipline failures
+/agent config       # audit and sync CLAUDE.md, CODEX.md, AGENTS.md, hooks, settings across workspaces
+/agent init         # scaffold or repair the .agents/ folder and root agent entry files for a repo
+/agent route        # write the ## Agent skills routing block in CLAUDE.md/AGENTS.md + docs/agents/
+```
+
+## Anti-Patterns
+
+- **Re-implementing agent, config, or setup logic here.** This skill resolves the
+  subcommand and delegates; all domain logic belongs in the routed skill.
+- **Guessing on an unknown argument.** Print Usage instead — a wrong guess could
+  overwrite config or scaffold into the wrong directory.
+- **Skipping the delegated skill's confirmation gate.** Each routed skill controls
+  its own writes; the router never bypasses or pre-confirms on their behalf.
+- **Auto-running a mutating sub-skill on an empty argument.** The default mode
+  prints status only; it never initiates a write.

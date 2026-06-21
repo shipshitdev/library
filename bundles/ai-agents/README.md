@@ -26,3 +26,4 @@ AI agent development and prompt engineering
 - `comment-mode`
 - `spec-first`
 - `agent-browser`
+- `agent-dispatch`

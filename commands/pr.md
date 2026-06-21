@@ -1,8 +1,9 @@
 # PR - Pull Request Lifecycle
 
 One entry point for the pull-request lifecycle: open or update a PR, review it,
-digest its comments, or tidy it for reviewers. A thin dispatcher over the PR
-skills — it routes to the right one based on the subcommand.
+digest its comments, tidy it for reviewers, apply review fixes, repair failing
+CI, or post inline suggestions. A thin dispatcher over the PR skills — it routes
+to the right one based on the subcommand.
 
 ## Usage
 
@@ -11,6 +12,9 @@ skills — it routes to the right one based on the subcommand.
 /pr review          # full multi-dimension review of the PR/branch
 /pr comments        # read-only digest of the PR's review feedback
 /pr tidy            # rewrite the PR description to be easy to review
+/pr address         # apply review-comment fixes + draft replies
+/pr fix-ci          # diagnose and fix failing CI checks on the PR
+/pr suggest         # post inline suggested changes on the PR
 ```
 
 `/pr comments` accepts the same arguments as the `pr-comments` skill, e.g.
@@ -33,6 +37,12 @@ Route by subcommand:
    existing PR's description for reviewers (TL;DR, generated-vs-core separation,
    risk callouts, migration/rollout order). It rewrites the description only — it
    does not reorder commits or force-push.
+5. **`/pr address`** — use the `gh-address-comments` skill to fetch review threads,
+   map them to code, propose fixes, and draft replies for approval.
+6. **`/pr fix-ci`** — use the `gh-fix-ci` skill to diagnose failing GitHub Actions
+   checks on the PR and apply targeted fixes (optionally looping until green).
+7. **`/pr suggest`** — use the `gh-review-suggestions` skill to post precise inline
+   suggested changes as GitHub suggestion blocks on the PR.
 
 ## Gates
 
@@ -41,3 +51,5 @@ Route by subcommand:
 - `/pr review` and `/pr comments` are read-only — they never edit code or post
   changes.
 - `/pr tidy` edits the PR description text only; it never rewrites git history.
+- `/pr address`, `/pr fix-ci`, and `/pr suggest` mutate (code fixes or posted
+  comments) — honor each skill's own confirmation gate before applying or posting.

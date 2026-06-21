@@ -18,3 +18,4 @@ Testing, QA, and CI/CD automation skills
 - `qa-reviewer`
 - `husky-test-coverage`
 - `test-runner`
+- `test-dispatch`

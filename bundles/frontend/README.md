@@ -41,3 +41,4 @@ Frontend development and design skills
 - `shadcn-setup`
 - `tailwind`
 - `tailwind-validator`
+- `design-dispatch`

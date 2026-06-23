@@ -1,5 +1,5 @@
 ---
-name: writing-prds
+name: prd-writer
 disable-model-invocation: true
 description: Drafts, scopes, and formalizes features as PRDs — a planning agent can consume the output in one shot without re-elicitation. Triggers on "write a PRD for X", "let's plan X", "scope this out", "what should X do", or when a tracker issue needs to be fleshed out before planning. Do NOT use for code edits, debugging, or PR reviews.
 metadata:
@@ -7,7 +7,7 @@ metadata:
   tags: "prd, planning, requirements, spec, scoping, ears"
 ---
 
-# Writing PRDs
+# PRD Writer
 
 A PRD is the input contract for the planning phase. A good PRD lets a planning
 agent produce a usable plan in one shot instead of burning turns asking "what did

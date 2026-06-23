@@ -2,10 +2,10 @@
 
 See `AGENTS.md` at repo root for full instructions.
 
-This is the shipshitdev/skills repo — a library of 146 AI agent skills.
+This is the shipshitdev/skills repo — a library of 155 AI agent skills.
 
 ## Key References
 
-- `.agents/SYSTEM/SKILL-STANDARDS.md` — Agent Skills spec + extensions
-- `.agents/memory/MEMORY.md` — Repo architecture decisions
+- `.agents/memory/system/skill-standards.md` — Agent Skills spec + extensions
+- `.agents/memory/memory.md` — Repo architecture decisions
 - `.agents/skills/` — Meta-skills for maintaining this repo

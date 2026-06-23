@@ -32,7 +32,7 @@ Outputs:
 - Concise context scan summary.
 - Focused question batches, no more than three questions at a time.
 - Running assumptions, decisions, and open questions.
-- Final interview brief ready for `writing-prds`, `feature-intake`, `shape`,
+- Final interview brief ready for `prd-writer`, `feature-intake`, `shape`,
   `spec-first`, or direct implementation.
 
 Creates/Modifies:
@@ -54,7 +54,7 @@ Confirmation Required:
 
 Delegates To:
 
-- `writing-prds` when the brief is ready to become a formal PRD.
+- `prd-writer` when the brief is ready to become a formal PRD.
 - `feature-intake` when the brief should become GitHub issues or board items.
 - `shape` when the main unknowns are UX, UI, interaction, content, or states.
 - `spec-first` when the work is implementation-ready but still needs a durable
@@ -178,7 +178,7 @@ End with this structure:
 - <unresolved item, or "None">
 
 ### Recommended Next Step
-<writing-prds | feature-intake | shape | spec-first | direct implementation>
+<prd-writer | feature-intake | shape | spec-first | direct implementation>
 ```
 
 Keep the brief concise enough to paste into a tracker issue or hand to a PRD

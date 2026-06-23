@@ -56,8 +56,8 @@ Confirmation Required:
 
 Delegates To:
 
-- `writing-prds` for PRD structure and quality gates
-- `task-prd-creator` for issue and sub-issue creation mechanics
+- `prd-writer` for PRD structure and quality gates
+- `prd-task-creator` for issue and sub-issue creation mechanics
 - `gh-project-board` when the target board needs inspection or normalization
 - `prd-quality-gate` before marking the intake ready for planning
 

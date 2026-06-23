@@ -51,7 +51,7 @@ Confirmation Required:
 
 Delegates To:
 
-- `task-prd-creator` when board setup reveals missing task structure
+- `prd-task-creator` when board setup reveals missing task structure
 - `gh-fix-ci` when project automation depends on failing GitHub Actions
 
 ## Canonical Board Shape

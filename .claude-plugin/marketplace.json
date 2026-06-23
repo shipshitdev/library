@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "154 AI agent skills for development workflows",
+  "description": "155 AI agent skills for development workflows",
   "plugins": [
     {
       "name": "shipshitdev-testing",
@@ -814,6 +814,11 @@
       "name": "typescript-refactor",
       "source": "./skills/typescript-refactor",
       "description": "TypeScript refactoring and modernization guidelines from a principal specialist perspective. This sk"
+    },
+    {
+      "name": "ultracode",
+      "source": "./skills/ultracode",
+      "description": "Runs a Codex-only high-autonomy workflow for difficult coding tasks: inspect, plan, choose direct/wo"
     },
     {
       "name": "verification-before-completion",

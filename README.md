@@ -4,13 +4,13 @@
 
 ![Project Type](https://img.shields.io/badge/Project-Skills-blue)
 
-154 AI agent skills for development workflows. Works with Claude Code, OpenAI Codex, and Cursor.
+155 AI agent skills for development workflows. Works with Claude Code, OpenAI Codex, and Cursor.
 
 ## Directory Structure
 
 ```
 skills/
-├── skills/              # All skills (154)
+├── skills/              # All skills (155)
 ├── commands/            # All commands (28)
 ├── bundles/             # Generated marketplace bundles
 ├── .agents/             # Repo management, memory, meta-skills
@@ -176,17 +176,17 @@ touch skills/my-skill/SKILL.md
 | test | Run, author, and set up tests |
 | tests | Run the right tests and turn red green |
 
-## Skills (154)
+## Skills (155)
 
 ### Dev Loop (10)
 
 `interview`, `feature-intake`, `writing-prds`, `writing-plans`, `prd-quality-gate`, `task-prd-creator`, `executing-plans`, `setup-agent-routing`, `gh-project-board`, `qa-reviewer`
 
-### Dev Workflow (38)
+### Dev Workflow (39)
 
-`agent-architecture-audit`, `agent-config-audit`, `ai-agent-cost-optimizer`, `ai-regression-testing`, `analyze-codebase`, `codebase-advisor`, `code-review`, `structural-review`, `full-code-review`, `review-dispatch`, `commit-summary`, `changelog-generator`, `standup`, `de-slop`, `debug`, `deploy`, `execution-debugging`, `deployment-composer`, `docs`, `llm-structured-output`, `merge-open-prs`, `production-audit`, `refactor-code`, `release`, `release-dispatch`, `release-cleanup`, `release-pr-gates`, `scaffold`, `shape`, `skill-capture`, `skill-comply`, `skill-scout`, `systematic-debugging`, `receiving-code-review`, `verification-before-completion`, `worktree`, `skill-dispatch`, `deploy-dispatch`
+`agent-architecture-audit`, `agent-config-audit`, `ai-agent-cost-optimizer`, `ai-regression-testing`, `analyze-codebase`, `codebase-advisor`, `code-review`, `structural-review`, `full-code-review`, `review-dispatch`, `commit-summary`, `changelog-generator`, `standup`, `de-slop`, `debug`, `deploy`, `execution-debugging`, `deployment-composer`, `docs`, `llm-structured-output`, `merge-open-prs`, `production-audit`, `refactor-code`, `release`, `release-dispatch`, `release-cleanup`, `release-pr-gates`, `scaffold`, `shape`, `skill-capture`, `skill-comply`, `skill-scout`, `systematic-debugging`, `receiving-code-review`, `verification-before-completion`, `worktree`, `skill-dispatch`, `deploy-dispatch`, `ultracode`
 
-### GitHub (18)
+### GitHub (19)
 
 `bug`, `gh-address-comments`, `gh-fix-ci`, `gh-inbox`, `gh-pr-publish`, `gh-project-board`, `gh-review-suggestions`, `github-actions-author`, `git-safety`, `feature-intake`, `merge-open-prs`, `release`, `release-dispatch`, `release-cleanup`, `release-pr-gates`, `worktree`, `finishing-a-development-branch`, `pr-comments`, `fix-merge-conflicts`
 
@@ -210,9 +210,9 @@ touch skills/my-skill/SKILL.md
 
 `security-audit`, `security-expert`, `git-safety`, `open-source-checker`
 
-### AI Agents (17)
+### AI Agents (18)
 
-`prompt-engineering`, `mcp-builder`, `skill-creator`, `context-fundamentals`, `context-optimization`, `context-degradation`, `context-engineering`, `memory-systems`, `multi-agent-patterns`, `tool-design`, `evaluation`, `advanced-evaluation`, `comment-mode`, `spec-first`, `agent-browser`, `agent-dispatch`, `codex-image-gen`
+`prompt-engineering`, `mcp-builder`, `skill-creator`, `context-fundamentals`, `context-optimization`, `context-degradation`, `context-engineering`, `memory-systems`, `multi-agent-patterns`, `tool-design`, `evaluation`, `advanced-evaluation`, `comment-mode`, `spec-first`, `agent-browser`, `agent-dispatch`, `codex-image-gen`, `ultracode`
 
 ### Workspace Setup (11)
 

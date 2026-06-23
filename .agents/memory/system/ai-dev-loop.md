@@ -47,11 +47,11 @@ The loop has the classic planner → executor → QA split, but it lives at the
 
 | Role | Skill(s) | Who runs it |
 | ---- | -------- | ----------- |
-| **Planner** | `feature-intake` → `writing-prds` / `writing-plans` | Human, before the gate — or the `dispatch:plan` gate drafts the plan for human review. Creates the issue + PRD + acceptance criteria + plan. |
+| **Planner** | `feature-intake` → `prd-writer` / `writing-plans` | Human, before the gate — or the `dispatch:plan` gate drafts the plan for human review. Creates the issue + PRD + acceptance criteria + plan. |
 | **Executor** | `executing-plans` | The dispatched agent (Claude or Codex). What the loop runs. |
 | **QA** | `qa-reviewer` | The executor runs it before opening the PR; the human reviews after. |
 
-Both planning artifacts live **on the issue**, never in a local file: `writing-prds`
+Both planning artifacts live **on the issue**, never in a local file: `prd-writer`
 stores the PRD in the issue **body**, and `writing-plans` posts the implementation
 plan as a `## Implementation Plan` **comment**. The executor and every dispatch lane
 read the body plus all comments, so the plan crosses to CI for any engine.
@@ -320,7 +320,7 @@ tool pick up where another left off.
 | `openrouter-dispatch.yml` | Push dispatch on `dispatch:openrouter` — OpenRouter lane (Phase 2). |
 | `executing-plans` skill | The loop's runtime behavior (claim → branch → QA → PR). |
 | `qa-reviewer` skill | The QA gate run before every PR. |
-| `feature-intake` / `writing-prds` skills | Create the PRD epics + sub-issues the loop consumes. |
+| `feature-intake` / `prd-writer` skills | Create the PRD epics + sub-issues the loop consumes. |
 | `setup-dev-loop.sh` / `/setup-agent-routing` | One-time per-repo provisioning. |
 
 ## Best practices

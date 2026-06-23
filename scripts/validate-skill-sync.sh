@@ -70,7 +70,7 @@ scaffold
 session-documenter
 session-end
 session-start
-task-prd-creator
+prd-task-creator
 "
 
 skill_exists() {

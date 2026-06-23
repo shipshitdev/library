@@ -68,10 +68,10 @@ Requirements Syntax): `WHEN/WHILE/WHERE/IF … THE SYSTEM SHALL …`, or a bare
 bullet against this grammar (regex `^\s*(\d+\.\s*)?(WHEN|WHILE|WHERE|IF|THE
 SYSTEM)\b.*\bSHALL\b`); default stays warning-only. The canonical
 verifiable-outcomes section is `Acceptance Criteria` (the former
-`Success Criteria` in `writing-prds`/`feature-intake` was renamed/merged — they
+`Success Criteria` in `prd-writer`/`feature-intake` was renamed/merged — they
 are now one EARS section; testing bars live in `Verification Plan`). Applies to
-`writing-prds`, `prd-quality-gate`, `feature-intake`, `spec-first`,
-`task-prd-creator`. Rationale: skills are read by AI coding agents, where vague
+`prd-writer`, `prd-quality-gate`, `feature-intake`, `spec-first`,
+`prd-task-creator`. Rationale: skills are read by AI coding agents, where vague
 prose criteria cause drift; EARS is the de-facto agent-spec grammar (Kiro-origin,
 not a ratified standard — the gate regex is the single point to adjust if it shifts).
 

@@ -1,7 +1,7 @@
 {
-  "name": "task-prd-creator",
-  "version": "1.1.0",
-  "description": "Write PRDs and tasks as GitHub issues, sub-issues, or local planning files.",
+  "name": "prd-writer",
+  "version": "1.2.0",
+  "description": "Write one-shot PRDs for planning agents with tracker issue and quality gates.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",

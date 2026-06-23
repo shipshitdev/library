@@ -133,7 +133,7 @@ Ported from Vincent's own private spec-pipeline repo. No public upstream → not
 
 | Skill | Origin |
 |-------|--------|
-| writing-prds | private `vitae` spec-pipeline |
+| prd-writer | private `vitae` spec-pipeline |
 | prd-quality-gate | private `vitae` spec-pipeline |
 | context-engineering | private `vitae` spec-pipeline |
 | execution-debugging | private `vitae` spec-pipeline |

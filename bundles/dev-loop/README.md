@@ -13,10 +13,10 @@ Autonomous GitHub issue-to-PR loop with PRDs, plans, board dispatch, QA, and rev
 
 - `interview`
 - `feature-intake`
-- `writing-prds`
+- `prd-writer`
 - `writing-plans`
 - `prd-quality-gate`
-- `task-prd-creator`
+- `prd-task-creator`
 - `executing-plans`
 - `setup-agent-routing`
 - `gh-project-board`

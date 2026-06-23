@@ -37,7 +37,7 @@ Confirmation Required:
 
 Delegates To:
 
-- `task-prd-creator` for PRD-style issue creation.
+- `prd-task-creator` for PRD-style issue creation.
 - `executing-plans` for Stage D autonomous execution.
 
 A structured workflow for LLM-assisted coding that delays implementation until decisions are explicit.
@@ -196,7 +196,7 @@ GitHub Issue (one per feature)   # steps + verification commands (checklist body
 - Keeps project root clean
 - Durable spec/decisions stay in `.agents/memory/` (the source of truth)
 - Active todos live in GitHub Issues, where work is tracked
-- Works with task-prd-creator and executing-plans skills
+- Works with prd-task-creator and executing-plans skills
 - Persists across sessions
 
 ## Agent Readiness Checklist (IMPACT)

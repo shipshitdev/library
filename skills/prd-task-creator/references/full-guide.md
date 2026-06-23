@@ -1,4 +1,4 @@
-# Task & PRD Creator — Full Guide
+# PRD Task Creator — Full Guide
 
 ## Workflow detection
 

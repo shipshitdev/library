@@ -536,6 +536,16 @@
       "description": "PRD completeness validation. Use to check that a PRD (or issue body that serves as one) contains the"
     },
     {
+      "name": "prd-task-creator",
+      "source": "./skills/prd-task-creator",
+      "description": "Create a well-written PRD, task, or GitHub issue/sub-issue for a feature, bug, or enhancement. Use w"
+    },
+    {
+      "name": "prd-writer",
+      "source": "./skills/prd-writer",
+      "description": "Drafts, scopes, and formalizes features as PRDs — a planning agent can consume the output in one sho"
+    },
+    {
       "name": "production-audit",
       "source": "./skills/production-audit",
       "description": "Audit an application for production readiness using local evidence from code, CI, config, migrations"
@@ -761,11 +771,6 @@
       "description": "Validate Tailwind CSS v4 configuration and detect/prevent Tailwind v3 patterns. Use this skill when "
     },
     {
-      "name": "task-prd-creator",
-      "source": "./skills/task-prd-creator",
-      "description": "Create a well-written PRD, task, or GitHub issue/sub-issue for a feature, bug, or enhancement. Use w"
-    },
-    {
       "name": "tdd",
       "source": "./skills/tdd",
       "description": "Test-driven development workflow for feature work and bug fixes. Use when the user asks for TDD, red"
@@ -839,11 +844,6 @@
       "name": "writing-plans",
       "source": "./skills/writing-plans",
       "description": "Turn a spec or requirements doc into a comprehensive, bite-sized implementation plan: map every file"
-    },
-    {
-      "name": "writing-prds",
-      "source": "./skills/writing-prds",
-      "description": "Drafts, scopes, and formalizes features as PRDs — a planning agent can consume the output in one sho"
     }
   ]
 }

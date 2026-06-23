@@ -33,7 +33,7 @@ agent skill fits which step.
 - **`route`** — the `setup-agent-routing` skill: write a machine-readable
   `## Agent skills` routing block in CLAUDE.md/AGENTS.md and seed `docs/agents/`
   reference files so the dev-loop skills (executing-plans, feature-intake,
-  writing-prds, qa-reviewer) know this repo's GitHub issue tracker, kanban label
+  prd-writer, qa-reviewer) know this repo's GitHub issue tracker, kanban label
   vocabulary, and domain doc layout.
 
 ## Workflow

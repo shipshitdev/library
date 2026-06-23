@@ -41,7 +41,7 @@ The flagship workflow: a **board-driven autonomous dev loop** that turns a GitHu
 issue into a reviewed PR, with you as architect/reviewer. It is the open, `gh`-driven
 version of **ShipCode**'s pipeline — same stages, no app required.
 
-- **Plan** (human): `feature-intake` → `writing-prds` / `writing-plans` write the PRD
+- **Plan** (human): `feature-intake` → `prd-writer` / `writing-plans` write the PRD
   and implementation plan onto the issue.
 - **Dispatch** (human opt-in): apply `dispatch:claude` (Claude lane),
   `dispatch:codex` (Codex lane), or `dispatch:openrouter` (OpenRouter lane) to a
@@ -180,7 +180,7 @@ touch skills/my-skill/SKILL.md
 
 ### Dev Loop (10)
 
-`interview`, `feature-intake`, `writing-prds`, `writing-plans`, `prd-quality-gate`, `task-prd-creator`, `executing-plans`, `setup-agent-routing`, `gh-project-board`, `qa-reviewer`
+`interview`, `feature-intake`, `prd-writer`, `writing-plans`, `prd-quality-gate`, `prd-task-creator`, `executing-plans`, `setup-agent-routing`, `gh-project-board`, `qa-reviewer`
 
 ### Dev Workflow (39)
 
@@ -220,7 +220,7 @@ touch skills/my-skill/SKILL.md
 
 ### Planning & PRDs (10)
 
-`roadmap-analyzer`, `cto-advisor`, `interview`, `feature-intake`, `task-prd-creator`, `writing-prds`, `prd-quality-gate`, `rules-capture`, `writing-plans`, `prd-dispatch`
+`roadmap-analyzer`, `cto-advisor`, `interview`, `feature-intake`, `prd-task-creator`, `prd-writer`, `prd-quality-gate`, `rules-capture`, `writing-plans`, `prd-dispatch`
 
 ### Payments & Product Integrations (1)
 

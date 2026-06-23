@@ -120,7 +120,7 @@ DESIGN_SKILLS=(
 
 PLANNING_SKILLS=(
   spec-first
-  task-prd-creator
+  prd-task-creator
   refactor-code
   code-refactoring-refactor-clean
   performance-expert

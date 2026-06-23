@@ -3,9 +3,9 @@ name: prd-dispatch
 description: >-
   Single front door for product specs, PRDs, and feature planning. Parses a
   subcommand — new, spec, gate, write, intake, or interview — and routes to the
-  right planning engine: task-prd-creator (GitHub issue or local PRD), spec-first
+  right planning engine: prd-task-creator (GitHub issue or local PRD), spec-first
   (spec → plan → execute loop), prd-quality-gate (completeness validation),
-  writing-prds (full PRD draft), feature-intake (client requirement → kanban
+  prd-writer (full PRD draft), feature-intake (client requirement → kanban
   issues), or interview (discovery interview before PRD writing). Backs the /prd
   command. Use when asked to create a PRD, plan a feature, write a spec, validate
   a PRD, run a discovery interview, or intake a stakeholder requirement, and the
@@ -23,9 +23,9 @@ disable-model-invocation: true
 
 The router behind `/prd`. It owns one job: turn a subcommand into the right
 planning action and delegate. It does **not** contain PRD or planning logic of
-its own — issue/file creation lives in `task-prd-creator`, spec-loop enforcement
+its own — issue/file creation lives in `prd-task-creator`, spec-loop enforcement
 lives in `spec-first`, completeness validation lives in `prd-quality-gate`, full
-PRD drafting lives in `writing-prds`, client-requirement intake lives in
+PRD drafting lives in `prd-writer`, client-requirement intake lives in
 `feature-intake`, and discovery interviewing lives in `interview`.
 
 ## Contract
@@ -61,10 +61,10 @@ Confirmation Required:
 
 Delegates To:
 
-- `task-prd-creator` for `new` (GitHub issue or local PRD/task file).
+- `prd-task-creator` for `new` (GitHub issue or local PRD/task file).
 - `spec-first` for `spec` (spec → plan → execute → verify loop).
 - `prd-quality-gate` for `gate` (PRD completeness validation).
-- `writing-prds` for `write` (full PRD draft scoped for a planning agent).
+- `prd-writer` for `write` (full PRD draft scoped for a planning agent).
 - `feature-intake` for `intake` (client/stakeholder requirement → kanban issues).
 - `interview` for `interview` (discovery interview before PRD writing).
 
@@ -75,10 +75,10 @@ Resolve the raw argument into a `mode`.
 | Argument | Mode | Delegates to |
 |---|---|---|
 | _(empty)_ | `status` | none — print domain overview + usage |
-| `new` | `new` | `task-prd-creator` |
+| `new` | `new` | `prd-task-creator` |
 | `spec` | `spec` | `spec-first` |
 | `gate` | `gate` | `prd-quality-gate` |
-| `write` | `write` | `writing-prds` |
+| `write` | `write` | `prd-writer` |
 | `intake` | `intake` | `feature-intake` |
 | `interview` | `interview` | `interview` |
 
@@ -90,10 +90,10 @@ the Usage block — do not guess.
 - **status →** print a short overview of the PRD domain (e.g., open PRD issues
   if determinable, otherwise a domain summary), then show the Usage block.
   Mutate nothing.
-- **new →** apply the `task-prd-creator` skill.
+- **new →** apply the `prd-task-creator` skill.
 - **spec →** apply the `spec-first` skill.
 - **gate →** apply the `prd-quality-gate` skill.
-- **write →** apply the `writing-prds` skill.
+- **write →** apply the `prd-writer` skill.
 - **intake →** apply the `feature-intake` skill.
 - **interview →** apply the `interview` skill.
 
@@ -115,7 +115,7 @@ router does not relax them.
 ## Anti-Patterns
 
 - **Re-implementing PRD or planning logic here.** This skill resolves the
-  subcommand and delegates; drafting lives in `writing-prds`, validation in
+  subcommand and delegates; drafting lives in `prd-writer`, validation in
   `prd-quality-gate`, intake in `feature-intake`.
 - **Guessing on an unknown argument.** Creating issues or writing files on a
   misread token is destructive — print Usage instead.

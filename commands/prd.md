@@ -19,7 +19,7 @@ intake a stakeholder requirement to a kanban board, or run a discovery interview
 
 ## Steps
 
-- **`new`** — the `task-prd-creator` skill: create a well-written PRD, task, or
+- **`new`** — the `prd-task-creator` skill: create a well-written PRD, task, or
   GitHub issue/sub-issue for a feature, bug, or enhancement.
 - **`spec`** — the `spec-first` skill: enforce a spec → plan → execute → verify
   loop before writing code, producing `spec.md`, `todo.md`, and `decisions.md`
@@ -28,7 +28,7 @@ intake a stakeholder requirement to a kanban board, or run a discovery interview
   required sections (Executive Summary, Problem Statement, Goals, Functional
   Requirements, Acceptance Criteria, Verification Plan) before it is handed to a
   planning agent.
-- **`write`** — the `writing-prds` skill: draft, scope, and formalize a feature
+- **`write`** — the `prd-writer` skill: draft, scope, and formalize a feature
   as a PRD that a planning agent can consume in one shot without re-elicitation.
 - **`intake`** — the `feature-intake` skill: capture a client or stakeholder
   feature request, turn it into a planner-ready PRD epic with scoped sub-issues,

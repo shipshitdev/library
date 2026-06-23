@@ -28,3 +28,4 @@ AI agent development and prompt engineering
 - `agent-browser`
 - `codex-image-gen`
 - `agent-dispatch`
+- `ultracode`

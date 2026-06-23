@@ -49,3 +49,4 @@ Code review, debugging, refactoring, release, and AI-assisted development workfl
 - `worktree`
 - `skill-dispatch`
 - `deploy-dispatch`
+- `ultracode`

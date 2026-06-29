@@ -9,9 +9,7 @@ metadata:
 
 # EC2 Backend Deployer
 
-Expert in deploying backend applications to EC2 instances using CI/CD pipelines, Docker containers, and GitHub Actions.
-
-## When to Use This Skill
+## When to Use
 
 Use when you're:
 

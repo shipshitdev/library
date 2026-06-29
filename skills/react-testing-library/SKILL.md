@@ -8,11 +8,9 @@ metadata:
 
 # React Testing Library Best Practices
 
-Comprehensive testing guide for React components using Testing Library, designed for AI agents and LLMs. Contains 43 rules across 9 categories, prioritized by impact to guide test writing and code review.
+43 rules across 9 categories for testing React components with Testing Library, prioritized by impact to guide test writing and code review.
 
 ## When to Apply
-
-Reference these guidelines when:
 
 - Writing new component tests with React Testing Library
 - Selecting queries (getByRole, getByLabelText, etc.)

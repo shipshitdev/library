@@ -17,8 +17,6 @@ when_to_use: "bug, broken, not working, test failing, unexpected behavior, regre
 
 ## Core Principle
 
-Random fixes waste time and create new bugs. Quick patches mask underlying issues.
-
 **NO FIXES WITHOUT ROOT CAUSE INVESTIGATION FIRST.**
 
 If Phase 1 is not complete, no fix may be proposed. Violating this process violates the spirit of debugging.

@@ -8,8 +8,6 @@ metadata:
 
 # API Design Expert Skill
 
-Expert in RESTful API design, OpenAPI/Swagger documentation, versioning strategies, error handling, and API best practices for NestJS applications.
-
 ## When to Use
 
 - Designing new API endpoints

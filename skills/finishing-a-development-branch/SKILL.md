@@ -22,9 +22,6 @@ when_to_use: "finish branch, done coding, ready to merge, create PR, close branc
 ---
 # Finishing a Development Branch
 
-Guide completion of development work by presenting clear options and handling
-the chosen workflow end-to-end.
-
 **Core principle:** Verify tests → Detect environment → Present options →
 Execute choice → Clean up.
 

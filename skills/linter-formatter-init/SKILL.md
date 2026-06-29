@@ -8,7 +8,7 @@ metadata:
 
 # Linter Formatter Init
 
-Set up comprehensive linting, formatting, and testing for JavaScript/TypeScript projects using **Biome 2.3+** (default), **Vitest**, and **Bun**.
+Set up linting, formatting, and testing for JavaScript/TypeScript projects using **Biome 2.3+** (default), **Vitest**, and **Bun**.
 
 **IMPORTANT**: Always uses Biome 2.3+ (latest) - never older versions.
 
@@ -24,8 +24,6 @@ This skill automates the setup of:
 - bun scripts for manual linting, formatting, and testing
 
 ## When to Use
-
-Use this skill when:
 
 - Starting a new JS/TS project
 - Adding linting to an existing project without tooling

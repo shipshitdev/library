@@ -2,8 +2,7 @@
 
 Fetch the review and issue comments on a pull request, map each to the exact code
 it refers to, propose a fix per thread, and draft replies — then apply and respond
-only after you confirm. The other half of `/review`: that surfaces issues, this
-resolves the ones reviewers left on the PR.
+only after you confirm.
 
 ## Usage
 

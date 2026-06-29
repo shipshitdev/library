@@ -1,8 +1,7 @@
 # Review - One Front Door for Every Code Review
 
 Review whatever you point it at — your working changes, a single PR, every open
-PR, the last N commits, or a time window — through the same review engine. One
-command instead of remembering which review skill fits which scope.
+PR, the last N commits, or a time window — through the same review engine.
 
 ## Usage
 

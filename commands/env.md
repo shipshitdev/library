@@ -20,7 +20,7 @@ Scan codebase for `process.env.*` usage:
 grep -r "process.env\." --include="*.ts" --include="*.tsx" --include="*.js" . | grep -v node_modules | sort -u
 ```
 
-Check existing `.env*` files and config files for context.
+Check existing `.env*` files and config files.
 
 ### Phase 2: Generate .env Templates
 

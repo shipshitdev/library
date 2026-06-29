@@ -13,8 +13,6 @@ metadata:
 
 # GH Address Comments
 
-Use this skill when a user wants help resolving PR review or issue comments via the GitHub CLI.
-
 ## Contract
 
 Inputs:

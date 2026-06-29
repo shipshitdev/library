@@ -8,8 +8,6 @@ metadata:
 
 # Error Handling Expert Skill
 
-Expert in error handling patterns, exception management, error responses, logging, and error recovery strategies for React, Next.js, and NestJS applications.
-
 ## When to Use
 
 - Implementing error handling

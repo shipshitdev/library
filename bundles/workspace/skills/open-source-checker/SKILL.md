@@ -8,9 +8,7 @@ metadata:
 
 # Open Source Checker
 
-Expert in detecting private information, secrets, and sensitive data in codebases before open sourcing a repository.
-
-## When to Use This Skill
+## When to Use
 
 Use when you're:
 

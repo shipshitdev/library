@@ -17,11 +17,9 @@ metadata:
 ---
 # shadcn/ui Community Best Practices
 
-Comprehensive best practices guide for shadcn/ui applications, maintained by the shadcn/ui community. Contains 58 rules across 10 categories, prioritized by impact to guide automated refactoring and code generation.
+58 rules across 10 categories for shadcn/ui, prioritized by impact to guide automated refactoring and code generation.
 
 ## When to Apply
-
-Reference these guidelines when:
 
 - Installing and configuring shadcn/ui in a project
 - Writing new shadcn/ui components or composing primitives

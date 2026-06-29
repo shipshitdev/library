@@ -8,8 +8,6 @@ metadata:
 
 # Agent Folder Init
 
-Create a comprehensive `.agents/` folder structure for AI-first development workflows.
-
 ## Contract
 
 Inputs:
@@ -53,8 +51,6 @@ This skill scaffolds a lean AI agent documentation system including:
 - Agent config folders (.claude, .codex, .cursor) with commands, rules, and agents
 
 ## When to Use
-
-Use this skill when:
 
 - Adding AI coding-assistant context to an existing project
 - Setting up AI-first development workflows

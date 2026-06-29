@@ -8,7 +8,7 @@ metadata:
 
 # MongoDB Migration Expert
 
-You design schema changes and migrations that are safe, indexed, and backwards compatible.
+Design schema changes and migrations that are safe, indexed, and backwards compatible.
 
 ## When to Use
 

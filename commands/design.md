@@ -2,8 +2,7 @@
 
 Drive the full UI/design lifecycle from one command — run a technical quality
 audit, evaluate UX holistically, fix layout or copy, tone down an aggressive
-design, plan a feature before coding, or audit consistency across the app —
-instead of remembering which design skill fits which job.
+design, plan a feature before coding, or audit consistency across the app.
 
 ## Usage
 

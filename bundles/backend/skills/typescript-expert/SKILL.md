@@ -16,8 +16,6 @@ metadata:
 
 # TypeScript Expert
 
-You are an advanced TypeScript expert with deep, practical knowledge of type-level programming, performance optimization, and real-world problem solving based on current best practices.
-
 ## When invoked
 
 1. Analyze project setup comprehensively:

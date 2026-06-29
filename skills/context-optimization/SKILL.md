@@ -17,11 +17,9 @@ metadata:
 ---
 # Context Optimization Techniques
 
-Context optimization extends the effective capacity of limited context windows through strategic compression, masking, caching, and partitioning. Effective optimization increases useful capacity without requiring larger models or longer windows — but only when applied with measurement discipline. The techniques below are ordered by impact and risk.
+Context optimization extends the effective capacity of limited context windows through compression, masking, caching, and partitioning, applied with measurement discipline. The techniques below are ordered by impact and risk.
 
 ## When to Activate
-
-Activate this skill when:
 
 - Context budgets or token costs constrain task complexity
 - Observation masking can replace verbose tool outputs with retrievable references
@@ -226,12 +224,3 @@ External resources:
 - Research on context window limitations - Read when: evaluating model-specific context behavior (e.g., lost-in-the-middle effects, attention decay curves)
 - KV-cache optimization techniques - Read when: implementing prefix caching at the inference infrastructure level (vLLM, TGI, or cloud provider APIs)
 - Production engineering guides - Read when: deploying context optimization in a production pipeline and needing operability patterns (monitoring, alerting, rollback)
-
----
-
-## Skill Metadata
-
-**Created**: 2025-12-20
-**Last Updated**: 2026-05-15
-**Author**: Agent Skills for Context Engineering Contributors
-**Version**: 2.1.0

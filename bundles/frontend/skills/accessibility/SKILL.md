@@ -8,9 +8,7 @@ metadata:
 
 # Accessibility (a11y) Skill
 
-Act as an expert in web accessibility (a11y), specializing in WCAG 2.1 AA compliance for React/Next.js applications.
-
-## When to Use This Skill
+## When to Use
 
 Use when you're:
 
@@ -29,7 +27,7 @@ Use when you're:
 3. Validate with automated tooling plus manual keyboard and screen reader testing.
 4. Document issues and fixes with examples.
 
-## WCAG Principles (Quick)
+## WCAG Principles
 
 - Perceivable: text alternatives, contrast, responsive support.
 - Operable: keyboard access, focus management, timing.

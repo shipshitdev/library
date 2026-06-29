@@ -8,8 +8,6 @@ metadata:
 
 # Deploy
 
-Streamline deployment workflows for React, Next.js, NestJS applications to various environments.
-
 ## Contract
 
 Inputs:

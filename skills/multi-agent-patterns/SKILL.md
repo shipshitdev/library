@@ -13,11 +13,9 @@ metadata:
 ---
 # Multi-Agent Architecture Patterns
 
-Multi-agent architectures distribute work across multiple language model instances, each with its own context window. When designed well, this distribution enables capabilities beyond single-agent limits. When designed poorly, it introduces coordination overhead that negates benefits. The critical insight is that sub-agents exist primarily to isolate context, not to anthropomorphize role division.
+Multi-agent architectures distribute work across multiple language model instances, each with its own context window. The critical insight is that sub-agents exist primarily to isolate context, not to anthropomorphize role division.
 
 ## When to Activate
-
-Activate this skill when:
 
 - Single-agent context limits constrain task complexity
 - Tasks decompose naturally into parallel subtasks
@@ -303,12 +301,3 @@ External resources:
 - [AutoGen Framework](https://microsoft.github.io/autogen/) - Read when: implementing conversational GroupChat patterns or event-driven agent coordination
 - [CrewAI Documentation](https://docs.crewai.com/) - Read when: designing role-based hierarchical agent processes
 - [Research on Multi-Agent Coordination](https://arxiv.org/abs/2308.00352) - Read when: needing academic grounding on multi-agent system theory and evaluation
-
----
-
-## Skill Metadata
-
-**Created**: 2025-12-20
-**Last Updated**: 2026-05-15
-**Author**: Agent Skills for Context Engineering Contributors
-**Version**: 2.1.0

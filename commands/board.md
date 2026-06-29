@@ -2,8 +2,7 @@
 
 One entry point for GitHub Projects v2 board configuration: create the canonical
 board, audit an existing one against it, fix drift, or clone a board's shape to
-another project. A thin front door over the `gh-project-board` skill — it passes
-the mode through.
+another project.
 
 ## Usage
 

@@ -8,9 +8,7 @@ metadata:
 
 # Performance Expert Skill
 
-Expert in performance optimization for React, Next.js, NestJS applications, MongoDB, and AWS infrastructure.
-
-## When to Use This Skill
+## When to Use
 
 - Optimizing React components or Next.js pages
 - Improving API response times

@@ -11,9 +11,6 @@ metadata:
 
 # GH Review Suggestions
 
-Review a GitHub PR and post inline comments only when the suggestion is safe,
-specific, and directly applyable.
-
 ## Contract
 
 Inputs:

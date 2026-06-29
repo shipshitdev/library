@@ -13,7 +13,7 @@ metadata:
   license: Apache-2.0
 ---
 
-Perform a meticulous final pass to catch all the small details that separate good work from great work. The difference between shipped and polished.
+Perform a meticulous final pass to catch the small details that separate good work from great work.
 
 ## Design System Discovery
 

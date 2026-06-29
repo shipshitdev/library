@@ -8,7 +8,7 @@ metadata:
 
 # dot-skills Debugging Best Practices
 
-Comprehensive debugging methodology guide for software engineers, containing 54 rules across 10 categories prioritized by impact. Based on research from Andreas Zeller's "Why Programs Fail" and academic debugging curricula.
+Debugging methodology: 54 rules across 10 categories prioritized by impact. Based on research from Andreas Zeller's "Why Programs Fail" and academic debugging curricula.
 
 ## Operational Loop
 
@@ -54,8 +54,6 @@ For performance regressions, measure first. Establish a baseline, capture timing
 or profiler evidence, and bisect before changing code.
 
 ## When to Apply
-
-Reference these guidelines when:
 
 - Investigating a bug or unexpected behavior
 - Debugging code during development

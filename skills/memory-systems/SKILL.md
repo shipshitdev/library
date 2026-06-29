@@ -13,11 +13,10 @@ metadata:
 ---
 # Memory System Design
 
-Memory provides the persistence layer that allows agents to maintain continuity across sessions and reason over accumulated knowledge. Simple agents rely entirely on context for memory, losing all state when sessions end. Sophisticated agents implement layered memory architectures that balance immediate context needs with long-term knowledge retention. The evolution from vector stores to knowledge graphs to temporal knowledge graphs represents increasing investment in structured memory for improved retrieval and reasoning.
+Use this skill to choose and implement the shallowest persistent memory layer
+that satisfies retrieval, durability, and reasoning requirements.
 
 ## When to Activate
-
-Activate this skill when:
 
 - Building agents that must persist knowledge across sessions
 - Choosing between memory frameworks (Mem0, Zep/Graphiti, Letta, LangMem, Cognee)
@@ -34,7 +33,12 @@ Do not activate this skill for adjacent work owned by other skills:
 
 ## Core Concepts
 
-Think of memory as a spectrum from volatile context window to persistent storage. Default to the simplest layer that meets retrieval needs, because benchmark evidence suggests tool complexity matters less than reliable retrieval for some memory workloads (claim-memory-locomo-filesystem-baseline). Add structure (graphs, temporal validity) only when retrieval quality degrades or the agent needs multi-hop reasoning, relationship traversal, or time-travel queries.
+Classify memory requirements from volatile context to persistent storage.
+Default to the simplest layer that meets retrieval needs, because benchmark
+evidence suggests tool complexity matters less than reliable retrieval for some
+memory workloads (claim-memory-locomo-filesystem-baseline). Add structure
+(graphs, temporal validity) only when retrieval quality degrades or the agent
+needs multi-hop reasoning, relationship traversal, or time-travel queries.
 
 ## Detailed Topics
 
@@ -182,7 +186,7 @@ results = await cognee.search(
 1. Start with file-system memory; add complexity only when retrieval quality demands it
 2. Track temporal validity for any fact that can change over time
 3. Use hybrid retrieval (semantic + keyword + graph) for best accuracy
-4. Consolidate memories periodically — invalidate but don't discard
+4. Consolidate memories on count thresholds, degraded retrieval quality, or a schedule — invalidate but don't discard
 5. Design for retrieval failure: always have a fallback when memory lookup returns nothing
 6. Consider privacy implications of persistent memory (retention policies, deletion rights)
 7. Benchmark your memory system against LoCoMo or LongMemEval before and after changes
@@ -229,12 +233,3 @@ External resources:
 - Graphiti open-source temporal KG engine (github.com/getzep/graphiti) - Read when: implementing temporal knowledge graphs
 - Cognee open-source knowledge graph memory (github.com/topoteretes/cognee) - Read when: building customizable ECL pipelines for memory
 - [Cognee comparison: Form vs Function](https://www.cognee.ai/blog/deep-dives/competition-comparison-form-vs-function) - Read when: comparing graph structures across Mem0, Graphiti, LightRAG, Cognee
-
----
-
-## Skill Metadata
-
-**Created**: 2025-12-20
-**Last Updated**: 2026-05-15
-**Author**: Agent Skills for Context Engineering Contributors
-**Version**: 4.1.0

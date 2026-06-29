@@ -10,9 +10,7 @@ metadata:
 
 # React Native Component Patterns Expert
 
-Expert in React Native 0.79.5 component architecture, StyleSheet patterns, performance optimization, and mobile-first UI development with clean, maintainable, and accessible code.
-
-## When to Use This Skill
+## When to Use
 
 Use when you're:
 

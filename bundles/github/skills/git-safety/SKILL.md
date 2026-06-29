@@ -16,8 +16,6 @@ disable-model-invocation: true
 
 # Git Safety Skill
 
-Comprehensive security scanning, cleaning, and prevention for git repositories.
-
 ## Contract
 
 Inputs:

@@ -8,11 +8,9 @@ metadata:
 
 # Tailwind 4 Validator
 
-Validates that a project uses Tailwind CSS v4 with proper CSS-first configuration. Detects and flags Tailwind v3 patterns that should be migrated.
-
 ## Purpose
 
-**CRITICAL**: Claude and other AI assistants often default to Tailwind v3 patterns. This skill ensures:
+Ensures:
 
 - Projects use Tailwind v4 CSS-first configuration
 - Old `tailwind.config.js` patterns are detected and flagged

@@ -8,8 +8,6 @@ metadata:
 
 # MongoDB Atlas Checker
 
-Verify MongoDB Atlas setup and configuration. Identifies configuration issues, missing environment variables, incorrect connection strings, and ensures proper database setup.
-
 ## When to Use
 
 - Verifying MongoDB Atlas backend setup

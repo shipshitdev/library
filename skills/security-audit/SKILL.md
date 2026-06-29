@@ -8,11 +8,7 @@ metadata:
 
 # Security Audit
 
-Standalone workflow for reviewing a web application or API without depending on other skills.
-
 ## When to Use
-
-Use this skill when:
 
 - auditing a web application or API for security issues
 - reviewing authentication, authorization, or session handling

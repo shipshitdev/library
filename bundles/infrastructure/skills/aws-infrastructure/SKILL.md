@@ -8,13 +8,7 @@ metadata:
 
 # AWS Infrastructure Expert
 
-## Overview
-
-This skill enables AI assistants to help set up and configure AWS infrastructure for micro startups, including EC2 instances, VPCs, security groups, load balancers, DNS, and SSL certificates.
-
-## When to Use This Skill
-
-This skill activates when users need:
+## When to Use
 
 - EC2 instance setup and configuration
 - VPC and networking setup

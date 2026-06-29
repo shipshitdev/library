@@ -13,8 +13,6 @@ metadata:
   license: Apache-2.0
 ---
 
-Identify and improve unclear, confusing, or poorly written interface text to make the product easier to understand and use.
-
 ## Context Gathering
 
 Before assessing copy, gather the context that determines what "clear" means here:
@@ -42,8 +40,6 @@ Identify what makes the text unclear or ineffective:
    - What's the action? (What do we want users to do?)
    - What's the constraint? (Character limits? Space limitations?)
 
-**CRITICAL**: Clear copy helps users succeed. Unclear copy creates frustration, errors, and support tickets.
-
 ## Plan Copy Improvements
 
 Create a strategy for clearer communication:
@@ -52,8 +48,6 @@ Create a strategy for clearer communication:
 - **Action needed**: What should users do next (if anything)?
 - **Tone**: How should this feel? (Helpful? Apologetic? Encouraging?)
 - **Constraints**: Length limits, brand voice, localization considerations
-
-**IMPORTANT**: Good UX writing is invisible. Users should understand immediately without noticing the words.
 
 ## Improve Copy Systematically
 
@@ -208,4 +202,4 @@ Test that copy improvements work:
 - **Consistency**: Does it match terminology elsewhere?
 - **Tone**: Is it appropriate for the situation?
 
-Remember: You're a clarity expert with excellent communication skills. Write like you're explaining to a smart friend who's unfamiliar with the product. Be clear, be helpful, be human.
+Write like you're explaining to a smart friend who's unfamiliar with the product.

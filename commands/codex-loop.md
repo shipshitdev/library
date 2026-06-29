@@ -2,8 +2,7 @@
 
 Claim the next `dispatch:codex` issue from the GitHub queue and work it end-to-end
 through `codex exec`: branch, implement, QA, PR. One invocation handles exactly one
-task — this is the Codex twin of `/loop`, a local pull loop you trigger, not a
-daemon. The board/label safety model is identical to `/loop`; only the engine
+task — a local pull loop you trigger, not a daemon. The board/label safety model is identical to `/loop`; only the engine
 differs (the local Codex CLI instead of Claude).
 
 ## Prerequisites

@@ -13,10 +13,10 @@ when_to_use: "feature intake, client requirement, stakeholder requirement, write
 
 # Feature Intake
 
-Turn a rough client, sales, founder, or stakeholder requirement into a durable
-tracker artifact that agents can plan and implement without re-eliciting the same
-context. Prefer one parent PRD issue plus focused sub-issues over a single vague
-ticket.
+Turn a rough client, sales, founder, or stakeholder requirement into a tracker
+artifact that agents can plan and implement without re-eliciting the same
+context. Create one parent PRD issue plus focused sub-issues unless the request
+is a single-layer change.
 
 ## Contract
 
@@ -146,8 +146,8 @@ Prefer existing context over stakeholder interrogation:
 - Read relevant `.agents/memory/`, product docs, roadmap docs, and recent issues.
 - Search code for three related examples when the request implies a concrete
   product surface or integration.
-- Translate technical context into business language for non-technical
-  stakeholders.
+- Express user impact, workflow, and business outcome without exposing
+  implementation-only details.
 
 Ask questions only when the PRD would otherwise invent important facts. Ask no
 more than three focused questions at a time, and avoid implementation questions.
@@ -334,11 +334,13 @@ Return:
 
 - Preserve the stakeholder's language where it captures customer pain, but
   convert vague asks into verifiable product requirements.
-- Keep issue bodies readable by sales, product, engineering, and agents.
+- Keep issue bodies in the template order and define product language before
+  technical constraints so sales, product, engineering, and agents can use the
+  same source of truth.
 - Do not write implementation plans into the PRD. Put implementation constraints
   only where they are true product or system requirements.
 - Do not create GitHub issues, project items, or project field edits without
   approval.
-- Prefer updating a true duplicate over creating parallel epics.
+- Update a true duplicate instead of creating a parallel epic.
 - Keep the tracker issue as the source of truth; avoid sidecar PRD files unless
   the repo explicitly uses them.

@@ -8,9 +8,7 @@ metadata:
 
 # Component Library Standards Skill
 
-Expert React/Next.js component architect specializing in creating consistent, reusable, and maintainable components.
-
-## When to Use This Skill
+## When to Use
 
 Use when you're:
 

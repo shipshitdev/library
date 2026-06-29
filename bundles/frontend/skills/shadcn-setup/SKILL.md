@@ -13,7 +13,7 @@ metadata:
 
 # shadcn/ui Setup
 
-Sets up shadcn/ui with proper Tailwind CSS v4 configuration. This skill ensures you get the modern CSS-first setup, not the deprecated v3 approach.
+Sets up shadcn/ui with the modern CSS-first Tailwind v4 setup, not the deprecated v3 approach.
 
 ## Contract
 

@@ -17,8 +17,6 @@ Evaluate agent systems differently from traditional software because agents make
 
 ## When to Activate
 
-Activate this skill when:
-
 - Testing agent performance systematically
 - Validating context engineering choices
 - Measuring improvements over time
@@ -289,12 +287,3 @@ External resources:
 - LLM evaluation benchmarks - Read when: selecting or building benchmark suites for agent comparison
 - Agent evaluation research papers - Read when: adopting new evaluation methodologies or validating current approach
 - Production monitoring practices - Read when: setting up alerting, dashboards, or sampling strategies for live systems
-
----
-
-## Skill Metadata
-
-**Created**: 2025-12-20
-**Last Updated**: 2026-05-15
-**Author**: Agent Skills for Context Engineering Contributors
-**Version**: 1.2.0

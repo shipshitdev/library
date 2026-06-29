@@ -8,7 +8,7 @@ metadata:
 
 # Expo Architect
 
-Create **production-ready** Expo React Native apps with:
+Create Expo React Native apps with:
 
 - **Framework:** Expo SDK 54 + React Native 0.83 + TypeScript
 - **Navigation:** Expo Router (file-based routing)

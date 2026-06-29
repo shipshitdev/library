@@ -2,7 +2,8 @@
 name: ultracode
 description: >-
   Runs a Codex-only high-autonomy workflow for difficult coding tasks: inspect,
-  plan, choose direct/workflow/delegated mode, use bounded subagents when useful,
+  plan, choose direct/workflow/delegated mode, use bounded subagents for
+  independent packets,
   integrate in the parent thread, verify, and continue until done or genuinely
   blocked. Use when invoked with $ultracode, /ultracode, "ultracode",
   "maximum-depth", "split across agents", "parallel agents", "deep autonomous
@@ -117,7 +118,7 @@ Behavior:
 - Keep a short execution plan in the thread.
 - Create lightweight artifacts only when they materially help: `plan.md`,
   `integration.md`, `final-report.md`, or a repo-approved scratch location.
-- Prefer the repo's existing scratch/session/workflow directory if documented.
+- Use the repo's existing scratch/session/workflow directory when documented.
 - Do not create local ceremony for routine work.
 - Simulate isolated packets in the parent thread only when the separation helps.
 
@@ -136,8 +137,8 @@ Behavior:
 
 - Keep the critical path and integration in the parent thread.
 - Delegate bounded sidecar work only when it can proceed independently.
-- Prefer read-heavy agents for exploration, data-flow tracing, test discovery,
-  risk review, log analysis, and QA.
+- Use read-heavy agents for exploration, data-flow tracing, test discovery,
+  risk review, log analysis, and QA when those packets can run independently.
 - Use write-capable agents only when file or module ownership is explicit and
   disjoint.
 - Default to 2-4 sidecar agents.

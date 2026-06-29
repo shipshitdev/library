@@ -8,11 +8,9 @@ metadata:
 
 # TypeScript Refactor Best Practices
 
-Comprehensive TypeScript refactoring and modernization guide designed for AI agents and LLMs. Contains 43 rules across 8 categories, prioritized by impact to guide automated refactoring, code review, and code generation.
+43 rules across 8 categories for TypeScript refactoring and modernization, prioritized by impact to guide automated refactoring, code review, and code generation.
 
 ## When to Apply
-
-Reference these guidelines when:
 
 - Refactoring TypeScript code for type safety and maintainability
 - Designing type architectures (discriminated unions, branded types, generics)

@@ -14,8 +14,6 @@ metadata:
 
 # Rules Capture Skill
 
-This skill automatically detects when users express preferences, rules, or coding standards during conversations and documents them for future sessions.
-
 ## Contract
 
 Inputs:

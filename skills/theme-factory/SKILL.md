@@ -14,11 +14,11 @@ metadata:
 ---
 # Theme Factory Skill
 
-This skill provides a curated collection of professional font and color themes themes, each with carefully selected color palettes and font pairings. Once a theme is chosen, it can be applied to any artifact.
+A collection of font and color themes, each with a color palette and font pairing. Once chosen, a theme applies to any artifact.
 
 ## Purpose
 
-To apply consistent, professional styling to presentation slide decks, use this skill. Each theme includes:
+Each theme includes:
 
 - A cohesive color palette with hex codes
 - Complementary font pairings for headers and body text

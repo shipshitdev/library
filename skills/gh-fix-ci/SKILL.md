@@ -14,8 +14,6 @@ metadata:
 
 # GH Fix CI
 
-Use this skill to diagnose failing GitHub Actions checks on a PR and propose a fix plan.
-
 ## Contract
 
 Inputs:

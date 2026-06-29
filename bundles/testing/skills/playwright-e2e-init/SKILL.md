@@ -12,8 +12,6 @@ Sets up Playwright for end-to-end testing in Next.js and React applications.
 
 ## When to Use
 
-This skill should be used when:
-
 - Adding E2E tests to a Next.js project
 - Setting up browser automation testing
 - Creating user flow tests for critical paths

@@ -8,13 +8,7 @@ metadata:
 
 # Docker Expert
 
-## Overview
-
-This skill enables AI assistants to help with Docker containerization, docker-compose setups, and container orchestration for micro startup infrastructure.
-
-## When to Use This Skill
-
-This skill activates when users need:
+## When to Use
 
 - Dockerfile creation for NestJS/Next.js
 - docker-compose configuration

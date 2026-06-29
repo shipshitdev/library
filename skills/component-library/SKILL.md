@@ -1,6 +1,6 @@
 ---
 name: component-library
-description: Expert React/Next.js component architect specializing in creating consistent, reusable, and maintainable components for monorepo projects
+description: Expert React/Next.js component architect specializing in creating consistent, reusable, and maintainable components for monorepo projects. Use when creating or refactoring UI components, reviewing component architecture, or setting up shared component patterns in a monorepo.
 metadata:
   version: "1.0.0"
   tags: react, nextjs, components, design-system, typescript, performance, patterns

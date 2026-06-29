@@ -1,6 +1,6 @@
 ---
 name: docs
-description: Creates clear, concise technical documentation for software projects, runbooks, and developer guides.
+description: Creates clear, concise technical documentation for software projects, runbooks, and developer guides. Use when writing or updating a README, guide, runbook, API reference, setup instructions, or troubleshooting notes.
 metadata:
   version: "1.0.0"
   tags: "documentation, technical-writing, runbooks"

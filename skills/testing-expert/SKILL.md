@@ -1,6 +1,6 @@
 ---
 name: testing-expert
-description: Expert in testing strategies for React, Next.js, and NestJS applications covering unit tests, integration tests, E2E tests, and testing best practices
+description: Expert in testing strategies for React, Next.js, and NestJS applications covering unit tests, integration tests, E2E tests, and testing best practices. Use when writing unit, integration, or E2E tests, testing React components, or testing API endpoints.
 metadata:
   version: "1.0.0"
   tags: "testing, quality, fullstack"

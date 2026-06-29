@@ -438,7 +438,7 @@
     {
       "name": "mcp-builder",
       "source": "./skills/mcp-builder",
-      "description": "Creates high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external"
+      "description": "Creates MCP (Model Context Protocol) servers that enable LLMs to interact with external services thr"
     },
     {
       "name": "memory-systems",
@@ -463,7 +463,7 @@
     {
       "name": "mongodb-migration-expert",
       "source": "./skills/mongodb-migration-expert",
-      "description": "Database schema design, indexing, and migration guidance for MongoDB-based applications."
+      "description": "Database schema design, indexing, and migration guidance for MongoDB-based applications. Use when ad"
     },
     {
       "name": "monitoring-setup",
@@ -483,7 +483,7 @@
     {
       "name": "nestjs-queue-architect",
       "source": "./skills/nestjs-queue-architect",
-      "description": "Queue job management patterns, processors, and async workflows for video/image processing"
+      "description": "Queue job management patterns, processors, and async workflows for video/image processing. Use when "
     },
     {
       "name": "nextjs-validator",
@@ -503,7 +503,7 @@
     {
       "name": "package-architect",
       "source": "./skills/package-architect",
-      "description": "Design and maintain TypeScript packages in a monorepo, including exports and build configuration."
+      "description": "Design and maintain TypeScript packages in a monorepo, including exports and build configuration. Us"
     },
     {
       "name": "performance-expert",
@@ -578,7 +578,7 @@
     {
       "name": "react-component-performance",
       "source": "./skills/react-component-performance",
-      "description": "Diagnose slow React components and suggest targeted performance fixes."
+      "description": "Diagnose slow React components and suggest targeted performance fixes. Use when profiling or improvi"
     },
     {
       "name": "react-hook-form",
@@ -593,7 +593,7 @@
     {
       "name": "react-patterns",
       "source": "./skills/react-patterns",
-      "description": "Modern React patterns and principles. Hooks, composition, performance, TypeScript best practices."
+      "description": "Modern React patterns and principles. Hooks, composition, performance, TypeScript best practices. Us"
     },
     {
       "name": "react-refactor",

@@ -145,6 +145,12 @@ List recommended commands in priority order (P0 first, then P1, then P2):
 
 **Rules**: Map findings to the most appropriate available skill or command. End with a polish/cleanup step as the final recommendation if any fixes were recommended.
 
+After presenting the summary, tell the user:
+
+> You can ask me to run these one at a time, all at once, or in any order you prefer.
+>
+> Re-run `/audit` after fixes to see your score improve.
+
 Limit P3 findings to the top five unless the user asks for a complete backlog.
 
 **NEVER**:

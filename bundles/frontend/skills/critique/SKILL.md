@@ -169,6 +169,14 @@ Quick notes on smaller issues worth addressing.
 Each priority issue must name the element, user impact, and fix. Limit minor
 observations to findings with a visible location or source reference.
 
+#### Questions to Consider
+
+Provocative questions that might unlock better solutions:
+
+- "What if the primary action were more prominent?"
+- "Does this need to feel this complex?"
+- "What would a confident version of this look like?"
+
 ### Step 4: Ask the User
 
 **After presenting findings**, use targeted questions based on what was actually found. ask the user directly to clarify what you cannot infer. These answers will shape the action plan.
@@ -212,3 +220,9 @@ List recommended commands in priority order, based on the user's answers:
 - If the user chose a limited scope, only include items within that scope
 - If the user marked areas as off-limits, exclude commands that would touch those areas
 - End with a polish/cleanup step as the final recommendation if any fixes were recommended
+
+After presenting the summary, tell the user:
+
+> You can ask me to run these one at a time, all at once, or in any order you prefer.
+>
+> Re-run `/critique` after fixes to see your score improve.

@@ -23,14 +23,14 @@ If the spec covers multiple independent subsystems, consider breaking it into se
 
 ## File Mapping (Before Any Tasks)
 
-Before defining tasks, map out which files will be created or modified and what each one is responsible for. This is where decomposition decisions get locked in.
+Map out which files will be created or modified and what each one is responsible for before defining tasks.
 
-- Design units with clear boundaries and well-defined interfaces. Each file should have one clear responsibility.
-- Prefer smaller, focused files over large files that do too much. The agent edits most reliably when it can hold the full file in context.
+- Each file has one clear responsibility.
+- Prefer smaller, focused files. The agent edits most reliably when it can hold the full file in context.
 - Files that change together should live together. Split by responsibility, not by technical layer.
 - In existing codebases, follow established patterns. If the codebase uses large files, do not unilaterally restructure — but if a file you are modifying has grown unwieldy, including a split in the plan is reasonable.
 
-This structure informs task decomposition. Each task should produce self-contained changes that make sense independently.
+Each task should produce self-contained changes that make sense independently.
 
 ## Bite-Sized Task Granularity
 
@@ -113,7 +113,7 @@ git commit -m "feat: add specific behavior"
 
 ## No Placeholders
 
-Every step must contain the actual content the implementer needs. The following are **plan failures** — never write them:
+Never write:
 
 - "TBD", "TODO", "implement later", "fill in details"
 - "Add appropriate error handling" / "add validation" / "handle edge cases"

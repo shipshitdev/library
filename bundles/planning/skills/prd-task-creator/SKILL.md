@@ -10,7 +10,7 @@ metadata:
 
 # PRD Task Creator
 
-Write a clear, actionable PRD or task. Output depends on where the user tracks work.
+Write a clear, actionable PRD or task — output depends on where the user tracks work.
 
 ## Contract
 
@@ -59,7 +59,7 @@ Check in order:
 
 ## Step 2: Understand the request
 
-Ask only what's missing — don't interrogate if context is clear:
+Ask only what's missing:
 
 - What problem does this solve?
 - Who's affected? (user-facing, internal, infra)
@@ -69,9 +69,9 @@ Ask only what's missing — don't interrogate if context is clear:
 
 ## Step 3: Research before writing
 
-- Read relevant architecture docs if available (`.agents/memory/` — look for architecture, summary, or context files)
+- Read relevant architecture docs in `.agents/memory/` (look for architecture, summary, or context files)
 - Search codebase for related patterns
-- Check for existing issues on same topic: `gh issue list --search "[keyword]"`
+- Check for existing issues: `gh issue list --search "[keyword]"`
 
 ## Step 4: Write the PRD
 
@@ -85,7 +85,7 @@ A good PRD has:
 - **Acceptance criteria** — EARS (`WHEN/WHILE/WHERE/IF … THE SYSTEM SHALL …`), testable, not vague
 - **Technical notes** — approach, risks, dependencies
 
-Keep it tight. No filler. Acceptance criteria must be EARS-shaped and checkable by a human.
+Acceptance criteria must be EARS-shaped and checkable by a human.
 
 ### Agent-ready issue rules
 

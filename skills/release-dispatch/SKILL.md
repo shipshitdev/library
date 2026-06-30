@@ -120,12 +120,7 @@ them.
 
 ## Anti-Patterns
 
-- **Re-implementing release logic here.** This skill resolves the subcommand and
-  delegates; semver/notes live in `release`, CI gating in `release-pr-gates`,
-  pruning in `release-cleanup`.
-- **Guessing on an unknown argument.** Cutting or pruning on a misread token is
-  destructive — print Usage instead.
-- **Chaining cut → cleanup automatically.** Prune only after a release is
-  confirmed merged, as a separate, confirmed step.
-- **Tagging a dirty or behind trunk**, reusing an existing tag, or force-pushing
-  — the delegated skills forbid this; the router never overrides it.
+- **Re-implementing release logic here.** This skill resolves the subcommand and delegates; semver/notes live in `release`, CI gating in `release-pr-gates`, pruning in `release-cleanup`.
+- **Guessing on an unknown argument.** Cutting or pruning on a misread token is destructive — print Usage instead.
+- **Chaining cut → cleanup automatically.** Prune only after a release is confirmed merged, as a separate, confirmed step.
+- **Tagging a dirty or behind trunk**, reusing an existing tag, or force-pushing — the delegated skills forbid this; the router never overrides it.

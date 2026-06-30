@@ -35,7 +35,7 @@ Users waiting for AI feel time pass slower. Give them something to watch/read—
 
 ### 3. More Transparency ≠ Better UX
 
-Balance visibility with cognitive load. Users want answers, not reasoning—but they want to *trust* the answer came from good reasoning.
+Users want answers, not reasoning—but they want to *trust* the answer came from good reasoning.
 
 ### 4. Signal Completion Clearly
 

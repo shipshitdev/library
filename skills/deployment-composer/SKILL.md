@@ -11,13 +11,7 @@ disable-model-invocation: true
 
 # Deployment Composer
 
-Compose the smallest safe deployment workflow from the repository's actual
-branching model, CI setup, deploy provider, and release risk.
-
-## Purpose
-
-Use this as the deployment meta-skill. It routes work to focused skills instead
-of treating every deploy as the same checklist.
+Compose the smallest safe deployment workflow from the repository's actual branching model, CI setup, deploy provider, and release risk. Routes work to focused skills instead of treating every deploy as the same checklist.
 
 ## Contract
 
@@ -143,9 +137,7 @@ If the release needs user-facing notes or a PR body:
 
 1. Discover repo topology and deployment provider.
 2. Choose the narrowest route from the routing rules.
-3. Run local gates before every release PR or deployment. Format, lint, and
-   type-check are mandatory because they mirror the GitHub Actions gates and are
-   cheap to run locally:
+3. Run local gates before every release PR or deployment. Format, lint, and type-check are mandatory:
 
    ```bash
    bun run format || npm run format || npx biome check --write .

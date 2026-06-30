@@ -20,11 +20,7 @@ disable-model-invocation: true
 
 # Deploy Dispatch
 
-The router behind `/deploy`. It owns one job: turn a subcommand into the right
-deployment or infra action and delegate. It does **not** contain deployment logic
-of its own — app deployments live in `deploy` and `deployment-composer`, EC2
-pipeline wiring in `ec2-backend-deployer`, observability in `monitoring-setup`,
-and container dev environments in `devcontainer-setup`.
+Router behind `/deploy`. One job: turn a subcommand into the right deployment or infra action and delegate. Contains no deployment logic of its own — app deployments live in `deploy` and `deployment-composer`, EC2 pipeline wiring in `ec2-backend-deployer`, observability in `monitoring-setup`, and container dev environments in `devcontainer-setup`.
 
 ## Contract
 

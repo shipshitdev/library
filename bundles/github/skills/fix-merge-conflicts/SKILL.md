@@ -15,11 +15,6 @@ both intended — not by blindly taking one side or concatenating both. After
 resolving, regenerate any derived files and confirm the tree still builds and tests
 pass before the merge/rebase is allowed to continue.
 
-This skill activates whenever an operation leaves the repository mid-conflict
-(merge, rebase, cherry-pick, stash pop). It is the resolution step the `/merge`
-sweep hands off to when a PR is `CONFLICTING` and the user wants it cleared rather
-than skipped.
-
 ## Contract
 
 Inputs:

@@ -58,8 +58,7 @@ Delegates To:
 
 ## Core Principle
 
-Test the contract that failed, not the implementation the agent just wrote.
-Assume the reviewing model shares the same blind spot as the writing model.
+Test the contract that failed, not the implementation the agent wrote. Assume the reviewing model shares the same blind spot as the writing model.
 
 Common AI blind spots:
 

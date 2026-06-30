@@ -20,11 +20,7 @@ disable-model-invocation: true
 
 # Agent Dispatch
 
-The router behind `/agent`. It owns one job: turn a subcommand into the right
-agent action and delegate. It does **not** contain agent, config, or setup logic of
-its own — architecture diagnosis lives in `agent-architecture-audit`, config-file
-audit and sync lives in `agent-config-audit`, `.agents/` scaffolding lives in
-`agent-folder-init`, and dev-loop routing setup lives in `setup-agent-routing`.
+The router behind `/agent`. Turns a subcommand into the right action and delegates. Contains no logic of its own — delegates to `agent-architecture-audit`, `agent-config-audit`, `agent-folder-init`, and `setup-agent-routing`.
 
 ## Contract
 
@@ -91,9 +87,6 @@ the Usage block — do not guess a mode.
 - **init →** apply the `agent-folder-init` skill.
 - **route →** apply the `setup-agent-routing` skill.
 
-Each delegated skill owns its own preconditions and confirmation gate. This
-router does not relax them.
-
 ## Usage
 
 ```bash
@@ -106,11 +99,7 @@ router does not relax them.
 
 ## Anti-Patterns
 
-- **Re-implementing agent, config, or setup logic here.** This skill resolves the
-  subcommand and delegates; all domain logic belongs in the routed skill.
-- **Guessing on an unknown argument.** Print Usage instead — a wrong guess could
-  overwrite config or scaffold into the wrong directory.
-- **Skipping the delegated skill's confirmation gate.** Each routed skill controls
-  its own writes; the router never bypasses or pre-confirms on their behalf.
-- **Auto-running a mutating sub-skill on an empty argument.** The default mode
-  prints status only; it never initiates a write.
+- **Re-implementing logic here.** All domain logic belongs in the routed skill.
+- **Guessing on an unknown argument.** Print Usage instead — a wrong guess could overwrite config or scaffold into the wrong directory.
+- **Skipping the delegated skill's confirmation gate.** Each routed skill controls its own writes.
+- **Auto-running a mutating sub-skill on an empty argument.** The default mode prints status only; it never initiates a write.

@@ -21,7 +21,7 @@ Random fixes waste time and create new bugs. Quick patches mask underlying issue
 
 **NO FIXES WITHOUT ROOT CAUSE INVESTIGATION FIRST.**
 
-If Phase 1 is not complete, no fix may be proposed. Violating this process violates the spirit of debugging.
+If Phase 1 is not complete, no fix may be proposed.
 
 ## The Iron Law
 

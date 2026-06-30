@@ -9,8 +9,6 @@ metadata:
 
 # De-Slop
 
-Remove AI-generated artifacts and code sloppiness while maintaining project structure.
-
 ## What Gets Cleaned
 
 1. **Console statements** — Replace with logger service

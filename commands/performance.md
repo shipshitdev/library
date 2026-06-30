@@ -12,14 +12,14 @@ Analyze and optimize performance across frontend, backend, database, and infrast
 
 ## Context Discovery
 
-Before analyzing, discover the project's actual stack:
+Discover the project stack before analyzing:
 
 1. Check `package.json` for framework (React, Next.js, Electron, etc.)
 2. Identify database (PostgreSQL/RDS, SQLite, etc.)
 3. Check for build tools (Vite, Turbopack, Bun, etc.)
 4. Look for existing monitoring (Sentry, Datadog, etc.)
 
-**Adapt all analysis to the discovered stack. Do not assume any specific framework.**
+Adapt all analysis to the discovered stack. Do not assume any specific framework.
 
 ## Frontend Performance
 
@@ -55,7 +55,7 @@ Check for: code splitting, tree shaking, unused dependencies, large imports.
 
 - Response times < 200ms (p95)
 - Connection pooling configured
-- Caching where appropriate
+- Caching for repeated lookups
 - Heavy work offloaded to background jobs
 - N+1 query detection
 

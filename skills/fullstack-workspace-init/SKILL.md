@@ -8,9 +8,8 @@ metadata:
 
 # Full Stack Workspace Init
 
-Create a Shipshit.dev product workspace. For new product repos, use
-`npx @shipshitdev/v0` as the default scaffolder and treat this skill as the
-product-brief, customization, and verification layer.
+For new product repos, use `npx @shipshitdev/v0` as the default scaffolder.
+This skill handles product-brief intake, customization, and verification.
 
 ## Contract
 
@@ -76,11 +75,9 @@ the user only wants the scaffold written.
 
 ## Legacy Manual Route
 
-Use the manual guidance below only when v0 is not appropriate or when enhancing
-an existing workspace that already has its core scaffold.
-
-Do not use this route for a new Shipshit.dev product repo unless v0 is
-unavailable or the user explicitly asks to bypass it.
+Use only when v0 is not appropriate or when enhancing an existing workspace.
+Do not use for new Shipshit.dev product repos unless v0 is unavailable or the
+user explicitly bypasses it.
 
 Stack: Next.js 16 + React 19 + TypeScript + Tailwind + @agenticindiedev/ui
 (frontend), NestJS 11 + MongoDB + Clerk Auth + Swagger (backend), Vitest 80%

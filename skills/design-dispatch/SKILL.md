@@ -21,12 +21,7 @@ disable-model-invocation: true
 
 # Design Dispatch
 
-The router behind `/design`. It owns one job: turn a subcommand into the right
-design action and delegate. It does **not** contain design or UX logic of its own —
-technical quality checks live in `audit`, UX evaluation in `critique`, copy
-improvement in `clarify`, spatial composition in `layout`, final finishing in
-`polish`, visual de-intensification in `quieter`, upfront UX planning in `shape`,
-and cross-app consistency auditing in `design-consistency-auditor`.
+Router behind `/design`. One job: turn a subcommand into the right design action and delegate. Contains no design or UX logic of its own — technical quality checks live in `audit`, UX evaluation in `critique`, copy improvement in `clarify`, spatial composition in `layout`, final finishing in `polish`, visual de-intensification in `quieter`, upfront UX planning in `shape`, and cross-app consistency auditing in `design-consistency-auditor`.
 
 ## Contract
 

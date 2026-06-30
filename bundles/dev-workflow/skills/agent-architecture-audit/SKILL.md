@@ -8,8 +8,7 @@ metadata:
 
 # Agent Architecture Audit
 
-Diagnose failures in agent systems by inspecting each layer that can change the
-model's behavior between the raw model call and the final user-visible output.
+Diagnose failures in agent systems by inspecting each layer between the raw model call and the user-visible output.
 
 ## Contract
 
@@ -57,8 +56,7 @@ Delegates To:
   shows a different result.
 - Hidden retry, fallback, repair, or summarization loops may be mutating output.
 
-Do not use this as a general code review. Use it when the failure mechanism is
-likely in the agent stack, not just in application logic.
+Do not use for general code review — only when the failure is likely in the agent stack.
 
 ## Layer Model
 
@@ -94,7 +92,7 @@ Identify:
 
 ### 2. Collect Evidence
 
-Start from local evidence and traces. Search for:
+Search for:
 
 - prompt templates and instruction injection points
 - tool schemas, routers, validators, and execution logs
@@ -103,8 +101,7 @@ Start from local evidence and traces. Search for:
 - fallback, retry, repair, or output rewriting passes
 - response serialization, markdown rendering, JSON parsing, and stream handling
 
-Prefer file and line evidence. If logs are available, compare raw model output,
-post-processed output, transported output, and rendered output.
+Prefer file and line evidence. Compare raw model output, post-processed output, transported output, and rendered output when logs are available.
 
 ### 3. Map Failure Mechanisms
 
@@ -130,8 +127,7 @@ Prefer fixes in this order:
 7. Use typed envelopes for internal protocol boundaries.
 8. Add trace tests that compare raw, processed, transported, and rendered output.
 
-Do not solve tool discipline, memory safety, or transport corruption only by
-adding stronger prompt wording.
+Do not solve tool discipline, memory safety, or transport corruption only by adding stronger prompt wording.
 
 ## Severity
 

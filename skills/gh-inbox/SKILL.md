@@ -103,5 +103,4 @@ Delegates To:
 - Keep review requests above authored work unless production is blocked.
 - Treat failing checks as actionable only after reading the failure.
 - Do not close or defer user-facing issues without leaving a reason.
-- If GitHub search results are noisy, narrow by `--repo`, `--owner`, or
-  `--project` before making recommendations.
+- If GitHub search results are noisy, narrow by `--repo`, `--owner`, or `--project` before making recommendations.

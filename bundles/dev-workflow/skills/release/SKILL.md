@@ -11,15 +11,9 @@ disable-model-invocation: true
 
 # Release
 
-Cut a release straight from the trunk and hand back plain-English patch notes. This
-is a trunk-based flow: the repository's default branch (`master` or `main`) is the
-single source of truth, releases are **tags cut from the trunk**, and there is no
-`develop`/`staging` branch promotion chain. Staging and production are deployment
-*environments* driven by CI and tags, not git branches.
+Cut a release from the trunk and produce plain-English patch notes. Trunk-based flow: `master`/`main` is the source of truth, releases are tags cut from the trunk, no `develop`/`staging` promotion chain. Staging and production are environments driven by CI and tags.
 
-It is an orchestrator: it reads commit history, derives the next semantic version,
-writes the patch notes, and — only after you confirm — tags the trunk and publishes
-a GitHub release. It never rewrites history and never tags a dirty or unsynced trunk.
+Reads commit history, derives the next semantic version, writes patch notes, then — after confirmation — tags the trunk and publishes a GitHub release. Never rewrites history or tags a dirty or unsynced trunk.
 
 ## Contract
 
@@ -71,16 +65,6 @@ Delegates To:
 - `gh-fix-ci` when the trunk's required checks are failing and the user wants them fixed
 - `release-cleanup` to prune merged feature branches and stale worktrees afterward
 - `deploy` / `deployment-composer` to ship the freshly cut tag to an environment
-
-## When to Use
-
-- To cut a versioned release from the trunk and get patch notes in one pass
-- After landing a batch of PRs into the trunk, to tag and announce what shipped
-- When the user wants a plain-English "what changed" alongside the version bump
-
-Do not use this skill to promote between long-lived branches (there are none in a
-trunk-based repo) or to deploy. It tags the trunk and writes the notes; deployment
-is delegated.
 
 ## Safety Model
 

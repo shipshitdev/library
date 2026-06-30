@@ -10,29 +10,14 @@ metadata:
 
 Set up or verify Husky git hooks to ensure tests run and coverage thresholds are enforced on every commit.
 
-## Purpose
-
-This skill automates the setup of:
-
-- Husky git hooks for pre-commit testing
-- Test runner detection (Jest, Vitest, Mocha)
-- Coverage configuration with thresholds (default: 80%)
-- Pre-commit hook that runs tests with coverage
-- Configurable coverage enforcement (block or warn)
-
 ## When to Use
-
-This skill should be used when:
 
 - Setting up test coverage enforcement for the first time
 - Verifying existing Husky/test setup is correctly configured
-- Ensuring coverage thresholds are met before commits
 - Configuring pre-commit hooks for test coverage
 - Adapting coverage setup to different test runners
 
 ## Project Context Discovery
-
-**Before setting up test coverage, discover the project's context:**
 
 1. **Check package.json:**
    - Review existing test scripts
@@ -268,63 +253,22 @@ The skill automatically detects and uses:
 
 ## Workflow
 
-When using this skill:
-
-1. **Discover Project Context:**
-   - Scan package.json for test runner and dependencies
-   - Check existing Husky configuration
-   - Review existing coverage config files
-   - Verify test files exist
-
-2. **Detect Test Runner:**
-   - Identify Jest, Vitest, or Mocha
-   - Detect coverage tool (built-in or nyc/c8)
-   - Determine package manager
-
-3. **Setup or Verify Husky:**
-   - Install Husky if missing
-   - Initialize Husky hooks
-   - Add prepare script if needed
-
-4. **Configure Coverage:**
-   - Create or update coverage configuration
-   - Set coverage thresholds (default 80%)
-   - Configure appropriate reporters
-
-5. **Create Pre-commit Hook:**
-   - Generate hook script with test command
-   - Configure to run tests with coverage
-   - Set enforcement behavior (block or warn)
-
-6. **Verify Setup:**
-   - Review generated configuration
-   - Test hook with a commit
-   - Adjust thresholds if needed
+1. Scan package.json for test runner, dependencies, existing Husky config, and coverage config files. Verify test files exist.
+2. Identify Jest, Vitest, or Mocha; detect coverage tool (built-in or nyc/c8); determine package manager.
+3. Install Husky if missing; initialize hooks; add `prepare` script if needed.
+4. Create or update coverage configuration; set thresholds (default 80%); configure reporters.
+5. Generate pre-commit hook script; set enforcement behavior (block or warn).
+6. Verify setup; test hook with a commit; adjust thresholds if needed.
 
 ## Integration with Other Skills
 
-This skill works alongside:
-
 | Skill | How It Works Together |
 |-------|----------------------|
-| **fullstack-workspace-init** | Automatically invoked after scaffolding to set up 80% coverage threshold |
-| **linter-formatter-init** | Both configure Husky; this skill focuses on test coverage, linter-formatter-init focuses on linting/formatting |
+| **fullstack-workspace-init** | Auto-invoked after scaffolding; sets Vitest + 80% threshold + CI/CD. Run this skill separately only when adding to an existing project. |
+| **linter-formatter-init** | Both configure Husky; this skill covers test coverage, linter-formatter-init covers linting/formatting |
 | **testing-expert** | Uses testing patterns and coverage targets from testing-expert skill |
 
-### Automatic Setup with fullstack-workspace-init
-
-When using `fullstack-workspace-init` to scaffold a new project, this skill is automatically applied with:
-
-- Vitest as the test runner
-- 80% coverage threshold
-- Pre-commit hooks enabled
-- GitHub Actions CI/CD integration
-
-You don't need to run this skill separately if you used `fullstack-workspace-init`.
-
-### Manual Integration
-
-If adding to an existing project:
+### Manual Integration (existing projects)
 
 ```bash
 python3 ${CLAUDE_SKILL_DIR}/scripts/setup-husky-coverage.py \
@@ -363,15 +307,6 @@ chmod +x .husky/pre-commit
 ### Multiple test runners detected
 
 The skill uses the first detected runner in priority order: Vitest > Jest > Mocha
-
-## Best Practices
-
-1. **Start with reasonable thresholds:** Begin with 80% and adjust based on project needs
-2. **Monitor coverage trends:** Use coverage reports to identify gaps
-3. **Incremental improvement:** Gradually increase thresholds as coverage improves
-4. **Consider context:** Some files (utilities, configs) may not need high coverage
-5. **Use with CI/CD:** Pre-commit hooks catch issues early, but CI/CD provides final gate
-6. **Team alignment:** Ensure team understands coverage requirements and goals
 
 ## Resources
 

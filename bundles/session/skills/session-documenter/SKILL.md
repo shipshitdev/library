@@ -13,7 +13,7 @@ metadata:
 
 # Session Documenter Skill
 
-Document work, decisions, and context with explicit commands.
+Document work, decisions, and context.
 
 ## Contract
 
@@ -58,8 +58,8 @@ Delegates To:
 ## How It Works
 
 1. **`/start`** - Creates `.agents/sessions/YYYY-MM-DD.md` if missing, or loads existing context
-2. **During session** - You tell me what to track: decisions, files changed, mistakes
-3. **`/end`** - I write a redacted session entry with flowcharts, decisions, next steps
+2. **During session** - Track decisions, files changed, mistakes
+3. **`/end`** - Write a redacted session entry with flowcharts, decisions, next steps
 
 ## Critical Rules
 

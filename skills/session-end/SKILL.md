@@ -69,11 +69,6 @@ NEXT STEP: Run /clear to clear the conversation context.
 Your session is safely preserved and will be loaded on next /session-start.
 ```
 
-## Why This Matters
-
-- WITHOUT documentation: all context is lost forever, next session has no idea what was done
-- WITH documentation: context preserved, next `/session-start` reads the session file, continuity maintained
-
 ## Important Notes
 
 - **ONE FILE PER DAY**: Session documenter appends to the same day's file

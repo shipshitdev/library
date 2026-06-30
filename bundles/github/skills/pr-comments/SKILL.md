@@ -11,11 +11,7 @@ disable-model-invocation: true
 
 # PR Comments
 
-Turn a PR's scattered review threads into one ordered action list. This is a
-**read-only digest** — it fetches the inline review comments, the review summaries,
-and the conversation comments, then groups and prioritizes them. It deliberately
-stops before proposing code or drafting replies; acting on the feedback is
-`gh-address-comments`'s job.
+Turns a PR's scattered review threads into one ordered action list: fetches inline review comments, review summaries, and conversation comments, then groups and prioritizes them. Stops before proposing code or drafting replies — acting on feedback is `gh-address-comments`'s job.
 
 ## Contract
 

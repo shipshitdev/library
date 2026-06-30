@@ -68,12 +68,11 @@ mistakes, and next steps. If it doesn't exist yet, this is a fresh session day.
 
 ### 3. Activate Session Documenter
 
-Run the `session-documenter` skill to track all work throughout the session.
+Run the `session-documenter` skill to track work throughout the session.
 
 ### 4. Confirmation
 
-After reading memory and the session file, provide a brief confirmation
-(5-7 bullet points max):
+After reading memory and the session file, provide a brief confirmation (5-7 bullet points max):
 
 - Critical rules understood
 - Repo memory loaded (flag any stale `last_verified` or `status: temporary` files)

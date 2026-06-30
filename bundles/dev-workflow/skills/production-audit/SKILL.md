@@ -8,8 +8,7 @@ metadata:
 
 # Production Audit
 
-Assess whether an application is safe to ship by inspecting the actual release
-surface and naming the risks that would matter in production.
+Assess whether an application is safe to ship by inspecting the release surface and naming production risks.
 
 ## Contract
 
@@ -54,8 +53,7 @@ Delegates To:
 - A risky PR merged or a dependency upgrade landed.
 - A deployed staging or preview URL needs a readiness pass.
 
-Do not use this as a formal compliance, legal, financial, medical, or security
-certification. It is engineering release triage.
+Not a compliance, legal, financial, medical, or security certification — engineering release triage only.
 
 ## Evidence Order
 
@@ -159,8 +157,7 @@ Then list:
 - `Evidence missing`: what would change confidence
 - `Next action`: one concrete fix or verification step
 
-If no blockers are found, still state the evidence boundary. A production audit
-is only as strong as the surfaces inspected.
+If no blockers are found, still state the evidence boundary.
 
 ## Anti-Patterns
 

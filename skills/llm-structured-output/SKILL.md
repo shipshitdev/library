@@ -8,7 +8,7 @@ metadata:
 
 # LLM Structured Output
 
-Build structured-output flows that are predictable enough for software to trust.
+Build structured-output flows that downstream software can parse reliably.
 
 ## Use This Skill For
 

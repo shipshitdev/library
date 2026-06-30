@@ -31,7 +31,7 @@ Read `.agents/inbox.md` and display backlog items.
 ## Mode 2: Quick Capture
 
 1. Extract task title from arguments
-2. Ask: "Brief context? (1-2 sentences)" (skip if user already provided)
+2. Ask: "Brief context? (1-2 sentences)" (skip if already provided)
 3. Append to Backlog section:
 
 ```markdown

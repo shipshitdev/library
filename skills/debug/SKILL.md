@@ -1,6 +1,6 @@
 ---
 name: debug
-description: Systematic debugging guidance for bugs, failures, unexpected behavior, and performance regressions. Emphasizes reproducible feedback loops, hypothesis testing, instrumentation, fixes, and regression tests.
+description: Systematic debugging guidance for bugs, failures, unexpected behavior, and performance regressions. Emphasizes reproducible feedback loops, hypothesis testing, instrumentation, fixes, and regression tests. Use when investigating a bug, unexpected behavior, crash, wrong output, or performance regression, or triaging incoming bug reports.
 metadata:
   version: "1.1.0"
   tags: "debugging, troubleshooting, methodology"

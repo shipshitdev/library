@@ -1,6 +1,6 @@
 ---
 name: mongodb-migration-expert
-description: Database schema design, indexing, and migration guidance for MongoDB-based applications.
+description: Database schema design, indexing, and migration guidance for MongoDB-based applications. Use when adding or changing MongoDB collections, indexes, or fields, designing schema for multi-tenant or large datasets, or planning forward-only migrations.
 metadata:
   version: "1.0.0"
   tags: "mongodb, migration, database"

@@ -1,6 +1,6 @@
 ---
 name: performance-expert
-description: Expert in performance optimization for React, Next.js, NestJS applications covering frontend rendering, API response times, database queries, and infrastructure optimization
+description: Expert in performance optimization for React, Next.js, NestJS applications covering frontend rendering, API response times, database queries, and infrastructure optimization. Use when optimizing React components or Next.js pages, improving API response times, optimizing database queries, analyzing bundle sizes, or implementing caching.
 metadata:
   version: "1.0.0"
   tags: "performance, optimization, fullstack"

@@ -1,6 +1,6 @@
 ---
 name: accessibility
-description: Expert in web accessibility (WCAG 2.1 AA compliance) for React/Next.js applications, ensuring all projects are usable by everyone
+description: Expert in web accessibility (WCAG 2.1 AA compliance) for React/Next.js applications, ensuring all projects are usable by everyone. Use when creating or reviewing UI components, adding keyboard navigation, checking color contrast, testing with screen readers, or auditing pages for accessibility issues.
 metadata:
   version: "1.0.0"
   tags: accessibility, a11y, wcag, aria, keyboard-navigation, screen-reader, inclusive-design

@@ -4,7 +4,9 @@ description: >-
   Improve context efficiency through context budgeting, observation masking,
   prefix or KV-cache strategy, partitioning, token-cost reduction, retrieval
   scoping, and extending effective context capacity without lowering answer
-  quality.
+  quality. Use when token costs or context budgets constrain a task, tool
+  outputs are verbose, cache hit rate is low, or context must be partitioned
+  across agents.
 metadata:
   version: "2.1.0"
   source: https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/blob/main/skills/context-optimization/SKILL.md

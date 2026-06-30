@@ -1,7 +1,7 @@
 # Bug - File a GitHub Bug Issue
 
-Turn a description of something broken into a clean GitHub issue of type **Bug**.
-Drafts a structured report, previews it, and only files it after you confirm —
+Turn a description of something broken into a GitHub issue of type **Bug**.
+Drafts a structured report, previews it, and files it only after you confirm —
 typed `Bug` where the repo supports issue types, otherwise labelled `bug`.
 
 ## Usage
@@ -19,8 +19,8 @@ Use the `bug` skill.
 1. Detect the repo (from the current remote) and whether it supports a `Bug` issue
    type or needs the `bug` label fallback. Stop if issues are disabled.
 2. Draft a structured report — title, summary, steps to reproduce, expected vs
-   actual, environment — from what you provided. Unknowns are marked, never invented.
-   Pasted errors/stack traces are quoted verbatim.
+   actual, environment. Unknowns are marked, never invented. Pasted errors/stack
+   traces are quoted verbatim.
 3. Print the drafted issue and wait for explicit confirmation.
 4. Create the issue with `--type Bug` (or `--label bug` fallback), applying only the
    labels/assignee/milestone you named, and return the issue URL.

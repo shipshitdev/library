@@ -41,8 +41,6 @@ Before claiming any status or expressing satisfaction:
    - If YES: state the claim WITH the evidence.
 5. **ONLY THEN** — Make the claim.
 
-Skipping any step = lying, not verifying.
-
 ## Common Failures
 
 | Claim | Requires | Not Sufficient |
@@ -129,9 +127,3 @@ Apply **always** before:
 - Reporting subagent results to the user
 
 The rule applies to exact phrases, paraphrases, synonyms, and any implication of success — not just the literal word "done."
-
-## The Bottom Line
-
-Run the command. Read the output. Then make the claim.
-
-No shortcuts. No exceptions.

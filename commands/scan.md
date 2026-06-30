@@ -11,14 +11,14 @@ Comprehensive security audit covering dependencies, code patterns, configuration
 
 ## Context Discovery
 
-Before auditing, discover the actual project setup:
+Discover the actual project setup before auditing:
 
 1. Framework and runtime (React, Next.js, Electron, Node, etc.)
 2. Authentication system (Clerk, Auth0, custom JWT, etc.)
 3. Database (PostgreSQL/RDS, SQLite, etc.)
 4. Package manager (`bun.lock` = Bun)
 
-**Adapt all checks to discovered stack.**
+Adapt all checks to the discovered stack.
 
 ## Phase 1: Dependency Security
 

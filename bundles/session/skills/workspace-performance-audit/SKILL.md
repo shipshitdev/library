@@ -40,18 +40,6 @@ Delegates To:
 - `design-consistency-auditor` for UI/UX consistency
 - `qa-reviewer` for validation and prioritization
 
-## Overview
-
-Orchestrates comprehensive performance audits across entire monorepo workspaces. Coordinates multiple specialized skills to analyze frontend (Next.js), backend (NestJS), database (MongoDB), browser extensions (Plasmo), and shared packages—delivering consolidated reports with prioritized recommendations.
-
-## When to Use
-
-- Full workspace performance review
-- Audit a monorepo
-- "audit performance", "check workspace performance"
-- Identify bottlenecks across frontend, backend, extensions
-- Consolidated performance metrics needed
-
 ## Skills Orchestrated
 
 | Skill | Focus Area | Phase |
@@ -99,10 +87,6 @@ Phase 5: Consolidation
 **Full Audit:** All phases → Complete report
 **Domain-Specific:** Single domain focus
 
-## Integration
-
-Produces reports in `.agents/memory/performance-audit-YYYY-MM-DD.md`
-
 ---
 
-**For detailed phase execution, metric collection commands, report templates, best practices, and example interactions:** load `${CLAUDE_SKILL_DIR}/references/full-guide.md` when starting a full audit or when a specific phase requires detailed guidance.
+**For detailed phase execution, metric collection commands, report templates, and example interactions:** load `${CLAUDE_SKILL_DIR}/references/full-guide.md` when starting a full audit or when a specific phase requires detailed guidance.

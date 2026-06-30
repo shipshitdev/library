@@ -27,8 +27,8 @@ open the matching rollout, and decode the largest `result` string to a PNG.
 - A `codex` CLI is installed and logged in, and shelling out to it is allowed.
 - A vector result is **not** required — this produces a PNG, not an SVG.
 
-If a native image tool exists, prefer it. If the deliverable is a logo or other
-crisp vector, prefer a vector workflow.
+If a native image tool exists, prefer it. If the deliverable is a logo or crisp
+vector, prefer a vector workflow.
 
 ## Why the naive approach fails
 
@@ -89,7 +89,7 @@ python3 scripts/extract-codex-image.py "$SESSION_ID" /tmp/out.png
 
 ### 5. Assert success
 
-Never trust silence — confirm the file exists and is a real PNG before using it:
+Confirm the file exists and is a real PNG before using it:
 
 ```bash
 test -s /tmp/out.png && file /tmp/out.png   # expect: PNG image data, 1254 x 1254

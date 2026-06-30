@@ -36,5 +36,4 @@ When a test or build fails during stabilization, follow this sequence:
    - Changing the test expectation to match broken behavior is not a fix.
 
 6. GUARD — write or update a test that fails without the fix and passes with it.
-   - This prevents the same failure from recurring in future stabilization cycles.
 </debugging_methodology>

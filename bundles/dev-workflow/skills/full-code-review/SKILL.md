@@ -25,18 +25,15 @@ does not edit.
 
 ## When to Use
 
-Invoke this skill when:
-
-- The user asks for a "full", "comprehensive", "deep", or "end-to-end" code review.
+- User asks for a "full", "comprehensive", "deep", or "end-to-end" code review.
 - A branch or PR is approaching production and `/code-review ultra` has already
   passed correctness — but structural health, feature-flag hygiene, devex
   regressions, or security depth still need a dedicated pass.
-- You want three independent review lenses cross-validated before merging a
-  high-risk change.
+- Three independent review lenses are needed before merging a high-risk change.
 
-Do not invoke when a quick diff check is sufficient — use `/code-review` for
-that. Do not invoke `de-slop` or `refactor-code` from within this skill; it
-reviews, it does not apply changes.
+Do not invoke for a quick diff check — use `/code-review` for that. Do not
+invoke `de-slop` or `refactor-code` from within this skill; it reviews, it
+does not apply changes.
 
 ## Scope Boundary — What This Adds Over `/code-review ultra`
 
@@ -150,10 +147,8 @@ Adversarial pass: <N raw> → <M surviving>
 ## Anti-Patterns
 
 - **Running this skill instead of `/code-review`** for a simple typo or config fix.
-- **Re-checking correctness bugs** inside the reviewer prompts — those are owned by the harness; this skill starts where the harness stops.
+- **Re-checking correctness bugs** inside reviewer prompts — those are owned by the harness.
 - **Invoking `de-slop`, `refactor-code`, or any mutating skill** from within this review — this skill is read-only.
 - **Treating the verdict as a merge gate bypass** — `/code-review ultra` must also pass for correctness and CLAUDE.md compliance.
-- **Reporting findings without evidence lines** — every finding must provide
-  concrete evidence, but redact tokens, keys, passwords, cookies, and other
-  secret-like values.
+- **Reporting findings without evidence lines** — every finding must provide concrete evidence; redact tokens, keys, passwords, cookies, and other secret-like values.
 - **Calling low-confidence speculation a BLOCKER** — the adversarial pass exists to eliminate these; do not re-introduce them in synthesis.

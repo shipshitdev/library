@@ -62,17 +62,6 @@ Delegates To:
 - `changelog-generator` when a release body needs commit summaries
 - `deploy` after release gates pass and provider deployment is needed
 
-## Use Case
-
-Use this skill for trunk-based release flows:
-
-- Verify the trunk (default branch) is green, then cut a semver tag + release
-- Open a short-lived release branch PR into the trunk and wait for gates
-- Wait for required checks to pass on any open PR targeting the trunk
-
-Staging and production deployments are triggered by CI/CD rules or tag pushes —
-not by merging between long-lived branches.
-
 ## Preconditions
 
 1. Verify GitHub CLI and auth:

@@ -12,15 +12,9 @@ disable-model-invocation: true
 
 # Setup Agent Routing
 
-Write a machine-readable routing block so the dev-loop skills know **where** this
-repo tracks work, **which labels** drive the loop, and **how** its domain docs are
-laid out. Run this once per consumer repo. It is the bridge that lets
-`executing-plans`, `feature-intake`, `prd-writer`, and `qa-reviewer` operate in a
-repo they have never seen.
+Write a machine-readable routing block so the dev-loop skills know where this repo tracks work, which labels drive the loop, and how its domain docs are laid out. Run once per consumer repo; bridges `executing-plans`, `feature-intake`, `prd-writer`, and `qa-reviewer` into a new repo.
 
-This is a prompt-driven skill, not a deterministic script. Explore first, present
-findings, confirm each decision, show drafts, and only then write. Never write
-speculatively.
+Prompt-driven, not deterministic. Explore first, present findings, confirm each decision, show drafts, then write. Never write speculatively.
 
 ## Contract
 
@@ -61,12 +55,11 @@ Delegates To:
 
 1. An `## Agent skills` block in `CLAUDE.md` (preferred) or `AGENTS.md`.
 2. Three docs under `docs/agents/`:
-   - `issue-tracker.md` — how issues are created, read, labeled, and placed on the board.
-   - `triage-labels.md` — the full label vocabulary, including the `dispatch:claude` / `dispatch:codex` / `dispatch:openrouter` execution gates and the `dispatch:plan` planning gate (status lives on the board, not a label).
+   - `issue-tracker.md` — how issues are created, labeled, and placed on the board.
+   - `triage-labels.md` — full label vocabulary, including `dispatch:claude`/`dispatch:codex`/`dispatch:openrouter` execution gates and the `dispatch:plan` planning gate (status lives on the board, not a label).
    - `domain.md` — the domain glossary layout (single- or multi-context).
 
-The block in `CLAUDE.md`/`AGENTS.md` is a thin index; the real detail lives in
-`docs/agents/`. Skills read the block first, then follow the links.
+The `CLAUDE.md`/`AGENTS.md` block is a thin index; detail lives in `docs/agents/`.
 
 ## Process
 
@@ -85,9 +78,7 @@ update in place, not duplicate.
 
 ### 2. Present findings, then confirm — one decision at a time
 
-Summarize present/missing state in one short block. Then walk the three decisions
-**individually**, each prefaced by a plain-English explainer. Do not dump all three
-at once.
+Summarize present/missing state in one short block. Walk the three decisions **individually**. Do not present all three at once.
 
 **A. Issue tracker.** Default: GitHub Issues + a GitHub Projects kanban
 (Backlog / In Progress / Human Review / Done / Deferred), detected from the `origin` remote. Confirm the

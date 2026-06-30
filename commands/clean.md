@@ -12,7 +12,7 @@ Clean up completed tasks and consolidate session files.
 
 ## Option 1: Clean Tasks
 
-Close out completed work tracked in GitHub Issues so the open backlog stays accurate.
+Close completed work tracked in GitHub Issues so the open backlog stays accurate.
 
 ### Process
 
@@ -56,4 +56,4 @@ Merge daily sessions into monthly, monthly into yearly.
 
 ## Option 3: Clean All
 
-Run task cleanup then session cleanup sequentially. Report summary of both.
+Run task cleanup then session cleanup sequentially. Report a summary of both.

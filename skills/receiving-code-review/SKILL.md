@@ -52,7 +52,7 @@ Delegates To:
 - `gh-address-comments` for posting the responses back to a PR.
 - `code-review` for a fresh review pass once changes land.
 
-## The Response Pattern
+## Response Pattern
 
 ```
 WHEN receiving code review feedback:
@@ -87,8 +87,6 @@ WHEN receiving code review feedback:
 IF any item is unclear:
   STOP — do not implement anything yet
   ASK for clarification on all unclear items before proceeding
-
-WHY: Items may be related. Partial understanding leads to wrong implementation.
 ```
 
 **Example:**
@@ -188,7 +186,7 @@ When feedback IS correct:
 ❌ Any gratitude expression
 ```
 
-**Why no thanks:** The fix itself is the acknowledgment. State what changed and move on.
+The fix is the acknowledgment. State what changed and move on.
 
 ## Gracefully Correcting Your Own Pushback
 
@@ -260,10 +258,4 @@ gh api repos/{owner}/{repo}/pulls/{pr}/comments/{id}/replies \
   -f body="[your response]"
 ```
 
-## The Bottom Line
-
-**Reviewer feedback = suggestions to evaluate, not orders to follow.**
-
-Verify. Question. Then implement.
-
-No performative agreement. Technical rigor always.
+Reviewer feedback = suggestions to evaluate, not orders to follow. Verify. Question. Then implement. No performative agreement.

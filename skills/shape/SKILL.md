@@ -27,10 +27,6 @@ Before the interview, ground yourself in the project so the brief reflects what 
 - **Existing system** — read the established design system (CSS / tokens / theme and one representative component or page) to learn the conventions in play. Use what's there; branch out only when the UX wins.
 - **Register** — decide whether design *is* the product (marketing, landing, portfolio → identity and boldness lead) or design *serves* the product (app, dashboard, tool → clarity and restraint lead). This frames every direction choice below.
 
-## Philosophy
-
-Most AI-generated UIs fail not because of bad code, but because of skipped thinking. They jump to "here's a card grid" without asking "what is the user trying to accomplish?" This skill inverts that: understand deeply first, so implementation is precise.
-
 ## Phase 1: Discovery Interview
 
 **Do NOT write any code or make any design decisions during this phase.** Your only job is to understand the feature deeply enough to make excellent design decisions later.

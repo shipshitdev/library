@@ -50,11 +50,8 @@ Delegates To:
 
 ### Step 1: Document Session
 
-When invoked, immediately:
-
 1. Run the `session-documenter` skill to save a redacted session summary
-2. Let it complete — it will document tasks, decisions, files changed, patterns, and mistakes without storing secrets
-3. Confirm documentation saved
+2. Confirm documentation saved
 
 > **Cross-platform note**: If your agent platform doesn't support skill invocation, follow the session-documenter workflow manually by reading the `session-documenter` skill definition.
 
@@ -68,11 +65,6 @@ Session documented to .agents/sessions/YYYY-MM-DD.md
 NEXT STEP: Run /clear to clear the conversation context.
 Your session is safely preserved and will be loaded on next /session-start.
 ```
-
-## Why This Matters
-
-- WITHOUT documentation: all context is lost forever, next session has no idea what was done
-- WITH documentation: context preserved, next `/session-start` reads the session file, continuity maintained
 
 ## Important Notes
 

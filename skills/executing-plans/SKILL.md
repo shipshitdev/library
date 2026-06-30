@@ -13,12 +13,12 @@ Autonomous task execution with QA gates across multiple AI platforms.
 
 ## Overview
 
-The AI Development Loop enables fully autonomous feature development where:
+The AI Development Loop:
 
 - AI agents pick up and implement tasks from a GitHub Issues queue
 - You do QA only (approve or reject issues in the Human Review column)
 - Multiple platforms (Claude CLI, Cursor, Codex) can work in parallel
-- Rate limits are maximized by switching between platforms
+- Switch between platforms to maximize rate limits
 
 ## Architecture
 
@@ -99,13 +99,13 @@ gh project item-add "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --url <issue-url>
 
 ### Agent-ready issue contract
 
-Before a human applies a dispatch gate to a **Backlog** issue, make sure it is ready for an agent:
+Before a human applies a dispatch gate to a **Backlog** issue:
 
-- It has an agent brief or PRD link with current behavior, desired behavior, acceptance criteria, verification, and out of scope.
-- It identifies key public contracts: API shape, CLI command, UI behavior, config key, data model, or generated artifact.
-- It avoids brittle instructions such as line numbers and file-by-file scripts unless the path is the product.
-- It is marked `AFK` when an agent can complete it from written context, or `HITL` when a human decision is required.
-- It is a vertical slice with a verifiable result, not a horizontal layer task.
+- Has an agent brief or PRD link with current behavior, desired behavior, acceptance criteria, verification, and out of scope.
+- Identifies key public contracts: API shape, CLI command, UI behavior, config key, data model, or generated artifact.
+- Avoids brittle instructions such as line numbers and file-by-file scripts unless the path is the product.
+- Marked `AFK` when an agent can complete it from written context, or `HITL` when a human decision is required.
+- A vertical slice with a verifiable result, not a horizontal layer task.
 
 ### 2. Task Claiming
 
@@ -309,12 +309,7 @@ All limited? → QA time (review Human Review issues)
 
 ## Not a Daemon
 
-Important: `/loop` is NOT a background process.
-
-- Each invocation handles ONE issue
-- Returns control to user
-- User decides to continue or stop
-- Respects "never run background processes" rule
+`/loop` is NOT a background process. Each invocation handles ONE issue, then returns control to the user.
 
 ## Claim Expiration
 
@@ -329,11 +324,11 @@ Claims expire after 30 minutes:
 
 ### For Task Creation
 
-- Write clear, actionable issue titles and bodies
+- Clear, actionable issue titles and bodies
 - Link to the PRD issue or URL in the body
 - Apply the correct priority label (`priority:high`, `priority:medium`, `priority:low`)
-- Include testing criteria in the QA Checklist section
-- Include explicit out-of-scope boundaries
+- Testing criteria in the QA Checklist section
+- Explicit out-of-scope boundaries
 - Prefer vertical slices that can be verified independently
 - Split `HITL` decisions from `AFK` implementation work
 

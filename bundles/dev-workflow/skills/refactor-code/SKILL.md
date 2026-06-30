@@ -8,7 +8,7 @@ metadata:
 
 # Refactor Code
 
-Systematic approach to refactoring code safely — improve readability, cohesion, and maintainability without changing behavior.
+Improve readability, cohesion, and maintainability without changing behavior.
 
 ## Triggers
 
@@ -25,22 +25,17 @@ Systematic approach to refactoring code safely — improve readability, cohesion
 
 ### 1. Lock Behavior First
 
-Test current behavior comprehensively before changing anything.
-
 - Read existing tests before editing
 - If behavior is unclear, derive it from current callers and runtime paths
 - Preserve public contracts unless explicitly asked for API changes
 
 ### 2. Study Local Patterns
 
-Find 3+ similar implementations in the codebase to follow.
-
-- Match naming, error handling, file structure, and test style
-- Reuse existing helpers before introducing new abstractions
+Find 3+ similar implementations in the codebase. Match naming, error handling, file structure, and test style. Reuse existing helpers before introducing new abstractions.
 
 ### 3. Refactor for Clarity
 
-Make small, incremental changes — one at a time. Prioritize in order:
+Small, incremental changes — one at a time. Prioritize in order:
 
 1. Better names
 2. Smaller focused functions (extract long methods into helpers)
@@ -53,7 +48,7 @@ Make small, incremental changes — one at a time. Prioritize in order:
 
 ### 4. Avoid Over-Engineering
 
-- Do not introduce patterns just because they are fashionable
+- Don't introduce patterns just because they're fashionable
 - Prefer straightforward code over clever indirection
 - Extract abstractions only when they reduce real duplication or confusion
 

@@ -82,7 +82,12 @@ for (const skillName of skills) {
   plugins.push({
     name: skillName,
     source: `./skills/${skillName}`,
-    description: description.slice(0, 100), // Truncate long descriptions
+    // Mirror the full SKILL.md description so the "Use when …" trigger clause
+    // is discoverable in the catalog. The source frontmatter is already length-
+    // capped (1024/1536); the previous slice(0, 100) cut clauses off mid-word.
+    // Collapse whitespace so literal (`|`) block scalars render as a single-line
+    // blurb instead of leaking embedded newlines into the catalog card.
+    description: description.replace(/\s+/g, ' ').trim(),
   });
   includedSkillCount += 1;
 }

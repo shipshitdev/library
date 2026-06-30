@@ -13,7 +13,8 @@ metadata:
   license: Apache-2.0
 ---
 
-Run systematic **technical** quality checks and generate a comprehensive report. Don't fix issues — document them for other commands to address.
+Run systematic **technical** quality checks and generate the report below. Do
+not fix issues in this skill.
 
 Before scanning, read the existing design system (CSS / tokens / theme and a representative component) so "correct" is measured against the project's own conventions, not generic defaults. If the repo carries design context (`PRODUCT.md`, `DESIGN.md`, `.impeccable.md`, or a `## Design Context` block in `.github/copilot-instructions.md`), read it too.
 
@@ -21,7 +22,8 @@ This is a code-level audit, not a design critique. Check what's measurable and v
 
 ## Diagnostic Scan
 
-Run comprehensive checks across 5 dimensions. Score each dimension 0-4 using the criteria below.
+Run checks across 5 dimensions. Score each dimension 0-4 using the criteria
+below.
 
 ### 1. Accessibility (A11y)
 
@@ -131,7 +133,8 @@ Identify recurring problems that indicate systemic gaps rather than one-off mist
 
 ### Positive Findings
 
-Note what's working well — good practices to maintain and replicate.
+List 1-3 implementation practices worth preserving, with file/component
+evidence. Omit this section when there is no concrete positive finding.
 
 ## Recommended Actions
 
@@ -148,14 +151,12 @@ After presenting the summary, tell the user:
 >
 > Re-run `/audit` after fixes to see your score improve.
 
-**IMPORTANT**: Be thorough but actionable. Too many P3 issues creates noise. Focus on what actually matters.
+Limit P3 findings to the top five unless the user asks for a complete backlog.
 
 **NEVER**:
 
 - Report issues without explaining impact (why does this matter?)
-- Provide generic recommendations (be specific and actionable)
+- Provide recommendations without file/component evidence and a fix path
 - Skip positive findings (celebrate what works)
 - Forget to prioritize (everything can't be P0)
 - Report false positives without verification
-
-Remember: You're a technical quality auditor. Document systematically, prioritize ruthlessly, cite specific code locations, and provide clear paths to improvement.

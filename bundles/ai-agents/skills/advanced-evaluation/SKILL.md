@@ -13,13 +13,9 @@ metadata:
 ---
 # Advanced Evaluation
 
-This skill covers production-grade techniques for evaluating LLM outputs using LLMs as judges. It synthesizes research from academic papers, industry practices, and practical implementation experience into actionable patterns for building reliable evaluation systems.
-
 **Key insight**: LLM-as-a-Judge is not a single technique but a family of approaches, each suited to different evaluation contexts. Choosing the right approach and mitigating known biases is the core competency this skill develops.
 
 ## When to Activate
-
-Activate this skill when:
 
 - Building LLM-as-judge systems for LLM outputs
 - Comparing multiple model responses to select the best one
@@ -369,7 +365,7 @@ strictness: "balanced"
 
 6. **Define edge cases explicitly** - Ambiguous situations cause the most evaluation variance
 
-7. **Use domain-specific rubrics** - Generic rubrics produce generic (less useful) evaluations
+7. **Use domain-specific rubrics** - Generic rubrics produce generic evaluations
 
 8. **Validate against human judgments** - Automated evaluation is only valuable if it correlates with human assessment
 
@@ -425,12 +421,3 @@ Related skills in this collection:
 - evaluation - Foundational evaluation concepts
 - context-fundamentals - Context structure for evaluation prompts
 - tool-design - Building evaluation tools
-
----
-
-## Skill Metadata
-
-**Created**: 2025-12-24
-**Last Updated**: 2026-05-15
-**Author**: Agent Skills for Context Engineering Contributors
-**Version**: 2.1.0

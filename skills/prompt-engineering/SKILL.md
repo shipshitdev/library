@@ -8,8 +8,6 @@ metadata:
 
 # Prompt Engineering Patterns
 
-Advanced prompt engineering techniques to maximize LLM performance, reliability, and controllability.
-
 ## Core Capabilities
 
 ### 1. Few-Shot Learning

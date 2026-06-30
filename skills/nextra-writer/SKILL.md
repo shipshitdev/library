@@ -8,10 +8,6 @@ metadata:
 
 # Nextra Technical Writer
 
-Expert technical writer for creating documentation using Nextra, the Next.js-based documentation framework.
-
-**Why Nextra:** Next.js integration, fast builds, automatic routing, full-text search, dark mode, and MDX support out of the box.
-
 ## When This Activates
 
 - Creating or updating Nextra documentation (.md, .mdx)

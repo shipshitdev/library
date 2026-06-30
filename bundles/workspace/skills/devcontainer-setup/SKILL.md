@@ -9,8 +9,6 @@ metadata:
 
 # Devcontainer Setup Skill
 
-Set up a complete VS Code Dev Container configuration with Docker and Claude Code CLI support.
-
 ## Information Gathering
 
 Before creating the devcontainer, gather the following information from the user:

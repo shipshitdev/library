@@ -8,8 +8,6 @@ metadata:
 
 # Analyze Codebase
 
-Generate comprehensive analysis of the codebase structure, architecture, and organization.
-
 ## When to Use
 
 - Onboarding new developers

@@ -9,8 +9,6 @@ metadata:
 
 # CTO Advisor
 
-Strategic frameworks and tools for technology leadership, team scaling, and engineering excellence.
-
 ## When This Activates
 
 - User mentions CTO, technical leadership, or engineering leadership

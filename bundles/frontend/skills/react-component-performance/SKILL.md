@@ -15,8 +15,6 @@ metadata:
 ---
 # React Component Performance
 
-## Overview
-
 Identify render hotspots, isolate expensive updates, and apply targeted optimizations without changing UI behavior.
 
 ## When to Use

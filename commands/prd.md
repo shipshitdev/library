@@ -2,8 +2,7 @@
 
 Drive the full product-spec lifecycle from one command — create a GitHub issue
 or local PRD, enforce a spec-first loop, validate completeness, draft a full PRD,
-intake a stakeholder requirement to a kanban board, or run a discovery interview
-— instead of remembering which planning skill fits which step.
+intake a stakeholder requirement to a kanban board, or run a discovery interview.
 
 ## Usage
 

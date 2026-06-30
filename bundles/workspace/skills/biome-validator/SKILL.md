@@ -8,8 +8,6 @@ metadata:
 
 # Biome Validator
 
-Validates Biome 2.3+ configuration and prevents outdated patterns. Ensures type-aware linting, domains, and modern Biome features are properly configured.
-
 ## When This Activates
 
 - Setting up linting for a new project
@@ -168,7 +166,7 @@ Biome 2.0+ includes type inference without requiring TypeScript compiler:
 
 ### Multi-file Analysis
 
-Lint rules can query information from other files for more powerful analysis.
+Lint rules can query information from other files.
 
 ### Framework Domains
 

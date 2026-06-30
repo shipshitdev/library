@@ -8,8 +8,7 @@ metadata:
 
 <prd_quality_gate>
 A well-formed PRD (or the issue body that serves as one) must contain ALL of the
-following sections as markdown headings (## or ###). Missing sections reduce plan
-quality and risk hallucinated scope.
+following sections as markdown headings (## or ###).
 
 Required sections:
 

@@ -11,9 +11,6 @@ metadata:
 
 # GH Project Board
 
-Set up GitHub Projects v2 boards so issues and PRs use a consistent kanban
-shape.
-
 ## Contract
 
 Inputs:

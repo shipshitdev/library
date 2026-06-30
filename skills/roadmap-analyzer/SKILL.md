@@ -8,9 +8,7 @@ metadata:
 
 # Roadmap Analyzer
 
-## Overview
-
-This skill analyzes a project's current feature set against the needs of the Ideal Customer Profile (ICP). Before analyzing, discover the project's ICP from documentation (`.agents/memory/` or project docs) and current features from the codebase and documentation.
+Analyze the project's feature set against the Ideal Customer Profile (ICP). Before analyzing, discover the project's ICP from documentation (`.agents/memory/` or project docs) and current features from the codebase and documentation.
 
 The skill produces three outputs:
 
@@ -18,7 +16,7 @@ The skill produces three outputs:
 2. **Prioritized Backlog**: Ranked list of features to build next based on ICP alignment and impact
 3. **Strategic Themes**: High-level focus areas with specific initiatives
 
-## When to Use This Skill
+## When to Use
 
 Invoke this skill when asked to:
 

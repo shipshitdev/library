@@ -8,7 +8,7 @@ metadata:
 
 # Clerk Validator
 
-Validates Clerk authentication configuration and prevents deprecated patterns. AI assistants often generate old Clerk patterns - this skill enforces modern Clerk with Next.js 16.
+Validates Clerk authentication configuration and enforces modern Clerk patterns with Next.js 16.
 
 ## When This Activates
 
@@ -290,5 +290,3 @@ export async function POST(req: Request) {
 - `nextjs-validator` - Validates Next.js 16 (proxy.ts)
 - `biome-validator` - Validates linting config
 - `git-safety` - Ensures no secrets committed
-
----

@@ -22,11 +22,11 @@ metadata:
 
 Context is the complete state available to a language model at inference time: system instructions, tool definitions, retrieved documents, message history, and tool outputs. Context engineering is the discipline of curating the smallest high-signal token set that maximizes the likelihood of desired outcomes.
 
-This skill is the conceptual foundation that every other skill in the collection builds on. It explains what context is, how attention mechanics work, why context quality matters more than quantity, and the mental models needed to interpret every other context-engineering decision. It does not own operational work: debugging attention failures belongs to `context-degradation`, and token-efficiency tactics belong to `context-optimization`.
+This skill does not own operational work: debugging attention failures belongs to `context-degradation`, and token-efficiency tactics belong to `context-optimization`.
 
 ## When to Activate
 
-Activate this skill when the work is conceptual:
+When the work is conceptual:
 
 - Explaining what context is and how attention mechanics constrain agent behavior.
 - Onboarding new contributors who need the mental models before diving into operational skills.
@@ -211,12 +211,3 @@ External resources:
 - Anthropic's "Effective Context Engineering for AI Agents" — production patterns for compaction, sub-agents, and hybrid retrieval
 - Research on transformer attention mechanisms and the lost-in-the-middle effect
 - Tokenomics research on agentic software engineering token distribution
-
----
-
-## Skill Metadata
-
-**Created**: 2025-12-20
-**Last Updated**: 2026-05-15
-**Author**: Agent Skills for Context Engineering Contributors
-**Version**: 2.2.0

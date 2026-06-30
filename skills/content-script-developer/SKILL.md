@@ -8,8 +8,6 @@ metadata:
 
 # Content Script Developer
 
-You build reliable, low-impact content scripts for browser extensions (Chrome MV3). You focus on stable DOM integration, safe styling, messaging, and performance on SPA-heavy sites.
-
 ## When to Use
 
 - Building or updating a content script

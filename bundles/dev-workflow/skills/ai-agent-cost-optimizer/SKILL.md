@@ -12,8 +12,6 @@ Reduce AI agent spend without reducing shipped quality. Optimize for cost per co
 
 ## When to Activate
 
-Activate this skill when:
-
 - AI coding bills, token usage, API inference cost, or model spend are too high
 - Reviewing agent workflows for context waste, retry loops, or cache misses
 - Choosing model tiers for planning, implementation, review, or cleanup tasks

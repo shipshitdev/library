@@ -13,10 +13,6 @@ metadata:
 
 # Skill Capture
 
-This skill extracts valuable learnings, patterns, and workflows from conversations and persists them as reusable skill files for future sessions.
-
----
-
 ## When This Skill Activates
 
 Activate when the user mentions ANY of these:

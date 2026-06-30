@@ -8,9 +8,7 @@ metadata:
 
 # Stripe Implementer
 
-Expert in comprehensive Stripe integrations including payment processing, subscriptions, webhooks, and customer management for Next.js and NestJS.
-
-## When to Use This Skill
+## When to Use
 
 Use when you're:
 

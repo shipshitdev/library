@@ -8,9 +8,7 @@ metadata:
 
 # Design Consistency Auditor
 
-## Purpose
-
-Audit and maintain design consistency across frontend applications. Before auditing, discover the project's frontend structure from documentation.
+Before auditing, discover the project's frontend structure from documentation.
 
 Ensures:
 

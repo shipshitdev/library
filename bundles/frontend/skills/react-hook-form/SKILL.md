@@ -14,11 +14,9 @@ metadata:
 
 # React Hook Form Best Practices
 
-Comprehensive performance optimization guide for React Hook Form applications. Contains 41 rules across 8 categories, prioritized by impact to guide form development, automated refactoring, and code generation.
+41 rules across 8 categories for React Hook Form, prioritized by impact to guide form development, automated refactoring, and code generation.
 
 ## When to Apply
-
-Reference these guidelines when:
 
 - Writing new forms with React Hook Form
 - Configuring useForm options (mode, defaultValues, validation)

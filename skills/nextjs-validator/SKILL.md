@@ -8,7 +8,7 @@ metadata:
 
 # Next.js Validator
 
-Validates Next.js 16 configuration and prevents deprecated patterns. AI assistants often generate Next.js 14/15 patterns - this skill enforces Next.js 16.
+Validates Next.js 16 configuration and prevents deprecated Next.js 14/15 patterns.
 
 ## When This Activates
 

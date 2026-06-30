@@ -10,10 +10,6 @@ metadata:
 
 # React Patterns
 
-> Principles for building production-ready React applications.
-
----
-
 ## 1. Component Design Principles
 
 ### Component Types

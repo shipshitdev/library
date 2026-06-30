@@ -2,8 +2,7 @@
 
 Drive the whole testing lifecycle from one command — run and fix tests, author
 tests with TDD, scaffold E2E or CI infrastructure, enforce coverage, or design
-AI-targeted regression suites — instead of remembering which testing skill fits
-which step.
+AI-targeted regression suites.
 
 ## Usage
 

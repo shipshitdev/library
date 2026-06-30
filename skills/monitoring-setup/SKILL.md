@@ -8,7 +8,7 @@ metadata:
 
 # Monitoring Setup
 
-## When to Use This Skill
+## When to Use
 
 - Need to set up error tracking (Sentry)
 - Want to configure Google Analytics

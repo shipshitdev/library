@@ -8,8 +8,6 @@ metadata:
 
 # Bun Validator
 
-Validates Bun workspace configuration and prevents common monorepo issues. Ensures Bun 1.3+ patterns and proper workspace isolation.
-
 ## When This Activates
 
 - Setting up a new Bun monorepo

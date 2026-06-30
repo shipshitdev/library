@@ -18,11 +18,9 @@ metadata:
 ---
 # Community Tailwind CSS v4 Best Practices
 
-Comprehensive performance optimization guide for Tailwind CSS v4 applications. Contains 44 rules across 8 categories, prioritized by impact to guide automated refactoring and code generation.
+44 rules across 8 categories for Tailwind CSS v4, prioritized by impact to guide automated refactoring and code generation.
 
 ## When to Apply
-
-Reference these guidelines when:
 
 - Configuring Tailwind CSS v4 build tooling (Vite plugin, PostCSS, CLI)
 - Writing or migrating styles using v4's CSS-first approach

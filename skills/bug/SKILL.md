@@ -11,7 +11,7 @@ disable-model-invocation: true
 
 # Bug
 
-Turn a description of something broken into a clean, well-structured GitHub issue
+Turn a description of something broken into a GitHub issue
 of type **Bug**. It drafts the report from what the user gives (plus repo context),
 shows it for approval, and only then files the issue — typed `Bug` where the repo
 supports issue types, otherwise labelled `bug`.

@@ -13,7 +13,7 @@ metadata:
 
 # React Refactor Best Practices
 
-Architectural refactoring guide for React applications. Contains 40 rules across 7 categories, prioritized by impact from critical (component and state architecture) to incremental (refactoring safety).
+40 rules across 7 categories for React refactoring, prioritized by impact from critical (component and state architecture) to incremental (refactoring safety).
 
 ## When to Apply
 

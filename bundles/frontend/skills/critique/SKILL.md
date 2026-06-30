@@ -37,7 +37,7 @@ Read the relevant source files (HTML, CSS, JS/TS) and, if browser automation is 
 document.title = '[LLM] ' + document.title;
 ```
 
-Think like a design director. Evaluate:
+Evaluate these dimensions:
 
 **AI Slop Detection (CRITICAL)**: Does this look like every other AI-generated interface? Check for the generic indigo/violet palette, gradient text, dark glows, glassmorphism, hero-metric layouts, identical card grids, and generic geometric fonts. **The test**: If someone said "AI made this," would you believe them immediately?
 
@@ -92,7 +92,7 @@ Return: scan findings with file locations and counts, and any false positives no
 
 Synthesize both assessments into a single report. Do NOT simply concatenate. Weave the findings together, noting where the LLM review and detector agree, where the detector caught issues the LLM missed, and where detector findings are false positives.
 
-Structure your feedback as a design director would:
+Structure your feedback as a design director would. Be direct and don't soften criticism — developers need honest feedback to ship great design, and vague or hedged notes waste everyone's time.
 
 #### Design Health Score
 >
@@ -114,7 +114,9 @@ Present the Nielsen's 10 heuristics scores as a table:
 | 10 | Help and Documentation | ? | |
 | **Total** | | **??/40** | **[Rating band]** |
 
-Be honest with scores. A 4 means genuinely excellent. Most real interfaces score 20-32.
+Assign a score of 4 only when the interface has no material issue for that
+heuristic. Use 20-32 as the normal range for production interfaces with
+ordinary gaps.
 
 #### Anti-Patterns Verdict
 
@@ -128,11 +130,12 @@ Be honest with scores. A 4 means genuinely excellent. Most real interfaces score
 
 #### Overall Impression
 
-A brief gut reaction: what works, what doesn't, and the single biggest opportunity.
+One paragraph: what works, what fails, and the single biggest opportunity.
 
 #### What's Working
 
-Highlight 2-3 things done well. Be specific about why they work.
+Highlight 2-3 things done well with element names, visible behavior, and why
+they work.
 
 #### Priority Issues
 
@@ -163,6 +166,9 @@ Be specific. Name the exact elements and interactions that fail each persona. Do
 
 Quick notes on smaller issues worth addressing.
 
+Each priority issue must name the element, user impact, and fix. Limit minor
+observations to findings with a visible location or source reference.
+
 #### Questions to Consider
 
 Provocative questions that might unlock better solutions:
@@ -170,15 +176,6 @@ Provocative questions that might unlock better solutions:
 - "What if the primary action were more prominent?"
 - "Does this need to feel this complex?"
 - "What would a confident version of this look like?"
-
-**Remember**:
-
-- Be direct. Vague feedback wastes everyone's time.
-- Be specific. "The submit button," not "some elements."
-- Say what's wrong AND why it matters to users.
-- Give concrete suggestions, not just "consider exploring..."
-- Prioritize ruthlessly. If everything is important, nothing is.
-- Don't soften criticism. Developers need honest feedback to ship great design.
 
 ### Step 4: Ask the User
 

@@ -9,10 +9,7 @@ metadata:
 
 # Project Init Orchestrator
 
-## Overview
-
-This skill orchestrates project initialization by choosing the smallest safe
-setup route. For new Shipshit.dev product repos, prefer `npx @shipshitdev/v0`
+Choose the smallest safe setup route. For new Shipshit.dev product repos, prefer `npx @shipshitdev/v0`
 as the primary scaffolder. Use the lower-level init skills for existing repos,
 repairs, or project types not covered by v0.
 
@@ -54,7 +51,7 @@ Delegates To:
 - `linter-formatter-init`, `testing-cicd-init`, and `husky-test-coverage` for repo repair
 - `scaffold` for small module/component additions inside an existing codebase
 
-## When to Use This Skill
+## When to Use
 
 This skill activates automatically when users:
 

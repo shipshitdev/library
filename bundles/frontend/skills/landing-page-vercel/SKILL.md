@@ -9,7 +9,7 @@ metadata:
 
 # Landing Page (Vercel)
 
-Create a **production-ready** static landing page with:
+Create a static landing page with:
 
 ## Contract
 

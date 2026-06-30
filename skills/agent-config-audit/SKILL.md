@@ -17,8 +17,6 @@ allowed-tools:
 
 # Agent Config Audit
 
-> Audit and maintain the full AI agent configuration stack across a workspace — CLAUDE.md, CODEX.md, AGENTS.md, .cursorrules, hooks, settings, and supporting `.agents/` docs.
-
 ## Contract
 
 Inputs:

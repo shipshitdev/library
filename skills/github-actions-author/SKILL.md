@@ -11,9 +11,6 @@ metadata:
 
 # GitHub Actions Author
 
-Create and review GitHub Actions workflows with current docs and secure
-defaults.
-
 ## Contract
 
 Inputs:

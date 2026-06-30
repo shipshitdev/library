@@ -2,8 +2,7 @@
 
 One entry point for the pull-request lifecycle: open or update a PR, review it,
 digest its comments, tidy it for reviewers, apply review fixes, repair failing
-CI, or post inline suggestions. A thin dispatcher over the PR skills — it routes
-to the right one based on the subcommand.
+CI, or post inline suggestions.
 
 ## Usage
 

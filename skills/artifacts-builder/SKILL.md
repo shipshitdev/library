@@ -14,7 +14,7 @@ metadata:
 ---
 # Artifacts Builder
 
-To build powerful frontend claude.ai artifacts, follow these steps:
+To build claude.ai artifacts, follow these steps:
 
 1. Initialize the frontend repo using `scripts/init-artifact.sh`
 2. Develop your artifact by editing the generated code
@@ -76,8 +76,6 @@ This creates `bundle.html` - a self-contained artifact with all JavaScript, CSS,
 Finally, share the bundled HTML file in conversation with the user so they can view it as an artifact.
 
 ### Step 5: Testing/Visualizing the Artifact (Optional)
-
-Note: This is a completely optional step. Only perform if necessary or requested.
 
 To test/visualize the artifact, use available tools (including other Skills or built-in tools like Playwright or Puppeteer). In general, avoid testing the artifact upfront as it adds latency between the request and when the finished artifact can be seen. Test later, after presenting the artifact, if requested or if issues arise.
 

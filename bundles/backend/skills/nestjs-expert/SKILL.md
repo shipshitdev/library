@@ -10,7 +10,7 @@ metadata:
 
 # NestJS Expert
 
-Production NestJS patterns for TypeScript APIs. Stack: NestJS + MongoDB/Mongoose + TypeScript strict mode.
+Stack: NestJS + MongoDB/Mongoose + TypeScript strict mode.
 
 ## Module architecture
 

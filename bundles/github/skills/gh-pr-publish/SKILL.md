@@ -11,9 +11,6 @@ metadata:
 
 # GH PR Publish
 
-Create or update a GitHub pull request from local changes without losing context
-or pushing unsafe work.
-
 ## Contract
 
 Inputs:

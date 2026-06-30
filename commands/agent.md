@@ -2,8 +2,7 @@
 
 Drive agent/subagent architecture, configuration, and setup from one command —
 audit an agent system for failures, check config drift across workspaces, scaffold
-the `.agents/` folder, or wire up dev-loop routing — instead of remembering which
-agent skill fits which step.
+the `.agents/` folder, or wire up dev-loop routing.
 
 ## Usage
 

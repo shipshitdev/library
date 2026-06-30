@@ -438,7 +438,7 @@
     {
       "name": "mcp-builder",
       "source": "./skills/mcp-builder",
-      "description": "Creates high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external"
+      "description": "Creates MCP (Model Context Protocol) servers that enable LLMs to interact with external services thr"
     },
     {
       "name": "memory-systems",

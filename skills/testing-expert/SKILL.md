@@ -8,9 +8,7 @@ metadata:
 
 # Testing Expert Skill
 
-Expert in testing strategies for React, Next.js, and NestJS applications.
-
-## When to Use This Skill
+## When to Use
 
 - Writing unit tests
 - Creating integration tests

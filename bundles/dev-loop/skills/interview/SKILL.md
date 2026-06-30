@@ -63,8 +63,6 @@ Delegates To:
 
 ## When To Use
 
-Use this skill when:
-
 - A user asks for `/interview`, "grill me", "grill me with docs", or equivalent.
 - A feature idea is too vague to turn directly into a PRD.
 - Existing repo docs probably answer part of the question, but missing decisions

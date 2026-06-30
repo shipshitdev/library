@@ -9,10 +9,9 @@ metadata:
 
 # PRD Writer
 
-A PRD is the input contract for the planning phase. A good PRD lets a planning
-agent produce a usable plan in one shot instead of burning turns asking "what did
-you mean by X?". A bad PRD causes planner thrash, review rejection, and
-verification failures downstream.
+A PRD is the input contract for the planning phase. It must contain enough
+context, acceptance criteria, scope boundaries, and verification detail for a
+planning agent to produce a plan without re-eliciting requirements.
 
 This skill is platform-agnostic. It assumes a plan → review → verify → ship flow
 where a PRD is written first, a planner decomposes it into steps, and a verifier
@@ -21,9 +20,9 @@ field mechanics below to whatever tracker you use.
 
 ## Storage Location
 
-**Prefer making the tracker issue body the PRD.** One document per work item, one
-location: the body of an issue in the project's tracker. Avoid scattering PRDs
-across local sidecar files that drift out of sync the moment work starts.
+Use the tracker issue body as the default PRD location: one document per work
+item, one location. Avoid local sidecar files unless the repo explicitly uses
+them as source truth.
 
 - **Create** a PRD by creating an issue whose body is clean PRD markdown.
 - **Edit** a PRD by editing that issue's body.
@@ -58,10 +57,11 @@ Rules:
 
 ## Issue Title Style
 
-The issue title is what the board shows most of the time. Keep it short.
+The issue title is what the board shows most of the time. Keep it at or under
+80 characters.
 
-- Prefer **4-7 words** when possible.
-- Prefer an **imperative verb + object** shape: `Add pipeline checkpoints`, `Track CI blockers on issues`, `Expose model selectors in settings`.
+- Default to **4-7 words**.
+- Use an **imperative verb + object** shape: `Add pipeline checkpoints`, `Track CI blockers on issues`, `Expose model selectors in settings`.
 - Put the detail in the Executive Summary and body, not in the title.
 - Avoid titles chained together with `and` / `while` / `during` unless the feature is truly one inseparable unit.
 - Avoid titles that restate the full implementation loop. The title names the work item; the PRD explains it.
@@ -122,7 +122,7 @@ pass/fail without judgement. Each bullet becomes an assertion the verifier check
 - Always:   THE SYSTEM SHALL <invariant>.>
 
 ## Out of Scope
-<Be ruthless. Future-proofs the review phase against scope creep.>
+<At least one explicit boundary the implementation must not cross.>
 
 ## Dependencies
 <Other PRDs, packages, external APIs, feature flags. Reference by path or URL.>
@@ -178,7 +178,7 @@ If any gate fails, keep it in draft/on-hold workflow state and do not mark it re
    - What problem does this solve, and for whom specifically?
    - What does success look like — how would we measure it?
    - What is explicitly out of scope?
-   - What's the complexity gut feel (low/medium/high) and why?
+   - What is the complexity estimate (low/medium/high) and what evidence supports it?
    - Any hard constraints — deadlines, other projects in flight, package boundaries?
 
 3. **Check for an existing issue.** Search the project's tracker by keywords and state. If a matching issue already exists, ask whether to edit it or create a fresh one.
@@ -193,7 +193,8 @@ If any gate fails, keep it in draft/on-hold workflow state and do not mark it re
 
 8. **Create the issue (with user approval).** Show the drafted body first. On approval, create it through the tracker's native issue creation flow, using the PRD markdown as the issue body.
 
-9. **Confirm the outcome** to the user with the issue URL. Suggest the next step: "Ready to hand this to the planner? Say: plan issue #N".
+9. **Confirm the outcome** to the user with the issue URL and whether the PRD
+   passed every quality gate. Then suggest the next step: `Ready to hand this to the planner? Say: plan issue #N`.
 
 ### When the user says "plan the X PRD"
 

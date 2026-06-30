@@ -2,8 +2,7 @@
 
 Drive the full deployment and infra lifecycle from one command — ship an app to
 staging or production, compose a repo-aware deployment workflow, wire an EC2
-CI/CD pipeline, configure production monitoring, or scaffold a dev container —
-instead of remembering which deployment skill fits which task.
+CI/CD pipeline, configure production monitoring, or scaffold a dev container.
 
 ## Usage
 

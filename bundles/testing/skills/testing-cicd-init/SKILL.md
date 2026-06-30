@@ -14,8 +14,6 @@ metadata:
 
 # Testing & CI/CD Initialization
 
-Automatically sets up comprehensive test infrastructure for TypeScript projects including Vitest, coverage thresholds, and GitHub Actions CI/CD.
-
 ## Contract
 
 Inputs:

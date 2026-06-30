@@ -17,8 +17,6 @@ metadata:
 
 Structured framework for reviewing AI agent work before finalizing changes. Catches bugs, verifies accuracy, ensures completeness, validates solutions match requirements.
 
-**Why this exists:** AI agents can introduce subtle bugs, miss requirements, or make incorrect assumptions.
-
 ## When to Use
 
 - User says "check your work" or "review this"

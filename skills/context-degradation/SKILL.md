@@ -17,8 +17,6 @@ Diagnose and fix context failures before they cascade. Context degradation is no
 
 ## When to Activate
 
-Activate this skill when:
-
 - Agent performance degrades unexpectedly during long conversations
 - Debugging cases where agents produce incorrect or irrelevant outputs
 - Designing systems that must handle large contexts reliably
@@ -238,12 +236,3 @@ External resources:
 - Liu et al., 2023 "Lost in the Middle" - Read when: needing primary research backing for U-shaped attention claims or designing position-aware context layouts
 - RULER benchmark documentation - Read when: evaluating model claims about long-context support or comparing models for context-heavy workloads
 - Production engineering guides from AI labs - Read when: implementing context management in production infrastructure
-
----
-
-## Skill Metadata
-
-**Created**: 2025-12-20
-**Last Updated**: 2026-05-15
-**Author**: Agent Skills for Context Engineering Contributors
-**Version**: 2.1.0

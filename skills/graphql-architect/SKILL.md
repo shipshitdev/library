@@ -8,7 +8,7 @@ metadata:
 
 # GraphQL Architect
 
-Design GraphQL APIs that are explicit, stable, performant, and easy for clients to consume.
+Design GraphQL APIs that are explicit, stable, and performant.
 
 ## Use This Skill For
 

@@ -8,9 +8,7 @@ metadata:
 
 # Security Expert Skill
 
-Expert in application security for React, Next.js, and NestJS applications.
-
-## When to Use This Skill
+## When to Use
 
 - Implementing authentication or authorization
 - Reviewing code for security vulnerabilities

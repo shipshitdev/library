@@ -50,8 +50,11 @@ Delegates To:
 
 ### Step 1: Document Session
 
+When invoked, immediately:
+
 1. Run the `session-documenter` skill to save a redacted session summary
-2. Confirm documentation saved
+2. Let it complete — it will document tasks, decisions, files changed, patterns, and mistakes without storing secrets
+3. Confirm documentation saved
 
 > **Cross-platform note**: If your agent platform doesn't support skill invocation, follow the session-documenter workflow manually by reading the `session-documenter` skill definition.
 

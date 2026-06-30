@@ -78,7 +78,7 @@ update in place, not duplicate.
 
 ### 2. Present findings, then confirm — one decision at a time
 
-Summarize present/missing state in one short block. Walk the three decisions **individually**. Do not present all three at once.
+Summarize present/missing state in one short block. Walk the three decisions **individually**, each prefaced by a plain-English explainer. Do not present all three at once.
 
 **A. Issue tracker.** Default: GitHub Issues + a GitHub Projects kanban
 (Backlog / In Progress / Human Review / Done / Deferred), detected from the `origin` remote. Confirm the

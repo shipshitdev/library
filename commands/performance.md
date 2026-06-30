@@ -38,7 +38,7 @@ Check for: code splitting, tree shaking, unused dependencies, large imports.
 
 ### React Performance
 
-- Memoization (`useMemo`, `useCallback`) for expensive computations
+- Memoization (`useMemo`, `useCallback`) where needed
 - Virtualization for long lists
 - Lazy loading routes/components
 - Image optimization

@@ -87,6 +87,8 @@ WHEN receiving code review feedback:
 IF any item is unclear:
   STOP — do not implement anything yet
   ASK for clarification on all unclear items before proceeding
+
+WHY: Items may be related. Partial understanding leads to wrong implementation.
 ```
 
 **Example:**
@@ -258,4 +260,4 @@ gh api repos/{owner}/{repo}/pulls/{pr}/comments/{id}/replies \
   -f body="[your response]"
 ```
 
-Reviewer feedback = suggestions to evaluate, not orders to follow. Verify. Question. Then implement. No performative agreement.
+Reviewer feedback = suggestions to evaluate, not orders to follow. Verify. Question. Then implement. No performative agreement. Technical rigor always.

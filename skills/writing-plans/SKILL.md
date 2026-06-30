@@ -28,7 +28,7 @@ Map out which files will be created or modified and what each one is responsible
 - Each file has one clear responsibility.
 - Prefer smaller, focused files. The agent edits most reliably when it can hold the full file in context.
 - Files that change together should live together. Split by responsibility, not by technical layer.
-- In existing codebases, follow established patterns. If a file you are modifying has grown unwieldy, including a split in the plan is reasonable.
+- In existing codebases, follow established patterns. If the codebase uses large files, do not unilaterally restructure — but if a file you are modifying has grown unwieldy, including a split in the plan is reasonable.
 
 Each task should produce self-contained changes that make sense independently.
 

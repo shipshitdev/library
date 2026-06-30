@@ -127,7 +127,7 @@ Prefer fixes in this order:
 7. Use typed envelopes for internal protocol boundaries.
 8. Add trace tests that compare raw, processed, transported, and rendered output.
 
-Do not solve tool discipline, memory safety, or transport corruption by adding stronger prompt wording.
+Do not solve tool discipline, memory safety, or transport corruption only by adding stronger prompt wording.
 
 ## Severity
 

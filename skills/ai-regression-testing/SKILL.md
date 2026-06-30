@@ -129,7 +129,8 @@ bun test
 bun run typecheck
 ```
 
-Use the repo's actual package manager and test commands.
+Use the repo's actual package manager and test commands. Do not invent new
+tooling when the project already has a pattern.
 
 ## Test Design Checklist
 

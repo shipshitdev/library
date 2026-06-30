@@ -91,8 +91,10 @@ This document contains the complete MCP specification. Note: the URL may change 
 
 #### 1.4 Study API Documentation
 
-To integrate a service, read the API documentation needed for the selected
-workflows:
+To integrate a service, read the API documentation for the selected workflows.
+Scope endpoint and parameter coverage to those workflows, but read the
+cross-cutting concerns (auth, rate limits, error handling, data models) in full
+— they apply across every tool you expose:
 
 - Official API reference documentation
 - Authentication and authorization requirements

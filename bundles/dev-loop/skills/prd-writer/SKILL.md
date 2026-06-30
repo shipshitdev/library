@@ -194,7 +194,7 @@ If any gate fails, keep it in draft/on-hold workflow state and do not mark it re
 8. **Create the issue (with user approval).** Show the drafted body first. On approval, create it through the tracker's native issue creation flow, using the PRD markdown as the issue body.
 
 9. **Confirm the outcome** to the user with the issue URL and whether the PRD
-   passed every quality gate.
+   passed every quality gate. Then suggest the next step: `Ready to hand this to the planner? Say: plan issue #N`.
 
 ### When the user says "plan the X PRD"
 

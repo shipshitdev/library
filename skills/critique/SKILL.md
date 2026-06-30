@@ -92,7 +92,7 @@ Return: scan findings with file locations and counts, and any false positives no
 
 Synthesize both assessments into a single report. Do NOT simply concatenate. Weave the findings together, noting where the LLM review and detector agree, where the detector caught issues the LLM missed, and where detector findings are false positives.
 
-Structure your feedback as a design director would:
+Structure your feedback as a design director would. Be direct and don't soften criticism — developers need honest feedback to ship great design, and vague or hedged notes waste everyone's time.
 
 #### Design Health Score
 >

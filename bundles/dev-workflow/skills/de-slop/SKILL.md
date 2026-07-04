@@ -102,6 +102,7 @@ guessing at intended copy or behavior.
    bun run type-check || bunx tsc --noEmit
    bun run test
    ```
+
 5. **Document** — log packages cleaned and per-type counts in
    `.agents/sessions/YYYY-MM-DD.md`.
 

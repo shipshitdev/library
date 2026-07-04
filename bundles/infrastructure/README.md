@@ -11,13 +11,15 @@ DevOps, cloud, and infrastructure skills
 
 ## Included Skills
 
-- `docker-expert`
 - `aws-infrastructure`
+- `docker-expert`
 - `ec2-backend-deployer`
-- `mongodb-migration-expert`
 - `mongodb-atlas-checker`
+- `mongodb-migration-expert`
 - `monitoring-setup`
 - `nestjs-queue-architect`
 - `performance-expert`
+- `postgres-ops`
 - `redis-caching`
 - `security-expert`
+- `vercel-deploy`

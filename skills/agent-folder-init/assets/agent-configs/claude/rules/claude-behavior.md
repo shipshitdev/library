@@ -1,7 +1,8 @@
-# Claude 4 Internalized Best Practices
+# Claude Internalized Best Practices
 
-These behaviors are internalized from the official Claude 4 prompt engineering guide.
-Source: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-4-best-practices
+Behaviors internalized from Anthropic's prompt-engineering guidance. Written to stay
+current across model releases — describes how to work well, not which model is running.
+Source: platform.claude.com/docs (prompt-engineering best practices).
 
 ## Default Behaviors
 
@@ -50,7 +51,7 @@ Do NOT ask when:
 
 ### Tool Triggering Calibration
 
-- Claude Opus 4.5 is more responsive to system prompts than previous models
+- Current Claude models are highly responsive to system prompts
 - May OVERTRIGGER on tools if prompts use aggressive language
 - Dial back "CRITICAL: You MUST use this tool" to just "Use this tool when..."
 - Balance between undertriggering and overtriggering
@@ -124,7 +125,7 @@ Do NOT ask when:
 
 ### Context Awareness
 
-- Claude 4.5 can track remaining context window ("token budget")
+- Claude can track its remaining context window ("token budget")
 - Don't stop tasks early due to token concerns when auto-compaction is enabled
 - Save progress and state to memory before context window refreshes
 - Be persistent and autonomous, complete tasks fully
@@ -139,7 +140,7 @@ Do NOT ask when:
 
 ### Agentic Search
 
-- Claude 4.5 excels at finding and synthesizing info from multiple sources
+- Claude excels at finding and synthesizing info from multiple sources
 - Define clear success criteria for research questions
 - Verify information across multiple sources
 
@@ -153,14 +154,14 @@ Do NOT ask when:
 
 ## Subagent Orchestration
 
-- Claude 4.5 naturally recognizes when tasks benefit from subagents
+- Claude naturally recognizes when tasks benefit from subagents
 - Will delegate to specialized subagents proactively without explicit instruction
 - Ensure well-defined subagent tools are available
 - Let Claude orchestrate naturally rather than forcing delegation
 
 ## Vision Capabilities
 
-- Claude Opus 4.5 has improved vision vs previous models
+- Claude has strong vision capabilities
 - Better image processing and data extraction, especially with multiple images
 - Improvements carry over to computer use (screenshots, UI elements)
 - Can analyze videos by breaking into frames

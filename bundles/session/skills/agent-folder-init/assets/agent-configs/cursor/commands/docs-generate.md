@@ -320,7 +320,7 @@ graph TD
 
 ```env
 OPENAI_API_KEY=sk-...
-OPENAI_MODEL=gpt-4
+OPENAI_MODEL=<your-model>
 POST_GENERATION_QUEUE=post-generation
 MAX_GENERATION_LENGTH=5000
 ```

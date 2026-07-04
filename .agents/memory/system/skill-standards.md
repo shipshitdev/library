@@ -47,6 +47,7 @@ metadata:
   version: "1.0.0"
   tags: "tag1, tag2, tag3"
   author: Ship Shit Dev
+  # For skills derived from an upstream, add source/last_synced — see Provenance.
 allowed-tools: Bash(gh pr view:*) Bash(git log:*) Bash(git diff:*)
 # Claude Code extensions below
 when_to_use: "trigger phrase 1, trigger phrase 2, example request"
@@ -213,6 +214,79 @@ This validator does **not** understand Claude Code extension fields. For this re
 ```
 
 That repo validator enforces the shared Claude Code + Codex rules and allows the approved Claude extension fields.
+
+---
+
+## Model references
+
+Skills are model-agnostic playbooks. The harness that loads a skill supplies the
+model — a skill must never assume or name one. 146 of this repo's skills already
+carry zero model references; keeping it that way means a new model generation
+touches only the per-repo routing block, never the skills.
+
+- **No concrete model names anywhere in a skill** — not in the body, not in
+  `references/`, not in `scripts/`. This covers tier+version IDs
+  (`claude-sonnet-5`, `claude-3-7-sonnet-20250219`, `claude-opus-4.5`, `gpt-5.5`),
+  dated snapshots, and a bare family name used as a routing key. They go stale on
+  every release and pin the skill to one vendor.
+- **Orchestrators are the only exception.** A skill that spawns sub-agents
+  (fan-out review, multi-lens audit) may express **capability tiers** in prose —
+  "cheapest/fastest tier for the fan-out finders, strongest available tier for the
+  final verdict" — never a concrete model. The concrete tier→model mapping lives in
+  the repo routing block (`CLAUDE.md`/`AGENTS.md`, written by `setup-agent-routing`),
+  so one per-repo file absorbs each model generation and each harness (Claude,
+  Codex) maps the tiers to its own models.
+- **The `model:` frontmatter field**, if set, carries a tier alias the harness
+  resolves (`sonnet`, `opus` as Claude aliases — the field is Claude-only), not a
+  version-pinned ID. Prefer omitting it and inheriting the session model unless the
+  skill genuinely needs a fixed tier.
+- **External tools are lanes, not models.** Naming Codex, `gh`, or a CLI as a
+  dependency the skill shells out to is fine (it is a tool, like `git`). Naming the
+  model that tool runs is not.
+
+---
+
+## Provenance
+
+A skill authored in-house needs no provenance fields. A skill **derived from an
+upstream** declares where it came from, so the rewrite-vs-resync decision is
+mechanical. The convention is enforced by `check_provenance()` in
+`scripts/validate-skill-sync.sh` and used by 30 skills today.
+
+Frontmatter (all under `metadata`):
+
+```yaml
+metadata:
+  version: "1.0.0"
+  source: https://github.com/<org>/<repo>/blob/main/skills/<name>/SKILL.md
+  upstream_repo: <org>/<repo>
+  upstream_ref: main               # branch or tag tracked
+  upstream_commit: <short-sha>     # commit synced at (or upstream_version)
+  last_synced: "2026-07-04"        # ISO date; validator warns if >90 days old
+  license: <upstream SPDX id>
+```
+
+Plus a `## Upstream` section in the skill's `README.md` (validator requires it when
+`source` is set): a table mirroring the fields above, a **Local modifications** line,
+and a **Checking for upstream changes** line.
+
+The **Local modifications** line is what distinguishes the two derived kinds — no
+separate frontmatter field is needed:
+
+| Kind | Signal | Maintenance rule |
+|------|--------|------------------|
+| **Vendored** | Upstream is a genuine tool-vendor (anthropics, vercel-labs, cursor, openai, prisma, supabase…); README says "No behavioral changes beyond provenance metadata." | Re-sync from `source`; never hand-edit. Bump `upstream_commit` + `last_synced` on each pull. |
+| **Adapted** | Upstream is an individual/community repo; README's Local modifications describes a substantive house-style rewrite. | Owned here. Rewrite to house style freely; `source` is attribution, not a sync target. |
+
+Rules:
+
+- Only **tool-vendor** upstreams qualify as vendored. A skill copied from an
+  individual's repo is adapted — we own it and hold it to the full house style.
+- Vendored skills are the sole skills exempt from a house-style rewrite. If a
+  vendored skill needs a local fix, fix it upstream or promote it to adapted (take
+  over maintenance) rather than silently diverging.
+- On every re-sync, re-run the validator — a pull can reintroduce a model reference
+  or a forbidden field.
 
 ---
 

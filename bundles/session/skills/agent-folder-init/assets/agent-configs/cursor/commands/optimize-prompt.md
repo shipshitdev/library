@@ -428,7 +428,7 @@ cat apps/api/src/prompts/templates/{template-name}.md
 ```typescript
 // Test in service
 const result = await this.openai.chat.completions.create({
-  model: "gpt-4",
+  model: process.env.OPENAI_MODEL,
   messages: [
     { role: "system", content: optimizedPrompt },
     { role: "user", content: testInput },

@@ -128,7 +128,7 @@ def create_execute_tool(sandbox):
 
 # Minimal agent
 agent = ToolLoopAgent(
-    model="claude-opus-4.5",
+    model=YOUR_MODEL,  # a capable current model; do not pin a stale version
     tools={
         "execute_command": create_execute_tool(sandbox),
         "execute_sql": sql_tool,

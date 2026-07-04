@@ -6,6 +6,7 @@ This script evaluates MCP servers by running test questions against them using C
 import argparse
 import asyncio
 import json
+import os
 import re
 import sys
 import time
@@ -17,6 +18,10 @@ from typing import Any
 from anthropic import Anthropic
 
 from connections import create_connection
+
+# Model is not pinned to a version here — it goes stale on every release. Set the
+# ANTHROPIC_MODEL env var (or pass -m/--model) to your current model of choice.
+DEFAULT_MODEL = os.environ.get("ANTHROPIC_MODEL", "")
 
 EVALUATION_PROMPT = """You are an AI assistant with access to tools.
 
@@ -220,7 +225,7 @@ TASK_TEMPLATE = """
 async def run_evaluation(
     eval_path: Path,
     connection: Any,
-    model: str = "claude-3-7-sonnet-20250219",
+    model: str = DEFAULT_MODEL,
 ) -> str:
     """Run evaluation with MCP server tools."""
     print("🚀 Starting Evaluation")
@@ -314,14 +319,14 @@ Examples:
   # Evaluate an SSE MCP server
   python evaluation.py -t sse -u https://example.com/mcp -H "Authorization: Bearer token" eval.xml
 
-  # Evaluate an HTTP MCP server with custom model
-  python evaluation.py -t http -u https://example.com/mcp -m claude-3-5-sonnet-20241022 eval.xml
+  # Evaluate an HTTP MCP server with a specific model
+  python evaluation.py -t http -u https://example.com/mcp -m <your-model> eval.xml
         """,
     )
 
     parser.add_argument("eval_file", type=Path, help="Path to evaluation XML file")
     parser.add_argument("-t", "--transport", choices=["stdio", "sse", "http"], default="stdio", help="Transport type (default: stdio)")
-    parser.add_argument("-m", "--model", default="claude-3-7-sonnet-20250219", help="Claude model to use (default: claude-3-7-sonnet-20250219)")
+    parser.add_argument("-m", "--model", default=DEFAULT_MODEL, help="Model to use (defaults to the ANTHROPIC_MODEL env var; required if that is unset)")
 
     stdio_group = parser.add_argument_group("stdio options")
     stdio_group.add_argument("-c", "--command", help="Command to run MCP server (stdio only)")
@@ -335,6 +340,9 @@ Examples:
     parser.add_argument("-o", "--output", type=Path, help="Output file for evaluation report (default: stdout)")
 
     args = parser.parse_args()
+
+    if not args.model:
+        parser.error("no model set — pass -m/--model or set the ANTHROPIC_MODEL env var")
 
     if not args.eval_file.exists():
         print(f"Error: Evaluation file not found: {args.eval_file}")

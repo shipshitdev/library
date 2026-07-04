@@ -3,10 +3,12 @@ name: full-code-review
 description: >-
   Fan-out PR review across three parallel dimension agents (structural, security,
   devex/flag-hygiene), adversarially verify every finding, and synthesize a
-  single prioritized verdict via an Opus judge. Use when asked for a full,
+  single prioritized verdict via a strongest-tier judge. Use when asked for a full,
   comprehensive, or end-to-end review of a branch or PR — after /code-review
   passes correctness, this skill covers the orthogonal dimensions it does not:
   security depth, structural health, devex regressions, and feature-flag hygiene.
+  In retro mode (a commit log is passed in) it adds a cross-commit lens and emits a
+  prioritized backlog instead of a merge verdict.
 compatibility: Requires gh CLI and git for PR diff fetching.
 metadata:
   version: "1.0.0"
@@ -49,6 +51,7 @@ This skill owns the **orthogonal** dimensions the harness does not cover:
 | Structural health | Module cohesion, circular deps, abstraction altitude, dead-code introduction, API surface sprawl |
 | DevEx / flag hygiene | Internal-API breaking changes, type inference degradation, missing changelog, docs divergence, flags without cleanup tickets, always-on constants |
 | Test quality signal | Tests asserting behavior not just execution; hollow snapshots; missing contract tests |
+| Cross-commit (retro only) | Duplication reintroduced across separate commits, optimizations compounding over the window, a bug fix whose root cause recurs in untouched siblings, switch/flag forests that grew commit-by-commit — patterns invisible to any single-diff pass |
 
 Explicitly **excluded** to avoid overlap: bug detection, CLAUDE.md rule
 validation, confidence-scoring/false-positive loop — those are owned by the
@@ -60,12 +63,18 @@ Inputs:
 
 - Branch name, PR number/URL, or local diff scope; defaults to `HEAD` vs
   `origin/main` when not specified.
+- **Retro mode:** a `COMMIT_LOG` (SHAs + messages + per-file stat over a window),
+  passed by `review-dispatch retro`. Its presence switches the run to retro.
 
 Outputs:
 
 - Prioritized finding list: BLOCKER / HIGH / MEDIUM / LOW, each with dimension,
   file, line (when available), redacted evidence, and fix direction.
-- Verdict: approve / request-changes / block — with one-sentence rationale.
+- **PR mode:** verdict approve / request-changes / block — with one-sentence
+  rationale.
+- **Retro mode:** verdict `retro-backlog` (never blocks anything) — findings
+  bucketed bug / optimization / refactor and ranked by (impact × recurrence) ÷
+  effort, for scheduling as follow-up work.
 - Dimensions reviewed and adversarial refutation count.
 
 Creates/Modifies:
@@ -120,6 +129,8 @@ prompts in the Workflow script below.
 
 Invoke the Workflow tool with the script at `${CLAUDE_SKILL_DIR}/scripts/full-code-review.js`.
 Pass `DIFF` and `CHANGED_FILES` as context strings embedded in each reviewer prompt.
+For a **retro**, also pass `COMMIT_LOG` — its presence adds the cross-commit reviewer
+and switches synthesis to backlog mode. Everything else is unchanged.
 
 ## Step 3 — Render the Verdict
 
@@ -141,6 +152,29 @@ Findings (<N> verified, <M> dropped):
 ...
 
 Dimensions reviewed: structural, security, devex
+Adversarial pass: <N raw> → <M surviving>
+```
+
+For a **retro** (`mode: retro`), render a backlog instead — no APPROVE/BLOCK line,
+findings grouped by bucket, ranked within each:
+
+```text
+Commit Retro — <window> (<N> commits)
+Theme: <one-sentence highest-leverage theme>
+
+Bugs shipped this window:
+[rank]. [SEVERITY] <file> — <finding>   (commits: <sha>, <sha>)
+  Fix: <remediation>
+
+Optimizations:
+[rank]. [SEVERITY] <file> — <finding>   (commits: <sha>)
+  Fix: <remediation>
+
+Refactors:
+[rank]. [SEVERITY] <file> — <finding>   (commits: <sha>, <sha>, <sha>)
+  Fix: <consolidation>
+
+Dimensions reviewed: structural, security, devex, cross-commit
 Adversarial pass: <N raw> → <M surviving>
 ```
 

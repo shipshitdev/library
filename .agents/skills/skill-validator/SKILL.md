@@ -58,17 +58,30 @@ These are not part of any spec:
 
 ### Claude Code Extensions (Optional)
 
-Valid extension fields:
+Valid extension fields (must match `allowed_fields` in `scripts/validate-skill-sync.sh`):
 
 | Field | Purpose |
 |-------|---------|
-| `when_to_use` | Trigger phrases for auto-activation |
+| `when_to_use` | Extra trigger phrases appended to `description` |
 | `disable-model-invocation` | Prevent auto-triggering (for destructive skills) |
-| `user-invocable` | Slash command name |
-| `allowed-tools` | Pre-approved tool patterns |
-| `model` | Model override |
-| `effort` | Effort level |
+| `user-invocable` | `false` hides from the `/` menu |
+| `allowed-tools` | Auto-approve **allowlist** (not a sandbox — unlisted tools stay callable) |
+| `disallowed-tools` | Removes tools from the pool while active (the actual block mechanism) |
+| `argument-hint` | Autocomplete hint for expected arguments |
+| `compatibility` | Environment prerequisites (packages, network, target agent) |
+| `model` | Tier-alias override (never a version-pinned ID — see Model References) |
+| `effort` | Effort level (`low`…`max`) |
 | `context` | `fork` for subagent isolation |
+| `agent` | Subagent type when `context: fork` |
+| `hooks` | Lifecycle hooks scoped to the skill |
+| `paths` | ⚠️ Broken upstream (#49835) — flag if present |
+| `shell` | `bash` (default) or `powershell` |
+
+### Forbidden Fields (updated)
+
+- `auto_activate` / `auto_trigger` — removed in 2026-04 migration
+- `risk` — not in any spec
+- Any top-level field not in the tables above → "Unsupported top-level frontmatter field"
 
 ### Content Rules
 
@@ -76,6 +89,8 @@ Valid extension fields:
 - No tool names in instructions (say "search for" not "use Grep")
 - Imperative/infinitive style ("Configure X" not "You should configure X")
 - Code blocks use real backtick fences, not escaped `\`\`\``
+- **No concrete model names** in body, `references/`, or `scripts/` — reject tier+version IDs (`claude-3-7-sonnet-20250219`, `claude-opus-4.5`, `gpt-5.5`), dated snapshots, and bare family names used as routing keys. Exception: orchestrator skills may name **capability tiers** in prose. See [skill-standards.md → Model references](../../memory/system/skill-standards.md).
+- **Provenance (derived skills only):** when `metadata.source` is set, `metadata.last_synced` and a README `## Upstream` section are required (enforced by `check_provenance()`). In-house skills need no provenance fields.
 
 ## Validation Process
 
@@ -85,11 +100,13 @@ Valid extension fields:
 4. Check `description` plus `when_to_use` is under 1536 chars
 5. Check `plugin.json` description is present and under 100 chars
 6. Check `version`/`tags` are NOT top-level (must be inside `metadata:`)
-7. Check for forbidden fields (`auto_activate`, `auto_trigger`, `risk`)
+7. Check for forbidden fields (`auto_activate`, `auto_trigger`, `risk`, any field not in the extension tables)
 8. Check for escaped backtick fences in content
 9. Check for hardcoded paths (`/workspace/`, project-specific paths)
-10. Run `bunx markdownlint-cli` on the file
-11. Run `./scripts/validate-skill-sync.sh` for cross-validation
+10. Grep body + `references/` + `scripts/` for concrete model names (`claude-*`, `gpt-*`, `sonnet`/`opus`/`haiku` used as IDs); allow only capability-tier prose in orchestrator skills
+11. Check provenance for derived skills: if `metadata.source` is set, require `metadata.last_synced` and a README `## Upstream` section
+12. Run `bunx markdownlint-cli` on the file
+13. Run `./scripts/validate-skill-sync.sh` for cross-validation
 
 ## Quick Validation Command
 

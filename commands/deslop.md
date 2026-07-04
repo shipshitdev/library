@@ -1,17 +1,21 @@
-# Deslop - Remove AI Slop From Code
+# Deslop - Remove AI Slop From Code and Product
 
-Strip AI-generated artifacts and code sloppiness while keeping the project
-buildable: console statements, `any` types, unused imports, dead/commented-out
-code, redundant comments, unnecessary defensive checks, and over-nesting.
+Strip AI-generated slop while keeping the project buildable. Code slop: console
+statements, `any` types, unused imports, dead/commented-out code, redundant comments,
+unnecessary defensive checks, over-nesting. Product slop (`--product`): marketing-filler
+copy, default-shadcn UI, missing loading/error states, dead buttons and half-wired flows.
 
 ## Usage
 
 ```bash
-/deslop              # clean the current package/project directory
+/deslop              # clean code slop in the current package/project
 /deslop --changed    # clean only the lines this branch introduced (diff-only)
+/deslop --product    # also strip product slop (copy / UI / UX)
 /deslop all          # sweep every package in a monorepo
 /deslop dry-run      # preview the cleanup, change nothing
 ```
+
+Also reachable as `/refactor deslop`.
 
 ## Workflow
 
@@ -22,7 +26,8 @@ Use the `de-slop` skill.
    files/hunks.
 2. Identify artifacts: console statements, `any`, unused imports/vars, commented-out
    code, debug code, redundant comments, defensive try-catch on trusted paths,
-   over-nesting.
+   over-nesting. With `--product`, also the copy/UI/UX slop from the skill's
+   `references/product-slop.md` catalog.
 3. Apply cleanup, replacing console with the project logger and `any` with real
    types; collapse deep nesting into early returns matching the file's style.
 4. Verify: `bun run type-check || bunx tsc --noEmit`, then `bun run test`.

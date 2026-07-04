@@ -1,0 +1,12 @@
+{
+  "name": "tech-debt",
+  "version": "1.0.0",
+  "description": "Inventory and prioritize technical debt into a register ranked by interest over principal.",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://shipshit.dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

@@ -357,7 +357,7 @@ async generatePost(prompt: string, user: User) {
 // ❌ BAD - Blocking API
 async generatePost(prompt: string) {
   const result = await openai.chat.completions.create({
-    model: 'gpt-4',
+    model: process.env.OPENAI_MODEL,
     messages: [{ role: 'user', content: prompt }]
   }); // ❌ Blocks for 2-4 seconds!
 

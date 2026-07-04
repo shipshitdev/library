@@ -215,7 +215,7 @@ until done or genuinely blocked.
 Recommended Codex config for this mode:
 
 ```toml
-model = "gpt-5.5"
+model = "<current Codex model>"   # verify the latest; do not pin a stale version
 model_reasoning_effort = "xhigh"
 plan_mode_reasoning_effort = "xhigh"
 

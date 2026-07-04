@@ -401,6 +401,38 @@ check_platform_names() {
     return $warnings
 }
 
+# Function to check for concrete/version-pinned model names.
+# Skills are model-agnostic playbooks — the harness supplies the model. Orchestrators
+# may name capability tiers ("strongest tier") in prose but never a concrete ID.
+# This warns on version-pinned IDs, which are never legitimate anywhere in a skill.
+check_model_references() {
+    local skill_dir="$1"
+    local warnings=0
+
+    if [[ ! -d "$skill_dir" ]]; then
+        return 0
+    fi
+
+    # High-confidence stale patterns: family+digit and tier+version model IDs.
+    # (Dated snapshots like -20250219 always co-occur with claude-N, so covered.)
+    local model_re='claude-[0-9]|claude-(opus|sonnet|haiku)-|gpt-[0-9]|gemini-[0-9]'
+
+    local hits
+    hits=$(grep -rInE "$model_re" \
+        --include='SKILL.md' --include='*.md' --include='*.py' \
+        --include='*.js' --include='*.ts' --include='*.sh' \
+        "$skill_dir" 2>/dev/null | grep -v '/README.md:' || true)
+
+    if [[ -n "$hits" ]]; then
+        while IFS= read -r hit; do
+            echo -e "  ${YELLOW}⚠${NC} Concrete model name (use a capability tier instead): ${hit}"
+            ((++warnings))
+        done <<< "$hits"
+    fi
+
+    return $warnings
+}
+
 # Function to check for hardcoded platform paths
 check_platform_paths() {
     local file="$1"
@@ -757,6 +789,10 @@ validate_skill() {
         local provenance_warnings=0
         check_provenance "$skill_file" "$SKILLS_DIR/$skill_name" || provenance_warnings=$?
         ((skill_warnings += provenance_warnings, 1))
+
+        local model_warnings=0
+        check_model_references "$SKILLS_DIR/$skill_name" || model_warnings=$?
+        ((skill_warnings += model_warnings, 1))
 
         # Platform-agnostic checks
         local tool_warnings=0

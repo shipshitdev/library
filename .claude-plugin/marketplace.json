@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "155 AI agent skills for development workflows",
+  "description": "163 AI agent skills for development workflows",
   "plugins": [
     {
       "name": "shipshitdev-testing",
@@ -243,12 +243,17 @@
     {
       "name": "de-slop",
       "source": "./skills/de-slop",
-      "description": "Removes AI-generated artifacts and code sloppiness from a codebase — console statements, `any` types, unused imports, commented-out code, debug statements, redundant comments, unnecessary defensive try-catch on trusted paths, and over-nesting that should use early returns. Can scope to only the lines introduced on the current branch (diff-only) or sweep the whole tree. Use when asked to clean up AI-generated code, remove slop, fix code quality issues, or tidy up a codebase after AI-assisted development."
+      "description": "Strip AI-generated slop from a codebase and product. Code slop — console statements, `any` types, unused imports, commented-out code, redundant comments, needless defensive try-catch on trusted paths, over-nesting. Product slop (with --product) — marketing-filler copy, generic AI phrasing, default-shadcn look, unstyled loading/error states, dead buttons and half-wired flows that make an app feel unfinished. Can scope to the current branch's diff or sweep the whole tree. Use when asked to clean up AI-generated code, remove slop, or make an app feel finished before shipping to customers."
     },
     {
       "name": "debug",
       "source": "./skills/debug",
       "description": "Systematic debugging guidance for bugs, failures, unexpected behavior, and performance regressions. Emphasizes reproducible feedback loops, hypothesis testing, instrumentation, fixes, and regression tests. Use when investigating a bug, unexpected behavior, crash, wrong output, or performance regression, or triaging incoming bug reports."
+    },
+    {
+      "name": "dependency-audit",
+      "source": "./skills/dependency-audit",
+      "description": "Audit a project's dependency supply chain — known CVEs in installed packages, secrets about to be committed, and lockfile/provenance integrity — and wire the checks into CI as a merge gate. Use when asked to audit dependencies, check for vulnerable packages, scan for leaked secrets, add a security gate to CI, or harden the supply chain. Complements security-audit (app-level) and git-safety (git history)."
     },
     {
       "name": "deploy",
@@ -343,7 +348,7 @@
     {
       "name": "full-code-review",
       "source": "./skills/full-code-review",
-      "description": "Fan-out PR review across three parallel dimension agents (structural, security, devex/flag-hygiene), adversarially verify every finding, and synthesize a single prioritized verdict via an Opus judge. Use when asked for a full, comprehensive, or end-to-end review of a branch or PR — after /code-review passes correctness, this skill covers the orthogonal dimensions it does not: security depth, structural health, devex regressions, and feature-flag hygiene."
+      "description": "Fan-out PR review across three parallel dimension agents (structural, security, devex/flag-hygiene), adversarially verify every finding, and synthesize a single prioritized verdict via a strongest-tier judge. Use when asked for a full, comprehensive, or end-to-end review of a branch or PR — after /code-review passes correctness, this skill covers the orthogonal dimensions it does not: security depth, structural health, devex regressions, and feature-flag hygiene. In retro mode (a commit log is passed in) it adds a cross-commit lens and emits a prioritized backlog instead of a merge verdict."
     },
     {
       "name": "fullstack-workspace-init",
@@ -404,6 +409,11 @@
       "name": "husky-test-coverage",
       "source": "./skills/husky-test-coverage",
       "description": "Sets up or verifies Husky git hooks to enforce test coverage above 80% (configurable) for Node.js/TypeScript projects. Activates when enforcing coverage through pre-commit hooks, verifying existing Husky/test setup, or configuring coverage thresholds for Jest, Vitest, or Mocha test runners."
+    },
+    {
+      "name": "icp",
+      "source": "./skills/icp",
+      "description": "Discover and document a product's Ideal Customer Profile as a durable .agents/memory/icp.md — segments ranked by revenue potential, each with acute pain, willingness-to-pay, buying trigger, and churn reasons. Use when a user says \"define our ICP\", \"who is our customer\", \"who are we selling to\", \"document our ideal customer\", or before roadmap-analyzer / roadmap-to-milestones need a customer to prioritize against."
     },
     {
       "name": "incremental-fetch",
@@ -468,7 +478,7 @@
     {
       "name": "monitoring-setup",
       "source": "./skills/monitoring-setup",
-      "description": "Sets up Sentry error tracking and Google Analytics for NestJS and Next.js applications. Activates when users need to configure error tracking, set up production monitoring, add Google Analytics, or track application errors and user behavior."
+      "description": "Sets up production monitoring for NestJS and Next.js apps — Sentry error tracking, Google Analytics, and operational signals (BullMQ queue depth, Postgres slow queries, connection saturation) with alerts on each. Activates when users need error tracking, production monitoring, analytics, queue/database observability, or alerting on operational health."
     },
     {
       "name": "multi-agent-patterns",
@@ -519,6 +529,11 @@
       "name": "polish",
       "source": "./skills/polish",
       "description": "Performs a final quality pass fixing alignment, spacing, consistency, and micro-detail issues before shipping. Use when the user mentions polish, finishing touches, pre-launch review, something looks off, or wants to go from good to great."
+    },
+    {
+      "name": "postgres-ops",
+      "source": "./skills/postgres-ops",
+      "description": "Operate a production Postgres database — backup strategy, point-in-time recovery, restore drills, connection pooling for serverless, and a disaster-recovery runbook. Use when asked to set up Postgres backups, plan disaster recovery, configure connection pooling, restore a database, or harden Postgres for production. Covers managed (RDS / Prisma Postgres) and self-managed instances."
     },
     {
       "name": "pr-comments",
@@ -621,6 +636,11 @@
       "description": "Systematic approach to safely refactoring code with tests. Use when user says 'refactor', 'clean up code', 'simplify', 'reduce complexity', or 'technical debt'."
     },
     {
+      "name": "refactor-dispatch",
+      "source": "./skills/refactor-dispatch",
+      "description": "Single front door for improving existing code — routes to the right engine by mode: deslop (strip AI slop, code + product), code (safe behavior-preserving refactor), debt (tech-debt register), perf (frontend + backend optimization), structure (read-only structural review), or stack (dependency + framework-pattern modernization). Backs the /refactor command. Use when asked to refactor, clean up, de-slop, pay down tech debt, optimize, or modernize, and the mode must be picked from an argument like \"deslop\", \"debt\", \"perf\", or \"stack\"."
+    },
+    {
       "name": "release",
       "source": "./skills/release",
       "description": "Cut a release from the trunk (default branch) and generate plain-English patch notes. Determines the next semantic version from commits since the last tag, previews the release plan, then on confirmation creates an annotated tag, a GitHub release, and patch notes. Trunk-based — there is no develop/staging branch promotion. Use when the user asks to cut a release, ship a release, tag a release, release to production, generate release notes or a changelog, or runs /release."
@@ -643,12 +663,17 @@
     {
       "name": "review-dispatch",
       "source": "./skills/review-dispatch",
-      "description": "Single front door for code review. Resolves a target — working-tree changes, one PR, all open PRs, the last N commits, or a time window — into diffs, then routes to the right review engine (code-review for a quick gate, full-code-review for a deep multi-dimension pass). Backs the /review command. Use when asked to review changes, a PR, multiple PRs, or recent commits and the scope must be picked from an argument like \"prs\", \"commits 10\", or \"24h\"."
+      "description": "Single front door for code review. Resolves a target — working-tree changes, one PR, all open PRs, the last N commits, a time window, or a retrospective over merged history — into diffs, then routes to the right review engine (code-review for a quick gate, full-code-review for a deep or retro pass). Backs the /review command. Use when asked to review changes, a PR, multiple PRs, recent commits, or to run a commit retro, and the scope must be picked from an argument like \"prs\", \"commits 10\", \"24h\", or \"retro 14d\"."
     },
     {
       "name": "roadmap-analyzer",
       "source": "./skills/roadmap-analyzer",
-      "description": "Analyze project features against ICP (Ideal Customer Profile) needs to identify gaps and recommend roadmap priorities. Use this skill when asked to evaluate current product state, identify what should be built next, assess competitive positioning, or plan product roadmap based on target customer needs. Outputs gap analysis, prioritized backlog, and strategic themes. Discovers ICP and features from project documentation."
+      "description": "Turn a product's ICP into a revenue-ranked roadmap. Reads .agents/memory/icp.md (from the icp skill), inventories what already ships, finds the gaps that block landing/retaining/expanding the primary segment, and outputs a prioritized backlog plus strategic themes. Use when asked what to build next, how to prioritize the roadmap, what's blocking revenue, or to plan toward MRR. Hands off to roadmap-to-milestones."
+    },
+    {
+      "name": "roadmap-to-milestones",
+      "source": "./skills/roadmap-to-milestones",
+      "description": "Turn a revenue-ranked roadmap into tracked GitHub Milestones with due dates, assign issues to them, and report burndown. Bridges roadmap-analyzer's backlog to the dev-loop board. Use when asked to create milestones, set milestone due dates, group issues under milestones, turn a roadmap into a schedule, or track milestone progress. Creates and edits GitHub milestones only after confirmation."
     },
     {
       "name": "rules-capture",
@@ -736,6 +761,11 @@
       "description": "Enforces a spec → plan → execute → verify loop before writing code, preventing \"looks right\" failures. Activates on \"build X\", \"implement...\", \"add a feature that...\", or any multi-file/unclear-requirements request. Creates spec.md, todo.md, and decisions.md as durable artifacts."
     },
     {
+      "name": "stack-modernization",
+      "source": "./skills/stack-modernization",
+      "description": "Modernize a project's stack — outdated dependencies, dead/unused packages, deprecated packages, and framework-pattern drift (old patterns lingering after a major upgrade). Verifies the current latest of each package before proposing an upgrade, then applies changes incrementally with tests between each. Use when asked to update dependencies, modernize the stack, remove dead packages, or migrate stale framework patterns, across frontend and backend."
+    },
+    {
       "name": "standup",
       "source": "./skills/standup",
       "description": "Summarize what you personally shipped over a time window from git history — an engineer standup or weekly recap, not a customer changelog. Scopes commits to your git author identity, reads the diffs, and classifies each as a feature, fix, refactor, tech-debt, or docs change. Use when the user asks what did I get done, write my standup, what did I ship this week, weekly recap, or runs /standup."
@@ -774,6 +804,11 @@
       "name": "tdd",
       "source": "./skills/tdd",
       "description": "Test-driven development workflow for feature work and bug fixes. Use when the user asks for TDD, red-green-refactor, test-first implementation, regression-first bug fixes, or vertical-slice delivery."
+    },
+    {
+      "name": "tech-debt",
+      "source": "./skills/tech-debt",
+      "description": "Inventory, quantify, and prioritize technical debt into a register ranked by interest (how often it hurts) over principal (effort to fix). Covers code smells, dependency debt, test gaps, and architectural churn hotspots across frontend and backend. Use when asked about tech debt, what to pay down, where the codebase is rotting, or to turn debt into a tracked backlog. Files the register as GitHub issues on request."
     },
     {
       "name": "test-dispatch",
@@ -824,6 +859,11 @@
       "name": "ultracode",
       "source": "./skills/ultracode",
       "description": "Runs a Codex-only high-autonomy workflow for difficult coding tasks: inspect, plan, choose direct/workflow/delegated mode, use bounded subagents for independent packets, integrate in the parent thread, verify, and continue until done or genuinely blocked. Use when invoked with $ultracode, /ultracode, \"ultracode\", \"maximum-depth\", \"split across agents\", \"parallel agents\", \"deep autonomous implementation\", broad repo analysis, migrations, refactors, hard debugging, QA, or end-to-end shipping."
+    },
+    {
+      "name": "vercel-deploy",
+      "source": "./skills/vercel-deploy",
+      "description": "Deploy a Next.js app to Vercel and manage its environment — preview and production deploys, environment variables per environment, promotion, and rollback to a previous deployment. Use when asked to deploy to Vercel, ship a preview, promote to production, roll back a bad deploy, or manage Vercel env vars. Confirms the project is linked before any deploy and never links unattended."
     },
     {
       "name": "verification-before-completion",

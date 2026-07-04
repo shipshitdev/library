@@ -510,7 +510,7 @@ positional arguments:
 optional arguments:
   -h, --help            Show help message
   -t, --transport       Transport type: stdio, sse, or http (default: stdio)
-  -m, --model           Claude model to use (default: claude-3-7-sonnet-20250219)
+  -m, --model           Model to use (defaults to the ANTHROPIC_MODEL env var; required if unset)
   -o, --output          Output file for report (default: print to stdout)
 
 stdio options:
@@ -624,7 +624,7 @@ If many evaluations fail:
 
 If tasks are timing out:
 
-- Use a more capable model (e.g., `claude-3-7-sonnet-20250219`)
+- Use a more capable model (set `ANTHROPIC_MODEL` or pass `-m`)
 - Check if tools are returning too much data
 - Verify pagination is working correctly
 - Consider simplifying complex questions

@@ -12,6 +12,8 @@ PR, the last N commits, or a time window — through the same review engine.
 /review prs              # review every open PR — one summary table, per-PR verdict
 /review commits <N>      # review the last N commits (HEAD~N..HEAD)
 /review <duration>       # review commits in a time window: 24h, 7d, 2w
+/review retro [window]   # retrospective over merged history (default 14d): cross-commit
+                         #   bugs/optimizations/refactors as a backlog, optionally filed as issues
 /review --deep [target]  # full multi-dimension review (structural + security + devex) on any target
 /review --structural [target]  # structural/maintainability lens only (the thermo-nuclear pass)
 ```
@@ -24,11 +26,22 @@ PR, the last N commits, or a time window — through the same review engine.
 - **Default (quick):** the `code-review` skill — correctness + security gate.
   Fast, high-conviction, the right call for most reviews.
 - **`--deep`:** the `full-code-review` skill — three parallel lenses
-  (structural, security, devex/flags), adversarial verification, Opus synthesis.
-  Use for high-risk changes or production-readiness passes.
+  (structural, security, devex/flags), adversarial verification, strongest-tier
+  synthesis. Use for high-risk changes or production-readiness passes.
 - **`--structural`:** the `structural-review` skill alone — the
   structural/maintainability "thermo-nuclear" lens (file size, abstraction,
   layering, design purity, directness-vs-magic), without the security/devex fan-out.
+
+## Retro
+
+`/review retro [window]` is not a merge gate — it mines a window of **already-merged**
+history for what per-PR review structurally cannot see: the same helper copy-pasted
+across separate commits, an optimization compounding over many changes, a bug fix
+whose root cause recurs in siblings it never touched. It runs `full-code-review` with
+the commit log attached (adding its cross-commit lens) and returns a **prioritized
+backlog** — bugs / optimizations / refactors, ranked by (impact × recurrence) ÷ effort
+— not an approve/block verdict. Windows: `7d`, `14d` (default), `30d`, or `since <ref>`.
+On request it files the backlog as GitHub issues (confirmation-gated).
 
 ## Workflow
 
@@ -49,7 +62,9 @@ with read-only `git`/`gh`, routes to the chosen depth, and renders the verdict.
 
 ## Gates
 
-- Read-only. This command reports; it never edits files, pushes, or merges.
+- Read-only by default. This command reports; it never edits files, pushes, or merges.
+- The one write path is `retro` filing its backlog as GitHub issues, and only after
+  explicit confirmation — never automatically.
 - `prs` defaults to quick depth — `--deep prs` fans out a full orchestrated
   review per PR and is token-heavy; the dispatcher warns before running it on
   more than a few PRs.

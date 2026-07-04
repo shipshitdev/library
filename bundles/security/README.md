@@ -11,7 +11,8 @@ Security review, dependency safety, and release-risk skills
 
 ## Included Skills
 
-- `security-audit`
-- `security-expert`
+- `dependency-audit`
 - `git-safety`
 - `open-source-checker`
+- `security-audit`
+- `security-expert`

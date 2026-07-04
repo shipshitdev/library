@@ -11,13 +11,15 @@ Strategy, planning, and analysis skills
 
 ## Included Skills
 
-- `roadmap-analyzer`
 - `cto-advisor`
-- `interview`
 - `feature-intake`
+- `icp`
+- `interview`
+- `prd-dispatch`
+- `prd-quality-gate`
 - `prd-task-creator`
 - `prd-writer`
-- `prd-quality-gate`
+- `roadmap-analyzer`
+- `roadmap-to-milestones`
 - `rules-capture`
 - `writing-plans`
-- `prd-dispatch`

@@ -1,6 +1,6 @@
 {
   "name": "review-dispatch",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Front door for code review: resolve a target to diffs and route to the right engine",
   "author": {
     "name": "Ship Shit Dev",

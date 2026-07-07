@@ -1,6 +1,6 @@
 ---
 name: deslop-ui
-description: Audit and fix AI-generated UI slop in existing frontend projects. Use when asked to deslop, polish, audit, redesign, improve taste, remove visual debt, or make a UI feel professional without changing product scope.
+description: Audit and fix AI-generated UI slop in existing frontend projects. Use when asked to deslop, polish, audit, redesign, improve taste, enforce a design system, remove visual debt, or make UI feel professional without changing product scope.
 disable-model-invocation: true
 argument-hint: "[target | --audit-only]"
 metadata:
@@ -13,24 +13,24 @@ metadata:
 
 ## Goal
 
-Remove AI-generated UI slop from existing interfaces while preserving product
-intent, codebase patterns, and the local design system.
+Make an existing UI conform to its project design system first, then improve
+taste. Preserve product intent, navigation, and information architecture unless
+the user explicitly asks for a redesign.
 
-This skill is not for making a new visual concept from scratch. It is for taking
-an existing UI and making it sharper, calmer, more coherent, and more
-production-ready.
+Do not turn this skill into a giant checklist. Derive the actual rules from the
+target codebase, design docs, shared components, and screenshots.
 
 ## Contract
 
 Inputs:
 
-- A target frontend project, route, screen, component, or screenshot. Optional
-  `--audit-only` mode reports findings without edits.
+- A target frontend project, route, screen, component, screenshot, or diff.
+- Optional `--audit-only` mode to report findings without edits.
 
 Outputs:
 
-- Findings first, then applied UI changes, verification evidence, and any
-  remaining design-debt recommendation.
+- Findings first, then applied changes, verification evidence, and remaining
+  recommendations.
 
 Creates/Modifies:
 
@@ -45,152 +45,71 @@ Confirmation Required:
 - Confirm before changing product scope, navigation, information architecture,
   adding dependencies, or running heavy local checks.
 
-## Operating Rule
+## Workflow
 
-Audit first, then fix. Do not jump straight into edits.
+### 1. Discover The Local System
 
-For every issue, identify:
+Before judging taste, inspect the local source of truth:
 
-- The visual problem.
-- The affected file or component.
-- The likely cause.
-- The design-system-compliant fix.
-- The verification method.
+- Design docs, tokens, theme files, CSS variables, Tailwind config, or equivalent.
+- Shared UI primitives such as cards, buttons, inputs, dialogs, tables, tabs,
+  nav, badges, tooltips, menus, and loading states.
+- Three nearby good examples in the same app or package.
+- The target screen/component code and rendered output when available.
 
-## Inputs To Inspect
+Create a short working inventory:
 
-Before editing, read:
+- Approved tokens and spacing/radius/shadow patterns.
+- Shared primitives and their variants.
+- Local examples that already look production-ready.
+- Target files and routes affected.
 
-- Design system docs such as `DESIGN.md`, `design.md`, `tokens`, `theme`, or
-  `tailwind.config`.
-- Shared UI primitives in `packages/ui`, `components/ui`, or equivalent.
-- Three nearby examples of good existing UI in the same app.
-- The target screen or component code.
-- Screenshots when available.
+### 2. Audit For Drift
 
-If screenshots are not available and the app can run, start the smallest local
-dev server needed and inspect the target routes visually.
+Treat slop as drift away from the local system, not as a universal list of bad
+classes. Identify the highest-signal issues in these four buckets:
 
-## Slop Detectors
+- **System drift**: one-off colors, shadows, borders, spacing, typography, or
+  effects where the design system already has a pattern.
+- **Component drift**: raw or duplicated local UI where a shared primitive or
+  named variant should carry the contract.
+- **Semantic drift**: interactions that look real but are broken, inaccessible,
+  or semantically wrong.
+- **Taste drift**: weak hierarchy, visual noise, generic AI copy, cramped layout,
+  or decorative treatment that makes the surface feel generated.
 
-Look for these patterns first.
+Use targeted searches when they help, but do not rely on regexes as the design
+authority. Examples worth searching for include arbitrary Tailwind values,
+`href="#"`, raw interactive primitives, repeated class clusters, and local
+component copies.
 
-### Token Drift
+For each finding, record the file/component, the observed drift, the local pattern
+it should follow, and whether it is fixed or deferred.
 
-Flag:
+### 3. Fix In Priority Order
 
-- Hardcoded hex colors.
-- Arbitrary Tailwind colors such as `bg-[#...]`.
-- Repeated one-off color values.
-- Unsupported semantic tokens.
-- Gradients that should be brand or platform tokens.
-- Local component tokens that duplicate global tokens.
+Fix objective design-system drift before subjective taste. Prefer:
 
-Fix:
+1. Existing shared primitives and variants.
+2. Existing semantic tokens and documented recipes.
+3. Small local consolidation when repeated code has no shared home.
+4. New tokens or variants only when the same missing concept appears repeatedly.
 
-- Use existing semantic tokens.
-- Add tokens only when the design system genuinely lacks a reusable concept.
-- Update docs or checks if tokens are added.
+Keep changes scoped to the audited surface. Remove decorative complexity instead
+of masking weak structure with glow, blur, gradients, animation, or nested cards.
+When a proposed fix needs product judgment, defer it with a concrete note instead
+of inventing intent.
 
-### Fake Depth
+### 4. Taste Pass
 
-Flag:
+After system drift is fixed or explicitly deferred, make the UI calmer and easier
+to scan:
 
-- Arbitrary shadows like `shadow-[...]`.
-- Glow effects.
-- Blur-heavy panels.
-- Translucent white overlays such as `bg-white/[0.04]`.
-- Card-on-card nesting.
-- Decoration pretending to be hierarchy.
-
-Fix:
-
-- Use existing shadow and border primitives.
-- Prefer spacing, type, contrast, and structure over glow.
-- Remove purely decorative panels when content can stand on layout alone.
-
-### Hierarchy Slop
-
-Flag:
-
-- Too many same-weight cards.
-- Equal-grid layouts where one item is clearly primary.
-- Oversized headings inside compact UI.
-- Uppercase or wide tracking used as a crutch.
-- Hero styling reused in dashboards or operational surfaces.
-- Weak scan paths.
-
-Fix:
-
-- Establish primary, secondary, and tertiary hierarchy.
-- Vary layout spans intentionally.
-- Reduce decorative typography.
-- Make repeated items dense and comparable.
-
-### Layout Slop
-
-Flag:
-
-- Fragile fixed heights.
-- Text that can overflow buttons or cards.
-- Controls that resize on hover or loading.
-- Cramped mobile layouts.
-- Inconsistent section rhythm.
-- UI cards inside other UI cards.
-
-Fix:
-
-- Use responsive constraints, aspect ratios, min/max widths, and stable control
-  dimensions.
-- Verify mobile and desktop.
-- Keep cards for repeated items, modals, and framed tools only.
-
-### Semantic Slop
-
-Flag:
-
-- Links with `href="#"`.
-- Buttons used for navigation.
-- Anchors styled as disabled actions.
-- Clickable divs.
-- Missing focus states.
-- Icon-only actions without accessible names.
-
-Fix:
-
-- Navigation uses links with real hrefs.
-- Actions use buttons.
-- Preserve keyboard and screen-reader behavior.
-- Keep focus states visible.
-
-### Copy Slop
-
-Flag:
-
-- Generic AI marketing copy.
-- Repeated adjectives.
-- Visible text explaining the UI instead of supporting the workflow.
-- Inflated labels.
-- Vague CTAs.
-
-Fix:
-
-- Use concrete nouns and verbs.
-- Shorten labels.
-- Remove explanatory filler.
-- Keep copy aligned to the user's immediate task.
-
-## Fixing Rules
-
-- Match the existing codebase style.
-- Prefer shared UI primitives over local one-offs.
-- Keep edits scoped to the audited surfaces.
-- Do not redesign product scope, navigation, or information architecture unless
-  explicitly requested.
-- Do not introduce a new visual language.
-- Do not add dependencies unless there is no local pattern that works.
-- Do not hide design debt with animation, gradients, blur, or glow.
-- Do not create local task markdown files.
+- Clarify primary, secondary, and tertiary hierarchy.
+- Make repeated items comparable.
+- Tighten copy to concrete nouns and verbs.
+- Verify responsive behavior, overflow, focus states, loading/empty/error states,
+  and keyboard behavior for touched controls.
 
 ## Verification
 
@@ -198,38 +117,22 @@ Run the smallest checks that prove the change:
 
 - Formatter or linter on changed files.
 - Design-token or design-system checks if present.
-- Targeted grep for removed slop patterns.
-- Route smoke test if the app runs.
-- Screenshots or browser inspection for affected screens when available.
+- Targeted searches showing removed drift patterns.
+- Route smoke test or screenshot/browser inspection when the app can run.
 
 Avoid heavy local test suites unless project rules explicitly allow them.
 
 ## Output Format
 
-Start with findings, then fixes.
+Start with findings, then fixes:
 
-Use this shape:
-
-1. Findings
-   - `file:line` or component.
-   - Problem.
-   - Fix direction.
-2. Changes made
-   - Concise list of actual edits.
-3. Verification
-   - Commands or checks run.
-   - Anything not run and why.
-4. Recommendation
-   - Whether remaining issues should be fixed now, deferred, or turned into a
-     reusable detector or check.
+1. Findings: `file:line` or component, problem, local pattern to follow.
+2. Changes made: concise list of actual edits.
+3. Verification: commands/checks run, plus anything skipped and why.
+4. Recommendation: fix now, defer, or turn into a reusable detector/check.
 
 ## Good Taste Bar
 
-The final UI should feel:
-
-- Calmer.
-- More intentional.
-- Less generated.
-- Easier to scan.
-- Consistent with the product's own system.
-- Production-ready without looking over-designed.
+The final UI should feel calmer, more intentional, less generated, easier to
+scan, consistent with the product's own system, and production-ready without
+looking over-designed.

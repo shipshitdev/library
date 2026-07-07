@@ -283,7 +283,7 @@
     {
       "name": "deslop-ui",
       "source": "./skills/deslop-ui",
-      "description": "Audit and fix AI-generated UI slop in existing frontend projects. Use when asked to deslop, polish, audit, redesign, improve taste, remove visual debt, or make a UI feel professional without changing product scope."
+      "description": "Audit and fix AI-generated UI slop in existing frontend projects. Use when asked to deslop, polish, audit, redesign, improve taste, enforce a design system, remove visual debt, or make UI feel professional without changing product scope."
     },
     {
       "name": "devcontainer-setup",

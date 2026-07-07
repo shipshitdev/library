@@ -6,11 +6,12 @@ description: >-
   needless defensive try-catch on trusted paths, over-nesting. Product slop (with
   --product) — marketing-filler copy, generic AI phrasing, default-shadcn look,
   unstyled loading/error states, dead buttons and half-wired flows that make an app
-  feel unfinished. Can scope to the current branch's diff or sweep the whole tree.
-  Use when asked to clean up AI-generated code, remove slop, or make an app feel
-  finished before shipping to customers.
+  feel unfinished. UI slop (`ui`) delegates to deslop-ui for design-system primitive
+  enforcement. Can scope to the current branch's diff or sweep the whole tree. Use
+  when asked to clean up AI-generated code, remove slop, or make an app feel finished
+  before shipping to customers.
 disable-model-invocation: true
-argument-hint: "[--changed | all | dry-run | --product]"
+argument-hint: "[ui | --changed | all | dry-run | --product]"
 metadata:
   version: "1.1.0"
   tags: "code-quality, cleanup, ai-artifacts, product-polish, maintenance"
@@ -31,7 +32,7 @@ diff. For a read-only pass that only flags, use `structural-review` / `/review`.
 Inputs:
 
 - A package or repo to clean; optional scope (`--changed`, `all`, `dry-run`) and
-  dimension (`--product` to add the product pass).
+  dimension (`--product` to add the product pass, `ui` to route to `deslop-ui`).
 
 Outputs:
 
@@ -48,7 +49,8 @@ External Side Effects:
 
 Delegates To:
 
-- `design-consistency-auditor` when product slop is mostly visual inconsistency.
+- `deslop-ui` when invoked with `ui`, or when product slop is primarily design-system,
+  component primitive, or UI consistency drift.
 - `polish` for the final micro-detail pass after the structural slop is gone.
 - `refactor-code` when a fix is a real refactor, not a mechanical strip.
 
@@ -83,11 +85,22 @@ Correct catalog; the three families:
 Product slop needs judgment, not just deletion — flag anything ambiguous rather than
 guessing at intended copy or behavior.
 
+## UI slop (`ui`)
+
+When the first argument is `ui`, stop routing through the code-slop workflow and
+delegate to `deslop-ui`. Pass any remaining target or flags through unchanged.
+
+Use this for design-system primitive enforcement, component consistency, raw UI
+primitive replacement, card/surface drift, arbitrary Tailwind values, duplicate local
+components, visual hierarchy issues, and UI-specific AI slop.
+
 ## Workflow
 
-1. **Detect structure** — monorepo vs single package (`ls packages/ 2>/dev/null`).
+1. **Route UI mode** — if the first argument is `ui`, apply `deslop-ui` and do not
+   run the code cleanup steps below.
+2. **Detect structure** — monorepo vs single package (`ls packages/ 2>/dev/null`).
    Process each package separately.
-2. **Scope** — in `--changed`, limit edits to the branch diff:
+3. **Scope** — in `--changed`, limit edits to the branch diff:
 
    ```bash
    BASE="$(git merge-base HEAD origin/HEAD 2>/dev/null || git merge-base HEAD main 2>/dev/null || git merge-base HEAD master)"
@@ -95,20 +108,21 @@ guessing at intended copy or behavior.
    ```
 
    Touch only those files/hunks; do not clean pre-existing slop elsewhere in this mode.
-3. **Strip code slop** by the categories above; add the product pass if `--product`.
-4. **Verify** — the change must still build and pass:
+4. **Strip code slop** by the categories above; add the product pass if `--product`.
+5. **Verify** — the change must still build and pass:
 
    ```bash
    bun run type-check || bunx tsc --noEmit
    bun run test
    ```
 
-5. **Document** — log packages cleaned and per-type counts in
+6. **Document** — log packages cleaned and per-type counts in
    `.agents/sessions/YYYY-MM-DD.md`.
 
 ## Modes
 
 - **default** — code slop, current package, edits applied.
+- **`ui`** — route to `deslop-ui` for UI/design-system slop.
 - **`--changed`** — only the files/hunks this branch introduced (safest for a PR).
 - **`--product`** — add the product-slop pass (copy/UI/UX).
 - **`all`** — sweep every package in a monorepo, each processed separately.

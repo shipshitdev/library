@@ -9,6 +9,7 @@ copy, default-shadcn UI, missing loading/error states, dead buttons and half-wir
 
 ```bash
 /deslop              # clean code slop in the current package/project
+/deslop ui [target]  # audit/fix UI slop through the deslop-ui skill
 /deslop --changed    # clean only the lines this branch introduced (diff-only)
 /deslop --product    # also strip product slop (copy / UI / UX)
 /deslop all          # sweep every package in a monorepo
@@ -19,18 +20,21 @@ Also reachable as `/refactor deslop`.
 
 ## Workflow
 
-Use the `de-slop` skill.
+Use the `de-slop` skill unless the first argument is `ui`; in that case use
+the `deslop-ui` skill and pass the remaining target or flags through.
 
-1. Detect project structure (monorepo vs single package); in `--changed` mode,
+1. If invoked as `/deslop ui`, route directly to `deslop-ui`. Do not run code
+   cleanup first.
+2. Detect project structure (monorepo vs single package); in `--changed` mode,
    compute the branch diff (`git diff <merge-base>...HEAD`) and limit edits to those
    files/hunks.
-2. Identify artifacts: console statements, `any`, unused imports/vars, commented-out
+3. Identify artifacts: console statements, `any`, unused imports/vars, commented-out
    code, debug code, redundant comments, defensive try-catch on trusted paths,
    over-nesting. With `--product`, also the copy/UI/UX slop from the skill's
    `references/product-slop.md` catalog.
-3. Apply cleanup, replacing console with the project logger and `any` with real
+4. Apply cleanup, replacing console with the project logger and `any` with real
    types; collapse deep nesting into early returns matching the file's style.
-4. Verify: `bun run type-check || bunx tsc --noEmit`, then `bun run test`.
+5. Verify: `bun run type-check || bunx tsc --noEmit`, then `bun run test`.
 
 ## Gates
 

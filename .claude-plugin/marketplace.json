@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "164 AI agent skills for development workflows",
+  "description": "165 AI agent skills for development workflows",
   "plugins": [
     {
       "name": "shipshitdev-testing",
@@ -178,7 +178,7 @@
     {
       "name": "code-review",
       "source": "./skills/code-review",
-      "description": "Correctness and security gate for incoming pull requests. Auto-invoked when reviewing a diff, evaluating a PR, running /code-review at any effort level, or asked \"is this safe to merge?\" Covers bugs, TypeScript hygiene, security, database safety, test existence, devex regressions, and feature-flag leaks."
+      "description": "Correctness and security gate for incoming pull requests. Auto-invoked when reviewing a diff, evaluating a PR, running /code-review at any effort level, or asked \"is this safe to merge?\" Covers bugs, TypeScript hygiene, security, database safety, test existence, devex regressions, and feature-flag leaks. Multi-PR queue, WIP-drain, and merge-train work routes to pr-merge-train instead of serial full reviews."
     },
     {
       "name": "codebase-advisor",
@@ -368,7 +368,7 @@
     {
       "name": "gh-fix-ci",
       "source": "./skills/gh-fix-ci",
-      "description": "Diagnoses failing GitHub Actions checks on a PR, identifies root cause, and proposes or applies targeted fixes. Triggers when the user asks to fix CI, diagnose failing checks, fix a failing workflow, address GitHub Actions errors, or get a green build. Can run autonomously in a loop — fix, push, recheck — until all required checks are green when the user asks to loop on CI."
+      "description": "Diagnoses failing or setup-stuck GitHub Actions checks on a PR, identifies root cause, and proposes or applies targeted fixes. Triggers when the user asks to fix CI, diagnose failing checks, fix a failing workflow, address GitHub Actions errors, get a green build, or continue PR queue work without waiting on unrelated pending checks. Can run autonomously in a loop — fix, push, recheck — until all required checks are green when the user asks to loop on CI."
     },
     {
       "name": "gh-inbox",
@@ -546,6 +546,11 @@
       "description": "Fetch a pull request's review and discussion comments and return a read-only digest — grouped by thread, severity-tagged, priority-ordered, with the open questions called out — without editing code or drafting replies. Use when the user asks what are the comments on my PR, summarize the review feedback, what's blocking this PR, what do I still need to address, or runs /pr comments."
     },
     {
+      "name": "pr-merge-train",
+      "source": "./skills/pr-merge-train",
+      "description": "Drains open GitHub pull request queues without serial blocking. Use for multi-PR and WIP-drain prompts such as review all PRs, drain open PRs, merge clean PRs, reduce WIP, merge train, clean up pull requests, or land everything that is safe to merge."
+    },
+    {
       "name": "prd-dispatch",
       "source": "./skills/prd-dispatch",
       "description": "Single front door for product specs, PRDs, and feature planning. Parses a subcommand — new, spec, gate, write, intake, or interview — and routes to the right planning engine: prd-task-creator (GitHub issue or local PRD), spec-first (spec → plan → execute loop), prd-quality-gate (completeness validation), prd-writer (full PRD draft), feature-intake (client requirement → kanban issues), or interview (discovery interview before PRD writing). Backs the /prd command. Use when asked to create a PRD, plan a feature, write a spec, validate a PRD, run a discovery interview, or intake a stakeholder requirement, and the action must be picked from an argument like \"new\", \"spec\", \"gate\", \"write\", \"intake\", or \"interview\"."
@@ -668,7 +673,7 @@
     {
       "name": "review-dispatch",
       "source": "./skills/review-dispatch",
-      "description": "Single front door for code review. Resolves a target — working-tree changes, one PR, all open PRs, the last N commits, a time window, or a retrospective over merged history — into diffs, then routes to the right review engine (code-review for a quick gate, full-code-review for a deep or retro pass). Backs the /review command. Use when asked to review changes, a PR, multiple PRs, recent commits, or to run a commit retro, and the scope must be picked from an argument like \"prs\", \"commits 10\", \"24h\", or \"retro 14d\"."
+      "description": "Single front door for code review. Resolves a target — working-tree changes, one PR, all open PRs, the last N commits, a time window, or a retrospective over merged history — into the right workflow. Routes single-target review to code-review or full-code-review, and routes multi-PR queue work to pr-merge-train. Backs the /review command. Use when asked to review changes, a PR, review all PRs, drain open PRs, merge clean PRs, reduce WIP, run a merge train, clean up pull requests, inspect recent commits, or run a commit retro."
     },
     {
       "name": "roadmap-analyzer",

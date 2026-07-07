@@ -3,7 +3,7 @@ name: merge-open-prs
 description: Review every open pull request targeting the default/trunk branch, merge the approved ones into the trunk, then prune the merged branches and stale worktrees left behind. Confirmation-gated and squash-merge aware via delegated cleanup. Use when the user asks to merge all open PRs, review and land the open PRs, batch-merge to the trunk and clean up afterward, or runs /merge.
 compatibility: Requires git, GitHub CLI gh, and jq access to the target repository.
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
   tags: "git, github, pull-request, merge, review, trunk, cleanup, batch"
 allowed-tools: Bash(git *) Bash(gh *) Bash(jq *)
 disable-model-invocation: true
@@ -20,6 +20,11 @@ gate and never deletes work that is not provably merged.
 This skill is standalone and manually triggerable (exposed as `/merge`). It does
 not cut a release (use the `release` skill to tag from trunk) and does not deploy
 (use `deploy`). It lands the open feature/fix PRs onto the trunk and cleans up.
+
+Boundary: use `pr-merge-train` for non-serial WIP drain work where green PRs
+should merge immediately, red PRs should get narrow fixes, and unrelated pending
+CI must not block the rest of the queue. This skill remains the confirm-gated
+trunk sweep plus optional prune.
 
 ## Contract
 
@@ -82,6 +87,9 @@ Delegates To:
 Do not use this skill to cut a release or force-merge PRs that fail review or CI.
 It only lands PRs that pass their gates. To cut a release, use the `release` skill
 to tag from trunk after the PRs are merged.
+
+Do not use this skill for merge-train or WIP-drain prompts that should avoid
+serial full reviews. Route those to `pr-merge-train`.
 
 ## Safety Model
 

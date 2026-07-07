@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "165 AI agent skills for development workflows",
+  "description": "164 AI agent skills for development workflows",
   "plugins": [
     {
       "name": "shipshitdev-testing",
@@ -243,7 +243,7 @@
     {
       "name": "de-slop",
       "source": "./skills/de-slop",
-      "description": "Strip AI-generated slop from a codebase and product. Code slop — console statements, `any` types, unused imports, commented-out code, redundant comments, needless defensive try-catch on trusted paths, over-nesting. Product slop (with --product) — marketing-filler copy, generic AI phrasing, default-shadcn look, unstyled loading/error states, dead buttons and half-wired flows that make an app feel unfinished. UI-only slop delegates to deslop-ui. Can scope to the current branch's diff or sweep the whole tree. Use when asked to clean up AI-generated code, remove slop, or make an app feel finished before shipping to customers."
+      "description": "Strip AI-generated slop from a codebase and product. Code slop — console statements, `any` types, unused imports, commented-out code, redundant comments, needless defensive try-catch on trusted paths, over-nesting. Product slop (with --product) — marketing-filler copy, generic AI phrasing, default-shadcn look, unstyled loading/error states, dead buttons and half-wired flows that make an app feel unfinished. UI slop (`ui`) runs a project-derived design-system primitive pass. Can scope to the current branch's diff or sweep the whole tree. Use when asked to clean up AI-generated code, remove slop, or make an app feel finished before shipping to customers."
     },
     {
       "name": "debug",
@@ -279,11 +279,6 @@
       "name": "design-dispatch",
       "source": "./skills/design-dispatch",
       "description": "Single front door for UI/design review and refinement. Parses a subcommand — audit, clarify, critique, layout, polish, quieter, shape, or consistency — and routes to the right design engine: audit (technical quality checks with scored report), clarify (UX copy and microcopy improvement), critique (UX evaluation with quantitative scoring), layout (layout and spacing improvement), polish (final pre-ship quality pass), quieter (tone down visually aggressive designs), shape (UX/UI planning and design brief), or design-consistency-auditor (cross-app design system consistency audit). Backs the /design command. Use when asked to review, audit, polish, plan, or refine UI, and the action must be picked from an argument like \"audit\", \"critique\", \"polish\", or \"shape\"."
-    },
-    {
-      "name": "deslop-ui",
-      "source": "./skills/deslop-ui",
-      "description": "Audit and fix AI-generated UI slop in existing frontend projects. Use when asked to deslop, polish, audit, redesign, improve taste, enforce a design system, remove visual debt, or make UI feel professional without changing product scope."
     },
     {
       "name": "devcontainer-setup",

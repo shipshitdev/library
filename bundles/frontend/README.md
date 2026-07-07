@@ -18,7 +18,6 @@ Frontend development and design skills
 - `clarify`
 - `critique`
 - `design-consistency-auditor`
-- `deslop-ui`
 - `html-style`
 - `layout`
 - `polish`

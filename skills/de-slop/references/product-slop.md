@@ -70,7 +70,7 @@ Default shadcn components + a purple/indigo gradient hero = "an AI made this."
 - **Incorrect:** `p-4` here, `p-5` there, `rounded-md` next to `rounded-xl`, ad hoc
   per component.
 - **Correct:** a spacing/radius scale in `@theme`, used consistently. Cross-check with
-  `deslop-ui`.
+  `de-slop` UI mode.
 
 ### U3 — Missing loading states
 

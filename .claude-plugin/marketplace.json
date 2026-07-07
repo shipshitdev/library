@@ -243,7 +243,7 @@
     {
       "name": "de-slop",
       "source": "./skills/de-slop",
-      "description": "Strip AI-generated slop from a codebase and product. Code slop — console statements, `any` types, unused imports, commented-out code, redundant comments, needless defensive try-catch on trusted paths, over-nesting. Product slop (with --product) — marketing-filler copy, generic AI phrasing, default-shadcn look, unstyled loading/error states, dead buttons and half-wired flows that make an app feel unfinished. Can scope to the current branch's diff or sweep the whole tree. Use when asked to clean up AI-generated code, remove slop, or make an app feel finished before shipping to customers."
+      "description": "Strip AI-generated slop from a codebase and product. Code slop — console statements, `any` types, unused imports, commented-out code, redundant comments, needless defensive try-catch on trusted paths, over-nesting. Product slop (with --product) — marketing-filler copy, generic AI phrasing, default-shadcn look, unstyled loading/error states, dead buttons and half-wired flows that make an app feel unfinished. UI-only slop delegates to deslop-ui. Can scope to the current branch's diff or sweep the whole tree. Use when asked to clean up AI-generated code, remove slop, or make an app feel finished before shipping to customers."
     },
     {
       "name": "debug",

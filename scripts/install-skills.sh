@@ -58,6 +58,7 @@ GLOBAL_SKILLS=(
   rules-capture
   quick-view
   de-slop
+  deslop-ui
   qa-reviewer
 )
 

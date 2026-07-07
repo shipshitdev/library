@@ -21,6 +21,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SKILLS_SRC="${SCRIPT_DIR}/../skills"
 GLOBAL_TARGET="${HOME}/.agents/skills"
 CLAUDE_TARGET="${HOME}/.claude/skills"
+CODEX_TARGET="${HOME}/.codex/skills"
 BACKUP_DIR="${HOME}/.agents/skills-backup"
 
 DRY_RUN=false
@@ -58,7 +59,6 @@ GLOBAL_SKILLS=(
   rules-capture
   quick-view
   de-slop
-  deslop-ui
   qa-reviewer
 )
 
@@ -235,7 +235,7 @@ install_bundle() {
 clean_broken_symlinks() {
   info "Cleaning broken symlinks..."
 
-  for dir in "$GLOBAL_TARGET" "$CLAUDE_TARGET"; do
+  for dir in "$GLOBAL_TARGET" "$CLAUDE_TARGET" "$CODEX_TARGET"; do
     if [[ -d "$dir" ]]; then
       local broken
       broken=$(find "$dir" -maxdepth 1 -type l ! -exec test -e {} \; -print 2>/dev/null)

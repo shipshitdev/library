@@ -6,13 +6,14 @@ description: >-
   needless defensive try-catch on trusted paths, over-nesting. Product slop (with
   --product) — marketing-filler copy, generic AI phrasing, default-shadcn look,
   unstyled loading/error states, dead buttons and half-wired flows that make an app
-  feel unfinished. UI-only slop delegates to deslop-ui. Can scope to the current
-  branch's diff or sweep the whole tree. Use when asked to clean up AI-generated
-  code, remove slop, or make an app feel finished before shipping to customers.
+  feel unfinished. UI slop (`ui`) runs a project-derived design-system primitive
+  pass. Can scope to the current branch's diff or sweep the whole tree. Use when
+  asked to clean up AI-generated code, remove slop, or make an app feel finished
+  before shipping to customers.
 disable-model-invocation: true
 argument-hint: "[ui | --changed | all | dry-run | --product]"
 metadata:
-  version: "1.2.0"
+  version: "1.3.0"
   tags: "code-quality, cleanup, ai-artifacts, product-polish, maintenance"
 ---
 
@@ -31,7 +32,7 @@ diff. For a read-only pass that only flags, use `structural-review` / `/review`.
 Inputs:
 
 - A package or repo to clean; optional scope (`--changed`, `all`, `dry-run`) and
-  dimension (`--product` to add the product pass, `ui` to route to `deslop-ui`).
+  dimension (`--product` to add the product pass, `ui` to run the UI primitive pass).
 
 Outputs:
 
@@ -48,8 +49,6 @@ External Side Effects:
 
 Delegates To:
 
-- `deslop-ui` when invoked with `ui`, or when product slop is primarily
-  design-system, component primitive, or UI consistency drift.
 - `polish` for the final micro-detail pass after the structural slop is gone.
 - `refactor-code` when a fix is a real refactor, not a mechanical strip.
 
@@ -86,12 +85,73 @@ guessing at intended copy or behavior.
 
 ## UI slop (`ui`)
 
-When the first argument is `ui`, delegate to `deslop-ui` and pass any remaining
-target or flags through unchanged. Do not run the code cleanup workflow first.
+When the first argument is `ui`, run only the UI pass. Do not run the code
+cleanup workflow first.
+
+Do not encode component-specific styling rules in this skill. Derive them from
+the target project.
+
+Before judging taste, inspect the local source of truth:
+
+- Design docs, tokens, theme files, CSS variables, Tailwind config, or equivalent.
+- Shared UI primitives such as cards, buttons, inputs, dialogs, tables, tabs,
+  nav, badges, tooltips, menus, and loading states.
+- Three nearby good examples in the same app or package.
+- The target screen/component code and rendered output when available.
+
+Create a short working inventory:
+
+- Approved tokens and spacing/radius/shadow patterns.
+- Shared primitives and their variants.
+- UI-role map for the audited surface: primitive, documented recipe, or missing.
+- Local examples that already look production-ready.
+- Target files and routes affected.
+
+For each UI role present on the audited surface, identify whether the project
+has a shared primitive or documented recipe:
+
+- Surface, card, panel.
+- Button or action.
+- Link or navigation.
+- Input, select, textarea.
+- Checkbox, radio, switch.
+- Badge or status.
+- Modal, dialog, drawer, popover, tooltip.
+- Table, list, grid.
+- Tabs or segmented controls.
+- Empty, loading, error states.
+- App shell, navigation, layout sections.
+
+If a primitive exists:
+
+- Use it instead of raw HTML, copied markup, or local styling.
+- Use only its public props, variants, slots, and documented composition
+  patterns.
+- Do not override its core visual contract from call sites: background, border,
+  radius, shadow, typography, spacing, focus, disabled, loading, or state
+  styling.
+- If the needed variant does not exist, add a named variant to the primitive only
+  when the need is clear and reusable. Otherwise defer with a finding.
+
+If no primitive exists:
+
+- Follow the documented design recipe or the strongest nearby local pattern.
+- If the same recipe appears repeatedly, recommend extracting a primitive or
+  named variant.
+- Do not invent a one-off visual treatment unless the user explicitly requested
+  a bespoke design.
+
+Raw semantic HTML is fine for document structure and prose. Raw HTML is not fine
+when it is acting as a design-system control or surface.
+
+Fix objective design-system drift before subjective taste. Keep changes scoped
+to the audited surface and defer product-judgment calls with a concrete finding
+instead of inventing intent.
 
 ## Workflow
 
-1. **Route UI mode** — if the first argument is `ui`, apply `deslop-ui` and stop.
+1. **Route UI mode** — if the first argument is `ui`, run the UI slop pass above
+   and stop.
 2. **Detect structure** — monorepo vs single package (`ls packages/ 2>/dev/null`).
    Process each package separately.
 3. **Scope** — in `--changed`, limit edits to the branch diff:
@@ -116,7 +176,7 @@ target or flags through unchanged. Do not run the code cleanup workflow first.
 ## Modes
 
 - **default** — code slop, current package, edits applied.
-- **`ui`** — route to `deslop-ui` for UI/design-system slop.
+- **`ui`** — run the UI/design-system primitive pass.
 - **`--changed`** — only the files/hunks this branch introduced (safest for a PR).
 - **`--product`** — add the product-slop pass (copy/UI/UX).
 - **`all`** — sweep every package in a monorepo, each processed separately.

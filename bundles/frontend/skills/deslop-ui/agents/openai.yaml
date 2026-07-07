@@ -1,4 +1,0 @@
-interface:
-  display_name: "Deslop UI"
-  short_description: "Audit and fix generated UI artifacts"
-  default_prompt: "Use $deslop-ui to audit and fix UI slop in this frontend screen."

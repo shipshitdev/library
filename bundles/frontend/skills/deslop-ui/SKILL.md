@@ -4,7 +4,7 @@ description: Audit and fix AI-generated UI slop in existing frontend projects. U
 disable-model-invocation: true
 argument-hint: "[target | --audit-only]"
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   tags: "ui, design, frontend, cleanup, ai-artifacts, product-polish"
   short-description: "Audit then fix UI slop"
 ---
@@ -61,10 +61,50 @@ Create a short working inventory:
 
 - Approved tokens and spacing/radius/shadow patterns.
 - Shared primitives and their variants.
+- UI-role map for the audited surface: primitive, documented recipe, or missing.
 - Local examples that already look production-ready.
 - Target files and routes affected.
 
-### 2. Audit For Drift
+### 2. Map UI Roles To Primitives
+
+For each UI role present on the audited surface, identify whether the project
+has a shared primitive or documented recipe:
+
+- Surface, card, panel.
+- Button or action.
+- Link or navigation.
+- Input, select, textarea.
+- Checkbox, radio, switch.
+- Badge or status.
+- Modal, dialog, drawer, popover, tooltip.
+- Table, list, grid.
+- Tabs or segmented controls.
+- Empty, loading, error states.
+- App shell, navigation, layout sections.
+
+If a primitive exists:
+
+- Use it instead of raw HTML, copied markup, or local styling.
+- Use only its public props, variants, slots, and documented composition
+  patterns.
+- Do not override its core visual contract from call sites: background, border,
+  radius, shadow, typography, spacing, focus, disabled, loading, or state
+  styling.
+- If the needed variant does not exist, add a named variant to the primitive
+  only when the need is clear and reusable. Otherwise defer with a finding.
+
+If no primitive exists:
+
+- Follow the documented design recipe or the strongest nearby local pattern.
+- If the same recipe appears repeatedly, recommend extracting a primitive or
+  named variant.
+- Do not invent a one-off visual treatment unless the user explicitly requested
+  a bespoke design.
+
+Raw semantic HTML is fine for document structure and prose. Raw HTML is not fine
+when it is acting as a design-system control or surface.
+
+### 3. Audit For Drift
 
 Treat slop as drift away from the local system, not as a universal list of bad
 classes. Identify the highest-signal issues in these four buckets:
@@ -86,7 +126,7 @@ component copies.
 For each finding, record the file/component, the observed drift, the local pattern
 it should follow, and whether it is fixed or deferred.
 
-### 3. Fix In Priority Order
+### 4. Fix In Priority Order
 
 Fix objective design-system drift before subjective taste. Prefer:
 
@@ -100,7 +140,7 @@ of masking weak structure with glow, blur, gradients, animation, or nested cards
 When a proposed fix needs product judgment, defer it with a concrete note instead
 of inventing intent.
 
-### 4. Taste Pass
+### 5. Taste Pass
 
 After system drift is fixed or explicitly deferred, make the UI calmer and easier
 to scan:

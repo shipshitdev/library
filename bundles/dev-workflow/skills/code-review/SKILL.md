@@ -5,8 +5,10 @@ description: >-
   reviewing a diff, evaluating a PR, running /code-review at any effort level,
   or asked "is this safe to merge?" Covers bugs, TypeScript hygiene, security,
   database safety, test existence, devex regressions, and feature-flag leaks.
+  Multi-PR queue, WIP-drain, and merge-train work routes to pr-merge-train
+  instead of serial full reviews.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   tags: "code-review, correctness, security, testing, devex, feature-flags"
   author: Ship Shit Dev
 allowed-tools: Bash(git *) Bash(gh *)
@@ -28,7 +30,8 @@ by the /code-review harness CLAUDE.md compliance layer. Do not re-flag them here
 
 Inputs:
 
-- A diff, branch, or PR to review. Read-only `git`/`gh` commands gather scope.
+- A single diff, branch, or PR to review. Read-only `git`/`gh` commands gather
+  scope.
 
 Outputs:
 
@@ -192,6 +195,11 @@ Missing cleanup tickets are a "request changes."
 ## Scope Boundary
 
 This skill = **correctness + security gate**.
+
+Use it for an individual diff or PR. For multi-PR queue work — "review all PRs",
+"drain open PRs", "merge clean PRs", "reduce WIP", "merge train", or "clean up
+pull requests" — route to `pr-merge-train` so clean PRs merge first and pending
+CI does not serialize the queue.
 
 Structural and maintainability concerns — module cohesion, abstraction altitude,
 circular dependencies, dead-code introduction, API surface sprawl, whether the

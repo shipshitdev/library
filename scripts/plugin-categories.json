@@ -104,8 +104,7 @@
         "spec-first",
         "agent-browser",
         "codex-image-gen",
-        "agent-dispatch",
-        "ultracode"
+        "agent-dispatch"
       ]
     },
     "workspace": {
@@ -217,7 +216,6 @@
         "structural-review",
         "systematic-debugging",
         "tech-debt",
-        "ultracode",
         "verification-before-completion",
         "worktree"
       ]

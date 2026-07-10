@@ -1,6 +1,6 @@
 {
   "name": "ultracode",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Codex-only high-autonomy workflow for difficult coding tasks with bounded subagents and QA.",
   "author": {
     "name": "Ship Shit Dev",

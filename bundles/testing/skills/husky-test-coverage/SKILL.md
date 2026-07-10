@@ -2,7 +2,7 @@
 name: husky-test-coverage
 description: Sets up or verifies Husky git hooks to enforce test coverage above 80% (configurable) for Node.js/TypeScript projects. Activates when enforcing coverage through pre-commit hooks, verifying existing Husky/test setup, or configuring coverage thresholds for Jest, Vitest, or Mocha test runners.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "husky, testing, coverage"
 ---
 
@@ -47,30 +47,11 @@ Set up or verify Husky git hooks to ensure tests run and coverage thresholds are
 ## Quick Start
 
 ```bash
-# Basic setup (80% coverage threshold, blocks commits below threshold)
-python3 ${CLAUDE_SKILL_DIR}/scripts/setup-husky-coverage.py \
-  --root /path/to/project
-
-# Custom threshold (85%)
-python3 ${CLAUDE_SKILL_DIR}/scripts/setup-husky-coverage.py \
-  --root /path/to/project \
-  --threshold 85
-
-# Warn only (don't block commits)
-python3 ${CLAUDE_SKILL_DIR}/scripts/setup-husky-coverage.py \
-  --root /path/to/project \
-  --no-fail-on-below
-
-# Skip if no tests found
-python3 ${CLAUDE_SKILL_DIR}/scripts/setup-husky-coverage.py \
-  --root /path/to/project \
-  --skip-if-no-tests
-
-# Dry run to preview changes
-python3 ${CLAUDE_SKILL_DIR}/scripts/setup-husky-coverage.py \
-  --root /path/to/project \
-  --dry-run
+python3 ${CLAUDE_SKILL_DIR}/scripts/setup-husky-coverage.py --root /path/to/project
+python3 ${CLAUDE_SKILL_DIR}/scripts/setup-husky-coverage.py --root /path/to/project --dry-run
 ```
+
+See `references/full-guide.md` (§ Quick Start Examples) for threshold, warn-only, and skip-if-no-tests invocations.
 
 ## What Gets Configured
 
@@ -128,20 +109,7 @@ The created hook:
 
 ### Configuration File
 
-Create `.husky-test-coverage.json` in project root:
-
-```json
-{
-  "coverageThreshold": {
-    "lines": 80,
-    "branches": 75,
-    "functions": 80,
-    "statements": 80
-  },
-  "failOnCoverageBelowThreshold": true,
-  "skipIfNoTests": false
-}
-```
+Create `.husky-test-coverage.json` in project root. See `references/full-guide.md` (§ .husky-test-coverage.json Example) for the full schema.
 
 ### Package.json Configuration
 
@@ -170,20 +138,7 @@ Alternatively, add to `package.json`:
 - Updates or creates `jest.config.json` with coverage thresholds
 - Pre-commit hook: `bun run test -- --coverage --watchAll=false`
 
-**Example jest.config.json:**
-
-```json
-{
-  "coverageThreshold": {
-    "global": {
-      "lines": 80,
-      "branches": 75,
-      "functions": 80,
-      "statements": 80
-    }
-  }
-}
-```
+See `references/full-guide.md` (§ Example jest.config.json) for a full config example.
 
 ### Vitest Projects
 
@@ -197,26 +152,7 @@ Alternatively, add to `package.json`:
 - Updates or creates Vitest config with coverage thresholds
 - Pre-commit hook: `bun run test -- --coverage --run`
 
-**Example vitest.config.ts:**
-
-```typescript
-import { defineConfig } from 'vitest/config'
-
-export default defineConfig({
-  test: {
-    coverage: {
-      provider: 'v8',
-      reporter: ['text', 'json', 'html'],
-      thresholds: {
-        lines: 80,
-        branches: 75,
-        functions: 80,
-        statements: 80
-      }
-    }
-  }
-})
-```
+See `references/full-guide.md` (§ Example vitest.config.ts) for a full config example.
 
 ### Mocha Projects
 
@@ -230,18 +166,7 @@ export default defineConfig({
 - Creates or updates `.nycrc.json` for nyc
 - Pre-commit hook: `nyc --reporter=text --reporter=html bun run test`
 
-**Example .nycrc.json:**
-
-```json
-{
-  "check-coverage": true,
-  "lines": 80,
-  "branches": 75,
-  "functions": 80,
-  "statements": 80,
-  "reporter": ["text", "text-summary", "html", "lcov"]
-}
-```
+See `references/full-guide.md` (§ Example .nycrc.json) for a full config example.
 
 ## Package Manager Support
 

@@ -8,7 +8,7 @@ description: >-
   Multi-PR queue, WIP-drain, and merge-train work routes to pr-merge-train
   instead of serial full reviews.
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
   tags: "code-review, correctness, security, testing, devex, feature-flags"
   author: Ship Shit Dev
 allowed-tools: Bash(git *) Bash(gh *)
@@ -23,8 +23,9 @@ are certain about. Ambiguity defaults to "request changes." Structural concerns
 `structural-review` skill; trust it on those axes and own correctness + security
 here.
 
-CLAUDE.md stack rules (Bun, Tailwind v4, Next.js 16, shadcn/ui) are validated
-by the /code-review harness CLAUDE.md compliance layer. Do not re-flag them here.
+Stack rules from the repo's agent instruction file (Bun, Tailwind v4, Next.js 16,
+shadcn/ui) are validated by the correctness review harness's rule-compliance
+layer. Do not re-flag them here.
 
 ## Contract
 

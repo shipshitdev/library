@@ -2,7 +2,7 @@
 name: bun-validator
 description: Validate Bun workspace configuration and detect common monorepo issues. Ensures proper workspace setup, dependency catalogs, isolated installs, and Bun 1.3+ best practices. Use when setting up a Bun monorepo, before adding workspace dependencies, auditing an existing Bun workspace, or validating package.json in CI.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: bun, monorepo, workspace, validation, package-manager
 ---
 
@@ -60,23 +60,7 @@ bun --version  # 1.2.x
 
 ### 3. Workspace Structure
 
-**GOOD:**
-
-```
-my-monorepo/
-├── package.json          # Root with workspaces, private: true
-├── bun.lockb             # Single lockfile at root
-├── apps/
-│   ├── web/
-│   │   └── package.json  # Own dependencies
-│   └── api/
-│       └── package.json  # Own dependencies
-└── packages/
-    ├── ui/
-    │   └── package.json  # Shared package
-    └── config/
-        └── package.json  # Shared config
-```
+**GOOD:** See `references/full-guide.md` (§ Workspace Structure Example) for the full tree — root `package.json` + `bun.lockb`, each app/package owns its own `package.json`.
 
 **BAD:**
 
@@ -157,18 +141,7 @@ Packages can only access dependencies they explicitly declare.
 
 ### Dependency Catalogs
 
-Centralize version management:
-
-```json
-// Root package.json
-{
-  "catalog": {
-    "react": "^19.0.0",
-    "next": "^16.0.0",
-    "typescript": "^5.7.0"
-  }
-}
-```
+See § Dependency Catalogs (Bun 1.3+) above for the catalog syntax.
 
 ### Interactive Updates
 
@@ -234,67 +207,15 @@ bun install  # From root only
 
 ## Validation Output
 
-```
-=== Bun Workspace Validation Report ===
-
-Bun Version: 1.3.2 ✓
-
-Root package.json:
-  ✓ private: true
-  ✓ workspaces defined
-  ✗ Found dependencies in root (should be empty)
-
-Workspace Structure:
-  ✓ apps/web - valid workspace
-  ✓ apps/api - valid workspace
-  ✓ packages/ui - valid workspace
-  ✗ apps/web/bun.lockb - lockfile should only be at root
-
-Dependencies:
-  ✓ Using workspace:* protocol
-  ✗ @myorg/ui uses hardcoded version "1.0.0"
-
-Catalogs:
-  ✗ No dependency catalog found (recommended for Bun 1.3+)
-
-Summary: 3 issues found
-```
+See `references/full-guide.md` (§ Validation Output Example) for a sample report.
 
 ## Best Practices
 
-### 1. Always use workspace protocol
-
-```json
-"@myorg/shared": "workspace:*"
-```
-
-### 2. Use --cwd for workspace operations
-
-```bash
-bun add lodash --cwd apps/web  # NOT: cd apps/web && bun add
-```
-
-### 3. Single lockfile at root
-
-```bash
-# Only run bun install from root
-bun install
-```
-
-### 4. Use catalogs for shared dependencies
-
-```json
-{
-  "catalog": {
-    "typescript": "^5.7.0",
-    "vitest": "^3.0.0"
-  }
-}
-```
-
-### 5. Declare all dependencies explicitly
-
-Each workspace should list all its dependencies - don't rely on hoisting.
+- Always use the workspace protocol: `"@myorg/shared": "workspace:*"`
+- Use `--cwd` for workspace operations: `bun add lodash --cwd apps/web` (not `cd apps/web && bun add`)
+- Run `bun install` only from the root — keep a single lockfile
+- Use dependency catalogs for shared versions (see § Dependency Catalogs above)
+- Declare all dependencies explicitly per workspace — don't rely on hoisting
 
 ## CI/CD Integration
 

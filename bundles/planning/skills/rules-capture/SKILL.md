@@ -8,7 +8,7 @@ description: >-
   rule is", "stop doing X", "I prefer", frustration indicators, or any
   correction to AI behavior.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "preferences, rules, documentation, automation"
 ---
 
@@ -264,7 +264,7 @@ When user says "clean up rules" or "process captured rules":
 
 **User**: "stop using console.log for debugging, use the logger service"
 
-**Claude**:
+**Agent**:
 
 ```
 I noticed a new rule. Let me capture it:

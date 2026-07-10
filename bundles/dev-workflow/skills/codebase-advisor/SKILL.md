@@ -7,7 +7,7 @@ user-invocable: true
 allowed-tools: Read, Grep, Glob, Write(plans/**), Edit(plans/**), Task, Bash(git log:*), Bash(git diff:*), Bash(git status:*), Bash(git show:*), Bash(git rev-parse:*), Bash(git merge-base:*), Bash(git branch --list:*), Bash(git branch --show-current), Bash(find:*), Bash(grep:*), Bash(rg:*), Bash(npm audit), Bash(pnpm audit), Bash(pip-audit), Bash(cargo audit), Bash(tsc --noEmit:*), Bash(command -v gh), Bash(gh auth status:*), Bash(gh repo view --json visibility:*), Bash(gh issue create:*)
 when_to_use: audit this codebase, code audit, find improvements, what should I build next, roadmap, product direction, generate a handoff plan, plan for another agent, security/perf/test-coverage/tech-debt review, review a plan, execute a plan, reconcile plans
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "audit, planning, codebase-review, handoff-plans, orchestration, read-only"
   author: Ship Shit Dev
   adapted_from: "shadcn/improve (MIT) — https://github.com/shadcn/improve"
@@ -99,7 +99,7 @@ Audit depth follows the **effort level** (default `standard`; the user sets it w
 | Categories | correctness, security, tests | all nine | all nine |
 | Findings | top ~6, HIGH-confidence only | full table | full table incl. LOW-confidence "investigate" items |
 
-> **Cost note (`deep`)**: up to 8 concurrent `very thorough` subagents over a large repo is materially expensive. Default the audit subagents to the **Explore**/`sonnet` tier; escalate to a higher tier only for business-critical audits. When in doubt, run `standard` — reach for `deep` only when the stakes justify the spend.
+> **Cost note (`deep`)**: up to 8 concurrent `very thorough` subagents over a large repo is materially expensive. Default the audit subagents to the cheapest capable read-only tier; escalate to a stronger tier only for business-critical audits. The repo routing block (agent instruction file) maps tiers to concrete models. When in doubt, run `standard` — reach for `deep` only when the stakes justify the spend.
 
 Whatever the level, say in the final report what was *not* audited. On a large monorepo even `deep` scopes subagents to packages, not the root.
 

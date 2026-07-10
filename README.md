@@ -6,6 +6,8 @@
 
 164 AI agent skills for development workflows. Works with Claude Code, OpenAI Codex, and Cursor.
 
+Skills are **model-agnostic playbooks**: the harness supplies the model, so no skill names a concrete model — orchestrators speak in capability tiers, and each repo's routing block maps tiers to models. Enforced by `scripts/validate-skill-sync.sh`; standards live in `.agents/memory/system/skill-standards.md`.
+
 ## Directory Structure
 
 ```

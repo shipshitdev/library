@@ -2,7 +2,7 @@
 name: open-source-checker
 description: Expert in detecting private information, secrets, API keys, credentials, and sensitive data in codebases before open sourcing. Use when preparing to open source a repository, reviewing code for exposed secrets, or auditing a codebase for sensitive data before public release.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "open-source, security, secrets"
 ---
 

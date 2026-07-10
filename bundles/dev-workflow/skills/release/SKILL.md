@@ -1,9 +1,9 @@
 ---
 name: release
-description: Cut a release from the trunk (default branch) and generate plain-English patch notes. Determines the next semantic version from commits since the last tag, previews the release plan, then on confirmation creates an annotated tag, a GitHub release, and patch notes. Trunk-based — there is no develop/staging branch promotion. Use when the user asks to cut a release, ship a release, tag a release, release to production, generate release notes or a changelog, or runs /release.
+description: Cut a release from the trunk (default branch) and generate plain-English patch notes. Determines the next semantic version from commits since the last tag, previews the release plan, then on confirmation either creates an annotated tag + GitHub release (tag mode) or dispatches the repo's guarded release workflow (dispatch mode, for repos whose production deploy is gated behind a workflow_dispatch promote gate). Trunk-based — there is no develop/staging branch promotion. Use when the user asks to cut a release, ship a release, tag a release, promote to production, release to production, generate release notes or a changelog, or runs /release.
 compatibility: Requires git, GitHub CLI gh, and jq access to the target repository.
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   tags: "git, github, release, tag, semver, changelog, patch-notes, trunk-based, ci-cd"
 allowed-tools: Bash(git *) Bash(gh *) Bash(jq *)
 disable-model-invocation: true
@@ -82,6 +82,39 @@ Hard rules:
    after the user approves the printed plan.
 6. **No history rewrites, no deploys.** This skill adds a tag and a release; it does
    not rebase, force-push, move branches, or deploy.
+7. **Never side-door a promote gate.** In dispatch mode (below), the guarded
+   workflow is the only thing that cuts the tag/release — a local `git tag` or
+   `gh release create` would bypass the gate's CI, preflight, and migration
+   checks, so it is forbidden there.
+
+## Mode Detection: Tag vs. Guarded Dispatch
+
+Before Phase 1, determine which release mode the repo uses. Signals for
+**dispatch mode**, in priority order:
+
+1. The repo's agent instruction file or deploy docs name a release/promote
+   workflow that must be dispatched (a "promote gate").
+2. `.github/workflows/` contains a `workflow_dispatch` release workflow (e.g.
+   `create-release.yml`, `promote.yml`) that itself cuts the tag/release and
+   runs the production deploy in-run.
+
+If neither signal is present, use **tag mode** (Phases 1–5 below).
+
+In **dispatch mode**:
+
+- Run Phases 1–4 unchanged (preflight, next version, patch notes, plan +
+  confirmation) — the preview and confirmation gates apply identically.
+- In Phase 5, instead of tagging locally, dispatch the guarded workflow and
+  report the run:
+
+  ```bash
+  gh workflow run <release-workflow> --ref <trunk> [-f version=<X.Y.Z>]
+  gh run list --workflow <release-workflow> --limit 1 --json databaseId,url
+  ```
+
+- The workflow owns tagging, the GitHub release, and the deploy. Surface the
+  run URL and stop; do not create tags or releases locally, and do not retry a
+  failed run without showing the failure first.
 
 ## Phase 1: Preflight and Trunk Detection
 

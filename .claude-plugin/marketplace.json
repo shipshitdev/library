@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "164 AI agent skills for development workflows",
+  "description": "165 AI agent skills for development workflows",
   "plugins": [
     {
       "name": "shipshitdev-testing",
@@ -496,6 +496,11 @@
       "description": "Queue job management patterns, processors, and async workflows for video/image processing. Use when building BullMQ queues, job processors, or async video/image processing workflows in NestJS."
     },
     {
+      "name": "nestjs-testing-expert",
+      "source": "./skills/nestjs-testing-expert",
+      "description": "Testing patterns for NestJS apps using Jest, covering unit, integration, and e2e tests."
+    },
+    {
       "name": "nextjs-validator",
       "source": "./skills/nextjs-validator",
       "description": "Validate Next.js 16 configuration and detect/prevent deprecated patterns. Ensures proxy.ts usage, Turbopack, Cache Components, and App Router best practices. Use before any Next.js work or when auditing existing projects."
@@ -648,7 +653,7 @@
     {
       "name": "release",
       "source": "./skills/release",
-      "description": "Cut a release from the trunk (default branch) and generate plain-English patch notes. Determines the next semantic version from commits since the last tag, previews the release plan, then on confirmation creates an annotated tag, a GitHub release, and patch notes. Trunk-based — there is no develop/staging branch promotion. Use when the user asks to cut a release, ship a release, tag a release, release to production, generate release notes or a changelog, or runs /release."
+      "description": "Cut a release from the trunk (default branch) and generate plain-English patch notes. Determines the next semantic version from commits since the last tag, previews the release plan, then on confirmation either creates an annotated tag + GitHub release (tag mode) or dispatches the repo's guarded release workflow (dispatch mode, for repos whose production deploy is gated behind a workflow_dispatch promote gate). Trunk-based — there is no develop/staging branch promotion. Use when the user asks to cut a release, ship a release, tag a release, promote to production, release to production, generate release notes or a changelog, or runs /release."
     },
     {
       "name": "release-cleanup",
@@ -863,7 +868,7 @@
     {
       "name": "ultracode",
       "source": "./skills/ultracode",
-      "description": "Runs a Codex-only high-autonomy workflow for difficult coding tasks: inspect, plan, choose direct/workflow/delegated mode, use bounded subagents for independent packets, integrate in the parent thread, verify, and continue until done or genuinely blocked. Use when invoked with $ultracode, /ultracode, \"ultracode\", \"maximum-depth\", \"split across agents\", \"parallel agents\", \"deep autonomous implementation\", broad repo analysis, migrations, refactors, hard debugging, QA, or end-to-end shipping."
+      "description": "Routes maximum-depth coding requests to the harness's native deep mode instead of reimplementing orchestration in prompt policy: Claude Code's built-in ultracode multi-agent orchestration, or Codex's native `ultra` reasoning effort (GPT-5.6+), falling back to a manual workflow only where no native mode exists. Use when invoked with $ultracode, /ultracode, \"ultracode\", \"ultra effort\", \"maximum-depth\", \"split across agents\", \"parallel agents\", or \"deep autonomous implementation\" on a non-trivial coding task."
     },
     {
       "name": "vercel-deploy",

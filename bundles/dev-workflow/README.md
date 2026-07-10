@@ -50,6 +50,5 @@ Code review, debugging, refactoring, release, and AI-assisted development workfl
 - `structural-review`
 - `systematic-debugging`
 - `tech-debt`
-- `ultracode`
 - `verification-before-completion`
 - `worktree`

@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "165 AI agent skills for development workflows",
+  "description": "164 AI agent skills for development workflows",
   "plugins": [
     {
       "name": "shipshitdev-testing",
@@ -864,11 +864,6 @@
       "name": "typescript-refactor",
       "source": "./skills/typescript-refactor",
       "description": "TypeScript refactoring and modernization guidelines from a principal specialist perspective. This skill should be used when refactoring, reviewing, or modernizing TypeScript code to ensure type safety, compiler performance, and idiomatic patterns. Triggers on tasks involving TypeScript type architecture, narrowing, generics, error handling, or migration to modern TypeScript features."
-    },
-    {
-      "name": "ultracode",
-      "source": "./skills/ultracode",
-      "description": "Routes maximum-depth coding requests to the harness's native deep mode instead of reimplementing orchestration in prompt policy: Claude Code's built-in ultracode multi-agent orchestration, or Codex's native `ultra` reasoning effort (GPT-5.6+), falling back to a manual workflow only where no native mode exists. Use when invoked with $ultracode, /ultracode, \"ultracode\", \"ultra effort\", \"maximum-depth\", \"split across agents\", \"parallel agents\", or \"deep autonomous implementation\" on a non-trivial coding task."
     },
     {
       "name": "vercel-deploy",

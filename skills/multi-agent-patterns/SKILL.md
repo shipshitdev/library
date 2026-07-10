@@ -2,7 +2,7 @@
 name: multi-agent-patterns
 description: Design multi-agent architectures for complex tasks. Use when single-agent context limits are exceeded, when tasks decompose naturally into subtasks, or when specializing agents improves quality.
 metadata:
-  version: "2.1.0"
+  version: "2.1.1"
   source: https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/blob/main/skills/multi-agent-patterns/SKILL.md
   upstream_repo: muratcankoylan/Agent-Skills-for-Context-Engineering
   upstream_ref: main
@@ -84,22 +84,9 @@ Expect these trade-offs: strict workflow control and easier human-in-the-loop in
 **The Telephone Game Problem and Solution**
 Anticipate that supervisor architectures initially perform approximately 50% worse than optimized versions due to the telephone game problem (LangGraph benchmarks). Supervisors paraphrase sub-agent responses, losing fidelity with each pass.
 
-Fix this by implementing a `forward_message` tool that allows sub-agents to pass responses directly to users:
+Fix this by implementing a `forward_message` tool that allows sub-agents to pass responses directly to users, bypassing supervisor paraphrasing when the response is already final and complete.
 
-```python
-def forward_message(message: str, to_user: bool = True):
-    """
-    Forward sub-agent response directly to user without supervisor synthesis.
-
-    Use when:
-    - Sub-agent response is final and complete
-    - Supervisor synthesis would lose important details
-    - Response format must be preserved exactly
-    """
-    if to_user:
-        return {"type": "direct_response", "content": message}
-    return {"type": "supervisor_input", "content": message}
-```
+See `references/frameworks.md` (§ Forward Message Pattern) for the implementation.
 
 Prefer swarm architectures over supervisors when sub-agents can respond directly to users, as this eliminates translation errors entirely.
 

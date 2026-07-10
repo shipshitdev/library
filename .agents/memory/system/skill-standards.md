@@ -243,6 +243,9 @@ touches only the per-repo routing block, never the skills.
 - **External tools are lanes, not models.** Naming Codex, `gh`, or a CLI as a
   dependency the skill shells out to is fine (it is a tool, like `git`). Naming the
   model that tool runs is not.
+- **Enforced by the validator.** `scripts/validate-skill-sync.sh` warns on
+  version-pinned model IDs anywhere in a skill, and on bare tier names
+  (`sonnet`/`opus`/`haiku`) outside a `model:`/`model =` assignment.
 
 ---
 

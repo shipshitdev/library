@@ -6,7 +6,7 @@ description: >-
   "open as webpage", or any request to review lists, tables, drafts, or
   summaries that are hard to read in the terminal.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "html, review, preview"
 ---
 
@@ -52,23 +52,7 @@ Views have a lifecycle: temporary → keeper → archived.
 3. **Archive before replacing** — If `name.html` exists, rename to `name.DATE.html` before promoting
 4. **Never regenerate keepers** — Only regenerate `-temp` files
 
-**Workflow:**
-
-```
-# First iteration
-drafts-temp.html  ← created
-
-# User: "keep this"
-drafts.html       ← promoted (temp deleted)
-
-# Later iteration
-drafts-temp.html  ← new temp created
-drafts.html       ← keeper untouched
-
-# User: "this is better, keep it"
-drafts.2025-01-01.html  ← old keeper archived
-drafts.html             ← new keeper promoted
-```
+**Workflow:** See `references/full-guide.md` (§ File Naming Lifecycle Example) for a walkthrough of temp → keeper → archived across iterations.
 
 **Trigger phrases for promotion:**
 
@@ -190,69 +174,7 @@ When displaying data gathered from external sources, always include attribution 
 
 For drafts that user may edit before sending. Tracks original vs edited for later analysis.
 
-```html
-<details>
-  <summary><strong>@username</strong> — action <span class="status"></span></summary>
-  <pre contenteditable="true"
-       data-username="username"
-       data-original="Original draft text here"
-       onblur="saveDraft(this)">Original draft text here</pre>
-  <div class="actions">
-    <a href="tg://resolve?domain=username">Open Telegram</a>
-    <button onclick="copyDraft(this)">Copy</button>
-  </div>
-</details>
-```
-
-Include this script block at end of `<body>` (before closing `</body>` tag):
-
-```javascript
-function saveDraft(el) {
-  const key = 'draft_' + el.dataset.username;
-  const edited = el.textContent.trim();
-  const original = el.dataset.original;
-  if (edited !== original) {
-    localStorage.setItem(key, edited);
-    el.closest('details').querySelector('.status').textContent = '(edited)';
-  }
-}
-
-function copyDraft(btn) {
-  const pre = btn.closest('details').querySelector('pre');
-  navigator.clipboard.writeText(pre.textContent.trim());
-  btn.textContent = 'Copied!';
-  setTimeout(() => btn.textContent = 'Copy', 1500);
-}
-
-function restoreEdits() {
-  document.querySelectorAll('pre[data-username]').forEach(el => {
-    const saved = localStorage.getItem('draft_' + el.dataset.username);
-    if (saved) {
-      el.textContent = saved;
-      el.closest('details').querySelector('.status').textContent = '(edited)';
-    }
-  });
-}
-
-function exportEdits() {
-  const edits = [];
-  document.querySelectorAll('pre[data-username]').forEach(el => {
-    const original = el.dataset.original;
-    const current = el.textContent.trim();
-    if (original !== current) {
-      edits.push({ username: el.dataset.username, original, edited: current });
-    }
-  });
-  if (edits.length === 0) { alert('No edits to export'); return; }
-  const blob = new Blob([JSON.stringify({exported_at: new Date().toISOString(), edits}, null, 2)], {type: 'application/json'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'draft_edits.json';
-  a.click();
-}
-
-restoreEdits();
-```
+See `references/full-guide.md` (§ Editable Drafts Markup, § Editable Drafts Script) for the `<details>` markup and the `saveDraft`/`copyDraft`/`restoreEdits`/`exportEdits` script to include before the closing `</body>` tag.
 
 Add export button in header when using editable drafts:
 

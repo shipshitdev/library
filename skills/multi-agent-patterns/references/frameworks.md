@@ -2,6 +2,25 @@
 
 This document provides implementation details for multi-agent architectures across different frameworks.
 
+## Forward Message Pattern
+
+Fix for the telephone-game problem in supervisor architectures: let a sub-agent's response reach the user directly instead of being paraphrased by the supervisor.
+
+```python
+def forward_message(message: str, to_user: bool = True):
+    """
+    Forward sub-agent response directly to user without supervisor synthesis.
+
+    Use when:
+    - Sub-agent response is final and complete
+    - Supervisor synthesis would lose important details
+    - Response format must be preserved exactly
+    """
+    if to_user:
+        return {"type": "direct_response", "content": message}
+    return {"type": "supervisor_input", "content": message}
+```
+
 ## Supervisor Pattern
 
 ### LangGraph Supervisor Implementation

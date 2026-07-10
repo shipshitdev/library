@@ -2,7 +2,7 @@
 name: linter-formatter-init
 description: Set up Biome (default) or ESLint + Prettier, Vitest testing, and pre-commit hooks for any JavaScript/TypeScript project. Uses Bun as the package manager. Use this skill when initializing code quality tooling for a new project or adding linting to an existing one.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "linting, formatting, setup"
 ---
 
@@ -34,295 +34,70 @@ This skill automates the setup of:
 
 ```bash
 # Default setup (Biome) - RECOMMENDED
-python3 scripts/setup.py \
-  --root /path/to/project
-
-# Use ESLint + Prettier instead (legacy)
-python3 scripts/setup.py \
-  --root /path/to/project \
-  --eslint
-
-# ESLint + Prettier with TypeScript
-python3 scripts/setup.py \
-  --root /path/to/project \
-  --eslint \
-  --typescript
-
-# Skip pre-commit hooks
-python3 scripts/setup.py \
-  --root /path/to/project \
-  --no-hooks
+python3 scripts/setup.py --root /path/to/project
 
 # Add Vitest testing with 80% coverage threshold
-python3 scripts/setup.py \
-  --root /path/to/project \
-  --vitest
+python3 scripts/setup.py --root /path/to/project --vitest --coverage 80
 
-# Full setup: Biome + Vitest + Husky
-python3 scripts/setup.py \
-  --root /path/to/project \
-  --vitest \
-  --coverage 80
+# Use ESLint + Prettier instead (legacy)
+python3 scripts/setup.py --root /path/to/project --eslint --typescript
 ```
+
+See `references/full-guide.md` (§ Quick Start — Full Command Variants) for `--no-hooks`, `--monorepo`, and every flag combination.
 
 ## What Gets Installed
 
 ### Dependencies
 
-**Biome 2.3+ (default):**
+**Biome 2.3+ (default):** `@biomejs/biome@latest` (always latest, minimum 2.3+)
 
-- @biomejs/biome@latest (always latest, minimum 2.3+)
+**Vitest (with `--vitest`):** `vitest`, `@vitest/coverage-v8`
 
-**Vitest (with --vitest):**
+**ESLint + Prettier (legacy, with `--eslint`):** `eslint`, `prettier`, `eslint-config-prettier`, `eslint-plugin-prettier`, plus `@typescript-eslint/parser` and `@typescript-eslint/eslint-plugin` if `--typescript`
 
-- vitest
-- @vitest/coverage-v8
-
-**ESLint + Prettier (legacy, with --eslint):**
-
-- eslint
-- prettier
-- eslint-config-prettier
-- eslint-plugin-prettier
-- @typescript-eslint/parser (if --typescript)
-- @typescript-eslint/eslint-plugin (if --typescript)
-
-**Pre-commit hooks:**
-
-- husky
-- lint-staged
+**Pre-commit hooks:** `husky`, `lint-staged`
 
 ### Configuration Files (Biome - Default)
 
 ```
 project/
 ├── biome.json              # Biome config (lint + format)
-├── .vscode/
-│   └── settings.json       # Auto-format on save
-├── .husky/
-│   └── pre-commit          # Pre-commit hook
+├── .vscode/settings.json   # Auto-format on save
+├── .husky/pre-commit       # Pre-commit hook
 └── package.json            # Updated with scripts + lint-staged
 ```
 
-### Configuration Files (ESLint + Prettier - Legacy)
+ESLint + Prettier (legacy) produces the equivalent `.eslintrc.json` / `.prettierrc` layout — see `references/full-guide.md` (§ Configuration Files (ESLint + Prettier - Legacy)).
 
-```
-project/
-├── .eslintrc.json          # ESLint config
-├── .prettierrc             # Prettier config
-├── .prettierignore         # Prettier ignore patterns
-├── .eslintignore           # ESLint ignore patterns
-├── .vscode/
-│   └── settings.json       # Auto-format on save
-├── .husky/
-│   └── pre-commit          # Pre-commit hook
-└── package.json            # Updated with scripts + lint-staged
-```
+### Bun Scripts Added
 
-### Bun Scripts Added (Biome)
-
-```json
-{
-  "scripts": {
-    "lint": "biome lint .",
-    "lint:fix": "biome lint --write .",
-    "format": "biome format --write .",
-    "format:check": "biome format .",
-    "check": "biome check .",
-    "check:fix": "biome check --write ."
-  }
-}
-```
-
-### Bun Scripts Added (Vitest)
-
-```json
-{
-  "scripts": {
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage",
-    "test:ui": "vitest --ui"
-  }
-}
-```
-
-### Bun Scripts Added (ESLint + Prettier)
-
-```json
-{
-  "scripts": {
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "format": "prettier --write .",
-    "format:check": "prettier --check ."
-  }
-}
-```
+Biome adds `lint`, `lint:fix`, `format`, `format:check`, `check`, `check:fix`. Vitest adds `test`, `test:watch`, `test:coverage`, `test:ui`. ESLint + Prettier (legacy) adds `lint`, `lint:fix`, `format`, `format:check`. See `references/full-guide.md` (§ Bun Scripts Added) for the exact script commands.
 
 ## Biome Configuration (Default)
 
-Biome is a fast, all-in-one linter and formatter. The default config includes:
+Biome is a fast, all-in-one linter and formatter. The default config enables recommended lint rules, 2-space/100-char formatting, single quotes, and `organizeImports`. See `references/full-guide.md` (§ Biome Configuration (Default)) for the full `biome.json`.
 
-```json
-{
-  "$schema": "https://biomejs.dev/schemas/2.3.12/schema.json",
-  "assist": {
-    "actions": {
-      "source": { "organizeImports": "on" }
-    }
-  },
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true,
-      "complexity": { "noForEach": "off" },
-      "style": { "noNonNullAssertion": "off" },
-      "suspicious": { "noArrayIndexKey": "off", "noExplicitAny": "warn" }
-    }
-  },
-  "formatter": {
-    "enabled": true,
-    "indentStyle": "space",
-    "indentWidth": 2,
-    "lineWidth": 100
-  },
-  "javascript": {
-    "formatter": {
-      "quoteStyle": "single",
-      "trailingCommas": "es5",
-      "semicolons": "always"
-    }
-  }
-}
-```
-
-### Customization
-
-After setup, customize `biome.json` to adjust:
-
-- Linting rules
-- Formatting preferences
-- File ignore patterns
+After setup, customize `biome.json` to adjust linting rules, formatting preferences, and file ignore patterns.
 
 ## Vitest Configuration (with --vitest)
 
-When you use the `--vitest` flag, this skill creates a `vitest.config.ts`:
+The `--vitest` flag creates `vitest.config.ts` (node/jsdom environment, v8 coverage, 80% default thresholds) and `src/test/setup.ts` for global test setup. See `references/full-guide.md` (§ Vitest Configuration (with --vitest)) for both files in full.
 
-```typescript
-import { defineConfig } from "vitest/config";
-
-export default defineConfig({
-  test: {
-    globals: true,
-    environment: "node", // or "jsdom" for frontend
-    include: ["src/**/*.{test,spec}.{ts,tsx}", "**/*.{test,spec}.{ts,tsx}"],
-    exclude: ["node_modules", "dist", ".next", "build"],
-    coverage: {
-      provider: "v8",
-      reporter: ["text", "json", "html", "lcov"],
-      include: ["src/**/*.ts", "src/**/*.tsx"],
-      exclude: ["src/**/*.test.ts", "src/**/*.spec.ts", "src/**/*.d.ts"],
-      thresholds: {
-        lines: 80,
-        functions: 80,
-        branches: 75,
-        statements: 80,
-      },
-    },
-    mockReset: true,
-    restoreMocks: true,
-  },
-});
-```
-
-### Coverage Thresholds
-
-Default threshold is 80%. Customize with:
-
-```bash
-python3 scripts/setup.py \
-  --root /path/to/project \
-  --vitest \
-  --coverage 90  # Set to 90%
-```
-
-### Test Setup File
-
-Creates `src/test/setup.ts` for global test configuration:
-
-```typescript
-import { expect, afterEach } from "vitest";
-import { cleanup } from "@testing-library/react"; // For React projects
-
-// Cleanup after each test
-afterEach(() => {
-  cleanup();
-});
-```
+Customize the coverage threshold with `--coverage 90`.
 
 ## Pre-commit Hooks
 
 When enabled (default), lint-staged runs on every commit:
 
-**Biome (default):**
+**Biome:** `*.{js,jsx,ts,tsx,json,css}` → `bunx biome check --write`
 
-```json
-{
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,css}": ["bunx biome check --write"]
-  }
-}
-```
+**ESLint + Prettier (legacy):** `*.{js,jsx,ts,tsx}` → `eslint --fix`, `prettier --write`; `*.{json,md,yml,yaml}` → `prettier --write`
 
-**ESLint + Prettier (legacy):**
-
-```json
-{
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --write"],
-    "*.{json,md,yml,yaml}": ["prettier --write"]
-  }
-}
-```
-
-This ensures:
-
-- All committed code passes linting
-- All committed code is formatted
-- No broken code enters the repo
+This ensures all committed code passes linting, is formatted, and no broken code enters the repo.
 
 ## VS Code / Cursor Integration
 
-The skill creates `.vscode/settings.json`:
-
-**Biome (default):**
-
-```json
-{
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "biomejs.biome",
-  "editor.codeActionsOnSave": {
-    "source.organizeImports.biome": "explicit",
-    "quickfix.biome": "explicit"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  }
-}
-```
-
-**ESLint + Prettier (legacy):**
-
-```json
-{
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
-  }
-}
-```
+The skill creates `.vscode/settings.json` enabling format-on-save with Biome (default) or Prettier/ESLint (legacy) as the default formatter. See `references/full-guide.md` (§ VS Code / Cursor Settings) for both full configs.
 
 ## Why Biome Over ESLint + Prettier?
 
@@ -333,22 +108,13 @@ The skill creates `.vscode/settings.json`:
 
 ## Monorepo Support
 
-For monorepos, run from the root:
-
-```bash
-python3 scripts/setup.py \
-  --root /path/to/monorepo \
-  --monorepo
-```
-
-This adds root-level config that applies to all packages.
+Run `python3 scripts/setup.py --root /path/to/monorepo --monorepo` from the root. This adds root-level config that applies to all packages.
 
 ## Troubleshooting
 
 ### Pre-commit hooks not running
 
 ```bash
-# Reinstall husky
 bunx husky
 chmod +x .husky/pre-commit
 ```
@@ -375,23 +141,12 @@ When using `--eslint`, the skill detects common frameworks and adjusts config:
 
 ## Manual Setup (Alternative)
 
-If you prefer manual setup over the script:
-
-**Biome:**
+If preferring manual setup over the script:
 
 ```bash
+# Biome
 bun add -D @biomejs/biome husky lint-staged
-bunx biome init
-bunx husky
+bunx biome init && bunx husky
 ```
 
-**ESLint + Prettier:**
-
-```bash
-bun add -D eslint prettier eslint-config-prettier eslint-plugin-prettier husky lint-staged
-bun add -D @typescript-eslint/parser @typescript-eslint/eslint-plugin
-bunx eslint --init
-bunx husky
-```
-
-Then copy configs from `assets/configs/`
+See `references/full-guide.md` (§ Manual Setup (Alternative to the setup script)) for the ESLint + Prettier manual sequence, then copy configs from `assets/configs/`.

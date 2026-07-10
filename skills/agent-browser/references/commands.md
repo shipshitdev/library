@@ -777,44 +777,97 @@ agent-browser trace stop trace.zip
 
 ## Common Patterns
 
-### Login Flow
+### Login Flow (with saved auth state)
 
 ```bash
-agent-browser open https://app.com/login
+# Login
+agent-browser open https://app.example.com/login
 agent-browser snapshot -i
-agent-browser fill @e1 "username"
+agent-browser fill @e1 "testuser"
 agent-browser fill @e2 "<test-password-placeholder>"
 agent-browser click @e3
 agent-browser wait --url "**/dashboard"
+
+# Save auth state for reuse
 agent-browser state save auth.json
+
+# Load state in a new session
+agent-browser state load auth.json
+agent-browser open https://app.example.com/protected
 ```
 
-### Form Testing
+### Form Validation Testing
 
 ```bash
-agent-browser open https://app.com/form
+agent-browser open https://app.example.com/signup
 agent-browser snapshot -i
-agent-browser fill @e1 "invalid"
+
+# Test empty submission
+agent-browser click @e5  # Submit button
+agent-browser snapshot -i  # Check for error messages
+
+# Test invalid email
+agent-browser fill @e1 "invalid-email"
 agent-browser click @e5
-agent-browser snapshot -i  # Check for errors
-agent-browser get text @e1  # Get error message
+agent-browser get text @e1  # Check error
+
+# Test valid submission
+agent-browser fill @e1 "valid@email.com"
+agent-browser fill @e2 "<test-password-placeholder>"
+agent-browser click @e5
+agent-browser wait --url "**/dashboard"
 ```
 
-### Visual Regression
+### Visual Regression Testing
 
 ```bash
-agent-browser open https://app.com
+agent-browser open https://app.example.com
 agent-browser set viewport 1920 1080
 agent-browser screenshot desktop.png --full
+
 agent-browser set device "iPhone 14"
 agent-browser reload
 agent-browser screenshot mobile.png --full
 ```
 
-### API Mocking
+### Multi-Step Checkout Testing
 
 ```bash
-agent-browser network route "**/api/users" --body '[{"id":1,"name":"Test"}]'
-agent-browser open https://app.com/users
+agent-browser open https://shop.example.com/cart
 agent-browser snapshot -i
+
+# Step 1: Cart
+agent-browser click @e3  # Proceed to checkout
+
+# Step 2: Shipping
+agent-browser wait @e1
+agent-browser snapshot -i
+agent-browser fill @e1 "123 Test St"
+agent-browser fill @e2 "Test City"
+agent-browser select @e3 "CA"
+agent-browser fill @e4 "90210"
+agent-browser click @e5  # Continue
+
+# Step 3: Payment
+agent-browser wait --text "Payment"
+agent-browser snapshot -i
+agent-browser fill @e1 "<payment-test-token>"
+agent-browser fill @e2 "<test-expiry>"
+agent-browser fill @e3 "<test-cvc>"
+agent-browser click @e4  # Place order
+
+agent-browser wait --text "Order confirmed"
+agent-browser screenshot order-confirmation.png
+```
+
+### API Response Mocking
+
+```bash
+# Mock slow API response
+agent-browser network route "**/api/data" --body '{"items":[]}'
+agent-browser open https://app.example.com
+agent-browser snapshot -i  # Verify empty state UI
+
+# Block external analytics
+agent-browser network route "**/analytics/**" --abort
 ```

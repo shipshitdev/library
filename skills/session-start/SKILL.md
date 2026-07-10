@@ -5,9 +5,9 @@ description: >-
   each session or after `/clear` — reads `.agents/memory/` source-of-truth
   files, surfaces open next steps from the latest session log, and activates
   the session-documenter. Triggers on: session start, `/clear`, "load context",
-  "start session", or first message in a new Claude Code session.
+  "start session", or first message in a new agent session.
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
   tags: "session, workflow, context, productivity"
 ---
 

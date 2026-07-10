@@ -7,7 +7,7 @@ description: >-
   and adds the cn() utility. Use when starting a new Next.js or React project
   that needs a shadcn component library, or migrating from shadcn + Tailwind v3.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "shadcn, ui, components, tailwind, react, nextjs"
 ---
 
@@ -87,38 +87,11 @@ bunx shadcn@latest add button card input label dialog dropdown-menu toast
 
 ### Dependencies
 
-```json
-{
-  "dependencies": {
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.0",
-    "tailwind-merge": "^2.2.0",
-    "lucide-react": "^0.400.0"
-  },
-  "devDependencies": {
-    "tailwindcss": "^4.0.0",
-    "@tailwindcss/postcss": "^4.0.0"
-  }
-}
-```
+See `references/examples.md` (§ Dependency Versions Example) for the full dependency block.
 
 ### File Structure
 
-```
-project/
-├── src/
-│   ├── app/
-│   │   └── globals.css           # Tailwind v4 + shadcn theme
-│   ├── components/
-│   │   └── ui/                   # shadcn components
-│   │       ├── button.tsx
-│   │       ├── card.tsx
-│   │       └── ...
-│   └── lib/
-│       └── utils.ts              # cn() utility
-├── components.json               # shadcn config
-└── postcss.config.mjs            # PostCSS with @tailwindcss/postcss
-```
+See `references/examples.md` (§ Generated File Structure) for the full tree.
 
 ## Tailwind v4 + shadcn CSS Configuration
 
@@ -161,31 +134,7 @@ bunx shadcn@latest add card table tabs badge avatar dropdown-menu sheet sidebar
 
 ## components.json Configuration
 
-```json
-{
-  "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "default",
-  "rsc": true,
-  "tsx": true,
-  "tailwind": {
-    "config": "",
-    "css": "src/app/globals.css",
-    "baseColor": "zinc",
-    "cssVariables": true,
-    "prefix": ""
-  },
-  "aliases": {
-    "components": "@/components",
-    "utils": "@/lib/utils",
-    "ui": "@/components/ui",
-    "lib": "@/lib",
-    "hooks": "@/hooks"
-  },
-  "iconLibrary": "lucide"
-}
-```
-
-**Note**: The `tailwind.config` is empty because we use CSS-first configuration in v4.
+See `references/examples.md` (§ components.json Full Example) for the full config. The `tailwind.config` field stays empty because setup uses CSS-first configuration in v4.
 
 ## Utils File
 
@@ -213,58 +162,11 @@ bunx shadcn@latest add card dialog dropdown-menu
 
 ### Using Components
 
-```tsx
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-
-export function MyComponent() {
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Welcome</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Button>Click me</Button>
-      </CardContent>
-    </Card>
-  );
-}
-```
+See `references/examples.md` (§ Using Components Example) for a sample composition.
 
 ## Dark Mode Support
 
-The CSS uses `prefers-color-scheme` by default. For manual toggle:
-
-```tsx
-// Add to layout.tsx or a theme provider
-'use client';
-
-import { useEffect, useState } from 'react';
-
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', theme === 'dark');
-  }, [theme]);
-
-  return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
-}
-```
-
-Update CSS to use class-based dark mode:
-
-```css
-/* Replace @media (prefers-color-scheme: dark) with: */
-.dark {
-  --color-background: hsl(222.2 84% 4.9%);
-  /* ... rest of dark theme variables */
-}
-```
+The CSS uses `prefers-color-scheme` by default. For manual toggle, see `references/examples.md` (§ Dark Mode — Manual Toggle Provider) for the provider component and class-based CSS override.
 
 ## Troubleshooting
 

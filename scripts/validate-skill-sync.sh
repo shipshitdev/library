@@ -404,7 +404,11 @@ check_platform_names() {
 # Function to check for concrete/version-pinned model names.
 # Skills are model-agnostic playbooks — the harness supplies the model. Orchestrators
 # may name capability tiers ("strongest tier") in prose but never a concrete ID.
-# This warns on version-pinned IDs, which are never legitimate anywhere in a skill.
+# This warns on version-pinned IDs, which are never legitimate anywhere in a skill,
+# and on bare tier names (sonnet/opus/haiku) used as routing keys in prose. Bare
+# tier aliases are allowed only as the value of a model assignment (frontmatter
+# `model:`, orchestration `model: "..."` / `model = "..."`), where the harness
+# resolves the alias.
 check_model_references() {
     local skill_dir="$1"
     local warnings=0
@@ -428,6 +432,25 @@ check_model_references() {
             echo -e "  ${YELLOW}⚠${NC} Concrete model name (use a capability tier instead): ${hit}"
             ((++warnings))
         done <<< "$hits"
+    fi
+
+    # Bare tier names outside a model assignment — a routing key in prose pins
+    # the skill to one vendor's tier vocabulary. The tier→model mapping belongs
+    # in the per-repo routing block, not in the skill.
+    local bare_tier_hits
+    bare_tier_hits=$(grep -rInEw 'sonnet|opus|haiku' \
+        --include='SKILL.md' --include='*.md' --include='*.py' \
+        --include='*.js' --include='*.ts' --include='*.sh' \
+        "$skill_dir" 2>/dev/null \
+        | grep -v '/README.md:' \
+        | grep -viE 'model["'"'"']?\s*[:=]\s*["'"'"']?(sonnet|opus|haiku)' \
+        | grep -vE "$model_re" || true)
+
+    if [[ -n "$bare_tier_hits" ]]; then
+        while IFS= read -r hit; do
+            echo -e "  ${YELLOW}⚠${NC} Bare model tier as routing key (use a capability tier in prose; concrete mapping lives in the repo routing block): ${hit}"
+            ((++warnings))
+        done <<< "$bare_tier_hits"
     fi
 
     return $warnings

@@ -11,7 +11,7 @@ description: >-
   prioritized backlog instead of a merge verdict.
 compatibility: Requires gh CLI and git for PR diff fetching.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "code-review, security, structural, devex, orchestration, pr-gate"
   author: Ship Shit Dev
 allowed-tools: Bash(git *) Bash(gh *)
@@ -37,11 +37,12 @@ Do not invoke for a quick diff check — use `/code-review` for that. Do not
 invoke `de-slop` or `refactor-code` from within this skill; it reviews, it
 does not apply changes.
 
-## Scope Boundary — What This Adds Over `/code-review ultra`
+## Scope Boundary — What This Adds Over the Correctness Review Harness
 
-`/code-review ultra` owns: correctness bugs, CLAUDE.md rule violations,
-historical context. Trust it on correctness. This skill does **not** re-run
-bug detection — that is fully owned by the harness.
+The correctness review harness (`/code-review ultra` on Claude Code, or the
+platform's equivalent review gate) owns: correctness bugs, repo instruction-file
+rule violations, historical context. Trust it on correctness. This skill does
+**not** re-run bug detection — that is fully owned by the harness.
 
 This skill owns the **orthogonal** dimensions the harness does not cover:
 
@@ -53,7 +54,7 @@ This skill owns the **orthogonal** dimensions the harness does not cover:
 | Test quality signal | Tests asserting behavior not just execution; hollow snapshots; missing contract tests |
 | Cross-commit (retro only) | Duplication reintroduced across separate commits, optimizations compounding over the window, a bug fix whose root cause recurs in untouched siblings, switch/flag forests that grew commit-by-commit — patterns invisible to any single-diff pass |
 
-Explicitly **excluded** to avoid overlap: bug detection, CLAUDE.md rule
+Explicitly **excluded** to avoid overlap: bug detection, repo rule
 validation, confidence-scoring/false-positive loop — those are owned by the
 harness. Do not add a correctness reviewer here.
 
@@ -183,6 +184,6 @@ Adversarial pass: <N raw> → <M surviving>
 - **Running this skill instead of `/code-review`** for a simple typo or config fix.
 - **Re-checking correctness bugs** inside reviewer prompts — those are owned by the harness.
 - **Invoking `de-slop`, `refactor-code`, or any mutating skill** from within this review — this skill is read-only.
-- **Treating the verdict as a merge gate bypass** — `/code-review ultra` must also pass for correctness and CLAUDE.md compliance.
+- **Treating the verdict as a merge gate bypass** — the correctness review harness must also pass for correctness and repo rule compliance.
 - **Reporting findings without evidence lines** — every finding must provide concrete evidence; redact tokens, keys, passwords, cookies, and other secret-like values.
 - **Calling low-confidence speculation a BLOCKER** — the adversarial pass exists to eliminate these; do not re-introduce them in synthesis.

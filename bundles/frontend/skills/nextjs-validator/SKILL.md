@@ -2,7 +2,7 @@
 name: nextjs-validator
 description: Validate Next.js 16 configuration and detect/prevent deprecated patterns. Ensures proxy.ts usage, Turbopack, Cache Components, and App Router best practices. Use before any Next.js work or when auditing existing projects.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: nextjs, validation, frontend, react, turbopack
 ---
 
@@ -190,7 +190,7 @@ AI-assisted debugging with contextual insight:
 
 ```typescript
 // Enable in development
-// Works with Claude Code and other MCP-compatible tools
+// Works with MCP-compatible agent tools
 ```
 
 ### Parallel Routes
@@ -207,107 +207,15 @@ app/
 
 ### Intercepting Routes
 
-```
-app/
-├── feed/
-│   └── page.tsx
-├── photo/
-│   └── [id]/
-│       └── page.tsx
-└── @modal/
-    └── (.)photo/
-        └── [id]/
-            └── page.tsx
-```
+See `references/full-guide.md` (§ Intercepting Routes Example) for the directory layout.
 
 ## Validation Output
 
-```
-=== Next.js 16 Validation Report ===
-
-Package Version: next@16.1.0 ✓
-
-File Structure:
-  ✓ Using app/ directory (App Router)
-  ✗ Found pages/ directory - migrate to App Router
-  ✓ Found proxy.ts
-  ✗ Found middleware.ts - migrate to proxy.ts
-
-Patterns:
-  ✓ Using Server Components
-  ✗ Found getServerSideProps in 2 files
-  ✓ Using next/navigation
-
-Config:
-  ✓ next.config.ts (TypeScript)
-  ✓ Turbopack enabled (default)
-
-Summary: 2 issues found
-  - Migrate pages/ to app/ directory
-  - Replace middleware.ts with proxy.ts
-```
+See `references/full-guide.md` (§ Validation Output Example) for a sample report.
 
 ## Migration Guide
 
-### From middleware.ts to proxy.ts
-
-**Before (v15):**
-
-```typescript
-// middleware.ts
-import { NextResponse } from 'next/server';
-
-export function middleware(request) {
-  // Edge runtime
-  return NextResponse.next();
-}
-
-export const config = {
-  matcher: ['/dashboard/:path*'],
-};
-```
-
-**After (v16):**
-
-```typescript
-// proxy.ts
-import { createProxy } from 'next/proxy';
-
-export const proxy = createProxy({
-  // Node.js runtime
-  async handle(request) {
-    // Full Node.js APIs available
-    return request;
-  },
-  matcher: ['/dashboard/:path*'],
-});
-```
-
-### From getServerSideProps to Server Components
-
-**Before:**
-
-```typescript
-// pages/dashboard.tsx
-export async function getServerSideProps() {
-  const data = await fetchData();
-  return { props: { data } };
-}
-
-export default function Dashboard({ data }) {
-  return <View data={data} />;
-}
-```
-
-**After:**
-
-```typescript
-// app/dashboard/page.tsx
-export default async function Dashboard() {
-  const data = await fetchData();
-  return <View data={data} />;
-}
-```
+See `references/full-guide.md` (§ Migration Guide) for before/after examples of migrating `middleware.ts` → `proxy.ts` and `getServerSideProps` → Server Components.
 
 ## CI/CD Integration
 

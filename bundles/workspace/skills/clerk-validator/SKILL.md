@@ -2,7 +2,7 @@
 name: clerk-validator
 description: Validate Clerk authentication configuration and detect deprecated patterns. Ensures proper proxy.ts usage (Next.js 16), ClerkProvider setup, and modern auth patterns. Use before any Clerk work or when auditing existing auth implementations.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: clerk, authentication, validation, nextjs, nestjs
 ---
 
@@ -57,29 +57,12 @@ export default authMiddleware();
 
 ### 3. ClerkProvider Setup
 
-**GOOD:**
+**GOOD:** wrap the entire app in `<ClerkProvider>` inside `app/layout.tsx`.
+**BAD:** placing it in `_app.tsx` (Pages Router, deprecated) or forgetting to
+wrap the whole tree.
 
-```typescript
-// app/layout.tsx
-import { ClerkProvider } from "@clerk/nextjs";
-
-export default function RootLayout({ children }) {
-  return (
-    <ClerkProvider>
-      <html>
-        <body>{children}</body>
-      </html>
-    </ClerkProvider>
-  );
-}
-```
-
-**BAD - Missing or wrong location:**
-
-```typescript
-// Don't put in _app.tsx (Pages Router deprecated)
-// Don't forget to wrap the entire app
-```
+See `references/full-guide.md` (§ Root Layout with Clerk Components) for the
+full layout example.
 
 ### 4. Auth Import Patterns
 
@@ -135,19 +118,9 @@ NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/onboarding
 
 ```
 === Clerk Validation Report ===
-
 Package Version: @clerk/nextjs@6.0.0 ✓
-
-Configuration:
-  ✓ ClerkProvider in app/layout.tsx
-  ✓ proxy.ts with clerkMiddleware
-  ✗ Found middleware.ts - should use proxy.ts for Next.js 16
-  ✓ Environment variables configured
-
-Auth Patterns:
-  ✓ Using auth() from @clerk/nextjs/server
-  ✗ Found deprecated authMiddleware() in 1 file
-
+Configuration: ✓ ClerkProvider  ✓ proxy.ts  ✗ middleware.ts found (deprecated)
+Auth Patterns:  ✓ auth()  ✗ authMiddleware() in 1 file (deprecated)
 Summary: 2 issues found
 ```
 
@@ -155,123 +128,40 @@ Summary: 2 issues found
 
 ### Protected Routes (Server Component)
 
-```typescript
-// app/dashboard/page.tsx
-import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
+Call `await auth()`, redirect to `/sign-in` when `userId` is missing, and
+render only after that check.
 
-export default async function DashboardPage() {
-  const { userId } = await auth();
-
-  if (!userId) {
-    redirect("/sign-in");
-  }
-
-  return <Dashboard />;
-}
-```
+See `references/full-guide.md` (§ Protected Route Example) for the full page.
 
 ### Protected Routes (Client Component)
 
-```typescript
-"use client";
-import { useAuth } from "@clerk/nextjs";
+Mark the component `"use client"`, read `{ isLoaded, userId }` from
+`useAuth()`, and render a loading/redirect state until both are resolved.
 
-export default function ProtectedComponent() {
-  const { isLoaded, userId } = useAuth();
-
-  if (!isLoaded) return <Loading />;
-  if (!userId) return <Redirect to="/sign-in" />;
-
-  return <Content />;
-}
-```
+See `references/full-guide.md` (§ Use Auth Hook) for the full component.
 
 ### API Routes
 
-```typescript
-// app/api/protected/route.ts
-import { auth } from "@clerk/nextjs/server";
-import { NextResponse } from "next/server";
+Call `await auth()` inside the route handler and return `401` before doing
+any work when `userId` is missing.
 
-export async function GET() {
-  const { userId } = await auth();
-
-  if (!userId) {
-    return new NextResponse("Unauthorized", { status: 401 });
-  }
-
-  return NextResponse.json({ userId });
-}
-```
+See `references/full-guide.md` (§ Protected API Route) for the full handler.
 
 ### NestJS Guard
 
-```typescript
-// auth/clerk.guard.ts
-import { Injectable, CanActivate, ExecutionContext } from "@nestjs/common";
-import { clerkClient } from "@clerk/clerk-sdk-node";
+Extract the bearer token, verify it with `clerkClient.verifyToken`, and
+attach `userId` to the request; return `false`/throw on any failure.
 
-@Injectable()
-export class ClerkGuard implements CanActivate {
-  async canActivate(context: ExecutionContext): Promise<boolean> {
-    const request = context.switchToHttp().getRequest();
-    const token = this.extractToken(request);
-
-    if (!token) return false;
-
-    try {
-      const { userId } = await clerkClient.verifyToken(token);
-      request.userId = userId;
-      return true;
-    } catch {
-      return false;
-    }
-  }
-
-  private extractToken(request: any): string | null {
-    const auth = request.headers.authorization;
-    if (!auth?.startsWith("Bearer ")) return null;
-    return auth.slice(7);
-  }
-}
-```
+See `references/full-guide.md` (§ Authentication Guard) for the full guard.
 
 ## Webhook Configuration
 
-```typescript
-// app/api/webhooks/clerk/route.ts
-import { Webhook } from "svix";
-import { headers } from "next/headers";
-import { WebhookEvent } from "@clerk/nextjs/server";
+Verify the `svix-id` / `svix-timestamp` / `svix-signature` headers with the
+`svix` package against `CLERK_WEBHOOK_SECRET` before trusting the payload;
+never process an unverified webhook body.
 
-export async function POST(req: Request) {
-  const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET;
-  if (!WEBHOOK_SECRET) throw new Error("Missing CLERK_WEBHOOK_SECRET");
-
-  const headerPayload = headers();
-  const svix_id = headerPayload.get("svix-id");
-  const svix_timestamp = headerPayload.get("svix-timestamp");
-  const svix_signature = headerPayload.get("svix-signature");
-
-  const body = await req.text();
-  const wh = new Webhook(WEBHOOK_SECRET);
-  const evt = wh.verify(body, {
-    "svix-id": svix_id!,
-    "svix-timestamp": svix_timestamp!,
-    "svix-signature": svix_signature!,
-  }) as WebhookEvent;
-
-  // Handle event
-  switch (evt.type) {
-    case "user.created":
-      // Sync to database
-      break;
-  }
-
-  return new Response("OK", { status: 200 });
-}
-```
+See `references/full-guide.md` (§ Webhooks (Next.js App Router)) for the full
+route handler, and (§ Webhook Handler) for the NestJS controller equivalent.
 
 ## CI/CD Integration
 

@@ -5,7 +5,7 @@ compatibility: Requires git and GitHub CLI gh access to the target repository.
 disable-model-invocation: true
 allowed-tools: Bash(git *) Bash(gh *)
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
   tags: "github, pull-requests, publishing"
 ---
 
@@ -70,7 +70,9 @@ Delegates To:
 2. Protect default branches:
    - If on the default/trunk branch (or detached HEAD), create a feature branch
      before committing unless the user explicitly requested a release.
-   - Use branch prefix `codex/` unless the repo has a stronger convention.
+   - Follow the repo's existing branch naming convention if one is evident
+     from recent branches; otherwise use an intent prefix plus a short slug
+     (`feat/<slug>`, `fix/<slug>`, `chore/<slug>`).
    - Never rewrite shared branch history.
 
 3. Inspect work before writing:

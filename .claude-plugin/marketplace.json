@@ -448,7 +448,7 @@
     {
       "name": "mcp-builder",
       "source": "./skills/mcp-builder",
-      "description": "Creates MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Activates on: \"build an MCP server\", \"create MCP tools\", \"integrate API via MCP\", \"write a FastMCP server\", \"add MCP to Claude\", or any request to wrap an external API as LLM-callable tools in Python or Node/TypeScript."
+      "description": "Creates MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Activates on: \"build an MCP server\", \"create MCP tools\", \"integrate API via MCP\", \"write a FastMCP server\", \"add an MCP server to an agent\", or any request to wrap an external API as LLM-callable tools in Python or Node/TypeScript."
     },
     {
       "name": "memory-systems",
@@ -713,7 +713,7 @@
     {
       "name": "session-start",
       "source": "./skills/session-start",
-      "description": "Loads critical project context and recent session history at the start of each session or after `/clear` — reads `.agents/memory/` source-of-truth files, surfaces open next steps from the latest session log, and activates the session-documenter. Triggers on: session start, `/clear`, \"load context\", \"start session\", or first message in a new Claude Code session."
+      "description": "Loads critical project context and recent session history at the start of each session or after `/clear` — reads `.agents/memory/` source-of-truth files, surfaces open next steps from the latest session log, and activates the session-documenter. Triggers on: session start, `/clear`, \"load context\", \"start session\", or first message in a new agent session."
     },
     {
       "name": "setup-agent-routing",
@@ -783,7 +783,7 @@
     {
       "name": "structural-review",
       "source": "./skills/structural-review",
-      "description": "Perform a structural and maintainability review of a PR or codebase diff — covering file-size blockers, abstraction quality, layer violations, type structural discipline, spaghetti branching, non-atomic mutations, stack-specific hygiene (Bun, Tailwind v4, Next.js 16, shadcn/ui), design purity (code-judo), and directness over magic (no speculative generality). Use when asked to review code quality, maintainability, structural health, or architecture of a change. Orthogonal to /code-review (which owns correctness bugs and CLAUDE.md compliance) — run after correctness passes or in parallel when a thorough PR review is requested."
+      "description": "Perform a structural and maintainability review of a PR or codebase diff — covering file-size blockers, abstraction quality, layer violations, type structural discipline, spaghetti branching, non-atomic mutations, stack-specific hygiene (Bun, Tailwind v4, Next.js 16, shadcn/ui), design purity (code-judo), and directness over magic (no speculative generality). Use when asked to review code quality, maintainability, structural health, or architecture of a change. Orthogonal to /code-review (which owns correctness bugs and repo rule compliance) — run after correctness passes or in parallel when a thorough PR review is requested."
     },
     {
       "name": "systematic-debugging",

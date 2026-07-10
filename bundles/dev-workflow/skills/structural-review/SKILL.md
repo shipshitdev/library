@@ -8,10 +8,10 @@ description: >-
   purity (code-judo), and directness over magic (no speculative generality). Use when
   asked to review code quality, maintainability, structural health, or
   architecture of a change. Orthogonal to /code-review (which owns correctness
-  bugs and CLAUDE.md compliance) — run after correctness passes or in parallel
+  bugs and repo rule compliance) — run after correctness passes or in parallel
   when a thorough PR review is requested.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "code-quality, maintainability, architecture, refactoring, structural"
   author: Ship Shit Dev
 when_to_use: "structural review, maintainability review, code quality review, architecture review, thermo-nuclear review, code judo, simplify this PR, is this code clean, before merge review"
@@ -25,7 +25,7 @@ Opinionated structural and maintainability review rubric. Report-only — this s
 
 **Every structural finding must answer: "What exactly should the author delete, collapse, or rename — and which specific file/line is the canonical landing zone?"** Vague nits ("this could be cleaner") are noise. High-conviction, actionable findings only.
 
-This rubric is explicitly complementary to `/code-review`. Do not re-flag correctness bugs or CLAUDE.md rule violations already covered there. Own the orthogonal structural/maintainability/devex dimensions.
+This rubric is explicitly complementary to `/code-review`. Do not re-flag correctness bugs or repo instruction-file rule violations already covered there. Own the orthogonal structural/maintainability/devex dimensions.
 
 ## Primary Review Questions
 
@@ -220,7 +220,7 @@ directly. Add the abstraction back when the second caller actually arrives."
 - Style preferences not rooted in a structural defect (indentation, naming micro-variations).
 - Correctness bugs and test coverage gaps — these belong in `/code-review`.
 - Security issues — these belong in `/security-audit`.
-- CLAUDE.md rule violations already covered by the correctness review harness.
+- Repo instruction-file rule violations already covered by the correctness review harness.
 - Documentation gaps (inline docs, README updates) — off unless explicitly requested.
 - Coverage percentage floors — flag missing tests for new critical paths only, not a specific number.
 

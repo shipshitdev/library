@@ -2,7 +2,7 @@
 name: advanced-evaluation
 description: Design and operate LLM-as-a-Judge evaluation systems using direct scoring, pairwise comparison, rubric calibration, evaluator bias mitigation, confidence scoring, and automated quality assessment. Use when building LLM-as-judge systems, comparing model responses, calibrating rubrics, debugging inconsistent evaluations, or designing A/B tests for prompt or model changes.
 metadata:
-  version: "2.1.0"
+  version: "2.1.1"
   source: https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/blob/main/skills/advanced-evaluation/SKILL.md
   upstream_repo: muratcankoylan/Agent-Skills-for-Context-Engineering
   upstream_ref: main
@@ -87,35 +87,7 @@ Weight: [Relative importance, 0-1]
 - 1-5: Standard Likert, best balance of granularity and reliability
 - 1-10: Use only with detailed per-level rubrics because calibration is harder
 
-**Prompt Structure for Direct Scoring**:
-
-```
-You are an expert evaluator assessing response quality.
-
-## Task
-Evaluate the following response against each criterion.
-
-## Original Prompt
-{prompt}
-
-## Response to Evaluate
-{response}
-
-## Criteria
-{for each criterion: name, description, weight}
-
-## Instructions
-For each criterion:
-1. Find specific evidence in the response
-2. Score according to the rubric (1-{max} scale)
-3. Justify your score with evidence
-4. Suggest one specific improvement
-
-## Output Format
-Respond with structured JSON containing scores, justifications, and summary.
-```
-
-Require evidence before the score in scoring prompts so the judge must anchor its decision in observable output features before emitting a number.
+Require evidence before the score in scoring prompts so the judge must anchor its decision in observable output features before emitting a number. See `references/examples.md` (§ Direct Scoring Prompt Template) for the full prompt.
 
 ### Pairwise Comparison Implementation
 
@@ -127,42 +99,7 @@ Apply position bias mitigation in every pairwise evaluation:
 4. Consistency check: If passes disagree, return TIE with reduced confidence.
 5. Final verdict: Consistent winner with averaged confidence and explicit tie-breaker rationale.
 
-**Prompt Structure for Pairwise Comparison**:
-
-```
-You are an expert evaluator comparing two AI responses.
-
-## Critical Instructions
-- Do NOT prefer responses because they are longer
-- Do NOT prefer responses based on position (first vs second)
-- Focus ONLY on quality according to the specified criteria
-- Ties are acceptable when responses are genuinely equivalent
-
-## Original Prompt
-{prompt}
-
-## Response A
-{response_a}
-
-## Response B
-{response_b}
-
-## Comparison Criteria
-{criteria list}
-
-## Instructions
-1. Analyze each response independently first
-2. Compare them on each criterion
-3. Determine overall winner with confidence level
-
-## Output Format
-JSON with per-criterion comparison, overall winner, confidence (0-1), and reasoning.
-```
-
-**Confidence Calibration** — Map confidence to position consistency:
-
-- Both passes agree: confidence = average of individual confidences
-- Passes disagree: confidence = 0.5, verdict = TIE
+**Confidence Calibration** — map confidence to position consistency: both passes agree → confidence = average of individual confidences; passes disagree → confidence = 0.5, verdict = TIE. See `references/examples.md` (§ Pairwise Comparison Prompt Template) for the full prompt.
 
 ### Rubric Generation
 
@@ -219,137 +156,7 @@ For high-volume evaluation, apply one of these strategies:
 
 ## Examples
 
-### Example 1: Direct Scoring for Accuracy
-
-**Input**:
-
-```
-Prompt: "What causes seasons on Earth?"
-Response: "Seasons are caused by Earth's tilted axis. As Earth orbits the Sun,
-different hemispheres receive more direct sunlight at different times of year."
-Criterion: Factual Accuracy (weight: 1.0)
-Scale: 1-5
-```
-
-**Output**:
-
-```json
-{
-  "criterion": "Factual Accuracy",
-  "score": 5,
-  "evidence": [
-    "Correctly identifies axial tilt as primary cause",
-    "Correctly explains differential sunlight by hemisphere",
-    "No factual errors present"
-  ],
-  "justification": "Response accurately explains the cause of seasons with correct
-scientific reasoning. Both the axial tilt and its effect on sunlight distribution
-are correctly described.",
-  "improvement": "Could add the specific tilt angle (23.5 degrees) for completeness."
-}
-```
-
-### Example 2: Pairwise Comparison with Position Swap
-
-**Input**:
-
-```
-Prompt: "Explain machine learning to a beginner"
-Response A: [Technical explanation with jargon]
-Response B: [Simple analogy-based explanation]
-Criteria: ["clarity", "accessibility"]
-```
-
-**First Pass (A first)**:
-
-```json
-{ "winner": "B", "confidence": 0.8 }
-```
-
-**Second Pass (B first)**:
-
-```json
-{ "winner": "A", "confidence": 0.6 }
-```
-
-(Note: Winner is A because B was in first position)
-
-**Mapped Second Pass**:
-
-```json
-{ "winner": "B", "confidence": 0.6 }
-```
-
-**Final Result**:
-
-```json
-{
-  "winner": "B",
-  "confidence": 0.7,
-  "positionConsistency": {
-    "consistent": true,
-    "firstPassWinner": "B",
-    "secondPassWinner": "B"
-  }
-}
-```
-
-### Example 3: Rubric Generation
-
-**Input**:
-
-```
-criterionName: "Code Readability"
-criterionDescription: "How easy the code is to understand and maintain"
-domain: "software engineering"
-scale: "1-5"
-strictness: "balanced"
-```
-
-**Output** (abbreviated):
-
-```json
-{
-  "levels": [
-    {
-      "score": 1,
-      "label": "Poor",
-      "description": "Code is difficult to understand without significant effort",
-      "characteristics": [
-        "No meaningful variable or function names",
-        "No comments or documentation",
-        "Deeply nested or convoluted logic"
-      ]
-    },
-    {
-      "score": 3,
-      "label": "Adequate",
-      "description": "Code is understandable with some effort",
-      "characteristics": [
-        "Most variables have meaningful names",
-        "Basic comments present for complex sections",
-        "Logic is followable but could be cleaner"
-      ]
-    },
-    {
-      "score": 5,
-      "label": "Excellent",
-      "description": "Code is immediately clear and maintainable",
-      "characteristics": [
-        "All names are descriptive and consistent",
-        "Comprehensive documentation",
-        "Clean, modular structure"
-      ]
-    }
-  ],
-  "edgeCases": [
-    {
-      "situation": "Code is well-structured but uses domain-specific abbreviations",
-      "guidance": "Score based on readability for domain experts, not general audience"
-    }
-  ]
-}
-```
+Three worked examples — direct scoring for factual accuracy, pairwise comparison with position swap, and rubric generation — are in `references/examples.md` (§ Example 1-3).
 
 ## Guidelines
 
@@ -408,6 +215,7 @@ Internal reference:
 - [Bias Mitigation Techniques](./references/bias-mitigation.md) - Read when: evaluation results show inconsistent or suspicious scoring patterns
 - [Metric Selection Guide](./references/metrics-guide.md) - Read when: choosing statistical metrics to validate evaluation reliability
 - [Evaluation Pipeline Diagram](./references/evaluation-pipeline.md) - Read when: designing the architecture of a multi-stage evaluation system
+- [Prompt Templates & Worked Examples](./references/examples.md) - Read when: writing direct scoring or pairwise comparison prompts, or reviewing full worked examples
 
 External research:
 

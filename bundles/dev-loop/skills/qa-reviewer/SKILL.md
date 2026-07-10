@@ -7,7 +7,7 @@ description: >-
   multi-step implementations, before committing major refactors, or proactively
   after any task longer than five steps.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "quality-assurance, verification, code-review, accuracy, completeness"
 ---
 
@@ -32,7 +32,7 @@ Structured framework for reviewing AI agent work before finalizing changes. Catc
 
 - Review original task and requirements
 - List all deliverables (files created/modified/deleted)
-- Check critical rules (CLAUDE.md — repo-level and global)
+- Check critical rules (agent instruction files — `AGENTS.md`/`CLAUDE.md`/`CODEX.md`, repo-level and global)
 
 ### 2. Requirement Verification
 

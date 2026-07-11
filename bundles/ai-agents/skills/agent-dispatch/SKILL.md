@@ -11,7 +11,7 @@ description: >-
   drift, initialize agent docs, or wire up routing, and the action must be picked
   from an argument like "audit", "config", "init", or "route".
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   tags: "agents, dispatcher, architecture, config, setup, routing, orchestration"
   author: Ship Shit Dev
 when_to_use: "/agent, agent audit, config audit, init agent folder, setup agent routing, audit LLM wrappers, check agent config drift, add .agents/ folder, wire up dev-loop routing"
@@ -32,8 +32,9 @@ Outputs:
 
 - For `audit`: a severity-ranked findings report diagnosing LLM wrapper and agent
   failures, with a layer-by-layer fix plan.
-- For `config`: an audit report covering CLAUDE.md, CODEX.md, AGENTS.md,
-  .cursorrules, hooks, and settings, with proposed fixes.
+- For `config`: an audit report covering AGENTS.override.md, AGENTS.md,
+  configured fallbacks, CLAUDE.md, .cursorrules, hooks, and settings, with
+  proposed fixes.
 - For `init`: a scaffolded `.agents/` folder structure plus root agent entry
   files, with a summary of files created versus skipped.
 - For `route`: a drafted `## Agent skills` routing block in CLAUDE.md/AGENTS.md
@@ -92,7 +93,7 @@ the Usage block — do not guess a mode.
 ```bash
 /agent              # status: one-line domain summary + usage
 /agent audit        # diagnose LLM wrapper regressions, prompt/memory contamination, tool discipline failures
-/agent config       # audit and sync CLAUDE.md, CODEX.md, AGENTS.md, hooks, settings across workspaces
+/agent config       # audit and sync AGENTS.md, overrides, fallbacks, CLAUDE.md, hooks, and settings
 /agent init         # scaffold or repair the .agents/ folder and root agent entry files for a repo
 /agent route        # write the ## Agent skills routing block in CLAUDE.md/AGENTS.md + docs/agents/
 ```

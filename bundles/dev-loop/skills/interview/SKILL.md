@@ -4,7 +4,7 @@ description: Conducts a repo-grounded discovery interview before PRD writing, fe
 user-invocable: true
 argument-hint: "[topic, feature, issue, or decision]"
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   tags: "interview, discovery, requirements, planning"
   author: Ship Shit Dev
 when_to_use: "interview me, grill me, grill-me, grill me with docs, discovery interview, requirements interview, before PRD, clarify requirements, /interview"
@@ -89,8 +89,9 @@ Read repo context before asking questions:
   docs.
 - Check recent `.agents/sessions/` entries only when they are relevant to the
   topic.
-- Read root agent entry files such as `AGENTS.md`, `CLAUDE.md`, or `CODEX.md`
-  for routing and repo rules.
+- Read the applicable `AGENTS.override.md` / `AGENTS.md` chain for routing and
+  repo rules, plus any fallback filename explicitly configured for Codex. Read
+  `CLAUDE.md` when the active workflow is Claude-specific.
 - Search docs, README files, source code, and issues for the topic before
   asking the user to repeat known context.
 

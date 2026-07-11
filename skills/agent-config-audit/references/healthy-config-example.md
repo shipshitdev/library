@@ -4,7 +4,7 @@ What a well-maintained agent config stack looks like for a monorepo workspace.
 
 ## Root Level
 
-### CLAUDE.md (~80 lines)
+### AGENTS.md (~80 lines)
 
 - Workspace overview (repo table)
 - Cross-repo rules (5-7 rules, one line each)
@@ -12,17 +12,20 @@ What a well-maintained agent config stack looks like for a monorepo workspace.
 - Self-correction protocol
 - Learned Rules section (seeded, actively used)
 
-### CODEX.md (~30-40 lines)
+### AGENTS.override.md (only when needed)
 
-- Codex-specific constraints (sandbox, no network, no interactive)
-- Quick nav to critical docs
-- Cross-repo rules (brief, for context since Codex can't load CLAUDE.md hierarchy)
+- Scoped replacement guidance for a subtree with genuinely different rules
+- Omitted when normal AGENTS.md inheritance is sufficient
 
-### AGENTS.md (~15-20 lines)
+### CLAUDE.md (optional)
 
-- Brief workspace description
-- Navigation to `.agents/README.md` and CLAUDE.md
-- Links to priority reading
+- Claude-specific additions only
+- References AGENTS.md instead of repeating shared project rules
+
+### Effective .codex/config.toml (when runtime customization is needed)
+
+- Explicit fallback instruction filenames, if any
+- Approval, sandbox, and network policy for this runtime
 
 ### .cursor/rules (~100-130 lines)
 
@@ -46,7 +49,7 @@ What a well-maintained agent config stack looks like for a monorepo workspace.
 
 ## Per-Repo Level
 
-### CLAUDE.md (~50-150 lines)
+### AGENTS.md (~50-150 lines)
 
 - Tech stack
 - Commands (dev, build, test, lint)
@@ -55,16 +58,10 @@ What a well-maintained agent config stack looks like for a monorepo workspace.
 - Learned Rules section (seeded)
 - Does NOT repeat full cross-repo rules from root
 
-### CODEX.md (~20-30 lines)
+### CLAUDE.md (optional, concise)
 
-- Codex-specific notes (what won't work in sandbox)
-- Key entry points (3-5 most important files)
-- Links to CLAUDE.md and .agents/
-
-### AGENTS.md (~15-30 lines)
-
-- Repo description with tech context (not just "docs in .agents/")
-- Links to project `.agents/` and workspace `.agents/`
+- Claude-specific additions not shared by other agents
+- Links to AGENTS.md and `.agents/memory/`
 
 ### .cursorrules (~60-70 lines)
 
@@ -79,7 +76,7 @@ What a well-maintained agent config stack looks like for a monorepo workspace.
 |--------|---------|---------|----------|
 | Max rule occurrences | 2 | 3 | 4+ |
 | Stale files (> 90 days) | 0 | 1-2 | 3+ |
-| Zero-value CODEX.md stubs | 0 | 1-2 | 3+ |
+| Unconfigured instruction fallbacks | 0 | 1 | 2+ |
 | Emoji in config headers | 0 | 1-5 | 6+ |
 | Hardcoded absolute paths | 0 | 1 | 2+ |
 | Undocumented denied skills | 0 | 1-3 | 4+ |

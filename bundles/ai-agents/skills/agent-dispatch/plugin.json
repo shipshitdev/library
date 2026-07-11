@@ -1,6 +1,6 @@
 {
   "name": "agent-dispatch",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Front door for agent work \u2014 routes audit/config/init/route to the right engine.",
   "author": {
     "name": "Ship Shit Dev",

@@ -79,7 +79,7 @@ If components were scaffolded, verify:
 
 - Files were created successfully
 - Directory structure is correct
-- Entry files (AGENTS.md, CLAUDE.md, CODEX.md) exist
+- Shared `AGENTS.md` exists; `CLAUDE.md` exists when Claude-specific additions are requested
 
 ## Example Workflow
 

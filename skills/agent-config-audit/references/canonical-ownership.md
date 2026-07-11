@@ -6,37 +6,35 @@ Each rule should live in ONE file. Other files may reference it but should not r
 
 | Rule | Canonical Home | May Reference | Runtime Enforcement |
 |------|---------------|---------------|---------------------|
-| No `any` types | `CLAUDE.md` (cross-repo rules) | Per-repo CLAUDE.md (brief mention OK) | hooks.json |
-| No `console.log` | `CLAUDE.md` (cross-repo rules) | Per-repo CLAUDE.md (brief mention OK) | — |
-| Path aliases over relative imports | `CLAUDE.md` (cross-repo rules) | — | — |
-| Conventional commits | `CLAUDE.md` (cross-repo rules) | — | — |
-| Never commit secrets | `CLAUDE.md` (cross-repo rules) | — | — |
-| Import order (detailed) | `CLAUDE_RULES.md` (global rules) | — | — |
-| AbortController in useEffect | `CLAUDE_RULES.md` (global rules) | CRITICAL-NEVER-DO.md (one-liner) | — |
-| Session file naming | hooks.json (runtime) | CRITICAL-NEVER-DO.md (one mention) | hooks.json |
-| Multi-tenancy (org filter) | `CRITICAL-NEVER-DO.md` | Per-repo CLAUDE.md (brief mention OK) | — |
-| Soft delete (isDeleted) | `CRITICAL-NEVER-DO.md` | — | — |
-| Serializer location | `CRITICAL-NEVER-DO.md` | Per-repo CLAUDE.md (brief mention OK) | — |
-| No inline interfaces | `CRITICAL-NEVER-DO.md` | — | — |
-| Naming conventions | `CLAUDE.md` (repo-level) | .agents/memory/ (detail doc) | — |
-| Function declaration style | `CLAUDE.md` (repo-level) | .agents/memory/ (detail doc) | — |
-| Testing standards | `CLAUDE.md` (repo-level) | .agents/memory/ (detail doc) | — |
-| Performance patterns | `CLAUDE.md` (repo-level) | .agents/memory/ (detail doc) | — |
+| No `any` types | `AGENTS.md` (cross-agent rule) | Scoped AGENTS.md (brief mention OK) | hooks.json |
+| No `console.log` | `AGENTS.md` (cross-agent rule) | Scoped AGENTS.md (brief mention OK) | — |
+| Path aliases over relative imports | `AGENTS.md` (cross-agent rule) | — | — |
+| Conventional commits | `AGENTS.md` (cross-agent rule) | — | — |
+| Never commit secrets | `AGENTS.md` (cross-agent rule) | `.agents/memory/security.md` (detail) | hooks.json |
+| Import order (detailed) | `.agents/memory/coding-standards.md` | AGENTS.md (brief mention OK) | — |
+| AbortController in useEffect | `.agents/memory/coding-standards.md` | AGENTS.md (brief mention OK) | — |
+| Session file naming | hooks.json (runtime) | AGENTS.md (one mention) | hooks.json |
+| Multi-tenancy (org filter) | `.agents/memory/security.md` | AGENTS.md (brief mention OK) | — |
+| Soft delete (isDeleted) | `.agents/memory/data-guardrails.md` | AGENTS.md (brief mention OK) | — |
+| Serializer location | `.agents/memory/architecture.md` | AGENTS.md (brief mention OK) | — |
+| No inline interfaces | `.agents/memory/coding-standards.md` | AGENTS.md (brief mention OK) | — |
+| Naming conventions | `AGENTS.md` (repo-level) | `.agents/memory/coding-standards.md` (detail) | — |
+| Function declaration style | `AGENTS.md` (repo-level) | `.agents/memory/coding-standards.md` (detail) | — |
+| Testing standards | `AGENTS.md` (repo-level) | `.agents/memory/testing.md` (detail) | — |
+| Performance patterns | `AGENTS.md` (repo-level) | `.agents/memory/performance.md` (detail) | — |
 
 ## File Roles
 
 | File | Role | Contains |
 |------|------|----------|
-| `CLAUDE.md` (root) | Workspace overview | Cross-repo "do this" rules, repo table, agent behavior |
-| `CLAUDE.md` (per-repo) | Repo-specific guide | Tech stack, commands, repo-specific rules, architecture |
-| `CLAUDE_RULES.md` (global) | Behavioral preferences | Tool usage, code standards detail, session management |
-| `CRITICAL-NEVER-DO.md` | Violations only | "NEVER do X" rules with examples of what breaks |
-| `.agents/memory/*.md` | Durable project facts | Architecture, naming conventions, gotchas, extended standards — details beyond CLAUDE.md |
-| `CODEX.md` | Codex-specific | Sandbox constraints, key entry points, no-network notes |
-| `AGENTS.md` | Generic agent nav | Entry points for any AI agent (Cursor, Copilot, etc.) |
+| `AGENTS.md` (root or scoped) | Native shared instructions | Workspace overview, commands, repo rules, navigation |
+| `AGENTS.override.md` | Native scoped override | Intentional replacement guidance for one subtree |
+| `CLAUDE.md` | Claude-specific additions | Claude-only behavior that does not belong in shared instructions |
+| `.agents/memory/*.md` | Durable project facts | Architecture, naming conventions, gotchas, and extended standards linked from AGENTS.md |
 | `.cursorrules` | Cursor-specific | Project navigation, reading order, .agents/ structure |
 | `hooks.json` | Runtime enforcement | Catches violations at tool-call time (session files, any types, tests) |
-| `settings.json` | Permission control | Denied skills, MCP config |
+| Effective `.codex/config.toml` | Codex runtime configuration | Fallback instruction filenames, approvals, sandbox and network policy |
+| `settings.json` | Claude permission control | Denied skills, MCP config |
 
 ## Referencing vs Repeating
 

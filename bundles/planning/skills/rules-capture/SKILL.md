@@ -8,7 +8,7 @@ description: >-
   rule is", "stop doing X", "I prefer", frustration indicators, or any
   correction to AI behavior.
 metadata:
-  version: "1.0.1"
+  version: "1.1.0"
   tags: "preferences, rules, documentation, automation"
 ---
 
@@ -154,7 +154,9 @@ Should I add this to the permanent rules? [Yes/No/Modify]
 
 ### 5. On Confirmation
 - **Personal preferences** → append to the user's platform-level instruction file under the appropriate section
-- **Project coding standards** → append to the repo-level agent instruction file (`AGENTS.md`, `CLAUDE.md`, `CODEX.md`, or equivalent)
+- **Shared project coding standards** → append to the applicable `AGENTS.md`
+- **Scoped project overrides** → use `AGENTS.override.md` only when inherited guidance must be replaced for a subtree
+- **Claude-specific behavior** → append to `CLAUDE.md`
 - **Durable project facts** (architecture, deployment notes, gotchas) → add/update a file in `.agents/memory/`
 - Remove the entry from `.agents/memory/captured-rules.md` (or mark it PROCESSED)
 

@@ -33,7 +33,11 @@ List all changes made:
 
 **1.3 Check Critical Rules**
 
-For projects, ALWAYS verify against repo-level agent instructions (`AGENTS.md`, `CLAUDE.md`, `CODEX.md`, or equivalent) and the user's platform-level instruction file. These are the canonical sources for project rules and "never do" constraints. The harness loads them automatically; read them if you need to reference specific rules during review.
+For projects, ALWAYS verify against the applicable `AGENTS.override.md` /
+`AGENTS.md` chain and the user's platform-level instruction file. Include any
+fallback filename explicitly configured by the active harness and read
+`CLAUDE.md` for Claude-specific rules. These are the canonical sources for
+project rules and "never do" constraints.
 
 ### Phase 2: Requirement Verification
 
@@ -137,7 +141,8 @@ Look for:
 
 **4.3 Project-Specific Violations**
 
-Check against the rules in CLAUDE.md (repo-level and global):
+Check against the applicable `AGENTS.override.md` / `AGENTS.md` chain and
+Claude-specific `CLAUDE.md` when relevant:
 
 ```
 Violations to check:
@@ -148,7 +153,8 @@ Violations to check:
 [ ] No serializers in API repo
 [ ] No test execution locally
 [ ] Multi-tenancy enforced
-[ ] AGENTS.md/CLAUDE.md/CODEX.md not deleted
+[ ] Applicable AGENTS.md / AGENTS.override.md files not deleted
+[ ] Explicitly configured fallback instruction files exist and are nonempty
 [ ] .agents/ folders not deleted
 ```
 
@@ -257,7 +263,7 @@ Minor:
 
 ## Project Rules Compliance
 
-CLAUDE.md rules checked:
+Applicable project instructions checked:
 
 - No console.log violations
 - No `any` types added

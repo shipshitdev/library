@@ -7,7 +7,7 @@ description: >-
   multi-step implementations, before committing major refactors, or proactively
   after any task longer than five steps.
 metadata:
-  version: "1.0.1"
+  version: "1.1.0"
   tags: "quality-assurance, verification, code-review, accuracy, completeness"
 ---
 
@@ -32,7 +32,9 @@ Structured framework for reviewing AI agent work before finalizing changes. Catc
 
 - Review original task and requirements
 - List all deliverables (files created/modified/deleted)
-- Check critical rules (agent instruction files — `AGENTS.md`/`CLAUDE.md`/`CODEX.md`, repo-level and global)
+- Check critical rules in the applicable `AGENTS.override.md` / `AGENTS.md`
+  chain and explicitly configured fallback files; include `CLAUDE.md` for
+  Claude-specific rules
 
 ### 2. Requirement Verification
 
@@ -83,7 +85,8 @@ grep -r ": any" <files>
 - [ ] No console.log (use logger)
 - [ ] No `any` types
 - [ ] No inline interfaces
-- [ ] AGENTS/CLAUDE/CODEX files intact
+- [ ] Applicable AGENTS files intact and scoped overrides intentional
+- [ ] Configured fallback instruction files exist and are nonempty
 - [ ] .agents/ folders untouched
 - [ ] Multi-tenancy preserved
 

@@ -12,7 +12,9 @@ Scan `.agents/memory/` to load durable project context. Each file covers one top
 ls .agents/memory/
 ```
 
-Read the files most relevant to today's work. Rules and preferences are already loaded from CLAUDE.md (repo-level) and the global `~/.claude/CLAUDE.md`; no separate preferences file needed.
+Read the files most relevant to today's work. Shared rules and preferences live
+in the applicable `AGENTS.md` chain; read `CLAUDE.md` only for Claude-specific
+additions. No separate preferences file is needed.
 
 ### 2. Read Today's Session File
 

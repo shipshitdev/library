@@ -1,10 +1,10 @@
 ---
 name: agent-config-audit
-description: Audit and sync AI agent configuration files (CLAUDE.md, CODEX.md, AGENTS.md, .cursorrules, hooks, settings) across workspaces. Use when agent configs drift, rules duplicate, files go stale, or after workspace restructuring.
+description: Audit and sync AI agent instruction files (AGENTS.override.md, AGENTS.md, configured fallbacks, CLAUDE.md, hooks, and settings) across workspaces. Use when agent configs drift, rules duplicate, files go stale, or after workspace restructuring.
 metadata:
-  version: "1.0.0"
-  tags: audit, claude-md, codex-md, agents-md, config, documentation, maintenance
-  triggers: audit CLAUDE.md, agent config audit, sync agent configs, check CLAUDE.md, docs out of date, rules duplicated, config drift, stale cursorrules, CODEX.md outdated, agent config maintenance
+  version: "1.1.0"
+  tags: audit, claude-md, agents-md, config, documentation, maintenance
+  triggers: audit AGENTS.md, audit CLAUDE.md, agent config audit, sync agent configs, check AGENTS.md, docs out of date, rules duplicated, config drift, stale cursorrules, agent config maintenance
 allowed-tools:
 - Read
 - Write
@@ -22,7 +22,7 @@ allowed-tools:
 Inputs:
 
 - Workspace root
-- Scope: full, dedup, stale, codex, cursor, settings, or fix
+- Scope: full, dedup, stale, instructions, cursor, settings, or fix
 - Optional list of repos/config files to include
 
 Outputs:
@@ -74,7 +74,7 @@ Delegates To:
 | Input | Required | Description |
 |-------|----------|-------------|
 | Workspace root | Yes | Path to the workspace containing repos (auto-detected from cwd) |
-| Scope | No | `full` (all checks) or specific: `dedup`, `stale`, `codex`, `cursor`, `settings` |
+| Scope | No | `full` (all checks) or specific: `dedup`, `stale`, `instructions`, `cursor`, `settings` |
 | Fix mode | No | `report` (default, read-only) or `fix` (apply recommended changes) |
 
 ## Workflow
@@ -86,7 +86,7 @@ Scan the workspace for every agent config file:
 ```bash
 # Find all agent config files across workspace (including sub-repos)
 glob "**/CLAUDE.md"
-glob "**/CODEX.md"
+glob "**/AGENTS.override.md"
 glob "**/AGENTS.md"
 glob "**/.cursorrules"
 glob "**/.cursor/rules"
@@ -102,8 +102,9 @@ Build an inventory table:
 | Layer           | Files Found | Total Lines |
 |-----------------|-------------|-------------|
 | CLAUDE.md       | N           | N           |
-| CODEX.md        | N           | N           |
+| AGENTS.override.md | N        | N           |
 | AGENTS.md       | N           | N           |
+| Configured fallbacks | N      | N           |
 | .cursorrules    | N           | N           |
 | .claude/ config | N           | N           |
 | .agents/memory/ | N           | N           |
@@ -115,14 +116,14 @@ These rules commonly appear in multiple places. Search for each across ALL confi
 
 **Rules to check:**
 
-- `any` types / `No any` — should be in CLAUDE.md + hooks only
-- `console.log` / logger — should be in CLAUDE.md only
-- Conventional commits — should be in CLAUDE.md only
-- AbortController — should be in CLAUDE_RULES.md / repo CLAUDE.md only
+- `any` types / `No any` — should be in AGENTS.md + hooks only
+- `console.log` / logger — should be in AGENTS.md only
+- Conventional commits — should be in AGENTS.md only
+- AbortController — should be in AGENTS.md or a linked `.agents/memory/` topic only
 - Session file naming — should be in hooks.json + one doc reference only
-- Import order — should be in CLAUDE_RULES.md only
-- Soft delete (`isDeleted`) — should be in CRITICAL-NEVER-DO.md only
-- Multi-tenancy (`organization: orgId`) — should be in CRITICAL-NEVER-DO.md only
+- Import order — should be in AGENTS.md or `.agents/memory/coding-standards.md` only
+- Soft delete (`isDeleted`) — should be in `.agents/memory/data-guardrails.md` only
+- Multi-tenancy (`organization: orgId`) — should be in `.agents/memory/security.md` only
 
 For each rule, count occurrences:
 
@@ -153,19 +154,22 @@ grep -r "/Users/" across .agents/ config files
 **Flag**: Any hardcoded absolute path in config files.
 **Flag**: Any reference to a directory that doesn't exist.
 
-### Step 4: CODEX.md Value Check
+### Step 4: Codex Instruction Resolution Check
 
-For each CODEX.md, check if it has:
+For each workspace, check the instruction chain Codex actually resolves:
 
-- [ ] Codex-specific constraints (sandbox, no network, no interactive)
-- [ ] Repo-specific entry points (key files to read first)
-- [ ] NOT just "read CLAUDE.md" (that's a zero-value redirect stub)
+- [ ] Each directory resolves at most one nonempty instruction file in this order: `AGENTS.override.md`, `AGENTS.md`, then configured fallback filenames
+- [ ] The instruction chain is read from the project root down to the working directory
+- [ ] `AGENTS.override.md` is used only where a subtree intentionally replaces the same-directory `AGENTS.md`
+- [ ] `AGENTS.md` contains repo-specific rules and entry points
+- [ ] Any fallback filenames are explicitly declared in the effective `.codex/config.toml`
+- [ ] Runtime approval, sandbox, and network policy lives in the effective `.codex/config.toml` or hooks, not in assumed prose
 
-```bash
-grep -l "Codex-Specific\|sandbox\|no network\|No network" across all CODEX.md files
-```
+Read the effective Codex configuration and record
+`project_doc_fallback_filenames` plus any runtime policy before judging the
+instruction chain.
 
-**Flag**: Any CODEX.md without Codex-specific guidance.
+**Flag**: Undocumented fallback files, accidental overrides, or instruction files that contradict runtime configuration.
 
 ### Step 5: AGENTS.md Consistency Check
 
@@ -219,9 +223,9 @@ Output format:
 | File | Last Updated | Days Stale |
 |------|-------------|------------|
 
-## Moderate: Low-Value CODEX.md
-| File | Lines | Has Codex Constraints | Has Entry Points |
-|------|-------|----------------------|------------------|
+## Moderate: Instruction Resolution Drift
+| Workspace | Override | AGENTS.md | Configured Fallbacks | Runtime Policy Location |
+|-----------|----------|-----------|----------------------|-------------------------|
 
 ## Moderate: Stub AGENTS.md
 | File | Lines | Has Repo Context |
@@ -245,7 +249,8 @@ If user requested `fix` mode, apply changes following these principles:
 - Strip emoji from all config files
 - Update all "Last Updated" dates
 - Replace hardcoded paths with relative references
-- Expand zero-value CODEX.md stubs with Codex-specific constraints
+- Consolidate project instructions into AGENTS.md and scoped AGENTS.override.md files
+- Move runtime approval, sandbox, and network policy into the effective `.codex/config.toml` or hooks
 
 ## Reference Files
 
@@ -256,12 +261,12 @@ If user requested `fix` mode, apply changes following these principles:
 
 | DON'T | DO | Why |
 |-------|-----|-----|
-| Repeat the same rule in CLAUDE.md, RULES.md, CRITICAL-NEVER-DO.md, and hooks | Put the rule in ONE canonical file; others reference it | Duplication wastes context tokens and creates drift when one copy gets updated but others don't |
+| Repeat the same rule in AGENTS.md, CLAUDE.md, `.agents/memory/`, and hooks | Put the rule in ONE canonical file; others reference it | Duplication wastes context tokens and creates drift when one copy gets updated but others don't |
 | Leave "Last Updated: 2025-10-07" in a file touched in 2026 | Update dates when modifying any config file | Stale dates signal neglect and erode trust in the config system |
-| Write CODEX.md that just says "read CLAUDE.md" | Add Codex-specific constraints (sandbox, no network) and key entry points | Codex runs sandboxed — it needs different guidance than Claude Code |
+| Create an extra instruction filename without configuring it | Put shared project guidance in AGENTS.md; use AGENTS.override.md for scoped overrides and configure any genuine fallback in the effective `.codex/config.toml` | Codex resolves native instruction names plus explicitly configured fallbacks |
 | Use emoji in config headers | Use plain text headers | Emoji waste tokens on every context load and violate "no emoji unless requested" |
 | Hardcode `/Users/username/path/` in config files | Use relative paths or describe location generically | Hardcoded paths break when workspace moves or another developer joins |
-| Add new rules to CRITICAL-NEVER-DO.md that are positive standards | Keep CRITICAL-NEVER-DO.md for violations only; positive standards go in CLAUDE.md or RULES.md | Mixing positive and negative rules in the same file dilutes the "NEVER DO" signal |
+| Recreate a parallel legacy instruction tree under `.agents/` | Put durable guardrails in topic files under `.agents/memory/`; put shared actionable rules in AGENTS.md | The current memory layout keeps durable context discoverable without parallel hierarchies |
 
 ## Validation
 
@@ -269,7 +274,8 @@ After running the audit:
 
 - [ ] No rule appears in more than 2 config files
 - [ ] All `.cursorrules` files have "Last Updated" within 90 days
-- [ ] Every CODEX.md has Codex-specific sandbox guidance
+- [ ] Every Codex instruction file is native (`AGENTS.override.md` or `AGENTS.md`) or an explicitly configured fallback
+- [ ] Runtime approval, sandbox, and network claims match the effective `.codex/config.toml` or hooks
 - [ ] No hardcoded absolute paths in any config file
 - [ ] No emoji in `.cursorrules` or `.cursor/rules` headers
 - [ ] Denied skills in settings.json have documented rationale

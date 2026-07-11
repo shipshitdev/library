@@ -2,7 +2,7 @@
 name: agent-folder-init
 description: Add or repair .agents/ project context for an existing repo. Use for AI agent documentation, session tracking, task management, and coding standards; do not use as the primary new-product scaffold.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   tags: "agents, setup, documentation"
 ---
 
@@ -19,7 +19,7 @@ Inputs:
 Outputs:
 
 - `.agents/` documentation structure
-- Root agent entry files such as `AGENTS.md`, `CLAUDE.md`, and `CODEX.md`
+- Root `AGENTS.md` for shared project instructions and `CLAUDE.md` for Claude-specific additions
 - Summary of files created and files skipped because they already existed
 
 Creates/Modifies:
@@ -94,7 +94,10 @@ python3 scripts/scaffold.py \
     └── TEMPLATE.md              # Session file template
 ```
 
-**Rules and coding standards** go in the repo's agent entry file (`AGENTS.md`, `CLAUDE.md`, or `CODEX.md`) and the user's platform-level instruction file — not inside `.agents/`.
+**Shared rules and coding standards** go in the applicable `AGENTS.md`. Use
+`AGENTS.override.md` only for an intentional subtree override and `CLAUDE.md`
+only for Claude-specific additions. Durable supporting detail belongs in
+`.agents/memory/`.
 
 **Task tracking** uses GitHub Issues (`gh issue list`, `gh issue create`) — not local task files.
 
@@ -132,9 +135,8 @@ python3 scripts/scaffold.py \
 
 ### Root Files
 
-- `AGENTS.md` - Points to `.agents/README.md`
-- `CLAUDE.md` - Claude-specific entry point
-- `CODEX.md` - Codex-specific entry point
+- `AGENTS.md` - Shared project instructions and `.agents/` navigation
+- `CLAUDE.md` - Claude-specific additions that reference `AGENTS.md`
 - `.editorconfig` - Editor configuration
 
 ## Key Patterns

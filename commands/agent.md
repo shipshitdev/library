@@ -9,7 +9,7 @@ the `.agents/` folder, or wire up dev-loop routing.
 ```bash
 /agent              # status: one-line domain summary + usage
 /agent audit        # diagnose LLM wrapper regressions, prompt/memory contamination, tool discipline failures
-/agent config       # audit and sync CLAUDE.md, CODEX.md, AGENTS.md, hooks, settings across workspaces
+/agent config       # audit and sync AGENTS.md, overrides, fallbacks, CLAUDE.md, hooks, and settings
 /agent init         # scaffold or repair the .agents/ folder and root agent entry files for a repo
 /agent route        # write the ## Agent skills routing block in CLAUDE.md/AGENTS.md + docs/agents/
 ```
@@ -22,13 +22,13 @@ the `.agents/` folder, or wire up dev-loop routing.
   rendering corruption. Produces a severity-ranked findings report and an ordered
   fix plan.
 - **`config`** — the `agent-config-audit` skill: audit and sync AI agent
-  configuration files (CLAUDE.md, CODEX.md, AGENTS.md, .cursorrules, hooks,
-  settings) across workspaces. Use when agent configs drift, rules duplicate, files
-  go stale, or after workspace restructuring.
+  instruction files (AGENTS.override.md, AGENTS.md, configured fallbacks,
+  CLAUDE.md, .cursorrules, hooks, and settings) across workspaces. Use when agent
+  configs drift, rules duplicate, files go stale, or after workspace restructuring.
 - **`init`** — the `agent-folder-init` skill: add or repair the `.agents/` project
   context for an existing repo. Creates the `.agents/` folder structure plus root
-  agent entry files (AGENTS.md, CLAUDE.md, CODEX.md) without touching application
-  source code.
+  shared AGENTS.md and optional Claude-specific CLAUDE.md without touching
+  application source code.
 - **`route`** — the `setup-agent-routing` skill: write a machine-readable
   `## Agent skills` routing block in CLAUDE.md/AGENTS.md and seed `docs/agents/`
   reference files so the dev-loop skills (executing-plans, feature-intake,

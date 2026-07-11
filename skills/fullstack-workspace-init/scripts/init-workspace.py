@@ -176,7 +176,7 @@ def create_agents_md(name: str) -> str:
     return dedent(f"""\
         # {name}
 
-        AI agent entry point. Documentation in `.agents/`.
+        Shared project instructions for AI agents, including Codex. Documentation in `.agents/`.
 
         ## Projects
 
@@ -195,7 +195,7 @@ def create_claude_md(name: str) -> str:
     return dedent(f"""\
         # {name}
 
-        Claude entry point. Rules and coding standards are defined in this file and `~/.claude/CLAUDE.md`.
+        Claude-specific additions. Read `AGENTS.md` first for shared project instructions.
 
         ## Commands
 
@@ -208,14 +208,6 @@ def create_claude_md(name: str) -> str:
         ## Project Context
 
         Durable project facts live in `.agents/memory/`. Session logs are in `.agents/sessions/`.
-    """)
-
-
-def create_codex_md(name: str) -> str:
-    return dedent(f"""\
-        # {name}
-
-        Codex entry point. Documentation in `.agents/`.
     """)
 
 
@@ -1858,7 +1850,6 @@ def scaffold_workspace(
         root / "README.md": create_readme(name),
         root / "AGENTS.md": create_agents_md(name),
         root / "CLAUDE.md": create_claude_md(name),
-        root / "CODEX.md": create_codex_md(name),
 
         # GitHub Actions CI
         root / ".github" / "workflows" / "ci.yml": generate_github_actions_ci(),
@@ -1874,7 +1865,6 @@ def scaffold_workspace(
         root / "api" / "apps" / "api" / "src" / "app.module.ts": app_module_content,
         root / "api" / "AGENTS.md": create_agents_md(f"{name} API"),
         root / "api" / "CLAUDE.md": create_claude_md(f"{name} API"),
-        root / "api" / "CODEX.md": create_codex_md(f"{name} API"),
 
         # Auth files (always generated)
         root / "api" / "apps" / "api" / "src" / "auth" / "guards" / "clerk-auth.guard.ts": generate_clerk_auth_guard(),
@@ -1893,7 +1883,6 @@ def scaffold_workspace(
         root / "frontend" / "apps" / "dashboard" / "app" / "globals.scss": create_frontend_globals_scss(),
         root / "frontend" / "AGENTS.md": create_agents_md(f"{name} Frontend"),
         root / "frontend" / "CLAUDE.md": create_claude_md(f"{name} Frontend"),
-        root / "frontend" / "CODEX.md": create_codex_md(f"{name} Frontend"),
 
         # Mobile
         root / "mobile" / "package.json": create_mobile_package_json(org),
@@ -1903,14 +1892,12 @@ def scaffold_workspace(
         root / "mobile" / "app" / "index.tsx": create_mobile_index_tsx(),
         root / "mobile" / "AGENTS.md": create_agents_md(f"{name} Mobile"),
         root / "mobile" / "CLAUDE.md": create_claude_md(f"{name} Mobile"),
-        root / "mobile" / "CODEX.md": create_codex_md(f"{name} Mobile"),
 
         # Packages
         root / "packages" / "package.json": create_packages_package_json(org),
         root / "packages" / "tsconfig.json": create_packages_tsconfig(),
         root / "packages" / "AGENTS.md": create_agents_md(f"{name} Packages"),
         root / "packages" / "CLAUDE.md": create_claude_md(f"{name} Packages"),
-        root / "packages" / "CODEX.md": create_codex_md(f"{name} Packages"),
     }
 
     for filepath, content in files.items():

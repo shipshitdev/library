@@ -26,7 +26,7 @@ This is the `.agents/` folder — source of truth for AI agent context, session 
 
 ### During Work
 
-- Follow coding standards in `CLAUDE.md` (repo root) and `~/.claude/CLAUDE.md`
+- Follow shared coding standards in the applicable `AGENTS.md`; include `CLAUDE.md` only for Claude-specific additions
 - Document significant decisions in `.agents/memory/<topic>.md`
 - Track new work items as GitHub Issues
 
@@ -46,8 +46,9 @@ Multiple sessions on the same day go in the same file as Session 1, Session 2, e
 
 Coding standards, "never do" rules, and user preferences live in:
 
-- `CLAUDE.md` (repo root) — project-specific rules
-- `~/.claude/CLAUDE.md` — global rules (all projects)
+- `AGENTS.md` (repo root or nearest parent) — shared project instructions
+- `AGENTS.override.md` — scoped replacement instructions, only where intentionally present
+- `CLAUDE.md` — Claude-specific additions
 
 Do not duplicate rules inside `.agents/`.
 

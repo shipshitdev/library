@@ -513,7 +513,7 @@ gh run watch
 ## Monorepo Structure
 
 Protected files across ALL projects:
-- `AGENTS.md`, `CLAUDE.md`, `CODEX.md` (MANDATORY in each project root)
+- `AGENTS.md` (shared instructions) and `CLAUDE.md` when Claude-specific additions are needed
 - `**/.agents/**` (All documentation)
 - `**/README.md` (Standard docs)
 
@@ -597,7 +597,7 @@ ls .cursor/commands/
 
 **Common patterns used:**
 
-1. **Check CRITICAL rules first** - Always reference CLAUDE.md (repo + global)
+1. **Check critical rules first** - Read the applicable AGENTS.md chain and Claude-specific CLAUDE.md when relevant
 2. **Never run tests locally** - Push to GitHub Actions instead
 3. **Monorepo-aware** - Handle multiple packages correctly
 4. **GitHub Actions integration** - Use `gh` CLI for CI/CD

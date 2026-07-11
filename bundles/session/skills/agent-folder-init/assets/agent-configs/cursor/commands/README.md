@@ -114,7 +114,8 @@ All commands assume this lean structure:
 └── sessions/    ← daily logs YYYY-MM-DD.md
 ```
 
-**Rules are in CLAUDE.md** (repo-level + global `~/.claude/CLAUDE.md`), loaded automatically.
+**Shared rules are in AGENTS.md**; `AGENTS.override.md` is a scoped replacement
+and `CLAUDE.md` contains only Claude-specific additions.
 **Tasks live in GitHub Issues** (`gh issue list`, `gh issue create`).
 **No SYSTEM/, TASKS/, PRDS/, SOP/, or EXAMPLES/ directories.**
 
@@ -161,7 +162,7 @@ Follow the naming convention:
 
 - Commands use the lean `.agents/` structure (memory/ + sessions/ only)
 - Task management goes through GitHub Issues — no local task files
-- Project rules and preferences live in CLAUDE.md (repo-level + global)
+- Shared project rules and preferences live in AGENTS.md; Claude-only additions live in CLAUDE.md
 - Only project paths need adaptation (`[frontend-project]`, `[backend-project]`)
 - Security checks in `/code-review` are configurable — adapt to your requirements
 

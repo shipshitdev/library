@@ -109,7 +109,7 @@ This is the `.agents/` folder — source of truth for AI agent context, session 
 
 ## For AI Agents
 
-- **Rules / coding standards:** see `CLAUDE.md` (repo root + global `~/.claude/CLAUDE.md`)
+- **Shared rules / coding standards:** see `AGENTS.md`; read `CLAUDE.md` only for Claude-specific additions
 - **Task tracking:** GitHub Issues (`gh issue list`)
 - **Durable context:** read `.agents/memory/` files before starting work
 
@@ -125,11 +125,11 @@ This is the `.agents/` folder — source of truth for AI agent context, session 
 
 
 def create_entry_files(root: Path, project_name: str) -> None:
-    """Create AGENTS.md, CLAUDE.md, CODEX.md at project root."""
+    """Create AGENTS.md and CLAUDE.md at project root."""
 
     agents_content = f"""# {project_name}
 
-This file provides entry points for AI agents.
+Shared project instructions for AI agents, including Codex.
 
 ## Documentation
 
@@ -141,7 +141,7 @@ All durable project context is in `.agents/memory/`. Session logs are in `.agent
 
 ## Rules & Standards
 
-Coding standards and "never do" rules live in `CLAUDE.md` (this file) and the global `~/.claude/CLAUDE.md`. Do not duplicate them in `.agents/`.
+Shared coding standards and "never do" rules live in this file. Durable supporting detail belongs in `.agents/memory/`; runtime policy belongs in agent configuration or hooks.
 
 ## Task Tracking
 
@@ -154,7 +154,7 @@ Document all work in `.agents/sessions/YYYY-MM-DD.md` (one file per day).
 
     claude_content = f"""# {project_name}
 
-Claude-specific entry point.
+Claude-specific additions. Read `AGENTS.md` first for shared project instructions.
 
 ## Context
 
@@ -169,28 +169,11 @@ Document all work in `.agents/sessions/YYYY-MM-DD.md` (one file per day).
 Use GitHub Issues: `gh issue list`, `gh issue create`.
 """
 
-    codex_content = f"""# {project_name}
-
-Codex-specific entry point.
-
-## Documentation
-
-- `.agents/README.md` - Start here
-- `.agents/memory/` - Durable project facts (source of truth)
-- `.agents/sessions/` - Daily session history
-
-## Task Tracking
-
-Use GitHub Issues: `gh issue list`.
-"""
-
     (root / "AGENTS.md").write_text(agents_content)
     (root / "CLAUDE.md").write_text(claude_content)
-    (root / "CODEX.md").write_text(codex_content)
 
     print(f"Created: {root}/AGENTS.md")
     print(f"Created: {root}/CLAUDE.md")
-    print(f"Created: {root}/CODEX.md")
 
 
 def copy_root_files(root: Path) -> None:

@@ -8,11 +8,10 @@ This command ensures comprehensive tracking of all work, decisions, and context 
 
 **NEVER CREATE .MD FILES AT WORKSPACE ROOT LEVEL**
 
-**ONLY 4 files allowed at root:**
+**ONLY 3 files allowed at root:**
 
 - `AGENTS.md` - Navigation file
-- `CLAUDE.md` - AI agent config
-- `CODEX.md` - AI agent config
+- `CLAUDE.md` - Claude-specific additions
 - `README.md` - Project README
 
 **FORBIDDEN at root:**
@@ -33,7 +32,7 @@ This command ensures comprehensive tracking of all work, decisions, and context 
 
 **BEFORE creating ANY .md file, ask yourself:**
 
-1. Is this AGENTS.md, CLAUDE.md, CODEX.md, or README.md?
+1. Is this AGENTS.md, CLAUDE.md, or README.md?
    - NO → It goes in `.agents/` folder
    - YES → Only update, never recreate
 

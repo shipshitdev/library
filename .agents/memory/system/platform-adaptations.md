@@ -67,19 +67,28 @@ Codex-safe rule: never make the skill depend on Claude-only frontmatter to be un
 
 ## When Platform-Specific Content Is Needed
 
-Rare cases where a skill legitimately needs different behavior per platform (e.g., `agent-folder-init` scaffolding different config directories):
+Keep the canonical `SKILL.md`, its references, and its scripts platform-neutral.
+HTML comments do not hide enclosed Markdown from a harness, so
+`PLATFORM-SPECIFIC-START/END` markers are forbidden and validation reads every line.
 
-```markdown
-<!-- PLATFORM-SPECIFIC-START: claude -->
-Config directory: `~/.claude/`
-<!-- PLATFORM-SPECIFIC-END: claude -->
+Put a small adapter **outside the skill body** when a harness needs a distinct entry
+surface. The adapter may route into a shared skill, expose a platform-native project
+instruction file, or point a platform loader at shared repo-management content. It
+must not duplicate the workflow.
 
-<!-- PLATFORM-SPECIFIC-START: cursor -->
-Config directory: `~/.cursor/`
-<!-- PLATFORM-SPECIFIC-END: cursor -->
-```
+Three real repository examples are checked by `scripts/validate-skill-sync.sh`:
 
-Use this sparingly. If more than 10% of a skill is platform-specific, consider splitting the skill or moving the CLI-specific material into `references/`.
+1. **Shared loader adapter:** `.claude/skills` and `.codex/skills` both link to
+   `.agents/skills`; neither contains a forked copy.
+2. **Command adapter:** `commands/review.md` is a thin command entry point that routes
+   to the portable `review-dispatch` skill.
+3. **Project-instruction adapter:** `AGENTS.md` contains Codex-facing repository
+   instructions outside every public skill body.
+
+The validator fails if either loader link drifts, the command stops routing to its
+canonical skill, the project instruction entry point disappears, or a canonical skill
+reintroduces platform-marker blocks. Bundle generation copies only validated canonical
+skill directories, so no target receives an incompatible hidden block.
 
 ## Skill-to-Skill References
 

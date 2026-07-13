@@ -2,8 +2,9 @@
 name: agent-folder-init
 description: Add or repair .agents/ project context for an existing repo. Use for AI agent documentation, session tracking, task management, and coding standards; do not use as the primary new-product scaffold.
 metadata:
-  version: "1.1.0"
+  version: "2.0.0"
   tags: "agents, setup, documentation"
+disable-model-invocation: true
 ---
 
 # Agent Folder Init
@@ -14,26 +15,31 @@ Inputs:
 
 - Existing project root
 - Project name and primary tech stack
-- Agent platforms to support: Claude Code, Codex, Cursor, or all
+- Optional platform entry surfaces: Claude Code, Codex, and/or Cursor
 
 Outputs:
 
-- `.agents/` documentation structure
-- Root `AGENTS.md` for shared project instructions and `CLAUDE.md` for Claude-specific additions
-- Summary of files created and files skipped because they already existed
+- Dry-run plan by default
+- `.agents/` documentation structure and root `AGENTS.md` after explicit `--write`
+- Optional `CLAUDE.md` or `.cursor/rules/agent-context.mdc` only when that
+  platform is explicitly selected; Codex uses `AGENTS.md`
+- Summary of planned, written, skipped, and unchanged files
 
 Creates/Modifies:
 
-- `.agents/`, `.claude/`, `.codex/`, `.cursor/`, and root agent entry files
+- `.agents/`, root `AGENTS.md`, optional `CLAUDE.md`, optional Cursor project rule,
+  and `.editorconfig`
 - Does not create application source code
 
 External Side Effects:
 
-- None beyond local file writes
+- None in the default dry run; `--write` performs local file writes only
 
 Confirmation Required:
 
-- Before overwriting existing agent docs or config files
+- Before any write: review the dry-run plan and explicitly rerun with `--write`
+- Before overwriting an existing entry file: add `--force-entry-files`; symlink and
+  non-file targets are always refused
 - Before writing outside the current workspace
 
 Delegates To:
@@ -44,11 +50,12 @@ Delegates To:
 
 ## Purpose
 
-This skill scaffolds a lean AI agent documentation system including:
+This skill plans, then scaffolds a lean AI agent documentation system including:
 
 - Session tracking (daily files in `.agents/sessions/`)
 - Durable project context in `.agents/memory/` (one topic per file)
-- Agent config folders (.claude, .codex, .cursor) with commands, rules, and agents
+- Supported platform entry surfaces without copying commands, rules, agents, user
+  settings, or another project's configuration
 
 ## When to Use
 
@@ -72,13 +79,26 @@ python3 scripts/scaffold.py \
   --root /path/to/project \
   --name "My Project"
 
-# With custom options
+# Review the plan, then write the shared files
 python3 scripts/scaffold.py \
   --root /path/to/project \
   --name "My Project" \
-  --tech "nextjs,nestjs" \
+  --write \
+  --allow-outside
+
+# Add only the documented Claude and Cursor entry surfaces
+python3 scripts/scaffold.py \
+  --root /path/to/project \
+  --name "My Project" \
+  --platform claude \
+  --platform cursor \
+  --write \
   --allow-outside
 ```
+
+The default is always a dry run. `--force-entry-files` is the only flag that permits
+overwriting `AGENTS.md`, `CLAUDE.md`, or the generated Cursor entry rule. Other
+existing files are preserved.
 
 ## Generated Structure
 
@@ -101,42 +121,23 @@ only for Claude-specific additions. Durable supporting detail belongs in
 
 **Task tracking** uses GitHub Issues (`gh issue list`, `gh issue create`) — not local task files.
 
-### Agent Configs
+### Platform entry surfaces
 
 ```
-.claude/
-├── commands/                    # Slash commands (project-specific)
-│   ├── start.md
-│   ├── end.md
-│   ├── new-session.md
-│   ├── commit-summary.md
-│   ├── code-review.md
-│   ├── bug.md
-│   ├── quick-fix.md
-│   ├── refactor-code.md
-│   ├── inbox.md
-│   ├── task.md
-│   ├── validate.md
-│   └── clean.md
-├── agents/                      # Specialized agents (project-specific)
-│   ├── senior-backend-engineer.md
-│   └── senior-frontend-engineer.md
-└── skills/                      # Project-specific skills
-
-.codex/
-├── commands/
-└── skills/
-
-.cursor/
-└── commands/
+AGENTS.md                         # shared instructions; native Codex entry
+CLAUDE.md                         # only with --platform claude
+.cursor/rules/agent-context.mdc   # only with --platform cursor
 ```
 
-**Note:** Agent configs (`agents/`, `commands/`) are copied from the installed library bundle so projects get the latest version. Rules are not copied because they are expected to be managed at the user or repo level to avoid duplication and drift.
+The scaffold never generates `.codex/commands`, copies user settings, or imports a
+library checkout. It copies only four `.agents/` templates, `.editorconfig`, and the
+explicitly selected entry templates. Missing canonical assets are a hard failure before
+any write; there is no embedded or stale fallback.
 
 ### Root Files
 
 - `AGENTS.md` - Shared project instructions and `.agents/` navigation
-- `CLAUDE.md` - Claude-specific additions that reference `AGENTS.md`
+- `CLAUDE.md` - Optional Claude-specific additions that reference `AGENTS.md`
 - `.editorconfig` - Editor configuration
 
 ## Key Patterns
@@ -161,8 +162,8 @@ After scaffolding, customize:
 3. `.agents/memory/entities.md` - Document your data entities
 4. `.agents/memory/deployment.md` - Document deployment steps and gotchas
 5. GitHub Issues - Create issues for tasks (`gh issue create`)
-6. `.claude/rules/` - Add project-specific rule files
-7. `.claude/commands/` - Add project-specific slash commands
+6. Platform entry files - Add only harness-specific guidance that cannot live in
+   shared `AGENTS.md`
 
 ## Integration with Other Skills
 

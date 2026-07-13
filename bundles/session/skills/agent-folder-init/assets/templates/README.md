@@ -26,7 +26,8 @@ This is the `.agents/` folder — source of truth for AI agent context, session 
 
 ### During Work
 
-- Follow shared coding standards in the applicable `AGENTS.md`; include `CLAUDE.md` only for Claude-specific additions
+- Follow shared coding standards in the applicable `AGENTS.md`; load a
+  platform-specific entry file only when the selected harness requires one
 - Document significant decisions in `.agents/memory/<topic>.md`
 - Track new work items as GitHub Issues
 
@@ -48,7 +49,8 @@ Coding standards, "never do" rules, and user preferences live in:
 
 - `AGENTS.md` (repo root or nearest parent) — shared project instructions
 - `AGENTS.override.md` — scoped replacement instructions, only where intentionally present
-- `CLAUDE.md` — Claude-specific additions
+- Platform-specific entry files — optional, generated only for an explicitly selected
+  supported harness
 
 Do not duplicate rules inside `.agents/`.
 

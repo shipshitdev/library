@@ -1,312 +1,268 @@
 #!/usr/bin/env python3
-"""
-Scaffold a comprehensive .agents/ folder structure for AI-first development.
-"""
+"""Plan or scaffold portable agent context files for an existing repository."""
 
 from __future__ import annotations
 
 import argparse
-import shutil
 import sys
+from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 
 
-SKILL_DIR = Path(__file__).parent.parent
+SKILL_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = SKILL_DIR / "assets" / "templates"
+ENTRY_FILES_DIR = SKILL_DIR / "assets" / "entry-files"
 ROOT_FILES_DIR = SKILL_DIR / "assets" / "root-files"
-AGENT_CONFIGS_DIR = SKILL_DIR / "assets" / "agent-configs"
-# Library root: two levels up from skill directory (e.g., ~/.claude/ or agents/.claude/)
-LIBRARY_ROOT = SKILL_DIR.parent.parent
+
+TEMPLATE_ALLOWLIST = (
+    Path("README.md"),
+    Path("memory/README.md"),
+    Path("sessions/README.md"),
+    Path("sessions/TEMPLATE.md"),
+)
+ROOT_FILE_ALLOWLIST = (Path(".editorconfig"),)
+ENTRY_TEMPLATES = {
+    "shared": (ENTRY_FILES_DIR / "AGENTS.md", Path("AGENTS.md")),
+    "claude": (ENTRY_FILES_DIR / "CLAUDE.md", Path("CLAUDE.md")),
+    "cursor": (
+        ENTRY_FILES_DIR / "cursor-agent-context.mdc",
+        Path(".cursor/rules/agent-context.mdc"),
+    ),
+}
+SUPPORTED_PLATFORMS = {"claude", "codex", "cursor"}
+
+
+@dataclass
+class ActionSummary:
+    planned: int = 0
+    written: int = 0
+    skipped: int = 0
+    unchanged: int = 0
+
+
+def render_template(content: str, project_name: str, tech_stack: str) -> str:
+    """Replace the small, documented placeholder set."""
+    now = datetime.now()
+    return (
+        content.replace("{{PROJECT_NAME}}", project_name)
+        .replace("{{DATE}}", now.strftime("%Y-%m-%d"))
+        .replace("{{YEAR}}", str(now.year))
+        .replace("{{TECH_STACK}}", tech_stack or "Not specified")
+    )
+
+
+def validate_canonical_assets(platforms: set[str]) -> None:
+    """Fail before any write when a required canonical template is unavailable."""
+    required = [TEMPLATES_DIR / path for path in TEMPLATE_ALLOWLIST]
+    required.extend(ROOT_FILES_DIR / path for path in ROOT_FILE_ALLOWLIST)
+    required.append(ENTRY_TEMPLATES["shared"][0])
+
+    for platform in platforms:
+        if platform in {"claude", "cursor"}:
+            required.append(ENTRY_TEMPLATES[platform][0])
+
+    missing = [path for path in required if not path.is_file()]
+    if missing:
+        rendered = "\n".join(f"- {path}" for path in missing)
+        raise FileNotFoundError(
+            "Canonical scaffold templates are unavailable; no files were written:\n"
+            f"{rendered}"
+        )
+
+
+def target_is_allowed(root: Path, allow_outside: bool) -> bool:
+    """Return whether the resolved target stays within cwd or was explicitly allowed."""
+    if allow_outside:
+        return True
+
+    try:
+        root.relative_to(Path.cwd().resolve())
+    except ValueError:
+        return False
+    return True
+
+
+def materialize_text(
+    destination: Path,
+    content: str,
+    *,
+    write: bool,
+    overwrite: bool,
+    summary: ActionSummary,
+) -> None:
+    """Plan or perform one non-symlink text-file write."""
+    exists = destination.exists() or destination.is_symlink()
+
+    if destination.is_symlink():
+        print(f"Refused symlink target: {destination}")
+        summary.skipped += 1
+        return
+
+    if exists and not destination.is_file():
+        print(f"Refused non-file target: {destination}")
+        summary.skipped += 1
+        return
+
+    if exists:
+        if destination.read_text() == content:
+            print(f"Unchanged: {destination}")
+            summary.unchanged += 1
+            return
+        if not overwrite:
+            print(f"Skipped existing file: {destination}")
+            summary.skipped += 1
+            return
+        action = "overwrite"
+    else:
+        action = "create"
+
+    summary.planned += 1
+    if not write:
+        print(f"Would {action}: {destination}")
+        return
+
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_text(content)
+    summary.written += 1
+    print(f"{action.capitalize()}d: {destination}")
 
 
 def scaffold_agent_folder(
     root: Path,
     project_name: str,
     tech_stack: str = "",
+    platforms: set[str] | None = None,
+    *,
+    write: bool = False,
+    force_entry_files: bool = False,
     allow_outside: bool = False,
-) -> None:
-    """Copy template files and customize for the project."""
-
-    agent_dir = root / ".agents"
-
-    if agent_dir.exists():
-        print(f"Warning: {agent_dir} already exists. Merging with existing structure.")
-
-    # Check if outside current directory
-    cwd = Path.cwd()
-    if not allow_outside and not root.is_relative_to(cwd):
-        print(f"Error: Target path {root} is outside current directory.")
-        print("Use --allow-outside to confirm this is intentional.")
-        sys.exit(1)
-
-    # Create the directory structure
-    agent_dir.mkdir(parents=True, exist_ok=True)
-
-    # Copy all template files
-    if TEMPLATES_DIR.exists():
-        for item in TEMPLATES_DIR.rglob("*"):
-            if item.is_file():
-                rel_path = item.relative_to(TEMPLATES_DIR)
-                dest_path = agent_dir / rel_path
-                dest_path.parent.mkdir(parents=True, exist_ok=True)
-
-                # Read template content
-                content = item.read_text()
-
-                # Replace placeholders
-                content = content.replace("{{PROJECT_NAME}}", project_name)
-                content = content.replace("{{DATE}}", datetime.now().strftime("%Y-%m-%d"))
-                content = content.replace("{{YEAR}}", str(datetime.now().year))
-                content = content.replace("{{TECH_STACK}}", tech_stack or "Not specified")
-
-                # Write customized content
-                dest_path.write_text(content)
-                print(f"Created: {dest_path}")
-    else:
-        print(f"Error: Templates directory not found at {TEMPLATES_DIR}")
-        print("Creating minimal structure...")
-        create_minimal_structure(agent_dir, project_name, tech_stack)
-
-    # Create AI entry files at project root
-    create_entry_files(root, project_name)
-
-    # Copy root-level config files
-    copy_root_files(root)
-
-    # Copy agent config folders (.claude, .codex, .cursor)
-    copy_agent_configs(root)
-
-    print(f"\n✅ Agent folder created at: {agent_dir}")
-    print("\nNext steps:")
-    print("1. Add coding standards and 'never do' rules to CLAUDE.md (repo root)")
-    print("2. Create .agents/memory/<topic>.md files for durable project facts (architecture, entities, deployment, etc.)")
-    print("3. Track tasks in GitHub Issues: gh issue create")
-
-
-def create_minimal_structure(agent_dir: Path, project_name: str, tech_stack: str) -> None:
-    """Create minimal structure if templates are missing."""
-
-    dirs = [
-        "memory",
-        "sessions",
-    ]
-
-    for d in dirs:
-        (agent_dir / d).mkdir(parents=True, exist_ok=True)
-
-    # Create README.md
-    readme = f"""# {project_name} - Agent Documentation
-
-**Welcome to the {project_name} workspace!**
-
-This is the `.agents/` folder — source of truth for AI agent context, session tracking, and durable project facts.
-
-## Structure
-
-- `memory/` - Durable project facts, one topic per `*.md` file. Each file carries `last_verified: YYYY-MM-DD`.
-- `sessions/` - Daily session logs (`YYYY-MM-DD.md`). Multiple sessions on the same day go in the same file.
-
-## For AI Agents
-
-- **Shared rules / coding standards:** see `AGENTS.md`; read `CLAUDE.md` only for Claude-specific additions
-- **Task tracking:** GitHub Issues (`gh issue list`)
-- **Durable context:** read `.agents/memory/` files before starting work
-
-## Tech Stack
-
-{tech_stack or 'Not specified'}
-
----
-
-**Last Updated:** {datetime.now().strftime('%Y-%m-%d')}
-"""
-    (agent_dir / "README.md").write_text(readme)
-
-
-def create_entry_files(root: Path, project_name: str) -> None:
-    """Create AGENTS.md and CLAUDE.md at project root."""
-
-    agents_content = f"""# {project_name}
-
-Shared project instructions for AI agents, including Codex.
-
-## Documentation
-
-All durable project context is in `.agents/memory/`. Session logs are in `.agents/sessions/`.
-
-- `.agents/README.md` - Navigation hub
-- `.agents/memory/` - Durable project facts (source of truth)
-- `.agents/sessions/` - Daily session history
-
-## Rules & Standards
-
-Shared coding standards and "never do" rules live in this file. Durable supporting detail belongs in `.agents/memory/`; runtime policy belongs in agent configuration or hooks.
-
-## Task Tracking
-
-Use GitHub Issues for task tracking: `gh issue list`, `gh issue create`.
-
-## Sessions
-
-Document all work in `.agents/sessions/YYYY-MM-DD.md` (one file per day).
-"""
-
-    claude_content = f"""# {project_name}
-
-Claude-specific additions. Read `AGENTS.md` first for shared project instructions.
-
-## Context
-
-Read `.agents/memory/` for durable project facts before starting work.
-
-## Sessions
-
-Document all work in `.agents/sessions/YYYY-MM-DD.md` (one file per day).
-
-## Task Tracking
-
-Use GitHub Issues: `gh issue list`, `gh issue create`.
-"""
-
-    (root / "AGENTS.md").write_text(agents_content)
-    (root / "CLAUDE.md").write_text(claude_content)
-
-    print(f"Created: {root}/AGENTS.md")
-    print(f"Created: {root}/CLAUDE.md")
-
-
-def copy_root_files(root: Path) -> None:
-    """Copy root-level config files like .editorconfig to project root."""
-
-    if not ROOT_FILES_DIR.exists():
-        return
-
-    for item in ROOT_FILES_DIR.rglob("*"):
-        if item.is_file():
-            rel_path = item.relative_to(ROOT_FILES_DIR)
-            dest_path = root / rel_path
-
-            # Don't overwrite existing files
-            if dest_path.exists():
-                print(f"Skipped (exists): {dest_path}")
-                continue
-
-            dest_path.parent.mkdir(parents=True, exist_ok=True)
-            content = item.read_text()
-            dest_path.write_text(content)
-            print(f"Created: {dest_path}")
-
-
-def copy_agent_configs(root: Path) -> None:
-    """Copy agent config folders (.claude, .codex, .cursor) to project root.
-    
-    Copies from library root (e.g., ~/.claude/agents/, ~/.claude/commands/, ~/.claude/rules/)
-    instead of template assets to eliminate duplication and ensure projects get the latest version.
-    Falls back to template assets if library root is not available.
-    """
-
-    # Map source dirs to destination dirs
-    config_mappings = [
-        ("claude", ".claude"),
-        ("codex", ".codex"),
-        ("cursor", ".cursor"),
-    ]
-
-    for src_name, dest_name in config_mappings:
-        # Try library root first (e.g., ~/.claude/agents/, ~/.claude/commands/, ~/.claude/rules/)
-        library_src = LIBRARY_ROOT / src_name
-        # Fallback to template assets if library root doesn't exist
-        template_src = AGENT_CONFIGS_DIR / src_name if AGENT_CONFIGS_DIR.exists() else None
-        
-        dest_dir = root / dest_name
-
-        # Determine which source to use
-        source_dir = None
-        if library_src.exists():
-            source_dir = library_src
-            source_type = "library"
-        elif template_src and template_src.exists():
-            source_dir = template_src
-            source_type = "template"
-        else:
-            continue
-
-        # Create destination directory
-        dest_dir.mkdir(parents=True, exist_ok=True)
-
-        # Copy files recursively
-        # Only copy agents/ and commands/ subdirectories
-        # NOTE: rules/ are NOT copied - they're inherited from ~/.claude/rules/ (library level)
-        # This prevents duplication since library-level rules apply to all projects
-        subdirs_to_copy = ["agents", "commands"]
-        copied_anything = False
-
-        for subdir in subdirs_to_copy:
-            src_subdir = source_dir / subdir
-            if not src_subdir.exists():
-                continue
-
-            for item in src_subdir.rglob("*"):
-                if item.is_file():
-                    rel_path = item.relative_to(src_subdir)
-                    dest_path = dest_dir / subdir / rel_path
-
-                    # Don't overwrite existing files
-                    if dest_path.exists():
-                        continue
-
-                    dest_path.parent.mkdir(parents=True, exist_ok=True)
-
-                    try:
-                        content = item.read_text()
-                        dest_path.write_text(content)
-                        copied_anything = True
-                    except UnicodeDecodeError:
-                        # Binary file, copy directly
-                        shutil.copy2(item, dest_path)
-                        copied_anything = True
-
-        if copied_anything:
-            print(f"Created: {dest_dir}/ (with commands, rules, agents) from {source_type}")
-
-
-def main() -> None:
+) -> ActionSummary:
+    """Plan by default; write only the documented allowlist when explicitly enabled."""
+    selected_platforms = set(platforms or set())
+    unknown = selected_platforms - SUPPORTED_PLATFORMS
+    if unknown:
+        names = ", ".join(sorted(unknown))
+        raise ValueError(f"Unsupported platform(s): {names}")
+
+    root = root.resolve()
+    if not root.is_dir():
+        raise NotADirectoryError(f"Target repository does not exist: {root}")
+    if not target_is_allowed(root, allow_outside):
+        raise PermissionError(
+            f"Target {root} is outside {Path.cwd().resolve()}; pass --allow-outside "
+            "only after verifying the target."
+        )
+
+    validate_canonical_assets(selected_platforms)
+    summary = ActionSummary()
+
+    for relative_path in TEMPLATE_ALLOWLIST:
+        source = TEMPLATES_DIR / relative_path
+        content = render_template(source.read_text(), project_name, tech_stack)
+        materialize_text(
+            root / ".agents" / relative_path,
+            content,
+            write=write,
+            overwrite=False,
+            summary=summary,
+        )
+
+    for relative_path in ROOT_FILE_ALLOWLIST:
+        source = ROOT_FILES_DIR / relative_path
+        materialize_text(
+            root / relative_path,
+            source.read_text(),
+            write=write,
+            overwrite=False,
+            summary=summary,
+        )
+
+    entry_keys = ["shared"]
+    entry_keys.extend(
+        platform for platform in ("claude", "cursor") if platform in selected_platforms
+    )
+    for entry_key in entry_keys:
+        source, relative_path = ENTRY_TEMPLATES[entry_key]
+        content = render_template(source.read_text(), project_name, tech_stack)
+        materialize_text(
+            root / relative_path,
+            content,
+            write=write,
+            overwrite=force_entry_files,
+            summary=summary,
+        )
+
+    # Codex project instructions use the shared AGENTS.md entry. No .codex/commands
+    # or other unsupported project command directory is generated.
+    mode = "WRITE" if write else "DRY RUN"
+    print(
+        f"\n{mode}: planned={summary.planned}, written={summary.written}, "
+        f"skipped={summary.skipped}, unchanged={summary.unchanged}"
+    )
+    if not write:
+        print("Review the plan, then rerun with --write to apply it.")
+    return summary
+
+
+def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Scaffold a .agents/ folder structure for AI-first development."
+        description="Plan or scaffold portable .agents context for an existing repository."
     )
     parser.add_argument(
         "--root",
         type=Path,
         default=Path.cwd(),
-        help="Target directory (default: current directory)",
+        help="Existing target repository (default: current directory)",
+    )
+    parser.add_argument("--name", required=True, help="Project name")
+    parser.add_argument("--tech", default="", help="Optional project tech-stack summary")
+    parser.add_argument(
+        "--platform",
+        action="append",
+        choices=sorted(SUPPORTED_PLATFORMS),
+        default=[],
+        help=(
+            "Add a supported platform entry surface; repeat as needed. "
+            "Without this flag, only shared .agents files and AGENTS.md are planned."
+        ),
     )
     parser.add_argument(
-        "--name",
-        type=str,
-        required=True,
-        help="Project name",
+        "--write",
+        action="store_true",
+        help="Apply the reviewed plan; default behavior is dry-run only",
     )
     parser.add_argument(
-        "--tech",
-        type=str,
-        default="",
-        help="Tech stack (e.g., 'nextjs,nestjs,react-native')",
+        "--force-entry-files",
+        action="store_true",
+        help=(
+            "Allow AGENTS.md, CLAUDE.md, and the Cursor entry rule to be overwritten; "
+            "other existing files are always preserved"
+        ),
     )
     parser.add_argument(
         "--allow-outside",
         action="store_true",
-        help="Allow creating files outside current directory",
+        help="Allow a verified target outside the current directory",
     )
+    return parser.parse_args()
 
-    args = parser.parse_args()
 
-    scaffold_agent_folder(
-        root=args.root.resolve(),
-        project_name=args.name,
-        tech_stack=args.tech,
-        allow_outside=args.allow_outside,
-    )
+def main() -> None:
+    args = parse_args()
+    try:
+        scaffold_agent_folder(
+            root=args.root,
+            project_name=args.name,
+            tech_stack=args.tech,
+            platforms=set(args.platform),
+            write=args.write,
+            force_entry_files=args.force_entry_files,
+            allow_outside=args.allow_outside,
+        )
+    except (FileNotFoundError, NotADirectoryError, PermissionError, ValueError) as error:
+        print(f"Error: {error}", file=sys.stderr)
+        raise SystemExit(1) from error
 
 
 if __name__ == "__main__":

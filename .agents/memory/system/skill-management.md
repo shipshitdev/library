@@ -108,7 +108,17 @@ npx skills add shipshitdev/skills -g --agent claude-code codex cursor --skill '*
 npx skills add shipshitdev/skills --skill stripe-implementer -y
 ```
 
-Default behavior is cross-platform. If a skill genuinely cannot work on a platform, explain that requirement in `compatibility` and isolate platform-specific instructions behind `PLATFORM-SPECIFIC` marker blocks. Do not add unsupported top-level frontmatter fields.
+Default behavior is cross-platform. If a skill genuinely cannot work on a platform,
+explain that requirement in `compatibility` while keeping canonical content portable;
+put any harness entry adapter outside the skill body. Do not add unsupported
+frontmatter fields or inert platform-marker blocks.
+
+The retired `scripts/install-skills.sh` path must not be restored. It duplicated
+catalog membership, installed project bundles only into Claude paths, and included
+recursive replacement/restore operations. Use only the catalog-backed skills CLI
+commands above for global or project installation. Migrate existing installs by
+installing first, verifying each selected agent, and reviewing obsolete links one at
+a time; never recursively remove an agent skills directory.
 
 ## Bundle Management
 

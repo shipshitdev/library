@@ -1,74 +1,36 @@
 # Repository Architecture
 
-last_verified: 2026-06-18
+last_verified: 2026-07-13
 
 ## Directory Map
 
-```
-skills-repo/
-├── skills/                          # 141 skills (source of truth)
-│   └── <skill-name>/
-│       ├── SKILL.md                 # Skill definition (frontmatter + body)
-│       └── plugin.json              # Skill distribution manifest
-│
-├── commands/                        # 11 slash commands (.md files, flat)
-│   └── <command-name>.md
-│
-├── bundles/                         # 13 themed bundles (generated snapshots)
-│   └── <bundle-name>/
-│       ├── plugin.json              # Bundle manifest
-│       └── skills/                  # Copies of bundled skills
-│
-├── scripts/                         # Build, validate, generate tooling
-│   ├── generate-marketplace-bundles.js # Bundle snapshot generation
-│   ├── generate-marketplace-json.js # Marketplace catalog generation
-│   ├── validate-skill-sync.sh       # Skill validation (frontmatter, structure)
-│   ├── validate-changed-skills.sh   # Pre-commit hook: validate only changed
-│   ├── cleanup-global-duplicates.sh # Remove duplicate installs from ~/.claude
-│   ├── install-skills.sh            # npx skills add entrypoint
-│   ├── migrate-frontmatter.py       # Spec migration tool
-│   ├── lint-shellcheck.sh           # Shell lint wrapper
-│   └── plugin-categories.json       # Bundle → skills mapping data
-│
-├── prompts/                         # Reusable prompts
-│   └── prd-interview.md
-│
-├── assets/                          # Static assets
-│   └── banner.svg
-│
-├── .agents/                         # AI agent workspace
-│   ├── README.md                    # Agent entry point
-│   ├── memory/                      # Persistent memory (this dir)
-│   │   └── system/                  # Project docs and standards
-│   │       ├── architecture.md      # .agents/ folder structure
-│   │       ├── ai-dev-loop.md       # /loop workflow
-│   │       ├── skill-standards.md   # Skill authoring spec
-│   │       ├── skill-management.md  # Sync workflow
-│   │       └── platform-adaptations.md # Claude vs Codex differences
-│   └── sessions/                    # Historical session logs
-│
-├── .claude/                         # Claude Code config
-│   ├── rules/CLAUDE_RULES.md        # Project rules
-│   └── settings.local.json          # Local permissions + plugins
-│
-├── .claude-plugin/
-│   └── marketplace.json             # Full marketplace catalog (generated)
-│
-├── .github/workflows/
-│   └── generate-bundles.yml         # CI: regenerate on push to master
-│
-├── .husky/                          # Git hooks (pre-commit)
-├── biome.json                       # JS/JSON formatter + linter config
-├── .markdownlint.json               # Markdown lint rules
-└── package.json                     # Bun project config
-```
+<!-- catalog-layout:start -->
+| Path | Role | Generated fact |
+|---|---|---|
+| `.agents/` | Repository memory, standards, and maintenance skills | Tracked |
+| `.claude/` | Claude loader adapters for shared maintenance content | Tracked |
+| `.claude-plugin/` | Generated Claude marketplace catalog | 177 generated plugins |
+| `.codex/` | Codex loader adapters for shared maintenance content | Tracked |
+| `.github/` | Issue templates and GitHub Actions workflows | Tracked |
+| `.husky/` | Git hook configuration | Tracked |
+| `assets/` | Static repository assets | Tracked |
+| `bundles/` | Generated marketplace bundle snapshots | 13 generated bundles |
+| `commands/` | Claude Code/plugin command adapters | 30 command adapters |
+| `prompts/` | Shared prompt resources | Tracked |
+| `resources/` | Authoring references and supporting documentation | Tracked |
+| `scripts/` | Validation, generation, migration, and audit tooling | Tracked |
+| `skills/` | Canonical public Agent Skills sources | 164 canonical skills |
+<!-- catalog-layout:end -->
 
 ## Data Flow
 
 ```
+skills/*/SKILL.md ─┐
+commands/*.md      ├─→ scripts/generate-catalog-summary.js ─→ catalog.json + marked docs
+bundle definitions ┘
 skills/<name>/SKILL.md    ──→  scripts/generate-marketplace-bundles.js  ──→  bundles/<name>/
 skills/<name>/plugin.json ──→  copied into bundle snapshots
-skills/<name>/SKILL.md    ──→  scripts/generate-marketplace-json.js     ──→  .claude-plugin/marketplace.json
+catalog.json + skills/    ──→  scripts/generate-marketplace-json.js     ──→  .claude-plugin/marketplace.json
 ```
 
 All generation is triggered by: `bun run marketplace:generate`
@@ -94,11 +56,13 @@ metadata:
 ```
 
 Required: `name`, `description`, `SKILL.md`, `plugin.json`
-Optional: `license`, `compatibility`, `when_to_use`, `allowed-tools`, `model`, `context`
+Optional: `license`, `compatibility`, `when_to_use`, `allowed-tools`, `context`
 
 ## Bundle Structure
 
-13 bundles: `ai-agents`, `backend`, `dev-loop`, `dev-workflow`, `frontend`, `github`, `infrastructure`, `payments`, `planning`, `security`, `session`, `testing`, `workspace`
+<!-- catalog-bundles:start -->
+13 generated bundles: `ai-agents`, `backend`, `dev-loop`, `dev-workflow`, `frontend`, `github`, `infrastructure`, `payments`, `planning`, `security`, `session`, `testing`, `workspace`.
+<!-- catalog-bundles:end -->
 
 Each bundle = curated subset of skills for a domain. Defined in `scripts/plugin-categories.json`.
 

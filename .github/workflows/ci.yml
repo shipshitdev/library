@@ -8,9 +8,13 @@ on:
       - 'skills/**'
       - 'commands/**'
       - 'bundles/**'
+      - '.agents/**'
       - '.claude-plugin/marketplace.json'
       - '.github/workflows/**'
       - 'scripts/**'
+      - 'AGENTS.md'
+      - 'README.md'
+      - 'catalog.json'
       - 'package.json'
       - 'bun.lock'
       - 'biome.json'
@@ -63,4 +67,12 @@ jobs:
 
       - name: Verify generated bundles are current
         run: |
-          git diff --exit-code -- bundles/ .claude-plugin/marketplace.json
+          git diff --exit-code -- \
+            bundles/ \
+            .claude-plugin/marketplace.json \
+            catalog.json \
+            README.md \
+            AGENTS.md \
+            .agents/memory/memory.md \
+            .agents/memory/architecture.md \
+            package.json

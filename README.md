@@ -4,24 +4,33 @@
 
 ![Project Type](https://img.shields.io/badge/Project-Skills-blue)
 
+<!-- catalog-summary:start -->
 164 AI agent skills for development workflows. Works with Claude Code, OpenAI Codex, and Cursor.
+
+Catalog: **164 skills · 30 commands · 13 bundles · 177 plugins**.
+<!-- catalog-summary:end -->
 
 Skills are **model-agnostic playbooks**: the harness supplies the model, so no skill names a concrete model — orchestrators speak in capability tiers, and each repo's routing block maps tiers to models. Enforced by `scripts/validate-skill-sync.sh`; standards live in `.agents/memory/system/skill-standards.md`.
 
 ## Directory Structure
 
-```
-skills/
-├── skills/              # All skills (164)
-├── commands/            # All commands (30)
-├── bundles/             # Generated marketplace bundles
-├── .agents/             # Repo management, memory, meta-skills
-│   ├── memory/          # Repo decisions, context, and system docs
-│   ├── sessions/        # Historical session logs
-│   └── skills/          # Meta-skills for maintaining this repo
-├── .claude/             # Claude Code adapters (agents, rules)
-└── scripts/             # Validation, generation, migration
-```
+<!-- catalog-layout:start -->
+| Path | Role | Generated fact |
+|---|---|---|
+| `.agents/` | Repository memory, standards, and maintenance skills | Tracked |
+| `.claude/` | Claude loader adapters for shared maintenance content | Tracked |
+| `.claude-plugin/` | Generated Claude marketplace catalog | 177 generated plugins |
+| `.codex/` | Codex loader adapters for shared maintenance content | Tracked |
+| `.github/` | Issue templates and GitHub Actions workflows | Tracked |
+| `.husky/` | Git hook configuration | Tracked |
+| `assets/` | Static repository assets | Tracked |
+| `bundles/` | Generated marketplace bundle snapshots | 13 generated bundles |
+| `commands/` | Claude Code/plugin command adapters | 30 command adapters |
+| `prompts/` | Shared prompt resources | Tracked |
+| `resources/` | Authoring references and supporting documentation | Tracked |
+| `scripts/` | Validation, generation, migration, and audit tooling | Tracked |
+| `skills/` | Canonical public Agent Skills sources | 164 canonical skills |
+<!-- catalog-layout:end -->
 
 ## What's Included
 
@@ -202,7 +211,9 @@ or another Agent Skills-compatible harness.
 | test | Run, author, and set up tests |
 | tests | Run the right tests and turn red green |
 
+<!-- catalog-skills-heading:start -->
 ## Skills (164)
+<!-- catalog-skills-heading:end -->
 
 ### Dev Loop (10)
 

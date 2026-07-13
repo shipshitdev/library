@@ -1,53 +1,59 @@
 ---
 name: readme-sync
 description: |
-  Regenerate the README.md skills table from the filesystem.
-  Run after adding, removing, or renaming skills.
+  Regenerate catalog counts, layout claims, and README summaries from canonical sources.
+  Run after adding, removing, or renaming skills, commands, or bundles.
 metadata:
   internal: true
-  version: "1.0.0"
+  version: "1.1.0"
   tags: "readme, sync, maintenance, automation"
 ---
 
-# README Sync
+# README and Catalog Sync
 
-Regenerate the README.md skills table from the actual `skills/` directory.
+Regenerate `catalog.json` and every marked count/layout summary from the actual
+skill, command, bundle, and tracked-path sources.
 
 ## When to Run
 
 - After adding new skills
 - After removing or renaming skills
+- After adding or removing commands or bundles
 - After importing skills from external repos
-- When README skill count doesn't match filesystem
+- When any catalog count or directory claim does not match the repository
 
 ## Process
 
-### 1. Generate Table Rows
+### 1. Generate the Catalog and Documentation Blocks
 
 ```bash
-find skills -maxdepth 1 -mindepth 1 -type d | sed 's|skills/||' | sort | while read skill; do
-  desc=$(grep -m1 "^description:" "skills/$skill/SKILL.md" 2>/dev/null | sed 's/^description: *//' | tr -d '"' | head -c 75)
-  echo "| [$skill](https://skills.sh/shipshitdev/skills/$skill) | $desc | \`npx skills add shipshitdev/skills --skill $skill\` |"
-done
+bun run catalog:generate
 ```
 
-### 2. Update README
+The generator derives:
 
-Replace the skills table in README.md between `## Skills` and the next `##` heading.
+- skills from `skills/*/SKILL.md`;
+- commands from `commands/*.md`;
+- bundles from `scripts/plugin-categories.json`;
+- plugins as skills plus bundles;
+- top-level layout from `git ls-files`.
 
-### 3. Update Counts
+It writes the single generated source `catalog.json`, then updates marked blocks in
+`README.md`, `AGENTS.md`, and memory/architecture docs plus the package description.
+Do not edit text between `catalog-*:start` and `catalog-*:end` markers manually.
 
-- Header tagline: "250+ AI agent skills" → update to match
-- Directory structure: "(252 skills)" → update to actual count
-
-### 4. Validate
+### 2. Validate Without Writing
 
 ```bash
-bunx markdownlint-cli README.md
+bun run catalog:check
 ```
 
-## Edge Cases
+The lightweight repository validator also runs this check, and CI regenerates the
+catalog and fails if any generated file changes.
 
-- Skills with multiline YAML descriptions need the awk-based extractor
-- Skills with special characters in descriptions (em dashes, backticks) need escaping
-- Some descriptions start with "When the user wants..." — these are trigger phrases, consider rewriting for the table
+## Safety
+
+- Preserve prose outside generated markers.
+- Never infer counts from README text.
+- Never add a top-level path to the generated layout unless it is tracked.
+- Review `catalog.json` and generated documentation diffs before committing.

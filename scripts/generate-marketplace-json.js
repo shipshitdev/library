@@ -11,6 +11,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const SKILLS_DIR = join(ROOT, 'skills');
 const CATEGORIES = JSON.parse(readFileSync(join(__dirname, 'plugin-categories.json'), 'utf-8'));
+const CATALOG = JSON.parse(readFileSync(join(ROOT, 'catalog.json'), 'utf-8'));
 
 // Get skill description from SKILL.md frontmatter.
 // Handles plain/quoted single-line values AND YAML block scalars
@@ -97,9 +98,25 @@ const marketplace = {
   owner: {
     name: 'Ship Shit Dev',
   },
-  description: `${includedSkillCount} AI agent skills for development workflows`,
+  description: `${CATALOG.counts.skills} AI agent skills for development workflows`,
   plugins,
 };
+
+if (includedSkillCount !== CATALOG.counts.skills) {
+  throw new Error(
+    `Catalog skill count ${CATALOG.counts.skills} does not match marketplace sources ${includedSkillCount}`
+  );
+}
+if (Object.keys(CATEGORIES.bundles).length !== CATALOG.counts.bundles) {
+  throw new Error(
+    `Catalog bundle count ${CATALOG.counts.bundles} does not match plugin categories`
+  );
+}
+if (plugins.length !== CATALOG.counts.plugins) {
+  throw new Error(
+    `Catalog plugin count ${CATALOG.counts.plugins} does not match generated plugins ${plugins.length}`
+  );
+}
 
 const outputDir = join(ROOT, '.claude-plugin');
 if (!existsSync(outputDir)) {

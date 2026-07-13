@@ -1,10 +1,14 @@
 # Skills Repo Memory
 
-last_verified: 2026-06-19
+last_verified: 2026-07-13
 
 ## What This Repo Is
 
-Public skills library at `shipshitdev/skills`. 141 skills, 11 commands, 13 bundles. Installable via `npx skills add shipshitdev/skills --skill <name>`. Works with Claude Code, Codex, Cursor, OpenClaw, Gemini.
+<!-- catalog-summary:start -->
+Public skills library at `shipshitdev/skills`. Installable via `npx skills add shipshitdev/skills --skill <name>`. Works with Claude Code, Codex, Cursor, OpenClaw, and Gemini.
+
+Generated catalog: **164 skills · 30 commands · 13 bundles · 177 plugins**.
+<!-- catalog-summary:end -->
 
 Published through committed marketplace bundles in `bundles/` and the generated `.claude-plugin/marketplace.json` catalog. The old generated `plugins/` package tree is retired.
 
@@ -17,15 +21,16 @@ Published through committed marketplace bundles in `bundles/` and the generated 
 - **Linting:** markdownlint (markdown), biome (JSON/JS), shellcheck (bash)
 - **CI:** GitHub Actions on push to master — regenerates bundles + marketplace
 
-## Numbers (snapshot 2026-06-18)
+## Generated Catalog Counts
 
-| Asset | Count | Location |
-|-------|-------|----------|
-| Skills | 141 | `skills/<name>/SKILL.md` |
-| Commands | 11 | `commands/<name>.md` |
-| Bundles | 13 | `bundles/<bundle>/plugin.json` |
-| Scripts | 15 | `scripts/` |
-| Prompts | 2 | `prompts/` |
+<!-- catalog-counts:start -->
+| Asset | Count | Canonical source |
+|---|---:|---|
+| Skills | 164 | `skills/*/SKILL.md` |
+| Commands | 30 | `commands/*.md` |
+| Bundles | 13 | `scripts/plugin-categories.json` |
+| Plugins | 177 | skills + bundles |
+<!-- catalog-counts:end -->
 
 ## Architecture Decisions
 
@@ -94,7 +99,9 @@ None currently tracked.
 - `.agents/memory/system/skill-standards.md` — authoritative spec doc
 - `.agents/memory/system/skill-management.md` — workflow guide
 - `scripts/validate-skill-sync.sh` — validation script
+- `scripts/generate-catalog-summary.js` — generated catalog facts and documentation blocks
 - `scripts/generate-marketplace-bundles.js` — bundle snapshot generation
 - `scripts/generate-marketplace-json.js` — marketplace catalog generation
+- `catalog.json` — single generated source for counts, bundles, and tracked layout
 - `.claude-plugin/marketplace.json` — full marketplace catalog (generated)
 - `.github/workflows/generate-bundles.yml` — CI pipeline

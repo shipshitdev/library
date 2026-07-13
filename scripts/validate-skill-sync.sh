@@ -723,6 +723,19 @@ check_supported_codex_surfaces() {
     return $issues
 }
 
+# Ensure generated count and layout claims match the canonical catalog sources.
+check_catalog_summary() {
+    local output
+    if ! output=$(bun "$REPO_ROOT/scripts/generate-catalog-summary.js" --check 2>&1); then
+        echo -e "${RED}✗${NC} Generated catalog facts are stale"
+        while IFS= read -r line; do
+            [[ -n "$line" ]] && echo "  $line"
+        done <<< "$output"
+        return 1
+    fi
+    return 0
+}
+
 # Function to check for hardcoded platform paths
 check_platform_paths() {
     local file="$1"
@@ -1239,6 +1252,10 @@ check_public_execution_parameters || public_execution_warnings=$?
 codex_surface_issues=0
 check_supported_codex_surfaces || codex_surface_issues=$?
 ((TOTAL_ISSUES += codex_surface_issues, 1))
+
+catalog_issues=0
+check_catalog_summary || catalog_issues=$?
+((TOTAL_ISSUES += catalog_issues, 1))
 
 # Validate external adapter examples before canonical skill content.
 adapter_issues=0

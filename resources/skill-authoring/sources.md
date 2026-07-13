@@ -28,8 +28,13 @@ First-hand, primary documentation only — vendor docs and vendor engineering po
   - How Codex discovers, merges, and applies AGENTS.md across global/project/subdirectory scopes, file naming, 32 KiB size limit, override semantics, and verification commands.
 - **[openai/codex — docs/agents_md.md](https://github.com/openai/codex/blob/main/docs/agents_md.md)** — OpenAI
   - Canonical AGENTS.md discovery chain implementation details: two-scope hierarchy, override file semantics, size cap enforcement, fallback filename config, and session rebuild behavior.
+- **[Codex config basics](https://developers.openai.com/codex/config-basic)** — OpenAI
+  - User and trusted-project configuration locations, precedence, and the runtime
+    settings owned by config rather than reusable skills.
+- **[Codex custom prompts](https://developers.openai.com/codex/custom-prompts)** — OpenAI
+  - Deprecated user-local prompt storage and the migration path to skills.
 
 ## Provenance
 
-- Discovered: 16 first-hand sources. Read: 13. Practices extracted: 12 fields + the rule sets in [anthropic.md](anthropic.md) and [codex.md](codex.md).
+- Discovered: 18 first-hand sources. Read: 15. Practices extracted: 12 fields + the rule sets in [anthropic.md](anthropic.md) and [codex.md](codex.md).
 - The canonical open standard is **agentskills.io** (mirrored at `github.com/anthropics/skills`). Anthropic and OpenAI both build on it.

@@ -1,6 +1,8 @@
 # OpenAI Codex — Official Skill-Authoring Guidance
 
-Extracted from OpenAI's first-hand Codex documentation (Codex Skills reference, skills.md, customization concepts, best-practices, and the AGENTS.md guides). Every rule links to its source. Last gathered 2026-06-12.
+Extracted from OpenAI's first-hand Codex documentation (skills, configuration,
+custom prompts, and the AGENTS.md guide). Every rule links to its source. Last
+gathered 2026-07-13.
 
 Codex consumes the **Agent Skills base spec plus the skill body**. It does not read Claude-only frontmatter extensions. Where Codex diverges from Anthropic, the difference is called out. For the shared field reference see [frontmatter-field-spec.md](frontmatter-field-spec.md).
 
@@ -57,6 +59,28 @@ Codex consumes the **Agent Skills base spec plus the skill body**. It does not r
 - **When Codex makes repeated mistakes, codify corrections in AGENTS.md so future sessions inherit the fix.**
   - _Why:_ AGENTS.md persists across sessions; skills are invoked per-task. Persistent corrections belong in AGENTS.md.
   - _Source:_ [Codex customization](https://developers.openai.com/codex/concepts/customization)
+
+## Supported project surfaces
+
+- **Use `AGENTS.md` for project instructions.** Codex reads global guidance from
+  `~/.codex/AGENTS.md`, then resolves `AGENTS.override.md`, `AGENTS.md`, or an
+  explicitly configured fallback from the repository root to the working directory.
+  - _Source:_ [Codex AGENTS.md guide](https://developers.openai.com/codex/guides/agents-md)
+- **Use configuration files for runtime behavior.** User defaults belong in
+  `~/.codex/config.toml`; trusted repositories may add `.codex/config.toml`
+  overrides. Model, approval, sandbox, provider, and MCP settings are configuration,
+  not reusable prompt content.
+  - _Source:_ [Codex config basics](https://developers.openai.com/codex/config-basic)
+- **Use `.agents/skills` for repository workflows.** Codex scans skill directories
+  from the current working directory to the repository root and also supports
+  user/admin skill locations.
+  - _Source:_ [Codex skills](https://developers.openai.com/codex/skills)
+- **Do not invent `.codex/instructions.md` or `.codex/commands`.** Neither is a
+  documented repository-local prompt or command surface.
+- **Treat custom prompts as legacy user configuration.** They live under
+  `~/.codex/prompts`, require explicit invocation, are not shared through a
+  repository, and are deprecated in favor of skills.
+  - _Source:_ [Codex custom prompts](https://developers.openai.com/codex/custom-prompts)
 
 ## Progressive disclosure
 

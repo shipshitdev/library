@@ -19,8 +19,7 @@ skills/
 │   ├── memory/          # Repo decisions, context, and system docs
 │   ├── sessions/        # Historical session logs
 │   └── skills/          # Meta-skills for maintaining this repo
-├── .claude/             # Claude Code config (agents, rules)
-├── .codex/              # Codex CLI config
+├── .claude/             # Claude Code adapters (agents, rules)
 └── scripts/             # Validation, generation, migration
 ```
 
@@ -110,6 +109,25 @@ npx skills add shipshitdev/skills --agent claude-code codex cursor
 /plugin install shipshitdev-security@shipshitdev
 ```
 
+### Platform setup boundary
+
+The portable workflow source is always `skills/<name>/SKILL.md`. Platform entry
+surfaces should route to that source instead of copying it.
+
+- **Codex project instructions:** use `AGENTS.md` and optional nested
+  `AGENTS.override.md` files. Global preferences live in `~/.codex/AGENTS.md`.
+- **Codex configuration:** user defaults live in `~/.codex/config.toml`; trusted
+  repositories may add `.codex/config.toml` overrides. Model, effort, approvals,
+  sandboxing, workspace, and other execution settings belong there or in the app.
+- **Codex workflows:** install shared skills under `.agents/skills`. Do not add `.codex/instructions.md` or `.codex/commands`;
+  neither is a supported project instruction or reusable workflow surface.
+- **Deprecated Codex prompts:** `~/.codex/prompts` is user-local, explicit-only,
+  and deprecated in favor of skills. This repository does not publish prompts
+  there.
+- **Claude commands:** files under `commands/` are thin Claude Code/plugin
+  conveniences. They are not included in generated bundle manifests and are not
+  presented as Codex commands unless a supported adapter is added later.
+
 ### For Contributors
 
 ```bash
@@ -133,7 +151,11 @@ touch skills/my-skill/SKILL.md
 
 ### Adding a Command
 
-1. Create `.md` file in `commands/`
+Commands are Claude Code/plugin entry points, not portable workflow definitions.
+Route each command to a canonical skill whenever the workflow should work in Codex
+or another Agent Skills-compatible harness.
+
+1. Create a thin `.md` file in `commands/`
 2. Follow naming: `{verb}-{noun}.md`
 3. Update this README
 

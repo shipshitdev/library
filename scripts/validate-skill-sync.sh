@@ -527,7 +527,7 @@ validate_adapter_examples() {
         ((++issues))
     fi
 
-    if ! grep -Fq 'Use the `review-dispatch` skill.' "$REPO_ROOT/commands/review.md"; then
+    if ! grep -Fq "Use the \`review-dispatch\` skill." "$REPO_ROOT/commands/review.md"; then
         echo -e "${RED}✗${NC} commands/review.md no longer routes to review-dispatch"
         ((++issues))
     fi

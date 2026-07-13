@@ -5,7 +5,7 @@ description: |
   Run on new or modified skills before committing.
 metadata:
   internal: true
-  version: "1.0.1"
+  version: "1.0.2"
   tags: "validation, skills, spec-compliance, quality"
 ---
 
@@ -79,6 +79,8 @@ Valid extension fields (must match `allowed_fields` in `scripts/validate-skill-s
 
 - `auto_activate` / `auto_trigger` — removed in 2026-04 migration
 - `risk` — not in any spec
+- `metadata.triggers` — duplicate activation metadata; put trigger phrases in
+  `description` or `when_to_use`
 - `model` / `effort` — recognized by Claude Code but owned by app/session
   configuration, not public reusable skills
 - Any top-level field not in the tables above → "Unsupported top-level frontmatter field"
@@ -104,11 +106,20 @@ Valid extension fields (must match `allowed_fields` in `scripts/validate-skill-s
 6. Check `version`/`tags` are NOT top-level (must be inside `metadata:`)
 7. Check for forbidden fields (`auto_activate`, `auto_trigger`, `risk`, `model`, `effort`, any field not in the extension tables)
 8. Check for escaped backtick fences in content
-9. Check for hardcoded paths (`/workspace/`, project-specific paths)
-10. Grep body + `references/` + `scripts/` for concrete model names (`claude-*`, `gpt-*`, `sonnet`/`opus`/`haiku` used as IDs); allow only capability-tier prose in orchestrator skills
-11. Check provenance for derived skills: if `metadata.source` is set, require `metadata.last_synced` and a README `## Upstream` section
-12. Run `bunx markdownlint-cli` on the file
-13. Run `./scripts/validate-skill-sync.sh` for cross-validation
+9. Validate frontmatter value types: `allowed-tools` is a scalar,
+   `metadata.version` and `metadata.tags` are quoted scalars, and `metadata` is a map
+10. Reject duplicate `metadata.triggers`; keep activation guidance in `description`
+    or `when_to_use`
+11. Check for hardcoded paths (`/workspace/`, project-specific paths)
+12. Grep body + `references/` + `scripts/` for concrete model names (`claude-*`, `gpt-*`, `sonnet`/`opus`/`haiku` used as IDs); allow only capability-tier prose in orchestrator skills
+13. Warn when skills, commands, or templates set harness-owned execution parameters
+14. Warn when a side-effecting skill lacks both `disable-model-invocation: true`
+    and an explicit `Confirmation Required` gate
+15. Check prose routing references across the body, excluding frontmatter and code
+    fences, and flag missing local skills
+16. Check provenance for derived skills: if `metadata.source` is set, require `metadata.last_synced` and a README `## Upstream` section
+17. Run `bunx markdownlint-cli` on the file
+18. Run `./scripts/validate-skill-sync.sh` for cross-validation
 
 ## Quick Validation Command
 

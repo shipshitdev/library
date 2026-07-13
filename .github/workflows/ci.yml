@@ -52,6 +52,9 @@ jobs:
       - name: Check agent-folder-init safety fixtures
         run: python3 -m unittest discover -s skills/agent-folder-init/tests -p 'test_*.py'
 
+      - name: Check validator regression fixtures
+        run: python3 -m unittest discover -s scripts/tests -p 'test_*.py'
+
       - name: Audit dependencies
         run: bun audit
 

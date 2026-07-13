@@ -56,9 +56,9 @@ cursor team-kit). Run every item against the SKILL.md body, not just the frontma
 
 ## Model references
 
-- [ ] No concrete model name appears in the body, `references/`, or `scripts/` — no tier+version IDs (`claude-3-7-sonnet-20250219`, `claude-opus-4.5`, `gpt-5.5`), dated snapshots, or bare family name used as a routing key
+- [ ] No concrete model name appears in the body, `references/`, or `scripts/` — no tier+version IDs, dated snapshots, or bare family name used as a routing key
 - [ ] If the skill is an orchestrator (spawns sub-agents), model choice is expressed as a **capability tier** in prose ("cheapest tier for finders, strongest for the verdict"), with the concrete mapping deferred to the repo routing block
-- [ ] The `model:` frontmatter field (if present) is a harness-resolved tier alias, not a version-pinned ID — and is omitted unless the skill genuinely needs a fixed tier
+- [ ] Public skills omit model and effort overrides; the harness/app owns execution-lane selection
 - [ ] External tools (Codex, `gh`, a CLI) may be named as dependencies; the models they run may not
 
 ## Provenance

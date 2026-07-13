@@ -5,7 +5,7 @@ description: |
   Run periodically or before releases.
 metadata:
   internal: true
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "audit, skills, quality, maintenance"
 ---
 
@@ -31,6 +31,9 @@ For each SKILL.md, check:
 - `version`/`tags` inside `metadata:` block, not top-level
 - No forbidden fields (`auto_activate`, `auto_trigger`, `risk`)
 - `metadata.tags` is a comma-separated string, not YAML list
+- No harness-owned execution parameters in reusable content; apply
+  `.agents/memory/system/execution-boundary.md` to skills, commands, and routine
+  templates
 
 ### 3. Structural Issues
 

@@ -143,6 +143,7 @@ touch skills/my-skill/SKILL.md
 - `.agents/memory/system/skill-management.md` - Single-source skill workflow
 - `.agents/memory/system/architecture.md` - .agents folder structure
 - `.agents/memory/system/platform-adaptations.md` - Claude vs Codex writing guide
+- `.agents/memory/system/execution-boundary.md` - app-owned execution settings vs reusable content
 - `.agents/memory/system/ai-dev-loop.md` - Board-driven autonomous dev loop (`/loop` + agent-dispatch)
 
 ## Development Commands

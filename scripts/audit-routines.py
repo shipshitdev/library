@@ -35,33 +35,32 @@ LEAKAGE_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     (
         "effort",
         re.compile(
-            r"\b(?:reasoning[_ -]?effort|effort\s*[:=]|"
-            r"(?:low|medium|high|xhigh|max)\s+effort)\b",
+            r"\b(?:reasoning[_ -]?effort|(?:low|medium|high|xhigh|max)\s+effort)\b|"
+            r"\beffort\s*[:=]",
             re.IGNORECASE,
         ),
     ),
     (
         "schedule",
         re.compile(
-            r"\b(?:rrule|cron|schedule\s*[:=]|run\s+every\s+|"
-            r"every\s+(?:day|week|month|hour))\b",
+            r"\b(?:rrule|cron|run\s+every\s+|every\s+(?:day|week|month|hour))\b|"
+            r"\bschedule\s*[:=]",
             re.IGNORECASE,
         ),
     ),
     (
         "workspace",
         re.compile(
-            r"\b(?:cwd\s*[:=]|working\s+directory\s*[:=]|"
-            r"(?:create|use|switch\s+to)\s+(?:a\s+)?worktree|"
-            r"source\s+checkout|workspace\s*[:=])\b",
+            r"\b(?:(?:create|use|switch\s+to)\s+(?:a\s+)?worktree|"
+            r"source\s+checkout)\b|\b(?:cwd|working\s+directory|workspace)\s*[:=]",
             re.IGNORECASE,
         ),
     ),
     (
         "environment",
         re.compile(
-            r"\b(?:execution_environment|environment\s*[:=]|"
-            r"export\s+[A-Z][A-Z0-9_]*=)\b",
+            r"\bexecution_environment\b|\benvironment\s*[:=]|"
+            r"\bexport\s+[A-Z][A-Z0-9_]*=",
             re.IGNORECASE,
         ),
     ),

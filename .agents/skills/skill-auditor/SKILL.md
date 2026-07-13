@@ -5,13 +5,27 @@ description: |
   Run periodically or before releases.
 metadata:
   internal: true
-  version: "1.0.1"
+  version: "1.1.0"
   tags: "audit, skills, quality, maintenance"
 ---
 
 # Skill Auditor
 
 Comprehensive audit of the skills library for quality and consistency.
+
+## Audit Modes
+
+| Mode | Scope | Command |
+|---|---|---|
+| `skills` (default) | Public skills, commands, bundles, and catalog sync | Follow the categories below |
+| `routines` | Local Claude scheduled tasks and Codex automations | `python3 scripts/audit-routines.py` |
+
+Routine mode follows
+`.agents/memory/system/routine-standards.md`. It is read-only: detect normalized
+duplicate bodies and prompt-level model, effort, schedule, cwd/workspace/worktree,
+and environment leakage. Report source identifiers and field names only; never print
+prompt bodies, environment values, or TOML values. Use `--show-paths` only when the
+caller explicitly wants local paths in the report.
 
 ## Audit Categories
 
@@ -74,4 +88,8 @@ Report findings as a table:
 |-------|-------|----------|--------|
 | `code-refactoring-refactor-clean` | Duplicate of `refactor-code` | HIGH | Merge |
 | `spec-to-code-compliance` | Empty directory | HIGH | Delete |
+
+For routine mode, report totals, leakage categories, anonymous source identifiers,
+duplicate-family groups, and observed app-owned field names. Do not include the
+matched text or configuration values.
 | `skill-capture` | tags as YAML list | MEDIUM | Fix to string |

@@ -5,7 +5,7 @@ description: |
   Run on new or modified skills before committing.
 metadata:
   internal: true
-  version: "1.0.2"
+  version: "1.0.3"
   tags: "validation, skills, spec-compliance, quality"
 ---
 
@@ -94,6 +94,10 @@ Valid extension fields (must match `allowed_fields` in `scripts/validate-skill-s
 - **No concrete model names** in body, `references/`, or `scripts/` — reject tier+version IDs (`claude-3-7-sonnet-20250219`, `claude-opus-4.5`, `gpt-5.5`), dated snapshots, and bare family names used as routing keys. Exception: orchestrator skills may name **capability tiers** in prose. See [skill-standards.md → Model references](../memory/system/skill-standards.md).
 - **No harness-owned execution parameters** in skills, commands, or routine templates.
   Apply [execution-boundary.md](../memory/system/execution-boundary.md).
+- **Routine templates** follow
+  [routine-standards.md](../memory/system/routine-standards.md). Run
+  `python3 scripts/audit-routines.py` to detect duplicate bodies and app-parameter
+  leakage without printing prompt or configuration values.
 - **Provenance (derived skills only):** when `metadata.source` is set, `metadata.last_synced` and a README `## Upstream` section are required (enforced by `check_provenance()`). In-house skills need no provenance fields.
 
 ## Validation Process

@@ -11,7 +11,7 @@ description: >-
   prioritized backlog instead of a merge verdict.
 compatibility: Requires gh CLI and git for PR diff fetching.
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
   tags: "code-review, security, structural, devex, orchestration, pr-gate"
   author: Ship Shit Dev
 allowed-tools: Bash(git *) Bash(gh *)
@@ -74,8 +74,8 @@ Outputs:
 - **PR mode:** verdict approve / request-changes / block — with one-sentence
   rationale.
 - **Retro mode:** verdict `retro-backlog` (never blocks anything) — findings
-  bucketed bug / optimization / refactor and ranked by (impact × recurrence) ÷
-  effort, for scheduling as follow-up work.
+  bucketed bug / optimization / refactor / other and ranked by (impact × recurrence)
+  ÷ effort, for scheduling as follow-up work.
 - Dimensions reviewed and adversarial refutation count.
 
 Creates/Modifies:
@@ -174,6 +174,10 @@ Optimizations:
 Refactors:
 [rank]. [SEVERITY] <file> — <finding>   (commits: <sha>, <sha>, <sha>)
   Fix: <consolidation>
+
+Other follow-ups:
+[rank]. [SEVERITY] <file> — <finding>   (commits: <sha>)
+  Fix: <remediation>
 
 Dimensions reviewed: structural, security, devex, cross-commit
 Adversarial pass: <N raw> → <M surviving>

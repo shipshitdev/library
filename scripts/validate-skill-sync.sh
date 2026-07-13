@@ -425,7 +425,7 @@ check_model_references() {
     hits=$(grep -rInE "$model_re" \
         --include='SKILL.md' --include='*.md' --include='*.py' \
         --include='*.js' --include='*.ts' --include='*.sh' \
-        "$skill_dir" 2>/dev/null | grep -v '/README.md:' || true)
+        "$skill_dir" 2>/dev/null || true)
 
     if [[ -n "$hits" ]]; then
         while IFS= read -r hit; do
@@ -442,7 +442,6 @@ check_model_references() {
         --include='SKILL.md' --include='*.md' --include='*.py' \
         --include='*.js' --include='*.ts' --include='*.sh' \
         "$skill_dir" 2>/dev/null \
-        | grep -v '/README.md:' \
         | grep -viE 'model["'"'"']?\s*[:=]\s*["'"'"']?(sonnet|opus|haiku)' \
         | grep -vE "$model_re" || true)
 

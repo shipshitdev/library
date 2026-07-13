@@ -4,9 +4,9 @@ description: Operate a production Postgres database — backup strategy, point-i
 disable-model-invocation: true
 argument-hint: "[backup | restore | pooling | dr]"
 compatibility: Requires psql / pg_dump / pg_restore for self-managed instances; provider CLI for managed.
-allowed-tools: Bash(psql *) Bash(pg_dump *) Bash(pg_restore *) Bash(pg_basebackup *)
+allowed-tools: Bash(psql *) Bash(pg_dump *) Bash(pg_restore *) Bash(pg_basebackup *) Bash(createdb *) Bash(dropdb *)
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "postgres, backup, disaster-recovery, pooling, database, infrastructure"
   author: Ship Shit Dev
 when_to_use: "postgres backups, database backup strategy, point in time recovery, PITR, restore the database, connection pooling, PgBouncer, disaster recovery, DR runbook, harden postgres"
@@ -88,9 +88,13 @@ A backup is unproven until restored. Restore into a **scratch** database, never 
 production, and verify:
 
 ```bash
-createdb restore_check
-pg_restore --dbname=restore_check --clean --if-exists db-YYYY-MM-DD.dump
-psql restore_check -c "SELECT count(*) FROM <critical_table>;"   # sanity-check row counts
+scratch_db="restore_check_$(date +%s)"
+trap 'dropdb --if-exists "$scratch_db"' EXIT
+createdb "$scratch_db"
+pg_restore --dbname="$scratch_db" --clean --if-exists db-YYYY-MM-DD.dump
+psql "$scratch_db" -c "SELECT count(*) FROM <critical_table>;"   # sanity-check row counts
+dropdb "$scratch_db"
+trap - EXIT
 ```
 
 Only restore to production on an explicit, named request, after confirming the target

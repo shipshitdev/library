@@ -3,10 +3,10 @@ name: dependency-audit
 description: Audit a project's dependency supply chain — known CVEs in installed packages, secrets about to be committed, and lockfile/provenance integrity — and wire the checks into CI as a merge gate. Use when asked to audit dependencies, check for vulnerable packages, scan for leaked secrets, add a security gate to CI, or harden the supply chain. Complements security-audit (app-level) and git-safety (git history).
 user-invocable: true
 argument-hint: "[audit | ci]"
-compatibility: Requires bun and git; gh to add the CI workflow. Uses gitleaks/trivy when available.
-allowed-tools: Bash(bun *) Bash(git *) Bash(gh *)
+compatibility: Requires bun and git; gh to add the CI workflow. Uses gitleaks when available.
+allowed-tools: Bash(bun *) Bash(git *) Bash(gh *) Bash(gitleaks *)
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "security, dependencies, sca, secrets, supply-chain, ci"
   author: Ship Shit Dev
 when_to_use: "audit dependencies, dependency audit, vulnerable packages, CVE scan, scan for secrets, secrets scanning, supply chain, add security gate to CI, SCA"
@@ -106,13 +106,35 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
-      - run: bun install --frozen-lockfile
+      - name: Verify one immutable Bun lockfile
+        shell: bash
+        run: |
+          test -f bun.lock
+          for stray in package-lock.json yarn.lock pnpm-lock.yaml; do
+            test ! -e "$stray" || { echo "Mixed lockfile: $stray"; exit 1; }
+          done
+          bun install --frozen-lockfile
+          git diff --exit-code -- bun.lock
+      - name: Reject unreviewed dependency lifecycle scripts
+        shell: bash
+        run: |
+          untrusted="$(bun pm untrusted)"
+          printf '%s\n' "$untrusted"
+          if [[ "$untrusted" == *"These dependencies had their lifecycle scripts blocked during install."* ]]; then
+            echo "Review package provenance before adding it to trustedDependencies."
+            exit 1
+          fi
       - run: bun audit --audit-level=high      # fail the PR on high/critical CVEs
       - uses: gitleaks/gitleaks-action@v2       # fail on any leaked secret
 ```
 
-Pin action versions, keep `permissions` least-privilege (`contents: read`), and set
-the audit threshold to the team's risk tolerance (default: fail on high/critical).
+The lockfile step rejects mixed package managers and install drift. The lifecycle step
+blocks newly introduced install scripts until their package provenance is reviewed and
+the package is explicitly trusted. Typosquat and package-age checks still require
+human judgment in `audit` mode; do not claim the CI gate can infer them reliably.
+
+Pin action versions, keep `permissions` least-privilege (`contents: read`), and set the
+audit threshold to the team's risk tolerance (default: fail on high/critical).
 
 ## Anti-Patterns
 

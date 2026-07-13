@@ -79,6 +79,13 @@ class SkillValidatorFixtureTests(unittest.TestCase):
     def test_concrete_model_is_rejected(self) -> None:
         self.assert_finding("invalid-model", "Concrete model name", 1)
 
+    def test_unsupported_codex_path_claim_is_rejected(self) -> None:
+        self.assert_finding(
+            "invalid-codex-path-claim",
+            "Unsupported Codex path claim",
+            1,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

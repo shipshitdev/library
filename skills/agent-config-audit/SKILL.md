@@ -2,7 +2,7 @@
 name: agent-config-audit
 description: Audit AI agent instruction files (AGENTS.override.md, AGENTS.md, configured fallbacks, CLAUDE.md, hooks, and settings) across workspaces in read-only report mode. Use when agent configs drift, rules duplicate, files go stale, or after workspace restructuring; apply fixes only when explicitly requested.
 metadata:
-  version: "1.1.1"
+  version: "1.1.2"
   tags: "audit, claude-md, agents-md, config, documentation, maintenance"
 when_to_use: "audit AGENTS.md, audit CLAUDE.md, agent config audit, sync agent configs, check AGENTS.md, docs out of date, rules duplicated, config drift, stale cursorrules, agent config maintenance"
 disable-model-invocation: true
@@ -159,12 +159,16 @@ For each workspace, check the instruction chain Codex actually resolves:
 - [ ] `AGENTS.md` contains repo-specific rules and entry points
 - [ ] Any fallback filenames are explicitly declared in the effective `.codex/config.toml`
 - [ ] Runtime approval, sandbox, and network policy lives in the effective `.codex/config.toml` or hooks, not in assumed prose
+- [ ] No `.codex/instructions.md` file or `.codex/commands` directory is presented
+  as a supported Codex entry surface
 
 Read the effective Codex configuration and record
 `project_doc_fallback_filenames` plus any runtime policy before judging the
 instruction chain.
 
-**Flag**: Undocumented fallback files, accidental overrides, or instruction files that contradict runtime configuration.
+**Flag**: Undocumented fallback files, accidental overrides, instruction files that
+contradict runtime configuration, or unsupported `.codex/instructions.md` and `.codex/commands`
+surfaces.
 
 ### Step 5: AGENTS.md Consistency Check
 

@@ -80,10 +80,17 @@ Three real repository examples are checked by `scripts/validate-skill-sync.sh`:
 
 1. **Shared loader adapter:** `.claude/skills` and `.codex/skills` both link to
    `.agents/skills`; neither contains a forked copy.
-2. **Command adapter:** `commands/review.md` is a thin command entry point that routes
-   to the portable `review-dispatch` skill.
+2. **Command adapter:** `commands/review.md` is a thin Claude Code/plugin command
+   entry point that routes to the portable `review-dispatch` skill. The repository
+   does not publish `commands/` as Codex commands.
 3. **Project-instruction adapter:** `AGENTS.md` contains Codex-facing repository
    instructions outside every public skill body.
+
+Codex project surfaces are deliberately narrow: use `AGENTS.md` for durable
+instructions, `.agents/skills` for reusable workflows, and `.codex/config.toml` only
+for trusted project configuration. Never create `.codex/instructions.md` or `.codex/commands`.
+Legacy custom prompts live only under the user's
+`~/.codex/prompts` directory and are deprecated in favor of skills.
 
 The validator fails if either loader link drifts, the command stops routing to its
 canonical skill, the project instruction entry point disappears, or a canonical skill

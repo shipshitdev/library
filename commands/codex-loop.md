@@ -60,16 +60,13 @@ source .github/agent-loop.env   # PROJECT_OWNER, PROJECT_NUMBER, STATUS_*_OPTION
 
 4. Hand the chosen issue to `codex exec`, which runs the full `executing-plans`
    contract for issue `N` — the same inlined contract `codex-dispatch.yml` uses, so
-   local and CI runs behave identically. The configured model/effort come from the
-   same repo conventions as the CI lane (`CODEX_MODEL` / `CODEX_EFFORT`); unset =
-   the local Codex defaults:
+   local and CI runs follow the same workflow contract. Model, effort, sandbox, and
+   approval policy come from the effective Codex app/config layers; this reusable
+   command does not override them:
 
    ```bash
    N=<chosen-issue-number>
    codex exec \
-     --sandbox workspace-write \
-     ${CODEX_MODEL:+--model "$CODEX_MODEL"} \
-     ${CODEX_EFFORT:+-c model_reasoning_effort="$CODEX_EFFORT"} \
      "$(cat <<PROMPT
    Run the autonomous dev loop on issue #$N in this repository.
 

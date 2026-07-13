@@ -679,6 +679,50 @@ check_public_execution_parameters() {
     return $warnings
 }
 
+# Reject inert Codex repository surfaces and positive documentation claims that
+# would cause scaffolds or contributors to recreate them.
+check_supported_codex_surfaces() {
+    local issues=0
+
+    if [[ -e "$REPO_ROOT/.codex/instructions.md" ]]; then
+        echo -e "${RED}✗${NC} Unsupported Codex instruction surface: .codex/instructions.md"
+        ((++issues))
+    fi
+    if [[ -e "$REPO_ROOT/.codex/commands" ]]; then
+        echo -e "${RED}✗${NC} Unsupported Codex command surface: .codex/commands"
+        ((++issues))
+    fi
+
+    local roots=()
+    local candidate
+    for candidate in \
+        "$REPO_ROOT/README.md" \
+        "$REPO_ROOT/AGENTS.md" \
+        "$REPO_ROOT/.agents" \
+        "$REPO_ROOT/resources" \
+        "$SKILLS_DIR"; do
+        [[ -e "$candidate" ]] && roots+=("$candidate")
+    done
+
+    local claims
+    claims=$(grep -rInE \
+        --include='*.md' \
+        '(\.codex/instructions\.md|\.codex/commands)' \
+        "${roots[@]}" 2>/dev/null \
+        | grep -viE '(do not|does not|don.t|never|unsupported|inert|deprecated|must not|cannot|no )' \
+        || true)
+
+    if [[ -n "$claims" ]]; then
+        while IFS= read -r claim; do
+            [[ -n "$claim" ]] || continue
+            echo -e "${RED}✗${NC} Unsupported Codex path claim: $claim"
+            ((++issues))
+        done <<< "$claims"
+    fi
+
+    return $issues
+}
+
 # Function to check for hardcoded platform paths
 check_platform_paths() {
     local file="$1"
@@ -1191,6 +1235,10 @@ check_public_concrete_models || public_model_issues=$?
 public_execution_warnings=0
 check_public_execution_parameters || public_execution_warnings=$?
 ((TOTAL_WARNINGS += public_execution_warnings, 1))
+
+codex_surface_issues=0
+check_supported_codex_surfaces || codex_surface_issues=$?
+((TOTAL_ISSUES += codex_surface_issues, 1))
 
 # Validate external adapter examples before canonical skill content.
 adapter_issues=0

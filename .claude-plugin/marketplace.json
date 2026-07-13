@@ -93,7 +93,7 @@
     {
       "name": "agent-config-audit",
       "source": "./skills/agent-config-audit",
-      "description": "Audit and sync AI agent instruction files (AGENTS.override.md, AGENTS.md, configured fallbacks, CLAUDE.md, hooks, and settings) across workspaces. Use when agent configs drift, rules duplicate, files go stale, or after workspace restructuring."
+      "description": "Audit AI agent instruction files (AGENTS.override.md, AGENTS.md, configured fallbacks, CLAUDE.md, hooks, and settings) across workspaces in read-only report mode. Use when agent configs drift, rules duplicate, files go stale, or after workspace restructuring; apply fixes only when explicitly requested."
     },
     {
       "name": "agent-dispatch",

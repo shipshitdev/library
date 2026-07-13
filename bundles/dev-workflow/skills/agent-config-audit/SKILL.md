@@ -1,18 +1,11 @@
 ---
 name: agent-config-audit
-description: Audit and sync AI agent instruction files (AGENTS.override.md, AGENTS.md, configured fallbacks, CLAUDE.md, hooks, and settings) across workspaces. Use when agent configs drift, rules duplicate, files go stale, or after workspace restructuring.
+description: Audit AI agent instruction files (AGENTS.override.md, AGENTS.md, configured fallbacks, CLAUDE.md, hooks, and settings) across workspaces in read-only report mode. Use when agent configs drift, rules duplicate, files go stale, or after workspace restructuring; apply fixes only when explicitly requested.
 metadata:
-  version: "1.1.0"
-  tags: audit, claude-md, agents-md, config, documentation, maintenance
-  triggers: audit AGENTS.md, audit CLAUDE.md, agent config audit, sync agent configs, check AGENTS.md, docs out of date, rules duplicated, config drift, stale cursorrules, agent config maintenance
-allowed-tools:
-- Read
-- Write
-- Edit
-- Glob
-- Grep
-- Bash
-- Task
+  version: "1.1.1"
+  tags: "audit, claude-md, agents-md, config, documentation, maintenance"
+when_to_use: "audit AGENTS.md, audit CLAUDE.md, agent config audit, sync agent configs, check AGENTS.md, docs out of date, rules duplicated, config drift, stale cursorrules, agent config maintenance"
+disable-model-invocation: true
 ---
 
 # Agent Config Audit
@@ -34,7 +27,8 @@ Outputs:
 Creates/Modifies:
 
 - Report mode: no file changes
-- Fix mode: agent config files, `.agents/` docs, and related settings
+- Fix mode: agent config files, `.agents/` docs, and related settings, but only
+  after an explicit fix request and confirmation of the exact plan
 
 External Side Effects:
 
@@ -43,7 +37,8 @@ External Side Effects:
 
 Confirmation Required:
 
-- Before applying fix mode
+- Before entering fix mode or using any mutating file/shell operation; an audit or
+  sync request alone authorizes report mode only
 - Before overwriting existing agent configs
 - Before deleting or consolidating duplicated rules
 
@@ -63,10 +58,10 @@ Delegates To:
 
 ## When NOT to Use
 
-- If writing actual application code → use **bugfix**, **refactor-code**, or repo-specific skills
+- If writing actual application code → use `bug` or `refactor-dispatch`
 - If capturing a single new rule from conversation → use **rules-capture**
-- If auditing code quality / CRITICAL-NEVER-DO violations → use **genfeed-codebase-audit**
-- If checking formatter/linter configs (biome, prettier, tsconfig) → use **genfeed-config-harmony**
+- If auditing code quality rather than agent configuration → use `audit`
+- If setting up or repairing formatter/linter config → use `linter-formatter-init`
 - If scaffolding `.agents/` from scratch → use **agent-folder-init**
 
 ## Inputs
@@ -242,7 +237,10 @@ Output format:
 
 ### Step 9: Apply Fixes (if fix mode)
 
-If user requested `fix` mode, apply changes following these principles:
+Never infer fix mode from the audit findings or from a request to "sync" configs.
+Enter fix mode only when the user explicitly requests mutation, show the exact files
+and operations, and obtain confirmation before using write/edit or mutating shell
+behavior. Then apply changes following these principles:
 
 - Each rule lives in ONE canonical location
 - Hooks enforce at runtime — docs teach, not repeat
@@ -283,9 +281,8 @@ After running the audit:
 
 ## Related Skills
 
-- **rules-capture** — Route here if user is expressing a new rule during conversation (not auditing)
-- **agent-folder-init** — Route here if scaffolding `.agents/` structure from scratch
-- **genfeed-config-harmony** — Route here if the issue is formatter/linter configs (biome, prettier, tsconfig)
-- **genfeed-codebase-audit** — Route here if auditing code quality, not config quality
-- **claude-md-management:revise-claude-md** — Route here if updating a single CLAUDE.md with session learnings (not full audit)
-- **claude-md-management:claude-md-improver** — Complementary; focuses on individual CLAUDE.md quality while this skill focuses on cross-file consistency
+- `rules-capture` — capture one new preference instead of auditing a config set
+- `agent-folder-init` — scaffold a missing `.agents/` structure
+- `linter-formatter-init` — set up or repair formatter/linter configuration
+- `audit` — audit application quality instead of agent configuration
+- `session-documenter` — preserve session learnings before proposing instruction updates

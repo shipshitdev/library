@@ -2,6 +2,11 @@
 
 Skills in this library target **Claude Code and Codex together**. The shared baseline is the Agent Skills spec, and Claude-specific frontmatter extensions are allowed when they add real value.
 
+Execution settings are not platform adaptations. Follow the normative
+[Harness-Owned Execution Boundary](execution-boundary.md): the app owns model,
+effort, schedule, cwd/workspace, checkout selection, and execution environment;
+reusable content owns the objective, invariants, safety gates, evidence, and output.
+
 ## The Rule
 
 **Write one SKILL.md that works cleanly in Codex and still exposes Claude-specific capabilities where useful.**
@@ -35,7 +40,7 @@ disable-model-invocation: true
 ---
 ```
 
-Keep `version`, `tags`, and custom metadata inside `metadata`. Claude Code extension fields may stay top-level when they are intentionally used: `when_to_use`, `disable-model-invocation`, `user-invocable`, `argument-hint`, `model`, `effort`, `context`, `agent`, `hooks`, `paths`, and `shell`.
+Keep `version`, `tags`, and custom metadata inside `metadata`. Claude Code extension fields may stay top-level when they are intentionally used: `when_to_use`, `disable-model-invocation`, `user-invocable`, `argument-hint`, `context`, `agent`, `hooks`, `paths`, and `shell`. Claude Code also recognizes `model` and `effort`, but public reusable skills must omit them and inherit app/session configuration.
 
 ## Writing Style
 

@@ -5,7 +5,7 @@ description: |
   Run on new or modified skills before committing.
 metadata:
   internal: true
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "validation, skills, spec-compliance, quality"
 ---
 
@@ -69,8 +69,6 @@ Valid extension fields (must match `allowed_fields` in `scripts/validate-skill-s
 | `disallowed-tools` | Removes tools from the pool while active (the actual block mechanism) |
 | `argument-hint` | Autocomplete hint for expected arguments |
 | `compatibility` | Environment prerequisites (packages, network, target agent) |
-| `model` | Tier-alias override (never a version-pinned ID — see Model References) |
-| `effort` | Effort level (`low`…`max`) |
 | `context` | `fork` for subagent isolation |
 | `agent` | Subagent type when `context: fork` |
 | `hooks` | Lifecycle hooks scoped to the skill |
@@ -81,6 +79,8 @@ Valid extension fields (must match `allowed_fields` in `scripts/validate-skill-s
 
 - `auto_activate` / `auto_trigger` — removed in 2026-04 migration
 - `risk` — not in any spec
+- `model` / `effort` — recognized by Claude Code but owned by app/session
+  configuration, not public reusable skills
 - Any top-level field not in the tables above → "Unsupported top-level frontmatter field"
 
 ### Content Rules
@@ -89,7 +89,9 @@ Valid extension fields (must match `allowed_fields` in `scripts/validate-skill-s
 - No tool names in instructions (say "search for" not "use Grep")
 - Imperative/infinitive style ("Configure X" not "You should configure X")
 - Code blocks use real backtick fences, not escaped `\`\`\``
-- **No concrete model names** in body, `references/`, or `scripts/` — reject tier+version IDs (`claude-3-7-sonnet-20250219`, `claude-opus-4.5`, `gpt-5.5`), dated snapshots, and bare family names used as routing keys. Exception: orchestrator skills may name **capability tiers** in prose. See [skill-standards.md → Model references](../../memory/system/skill-standards.md).
+- **No concrete model names** in body, `references/`, or `scripts/` — reject tier+version IDs (`claude-3-7-sonnet-20250219`, `claude-opus-4.5`, `gpt-5.5`), dated snapshots, and bare family names used as routing keys. Exception: orchestrator skills may name **capability tiers** in prose. See [skill-standards.md → Model references](../memory/system/skill-standards.md).
+- **No harness-owned execution parameters** in skills, commands, or routine templates.
+  Apply [execution-boundary.md](../memory/system/execution-boundary.md).
 - **Provenance (derived skills only):** when `metadata.source` is set, `metadata.last_synced` and a README `## Upstream` section are required (enforced by `check_provenance()`). In-house skills need no provenance fields.
 
 ## Validation Process
@@ -100,7 +102,7 @@ Valid extension fields (must match `allowed_fields` in `scripts/validate-skill-s
 4. Check `description` plus `when_to_use` is under 1536 chars
 5. Check `plugin.json` description is present and under 100 chars
 6. Check `version`/`tags` are NOT top-level (must be inside `metadata:`)
-7. Check for forbidden fields (`auto_activate`, `auto_trigger`, `risk`, any field not in the extension tables)
+7. Check for forbidden fields (`auto_activate`, `auto_trigger`, `risk`, `model`, `effort`, any field not in the extension tables)
 8. Check for escaped backtick fences in content
 9. Check for hardcoded paths (`/workspace/`, project-specific paths)
 10. Grep body + `references/` + `scripts/` for concrete model names (`claude-*`, `gpt-*`, `sonnet`/`opus`/`haiku` used as IDs); allow only capability-tier prose in orchestrator skills

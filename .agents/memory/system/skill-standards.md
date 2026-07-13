@@ -1,6 +1,6 @@
 # Skill Standards
 
-This repo follows the [Agent Skills open standard](https://agentskills.io/specification) as the base spec, extended with Claude Code-specific fields. Codex compatibility comes from the base spec plus the skill body; Claude can additionally use the extension fields.
+This repo follows the [Agent Skills open standard](https://agentskills.io/specification) as the base spec, extended with selected Claude Code-specific fields. Codex compatibility comes from the base spec plus the skill body; Claude can additionally use approved extension fields. The normative split between reusable content and app configuration lives in [Harness-Owned Execution Boundary](execution-boundary.md).
 
 ---
 
@@ -24,8 +24,8 @@ This repo follows the [Agent Skills open standard](https://agentskills.io/specif
 | `when_to_use` | Extra trigger phrases appended to `description` in skill listing. Combined with `description`, capped at 1,536 chars. |
 | `disable-model-invocation` | `true` = only user can invoke (no auto-trigger). Use for destructive/side-effect skills. |
 | `user-invocable` | `false` = hides from `/` menu. Use for background knowledge skills. |
-| `model` | Override model for this skill. |
-| `effort` | Override effort level: `low`, `medium`, `high`, `xhigh`, `max`. |
+| `model` | Recognized by Claude Code, but forbidden in this public library; the harness owns model selection. |
+| `effort` | Recognized by Claude Code, but forbidden in this public library; the harness owns reasoning effort. |
 | `context` | `fork` = run in isolated subagent. Only for skills with an actionable task — a guidelines-only skill returns **empty output** when forked. ⚠️ May not be honored via the Skill tool (issue #17283). |
 | `agent` | Subagent type when `context: fork`. Options: `Explore`, `Plan`, `general-purpose`, or custom. |
 | `hooks` | Lifecycle hooks scoped to this skill. |
@@ -162,7 +162,6 @@ Rules:
 | `context: fork` | Skill does independent research/exploration that shouldn't see conversation history (must have an actionable task — guidelines-only forks return empty) |
 | `allowed-tools` | You want to skip the per-use prompt for tools the skill calls repeatedly. Remember it only *auto-approves*, it does not restrict — see note below |
 | `disallowed-tools` | You need to actually **block** a tool while the skill runs (e.g. keep an autonomous loop from calling `AskUserQuestion`) |
-| `effort: high` | Skill requires deep reasoning (architecture decisions, complex debugging) |
 | `paths` | ~~Skill only applies to specific file types~~ — avoid until issue #49835 is fixed (sets the skill undiscoverable); use nested `.claude/skills/` dirs instead |
 
 **`allowed-tools` is an allowlist, not a sandbox.** Listing tools only bypasses their permission prompt; every unlisted tool is still callable and just prompts as normal. Narrowing `allowed-tools` does not lock a skill down — use `disallowed-tools`, deny rules, or hooks to actually block. For MCP tools, list the fully-qualified `ServerName:tool_name` so the grant resolves when multiple MCP servers are connected.
@@ -236,10 +235,9 @@ touches only the per-repo routing block, never the skills.
   the repo routing block (`CLAUDE.md`/`AGENTS.md`, written by `setup-agent-routing`),
   so one per-repo file absorbs each model generation and each harness (Claude,
   Codex) maps the tiers to its own models.
-- **The `model:` frontmatter field**, if set, carries a tier alias the harness
-  resolves (`sonnet`, `opus` as Claude aliases — the field is Claude-only), not a
-  version-pinned ID. Prefer omitting it and inheriting the session model unless the
-  skill genuinely needs a fixed tier.
+- **Do not set `model:` or `effort:` in public skills.** Although Claude Code parses
+  those extension fields, model and reasoning-effort selection belong to the active
+  session or app configuration. See [Harness-Owned Execution Boundary](execution-boundary.md).
 - **External tools are lanes, not models.** Naming Codex, `gh`, or a CLI as a
   dependency the skill shells out to is fine (it is a tool, like `git`). Naming the
   model that tool runs is not.

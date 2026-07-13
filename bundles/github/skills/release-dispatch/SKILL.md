@@ -10,7 +10,7 @@ description: >-
   up branches after a deploy, and the action must be picked from an argument like
   "gates", "cut", "notes", or "cleanup".
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "release, dispatcher, ci-cd, semver, github, orchestration"
   author: Ship Shit Dev
 allowed-tools: Bash(git *) Bash(gh *)
@@ -85,8 +85,9 @@ the Usage block — do not guess a mode (a wrong guess could tag or delete).
 
 ```bash
 TRUNK=$(gh repo view --json defaultBranchRef --jq .defaultBranchRef.name 2>/dev/null \
-  || git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null | sed 's@^origin/@@' \
-  || echo main)
+  || git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null)
+TRUNK=${TRUNK#origin/}
+TRUNK=${TRUNK:-main}
 git rev-parse --verify --quiet "origin/$TRUNK" >/dev/null || TRUNK=""
 ```
 

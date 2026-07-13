@@ -57,16 +57,57 @@ jobs:
           FLAGS=""
 
           # --- 1. ensure the issue is on the board ---
-          ITEMS=$(gh project item-list "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --format json -L 800)
-          ITEM=$(echo "$ITEMS" | jq -r --arg u "$IURL" '.items[]|select(.content.url==$u).id' | head -1)
-          if [ -z "$ITEM" ]; then
-            ITEM=$(gh project item-add "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --url "$IURL" --format json | jq -r '.id')
-            FLAGS="${FLAGS}added to board; "
-            ITEMS=$(gh project item-list "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --format json -L 800)
+          find_item_json() {
+            gh api graphql --paginate --slurp \
+              -F projectId="$NODE" \
+              -f query='query($projectId: ID!, $endCursor: String) {
+                node(id: $projectId) {
+                  ... on ProjectV2 {
+                    items(first: 100, after: $endCursor) {
+                      nodes {
+                        id
+                        content { ... on Issue { url } }
+                        fieldValues(first: 50) {
+                          nodes {
+                            ... on ProjectV2ItemFieldSingleSelectValue {
+                              name
+                              field { ... on ProjectV2SingleSelectField { name } }
+                            }
+                          }
+                        }
+                      }
+                      pageInfo { hasNextPage endCursor }
+                    }
+                  }
+                }
+              }' \
+              | jq -c --arg u "$IURL" \
+                '[.[] | .data.node.items.nodes[] | select(.content.url == $u)][0] // empty'
+          }
+
+          ITEM_JSON=$(find_item_json)
+          if [ -z "$ITEM_JSON" ]; then
+            if ADD_OUTPUT=$(gh project item-add "$PROJECT_NUMBER" \
+              --owner "$PROJECT_OWNER" --url "$IURL" --format json 2>&1); then
+              FLAGS="${FLAGS}added to board; "
+            else
+              # A concurrent run or an item beyond a fixed list limit may have
+              # added it already. Re-query every page before treating this as fatal.
+              ITEM_JSON=$(find_item_json)
+              if [ -z "$ITEM_JSON" ]; then
+                printf '::error::Unable to add project item: %s\n' "$ADD_OUTPUT"
+                exit 1
+              fi
+            fi
           fi
-          IV=$(echo "$ITEMS" | jq -r --arg u "$IURL" '.items[]|select(.content.url==$u)')
-          CUR_STATUS=$(echo "$IV" | jq -r '.status // ""')
-          CUR_PRI=$(echo "$IV" | jq -r '.priority // ""')
+          if [ -z "$ITEM_JSON" ]; then
+            ITEM_JSON=$(find_item_json)
+          fi
+          ITEM=$(echo "$ITEM_JSON" | jq -r '.id')
+          CUR_STATUS=$(echo "$ITEM_JSON" | jq -r \
+            '[.fieldValues.nodes[] | select(.field.name == "Status") | .name][0] // ""')
+          CUR_PRI=$(echo "$ITEM_JSON" | jq -r \
+            '[.fieldValues.nodes[] | select(.field.name == "Priority") | .name][0] // ""')
 
           # --- 2. Status default ---
           if [ -z "$CUR_STATUS" ]; then

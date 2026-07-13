@@ -736,6 +736,15 @@ check_catalog_summary() {
     return 0
 }
 
+# The removed installer had destructive restore behavior and a stale hardcoded catalog.
+check_legacy_installer_retired() {
+    if [[ -e "$REPO_ROOT/scripts/install-skills.sh" ]]; then
+        echo -e "${RED}✗${NC} Retired legacy installer returned: scripts/install-skills.sh"
+        return 1
+    fi
+    return 0
+}
+
 # Function to check for hardcoded platform paths
 check_platform_paths() {
     local file="$1"
@@ -1256,6 +1265,10 @@ check_supported_codex_surfaces || codex_surface_issues=$?
 catalog_issues=0
 check_catalog_summary || catalog_issues=$?
 ((TOTAL_ISSUES += catalog_issues, 1))
+
+installer_issues=0
+check_legacy_installer_retired || installer_issues=$?
+((TOTAL_ISSUES += installer_issues, 1))
 
 # Validate external adapter examples before canonical skill content.
 adapter_issues=0

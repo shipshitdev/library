@@ -101,6 +101,28 @@ npx skills add shipshitdev/skills --list
 > **Do NOT use `--all`** — it installs to every agent the CLI knows about (30+).
 > Always use `--agent` to target only the agents you use.
 
+### Migrating from the retired shell installer
+
+The legacy `scripts/install-skills.sh` installer was removed. It maintained a
+second hardcoded bundle inventory, targeted Claude-only project paths, and could
+recursively replace real directories during install or restore. Do not restore or
+run an old copy.
+
+Migrate without deleting existing directories first:
+
+1. Run the supported Quick Install command above with an explicit `--agent` list.
+   The skills CLI validates requested names against the repository catalog and owns
+   the managed installation layout.
+2. Confirm the expected skills appear in each selected agent. Keep the previous
+   directories in place until that verification is complete.
+3. Review old links/directories individually. Remove only a path you have identified
+   as an obsolete managed link; never recursively delete an agent skills directory
+   as part of migration.
+
+The README installation commands and `catalog.json` are the installation/catalog
+source of truth. Marketplace bundles remain available through the Claude Code plugin
+alternative below.
+
 ### Project-local Install
 
 ```bash

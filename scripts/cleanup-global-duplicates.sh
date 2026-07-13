@@ -144,5 +144,6 @@ else
   echo -e "${GREEN}Done. Removed $removed library duplicate directories.${NC}"
   echo ""
   echo -e "Next steps:"
-  echo -e "  ${BLUE}npx skills add shipshitdev/skills --all${NC}  # Reinstall as managed symlinks"
+  echo -e "  ${BLUE}npx skills add shipshitdev/skills -g --agent claude-code codex cursor --skill '*' -y${NC}"
+  echo -e "  Reinstall only for the agents you use; do not pass --all."
 fi

@@ -319,9 +319,8 @@ check_tool_references() {
         return 0
     fi
 
-    # Strip content inside PLATFORM-SPECIFIC markers before checking
     local content
-    content=$(sed '/<!-- PLATFORM-SPECIFIC-START/,/<!-- PLATFORM-SPECIFIC-END/d' "$file")
+    content=$(cat "$file")
 
     # Check for Claude-specific tool references (match as standalone tool names)
     local tool_patterns=(
@@ -369,12 +368,11 @@ check_platform_names() {
         fi
     done
 
-    # Strip content inside PLATFORM-SPECIFIC markers before checking
     local content
-    content=$(sed '/<!-- PLATFORM-SPECIFIC-START/,/<!-- PLATFORM-SPECIFIC-END/d' "$file")
+    content=$(cat "$file")
 
-    # Check for platform-name coupling in universal instructions.
-    # Small CLI-specific notes are fine when isolated behind marker blocks.
+    # Check for platform-name coupling in universal instructions. Platform-specific
+    # entry surfaces live outside canonical skill bodies; comments do not isolate them.
     local platform_patterns=(
         "Claude will"
         "Claude reads"
@@ -473,9 +471,8 @@ check_platform_paths() {
         fi
     done
 
-    # Strip content inside PLATFORM-SPECIFIC markers before checking
     local content
-    content=$(sed '/<!-- PLATFORM-SPECIFIC-START/,/<!-- PLATFORM-SPECIFIC-END/d' "$file")
+    content=$(cat "$file")
 
     # These are literal strings to search for in file content, not shell paths
     # shellcheck disable=SC2088
@@ -495,6 +492,53 @@ check_platform_paths() {
     done
 
     return $warnings
+}
+
+# HTML comments do not hide instructions from a harness. Canonical skills and their
+# bundled resources must never rely on PLATFORM-SPECIFIC marker blocks.
+check_platform_markers() {
+    local skill_dir="$1"
+    local issues=0
+    local hits
+
+    hits=$(grep -rInF --include='*.md' 'PLATFORM-SPECIFIC-' "$skill_dir" 2>/dev/null || true)
+    if [[ -n "$hits" ]]; then
+        while IFS= read -r hit; do
+            [[ -n "$hit" ]] || continue
+            echo -e "  ${RED}✗${NC} Inert platform marker in canonical skill content: $hit"
+            ((++issues))
+        done <<< "$hits"
+    fi
+
+    return $issues
+}
+
+# Validate three concrete adapter patterns kept outside public skill bodies. These
+# checks prove the repository adapters route to shared sources instead of copying
+# incompatible platform instructions into canonical skills.
+validate_adapter_examples() {
+    local issues=0
+
+    if [[ ! -L "$REPO_ROOT/.claude/skills" ]] ||
+        [[ "$(readlink "$REPO_ROOT/.claude/skills")" != "../.agents/skills" ]] ||
+        [[ ! -L "$REPO_ROOT/.codex/skills" ]] ||
+        [[ "$(readlink "$REPO_ROOT/.codex/skills")" != "../.agents/skills" ]]; then
+        echo -e "${RED}✗${NC} Platform loader adapters must link to ../.agents/skills"
+        ((++issues))
+    fi
+
+    if ! grep -Fq 'Use the `review-dispatch` skill.' "$REPO_ROOT/commands/review.md"; then
+        echo -e "${RED}✗${NC} commands/review.md no longer routes to review-dispatch"
+        ((++issues))
+    fi
+
+    if [[ ! -f "$REPO_ROOT/AGENTS.md" ]] ||
+        ! grep -Fq '# Skills Repo — Agent Instructions' "$REPO_ROOT/AGENTS.md"; then
+        echo -e "${RED}✗${NC} Codex project-instruction adapter AGENTS.md is missing"
+        ((++issues))
+    fi
+
+    return $issues
 }
 
 # Function to check for external skill handoffs
@@ -817,6 +861,10 @@ validate_skill() {
         check_model_references "$SKILLS_DIR/$skill_name" || model_warnings=$?
         ((skill_warnings += model_warnings, 1))
 
+        local marker_issues=0
+        check_platform_markers "$SKILLS_DIR/$skill_name" || marker_issues=$?
+        ((skill_issues += marker_issues, 1))
+
         # Platform-agnostic checks
         local tool_warnings=0
         check_tool_references "$skill_file" || tool_warnings=$?
@@ -896,6 +944,11 @@ validate_skill() {
     echo
     return 0
 }
+
+# Validate external adapter examples before canonical skill content.
+adapter_issues=0
+validate_adapter_examples || adapter_issues=$?
+((TOTAL_ISSUES += adapter_issues, 1))
 
 # Main validation logic
 if [[ -n "$SKILL_NAME" ]]; then

@@ -7,7 +7,7 @@ description: >-
   what changed before context is reset.
 metadata:
   version: "1.0.0"
-  tags: session, workflow, documentation, productivity
+  tags: "session, workflow, documentation, productivity"
 ---
 
 # Session End

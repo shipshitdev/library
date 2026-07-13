@@ -3,7 +3,7 @@ name: prompt-engineering
 description: Expert guide on prompt engineering patterns, best practices, and optimization techniques. Use when user wants to improve prompts, learn prompting strategies, debug agent behavior, or design content generation prompts.
 metadata:
   version: "1.0.0"
-  tags: prompt-engineering, ai, optimization, content-generation, templates
+  tags: "prompt-engineering, ai, optimization, content-generation, templates"
 ---
 
 # Prompt Engineering Patterns

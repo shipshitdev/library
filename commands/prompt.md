@@ -130,7 +130,7 @@ Provide 2-3 examples of desired output format and quality level before the actua
 - Be explicit about format and success criteria
 - Supports XML tags for structure
 
-### OpenAI (GPT-4)
+### OpenAI-compatible APIs
 
 - Structured sections with headers work well
 - Clear role definitions

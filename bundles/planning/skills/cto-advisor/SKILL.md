@@ -4,7 +4,7 @@ description: Technical leadership guidance for engineering teams, architecture d
 license: MIT
 metadata:
   version: "1.0.0"
-  tags: leadership, engineering, architecture, strategy, metrics
+  tags: "leadership, engineering, architecture, strategy, metrics"
 ---
 
 # CTO Advisor

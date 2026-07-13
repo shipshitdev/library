@@ -26,7 +26,7 @@ NC='\033[0m' # No Color
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-SKILLS_DIR="$REPO_ROOT/skills"
+SKILLS_DIR="${SKILLS_DIR_OVERRIDE:-$REPO_ROOT/skills}"
 EXISTING_SKILLS="$(
     find "$SKILLS_DIR" -mindepth 1 -maxdepth 1 -type d | while read -r skill_dir; do
         if [[ -f "$skill_dir/SKILL.md" ]]; then
@@ -266,6 +266,175 @@ check_frontmatter_fields() {
     return $warnings
 }
 
+# Validate repository-specific scalar/type rules that a line-oriented allowlist misses.
+# These are hard schema errors: malformed YAML can make a skill silently undiscoverable.
+check_frontmatter_types() {
+    local file="$1"
+    local issues=0
+    local findings
+
+    findings=$(python3 - "$file" <<'PY'
+import pathlib
+import re
+import sys
+
+path = pathlib.Path(sys.argv[1])
+lines = path.read_text().splitlines()
+if not lines or lines[0] != "---":
+    sys.exit(0)
+
+try:
+    end = lines.index("---", 1)
+except ValueError:
+    sys.exit(0)
+
+frontmatter = lines[1:end]
+
+for index, line in enumerate(frontmatter):
+    if line.startswith("allowed-tools:"):
+        value = line.split(":", 1)[1].strip()
+        if not value or value.startswith(("[", "{")):
+            print("allowed-tools must be a space-separated scalar, not a block/list")
+
+metadata_start = next(
+    (index for index, line in enumerate(frontmatter) if line == "metadata:"),
+    None,
+)
+if metadata_start is None:
+    sys.exit(0)
+
+for index in range(metadata_start + 1, len(frontmatter)):
+    line = frontmatter[index]
+    if line and not line.startswith((" ", "\t")):
+        break
+    if not line.strip():
+        continue
+
+    match = re.match(r"^  ([A-Za-z0-9_-]+):\s*(.*)$", line)
+    if not match:
+        print("metadata values must be scalar strings, not nested lists/maps")
+        continue
+
+    key, value = match.groups()
+    if key == "triggers":
+        print("metadata.triggers is a no-op activation field; use description/when_to_use")
+    if not value or value.startswith(("[", "{")):
+        print(f"metadata.{key} must be a scalar string")
+    if key in {"version", "tags"}:
+        quoted = len(value) >= 2 and value[0] in {'"', "'"} and value[-1] == value[0]
+        if not quoted:
+            print(f"metadata.{key} must be a quoted string")
+PY
+)
+
+    if [[ -n "$findings" ]]; then
+        while IFS= read -r finding; do
+            [[ -n "$finding" ]] || continue
+            echo -e "  ${RED}✗${NC} $finding"
+            ((++issues))
+        done <<< "$findings"
+    fi
+
+    return $issues
+}
+
+# App/session execution parameters are recognized by some harnesses but forbidden by
+# this library's execution boundary. Warn because prose/examples still require review.
+check_harness_execution_parameters() {
+    local skill_dir="$1"
+    local warnings=0
+    local hits
+
+    hits=$(grep -rInE \
+        --include='SKILL.md' --include='*.md' --include='*.py' \
+        --include='*.js' --include='*.ts' --include='*.sh' \
+        '^(model|effort):|model:[[:space:]]*["'"'"']?(sonnet|opus|haiku|inherit)(["'"'"']|$)|effort:[[:space:]]*["'"'"']?(low|medium|high|xhigh|max)(["'"'"']|$)|CODEX_(MODEL|EFFORT)|model_reasoning_effort' \
+        "$skill_dir" 2>/dev/null || true)
+
+    if [[ -n "$hits" ]]; then
+        while IFS= read -r hit; do
+            [[ -n "$hit" ]] || continue
+            echo -e "  ${YELLOW}⚠${NC} Harness-owned execution parameter in reusable content: $hit"
+            ((++warnings))
+        done <<< "$hits"
+    fi
+
+    return $warnings
+}
+
+# Mutating scripts or auto-approved Write/Edit tools require both explicit invocation
+# and an in-body confirmation gate. This remains a warning because static detection is
+# intentionally conservative and cannot prove every command's side effects.
+check_side_effect_safety() {
+    local file="$1"
+    local skill_dir="$2"
+    local warnings=0
+    local findings
+
+    findings=$(python3 - "$file" "$skill_dir" <<'PY'
+import pathlib
+import re
+import sys
+
+skill_file = pathlib.Path(sys.argv[1])
+skill_dir = pathlib.Path(sys.argv[2])
+text = skill_file.read_text()
+
+frontmatter_end = text.find("\n---", 4)
+frontmatter = text[4:frontmatter_end] if frontmatter_end != -1 else ""
+body = text[frontmatter_end + 4:] if frontmatter_end != -1 else text
+
+allowed_match = re.search(r"^allowed-tools:(.*(?:\n[ \t]+-[^\n]+)*)", frontmatter, re.M)
+allowed_tools = allowed_match.group(0) if allowed_match else ""
+mutating = bool(re.search(r"\b(Write|Edit)\b", allowed_tools))
+
+script_pattern = re.compile(
+    r"\.write_(?:text|bytes)\(|\.mkdir\(|\.unlink\(|rmtree\(|copy2?\(|"
+    r"open\([^\n]+,\s*[\"'](?:w|a|x)",
+)
+for script_dir_name in ("scripts",):
+    script_dir = skill_dir / script_dir_name
+    if not script_dir.is_dir():
+        continue
+    for path in script_dir.rglob("*"):
+        if not path.is_file() or path.suffix not in {".py", ".js", ".ts", ".sh", ".mjs"}:
+            continue
+        try:
+            script_text = path.read_text()
+        except UnicodeDecodeError:
+            continue
+        if script_pattern.search(script_text):
+            mutating = True
+            break
+
+if not mutating:
+    sys.exit(0)
+
+if not re.search(r"^disable-model-invocation:\s*true\s*$", frontmatter, re.M):
+    print("side-effecting skill must set disable-model-invocation: true")
+
+confirmation = re.search(
+    r"^Confirmation Required:\s*\n(.*?)(?=^[A-Z][A-Za-z /]+:\s*$|^## )",
+    body,
+    re.M | re.S,
+)
+confirmation_text = confirmation.group(1).strip() if confirmation else ""
+if not confirmation_text or re.fullmatch(r"[-*\s]*(none|nothing)[.\s]*", confirmation_text, re.I):
+    print("side-effecting skill must declare an explicit Confirmation Required gate")
+PY
+)
+
+    if [[ -n "$findings" ]]; then
+        while IFS= read -r finding; do
+            [[ -n "$finding" ]] || continue
+            echo -e "  ${YELLOW}⚠${NC} $finding"
+            ((++warnings))
+        done <<< "$findings"
+    fi
+
+    return $warnings
+}
+
 # Function to check required metadata keys
 check_metadata_fields() {
     local file="$1"
@@ -402,11 +571,9 @@ check_platform_names() {
 # Function to check for concrete/version-pinned model names.
 # Skills are model-agnostic playbooks — the harness supplies the model. Orchestrators
 # may name capability tiers ("strongest tier") in prose but never a concrete ID.
-# This warns on version-pinned IDs, which are never legitimate anywhere in a skill,
-# and on bare tier names (sonnet/opus/haiku) used as routing keys in prose. Bare
-# tier aliases are allowed only as the value of a model assignment (frontmatter
-# `model:`, orchestration `model: "..."` / `model = "..."`), where the harness
-# resolves the alias.
+# These are hard errors: version-pinned IDs and bare model-family names used as
+# routing keys are never legitimate in a portable public skill. Capability-tier
+# prose remains valid; concrete model mappings belong to harness configuration.
 check_model_references() {
     local skill_dir="$1"
     local warnings=0
@@ -420,14 +587,14 @@ check_model_references() {
     local model_re='claude-[0-9]|claude-(opus|sonnet|haiku)-|gpt-[0-9]|gemini-[0-9]'
 
     local hits
-    hits=$(grep -rInE "$model_re" \
+    hits=$(grep -rIniE "$model_re" \
         --include='SKILL.md' --include='*.md' --include='*.py' \
         --include='*.js' --include='*.ts' --include='*.sh' \
         "$skill_dir" 2>/dev/null || true)
 
     if [[ -n "$hits" ]]; then
         while IFS= read -r hit; do
-            echo -e "  ${YELLOW}⚠${NC} Concrete model name (use a capability tier instead): ${hit}"
+            echo -e "  ${RED}✗${NC} Concrete model name (harness owns model selection): ${hit}"
             ((++warnings))
         done <<< "$hits"
     fi
@@ -445,9 +612,68 @@ check_model_references() {
 
     if [[ -n "$bare_tier_hits" ]]; then
         while IFS= read -r hit; do
-            echo -e "  ${YELLOW}⚠${NC} Bare model tier as routing key (use a capability tier in prose; concrete mapping lives in the repo routing block): ${hit}"
+            echo -e "  ${RED}✗${NC} Bare model tier as routing key (use a capability tier in prose; concrete mapping lives in the repo routing block): ${hit}"
             ((++warnings))
         done <<< "$bare_tier_hits"
+    fi
+
+    return $warnings
+}
+
+# Commands and authoring resources are reusable prompt surfaces too. Concrete model
+# IDs are hard errors there just as they are inside a skill directory.
+check_public_concrete_models() {
+    local issues=0
+    local model_re='claude-[0-9]|claude-(opus|sonnet|haiku)-|gpt-[0-9]|gemini-[0-9]'
+    local roots=()
+    local root
+
+    for root in "$REPO_ROOT/commands" "$REPO_ROOT/prompts" "$REPO_ROOT/resources"; do
+        [[ -d "$root" ]] && roots+=("$root")
+    done
+
+    [[ ${#roots[@]} -gt 0 ]] || return 0
+
+    local hits
+    hits=$(grep -rIniE "$model_re" \
+        --include='*.md' --include='*.py' --include='*.js' \
+        --include='*.ts' --include='*.sh' "${roots[@]}" 2>/dev/null || true)
+    if [[ -n "$hits" ]]; then
+        while IFS= read -r hit; do
+            [[ -n "$hit" ]] || continue
+            echo -e "${RED}✗${NC} Concrete model name in public prompt/template: $hit"
+            ((++issues))
+        done <<< "$hits"
+    fi
+
+    return $issues
+}
+
+# Report app-owned execution selection in commands and templates. These are warnings
+# so maintainers can distinguish an actual directive from a discussion of the field.
+check_public_execution_parameters() {
+    local warnings=0
+    local roots=()
+    local root
+
+    for root in "$REPO_ROOT/commands" "$REPO_ROOT/prompts" "$REPO_ROOT/resources"; do
+        [[ -d "$root" ]] && roots+=("$root")
+    done
+
+    [[ ${#roots[@]} -gt 0 ]] || return 0
+
+    local hits
+    hits=$(grep -rInE \
+        --include='*.md' --include='*.py' --include='*.js' \
+        --include='*.ts' --include='*.sh' \
+        'CODEX_(MODEL|EFFORT)|model_reasoning_effort|^(model|effort):[[:space:]]*(sonnet|opus|haiku|inherit|low|medium|high|xhigh|max)' \
+        "${roots[@]}" 2>/dev/null || true)
+    if [[ -n "$hits" ]]; then
+        while IFS= read -r hit; do
+            [[ -n "$hit" ]] || continue
+            echo -e "${YELLOW}⚠${NC} Harness-owned execution parameter in public prompt/template: $hit"
+            ((++warnings))
+        done <<< "$hits"
     fi
 
     return $warnings
@@ -592,30 +818,31 @@ import re
 import sys
 
 path = pathlib.Path(sys.argv[1])
-headings = {
-    "Related Skills",
-    "Integration",
-    "Integration with Other Skills",
-    "When to Route Elsewhere",
-    "Complementary Skills (External)",
-    "Skills to Invoke",
-    "Related Workflow Bundles",
-}
 patterns = [
-    re.compile(r"^\|\s*`([a-z0-9]+(?:-[a-z0-9]+)+)`\s*\|"),
-    re.compile(r"^\s*-\s+`([a-z0-9]+(?:-[a-z0-9]+)+)`\b"),
-    re.compile(r"→\s*`([a-z0-9]+(?:-[a-z0-9]+)+)`\s*$"),
+    re.compile(
+        r"\b(?:apply|run|use|invoke|delegate(?:s|d)?\s+to|route(?:s|d)?\s+to|via)"
+        r"\s+(?:the\s+)?\x60([a-z0-9]+(?:-[a-z0-9]+)+)\x60"
+    ),
+    re.compile(r"\x60([a-z0-9]+(?:-[a-z0-9]+)+)\x60\s+skill\b"),
+    re.compile(r"^\s*-\s+\x60([a-z0-9]+(?:-[a-z0-9]+)+)\x60\s+(?:for|when|to)\b"),
+    re.compile(r"→\s*\x60([a-z0-9]+(?:-[a-z0-9]+)+)\x60\s*$"),
     re.compile(r"Use @([a-z0-9]+(?:-[a-z0-9]+)+)"),
 ]
 
-active = False
+in_code_fence = False
+in_frontmatter = False
 for lineno, line in enumerate(path.read_text().splitlines(), 1):
-    heading = re.match(r"^(#{2,4})\s+(.*)$", line)
-    if heading:
-        active = heading.group(2).strip() in headings
+    if lineno == 1 and line == "---":
+        in_frontmatter = True
         continue
-
-    if not active:
+    if in_frontmatter:
+        if line == "---":
+            in_frontmatter = False
+        continue
+    if line.lstrip().startswith(chr(96) * 3):
+        in_code_fence = not in_code_fence
+        continue
+    if in_code_fence:
         continue
 
     for pattern in patterns:
@@ -840,6 +1067,10 @@ validate_skill() {
     if [[ -f "$skill_file" ]]; then
         check_frontmatter "$skill_file" || skill_issues=$?
 
+        local type_issues=0
+        check_frontmatter_types "$skill_file" || type_issues=$?
+        ((skill_issues += type_issues, 1))
+
         local description_warnings=0
         check_description_constraints "$skill_file" || description_warnings=$?
         ((skill_warnings += description_warnings, 1))
@@ -856,9 +1087,17 @@ validate_skill() {
         check_provenance "$skill_file" "$SKILLS_DIR/$skill_name" || provenance_warnings=$?
         ((skill_warnings += provenance_warnings, 1))
 
-        local model_warnings=0
-        check_model_references "$SKILLS_DIR/$skill_name" || model_warnings=$?
-        ((skill_warnings += model_warnings, 1))
+        local model_issues=0
+        check_model_references "$SKILLS_DIR/$skill_name" || model_issues=$?
+        ((skill_issues += model_issues, 1))
+
+        local execution_warnings=0
+        check_harness_execution_parameters "$SKILLS_DIR/$skill_name" || execution_warnings=$?
+        ((skill_warnings += execution_warnings, 1))
+
+        local side_effect_warnings=0
+        check_side_effect_safety "$skill_file" "$SKILLS_DIR/$skill_name" || side_effect_warnings=$?
+        ((skill_warnings += side_effect_warnings, 1))
 
         local marker_issues=0
         check_platform_markers "$SKILLS_DIR/$skill_name" || marker_issues=$?
@@ -943,6 +1182,15 @@ validate_skill() {
     echo
     return 0
 }
+
+# Validate every reusable prompt surface before canonical skill content.
+public_model_issues=0
+check_public_concrete_models || public_model_issues=$?
+((TOTAL_ISSUES += public_model_issues, 1))
+
+public_execution_warnings=0
+check_public_execution_parameters || public_execution_warnings=$?
+((TOTAL_WARNINGS += public_execution_warnings, 1))
 
 # Validate external adapter examples before canonical skill content.
 adapter_issues=0

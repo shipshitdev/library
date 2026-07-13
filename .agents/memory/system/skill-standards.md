@@ -252,7 +252,7 @@ touches only the per-repo routing block, never the skills.
 A skill authored in-house needs no provenance fields. A skill **derived from an
 upstream** declares where it came from, so the rewrite-vs-resync decision is
 mechanical. The convention is enforced by `check_provenance()` in
-`scripts/validate-skill-sync.sh` and used by 30 skills today.
+`scripts/validate-skill-sync.sh` and used by derived skills in this catalog.
 
 Frontmatter (all under `metadata`):
 

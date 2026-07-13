@@ -32,7 +32,9 @@
   "private": true,
   "scripts": {
     "cleanup:global": "bash scripts/cleanup-global-duplicates.sh --execute",
-    "count": "bash -c 'echo \"Skills: $(find skills -maxdepth 2 -name SKILL.md | wc -l | tr -d \" \")\"; echo \"Commands: $(find commands -maxdepth 1 -type f -name \"*.md\" | wc -l | tr -d \" \")\"'",
+    "catalog:check": "bun scripts/generate-catalog-summary.js --check",
+    "catalog:generate": "bun scripts/generate-catalog-summary.js",
+    "count": "bun scripts/generate-catalog-summary.js --print --check",
     "deps:update": "bunx npm-check-updates -u && bun install",
     "inventory": "bash scripts/cleanup-global-duplicates.sh --dry-run",
     "lint": "bun run lint:md && bun run lint:code && bun run lint:sh",
@@ -42,7 +44,7 @@
     "lint:md": "bunx markdownlint-cli --ignore bundles --ignore dist --ignore plugins \"**/*.md\"",
     "lint:md:fix": "bunx markdownlint-cli --ignore bundles --ignore dist --ignore plugins \"**/*.md\" --fix",
     "lint:sh": "find scripts -name \"*.sh\" -exec bash scripts/lint-shellcheck.sh {} +",
-    "marketplace:generate": "bun scripts/generate-marketplace-bundles.js && bun scripts/generate-marketplace-json.js",
+    "marketplace:generate": "bun run catalog:generate && bun scripts/generate-marketplace-bundles.js && bun scripts/generate-marketplace-json.js",
     "prepare": "husky",
     "validate": "bash scripts/validate-skill-sync.sh",
     "validate:skill": "bash scripts/validate-skill-sync.sh"

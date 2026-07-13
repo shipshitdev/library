@@ -7,7 +7,7 @@ description: >-
   that is safe to merge.
 compatibility: Requires git and GitHub CLI gh access to the target repository.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "github, pull-requests, merge-train, ci, wip"
   author: Ship Shit Dev
 allowed-tools: Bash(git *) Bash(gh *)
@@ -55,6 +55,8 @@ Confirmation Required:
 - Ask before force-pushing, broad CI/deployment config changes, deleting branches
   outside the PR merge action, or doing anything that could deploy. Deploys are
   forbidden even if a workflow name looks like a CI check.
+- Ask for explicit confirmation before any admin merge that bypasses branch
+  protection. A queue-drain or merge-train request authorizes normal merges only.
 
 Delegates To:
 
@@ -82,9 +84,9 @@ Delegates To:
 9. Do not run heavy local suites. Use focused local checks for changed files or a
    single relevant spec only; rely on PR CI for broad validation.
 10. Use squash, rebase, or merge commit according to repository settings. If the
-    normal merge is blocked only by branch policy while checks are green and the
-    user asked to merge, document that condition and use the permitted admin path
-    when the account and repository allow it.
+    normal merge is blocked only by branch policy while checks are green, classify
+    the PR as blocked and request explicit confirmation before using an admin path.
+    Do not treat the original queue-drain request as approval to bypass protection.
 11. Preserve unrelated dirty local changes. Use a clean worktree for PR fixes
     when the current checkout is dirty or belongs to a different branch.
 12. Final reporting must include PRs merged, PRs fixed and pushed but still
@@ -158,17 +160,18 @@ gh pr merge <number> --rebase --delete-branch
 gh pr merge <number> --merge --delete-branch
 ```
 
-If merge is blocked only by branch policy despite green required checks and an
-explicit queue-drain request, record the policy message and use the allowed admin
-merge path when the account and repository permit it:
+If merge is blocked only by branch policy despite green required checks, record
+the policy message and stop with the PR classified as blocked. Only after the user
+explicitly approves bypassing branch protection may you use an available admin
+merge path:
 
 ```bash
 gh pr merge <number> --squash --delete-branch --admin
 ```
 
-If admin merge is unavailable, classify the PR as blocked with the exact policy
-message. After each merge batch, refresh PR metadata for dependent or overlapping
-PRs before continuing.
+If confirmation is absent or admin merge is unavailable, keep the PR blocked with
+the exact policy message. After each merge batch, refresh PR metadata for dependent
+or overlapping PRs before continuing.
 
 ### 5. Fix Red PRs Without Serial Blocking
 

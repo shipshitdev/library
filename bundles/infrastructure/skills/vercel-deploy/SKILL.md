@@ -4,9 +4,9 @@ description: Deploy a Next.js app to Vercel and manage its environment — previ
 compatibility: Requires the Vercel CLI authenticated, and a linked project (.vercel/project.json).
 disable-model-invocation: true
 argument-hint: "[preview | prod | rollback | env]"
-allowed-tools: Bash(vercel *) Bash(git *) Bash(gh *)
+allowed-tools: Bash(vercel *)
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "vercel, deploy, nextjs, rollback, environments, infrastructure"
   author: Ship Shit Dev
 when_to_use: "deploy to Vercel, ship a preview, deploy to production, promote to production, roll back the deploy, revert deployment, manage Vercel env vars, /deploy vercel"

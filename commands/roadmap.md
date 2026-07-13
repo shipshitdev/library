@@ -23,7 +23,7 @@ as things change.
    for segment / pain / willingness-to-pay / buying trigger / churn, and writes
    `.agents/memory/icp.md` after you approve the draft. Everything downstream ranks
    against this.
-2. **`analyze`** → the `roadmap-analyzer` skill. Reads `icp.md`, inventories what
+2. **`analyze`** → the `roadmap-analyzer` skill. Reads `.agents/memory/icp.md`, inventories what
    already ships, and ranks gaps by revenue impact (Land / Retain / Expand), with a
    finish-over-start rule so half-shipped core features outrank new starts.
 3. **`milestones`** → the `roadmap-to-milestones` skill. Turns the ranked backlog

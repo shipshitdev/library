@@ -6,7 +6,7 @@ disable-model-invocation: true
 allowed-tools: Bash(gh *) Bash(git *)
 argument-hint: "[roadmap file, or 'burndown']"
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "github, milestones, roadmap, planning, burndown, mrr"
   author: Ship Shit Dev
 when_to_use: "create milestones, roadmap to milestones, set milestone due dates, group issues under a milestone, turn the roadmap into a schedule, milestone burndown, milestone progress"
@@ -28,7 +28,8 @@ this uses `gh api repos/{owner}/{repo}/milestones`.
 
 Inputs:
 
-- A roadmap (from `roadmap-analyzer`), a theme list, or a set of existing issues.
+- A revenue-ranked roadmap (from `roadmap-analyzer`), a ranked theme list, or a
+  ranked set of existing issues.
 - The target repo and a cadence or explicit due dates.
 
 Outputs:
@@ -69,8 +70,9 @@ gh api "repos/{owner}/{repo}/milestones?state=all" \
   --jq '.[] | {number, title, due_on, open_issues, closed_issues}'
 ```
 
-If the roadmap is missing, stop and recommend `roadmap-analyzer`. Sequencing without a
-revenue ranking just dates an arbitrary list.
+Continue when any supplied input is explicitly revenue-ranked: a roadmap, theme list,
+or issue set. If none is ranked, stop and recommend `roadmap-analyzer`; sequencing an
+unranked input just dates an arbitrary list.
 
 ## Step 2 — Derive milestones from themes
 
@@ -91,14 +93,20 @@ not force it in.
 
 ## Step 3 — Draft and confirm
 
-Show the full plan before any write:
+Reconcile every proposed title against the milestone inventory before presenting the
+plan. Match titles case-insensitively after trimming surrounding whitespace, but never
+fuzzy-match materially different names. Classify each proposal as `create`, `update`
+(same title, changed description or due date), or `unchanged`, and retain the existing
+milestone number for updates.
+
+Show the full reconciled plan before any write:
 
 ```text
 Milestones plan — <repo>
 
-1. Land: <theme>        due <date>   — <lever, metric>
+1. [update #4] Land: <theme>  due <date> — <lever, metric>
      #12 <issue>   #15 <issue>
-2. Retain: <theme>      due <date>   — <lever, metric>
+2. [create] Retain: <theme>    due <date> — <lever, metric>
      #18 <issue>
 Unassigned (need a home): #21 <issue> — <why it fits no theme>
 ```
@@ -107,10 +115,16 @@ Wait for approval. Let the user move dates or issues before committing.
 
 ## Step 4 — Create milestones and assign issues
 
-After approval, create each milestone, then assign its issues:
+After approval, PATCH each matching milestone by its inventoried number, create only
+unmatched milestones, skip unchanged milestones, then assign issues:
 
 ```bash
-# Create a milestone (due_on is ISO 8601 UTC). Capture the returned number.
+# Update a title-matched milestone first (due_on is ISO 8601 UTC).
+gh api -X PATCH repos/{owner}/{repo}/milestones/4 \
+  -f description="Lever: Land primary segment. Success: first-week activation >40%." \
+  -f due_on="2026-08-01T00:00:00Z"
+
+# Create only when reconciliation found no title match. Capture the returned number.
 gh api repos/{owner}/{repo}/milestones \
   -f title="Land: agency onboarding" \
   -f description="Lever: Land primary segment. Success: first-week activation >40%." \
@@ -118,12 +132,6 @@ gh api repos/{owner}/{repo}/milestones \
 
 # Assign issues by milestone title (gh resolves the title to its number).
 gh issue edit 12 --milestone "Land: agency onboarding"
-```
-
-To update an existing milestone instead of duplicating it, PATCH by its number:
-
-```bash
-gh api -X PATCH repos/{owner}/{repo}/milestones/<number> -f due_on="2026-08-15T00:00:00Z"
 ```
 
 ## Step 5 — Burndown
@@ -136,8 +144,9 @@ gh api "repos/{owner}/{repo}/milestones?state=open" \
 ```
 
 Flag any milestone that is **overdue with open issues** or **empty** (a dated bucket
-with no work is a planning smell). Recommend the next move: pull P0 issues into the
-board's `In Progress`, or re-date a milestone that cannot land in time.
+with no work is a planning smell). Recommend milestone-only recovery: re-date it,
+rebalance issues into a later milestone, or split its scope. Never change or recommend
+changing the board's `Status` field from this skill.
 
 ## Anti-Patterns
 

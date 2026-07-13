@@ -12,6 +12,7 @@ copy, default-shadcn UI, missing loading/error states, dead buttons and half-wir
 /deslop ui [target]  # audit/fix UI slop with the design-system primitive pass
 /deslop --changed    # clean only the lines this branch introduced (diff-only)
 /deslop --product    # also strip product slop (copy / UI / UX)
+/deslop --changed --product # combine diff-only scope with product cleanup
 /deslop all          # sweep every package in a monorepo
 /deslop dry-run      # preview the cleanup, change nothing
 ```

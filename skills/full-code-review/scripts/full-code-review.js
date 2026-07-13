@@ -372,7 +372,7 @@ log(IS_RETRO ? "Phase 3: Synthesis (retro backlog)" : "Phase 3: Synthesis (merge
 
 const verdictSchema = {
   type: "object",
-  required: ["verdict", "rationale", "prioritized_findings", "stats"],
+  required: ["mode", "verdict", "rationale", "prioritized_findings", "stats"],
   properties: {
     mode: {
       type: "string",
@@ -391,12 +391,12 @@ const verdictSchema = {
       type: "array",
       items: {
         type: "object",
-        required: ["rank", "severity", "dimension", "file", "finding", "evidence", "fix", "overlap_weight"],
+        required: ["rank", "severity", "dimension", "bucket", "file", "finding", "evidence", "fix", "overlap_weight"],
         properties: {
           rank:           { type: "integer" },
           severity:       { type: "string", enum: ["BLOCKER", "HIGH", "MEDIUM", "LOW"] },
           dimension:      { type: "string" },
-          bucket:         { type: "string", enum: ["bug", "optimization", "refactor", "other"], description: "Retro grouping; omit in pr mode" },
+          bucket:         { type: "string", enum: ["bug", "optimization", "refactor", "other"], default: "other", description: "Retro grouping; use other in pr mode" },
           file:           { type: "string" },
           line:           { type: ["integer", "null"] },
           finding:        { type: "string" },
@@ -443,7 +443,7 @@ const prSynthesisPrompt = `You are the synthesis judge for a multi-dimension cod
    - "approve"          if only MEDIUM/LOW findings survive or none.
 5. Write a one-sentence rationale that names the most critical finding.
 
-Set \`mode\`: "pr".
+Set \`mode\`: "pr" and set every finding's \`bucket\` to "other".
 
 SURVIVING VERIFIED FINDINGS:
 ${redactSensitiveText(JSON.stringify(survivingFindings, null, 2))}
@@ -456,9 +456,9 @@ prioritized BACKLOG of follow-up work the team should schedule.
 
 1. Deduplicate findings describing the same root issue (merge evidence, union the
    commit SHAs).
-2. Assign each finding a \`bucket\`: "bug" (a defect shipped in the window),
+2. Assign every finding a \`bucket\`: "bug" (a defect shipped in the window),
    "optimization" (performance/cost left on the table), "refactor" (duplication,
-   drift, unstable abstraction), or "other".
+   drift, unstable abstraction), or "other". Never omit the bucket.
 3. Rank by value, not by gate. Order by (impact × recurrence) ÷ effort: a cheap fix
    that removes duplication reintroduced in five commits outranks an expensive
    rewrite that touches one. Shipped bugs always sort to the top of their tier.

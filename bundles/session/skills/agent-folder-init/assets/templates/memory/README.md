@@ -22,7 +22,7 @@ Durable facts that are NOT rules:
 
 ## What Does NOT Go Here
 
-- Coding standards and "never do" rules → `CLAUDE.md` (repo root or `~/.claude/CLAUDE.md`)
+- Coding standards and "never do" rules → the applicable `AGENTS.md`
 - Task tracking → GitHub Issues (`gh issue list`, `gh issue create`)
 - Session logs → `.agents/sessions/YYYY-MM-DD.md`
 

@@ -49,6 +49,9 @@ jobs:
       - name: Validate skills
         run: bun run validate
 
+      - name: Check agent-folder-init safety fixtures
+        run: python3 -m unittest discover -s skills/agent-folder-init/tests -p 'test_*.py'
+
       - name: Audit dependencies
         run: bun audit
 

@@ -166,6 +166,7 @@ or another Agent Skills-compatible harness.
 - `.agents/memory/system/architecture.md` - .agents folder structure
 - `.agents/memory/system/platform-adaptations.md` - Claude vs Codex writing guide
 - `.agents/memory/system/execution-boundary.md` - app-owned execution settings vs reusable content
+- `.agents/memory/system/routine-standards.md` - portable scheduled-task and automation authoring
 - `.agents/memory/system/ai-dev-loop.md` - Board-driven autonomous dev loop (`/loop` + agent-dispatch)
 
 ## Development Commands

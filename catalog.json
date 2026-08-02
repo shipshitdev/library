@@ -7,10 +7,10 @@
     "layout": "git ls-files"
   },
   "counts": {
-    "skills": 164,
+    "skills": 161,
     "commands": 30,
     "bundles": 13,
-    "plugins": 177
+    "plugins": 174
   },
   "bundles": [
     "ai-agents",

@@ -46,7 +46,6 @@ Delegates To:
 
 - `rules-capture` for single new preferences
 - `agent-folder-init` for missing `.agents/` structure
-- `session-documenter` when audit findings should be recorded
 
 ## When to Use
 
@@ -289,4 +288,3 @@ After running the audit:
 - `agent-folder-init` — scaffold a missing `.agents/` structure
 - `linter-formatter-init` — set up or repair formatter/linter configuration
 - `audit` — audit application quality instead of agent configuration
-- `session-documenter` — preserve session learnings before proposing instruction updates

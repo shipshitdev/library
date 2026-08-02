@@ -77,7 +77,7 @@ Current consolidation backlog:
 | Deployment/release | `deployment-composer` owns route selection; `release-pr-gates`, `deploy`, and provider skills stay separate by side-effect boundary |
 | Agent config | Split read-only audit from write/sync if `fix` mode grows further |
 | Landing pages | Keep scaffold and deploy/domain attach as separate contracts; route full products through v0 |
-| Session learning | Keep `rules-capture`, `skill-capture`, and `session-documenter` separate; promotion to permanent skills/rules must remain explicit |
+| Session learning | Keep `rules-capture` and `skill-capture` separate; promotion to permanent skills/rules must remain explicit |
 | Frontend review/design | Keep `critique`, `audit`, `polish`, `layout`, `quieter`, and `clarify` separate while their outputs differ; consider a future UI-review orchestrator if routing becomes confusing |
 
 ## Validation

@@ -5,9 +5,9 @@
 ![Project Type](https://img.shields.io/badge/Project-Skills-blue)
 
 <!-- catalog-summary:start -->
-164 AI agent skills for development workflows. Works with Claude Code, OpenAI Codex, and Cursor.
+161 AI agent skills for development workflows. Works with Claude Code, OpenAI Codex, and Cursor.
 
-Catalog: **164 skills · 30 commands · 13 bundles · 177 plugins**.
+Catalog: **161 skills · 30 commands · 13 bundles · 174 plugins**.
 <!-- catalog-summary:end -->
 
 Skills are **model-agnostic playbooks**: the harness supplies the model, so no skill names a concrete model — orchestrators speak in capability tiers, and each repo's routing block maps tiers to models. Enforced by `scripts/validate-skill-sync.sh`; standards live in `.agents/memory/system/skill-standards.md`.
@@ -19,7 +19,7 @@ Skills are **model-agnostic playbooks**: the harness supplies the model, so no s
 |---|---|---|
 | `.agents/` | Repository memory, standards, and maintenance skills | Tracked |
 | `.claude/` | Claude loader adapters for shared maintenance content | Tracked |
-| `.claude-plugin/` | Generated Claude marketplace catalog | 177 generated plugins |
+| `.claude-plugin/` | Generated Claude marketplace catalog | 174 generated plugins |
 | `.codex/` | Codex loader adapters for shared maintenance content | Tracked |
 | `.github/` | Issue templates and GitHub Actions workflows | Tracked |
 | `.husky/` | Git hook configuration | Tracked |
@@ -29,7 +29,7 @@ Skills are **model-agnostic playbooks**: the harness supplies the model, so no s
 | `prompts/` | Shared prompt resources | Tracked |
 | `resources/` | Authoring references and supporting documentation | Tracked |
 | `scripts/` | Validation, generation, migration, and audit tooling | Tracked |
-| `skills/` | Canonical public Agent Skills sources | 164 canonical skills |
+| `skills/` | Canonical public Agent Skills sources | 161 canonical skills |
 <!-- catalog-layout:end -->
 
 ## What's Included
@@ -234,7 +234,7 @@ or another Agent Skills-compatible harness.
 | tests | Run the right tests and turn red green |
 
 <!-- catalog-skills-heading:start -->
-## Skills (164)
+## Skills (161)
 <!-- catalog-skills-heading:end -->
 
 ### Dev Loop (10)
@@ -285,9 +285,9 @@ or another Agent Skills-compatible harness.
 
 `stripe-implementer`
 
-### Session Management (7)
+### Session Management (4)
 
-`agent-folder-init`, `session-end`, `session-start`, `session-documenter`, `executing-plans`, `setup-agent-routing`, `workspace-performance-audit`
+`agent-folder-init`, `executing-plans`, `setup-agent-routing`, `workspace-performance-audit`
 
 ## How Skills Adapt to Projects
 

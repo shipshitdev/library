@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "164 AI agent skills for development workflows",
+  "description": "161 AI agent skills for development workflows",
   "plugins": [
     {
       "name": "shipshitdev-testing",
@@ -704,21 +704,6 @@
       "name": "security-expert",
       "source": "./skills/security-expert",
       "description": "Expert in application security, OWASP Top 10, authentication, authorization, data protection, and security best practices for React, Next.js, and NestJS applications. Use when implementing authentication or authorization, reviewing code for vulnerabilities, handling sensitive data, or implementing encryption or hashing."
-    },
-    {
-      "name": "session-documenter",
-      "source": "./skills/session-documenter",
-      "description": "Documents work, decisions, and context from the current session by writing structured entries to `.agents/sessions/YYYY-MM-DD.md`. Triggers on `/start`, `/end`, \"document this session\", \"save session notes\", or automatically at session wrap-up to capture decisions, files changed, mistakes, and next steps."
-    },
-    {
-      "name": "session-end",
-      "source": "./skills/session-end",
-      "description": "Save session wrap-up documentation before clearing context by running the session-documenter workflow and writing `.agents/sessions/YYYY-MM-DD.md`. Use when ending a session, preparing to run `/clear`, or asked to document what changed before context is reset."
-    },
-    {
-      "name": "session-start",
-      "source": "./skills/session-start",
-      "description": "Loads critical project context and recent session history at the start of each session or after `/clear` — reads `.agents/memory/` source-of-truth files, surfaces open next steps from the latest session log, and activates the session-documenter. Triggers on: session start, `/clear`, \"load context\", \"start session\", or first message in a new agent session."
     },
     {
       "name": "setup-agent-routing",

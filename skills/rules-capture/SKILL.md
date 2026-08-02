@@ -47,7 +47,6 @@ Delegates To:
 
 - `skill-capture` when the rule is a reusable workflow that should become a skill
 - `agent-config-audit` when the rule may affect multiple config files
-- `session-documenter` when the rule should be noted in session history
 
 ---
 
@@ -246,7 +245,6 @@ Rules automatically captured from conversations. Review and promote to permanent
 This skill works with:
 
 - **docs**: For formatting captured rules properly
-- **session-documenter**: Rules captured during session are included in session docs
 
 ---
 

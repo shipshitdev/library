@@ -12,9 +12,6 @@ Session management and documentation
 ## Included Skills
 
 - `agent-folder-init`
-- `session-end`
-- `session-start`
-- `session-documenter`
 - `executing-plans`
 - `setup-agent-routing`
 - `workspace-performance-audit`

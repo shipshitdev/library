@@ -236,7 +236,6 @@ This skill works with:
 | Skill | Integration |
 |-------|-------------|
 | `rules-capture` | Delegates preference capture; handles skill creation |
-| `session-documenter` | Skills captured during session are noted |
 | `skill-creator` | Uses creation patterns and validation |
 | `docs` | For formatting help with SKILL.md |
 

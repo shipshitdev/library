@@ -35,5 +35,4 @@ Use the `standup` skill.
 - Read-only: never commit, push, tag, or modify files.
 - Require a resolvable author identity before reporting.
 - For customer-facing release notes use the `release` or `changelog-generator`
-  skills instead; to save the recap to `.agents/sessions/`, hand off to
-  `session-documenter`.
+  skills instead.

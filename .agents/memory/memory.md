@@ -7,7 +7,7 @@ last_verified: 2026-07-13
 <!-- catalog-summary:start -->
 Public skills library at `shipshitdev/skills`. Installable via `npx skills add shipshitdev/skills --skill <name>`. Works with Claude Code, Codex, Cursor, OpenClaw, and Gemini.
 
-Generated catalog: **164 skills · 30 commands · 13 bundles · 177 plugins**.
+Generated catalog: **161 skills · 30 commands · 13 bundles · 174 plugins**.
 <!-- catalog-summary:end -->
 
 Published through committed marketplace bundles in `bundles/` and the generated `.claude-plugin/marketplace.json` catalog. The old generated `plugins/` package tree is retired.
@@ -26,10 +26,10 @@ Published through committed marketplace bundles in `bundles/` and the generated 
 <!-- catalog-counts:start -->
 | Asset | Count | Canonical source |
 |---|---:|---|
-| Skills | 164 | `skills/*/SKILL.md` |
+| Skills | 161 | `skills/*/SKILL.md` |
 | Commands | 30 | `commands/*.md` |
 | Bundles | 13 | `scripts/plugin-categories.json` |
-| Plugins | 177 | skills + bundles |
+| Plugins | 174 | skills + bundles |
 <!-- catalog-counts:end -->
 
 ## Architecture Decisions

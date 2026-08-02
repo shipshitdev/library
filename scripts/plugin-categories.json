@@ -224,9 +224,6 @@
       "description": "Session management and documentation",
       "skills": [
         "agent-folder-init",
-        "session-end",
-        "session-start",
-        "session-documenter",
         "executing-plans",
         "setup-agent-routing",
         "workspace-performance-audit"

@@ -102,7 +102,7 @@ skill directories, so no target receives an incompatible hidden block.
 When one skill needs to invoke another:
 
 ```markdown
-Run the `session-documenter` skill to save session context.
+Run the `standup` skill to recap recent work.
 ```
 
 Do NOT reference specific invocation mechanisms (`Skill tool`, `activate_skill`, etc.). Every platform knows how to run a skill by name.
@@ -111,7 +111,7 @@ For critical workflows, add a fallback:
 
 ```markdown
 > If skill invocation is not available on your platform, follow the
-> session-documenter workflow manually by reading its skill definition.
+> standup workflow manually by reading its skill definition.
 ```
 
 ## Path References

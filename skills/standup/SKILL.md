@@ -42,8 +42,7 @@ Outputs:
 Creates/Modifies:
 
 - Nothing by default — strictly read-only
-- Only writes to a session log if the user explicitly asks (delegated to
-  `session-documenter`)
+- Only writes to a session log if the user explicitly asks
 
 External Side Effects:
 
@@ -58,7 +57,6 @@ Confirmation Required:
 Delegates To:
 
 - `changelog-generator` when the user wants customer-facing release notes instead
-- `session-documenter` when the user wants the recap saved to `.agents/sessions/`
 
 ## When to Use
 

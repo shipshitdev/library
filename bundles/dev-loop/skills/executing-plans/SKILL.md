@@ -298,7 +298,6 @@ All limited? → QA time (review Human Review issues)
 ### Existing Skills
 
 - **qa-reviewer**: 6-phase quality verification
-- **session-documenter**: Auto-document completed work
 - **rules-capture**: Learn from rejection feedback
 
 ### Git Workflow

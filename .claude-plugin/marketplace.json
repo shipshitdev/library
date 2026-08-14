@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "162 AI agent skills for development workflows",
+  "description": "161 AI agent skills for development workflows",
   "plugins": [
     {
       "name": "shipshitdev-testing",
@@ -178,7 +178,7 @@
     {
       "name": "code-review",
       "source": "./skills/code-review",
-      "description": "Correctness and security gate for incoming pull requests. Auto-invoked when reviewing a diff, evaluating a PR, running /code-review at any effort level, or asked \"is this safe to merge?\" Covers bugs, TypeScript hygiene, security, database safety, test existence, devex regressions, and feature-flag leaks. Multi-PR queue, WIP-drain, and merge-train work routes to pr-merge-train instead of serial full reviews."
+      "description": "Correctness and security gate for incoming pull requests. Auto-invoked when reviewing a diff, evaluating a PR, running /code-review at any effort level, or asked \"is this safe to merge?\" Covers bugs, TypeScript hygiene, security, database safety, test existence, devex regressions, and feature-flag leaks. Multi-PR report-only review routes through review-dispatch; non-serial queue draining is exposed only through exact /merge force."
     },
     {
       "name": "codebase-advisor",
@@ -458,7 +458,7 @@
     {
       "name": "merge-open-prs",
       "source": "./skills/merge-open-prs",
-      "description": "Review every open pull request targeting the default/trunk branch, merge the approved ones into the trunk, then prune the merged branches and stale worktrees left behind. Confirmation-gated and squash-merge aware via delegated cleanup. Use when the user asks to merge all open PRs, review and land the open PRs, batch-merge to the trunk and clean up afterward, or runs /merge."
+      "description": "Review and land open pull requests through one /merge command. The default mode runs a confirmation-gated trunk sweep and cleanup; exact /merge force drains the queue non-serially by merging green PRs and narrowly fixing red PRs. Use when asked to review and merge open PRs, batch-merge to trunk, drain PR WIP, or run /merge."
     },
     {
       "name": "micro-landing-builder",
@@ -544,11 +544,6 @@
       "name": "pr-comments",
       "source": "./skills/pr-comments",
       "description": "Fetch a pull request's review and discussion comments and return a read-only digest — grouped by thread, severity-tagged, priority-ordered, with the open questions called out — without editing code or drafting replies. Use when the user asks what are the comments on my PR, summarize the review feedback, what's blocking this PR, what do I still need to address, or runs /pr comments."
-    },
-    {
-      "name": "pr-merge-train",
-      "source": "./skills/pr-merge-train",
-      "description": "Drains open GitHub pull request queues without serial blocking. Use for multi-PR and WIP-drain prompts such as review all PRs, drain open PRs, merge clean PRs, reduce WIP, merge train, clean up pull requests, or land everything that is safe to merge."
     },
     {
       "name": "prd-dispatch",
@@ -678,7 +673,7 @@
     {
       "name": "review-dispatch",
       "source": "./skills/review-dispatch",
-      "description": "Single front door for code review. Resolves a target — working-tree changes, one PR, all open PRs, the last N commits, a time window, or a retrospective over merged history — into the right workflow. Routes single-target review to code-review or full-code-review, and routes multi-PR queue work to pr-merge-train. Backs the /review command. Use when asked to review changes, a PR, review all PRs, drain open PRs, merge clean PRs, reduce WIP, run a merge train, clean up pull requests, inspect recent commits, or run a commit retro."
+      "description": "Single front door for code review. Resolves a target — working-tree changes, one PR, all open PRs, the last N commits, a time window, or a retrospective over merged history — into the right workflow. Keeps every /review mode report-only except confirmation-gated retrospective issue filing. Backs the /review command. Use when asked to review changes, a PR, all PRs, recent commits, or merged history."
     },
     {
       "name": "roadmap-analyzer",

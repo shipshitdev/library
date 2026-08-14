@@ -9,7 +9,7 @@ PR, the last N commits, or a time window — through the same review engine.
 /review                  # review uncommitted + current-branch changes vs trunk (default, quick)
 /review <PR#>            # review one open PR by number
 /review pr <PR#>         # explicit single-PR form
-/review prs              # review every open PR — one summary table, per-PR verdict
+/review prs              # report-only review of every open PR — no pushes or merges
 /review commits <N>      # review the last N commits (HEAD~N..HEAD)
 /review <duration>       # review commits in a time window: 24h, 7d, 2w
 /review retro [window]   # retrospective over merged history (default 14d): cross-commit
@@ -18,8 +18,9 @@ PR, the last N commits, or a time window — through the same review engine.
 /review --structural [target]  # structural/maintainability lens only (the thermo-nuclear pass)
 ```
 
-`--deep` and `--structural` combine with any target, e.g. `/review --deep 142`,
-`/review --structural commits 5`. They are mutually exclusive; `--deep` wins if both are given.
+`--deep` and `--structural` combine with review targets, e.g. `/review --deep
+142`, `/review --deep prs`, or `/review --structural commits 5`. They are
+mutually exclusive; `--deep` wins if both are given.
 
 ## Depth
 
@@ -62,7 +63,8 @@ with read-only `git`/`gh`, routes to the chosen depth, and renders the verdict.
 
 ## Gates
 
-- Read-only by default. This command reports; it never edits files, pushes, or merges.
+- Every review target, including `prs`, is read-only. It never edits files,
+  pushes, reruns CI, or merges.
 - The one write path is `retro` filing its backlog as GitHub issues, and only after
   explicit confirmation — never automatically.
 - `prs` defaults to quick depth — `--deep prs` fans out a full orchestrated
@@ -73,3 +75,6 @@ with read-only `git`/`gh`, routes to the chosen depth, and renders the verdict.
 
 - `/merge review` runs the same per-PR review sweep before landing PRs into the
   trunk — `/review prs` is the standalone, report-only version.
+- `/merge force` is the only non-serial queue-drain command. `force` means queue
+  progress; it never means force-push, admin merge, or bypassing checks and
+  branch protection.

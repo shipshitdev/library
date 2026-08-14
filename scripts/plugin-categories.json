@@ -54,6 +54,7 @@
         "react-component-performance",
         "react-hook-form",
         "theme-factory",
+        "prototype",
         "react-patterns",
         "react-refactor",
         "react-testing-library",
@@ -118,6 +119,7 @@
         "content-script-developer",
         "package-architect",
         "artifacts-builder",
+        "wizard",
         "open-source-checker",
         "devcontainer-setup",
         "biome-validator",
@@ -131,6 +133,9 @@
         "feature-intake",
         "icp",
         "interview",
+        "grilling",
+        "domain-modeling",
+        "prototype",
         "prd-dispatch",
         "prd-quality-gate",
         "prd-task-creator",
@@ -186,6 +191,7 @@
         "changelog-generator",
         "code-review",
         "codebase-advisor",
+        "codebase-design",
         "commit-summary",
         "de-slop",
         "debug",
@@ -218,6 +224,7 @@
         "systematic-debugging",
         "tech-debt",
         "verification-before-completion",
+        "wizard",
         "worktree"
       ]
     },
@@ -227,6 +234,7 @@
         "agent-folder-init",
         "executing-plans",
         "setup-agent-routing",
+        "wait-what",
         "workspace-performance-audit"
       ]
     },
@@ -234,6 +242,10 @@
       "description": "Autonomous GitHub issue-to-PR loop with PRDs, plans, board dispatch, QA, and review",
       "skills": [
         "interview",
+        "grilling",
+        "domain-modeling",
+        "ask-dev-loop",
+        "wait-what",
         "feature-intake",
         "prd-writer",
         "writing-plans",

@@ -1,13 +1,13 @@
 # Skills Repo Memory
 
-last_verified: 2026-07-13
+last_verified: 2026-08-14
 
 ## What This Repo Is
 
 <!-- catalog-summary:start -->
 Public skills library at `shipshitdev/skills`. Installable via `npx skills add shipshitdev/skills --skill <name>`. Works with Claude Code, Codex, Cursor, OpenClaw, and Gemini.
 
-Generated catalog: **161 skills · 30 commands · 13 bundles · 174 plugins**.
+Generated catalog: **168 skills · 32 commands · 13 bundles · 181 plugins**.
 <!-- catalog-summary:end -->
 
 Published through committed marketplace bundles in `bundles/` and the generated `.claude-plugin/marketplace.json` catalog. The old generated `plugins/` package tree is retired.
@@ -26,10 +26,10 @@ Published through committed marketplace bundles in `bundles/` and the generated 
 <!-- catalog-counts:start -->
 | Asset | Count | Canonical source |
 |---|---:|---|
-| Skills | 161 | `skills/*/SKILL.md` |
-| Commands | 30 | `commands/*.md` |
+| Skills | 168 | `skills/*/SKILL.md` |
+| Commands | 32 | `commands/*.md` |
 | Bundles | 13 | `scripts/plugin-categories.json` |
-| Plugins | 174 | skills + bundles |
+| Plugins | 181 | skills + bundles |
 <!-- catalog-counts:end -->
 
 ## Architecture Decisions
@@ -89,6 +89,15 @@ not a ratified standard — the gate regex is the single point to adjust if it s
 | Keep all 5 security skills | Distinct: expert persona, audit workflow, API-specific, backend impl, frontend impl |
 | Keep react-patterns + react-refactor + react-component-performance | Cleanly separated by concern |
 | Keep all expo-*/resend-*/static-analysis-* families | Non-overlapping topics |
+
+### Pocock craft and primitives (2026-08-14)
+
+Adapted selected patterns from [mattpocock/skills](https://github.com/mattpocock/skills) (MIT) without copying the 25-skill catalog:
+
+- Writing craft + invocation split live in `skill-standards.md` (leading words, completion criteria, no-ops, positive prompts, user- vs model-invoked composition).
+- New adapted primitives: `grilling`, `domain-modeling`, `wait-what`, `wizard`, `prototype`, `codebase-design`.
+- New user-invoked router: `ask-dev-loop`. `interview` / `shape` invoke `grilling`; they hint at other user-invoked skills rather than firing them.
+- `tdd` provenance completed; `code-review` gained a Spec axis; flagship human docs live in `docs/skills/`.
 
 ## Known Issues
 

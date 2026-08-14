@@ -18,6 +18,7 @@ Project setup and workspace initialization
 - `content-script-developer`
 - `package-architect`
 - `artifacts-builder`
+- `wizard`
 - `open-source-checker`
 - `devcontainer-setup`
 - `biome-validator`

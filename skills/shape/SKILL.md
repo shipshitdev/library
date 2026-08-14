@@ -1,16 +1,18 @@
 ---
 name: shape
-description: Plan the UX and UI for a feature before writing code. Runs a structured discovery interview, then produces a design brief that guides implementation. Use during the planning phase to establish design direction, constraints, and strategy before any code is written.
+description: Plan the UX and UI for a feature before writing code. Produces a design brief that guides implementation.
 user-invocable: true
+disable-model-invocation: true
 argument-hint: "[feature to shape]"
 metadata:
-  version: "2.1.1"
+  version: "2.2.0"
   tags: "ux, planning, design-brief"
   source: https://github.com/pbakaus/impeccable/blob/main/skill/reference/shape.md
   upstream_version: skill-v2.1.1
   upstream_latest: skill-v3.5.0
   last_synced: "2026-06-12"
   license: Apache-2.0
+when_to_use: "shape this, design brief, plan the UX, plan the UI, before writing UI code, /shape"
 ---
 
 Shape the UX and UI for a feature before any code is written. This skill produces a **design brief**: a structured artifact that guides implementation through discovery, not guesswork.
@@ -18,6 +20,8 @@ Shape the UX and UI for a feature before any code is written. This skill produce
 **Scope**: Design planning only. This skill does NOT write code. It produces the thinking that makes code good.
 
 **Output**: A design brief that can be handed off to any implementation skill.
+
+Delegates To: `grilling` for Phase 1. Recommend an implementation skill after the brief is confirmed; do not invoke another user-invoked skill.
 
 ## Context Gathering
 
@@ -29,42 +33,17 @@ Before the interview, ground yourself in the project so the brief reflects what 
 
 ## Phase 1: Discovery Interview
 
-**Do NOT write any code or make any design decisions during this phase.** Your only job is to understand the feature deeply enough to make excellent design decisions later.
+Write no code and make no design decisions in this phase. Understand the feature deeply enough to make excellent design decisions later.
 
-Ask these questions in conversation, adapting based on answers. Don't dump them all at once; have a natural dialogue. ask the user directly to clarify what you cannot infer.
+Run the `grilling` skill. Seed the design tree with these branches so the **frontier** covers them:
 
-### Purpose & Context
+- **Purpose and context** — what this is for, who specifically uses it, success, user state of mind
+- **Content and data** — what is shown or collected, realistic ranges, empty/error/first-time/power-user cases, what is dynamic
+- **Design goals** — the single most important user action, how it should feel, existing product patterns, reference examples
+- **Constraints** — technical, content, mobile, accessibility beyond WCAG AA
+- **Anti-goals** — wrong directions and the biggest risk of getting this wrong
 
-- What is this feature for? What problem does it solve?
-- Who specifically will use it? (Not "users"; be specific: role, context, frequency)
-- What does success look like? How will you know this feature is working?
-- What's the user's state of mind when they reach this feature? (Rushed? Exploring? Anxious? Focused?)
-
-### Content & Data
-
-- What content or data does this feature display or collect?
-- What are the realistic ranges? (Minimum, typical, maximum, e.g., 0 items, 5 items, 500 items)
-- What are the edge cases? (Empty state, error state, first-time use, power user)
-- Is any content dynamic? What changes and how often?
-
-### Design Goals
-
-- What's the single most important thing a user should do or understand here?
-- What should this feel like? (Fast/efficient? Calm/trustworthy? Fun/playful? Premium/refined?)
-- Are there existing patterns in the product this should be consistent with?
-- Are there specific examples (inside or outside the product) that capture what you're going for?
-
-### Constraints
-
-- Are there technical constraints? (Framework, performance budget, browser support)
-- Are there content constraints? (Localization, dynamic text length, user-generated content)
-- Mobile/responsive requirements?
-- Accessibility requirements beyond WCAG AA?
-
-### Anti-Goals
-
-- What should this NOT be? What would be a wrong direction?
-- What's the biggest risk of getting this wrong?
+Facts that the repo already answers stay off the frontier. `grilling` asks the rest in rounds with recommended answers.
 
 ## Phase 2: Design Brief
 

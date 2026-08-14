@@ -3,7 +3,7 @@ name: skill-creator
 description: Guide for creating effective skills. Use when creating a new skill or updating an existing one to extend agent capabilities with specialized knowledge, workflows, or tool integrations.
 license: Complete terms in LICENSE.txt
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   source: https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md
   upstream_repo: anthropics/skills
   upstream_ref: main
@@ -188,6 +188,18 @@ To complete SKILL.md, answer the following questions:
 1. What is the purpose of the skill, in a few sentences?
 2. When should the skill be used?
 3. In practice, how should the agent use the skill? Reference all reusable skill contents developed above so the workflow is explicit.
+
+#### House writing craft
+
+This catalog's bar lives in `.agents/memory/system/skill-standards.md`. Apply it while editing SKILL.md:
+
+- **Invocation.** User-invoked (`disable-model-invocation: true`) if only a human should fire it — description is a one-line summary, triggers go in `when_to_use`. Model-invoked otherwise — description carries one trigger per real branch so the agent can reach it. A user-invoked skill may invoke model-invoked primitives; it must not invoke another user-invoked skill.
+- **Leading words.** Collapse restated ideas into one pretrained token (`frontier`, `seam`, `tight`, `red`). Repeat the token; do not re-explain the sentence.
+- **Completion criteria.** Every step ends on a checkable bound. Sharpen "understanding reached" into an observable ("frontier empty", "the narrow test fails for the missing behavior").
+- **Prune no-ops.** Delete any sentence that does not change default model behavior.
+- **Prompt the positive.** State the target behavior. Pair a hard prohibition with the positive target.
+- **Contract.** Action, orchestrator, and side-effect skills include a `## Contract` block (inputs, outputs, creates/modifies, side effects, confirmation, delegates).
+- **Provenance.** Skills derived from an upstream declare `source` / `upstream_repo` / `last_synced` and a README `## Upstream` section.
 
 ### Step 5: Packaging a Skill
 

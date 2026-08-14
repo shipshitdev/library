@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "161 AI agent skills for development workflows",
+  "description": "168 AI agent skills for development workflows",
   "plugins": [
     {
       "name": "shipshitdev-testing",
@@ -136,6 +136,11 @@
       "description": "Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, @agenticindiedev/ui). Use for complex artifacts requiring state management or shared UI components - not for simple single-file HTML/JSX artifacts."
     },
     {
+      "name": "ask-dev-loop",
+      "source": "./skills/ask-dev-loop",
+      "description": "Ask which Dev Loop skill or flow fits the current situation. A router over the flagship idea-to-ship path."
+    },
+    {
       "name": "audit",
       "source": "./skills/audit",
       "description": "Run technical quality checks across accessibility, performance, theming, responsive design, and anti-patterns. Generates a scored report with P0-P3 severity ratings and actionable plan. Use when the user wants an accessibility check, performance audit, or technical quality review."
@@ -178,12 +183,17 @@
     {
       "name": "code-review",
       "source": "./skills/code-review",
-      "description": "Correctness and security gate for incoming pull requests. Auto-invoked when reviewing a diff, evaluating a PR, running /code-review at any effort level, or asked \"is this safe to merge?\" Covers bugs, TypeScript hygiene, security, database safety, test existence, devex regressions, and feature-flag leaks. Multi-PR report-only review routes through review-dispatch; non-serial queue draining is exposed only through exact /merge force."
+      "description": "Correctness, security, and spec-fidelity gate for incoming pull requests. Auto-invoked when reviewing a diff, evaluating a PR, running /code-review at any effort level, or asked \"is this safe to merge?\" Covers bugs, TypeScript hygiene, security, database safety, test existence, devex regressions, feature-flag leaks, and whether the diff matches the originating issue/spec. Multi-PR report-only review routes through review-dispatch; non-serial queue draining is exposed only through exact /merge force."
     },
     {
       "name": "codebase-advisor",
       "source": "./skills/codebase-advisor",
       "description": "Survey any codebase as a senior advisor and produce prioritized, self-contained implementation plans for OTHER models/agents to execute. Strictly read-only on source code — never implements, fixes, or refactors anything itself. Use when asked to audit a codebase, find improvement opportunities (bugs, security, performance, test coverage, tech debt, migrations, DX), suggest features or where to take the project next (roadmap, product direction), or generate handoff plans for another agent to implement. Does NOT edit code directly — it declines and hands off a plan instead."
+    },
+    {
+      "name": "codebase-design",
+      "source": "./skills/codebase-design",
+      "description": "Shared vocabulary for designing deep modules. Use when the user wants to design or improve a module's interface, find deepening opportunities, decide where a seam goes, make code more testable or AI-navigable, or when another skill needs the deep-module vocabulary."
     },
     {
       "name": "codex-image-gen",
@@ -296,6 +306,11 @@
       "description": "Creates clear, concise technical documentation for software projects, runbooks, and developer guides. Use when writing or updating a README, guide, runbook, API reference, setup instructions, or troubleshooting notes."
     },
     {
+      "name": "domain-modeling",
+      "source": "./skills/domain-modeling",
+      "description": "Build and sharpen a project's domain model. Use when discussing codebase terminology, writing or editing a CONTEXT.md, or recording or editing an ADR."
+    },
+    {
       "name": "ec2-backend-deployer",
       "source": "./skills/ec2-backend-deployer",
       "description": "Deploys backend applications to EC2 instances using Docker, GitHub Actions CI/CD, and Tailscale for secure SSH access. Activates when setting up EC2 deployment pipelines, configuring container registries, or wiring automated deploys for NestJS, Next.js, or Express backends."
@@ -401,6 +416,11 @@
       "description": "Design and review GraphQL schemas, resolvers, mutations, pagination, and data-loading patterns. Use when building or refactoring GraphQL APIs, adding fields, fixing resolver design, or improving GraphQL performance and safety."
     },
     {
+      "name": "grilling",
+      "source": "./skills/grilling",
+      "description": "Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, asks to be grilled, or another skill needs the interview primitive."
+    },
+    {
       "name": "html-style",
       "source": "./skills/html-style",
       "description": "Apply opinionated styling to barebones HTML. Use when user has plain/unstyled HTML and wants to apply consistent visual styling. Triggers: style this HTML, apply styling, make this look good, /html-style, or when user shares HTML that needs CSS. Transforms tables, lists, status indicators, buttons, and layouts into a cohesive design system."
@@ -423,7 +443,7 @@
     {
       "name": "interview",
       "source": "./skills/interview",
-      "description": "Conducts a repo-grounded discovery interview before PRD writing, feature intake, UX shaping, or implementation planning. Use when a user invokes /interview, asks to be grilled, wants requirements clarified, or needs a concise handoff brief from existing docs plus focused follow-up questions."
+      "description": "Repo-grounded discovery interview that produces a handoff brief for PRD writing, feature intake, or planning."
     },
     {
       "name": "landing-page-vercel",
@@ -581,6 +601,11 @@
       "description": "Expert guide on prompt engineering patterns, best practices, and optimization techniques. Use when user wants to improve prompts, learn prompting strategies, debug agent behavior, or design content generation prompts."
     },
     {
+      "name": "prototype",
+      "source": "./skills/prototype",
+      "description": "Build a throwaway prototype to answer a design question. Use when the user wants to sanity-check whether a state model or logic feels right, or explore what a UI should look like."
+    },
+    {
       "name": "qa-loop",
       "source": "./skills/qa-loop",
       "description": "Runs an interactive localhost QA session that accepts issues, screenshots, routes, and browser evidence; reproduces and fixes each defect; verifies the result; and creates one local commit per fix. Use when asked to start QA, QA a local app, fix localhost issues as they arrive, or work through screenshot feedback without leaving the current checkout."
@@ -723,7 +748,7 @@
     {
       "name": "shape",
       "source": "./skills/shape",
-      "description": "Plan the UX and UI for a feature before writing code. Runs a structured discovery interview, then produces a design brief that guides implementation. Use during the planning phase to establish design direction, constraints, and strategy before any code is written."
+      "description": "Plan the UX and UI for a feature before writing code. Produces a design brief that guides implementation."
     },
     {
       "name": "skill-capture",
@@ -859,6 +884,16 @@
       "name": "verification-before-completion",
       "source": "./skills/verification-before-completion",
       "description": "Enforce evidence-based completion: no success, done, fixed, or passing claim may be made without first running the verification command and reading its full output. Use when about to claim work is complete, a bug is fixed, tests pass, a build succeeds, or before committing, pushing, or opening a PR."
+    },
+    {
+      "name": "wait-what",
+      "source": "./skills/wait-what",
+      "description": "Re-pitch the last message in plain English using the project's CONTEXT.md vocabulary."
+    },
+    {
+      "name": "wizard",
+      "source": "./skills/wizard",
+      "description": "Generate an interactive bash wizard that walks a human through steps only they can perform. Use when provisioning infrastructure, setting up credentials or CI secrets, walking an unfamiliar third-party dashboard, or running a one-off migration or cutover."
     },
     {
       "name": "workspace-performance-audit",

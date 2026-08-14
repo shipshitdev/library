@@ -7,10 +7,10 @@
     "layout": "git ls-files"
   },
   "counts": {
-    "skills": 161,
-    "commands": 30,
+    "skills": 168,
+    "commands": 32,
     "bundles": 13,
-    "plugins": 174
+    "plugins": 181
   },
   "bundles": [
     "ai-agents",
@@ -63,6 +63,10 @@
     {
       "path": "commands/",
       "role": "Claude Code/plugin command adapters"
+    },
+    {
+      "path": "docs/",
+      "role": "Human-facing orientation pages for flagship skills"
     },
     {
       "path": "prompts/",

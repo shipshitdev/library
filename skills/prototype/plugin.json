@@ -1,0 +1,12 @@
+{
+  "name": "prototype",
+  "version": "1.0.0",
+  "description": "Throwaway prototype that answers one design question: logic demo or UI variants.",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://shipshit.dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

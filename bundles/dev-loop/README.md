@@ -12,6 +12,10 @@ Autonomous GitHub issue-to-PR loop with PRDs, plans, board dispatch, QA, and rev
 ## Included Skills
 
 - `interview`
+- `grilling`
+- `domain-modeling`
+- `ask-dev-loop`
+- `wait-what`
 - `feature-intake`
 - `prd-writer`
 - `writing-plans`

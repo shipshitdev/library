@@ -1,10 +1,11 @@
 ---
 name: interview
-description: Conducts a repo-grounded discovery interview before PRD writing, feature intake, UX shaping, or implementation planning. Use when a user invokes /interview, asks to be grilled, wants requirements clarified, or needs a concise handoff brief from existing docs plus focused follow-up questions.
+description: Repo-grounded discovery interview that produces a handoff brief for PRD writing, feature intake, or planning.
 user-invocable: true
+disable-model-invocation: true
 argument-hint: "[topic, feature, issue, or decision]"
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
   tags: "interview, discovery, requirements, planning"
   author: Ship Shit Dev
 when_to_use: "interview me, grill me, grill-me, grill me with docs, discovery interview, requirements interview, before PRD, clarify requirements, /interview"
@@ -13,11 +14,12 @@ when_to_use: "interview me, grill me, grill-me, grill me with docs, discovery in
 # Interview
 
 Run a focused discovery interview before creating a PRD, writing a plan, shaping
-UX, or starting implementation. Ground the questions in the repo first, then ask
-only for decisions that cannot be inferred.
+UX, or starting implementation. Ground in the repo first, then run `grilling` for
+the decisions that cannot be inferred.
 
 This skill does not write code, create issues, or produce a final PRD by default.
-It produces an interview brief that downstream planning skills can consume.
+It produces an interview brief. Recommend the next skill; do not invoke another
+user-invoked skill.
 
 ## Contract
 
@@ -30,8 +32,7 @@ Inputs:
 Outputs:
 
 - Concise context scan summary.
-- Focused question batches, no more than three questions at a time.
-- Running assumptions, decisions, and open questions.
+- Settled decisions from `grilling`.
 - Final interview brief ready for `prd-writer`, `feature-intake`, `shape`,
   `spec-first`, or direct implementation.
 
@@ -54,12 +55,11 @@ Confirmation Required:
 
 Delegates To:
 
-- `prd-writer` when the brief is ready to become a formal PRD.
-- `feature-intake` when the brief should become GitHub issues or board items.
-- `shape` when the main unknowns are UX, UI, interaction, content, or states.
-- `spec-first` when the work is implementation-ready but still needs a durable
-  technical spec.
-- `prd-quality-gate` after a PRD exists and needs validation.
+- `grilling` for the design-tree interview (frontier rounds, recommended answers).
+- `domain-modeling` when a term crystallizes or conflicts with `CONTEXT.md`.
+
+Recommend next (do not invoke): `prd-writer`, `feature-intake`, `shape`,
+`spec-first`, `prd-quality-gate`.
 
 ## When To Use
 
@@ -67,9 +67,6 @@ Delegates To:
 - A feature idea is too vague to turn directly into a PRD.
 - Existing repo docs probably answer part of the question, but missing decisions
   still need the user.
-- A planning agent would otherwise ask basic re-elicitation questions later.
-- A user wants to decide whether the next step is PRD, design shaping, issue
-  intake, or implementation.
 
 Skip this skill when:
 
@@ -87,17 +84,16 @@ Read repo context before asking questions:
 - Read relevant `.agents/memory/` files, especially `.agents/memory/memory.md`,
   `.agents/memory/context.md`, and any task-relevant `.agents/memory/system/`
   docs.
+- Read `CONTEXT.md` / `CONTEXT-MAP.md` and `docs/agents/domain.md` when present.
 - Check recent `.agents/sessions/` entries only when they are relevant to the
   topic.
 - Read the applicable `AGENTS.override.md` / `AGENTS.md` chain for routing and
-  repo rules, plus any fallback filename explicitly configured for Codex. Read
-  `CLAUDE.md` when the active workflow is Claude-specific.
+  repo rules. Read `CLAUDE.md` when the active workflow is Claude-specific.
 - Search docs, README files, source code, and issues for the topic before
   asking the user to repeat known context.
 
 Do not look for a local plans directory under `.agents`; plans live on GitHub
 issues and PR comments.
-Use `writing-plans` when an implementation plan is needed.
 
 When the user provides external docs or says "with docs", read only the relevant
 sections and keep a short source list for the final brief.
@@ -113,33 +109,19 @@ Before asking questions, summarize the context scan in three compact bullets:
 If the repo gives enough context, ask for confirmation instead of running a long
 interview.
 
-### 3. Ask Focused Question Batches
+### 3. Run grilling
 
-Ask no more than three questions at a time. Prefer questions that unblock scope,
-acceptance criteria, risk, or product decisions. Avoid asking implementation
-questions unless the answer changes the scope or constraints.
+Run the `grilling` skill on the remaining decisions. It owns the design tree,
+the **frontier**, recommended answers, and the facts-vs-decisions split.
 
-Useful question areas:
-
-- Problem: What pain, failure, or opportunity is this addressing?
-- User: Who specifically experiences it, and in what workflow?
-- Outcome: What must be true when this is done?
-- Scope: What is version one, and what is explicitly out of scope?
-- Constraints: Deadlines, platform limits, dependencies, data rules, security,
-  accessibility, performance, or cost ceilings.
-- Evidence: Existing examples, docs, customer requests, metrics, incidents, or
-  screenshots.
-- Acceptance: What would make a reviewer say this is complete?
-- Risk: What would make the work fail or need human decision mid-flight?
-
-After each user answer, update the working assumptions and ask the next smallest
-set of questions.
+When a term is resolved or conflicts with `CONTEXT.md`, run `domain-modeling`
+inline.
 
 ### 4. Stop At The Right Time
 
-Stop interviewing when one of these is true:
+Stop when one of these is true:
 
-- The brief can feed the next skill without re-elicitation.
+- The grilling **frontier is empty** and the brief can feed the next skill.
 - Remaining questions are implementation details for the planner or executor.
 - The user says "enough", "write it", "make the PRD", or equivalent.
 - A blocker requires a separate research pass, stakeholder decision, or external
@@ -184,11 +166,14 @@ Keep the brief concise enough to paste into a tracker issue or hand to a PRD
 writer. Include inference notes when a fact came from repo context rather than
 direct user confirmation.
 
+Tell the user to run the recommended next skill. Do not fire it.
+
 ## Anti-Patterns
 
-- Do not dump a long questionnaire before reading repo context.
-- Do not turn the interview into a PRD unless the user asks.
-- Do not ask questions whose answers are already in `.agents/memory/`, root
+- Dump a long questionnaire before reading repo context.
+- Turn the interview into a PRD unless the user asks.
+- Ask questions whose answers are already in `.agents/memory/`, root
   agent files, docs, code, or tracker context.
-- Do not save plans in local agent plan files.
-- Do not start implementation during the interview.
+- Save plans in local agent plan files.
+- Start implementation during the interview.
+- Invoke another user-invoked skill from this one.

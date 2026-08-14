@@ -1,0 +1,12 @@
+{
+  "name": "codebase-design",
+  "version": "1.0.0",
+  "description": "Deep-module vocabulary: interface, depth, seam, adapter, leverage, locality.",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://shipshit.dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

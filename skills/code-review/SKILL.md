@@ -5,10 +5,10 @@ description: >-
   reviewing a diff, evaluating a PR, running /code-review at any effort level,
   or asked "is this safe to merge?" Covers bugs, TypeScript hygiene, security,
   database safety, test existence, devex regressions, and feature-flag leaks.
-  Multi-PR queue, WIP-drain, and merge-train work routes to pr-merge-train
-  instead of serial full reviews.
+  Multi-PR report-only review routes through review-dispatch; non-serial queue
+  draining is exposed only through exact /merge force.
 metadata:
-  version: "1.1.1"
+  version: "1.1.2"
   tags: "code-review, correctness, security, testing, devex, feature-flags"
   author: Ship Shit Dev
 allowed-tools: Bash(git *) Bash(gh *)
@@ -197,10 +197,10 @@ Missing cleanup tickets are a "request changes."
 
 This skill = **correctness + security gate**.
 
-Use it for an individual diff or PR. For multi-PR queue work — "review all PRs",
-"drain open PRs", "merge clean PRs", "reduce WIP", "merge train", or "clean up
-pull requests" — route to `pr-merge-train` so clean PRs merge first and pending
-CI does not serialize the queue.
+Use it for an individual diff or PR. Route a report-only multi-PR request such as
+"review all PRs" through `review-dispatch`, which applies this gate per PR. The
+only non-serial queue-drain mode is exact `/merge force`, owned by
+`merge-open-prs`; never infer that mutating mode from a review request.
 
 Structural and maintainability concerns — module cohesion, abstraction altitude,
 circular dependencies, dead-code introduction, API surface sprawl, whether the

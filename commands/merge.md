@@ -9,6 +9,7 @@ left behind. One confirm-gated sweep instead of merging PRs one by one.
 ```bash
 /merge              # review all open PRs into the trunk, merge approved, then prune (default)
 /merge review       # review only — print the plan, merge nothing
+/merge force        # drain WIP — merge green PRs, narrowly fix red PRs, keep moving
 /merge --no-prune   # review + merge, but skip the prune step
 /merge <base>       # use an explicit base branch instead of the auto-detected trunk
 ```
@@ -16,9 +17,20 @@ left behind. One confirm-gated sweep instead of merging PRs one by one.
 `review` and `--no-prune` combine with an explicit base, e.g.
 `/merge my-branch --no-prune` or `/merge review my-branch`.
 
+`force` is a standalone mode and cannot combine with `review`, `--no-prune`, or
+a base override. Dependency order can follow it, for example `/merge force #12
+before #18`.
+
 ## Workflow
 
 Use the `merge-open-prs` skill.
+
+Exact `/merge force` takes the Force Mode path: snapshot every open PR before
+acting, merge independent green PRs first, narrowly fix red PRs, and move on
+while unrelated CI remains pending. It stops after queue draining and does not
+run branch/worktree cleanup.
+
+All other modes use the confirm-gated sweep:
 
 1. Auto-detect the default/trunk branch via
    `gh repo view --json defaultBranchRef --jq .defaultBranchRef.name`. Stop if it
@@ -40,7 +52,13 @@ Use the `merge-open-prs` skill.
 - Never merge a draft, a conflicted PR, or a PR with failing or pending required
   checks without explicit per-PR confirmation.
 - Never force-merge past a protected-branch rule — report the block instead.
+- In `/merge force`, `force` means force queue progress. It never authorizes a
+  force-push, admin merge, required-check bypass, history rewrite, or deploy.
 - All branch and worktree deletion beyond the merged PR's own head branch is
   delegated to `release-cleanup`, which confirms before pruning.
 - This command lands PRs onto the trunk only. To cut a release, use the `release`
   skill to tag from trunk after the PRs are merged.
+
+## Command Boundary
+
+`/merge force` is the sole public non-serial queue-drain command.

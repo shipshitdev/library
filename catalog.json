@@ -65,6 +65,10 @@
       "role": "Claude Code/plugin command adapters"
     },
     {
+      "path": "docs/",
+      "role": "Human-facing orientation pages for flagship skills"
+    },
+    {
       "path": "prompts/",
       "role": "Shared prompt resources"
     },

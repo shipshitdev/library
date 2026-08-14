@@ -16,6 +16,7 @@ last_verified: 2026-07-13
 | `assets/` | Static repository assets | Tracked |
 | `bundles/` | Generated marketplace bundle snapshots | 13 generated bundles |
 | `commands/` | Claude Code/plugin command adapters | 32 command adapters |
+| `docs/` | Human-facing orientation pages for flagship skills | Tracked |
 | `prompts/` | Shared prompt resources | Tracked |
 | `resources/` | Authoring references and supporting documentation | Tracked |
 | `scripts/` | Validation, generation, migration, and audit tooling | Tracked |

@@ -1,7 +1,7 @@
 # Skills Repo — Agent Instructions
 
 <!-- catalog-summary:start -->
-This is the shipshitdev/skills repo: 161 AI agent skills for Claude Code, Codex, and Cursor. The generated catalog also contains 30 command adapters, 13 bundles, and 174 marketplace plugins.
+This is the shipshitdev/skills repo: 162 AI agent skills for Claude Code, Codex, and Cursor. The generated catalog also contains 30 command adapters, 13 bundles, and 175 marketplace plugins.
 <!-- catalog-summary:end -->
 
 ## Repo Structure

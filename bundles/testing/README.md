@@ -16,6 +16,7 @@ Testing, QA, and CI/CD automation skills
 - `testing-expert`
 - `testing-cicd-init`
 - `qa-reviewer`
+- `qa-loop`
 - `husky-test-coverage`
 - `test-runner`
 - `test-dispatch`

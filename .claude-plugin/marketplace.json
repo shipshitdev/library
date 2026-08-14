@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "161 AI agent skills for development workflows",
+  "description": "162 AI agent skills for development workflows",
   "plugins": [
     {
       "name": "shipshitdev-testing",
@@ -584,6 +584,11 @@
       "name": "prompt-engineering",
       "source": "./skills/prompt-engineering",
       "description": "Expert guide on prompt engineering patterns, best practices, and optimization techniques. Use when user wants to improve prompts, learn prompting strategies, debug agent behavior, or design content generation prompts."
+    },
+    {
+      "name": "qa-loop",
+      "source": "./skills/qa-loop",
+      "description": "Runs an interactive localhost QA session that accepts issues, screenshots, routes, and browser evidence; reproduces and fixes each defect; verifies the result; and creates one local commit per fix. Use when asked to start QA, QA a local app, fix localhost issues as they arrive, or work through screenshot feedback without leaving the current checkout."
     },
     {
       "name": "qa-reviewer",

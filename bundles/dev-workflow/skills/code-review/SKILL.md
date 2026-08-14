@@ -1,15 +1,16 @@
 ---
 name: code-review
 description: >-
-  Correctness and security gate for incoming pull requests. Auto-invoked when
-  reviewing a diff, evaluating a PR, running /code-review at any effort level,
-  or asked "is this safe to merge?" Covers bugs, TypeScript hygiene, security,
-  database safety, test existence, devex regressions, and feature-flag leaks.
+  Correctness, security, and spec-fidelity gate for incoming pull requests.
+  Auto-invoked when reviewing a diff, evaluating a PR, running /code-review at
+  any effort level, or asked "is this safe to merge?" Covers bugs, TypeScript
+  hygiene, security, database safety, test existence, devex regressions,
+  feature-flag leaks, and whether the diff matches the originating issue/spec.
   Multi-PR report-only review routes through review-dispatch; non-serial queue
   draining is exposed only through exact /merge force.
 metadata:
-  version: "1.1.2"
-  tags: "code-review, correctness, security, testing, devex, feature-flags"
+  version: "1.2.0"
+  tags: "code-review, correctness, security, testing, devex, feature-flags, spec"
   author: Ship Shit Dev
 allowed-tools: Bash(git *) Bash(gh *)
 when_to_use: "review this PR, is this safe to merge, /code-review, check the diff, look at my changes, review my code, code review"
@@ -38,6 +39,9 @@ Outputs:
 
 - A findings list bucketed into Block Merge / Request Changes / Approve, each
   with file, line, and a one-sentence rationale.
+- A **Spec** report alongside the checklist: missing requirements, scope creep,
+  and wrong implementations relative to the originating issue. Keep the two axes
+  separate so one cannot mask the other.
 
 Creates/Modifies:
 
@@ -55,6 +59,52 @@ Delegates To:
 
 - `structural-review` for cohesion/abstraction/dead-code axes.
 - `security-audit` for OWASP-depth security review.
+- `codebase-design` when a finding is about module depth or seam placement.
+
+## Spec Axis
+
+The checklist below is the **Standards** axis (correctness + security + this
+repo's hygiene). Run a **Spec** axis in parallel so a change that follows every
+standard but implements the wrong thing cannot hide, and a change that matches
+the issue but breaks conventions cannot hide.
+
+A change can pass one axis and fail the other:
+
+- Code that follows every standard but implements the wrong thing → Standards
+  pass, Spec fail.
+- Code that does exactly what the issue asked but breaks project conventions →
+  Spec pass, Standards fail.
+
+Report them under `## Standards` and `## Spec`. Do not merge or rerank findings
+across axes.
+
+### 1. Pin the fixed point
+
+Whatever the user said is the fixed point — a commit SHA, branch name, tag,
+`main`, `HEAD~5`. If they did not specify one, ask. Confirm it resolves and the
+diff is non-empty (`git diff <fixed-point>...HEAD`) before reviewing.
+
+### 2. Identify the spec source
+
+Look for the originating spec, in this order:
+
+1. Issue references in commit messages (`#123`, `Closes #45`) — fetch via `gh`.
+2. A path the user passed as an argument.
+3. A spec file under `docs/`, `specs/`, or the issue body matching the branch.
+4. If nothing is found, ask. If there is no spec, skip the Spec axis and report
+   "no spec available".
+
+### 3. Spec findings
+
+Report:
+
+- Requirements the spec asked for that are missing or partial
+- Behaviour in the diff that was not asked for (scope creep)
+- Requirements that look implemented but where the implementation looks wrong
+
+Quote the spec line for each finding. Spec misses that drop required behaviour
+are Block Merge. Scope creep is Request Changes unless the user already accepted
+it.
 
 ## Critical Checklist
 
@@ -192,6 +242,7 @@ Missing cleanup tickets are a "request changes."
 - Follows codebase patterns
 - Devex impact documented
 - Feature flags have cleanup plan
+- Spec axis passes, or was skipped because no spec exists
 
 ## Scope Boundary
 

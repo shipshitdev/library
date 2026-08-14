@@ -30,6 +30,8 @@ See [PLATFORM-ADAPTATIONS.md](PLATFORM-ADAPTATIONS.md) for the full writing guid
 5. **Imperative style** — "Use when...", "Run the command...", "Check for..."
 6. **Rewrite imported skills before shipping** — upstream skills may be used as references, but the shipped `SKILL.md` must be reviewed, rewritten, and made consistent with this repo's security posture, naming, and cross-skill conventions
 7. **Use contract blocks for composable skills** — action skills, orchestrators, and skills with side effects declare inputs, outputs, file changes, external side effects, confirmation gates, and delegated skills
+8. **Honor invocation composition** — user-invoked skills (`disable-model-invocation: true`) may invoke model-invoked primitives, never another user-invoked skill. Shared interview/design language lives in a model-invoked primitive.
+9. **Apply writing craft** — leading words, checkable completion criteria, prune no-ops, prompt the positive. See [skill-standards.md](skill-standards.md) "Writing craft" and "Invocation architecture"
 
 ## When Platform-Specific Content Is Needed
 

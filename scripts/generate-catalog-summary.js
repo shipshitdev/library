@@ -20,6 +20,7 @@ const ROLE_BY_DIRECTORY = {
   assets: 'Static repository assets',
   bundles: 'Generated marketplace bundle snapshots',
   commands: 'Claude Code/plugin command adapters',
+  docs: 'Human-facing orientation pages for flagship skills',
   prompts: 'Shared prompt resources',
   resources: 'Authoring references and supporting documentation',
   scripts: 'Validation, generation, migration, and audit tooling',

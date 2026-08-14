@@ -11,7 +11,7 @@ description: >-
   bugs and repo rule compliance) — run after correctness passes or in parallel
   when a thorough PR review is requested.
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
   tags: "code-quality, maintainability, architecture, refactoring, structural"
   author: Ship Shit Dev
 when_to_use: "structural review, maintainability review, code quality review, architecture review, thermo-nuclear review, code judo, simplify this PR, is this code clean, before merge review"
@@ -25,7 +25,7 @@ Opinionated structural and maintainability review rubric. Report-only — this s
 
 **Every structural finding must answer: "What exactly should the author delete, collapse, or rename — and which specific file/line is the canonical landing zone?"** Vague nits ("this could be cleaner") are noise. High-conviction, actionable findings only.
 
-This rubric is explicitly complementary to `/code-review`. Do not re-flag correctness bugs or repo instruction-file rule violations already covered there. Own the orthogonal structural/maintainability/devex dimensions.
+This rubric is explicitly complementary to `/code-review`. Do not re-flag correctness bugs or repo instruction-file rule violations already covered there. Own the orthogonal structural/maintainability/devex dimensions. Use `codebase-design` vocabulary (**module**, **interface**, **depth**, **seam**) when judging whether a change made a module deeper or shallower.
 
 ## Primary Review Questions
 

@@ -19,6 +19,7 @@ Code review, debugging, refactoring, release, and AI-assisted development workfl
 - `changelog-generator`
 - `code-review`
 - `codebase-advisor`
+- `codebase-design`
 - `commit-summary`
 - `de-slop`
 - `debug`
@@ -51,4 +52,5 @@ Code review, debugging, refactoring, release, and AI-assisted development workfl
 - `systematic-debugging`
 - `tech-debt`
 - `verification-before-completion`
+- `wizard`
 - `worktree`

@@ -15,6 +15,9 @@ Strategy, planning, and analysis skills
 - `feature-intake`
 - `icp`
 - `interview`
+- `grilling`
+- `domain-modeling`
+- `prototype`
 - `prd-dispatch`
 - `prd-quality-gate`
 - `prd-task-creator`

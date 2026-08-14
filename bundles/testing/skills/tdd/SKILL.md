@@ -3,9 +3,15 @@ name: tdd
 description: Test-driven development workflow for feature work and bug fixes. Use when the user asks for TDD, red-green-refactor, test-first implementation, regression-first bug fixes, or vertical-slice delivery.
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "testing, tdd, red-green-refactor, quality"
-  author: "Matt Pocock (MIT), adapted by Ship Shit Dev"
+  author: Ship Shit Dev
+  source: https://github.com/mattpocock/skills/blob/main/skills/engineering/tdd/SKILL.md
+  upstream_repo: mattpocock/skills
+  upstream_ref: main
+  upstream_commit: 8b78b531ab96
+  last_synced: "2026-08-14"
+  license: MIT
 ---
 
 # Test-Driven Development
@@ -45,6 +51,7 @@ Delegates To:
 - `testing-expert` for broad test strategy or framework setup
 - `ai-regression-testing` for bug-specific regression coverage and path parity
 - `debug` when the root cause is still unknown
+- `codebase-design` when the test boundary is a module **seam** that still needs shaping
 
 ## Core Rule
 

@@ -1,7 +1,7 @@
 {
   "name": "shape",
-  "version": "2.1.1",
-  "description": "Plan the UX and UI for a feature before writing code. Runs a structured discovery interview, then pr",
+  "version": "2.2.0",
+  "description": "Plan UX and UI before code. Grilling interview, then a handoff-ready design brief.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",

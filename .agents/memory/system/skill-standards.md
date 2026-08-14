@@ -149,6 +149,45 @@ Rules:
 - Include specific keywords users will say
 - Max 1024 chars (spec limit)
 - No filler ("This skill is designed to help you...")
+- **Model-invoked** descriptions keep rich trigger phrasing ("Use when the user wants…, mentions…, asks for…")
+- **User-invoked** descriptions are human-facing one-liners. Put trigger lists in `when_to_use`, not in `description`
+
+---
+
+## Invocation architecture
+
+Every public skill is either **user-invoked** or **model-invoked**. That split is the composition rule for this catalog.
+
+| Kind | Frontmatter | Who can reach it | Description |
+|------|-------------|------------------|-------------|
+| **User-invoked** | `disable-model-invocation: true` | Only the human typing its name. No other skill may fire it. | Human-facing summary. Strip "Use when…" lists. |
+| **Model-invoked** | omit `disable-model-invocation` | Model or user. Other skills may invoke it. | Model-facing triggers. One trigger per real branch. |
+
+Pick model-invocation when the agent must reach the skill on its own, or another skill must. If it only ever fires by hand, make it user-invoked.
+
+**Composition:** a user-invoked skill may invoke model-invoked skills. It must not invoke another user-invoked skill. Shared material that two user-invoked skills need lives in a model-invoked primitive (for example `grilling`) or a plain file any skill can point at.
+
+**Router skills** are user-invoked maps. They name the other skills and when to reach for each so the human has one thing to remember. They hint; they do not fire other user-invoked skills.
+
+Apply this split to every new skill and to the Dev Loop / planning cluster. Full-catalog classification is a later audit.
+
+---
+
+## Writing craft
+
+Skills are documents an agent runs, not essays. These levers keep a run predictable — the same *process* every time, not the same output. Apply them to new and edited skills; do not rewrite the catalog in one pass. Keep Contract blocks.
+
+**Leading words.** Collapse a restated idea into one pretrained token the agent already thinks with (`frontier`, `seam`, `tight`, `red`). Repeat the token; do not re-explain the sentence. A coined word recruits no priors — prefer a word the model already knows.
+
+**Completion criteria.** Every step ends on a checkable bound ("frontier empty", "the narrow test fails for the missing behavior"). Vague bounds ("understanding reached") invite premature completion. Sharpen the bound first; split across a context boundary only if the bound stays fuzzy *and* the agent rushes.
+
+**Context pointers.** A `description` (and any always-loaded line that names out-of-context material) is a pointer: what the material is, plus the branches that should load it. Front-load the leading word. One trigger per genuine branch. Cut identity the body already carries.
+
+**Information hierarchy.** Inline what every branch needs. Disclose behind a pointer (`references/`) what only some branches reach. Keep `SKILL.md` under 500 lines. References stay one level deep.
+
+**Prune no-ops.** Delete a sentence that does not change default model behavior. The test is behavioral, not reader-relative: run the skill; if the line never bites, remove the whole sentence.
+
+**Prompt the positive.** State the target behavior ("write one-line comments"). Negation drags the forbidden behavior into context and makes it more available. A prohibition earns its place only as a hard guardrail that cannot be phrased positively, and then only paired with the positive target.
 
 ---
 
@@ -157,7 +196,7 @@ Rules:
 | Field | Add when... |
 |-------|-------------|
 | `when_to_use` | Description alone doesn't cover all trigger phrases |
-| `disable-model-invocation: true` | Skill has side effects (file writes, git ops, GitHub API calls, deploys) |
+| `disable-model-invocation: true` | Human-only orchestrators, destructive/side-effect skills, or anything that must not auto-fire. Shared primitives stay model-invoked. |
 | `user-invocable: false` | Skill is background knowledge, not an action users invoke |
 | `context: fork` | Skill does independent research/exploration that shouldn't see conversation history (must have an actionable task — guidelines-only forks return empty) |
 | `allowed-tools` | You want to skip the per-use prompt for tools the skill calls repeatedly. Remember it only *auto-approves*, it does not restrict — see note below |
@@ -311,3 +350,4 @@ Bump version in both `SKILL.md` (`metadata.version`) and `plugin.json` (`version
 - [Claude Code skills docs](https://code.claude.com/docs/en/skills)
 - [agentskills/agentskills repo](https://github.com/agentskills/agentskills)
 - [skills-ref validator](https://github.com/agentskills/agentskills/tree/main/skills-ref)
+- Writing craft and invocation split adapted from [mattpocock/skills](https://github.com/mattpocock/skills) (`writing-for-agents`, `.agents/invocation.md`, MIT)

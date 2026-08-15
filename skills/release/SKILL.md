@@ -1,10 +1,11 @@
 ---
 name: release
-description: Cut a release from the trunk (default branch) and generate plain-English patch notes. Determines the next semantic version from commits since the last tag, previews the release plan, then on confirmation either creates an annotated tag + GitHub release (tag mode) or dispatches the repo's guarded release workflow (dispatch mode, for repos whose production deploy is gated behind a workflow_dispatch promote gate). Trunk-based — there is no develop/staging branch promotion. Use when the user asks to cut a release, ship a release, tag a release, promote to production, release to production, generate release notes or a changelog, or runs /release.
+description: Cuts the release itself — derives the next semantic version from commits since the last tag, writes plain-English patch notes, previews the plan, then on confirmation creates an annotated tag plus GitHub release, or dispatches the repo's guarded release workflow where production sits behind a workflow_dispatch promote gate. Trunk-based; no develop or staging branch promotion. Assumes the trunk is already green — to open a release PR or wait on required checks first, use `release-pr-gates`.
 compatibility: Requires git, GitHub CLI gh, and jq access to the target repository.
 metadata:
-  version: "2.0.0"
+  version: "2.0.1"
   tags: "git, github, release, tag, semver, changelog, patch-notes, trunk-based, ci-cd"
+when_to_use: "cut a release, ship a release, tag a release, promote to production, release to production, generate release notes, generate a changelog, /release"
 allowed-tools: Bash(git *) Bash(gh *) Bash(jq *)
 disable-model-invocation: true
 ---
@@ -61,7 +62,8 @@ Confirmation Required:
 Delegates To:
 
 - `changelog-generator` when a richer or differently-formatted changelog is wanted
-- `release-pr-gates` to wait on required CI checks before cutting the release
+- `release-pr-gates` to open the release PR and wait on required CI checks before
+  this skill cuts anything — that skill owns the pre-merge gate, this one owns the cut
 - `gh-fix-ci` when the trunk's required checks are failing and the user wants them fixed
 - `release-cleanup` to prune merged feature branches and stale worktrees afterward
 - `deploy` / `deployment-composer` to ship the freshly cut tag to an environment

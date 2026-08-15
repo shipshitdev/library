@@ -1,7 +1,7 @@
 {
   "name": "layout",
-  "version": "2.1.1",
-  "description": "Improve layout, spacing, and visual rhythm. Fixes monotonous grids, inconsistent spacing, and weak v",
+  "version": "2.1.2",
+  "description": "Rework spacing scale, hierarchy, grid, rhythm, and density into an intentional composition.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",

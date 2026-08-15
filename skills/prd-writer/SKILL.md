@@ -1,10 +1,11 @@
 ---
 name: prd-writer
 disable-model-invocation: true
-description: Drafts, scopes, and formalizes features as PRDs — a planning agent can consume the output in one shot without re-elicitation. Triggers on "write a PRD for X", "let's plan X", "scope this out", "what should X do", or when a tracker issue needs to be fleshed out before planning. Do NOT use for code edits, debugging, or PR reviews.
+description: Authors the PRD document itself — problem, scope boundaries, EARS acceptance criteria, and verification plan — as one self-contained contract a planning agent consumes without re-elicitation. Ends at the written PRD; slicing it into tracked issues is `prd-task-creator`.
 metadata:
-  version: "1.2.0"
+  version: "1.2.1"
   tags: "prd, planning, requirements, spec, scoping, ears"
+when_to_use: "write a PRD for X, draft a PRD, scope this out, what should X do, formalize this feature, flesh out this issue before planning"
 ---
 
 # PRD Writer
@@ -305,3 +306,7 @@ through the issue detail view. This is pure friction — the URL is already know
 ```
 
 Note: no `created`, `updated`, `status`, `complexity`, or `blast radius` fields in the body — the tracker and project board track those natively. No file path — the PRD lives in the issue body itself.
+
+## Related
+
+- `prd-task-creator` — file the finished PRD into a tracker and slice it into sub-issues sized for one PR each.

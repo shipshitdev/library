@@ -1,7 +1,7 @@
 {
   "name": "prd-writer",
-  "version": "1.2.0",
-  "description": "Write one-shot PRDs for planning agents with tracker issue and quality gates.",
+  "version": "1.2.1",
+  "description": "Author the PRD document itself with scope, EARS acceptance criteria, and a verification plan.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",

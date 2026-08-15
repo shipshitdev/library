@@ -1,9 +1,9 @@
 ---
 name: cto-advisor
-description: Technical leadership guidance for engineering teams, architecture decisions, and technology strategy. Includes tech debt analyzer, team scaling calculator, engineering metrics frameworks, technology evaluation tools, and ADR templates. Use when assessing technical debt, scaling engineering teams, evaluating technologies, making architecture decisions, establishing engineering metrics, or when user mentions CTO, tech debt, technical debt, team scaling, architecture decisions, technology evaluation, engineering metrics, DORA metrics, or technology strategy.
+description: Advises engineering leadership on direction — architecture decisions recorded as ADRs, technology and vendor evaluation, team scaling ratios, and DORA/engineering-metric targets. Reasons from org-level indicators and frameworks, never from a repository scan. Use when the user asks which technology to adopt, how to structure or scale the engineering team, whether to write an ADR, what DORA targets to hold, or mentions CTO, technical leadership, technology strategy, vendor selection, or engineering metrics. To inventory and rank the debt already sitting in a codebase, use `tech-debt`.
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "leadership, engineering, architecture, strategy, metrics"
 ---
 
@@ -12,7 +12,8 @@ metadata:
 ## When This Activates
 
 - User mentions CTO, technical leadership, or engineering leadership
-- User asks about tech debt or technical debt
+- User asks how much of the engineering budget to spend paying debt down —
+  the portfolio-level call, not the codebase inventory (`tech-debt` owns that)
 - User needs team scaling or hiring plans
 - User wants architecture decisions or ADRs
 - User asks about engineering metrics or DORA metrics
@@ -98,6 +99,10 @@ See `references/engineering_metrics.md`
 | `performance-expert` | Optimize system performance |
 | `security-expert` | Security architecture |
 | `testing-expert` | Testing strategy |
+
+## Related
+
+- `tech-debt` — scan a real codebase and rank its debt into a register; this skill sets the investment level, that one finds the items.
 
 ---
 

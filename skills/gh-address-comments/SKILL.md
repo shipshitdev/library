@@ -1,14 +1,15 @@
 ---
 name: gh-address-comments
 description: >-
-  Resolves GitHub PR review and issue comments by fetching threads, mapping them
-  to code, proposing fixes, and drafting replies for approval. Triggers when the
-  user asks to address PR comments, respond to review feedback, fix review
-  threads, or resolve GitHub comment requests.
+  Implements the fixes a PR review asked for — maps each thread to the code it
+  touches, edits that code, and drafts a reply per thread for approval before
+  anything is posted. Starts from feedback that is already understood; producing
+  the read-only digest is `pr-comments`.
 disable-model-invocation: true
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "github, pull-requests, review-comments"
+when_to_use: "address the PR comments, fix the review feedback, implement the review suggestions, resolve these review threads, reply to the reviewer"
 ---
 
 # GH Address Comments
@@ -46,6 +47,8 @@ Confirmation Required:
 
 Delegates To:
 
+- `pr-comments` first when the threads have not been triaged yet — it produces the
+  read-only digest this skill then works through
 - `code-review` to validate proposed fixes
 - `qa-reviewer` before final response
 - `gh-fix-ci` if fixes cause or reveal CI failures

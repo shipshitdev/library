@@ -1,10 +1,10 @@
 ---
 name: audit
-description: Run technical quality checks across accessibility, performance, theming, responsive design, and anti-patterns. Generates a scored report with P0-P3 severity ratings and actionable plan. Use when the user wants an accessibility check, performance audit, or technical quality review.
+description: Sweeps implemented frontend code across five dimensions at once — accessibility, performance, theming, responsive design, and anti-patterns — scoring each 0-4 and emitting a single P0-P3 report with a prioritized plan. Reports only; it changes no code. Reach for it as the broad first pass when no one dimension has been named. For a deep WCAG conformance pass, use `accessibility`; for design-token drift, use `design-consistency-auditor`.
 user-invocable: true
 argument-hint: "[area (feature, page, component...)]"
 metadata:
-  version: "2.1.1"
+  version: "2.1.2"
   tags: "audit, quality, accessibility"
   source: https://github.com/pbakaus/impeccable/blob/main/skill/reference/audit.md
   upstream_version: skill-v2.1.1
@@ -160,3 +160,8 @@ Limit P3 findings to the top five unless the user asks for a complete backlog.
 - Skip positive findings (celebrate what works)
 - Forget to prioritize (everything can't be P0)
 - Report false positives without verification
+
+## Related
+
+- `accessibility` — go deeper than dimension 1 when the request is WCAG conformance, ARIA, keyboard access, or screen readers.
+- `design-consistency-auditor` — go deeper than dimension 3 when the request is token drift, hardcoded colors, or design-system divergence.

@@ -1,54 +1,253 @@
 ---
 name: open-source-checker
-description: Expert in detecting private information, secrets, API keys, credentials, and sensitive data in codebases before open sourcing. Use when preparing to open source a repository, reviewing code for exposed secrets, or auditing a codebase for sensitive data before public release.
+description: >-
+  Audits a whole private repository once, at the decision to make it public.
+  Runs four passes — license and attribution, secrets across the entire git
+  history, private references (internal hostnames, employee emails, client and
+  customer names, staging URLs), and publication readiness — then returns a
+  publish or block verdict. Use when the user is preparing to open source a
+  repository, asks whether a codebase is safe to publish, wants a pre-release
+  audit before flipping a repo public, or needs to know what is still private in
+  code that is about to ship publicly.
 metadata:
-  version: "1.0.1"
-  tags: "open-source, security, secrets"
+  version: "1.1.0"
+  tags: "open-source, publishing, license, audit"
+when_to_use: "open source this repo, make this repository public, is this safe to publish, pre-release audit, what is private in this codebase, check licensing before publishing, going public with this code"
 ---
 
 # Open Source Checker
 
-## When to Use
+The publish gate. This runs **once**, on a repository that has lived its whole
+life private, at the moment someone proposes making it public. Everything in a
+private repo was written on the assumption nobody outside would read it —
+comments, hostnames, client names, and every commit ever made. This audit finds
+what that assumption left behind.
 
-Use when you're:
+Four passes, then a verdict. The recurring commit-time guard is a different
+skill — see [Related](#related).
 
-- Preparing to open source a repository
-- Reviewing code for exposed secrets
-- Auditing codebase for sensitive data
-- Performing security audits before public release
-- Setting up pre-commit hooks for secret detection
+## Contract
 
-## What to Check
+Inputs:
 
-### Critical Items
+- Repository root, with full history fetched (`git fetch --all --tags`)
+- Intended public license, if already chosen
+- Names to treat as private: company domains, client names, internal hostnames
 
-- API keys (OpenAI, Stripe, AWS, GitHub tokens)
-- Database credentials and connection strings
-- Private keys and certificates (`.pem`, `.key`)
-- Personal information (emails, phone numbers)
-- Environment files (`.env` should be gitignored)
+Outputs:
 
-### Git History (CRITICAL)
+- Per-pass findings with file, line or commit, and severity
+- A publish / block verdict with the blocking set enumerated
+- A rotation list and a history-rewrite list, handed to `git-safety`
 
-- Secrets remain in git history even after deletion
-- Must scan all branches, tags, and deleted files
-- Use `gitleaks`, `truffleHog`, or `git-secrets`
+Creates/Modifies:
 
-## Quick Workflow
+- Nothing. This audit is read-only.
 
-1. **File scan**: Check for secret files, patterns
-2. **Code analysis**: Search for hardcoded secrets
-3. **Git history**: Scan entire history with tools
-4. **Setup hooks**: Prevent future commits with secrets
-5. **Clean history**: Use `git-filter-repo` if needed
+External Side Effects:
 
-## Tools
+- None. Remediation is delegated, not performed here.
 
-- `gitleaks`: Best for git history scanning
-- `truffleHog`: Alternative history scanner
-- `git-secrets`: AWS-focused with pre-commit hooks
-- `detect-secrets`: Baseline-based detection
+Confirmation Required:
 
-## References
+- Before the repository is flipped public — the verdict is advice, the flip is
+  the owner's action
 
-- [Full guide: Patterns, scanning workflow, git hooks, cleanup](references/full-guide.md)
+Delegates To:
+
+- `git-safety` to rotate credentials, rewrite history, and install the ongoing
+  commit-time guard
+- `security-audit` for application-level vulnerability review
+
+## Preflight
+
+The audit is only as complete as the refs present locally.
+
+```bash
+git fetch --all --tags --prune
+git log --all --oneline | wc -l    # commits in scope
+git branch -a && git tag -l        # refs in scope
+git stash list                     # stashes are not in --all
+```
+
+Ends when every remote branch and tag is present locally.
+
+---
+
+## Pass 1 — License and attribution
+
+A private repo needs no license. A public one that ships without a clear one is
+legally unusable by anyone who finds it, and code borrowed under one license
+cannot always be re-published under another.
+
+Check:
+
+- **`LICENSE` file present** at the root, matching what the owner intends
+- **Dependency licenses compatible** with the intended outgoing license —
+  copyleft (GPL, AGPL) dependencies constrain a permissive release
+- **Vendored and copy-pasted code attributed** — snippets lifted from Stack
+  Overflow, blog posts, or another repo carry their origin's terms
+- **Copyright headers** consistent, and naming the right entity
+- **Employer ownership** settled if the code was written on company time
+
+```bash
+ls LICENSE* COPYING* 2>/dev/null
+bunx license-checker --summary                      # JS dependency licenses
+grep -rniE 'copyright|\(c\) [0-9]{4}|SPDX-License' --include='*.*' -l . | head -30
+grep -rniE 'adapted from|based on|taken from|source: http' --include='*.*' . | head -30
+```
+
+Ends when the outgoing license is named, every dependency license is compatible
+with it, and every borrowed block is attributed or removed.
+
+---
+
+## Pass 2 — Secrets in history
+
+Deleting a secret from the working tree leaves it in every commit that ever held
+it. Publishing the repo publishes those commits.
+
+Scan every ref, not just `HEAD`:
+
+```bash
+# Automated sweep across all history — start here
+gitleaks detect --source . --verbose
+trufflehog git file://. --only-verified
+
+# Every file that ever existed
+git log --all --pretty=format: --name-only --diff-filter=A | sort -u \
+  | grep -iE '\.(env|pem|key|secret)$|credentials|secrets\.|id_rsa'
+
+# Files deleted from the tree but alive in history
+git log --all --pretty=format: --name-only --diff-filter=D | sort -u \
+  | grep -iE '\.(env|pem|key|secret)$|credentials'
+
+# Content search across every commit
+git log -p --all -S 'API_KEY' --source -- ':(exclude)*.lock'
+git log -p --all -G 'AKIA[0-9A-Z]{16}' --source
+```
+
+Also sweep the places `--all` misses: stashes, merge commits, and every tag.
+Commands in `references/full-guide.md` §3.
+
+Every hit is a **rotation item first** and a history-rewrite item second.
+Cleaning history does not un-leak a credential that was ever pushed.
+
+Ends when gitleaks and truffleHog both return clean across full history, and
+every earlier hit has a confirmed rotation.
+
+---
+
+## Pass 3 — Private references
+
+The pass with no tooling, and the one that leaks the most. These are not
+credentials; they are facts about the company that only made sense inside it.
+
+| Category | What to look for |
+|----------|------------------|
+| Internal hosts | `*.internal`, `*.corp`, `*.local`, VPN hostnames, RFC1918 IPs |
+| Internal services | Jira/Linear ticket URLs, internal wikis, admin dashboards |
+| People | Employee emails, personal emails, names in TODO and FIXME comments |
+| Customers | Client names, logos, contract terms, customer data in fixtures |
+| Infrastructure | Account IDs, bucket names, cluster names, staging URLs |
+| Commercial | Pricing logic, unreleased product names, internal roadmap notes |
+| Commit metadata | Author emails on every commit — these become public too |
+
+```bash
+# Internal domains and hosts (substitute your own)
+grep -rniE '@(yourcompany|internal|corp)\.(com|net|local)' . | grep -v node_modules
+grep -rniE '\b(10|192\.168|172\.(1[6-9]|2[0-9]|3[01]))\.[0-9]+\.[0-9]+\b' . | grep -v node_modules
+
+# People and intent left in comments
+grep -rniE '(TODO|FIXME|HACK|XXX|NOTE)[:( ].*(ask|per|@[a-z]+)' --include='*.*' . | head -40
+
+# Author identities that ship with the history
+git log --all --format='%ae' | sort -u
+git log --all --format='%an <%ae>' | sort -u | head -30
+```
+
+Judge each hit by one question: **would a stranger reading this learn something
+the company would not say publicly?** A staging URL is a finding. A public docs
+link is not.
+
+Ends when every category has been searched and each hit is redacted, replaced
+with a neutral placeholder, or explicitly accepted by the owner.
+
+---
+
+## Pass 4 — Publication readiness
+
+What a stranger finds in the first thirty seconds:
+
+- **README** written for an outsider — what it is, how to run it, no "ask the
+  team in #eng" instructions
+- **`.env.example`** present and complete, so setup is possible without internal
+  access
+- **Docs** free of links to internal wikis, dashboards, and runbooks
+- **Issue and PR templates** that do not route to internal processes
+- **CI config** referencing only secrets a fork could plausibly supply, and no
+  internal registry or runner
+- **Test fixtures** carrying synthetic data, not production exports
+- **Repository settings** — an existing `.github/` config may expose internal
+  team names in `CODEOWNERS`
+
+```bash
+ls README* .env.example .github/ 2>/dev/null
+grep -rniE 'internal|confidential|do not distribute|proprietary' README* docs/ 2>/dev/null
+cat .github/CODEOWNERS 2>/dev/null
+```
+
+Ends when a reader with no internal access can install, run, and contribute from
+what is in the repository.
+
+---
+
+## Verdict
+
+Report one of two outcomes. No middle state — "mostly clean" publishes secrets.
+
+**BLOCK** — enumerate every blocking finding:
+
+```
+BLOCK — 3 blockers
+
+License   No LICENSE file; two AGPL dependencies conflict with intended MIT
+History   AWS key in commit a1b2c3d (deleted in e4f5g6h, still in history)
+Private   Client name "Acme Corp" in 14 files and 3 commit messages
+
+Rotate now:      AWS key AKIA…  (leak precedes any rewrite)
+Then hand to:    git-safety clean — strip .env from all refs, force-push
+Re-run this audit after the rewrite; commit hashes will have changed.
+```
+
+**PUBLISH** — state what was verified, so the verdict is auditable:
+
+```
+PUBLISH
+
+License   MIT at root; 214 deps all permissive; 2 adapted blocks attributed
+History   gitleaks + truffleHog clean across 1,847 commits, 12 branches, 40 tags
+Private   No internal hosts, customer names, or employee emails outside git authorship
+Ready     README, .env.example, CI runs on a fork without internal secrets
+
+Note: 4 distinct author emails remain in commit history and will be public.
+Next: install the ongoing commit-time guard — git-safety prevent
+```
+
+A rewrite invalidates every commit hash in the findings, so re-run passes 2 and
+3 after `git-safety` finishes.
+
+## Related
+
+- `git-safety` — the recurring guard for a repository already in daily use:
+  blocks secrets from entering the next commit, gates force-pushes and history
+  rewrites, and installs ignore rules and pre-commit hooks. It also performs the
+  rotation and history rewrite this audit hands off. Run it at every commit;
+  run this audit once, at the publish decision.
+- `security-audit` — application-level vulnerability review of the code itself.
+
+---
+
+**Full credential-pattern catalog, all-refs history commands (stashes, merges,
+tags, branches), license-compatibility matrix, private-reference search recipes,
+and the report template:** `references/full-guide.md`

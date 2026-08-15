@@ -5,9 +5,9 @@
 ![Project Type](https://img.shields.io/badge/Project-Skills-blue)
 
 <!-- catalog-summary:start -->
-168 AI agent skills for development workflows. Works with Claude Code, OpenAI Codex, and Cursor.
+169 AI agent skills for development workflows. Works with Claude Code, OpenAI Codex, and Cursor.
 
-Catalog: **168 skills · 32 commands · 13 bundles · 181 plugins**.
+Catalog: **169 skills · 32 commands · 13 bundles · 182 plugins**.
 <!-- catalog-summary:end -->
 
 Skills are **model-agnostic playbooks**: the harness supplies the model, so no skill names a concrete model — orchestrators speak in capability tiers, and each repo's routing block maps tiers to models. Enforced by `scripts/validate-skill-sync.sh`; standards live in `.agents/memory/system/skill-standards.md`.
@@ -19,7 +19,7 @@ Skills are **model-agnostic playbooks**: the harness supplies the model, so no s
 |---|---|---|
 | `.agents/` | Repository memory, standards, and maintenance skills | Tracked |
 | `.claude/` | Claude loader adapters for shared maintenance content | Tracked |
-| `.claude-plugin/` | Generated Claude marketplace catalog | 181 generated plugins |
+| `.claude-plugin/` | Generated Claude marketplace catalog | 182 generated plugins |
 | `.codex/` | Codex loader adapters for shared maintenance content | Tracked |
 | `.github/` | Issue templates and GitHub Actions workflows | Tracked |
 | `.husky/` | Git hook configuration | Tracked |
@@ -30,7 +30,7 @@ Skills are **model-agnostic playbooks**: the harness supplies the model, so no s
 | `prompts/` | Shared prompt resources | Tracked |
 | `resources/` | Authoring references and supporting documentation | Tracked |
 | `scripts/` | Validation, generation, migration, and audit tooling | Tracked |
-| `skills/` | Canonical public Agent Skills sources | 168 canonical skills |
+| `skills/` | Canonical public Agent Skills sources | 169 canonical skills |
 <!-- catalog-layout:end -->
 
 ## What's Included
@@ -229,7 +229,7 @@ or another Agent Skills-compatible harness.
 | prompt | Optimize prompts for AI generation |
 | qa | Run a structured verification pass before commit |
 | release | Cut a trunk release with patch notes |
-| review | Review changes, a PR, all open PRs, or recent commits |
+| review | Review changes, a PR, all open PRs, or recent commits — natively or via the Grok CLI |
 | scan | Run dependency, code, config, and OWASP security scans |
 | skill | Author, capture, test, and scout agent skills |
 | standup | Summarize what you shipped over a time window |
@@ -239,16 +239,16 @@ or another Agent Skills-compatible harness.
 | wait-what | Re-pitch the last message in plain English |
 
 <!-- catalog-skills-heading:start -->
-## Skills (168)
+## Skills (169)
 <!-- catalog-skills-heading:end -->
 
 ### Dev Loop (14)
 
 `interview`, `grilling`, `domain-modeling`, `ask-dev-loop`, `wait-what`, `feature-intake`, `prd-writer`, `writing-plans`, `prd-quality-gate`, `prd-task-creator`, `executing-plans`, `setup-agent-routing`, `gh-project-board`, `qa-reviewer`
 
-### Dev Workflow (43)
+### Dev Workflow (44)
 
-`agent-architecture-audit`, `agent-config-audit`, `ai-agent-cost-optimizer`, `ai-regression-testing`, `analyze-codebase`, `codebase-advisor`, `codebase-design`, `code-review`, `structural-review`, `full-code-review`, `review-dispatch`, `commit-summary`, `changelog-generator`, `standup`, `de-slop`, `refactor-dispatch`, `tech-debt`, `stack-modernization`, `debug`, `deploy`, `execution-debugging`, `deployment-composer`, `docs`, `llm-structured-output`, `merge-open-prs`, `production-audit`, `refactor-code`, `release`, `release-dispatch`, `release-cleanup`, `release-pr-gates`, `scaffold`, `shape`, `skill-capture`, `skill-comply`, `skill-scout`, `systematic-debugging`, `receiving-code-review`, `verification-before-completion`, `wizard`, `worktree`, `skill-dispatch`, `deploy-dispatch`
+`agent-architecture-audit`, `agent-config-audit`, `ai-agent-cost-optimizer`, `ai-regression-testing`, `analyze-codebase`, `codebase-advisor`, `codebase-design`, `code-review`, `structural-review`, `full-code-review`, `grok-review`, `review-dispatch`, `commit-summary`, `changelog-generator`, `standup`, `de-slop`, `refactor-dispatch`, `tech-debt`, `stack-modernization`, `debug`, `deploy`, `execution-debugging`, `deployment-composer`, `docs`, `llm-structured-output`, `merge-open-prs`, `production-audit`, `refactor-code`, `release`, `release-dispatch`, `release-cleanup`, `release-pr-gates`, `scaffold`, `shape`, `skill-capture`, `skill-comply`, `skill-scout`, `systematic-debugging`, `receiving-code-review`, `verification-before-completion`, `wizard`, `worktree`, `skill-dispatch`, `deploy-dispatch`
 
 ### GitHub (19)
 
@@ -258,13 +258,13 @@ or another Agent Skills-compatible harness.
 
 `playwright-e2e-init`, `tdd`, `testing-expert`, `testing-cicd-init`, `qa-reviewer`, `qa-loop`, `husky-test-coverage`, `test-runner`, `test-dispatch`
 
-### Frontend & React (33)
+### Frontend & React (32)
 
-`frontend-design`, `component-library`, `accessibility`, `audit`, `clarify`, `critique`, `design-consistency-auditor`, `deslop-ui`, `html-style`, `layout`, `polish`, `quieter`, `react-component-performance`, `react-hook-form`, `theme-factory`, `prototype`, `react-patterns`, `react-refactor`, `react-testing-library`, `react-native-components`, `expo-architect`, `landing-page-vercel`, `micro-landing-builder`, `ai-loading-ux`, `table-filters`, `quick-view`, `nextjs-validator`, `nextra-writer`, `shadcn`, `shadcn-setup`, `tailwind`, `tailwind-validator`, `design-dispatch`
+`frontend-design`, `component-library`, `accessibility`, `audit`, `clarify`, `critique`, `design-consistency-auditor`, `html-style`, `layout`, `polish`, `quieter`, `react-component-performance`, `react-hook-form`, `theme-factory`, `prototype`, `react-patterns`, `react-refactor`, `react-testing-library`, `react-native-components`, `expo-architect`, `landing-page-vercel`, `micro-landing-builder`, `ai-loading-ux`, `table-filters`, `quick-view`, `nextjs-validator`, `nextra-writer`, `shadcn`, `shadcn-setup`, `tailwind`, `tailwind-validator`, `design-dispatch`
 
-### Backend & Data (8)
+### Backend & Data (9)
 
-`api-design-expert`, `error-handling-expert`, `graphql-architect`, `nestjs-expert`, `incremental-fetch`, `turborepo`, `typescript-expert`, `typescript-refactor`
+`api-design-expert`, `error-handling-expert`, `graphql-architect`, `nestjs-expert`, `nestjs-testing-expert`, `incremental-fetch`, `turborepo`, `typescript-expert`, `typescript-refactor`
 
 ### Infrastructure (12)
 

@@ -3,16 +3,17 @@ name: review-dispatch
 description: >-
   Single front door for code review. Resolves a target — working-tree changes,
   one PR, all open PRs, the last N commits, a time window, or a retrospective
-  over merged history — into the right workflow. Keeps every /review mode
-  report-only except confirmation-gated retrospective issue filing. Backs the
-  /review command. Use when asked to review changes, a PR, all PRs, recent
-  commits, or merged history.
+  over merged history — into the right workflow, natively or through an
+  external second-opinion engine (grok). Keeps every /review mode report-only
+  except confirmation-gated retrospective issue filing. Backs the /review
+  command. Use when asked to review changes, a PR, all PRs, recent commits, or
+  merged history, or to get a second opinion from another CLI.
 metadata:
-  version: "1.3.0"
-  tags: "code-review, dispatcher, pull-requests, commits, retro, orchestration"
+  version: "1.4.0"
+  tags: "code-review, dispatcher, pull-requests, commits, retro, orchestration, second-opinion"
   author: Ship Shit Dev
 allowed-tools: Bash(git *) Bash(gh *)
-when_to_use: "/review, /review prs, review all open PRs, review the last N commits, review 24h of changes, commit retro, retro 14d, retrospective, find bugs/refactors in the last week, run the structural lens, which review for this scope"
+when_to_use: "/review, /review prs, /review grok, review all open PRs, review the last N commits, review 24h of changes, commit retro, retro 14d, retrospective, find bugs/refactors in the last week, run the structural lens, review with grok, second opinion on this branch, which review for this scope"
 ---
 
 # Review Dispatch
@@ -27,9 +28,10 @@ non-serial queue draining belongs exclusively to `/merge force`.
 
 Inputs:
 
-- A single argument string (may be empty) parsed into a target mode and an
-  optional depth flag: `--deep` for the multi-dimension pass, `--structural`
-  for the structural lens alone. Default depth is the quick gate.
+- A single argument string (may be empty) parsed into a target mode, an
+  optional depth flag (`--deep` for the multi-dimension pass, `--structural`
+  for the structural lens alone; default depth is the quick gate), and an
+  optional engine token (`grok` for the external second-opinion engine).
 
 Outputs:
 
@@ -68,6 +70,9 @@ Delegates To:
   with a `COMMIT_LOG` attached — adds the cross-commit lens, emits a backlog).
 - `structural-review` for `--structural` (the structural/maintainability lens
   alone — the "thermo-nuclear" pass, no security/devex fan-out).
+- `grok-review` for the `grok` engine token — one headless Grok CLI run on the
+  gathered diff, on the CLI's own default model and effort, with every finding
+  verified in-session before it is reported.
 
 ## Step 1 — Parse the Argument
 
@@ -76,6 +81,11 @@ Resolve the raw argument into `(mode, depth)`.
 - `--deep` present anywhere → `depth = deep`; `--structural` → `depth =
   structural`; otherwise `depth = quick`. Strip the flag before parsing the
   target. The two flags are mutually exclusive — if both appear, `--deep` wins.
+- `grok` present anywhere → `engine = grok`. Strip the token before parsing
+  the target. Engine and depth flags are mutually exclusive — if both appear,
+  report the conflict and print the Usage block instead of guessing. The
+  engine supports `working`, `pr`, `prs`, `commits`, and `since` targets;
+  `retro` always runs natively (report `grok retro` as unsupported).
 - Remaining token(s):
 
 | Argument | Mode | Resolution |
@@ -191,6 +201,11 @@ already merged/closed, say so plainly and stop — do not invent findings.
   **and `COMMIT_LOG`** into its Workflow. The commit log switches it to retro mode
   (adds the cross-commit lens, emits `mode: retro` backlog). Depth flags do not
   apply.
+- **engine grok →** pass the gathered `DIFF` / `CHANGED_FILES` to the
+  `grok-review` skill instead of a native engine. It runs one headless Grok
+  CLI invocation (no model or effort flags — CLI defaults own the lane),
+  verifies every returned finding against the code, and reports in the same
+  report-only contract.
 
 Loop the selected review engine over open PRs in `prs` mode because that mode is
 a report-only review sweep.
@@ -259,6 +274,7 @@ milestones the repo does not already use.
 /review retro [window]
 /review --deep [target]
 /review --structural [target]
+/review grok [target]
 ```
 
 Every `/review` mode is report-only except confirmation-gated retrospective

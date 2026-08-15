@@ -5,7 +5,7 @@ description: |
   Run periodically or before releases.
 metadata:
   internal: true
-  version: "1.1.0"
+  version: "1.2.0"
   tags: "audit, skills, quality, maintenance"
 ---
 
@@ -66,19 +66,26 @@ For each SKILL.md, check:
 
 ### 5. README Sync
 
-Compare `skills/` directory listing against README.md skills table:
+Compare the `skills/` directory listing against the README's categorized skill
+lists (backticked names under the `## Skills (N)` heading — the README has no
+per-skill link table):
 
 ```bash
 # Get skills from filesystem
 find skills -maxdepth 1 -mindepth 1 -type d | sed 's|skills/||' | sort > /tmp/fs-skills.txt
 
-# Get skills from README table
-grep -oE '\[([a-z0-9-]+)\]\(https://skills\.sh' README.md | sed 's/\[//' | sed 's/\](https:\/\/skills\.sh//' | sort > /tmp/readme-skills.txt
+# Get skills from the README's categorized lists
+sed -n '/^## Skills (/,/^## How Skills Adapt/p' README.md \
+  | grep -oE '`[a-z0-9-]+`' | tr -d '`' | sort -u > /tmp/readme-skills.txt
 
 # Diff
 comm -23 /tmp/fs-skills.txt /tmp/readme-skills.txt  # in fs, not README
 comm -13 /tmp/fs-skills.txt /tmp/readme-skills.txt  # in README, not fs
 ```
+
+Also verify each category heading's `(N)` count matches the number of names in
+its list. A skill may appear in more than one category, so the per-category
+sum exceeding the total is expected.
 
 ## Output Format
 
@@ -88,8 +95,8 @@ Report findings as a table:
 |-------|-------|----------|--------|
 | `code-refactoring-refactor-clean` | Duplicate of `refactor-code` | HIGH | Merge |
 | `spec-to-code-compliance` | Empty directory | HIGH | Delete |
+| `skill-capture` | tags as YAML list | MEDIUM | Fix to string |
 
 For routine mode, report totals, leakage categories, anonymous source identifiers,
 duplicate-family groups, and observed app-owned field names. Do not include the
 matched text or configuration values.
-| `skill-capture` | tags as YAML list | MEDIUM | Fix to string |

@@ -398,7 +398,7 @@
     {
       "name": "git-safety",
       "source": "./skills/git-safety",
-      "description": "Scans, cleans, and prevents secrets in git history across four modes: scan (detect sensitive files in the current state and history), clean (rewrite history to remove secrets using git-filter-repo or BFG), prevent (add .gitignore and pre-commit hooks), and full (all three in sequence). Use when the user asks to check for leaked credentials, scrub a secret from git history, force-push a cleaned repo, set up pre-commit secret prevention, or run a full git security audit."
+      "description": "Guards day-to-day git work in an existing repository: blocks secrets from entering a commit, gates destructive git operations before they run, installs ignore rules and pre-commit hooks, and drives the rotate-first response when a credential has already leaked."
     },
     {
       "name": "github-actions-author",
@@ -533,7 +533,7 @@
     {
       "name": "open-source-checker",
       "source": "./skills/open-source-checker",
-      "description": "Expert in detecting private information, secrets, API keys, credentials, and sensitive data in codebases before open sourcing. Use when preparing to open source a repository, reviewing code for exposed secrets, or auditing a codebase for sensitive data before public release."
+      "description": "Audits a whole private repository once, at the decision to make it public. Runs four passes — license and attribution, secrets across the entire git history, private references (internal hostnames, employee emails, client and customer names, staging URLs), and publication readiness — then returns a publish or block verdict. Use when the user is preparing to open source a repository, asks whether a codebase is safe to publish, wants a pre-release audit before flipping a repo public, or needs to know what is still private in code that is about to ship publicly."
     },
     {
       "name": "package-architect",

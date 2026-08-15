@@ -1,7 +1,7 @@
 {
   "name": "git-safety",
-  "version": "1.0.0",
-  "description": "Scan, clean, and prevent secrets in git history and repository state.",
+  "version": "1.1.0",
+  "description": "Block secrets from entering a commit and gate destructive git operations.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",

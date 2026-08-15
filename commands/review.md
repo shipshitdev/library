@@ -16,6 +16,7 @@ PR, the last N commits, or a time window — through the same review engine.
                          #   bugs/optimizations/refactors as a backlog, optionally filed as issues
 /review --deep [target]  # full multi-dimension review (structural + security + devex) on any target
 /review --structural [target]  # structural/maintainability lens only (the thermo-nuclear pass)
+/review grok [target]    # second opinion: same target, reviewed by the Grok CLI instead
 ```
 
 `--deep` and `--structural` combine with review targets, e.g. `/review --deep
@@ -32,6 +33,15 @@ mutually exclusive; `--deep` wins if both are given.
 - **`--structural`:** the `structural-review` skill alone — the
   structural/maintainability "thermo-nuclear" lens (file size, abstraction,
   layering, design purity, directness-vs-magic), without the security/devex fan-out.
+
+## External Engine
+
+`/review grok [target]` routes the same resolved diff through the
+`grok-review` skill: one headless Grok CLI invocation on the CLI's own default
+model and effort (no model/effort flags are ever passed), followed by
+in-session verification of every returned finding before anything is reported.
+Combines with any target except `retro`; mutually exclusive with `--deep` and
+`--structural`. Report-only like every other mode.
 
 ## Retro
 
@@ -50,14 +60,15 @@ Use the `review-dispatch` skill. It resolves the target, gathers the diff(s)
 with read-only `git`/`gh`, routes to the chosen depth, and renders the verdict.
 
 1. **Parse the argument** into a target mode (none / PR# / `pr <n>` / `prs` /
-   `commits <n>` / duration) and a depth flag (`--deep`, `--structural`, or
-   default quick).
+   `commits <n>` / duration), a depth flag (`--deep`, `--structural`, or
+   default quick), and an optional `grok` engine token.
 2. **Detect the trunk** — resolve the default branch and verify it exists before
    diffing; stop and ask for a base if it can't be resolved.
 3. **Resolve the target to diffs** — branch vs trunk, `gh pr diff`, a commit
    range, or a `git log --since` window.
 4. **Route by depth** — apply `code-review` (quick), `full-code-review` (deep),
-   or `structural-review` (structural) to each resolved diff.
+   or `structural-review` (structural) to each resolved diff — or hand the
+   diff to `grok-review` when the `grok` engine is selected.
 5. **Render** — a single verdict for one target, or a summary table (one verdict
    line per PR) for `prs`, with a `/review <PR#>` drill-down hint.
 

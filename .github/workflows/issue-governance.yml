@@ -90,6 +90,14 @@ jobs:
             if ADD_OUTPUT=$(gh project item-add "$PROJECT_NUMBER" \
               --owner "$PROJECT_OWNER" --url "$IURL" --format json 2>&1); then
               FLAGS="${FLAGS}added to board; "
+              # item-add already hands back the new item's id — keep it. The
+              # items query reads a replica that lags behind this write, so
+              # re-querying here can come back empty and leave --id blank,
+              # which is how this step died with gh's item-edit usage text.
+              # A freshly added item has no field values yet, hence the empty
+              # nodes list: both defaults below then apply, which is correct.
+              ITEM_JSON=$(printf '%s' "$ADD_OUTPUT" \
+                | jq -c 'select(.id) | {id: .id, fieldValues: {nodes: []}}' 2>/dev/null || true)
             else
               # A concurrent run or an item beyond a fixed list limit may have
               # added it already. Re-query every page before treating this as fatal.
@@ -103,7 +111,11 @@ jobs:
           if [ -z "$ITEM_JSON" ]; then
             ITEM_JSON=$(find_item_json)
           fi
-          ITEM=$(echo "$ITEM_JSON" | jq -r '.id')
+          ITEM=$(echo "$ITEM_JSON" | jq -r '.id // empty')
+          if [ -z "$ITEM" ]; then
+            printf '::error::Could not resolve a board item id for %s — refusing to edit fields blind.\n' "$IURL"
+            exit 1
+          fi
           CUR_STATUS=$(echo "$ITEM_JSON" | jq -r \
             '[.fieldValues.nodes[] | select(.field.name == "Status") | .name][0] // ""')
           CUR_PRI=$(echo "$ITEM_JSON" | jq -r \

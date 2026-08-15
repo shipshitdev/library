@@ -548,7 +548,7 @@
     {
       "name": "performance-expert",
       "source": "./skills/performance-expert",
-      "description": "Expert in performance optimization for React, Next.js, NestJS applications covering frontend rendering, API response times, database queries, and infrastructure optimization. Use when optimizing React components or Next.js pages, improving API response times, optimizing database queries, analyzing bundle sizes, or implementing caching."
+      "description": "Backend, database, and infrastructure performance expert covering API response times, query and index optimization, N+1 elimination, caching and background jobs, server profiling, and build/asset delivery. Use when improving API latency, optimizing database queries or indexes, designing a caching layer, moving heavy work to a queue, profiling a server process, shrinking a shipped bundle, or configuring CDN and edge caching. React render and component work belongs to `react-component-performance`."
     },
     {
       "name": "playwright-e2e-init",
@@ -633,7 +633,7 @@
     {
       "name": "react-component-performance",
       "source": "./skills/react-component-performance",
-      "description": "Diagnose slow React components and suggest targeted performance fixes. Use when profiling or improving a slow React component, or reducing re-renders, list lag, or expensive render work."
+      "description": "Diagnose slow React components and apply targeted render-time fixes. Use when profiling a slow React component, cutting re-renders or props churn, fixing list lag or janky typing and scrolling, deciding where `memo`, `useMemo`, or `useCallback` pay off, virtualizing a long list, or reading a React DevTools Profiler trace. API latency, database queries, caching, and infrastructure belong to `performance-expert`."
     },
     {
       "name": "react-hook-form",

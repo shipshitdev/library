@@ -1,7 +1,7 @@
 {
   "name": "performance-expert",
-  "version": "1.0.0",
-  "description": "Expert in performance optimization for React, Next.js, NestJS applications covering frontend renderi",
+  "version": "1.1.0",
+  "description": "Backend, database, and infrastructure performance: queries, caching, jobs, delivery.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",

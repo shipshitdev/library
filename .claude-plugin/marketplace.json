@@ -518,7 +518,7 @@
     {
       "name": "nestjs-testing-expert",
       "source": "./skills/nestjs-testing-expert",
-      "description": "Testing patterns for NestJS apps using Jest, covering unit, integration, and e2e tests."
+      "description": "NestJS testing mechanics with Jest — building testing modules, mocking providers and repositories, writing service and controller specs, and driving HTTP end-to-end tests through the real application. Use for any test touching a NestJS service, controller, guard, module, or API endpoint, including test-module setup, provider overrides, database fakes, and Supertest request flows."
     },
     {
       "name": "nextjs-validator",
@@ -653,7 +653,7 @@
     {
       "name": "react-testing-library",
       "source": "./skills/react-testing-library",
-      "description": "React Testing Library best practices for writing maintainable, user-centric tests. Use when writing, reviewing, or refactoring RTL tests. Triggers on test files, testing patterns, getBy/queryBy queries, userEvent, waitFor, and component testing."
+      "description": "React Testing Library mechanics for testing React components and hooks — query selection, async handling, user interaction, assertions, provider setup, and the anti-patterns that make tests brittle. Use for any test that renders a React component or a hook, including choosing between getBy/queryBy/findBy, userEvent flows, waitFor usage, renderHook, custom render wrappers, and reviewing RTL tests for implementation-detail assertions."
     },
     {
       "name": "receiving-code-review",
@@ -848,7 +848,7 @@
     {
       "name": "testing-expert",
       "source": "./skills/testing-expert",
-      "description": "Expert in testing strategies for React, Next.js, and NestJS applications covering unit tests, integration tests, E2E tests, and testing best practices. Use when writing unit, integration, or E2E tests, testing React components, or testing API endpoints."
+      "description": "Framework-agnostic testing strategy — which level to test at, what coverage numbers mean, how to design a test that survives refactoring, how to choose test data, and how to kill flakes. Use when deciding what is worth testing, setting or defending a coverage target, reviewing the shape of an existing suite, or diagnosing a flaky or slow test. Framework-specific work routes to a specialist skill instead of being answered here."
     },
     {
       "name": "theme-factory",

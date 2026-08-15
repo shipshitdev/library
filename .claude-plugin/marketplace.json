@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "169 AI agent skills for development workflows",
+  "description": "168 AI agent skills for development workflows",
   "plugins": [
     {
       "name": "shipshitdev-testing",
@@ -121,11 +121,6 @@
       "description": "Design regression tests for AI-assisted development by targeting model blind spots such as sandbox versus production path drift, response-shape mismatches, untested bug fixes, and same-model review failures. Use after AI-generated code changes, bug fixes, API edits, or feature-flag/sandbox changes."
     },
     {
-      "name": "analyze-codebase",
-      "source": "./skills/analyze-codebase",
-      "description": "Generate comprehensive codebase analysis covering architecture, security, performance, and code quality. Use when user says 'analyze codebase', 'code audit', 'architecture review', or 'project health check'."
-    },
-    {
       "name": "api-design-expert",
       "source": "./skills/api-design-expert",
       "description": "Expert in RESTful API design, OpenAPI/Swagger documentation, versioning, error handling, and API best practices for NestJS applications. Use when designing API endpoints, building RESTful APIs, writing OpenAPI/Swagger docs, implementing versioning, or designing error responses and DTOs."
@@ -188,7 +183,7 @@
     {
       "name": "codebase-advisor",
       "source": "./skills/codebase-advisor",
-      "description": "Survey any codebase as a senior advisor and produce prioritized, self-contained implementation plans for OTHER models/agents to execute. Strictly read-only on source code — never implements, fixes, or refactors anything itself. Use when asked to audit a codebase, find improvement opportunities (bugs, security, performance, test coverage, tech debt, migrations, DX), suggest features or where to take the project next (roadmap, product direction), or generate handoff plans for another agent to implement. Does NOT edit code directly — it declines and hands off a plan instead."
+      "description": "Survey any codebase as a senior advisor, then hand back either prioritized self-contained implementation plans for OTHER models/agents to execute, or a written architecture and health analysis for humans. Strictly read-only on source code — never implements, fixes, or refactors anything itself. Use when asked to audit or analyze a codebase, review its architecture, assess project health for onboarding, find improvement opportunities (bugs, security, performance, test coverage, tech debt, migrations, DX), suggest features or where to take the project next (roadmap, product direction), or generate handoff plans for another agent to implement. Does NOT edit code directly — it declines and hands off a plan instead."
     },
     {
       "name": "codebase-design",

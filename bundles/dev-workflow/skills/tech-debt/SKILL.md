@@ -1,14 +1,14 @@
 ---
 name: tech-debt
-description: Inventory, quantify, and prioritize technical debt into a register ranked by interest (how often it hurts) over principal (effort to fix). Covers code smells, dependency debt, test gaps, and architectural churn hotspots across frontend and backend. Use when asked about tech debt, what to pay down, where the codebase is rotting, or to turn debt into a tracked backlog. Files the register as GitHub issues on request.
+description: Inventories a real codebase and ranks its technical debt into a register scored by interest (how often it hurts) over principal (effort to fix), every item anchored to a file-and-line or a metric. Covers code smells, dependency debt, test gaps, and architectural churn hotspots across frontend and backend. Use when asked what to pay down, where the codebase is rotting, or to turn debt into a tracked backlog. Files the register as GitHub issues on request. For org-level technology strategy and architecture direction, use `cto-advisor`.
 user-invocable: true
 argument-hint: "[directory, or 'issues' to file]"
 compatibility: Requires git; gh to file issues; optional bun/npm audit for dependency debt.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "tech-debt, refactor, prioritization, code-quality, maintenance"
   author: Ship Shit Dev
-when_to_use: "tech debt, technical debt, what to pay down, debt register, where is the codebase rotting, prioritize refactoring, debt backlog, /refactor debt"
+when_to_use: "what to pay down, debt register, where is the codebase rotting, scan this repo for tech debt, prioritize refactoring, debt backlog, /refactor debt"
 ---
 
 # Tech Debt
@@ -48,6 +48,8 @@ Delegates To:
 - `refactor-code` / `de-slop` / `stack-modernization` to actually pay down an item.
 - `roadmap-analyzer` when debt competes with features — it ranks both against revenue.
 - `roadmap-to-milestones` to schedule a debt-paydown milestone.
+- `cto-advisor` when the question is how much to invest overall, or which architecture
+  or technology to move toward — direction rather than inventory.
 
 ## Step 1 — Inventory debt from evidence
 

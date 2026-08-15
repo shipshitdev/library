@@ -1,7 +1,7 @@
 {
   "name": "prd-task-creator",
-  "version": "1.2.0",
-  "description": "Write PRDs and tasks as GitHub issues, sub-issues, or local planning files.",
+  "version": "1.2.1",
+  "description": "File settled work into a tracker as GitHub issues, sub-issues, or local task files.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",

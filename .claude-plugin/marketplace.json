@@ -73,7 +73,7 @@
     {
       "name": "accessibility",
       "source": "./skills/accessibility",
-      "description": "Expert in web accessibility (WCAG 2.1 AA compliance) for React/Next.js applications, ensuring all projects are usable by everyone. Use when creating or reviewing UI components, adding keyboard navigation, checking color contrast, testing with screen readers, or auditing pages for accessibility issues."
+      "description": "Applies WCAG 2.1 AA to web UI work and fixes what fails — semantic HTML, ARIA roles and states, keyboard access, focus management, contrast ratios, and screen-reader verification — while a component is being built or reviewed. Use when the user names accessibility, a11y, WCAG, ARIA, keyboard navigation, focus traps, screen readers, or contrast. For a scored multi-dimension quality report, use `audit`; for design-token consistency, use `design-consistency-auditor`."
     },
     {
       "name": "advanced-evaluation",
@@ -138,7 +138,7 @@
     {
       "name": "audit",
       "source": "./skills/audit",
-      "description": "Run technical quality checks across accessibility, performance, theming, responsive design, and anti-patterns. Generates a scored report with P0-P3 severity ratings and actionable plan. Use when the user wants an accessibility check, performance audit, or technical quality review."
+      "description": "Sweeps implemented frontend code across five dimensions at once — accessibility, performance, theming, responsive design, and anti-patterns — scoring each 0-4 and emitting a single P0-P3 report with a prioritized plan. Reports only; it changes no code. Reach for it as the broad first pass when no one dimension has been named. For a deep WCAG conformance pass, use `accessibility`; for design-token drift, use `design-consistency-auditor`."
     },
     {
       "name": "aws-infrastructure",
@@ -243,7 +243,7 @@
     {
       "name": "cto-advisor",
       "source": "./skills/cto-advisor",
-      "description": "Technical leadership guidance for engineering teams, architecture decisions, and technology strategy. Includes tech debt analyzer, team scaling calculator, engineering metrics frameworks, technology evaluation tools, and ADR templates. Use when assessing technical debt, scaling engineering teams, evaluating technologies, making architecture decisions, establishing engineering metrics, or when user mentions CTO, tech debt, technical debt, team scaling, architecture decisions, technology evaluation, engineering metrics, DORA metrics, or technology strategy."
+      "description": "Advises engineering leadership on direction — architecture decisions recorded as ADRs, technology and vendor evaluation, team scaling ratios, and DORA/engineering-metric targets. Reasons from org-level indicators and frameworks, never from a repository scan. Use when the user asks which technology to adopt, how to structure or scale the engineering team, whether to write an ADR, what DORA targets to hold, or mentions CTO, technical leadership, technology strategy, vendor selection, or engineering metrics. To inventory and rank the debt already sitting in a codebase, use `tech-debt`."
     },
     {
       "name": "de-slop",
@@ -278,7 +278,7 @@
     {
       "name": "design-consistency-auditor",
       "source": "./skills/design-consistency-auditor",
-      "description": "Audits and maintains design system consistency across frontend applications — color palettes, UI/UX patterns, component styling, and accessibility. Triggers when asked to audit design consistency, review component styling, check color palette usage, validate accessibility compliance, or identify design debt."
+      "description": "Hunts design-token drift across a frontend — hardcoded hex values where semantic tokens belong, arbitrary spacing outside the scale, one-off classes duplicating a design-system component, and patterns that diverge screen to screen. Measures against the project's own tokens and class conventions, discovered from the codebase first rather than assumed. Triggers on audit design consistency, review component styling, check color palette usage, find hardcoded colors, or identify design debt. For a scored multi-dimension quality report, use `audit`; for WCAG conformance, use `accessibility`."
     },
     {
       "name": "design-dispatch",
@@ -368,7 +368,7 @@
     {
       "name": "gh-address-comments",
       "source": "./skills/gh-address-comments",
-      "description": "Resolves GitHub PR review and issue comments by fetching threads, mapping them to code, proposing fixes, and drafting replies for approval. Triggers when the user asks to address PR comments, respond to review feedback, fix review threads, or resolve GitHub comment requests."
+      "description": "Implements the fixes a PR review asked for — maps each thread to the code it touches, edits that code, and drafts a reply per thread for approval before anything is posted. Starts from feedback that is already understood; producing the read-only digest is `pr-comments`."
     },
     {
       "name": "gh-fix-ci",
@@ -453,7 +453,7 @@
     {
       "name": "layout",
       "source": "./skills/layout",
-      "description": "Improve layout, spacing, and visual rhythm. Fixes monotonous grids, inconsistent spacing, and weak visual hierarchy. Use when the user mentions layout feeling off, spacing issues, visual hierarchy, crowded UI, alignment problems, or wanting better composition."
+      "description": "Reworks the structure underneath a UI — spacing scale, visual hierarchy, grid and composition, rhythm, and density — turning monotonous or crowded arrangements into intentional ones. Applies while the composition itself is still wrong, ahead of any detail pass. Use when the user says the layout feels off, every section looks the same, the UI is crowded or too sparse, hierarchy is unclear, or nothing guides the eye. For the last-mile pass on a finished feature, use `polish`."
     },
     {
       "name": "linter-formatter-init",
@@ -553,7 +553,7 @@
     {
       "name": "polish",
       "source": "./skills/polish",
-      "description": "Performs a final quality pass fixing alignment, spacing, consistency, and micro-detail issues before shipping. Use when the user mentions polish, finishing touches, pre-launch review, something looks off, or wants to go from good to great."
+      "description": "Runs the last pass over a functionally complete feature — pixel alignment, interaction and loading states, empty and error states, copy consistency, transition smoothness, and micro-details measured against the design system. Requires the work to be finished first; it refines, it never restructures. Use when the user asks for polish, finishing touches, a pre-launch review, or wants to go from good to great. To fix the underlying composition instead, use `layout`."
     },
     {
       "name": "postgres-ops",
@@ -563,7 +563,7 @@
     {
       "name": "pr-comments",
       "source": "./skills/pr-comments",
-      "description": "Fetch a pull request's review and discussion comments and return a read-only digest — grouped by thread, severity-tagged, priority-ordered, with the open questions called out — without editing code or drafting replies. Use when the user asks what are the comments on my PR, summarize the review feedback, what's blocking this PR, what do I still need to address, or runs /pr comments."
+      "description": "Reads a pull request's review threads and returns a digest — grouped by thread, severity-tagged, priority-ordered, with the open questions called out. Strictly read-only: no code edits, no replies, no thread resolution. Reach for it to triage feedback before deciding what to fix; implementing those fixes is `gh-address-comments`."
     },
     {
       "name": "prd-dispatch",
@@ -578,12 +578,12 @@
     {
       "name": "prd-task-creator",
       "source": "./skills/prd-task-creator",
-      "description": "Create a well-written PRD, task, or GitHub issue/sub-issue for a feature, bug, or enhancement. Use when planning work, writing GitHub issues, breaking down epics into sub-issues, or creating local task files. Common prompts: create a task, write a PRD, open a GitHub issue, create a sub-issue, plan this feature, write up this bug, break this down into issues, I want to add X, implement Y."
+      "description": "Files work into a tracker — turns a feature, bug, or finished PRD into GitHub issues, linked sub-issues, or local task files, slicing epics into thin vertical slices sized for one PR each and tagged AFK or HITL. Starts once the requirements are settled; authoring the PRD document itself is `prd-writer`."
     },
     {
       "name": "prd-writer",
       "source": "./skills/prd-writer",
-      "description": "Drafts, scopes, and formalizes features as PRDs — a planning agent can consume the output in one shot without re-elicitation. Triggers on \"write a PRD for X\", \"let's plan X\", \"scope this out\", \"what should X do\", or when a tracker issue needs to be fleshed out before planning. Do NOT use for code edits, debugging, or PR reviews."
+      "description": "Authors the PRD document itself — problem, scope boundaries, EARS acceptance criteria, and verification plan — as one self-contained contract a planning agent consumes without re-elicitation. Ends at the written PRD; slicing it into tracked issues is `prd-task-creator`."
     },
     {
       "name": "production-audit",
@@ -678,7 +678,7 @@
     {
       "name": "release",
       "source": "./skills/release",
-      "description": "Cut a release from the trunk (default branch) and generate plain-English patch notes. Determines the next semantic version from commits since the last tag, previews the release plan, then on confirmation either creates an annotated tag + GitHub release (tag mode) or dispatches the repo's guarded release workflow (dispatch mode, for repos whose production deploy is gated behind a workflow_dispatch promote gate). Trunk-based — there is no develop/staging branch promotion. Use when the user asks to cut a release, ship a release, tag a release, promote to production, release to production, generate release notes or a changelog, or runs /release."
+      "description": "Cuts the release itself — derives the next semantic version from commits since the last tag, writes plain-English patch notes, previews the plan, then on confirmation creates an annotated tag plus GitHub release, or dispatches the repo's guarded release workflow where production sits behind a workflow_dispatch promote gate. Trunk-based; no develop or staging branch promotion. Assumes the trunk is already green — to open a release PR or wait on required checks first, use `release-pr-gates`."
     },
     {
       "name": "release-cleanup",
@@ -693,7 +693,7 @@
     {
       "name": "release-pr-gates",
       "source": "./skills/release-pr-gates",
-      "description": "Gate a release on the trunk — verify required CI checks are green, then cut a release (semver tag + GitHub release) or open a release PR into the default branch. Deployment to staging and production environments is driven by CI/CD pipelines and tags, not branch PRs. Use when the user asks to release, open a release PR, cut a tag, wait for GitHub checks to go green, or verify the trunk is ready to release."
+      "description": "Holds a release at the gate — opens or reuses a release PR into the trunk, runs local format, lint, and type-check, watches required GitHub checks through to green, and summarizes the failing run's root cause when they are not. Tags only after the gate passes. Reach for it during the pre-merge wait; for version derivation and plain-English patch notes, use `release`."
     },
     {
       "name": "review-dispatch",
@@ -828,7 +828,7 @@
     {
       "name": "tech-debt",
       "source": "./skills/tech-debt",
-      "description": "Inventory, quantify, and prioritize technical debt into a register ranked by interest (how often it hurts) over principal (effort to fix). Covers code smells, dependency debt, test gaps, and architectural churn hotspots across frontend and backend. Use when asked about tech debt, what to pay down, where the codebase is rotting, or to turn debt into a tracked backlog. Files the register as GitHub issues on request."
+      "description": "Inventories a real codebase and ranks its technical debt into a register scored by interest (how often it hurts) over principal (effort to fix), every item anchored to a file-and-line or a metric. Covers code smells, dependency debt, test gaps, and architectural churn hotspots across frontend and backend. Use when asked what to pay down, where the codebase is rotting, or to turn debt into a tracked backlog. Files the register as GitHub issues on request. For org-level technology strategy and architecture direction, use `cto-advisor`."
     },
     {
       "name": "test-dispatch",

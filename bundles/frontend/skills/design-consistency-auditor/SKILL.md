@@ -1,9 +1,9 @@
 ---
 name: design-consistency-auditor
-description: Audits and maintains design system consistency across frontend applications — color palettes, UI/UX patterns, component styling, and accessibility. Triggers when asked to audit design consistency, review component styling, check color palette usage, validate accessibility compliance, or identify design debt.
+description: Hunts design-token drift across a frontend — hardcoded hex values where semantic tokens belong, arbitrary spacing outside the scale, one-off classes duplicating a design-system component, and patterns that diverge screen to screen. Measures against the project's own tokens and class conventions, discovered from the codebase first rather than assumed. Triggers on audit design consistency, review component styling, check color palette usage, find hardcoded colors, or identify design debt. For a scored multi-dimension quality report, use `audit`; for WCAG conformance, use `accessibility`.
 metadata:
-  version: "1.0.0"
-  tags: "design, ux, ui, consistency, audit, tailwind, accessibility"
+  version: "1.0.1"
+  tags: "design, ux, ui, consistency, design-tokens, design-debt, tailwind"
 ---
 
 # Design Consistency Auditor
@@ -12,22 +12,22 @@ Before auditing, discover the project's frontend structure from documentation.
 
 Ensures:
 
-- Color palettes are used consistently
-- UI/UX patterns follow best practices
-- Components maintain visual harmony
-- Accessibility standards are met
-- Design system is properly applied
+- Color palettes are used consistently through semantic tokens
+- Spacing stays on the project's scale
+- Components maintain visual harmony across screens
+- The design system is applied instead of duplicated
 - No design debt accumulates
 
 ## When to Use
 
-- Auditing design consistency across apps
-- Reviewing color palette usage
-- Checking UI/UX patterns
-- Validating component styling
-- Ensuring accessibility compliance
-- Identifying design inconsistencies
-- Reviewing new features for design standards
+- Auditing design-token consistency across apps
+- Reviewing color palette usage and hunting hardcoded hex values
+- Checking UI/UX patterns for screen-to-screen divergence
+- Spotting one-off classes that duplicate a design-system component
+- Reviewing new features against the established design standards
+
+Accessibility conformance is a separate pass — use `accessibility` for WCAG, ARIA,
+keyboard access, and contrast.
 
 ## Quick Reference
 
@@ -87,3 +87,8 @@ Push for distinctive, branded designs with personality.
 ---
 
 **For detailed checklists, examples, reporting templates, and audit commands, see:** `references/full-guide.md`
+
+## Related
+
+- `audit` — a scored 0-4 sweep across accessibility, performance, theming, responsive design, and anti-patterns when no single dimension is named.
+- `accessibility` — WCAG 2.1 AA conformance, ARIA, keyboard access, and screen-reader verification.

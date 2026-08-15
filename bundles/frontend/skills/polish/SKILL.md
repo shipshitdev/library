@@ -1,10 +1,10 @@
 ---
 name: polish
-description: Performs a final quality pass fixing alignment, spacing, consistency, and micro-detail issues before shipping. Use when the user mentions polish, finishing touches, pre-launch review, something looks off, or wants to go from good to great.
+description: Runs the last pass over a functionally complete feature — pixel alignment, interaction and loading states, empty and error states, copy consistency, transition smoothness, and micro-details measured against the design system. Requires the work to be finished first; it refines, it never restructures. Use when the user asks for polish, finishing touches, a pre-launch review, or wants to go from good to great. To fix the underlying composition instead, use `layout`.
 user-invocable: true
 argument-hint: "[target]"
 metadata:
-  version: "2.1.1"
+  version: "2.1.2"
   tags: "polish, ui, quality"
   source: https://github.com/pbakaus/impeccable/blob/main/skill/reference/polish.md
   upstream_version: skill-v2.1.1
@@ -225,3 +225,7 @@ After polishing, ensure code quality:
 - **Verify DRYness**: Look for duplication introduced during polishing and consolidate.
 
 Remember: You have impeccable attention to detail and exquisite taste. Polish until it feels effortless, looks intentional, and works flawlessly. Sweat the details - they matter.
+
+## Related
+
+- `layout` — fix the underlying spacing scale, hierarchy, and grid first when the composition itself is what feels wrong; polish refines, it does not restructure.

@@ -253,7 +253,7 @@
     {
       "name": "debug",
       "source": "./skills/debug",
-      "description": "Systematic debugging guidance for bugs, failures, unexpected behavior, and performance regressions. Emphasizes reproducible feedback loops, hypothesis testing, instrumentation, fixes, and regression tests. Use when investigating a bug, unexpected behavior, crash, wrong output, or performance regression, or triaging incoming bug reports."
+      "description": "Front door for a freshly reported failure: build a deterministic feedback loop, reproduce the symptom, rank falsifiable hypotheses, and instrument the narrowest point that separates them. Carries the lookup library — 54 rules across 10 categories covering observation technique, common bug patterns, and triage priority. Use on first contact with a bug, crash, wrong output, or performance regression before any fix has been attempted, and to look up a debugging technique or bug pattern by name. Hands off to `systematic-debugging` when a fix attempt has already failed or the cause survives the loop."
     },
     {
       "name": "dependency-audit",
@@ -803,7 +803,7 @@
     {
       "name": "systematic-debugging",
       "source": "./skills/systematic-debugging",
-      "description": "Enforces root-cause investigation before any fix attempt using a rigorous four-phase methodology: investigate, analyze patterns, hypothesize, implement. Use when encountering any bug, test failure, unexpected behavior, or performance regression — especially under time pressure or after multiple failed fix attempts."
+      "description": "Full four-phase root-cause loop — investigate, analyze patterns, hypothesize, implement — for a failure that survived a first pass. Bars any further fix until the cause is proven, counts failed attempts, and turns the third failure into an architecture question. Use when a fix attempt has already failed, the same defect keeps coming back, each fix exposes a new problem elsewhere, or the root cause must be proven before another line changes — including when time pressure makes guessing tempting. `debug` is the front door that hands cases here."
     },
     {
       "name": "table-filters",

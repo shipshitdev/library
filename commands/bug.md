@@ -30,5 +30,5 @@ Use the `bug` skill.
 - Never open the issue without explicit confirmation.
 - Never fabricate reproduction steps, versions, or behavior — mark gaps as not provided.
 - Files bugs only; for feature requests or tasks, use the matching issue type.
-- To root-cause before filing, use `debug` / `systematic-debugging`; for a failing
-  CI check, use `gh-fix-ci`.
+- To root-cause before filing, use `debug` — it escalates to `systematic-debugging`
+  itself once a fix attempt has failed; for a failing CI check, use `gh-fix-ci`.

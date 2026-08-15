@@ -1,7 +1,7 @@
 {
   "name": "systematic-debugging",
-  "version": "1.0.0",
-  "description": "Enforce root-cause investigation before any fix: structured four-phase debugging methodology.",
+  "version": "1.1.0",
+  "description": "Four-phase root-cause loop for a bug that survived a first fix attempt.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",

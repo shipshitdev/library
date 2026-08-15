@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "168 AI agent skills for development workflows",
+  "description": "169 AI agent skills for development workflows",
   "plugins": [
     {
       "name": "shipshitdev-testing",
@@ -421,6 +421,11 @@
       "description": "Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, asks to be grilled, or another skill needs the interview primitive."
     },
     {
+      "name": "grok-review",
+      "source": "./skills/grok-review",
+      "description": "Independent second-opinion code review through the Grok CLI. Builds a self-contained review prompt from the exact diff, runs one headless Grok invocation on the CLI's own default model and effort, then verifies every returned finding against the code before reporting. Use when asked to review with Grok, get a second opinion on a branch, worktree, or PR from another CLI, or cross-check a review with an independent engine."
+    },
+    {
       "name": "html-style",
       "source": "./skills/html-style",
       "description": "Apply opinionated styling to barebones HTML. Use when user has plain/unstyled HTML and wants to apply consistent visual styling. Triggers: style this HTML, apply styling, make this look good, /html-style, or when user shares HTML that needs CSS. Transforms tables, lists, status indicators, buttons, and layouts into a cohesive design system."
@@ -698,7 +703,7 @@
     {
       "name": "review-dispatch",
       "source": "./skills/review-dispatch",
-      "description": "Single front door for code review. Resolves a target — working-tree changes, one PR, all open PRs, the last N commits, a time window, or a retrospective over merged history — into the right workflow. Keeps every /review mode report-only except confirmation-gated retrospective issue filing. Backs the /review command. Use when asked to review changes, a PR, all PRs, recent commits, or merged history."
+      "description": "Single front door for code review. Resolves a target — working-tree changes, one PR, all open PRs, the last N commits, a time window, or a retrospective over merged history — into the right workflow, natively or through an external second-opinion engine (grok). Keeps every /review mode report-only except confirmation-gated retrospective issue filing. Backs the /review command. Use when asked to review changes, a PR, all PRs, recent commits, or merged history, or to get a second opinion from another CLI."
     },
     {
       "name": "roadmap-analyzer",

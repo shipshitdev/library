@@ -29,6 +29,7 @@ Code review, debugging, refactoring, release, and AI-assisted development workfl
 - `docs`
 - `execution-debugging`
 - `full-code-review`
+- `grok-review`
 - `llm-structured-output`
 - `merge-open-prs`
 - `production-audit`

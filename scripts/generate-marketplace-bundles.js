@@ -16,6 +16,8 @@ const ROOT = join(__dirname, '..');
 const SKILLS_DIR = join(ROOT, 'skills');
 const BUNDLES_DIR = join(ROOT, 'bundles');
 const CATEGORIES = JSON.parse(readFileSync(join(__dirname, 'plugin-categories.json'), 'utf-8'));
+// Bundles are versioned with the repo release, not per skill — release-please bumps package.json.
+const PACKAGE_VERSION = JSON.parse(readFileSync(join(ROOT, 'package.json'), 'utf-8')).version;
 
 function ensureDir(dir) {
   if (!existsSync(dir)) {
@@ -27,7 +29,7 @@ function generatePluginJson(name, description) {
   return `${JSON.stringify(
     {
       name,
-      version: '1.0.0',
+      version: PACKAGE_VERSION,
       description,
       author: 'Ship Shit Dev',
       license: 'MIT',

@@ -435,6 +435,80 @@ PY
     return $warnings
 }
 
+# Hard gate: plugin.json must mirror SKILL.md metadata.version (SKILL.md is
+# canonical) and must carry a real description — not a YAML block scalar
+# marker ("|" / ">") that leaked in from a frontmatter copy.
+check_plugin_manifest_sync() {
+    local skill_dir="$1"
+    local issues=0
+    local plugin_json="$skill_dir/plugin.json"
+    local skill_file="$skill_dir/SKILL.md"
+
+    if [[ ! -f "$plugin_json" ]] || [[ ! -f "$skill_file" ]]; then
+        return 0
+    fi
+
+    local findings
+    findings=$(python3 - "$plugin_json" "$skill_file" <<'PY'
+import json
+import pathlib
+import re
+import sys
+
+plugin_path = pathlib.Path(sys.argv[1])
+skill_path = pathlib.Path(sys.argv[2])
+
+try:
+    data = json.loads(plugin_path.read_text())
+except json.JSONDecodeError:
+    sys.exit(0)  # reported by check_plugin_manifest
+
+description = data.get("description", "")
+if isinstance(description, str) and re.fullmatch(r"\s*[|>][+-]?\s*", description):
+    print(f"plugin.json description is a YAML block marker ({description.strip()!r}), not text")
+
+lines = skill_path.read_text().splitlines()
+if not lines or lines[0].strip() != "---":
+    sys.exit(0)
+try:
+    end = lines.index("---", 1)
+except ValueError:
+    sys.exit(0)
+
+skill_version = None
+in_metadata = False
+for line in lines[1:end]:
+    if line == "metadata:":
+        in_metadata = True
+        continue
+    if in_metadata and line and not line.startswith((" ", "\t")):
+        break
+    if in_metadata:
+        match = re.match(r'^  version:\s*["\']?([^"\']*)["\']?\s*$', line)
+        if match:
+            skill_version = match.group(1).strip()
+            break
+
+plugin_version = data.get("version")
+if skill_version and isinstance(plugin_version, str) and plugin_version != skill_version:
+    print(
+        f"plugin.json version {plugin_version} != SKILL.md metadata.version {skill_version}"
+        " (SKILL.md is canonical — sync plugin.json)"
+    )
+PY
+)
+
+    if [[ -n "$findings" ]]; then
+        while IFS= read -r finding; do
+            [[ -n "$finding" ]] || continue
+            echo -e "  ${RED}✗${NC} $finding"
+            ((++issues))
+        done <<< "$findings"
+    fi
+
+    return $issues
+}
+
 # Function to check required metadata keys
 check_metadata_fields() {
     local file="$1"
@@ -1205,6 +1279,10 @@ validate_skill() {
         local plugin_warnings=0
         check_plugin_manifest "$SKILLS_DIR/$skill_name" || plugin_warnings=$?
         ((skill_warnings += plugin_warnings, 1))
+
+        local plugin_sync_issues=0
+        check_plugin_manifest_sync "$SKILLS_DIR/$skill_name" || plugin_sync_issues=$?
+        ((skill_issues += plugin_sync_issues, 1))
 
         # Also check references/ directory
         if [[ -d "$SKILLS_DIR/$skill_name/references" ]]; then

@@ -1,6 +1,6 @@
 {
   "name": "prd-quality-gate",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "PRD completeness validation — check required sections before a spec is handed to a planning agent",
   "author": {
     "name": "Ship Shit Dev",

@@ -341,6 +341,11 @@ Versions live in `metadata.version`. Use semver:
 - `2.0.0` — breaking change to workflow or output format
 
 Bump version in both `SKILL.md` (`metadata.version`) and `plugin.json` (`version`) when publishing.
+`SKILL.md` is canonical; `plugin.json` mirrors it. Both are enforced, not advisory:
+
+- `bun run validate` hard-fails when `plugin.json.version ≠ metadata.version` or the plugin description is a YAML block marker.
+- CI `version:check` (`scripts/check-skill-version-bumps.sh`) hard-fails when any file under `skills/<name>/` other than `plugin.json` changes without a `metadata.version` bump vs `origin/master`.
+- Bundle and marketplace `version` fields come from `package.json.version`, which release-please bumps.
 
 ---
 

@@ -1,7 +1,7 @@
 {
   "name": "gh-address-comments",
-  "version": "1.0.0",
-  "description": "Help address review or issue comments on the open GitHub PR for the current branch using gh CLI; ver",
+  "version": "1.0.1",
+  "description": "Implement the fixes a PR review asked for and draft a reply per thread for approval.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",

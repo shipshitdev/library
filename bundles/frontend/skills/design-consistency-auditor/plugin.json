@@ -1,7 +1,7 @@
 {
   "name": "design-consistency-auditor",
-  "version": "1.0.0",
-  "description": "Audit and maintain design system consistency, UX/UI patterns, color palettes, and design best practi",
+  "version": "1.0.1",
+  "description": "Hunt design-token drift, hardcoded colors, and design-system divergence across a frontend.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",

@@ -1,10 +1,11 @@
 ---
 name: release-pr-gates
-description: Gate a release on the trunk — verify required CI checks are green, then cut a release (semver tag + GitHub release) or open a release PR into the default branch. Deployment to staging and production environments is driven by CI/CD pipelines and tags, not branch PRs. Use when the user asks to release, open a release PR, cut a tag, wait for GitHub checks to go green, or verify the trunk is ready to release.
+description: Holds a release at the gate — opens or reuses a release PR into the trunk, runs local format, lint, and type-check, watches required GitHub checks through to green, and summarizes the failing run's root cause when they are not. Tags only after the gate passes. Reach for it during the pre-merge wait; for version derivation and plain-English patch notes, use `release`.
 compatibility: Requires git and GitHub CLI gh access to the target repository.
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
   tags: "release, github, pull-request, ci-cd, quality-gates"
+when_to_use: "open a release PR, wait for the checks to go green, are the release checks passing, is the trunk ready to release, gate this release on CI, which required check is failing"
 allowed-tools: Bash(git *) Bash(gh *)
 disable-model-invocation: true
 ---
@@ -59,6 +60,8 @@ Confirmation Required:
 Delegates To:
 
 - `gh-fix-ci` when checks fail
+- `release` once the gate is green and the cut needs semver derivation and
+  plain-English patch notes — this skill owns the wait, that one owns the cut
 - `changelog-generator` when a release body needs commit summaries
 - `deploy` after release gates pass and provider deployment is needed
 

@@ -1,10 +1,11 @@
 ---
 name: pr-comments
-description: "Fetch a pull request's review and discussion comments and return a read-only digest — grouped by thread, severity-tagged, priority-ordered, with the open questions called out — without editing code or drafting replies. Use when the user asks what are the comments on my PR, summarize the review feedback, what's blocking this PR, what do I still need to address, or runs /pr comments."
+description: "Reads a pull request's review threads and returns a digest — grouped by thread, severity-tagged, priority-ordered, with the open questions called out. Strictly read-only: no code edits, no replies, no thread resolution. Reach for it to triage feedback before deciding what to fix; implementing those fixes is `gh-address-comments`."
 compatibility: Requires git and GitHub CLI gh access to the target repository.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "github, pull-requests, code-review, comments, triage, digest"
+when_to_use: "what are the comments on my PR, summarize the review feedback, what's blocking this PR, what do I still need to address, triage the review comments, /pr comments"
 allowed-tools: Bash(gh *) Bash(git *)
 disable-model-invocation: true
 ---

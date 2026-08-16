@@ -14,6 +14,6 @@ Derived from **[pbakaus/impeccable](https://github.com/pbakaus/impeccable)** (Ap
 | Last synced | 2026-06-12 |
 | License | Apache-2.0 |
 
-**Local modifications:** vendored as a standalone marketplace plugin. No behavioral changes from upstream beyond provenance metadata; this skill never invoked `/impeccable`.
+**Local modifications:** adapted as a standalone marketplace plugin; this skill never invoked `/impeccable`. Rewrote the description to require a functionally complete feature and scope this skill to refinement rather than restructuring, and added a Related section routing composition problems to `layout`, so the two do not compete on the same trigger phrasing.
 
 **Checking for upstream changes:** when *Upstream latest* is ahead of *Forked at*, diff [`skill/reference/polish.md`](https://github.com/pbakaus/impeccable/blob/main/skill/reference/polish.md) against tag `skill-v2.1.1`, port anything worth bringing home, then bump `metadata.upstream_version` and `metadata.last_synced` in `SKILL.md` and this table.

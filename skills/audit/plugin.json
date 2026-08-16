@@ -1,7 +1,7 @@
 {
   "name": "audit",
-  "version": "2.1.1",
-  "description": "Run technical quality checks across accessibility, performance, theming, responsive design, and anti",
+  "version": "2.1.2",
+  "description": "Sweep frontend code across five technical dimensions and score it into one P0-P3 report.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",

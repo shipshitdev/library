@@ -1,10 +1,10 @@
 ---
 name: layout
-description: Improve layout, spacing, and visual rhythm. Fixes monotonous grids, inconsistent spacing, and weak visual hierarchy. Use when the user mentions layout feeling off, spacing issues, visual hierarchy, crowded UI, alignment problems, or wanting better composition.
+description: Reworks the structure underneath a UI — spacing scale, visual hierarchy, grid and composition, rhythm, and density — turning monotonous or crowded arrangements into intentional ones. Applies while the composition itself is still wrong, ahead of any detail pass. Use when the user says the layout feels off, every section looks the same, the UI is crowded or too sparse, hierarchy is unclear, or nothing guides the eye. For the last-mile pass on a finished feature, use `polish`.
 user-invocable: true
 argument-hint: "[target]"
 metadata:
-  version: "2.1.1"
+  version: "2.1.2"
   tags: "layout, ux, frontend"
   source: https://github.com/pbakaus/impeccable/blob/main/skill/reference/layout.md
   upstream_version: skill-v2.1.1
@@ -121,3 +121,7 @@ Create a systematic plan:
 - **Breathing room**: Does the layout feel comfortable, not cramped or wasteful?
 - **Consistency**: Is the spacing system applied uniformly?
 - **Responsiveness**: Does the layout adapt gracefully across screen sizes?
+
+## Related
+
+- `polish` — the last-mile pass once the composition is right and the feature is functionally complete.

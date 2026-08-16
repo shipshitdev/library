@@ -1,11 +1,12 @@
 ---
 name: prd-task-creator
-description: 'Create a well-written PRD, task, or GitHub issue/sub-issue for a feature, bug, or enhancement. Use when planning work, writing GitHub issues, breaking down epics into sub-issues, or creating local task files. Common prompts: create a task, write a PRD, open a GitHub issue, create a sub-issue, plan this feature, write up this bug, break this down into issues, I want to add X, implement Y.'
+description: 'Files work into a tracker — turns a feature, bug, or finished PRD into GitHub issues, linked sub-issues, or local task files, slicing epics into thin vertical slices sized for one PR each and tagged AFK or HITL. Starts once the requirements are settled; authoring the PRD document itself is `prd-writer`.'
 disable-model-invocation: true
 allowed-tools: Bash(gh *)
 metadata:
-  version: "1.2.0"
+  version: "1.2.1"
   tags: "tasks, prd, github, ears"
+when_to_use: "create a task, open a GitHub issue, create a sub-issue, break this epic down into issues, file this PRD as work items, write up this bug as an issue"
 ---
 
 # PRD Task Creator
@@ -162,6 +163,7 @@ Show the draft PRD. Wait for "looks good" or edits. Then create.
 
 ## Related
 
+- `prd-writer` — author the PRD document first when requirements are not settled yet; this skill files what that one wrote
 - `spec-first` — spec-driven development before writing code
 - `tdd` — red-green-refactor execution for tasks with clear behavior
 - `gh-fix-ci` — fix CI on existing PRs

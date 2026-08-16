@@ -15,7 +15,9 @@ VALIDATOR = REPO_ROOT / "scripts/validate-skill-sync.sh"
 
 
 class SkillValidatorFixtureTests(unittest.TestCase):
-    def run_fixture(self, name: str) -> subprocess.CompletedProcess[str]:
+    def run_fixture(
+        self, name: str, manifest_overrides: dict[str, str] | None = None
+    ) -> subprocess.CompletedProcess[str]:
         with tempfile.TemporaryDirectory() as directory:
             skills_dir = Path(directory) / "skills"
             fixture_dir = skills_dir / name
@@ -27,6 +29,7 @@ class SkillValidatorFixtureTests(unittest.TestCase):
                 "author": {"name": "Fixture"},
                 "license": "MIT",
                 "skills": ".",
+                **(manifest_overrides or {}),
             }
             (fixture_dir / "plugin.json").write_text(json.dumps(manifest))
             environment = os.environ.copy()
@@ -40,8 +43,14 @@ class SkillValidatorFixtureTests(unittest.TestCase):
                 check=False,
             )
 
-    def assert_finding(self, fixture: str, finding: str, returncode: int) -> None:
-        result = self.run_fixture(fixture)
+    def assert_finding(
+        self,
+        fixture: str,
+        finding: str,
+        returncode: int,
+        manifest_overrides: dict[str, str] | None = None,
+    ) -> None:
+        result = self.run_fixture(fixture, manifest_overrides)
         self.assertEqual(result.returncode, returncode, result.stdout + result.stderr)
         self.assertIn(finding, result.stdout)
 
@@ -84,6 +93,22 @@ class SkillValidatorFixtureTests(unittest.TestCase):
             "invalid-codex-path-claim",
             "Unsupported Codex path claim",
             1,
+        )
+
+    def test_plugin_version_drift_is_rejected(self) -> None:
+        # Fixture SKILL.md says 1.2.0; the harness manifest says 1.0.0.
+        self.assert_finding(
+            "invalid-plugin-version",
+            "plugin.json version 1.0.0 != SKILL.md metadata.version 1.2.0",
+            1,
+        )
+
+    def test_plugin_block_marker_description_is_rejected(self) -> None:
+        self.assert_finding(
+            "invalid-plugin-description",
+            "plugin.json description is a YAML block marker",
+            1,
+            manifest_overrides={"description": "|"},
         )
 
 

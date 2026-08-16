@@ -12,6 +12,20 @@ const ROOT = join(__dirname, '..');
 const SKILLS_DIR = join(ROOT, 'skills');
 const CATEGORIES = JSON.parse(readFileSync(join(__dirname, 'plugin-categories.json'), 'utf-8'));
 const CATALOG = JSON.parse(readFileSync(join(ROOT, 'catalog.json'), 'utf-8'));
+const PACKAGE_VERSION = JSON.parse(readFileSync(join(ROOT, 'package.json'), 'utf-8')).version;
+
+// Per-skill version comes from plugin.json, which the validator forces to mirror
+// SKILL.md metadata.version.
+function getSkillVersion(skillName) {
+  const pluginPath = join(SKILLS_DIR, skillName, 'plugin.json');
+  if (!existsSync(pluginPath)) return null;
+  try {
+    const version = JSON.parse(readFileSync(pluginPath, 'utf-8')).version;
+    return typeof version === 'string' && version ? version : null;
+  } catch {
+    return null;
+  }
+}
 
 // Get skill description from SKILL.md frontmatter.
 // Handles plain/quoted single-line values AND YAML block scalars
@@ -62,6 +76,7 @@ for (const [category, config] of Object.entries(CATEGORIES.bundles)) {
   plugins.push({
     name: `shipshitdev-${category}`,
     source: `./bundles/${category}`,
+    version: PACKAGE_VERSION,
     description: config.description,
   });
 }
@@ -80,9 +95,11 @@ for (const skillName of skills) {
     console.warn(`Skipping invalid skill directory without SKILL.md: ${skillName}`);
     continue;
   }
+  const version = getSkillVersion(skillName);
   plugins.push({
     name: skillName,
     source: `./skills/${skillName}`,
+    ...(version ? { version } : {}),
     // Mirror the full SKILL.md description so the "Use when …" trigger clause
     // is discoverable in the catalog. The source frontmatter is already length-
     // capped (1024/1536); the previous slice(0, 100) cut clauses off mid-word.

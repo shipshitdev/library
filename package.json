@@ -50,7 +50,8 @@
     "marketplace:generate": "bun run catalog:generate && bun scripts/generate-marketplace-bundles.js && bun scripts/generate-marketplace-json.js",
     "prepare": "husky",
     "validate": "bash scripts/validate-skill-sync.sh",
-    "validate:skill": "bash scripts/validate-skill-sync.sh"
+    "validate:skill": "bash scripts/validate-skill-sync.sh",
+    "version:check": "bash scripts/check-skill-version-bumps.sh"
   },
   "version": "1.0.0"
 }

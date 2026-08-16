@@ -1,7 +1,7 @@
 {
   "name": "react-component-performance",
-  "version": "1.0.0",
-  "description": "Diagnose slow React components and suggest targeted performance fixes.",
+  "version": "1.1.0",
+  "description": "Diagnose slow React components and apply targeted render-time fixes.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",

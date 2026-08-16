@@ -1,43 +1,12 @@
 # Performance Expert - Full Guide
 
+Backend, database, and infrastructure performance. For React render hotspots,
+re-render churn, memoization, and Profiler-driven component work, use the
+`react-component-performance` skill instead.
+
 ## Core Performance Principles
 
-### 1. Frontend Performance (React/Next.js)
-
-**Bundle Optimization:**
-
-- Code splitting by route
-- Dynamic imports for heavy components
-- Tree shaking enabled
-- Remove unused dependencies
-- Optimize large dependencies
-
-**React Optimization:**
-
-- Memoization (`useMemo`, `useCallback`)
-- Component splitting to prevent re-renders
-- Virtualization for long lists
-- Lazy loading for routes/components
-- React.memo for expensive components
-
-**Next.js Optimization:**
-
-- Server Components where appropriate
-- Static generation (SSG) for static content
-- ISR (Incremental Static Regeneration)
-- Image optimization (`next/image`)
-- Font optimization
-- Script optimization
-
-**Asset Optimization:**
-
-- Images optimized (WebP, compression)
-- Fonts subset and preloaded
-- CSS minified and purged
-- JavaScript minified
-- Gzip/Brotli compression
-
-### 2. Backend Performance (NestJS)
+### 1. Backend Performance
 
 **API Response Times:**
 
@@ -57,19 +26,19 @@
 
 **Caching Strategy:**
 
-- Redis caching for frequently accessed data
+- Cache frequently accessed data (e.g. Redis)
 - Cache invalidation strategy
 - Cache TTL configured
 - Cache warming for critical data
 
 **Background Processing:**
 
-- Heavy operations in queues (BullMQ)
+- Heavy operations in queues (e.g. BullMQ)
 - Async processing for non-critical tasks
 - WebSocket for real-time updates
 - No blocking operations in request handlers
 
-### 3. Database Performance (MongoDB)
+### 2. Database Performance
 
 **Index Strategy:**
 
@@ -102,17 +71,17 @@
 - Idle connections closed
 - Connection monitoring
 
-### 4. Infrastructure Performance (AWS)
+### 3. Infrastructure Performance
 
 **CDN Configuration:**
 
-- CloudFront caching configured
+- Edge caching configured
 - Cache headers set correctly
 - Static assets on CDN
 - Edge locations optimized
 - Cache invalidation strategy
 
-**Lambda Optimization:**
+**Serverless Optimization:**
 
 - Cold start optimization
 - Memory allocation optimized
@@ -120,24 +89,40 @@
 - Provisioned concurrency (if needed)
 - Function size minimized
 
-**Database Performance:**
+**Managed Database:**
 
-- MongoDB Atlas performance tier appropriate
+- Performance tier appropriate for load
 - Read replicas configured (if needed)
 - Connection pooling optimized
 - Monitoring enabled
 - Query performance tracked
 
+### 4. Delivery Layer
+
+**Bundle Optimization:**
+
+- Code splitting by route
+- Dynamic imports for heavy modules
+- Tree shaking enabled
+- Remove unused dependencies
+- Optimize large dependencies
+
+**Server Rendering:**
+
+- Static generation for static content
+- Incremental revalidation for semi-static content
+- Framework image pipeline for responsive images
+- Font and script loading optimized
+
+**Asset Optimization:**
+
+- Images optimized (WebP, compression)
+- Fonts subset and preloaded
+- CSS minified and purged
+- JavaScript minified
+- Gzip/Brotli compression
+
 ## Performance Metrics
-
-### Frontend Metrics (Core Web Vitals)
-
-- **LCP (Largest Contentful Paint)**: < 2.5s
-- **FID (First Input Delay)**: < 100ms
-- **CLS (Cumulative Layout Shift)**: < 0.1
-- **FCP (First Contentful Paint)**: < 1.8s
-- **TTI (Time to Interactive)**: < 3.8s
-- **TBT (Total Blocking Time)**: < 200ms
 
 ### Backend Metrics
 
@@ -154,6 +139,13 @@
 - **Index Hit Ratio**: > 95%
 - **Connection Pool Usage**: < 80%
 - **Slow Query Count**: < 1% of queries
+
+### Delivery Metrics
+
+- **TTFB (Time to First Byte)**: < 800ms
+- **LCP (Largest Contentful Paint)**: < 2.5s
+- **Initial bundle**: < 200KB
+- **Cache hit ratio at the edge**: > 90%
 
 ## Common Performance Issues
 
@@ -195,7 +187,7 @@ async findAll() {
 **Solution:**
 
 - Code splitting by route
-- Dynamic imports for heavy components
+- Dynamic imports for heavy modules
 - Remove unused dependencies
 - Optimize large libraries
 - Tree shaking enabled
@@ -214,77 +206,29 @@ await db.collection('posts').createIndex(
 );
 ```
 
-### 4. Unnecessary Re-renders
-
-**Problem:** React components re-rendering too often
-
-**Solution:**
-
-```typescript
-// Memoized
-const processed = useMemo(
-  () => data.map(item => process(item)),
-  [data]
-);
-
-const handleClick = useCallback(() => {
-  // handler
-}, [dependencies]);
-```
-
-### 5. Blocking Operations
+### 4. Blocking Operations
 
 **Problem:** Heavy operations blocking request handlers
 
 **Solution:**
 
 - Move to background jobs
-- Use queues (BullMQ)
+- Use queues (e.g. BullMQ)
 - Async processing
 - WebSocket for real-time updates
 
+### 5. Cache Stampede
+
+**Problem:** A hot key expires and every request rebuilds it at once
+
+**Solution:**
+
+- Stagger TTLs so keys expire at different times
+- Serve stale while a single request revalidates
+- Lock or single-flight the rebuild
+- Warm critical keys before traffic arrives
+
 ## Performance Optimization Patterns
-
-### React Memoization
-
-```typescript
-// Memoize expensive computations
-const expensiveValue = useMemo(() => {
-  return heavyComputation(data);
-}, [data]);
-
-// Memoize callbacks
-const handleClick = useCallback(() => {
-  doSomething(id);
-}, [id]);
-
-// Memoize components
-const ExpensiveComponent = React.memo(({ data }) => {
-  return <div>{/* render */}</div>;
-});
-```
-
-### Next.js Optimization
-
-```typescript
-// Static generation
-export async function getStaticProps() {
-  return {
-    props: { data },
-    revalidate: 3600 // ISR
-  };
-}
-
-// Dynamic imports
-const HeavyComponent = dynamic(() => import('./HeavyComponent'), {
-  loading: () => <Loading />,
-  ssr: false
-});
-
-// Image optimization
-import Image from 'next/image';
-<Image src="/image.jpg" width={500} height={300} alt="..." />
-```
 
 ### Database Query Optimization
 
@@ -327,6 +271,31 @@ async findAll(organizationId: string) {
 }
 ```
 
+### Background Jobs
+
+```typescript
+// Return fast; do the expensive work off the request path
+async requestExport(organizationId: string) {
+  await this.exportQueue.add('generate', { organizationId });
+  return { status: 'queued' };
+}
+```
+
+### Delivery Layer
+
+```typescript
+// Static generation with incremental revalidation
+export async function getStaticProps() {
+  return {
+    props: { data },
+    revalidate: 3600
+  };
+}
+
+// Dynamic import for a heavy module kept off the initial bundle
+const HeavyModule = dynamic(() => import('./HeavyModule'), { ssr: false });
+```
+
 ## Performance Testing
 
 **Load Testing:**
@@ -354,27 +323,14 @@ node --prof-process isolate-*.log
 
 ```bash
 # Analyze bundle
-npm run build
-npm run analyze
+bun run build
+bun run analyze
 
-# Or with webpack-bundle-analyzer
-ANALYZE=true npm run build
+# Or with a bundle analyzer plugin
+ANALYZE=true bun run build
 ```
 
 ## Performance Checklist
-
-### Frontend
-
-- [ ] Bundle size optimized (< 200KB initial)
-- [ ] Code splitting implemented
-- [ ] Images optimized and lazy loaded
-- [ ] Fonts optimized
-- [ ] CSS purged
-- [ ] JavaScript minified
-- [ ] Gzip/Brotli compression enabled
-- [ ] Caching headers configured
-- [ ] React components memoized
-- [ ] Virtualization for long lists
 
 ### Backend
 
@@ -404,6 +360,17 @@ ANALYZE=true npm run build
 - [ ] Auto-scaling configured
 - [ ] Monitoring and alerting set up
 - [ ] Cost optimization reviewed
+
+### Delivery
+
+- [ ] Bundle size optimized (< 200KB initial)
+- [ ] Code splitting implemented
+- [ ] Images optimized and lazy loaded
+- [ ] Fonts optimized
+- [ ] CSS purged
+- [ ] JavaScript minified
+- [ ] Gzip/Brotli compression enabled
+- [ ] Caching headers configured
 
 ## Best Practices
 

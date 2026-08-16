@@ -1,25 +1,11 @@
 name: CI
 
 on:
+  # No path filter: `checks` is a required status on master, so every PR must
+  # produce it or the merge button stays blocked on "expected" forever.
   pull_request:
     branches:
       - master
-    paths:
-      - 'skills/**'
-      - 'commands/**'
-      - 'bundles/**'
-      - '.agents/**'
-      - '.claude-plugin/marketplace.json'
-      - '.github/workflows/**'
-      - 'scripts/**'
-      - 'AGENTS.md'
-      - 'README.md'
-      - 'catalog.json'
-      - 'package.json'
-      - 'bun.lock'
-      - 'biome.json'
-      - '.markdownlint.json'
-      - '.markdownlintignore'
   workflow_dispatch:
 
 permissions:

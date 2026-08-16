@@ -1,10 +1,12 @@
 # Debugging Best Practices
 
-Comprehensive debugging methodology skill for AI coding agents. Based on research from Andreas Zeller's "Why Programs Fail" and academic debugging curricula.
+The front door for a reported failure, and the lookup library behind it. Based on research from Andreas Zeller's "Why Programs Fail" and academic debugging curricula.
 
 ## Overview
 
 This skill provides 54 rules across 10 categories to help developers debug systematically instead of randomly. Rules are prioritized by impact, from critical problem definition techniques to prevention practices.
+
+It owns first contact: build a deterministic feedback loop, reproduce the symptom, rank falsifiable hypotheses, instrument the narrowest point that separates them, and land the fix with a regression test. Cases that escalate — a fix attempt already failed, the defect keeps returning, each fix exposes a new problem — hand off to `systematic-debugging` for the full four-phase root-cause loop. A test or build breaking during stabilization goes to `execution-debugging`, which keeps scope on that one check.
 
 | Category | Rules | Impact |
 |----------|-------|--------|
@@ -50,10 +52,10 @@ debugging/
 
 This skill automatically activates when you're working on:
 
-- Debugging code issues or exceptions
-- Investigating stack traces or errors
-- Root cause analysis for bugs
-- Troubleshooting unexpected behavior
+- First contact with a bug, crash, or unexpected behavior
+- Choosing a reproduction strategy or feedback loop
+- Placing logging, breakpoints, or a profiler baseline
+- Looking up a bug pattern, observation technique, or anti-pattern
 - Bug triage and prioritization
 
 ### Manual Commands

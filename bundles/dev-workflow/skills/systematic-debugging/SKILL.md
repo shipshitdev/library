@@ -1,9 +1,16 @@
 ---
 name: systematic-debugging
 description: >-
-  Enforces root-cause investigation before any fix attempt using a rigorous four-phase methodology: investigate, analyze patterns, hypothesize, implement. Use when encountering any bug, test failure, unexpected behavior, or performance regression — especially under time pressure or after multiple failed fix attempts.
+  Full four-phase root-cause loop — investigate, analyze patterns, hypothesize,
+  implement — for a failure that survived a first pass. Bars any further fix
+  until the cause is proven, counts failed attempts, and turns the third failure
+  into an architecture question. Use when a fix attempt has already failed, the
+  same defect keeps coming back, each fix exposes a new problem elsewhere, or
+  the root cause must be proven before another line changes — including when
+  time pressure makes guessing tempting. `debug` is the front door that hands
+  cases here.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   source: https://github.com/obra/superpowers/blob/main/skills/systematic-debugging/SKILL.md
   upstream_repo: obra/superpowers
   upstream_ref: main
@@ -11,7 +18,7 @@ metadata:
   last_synced: "2026-06-12"
   license: MIT
   tags: "debugging, root-cause, diagnosis, investigation, methodology, hypothesis"
-when_to_use: "bug, broken, not working, test failing, unexpected behavior, regression, fix not working, keeps breaking, investigate, diagnose"
+when_to_use: "that fix did not work, the fix failed, keeps breaking, the bug came back, tried several fixes already, third attempt failed, still failing after the fix, each fix breaks something else, prove the root cause before changing anything, stop guessing and investigate properly, escalate this debugging, thrashing on this bug"
 ---
 # Systematic Debugging
 
@@ -29,26 +36,33 @@ If Phase 1 is not complete, no fix may be proposed.
 NO FIXES WITHOUT ROOT CAUSE INVESTIGATION FIRST
 ```
 
+## Entry Point
+
+`debug` is the front door for a freshly reported failure — it owns the first
+reproduction loop and hands cases here on escalation. The normal arrival carries
+its loop, its evidence, and its attempt count. Start at Phase 1 regardless and
+re-verify that evidence; an escalated case is escalated precisely because the
+earlier read was wrong somewhere.
+
 ## When to Use
 
-Use for ANY technical issue:
+Enter this loop once a first pass has already been spent on any technical issue —
+a test failure, a production bug, a performance problem, a build break, an
+integration fault:
 
-- Test failures
-- Bugs in production
-- Unexpected behavior
-- Performance problems
-- Build failures
-- Integration issues
+- A fix attempt failed
+- The same defect returned after a previous fix
+- Each fix exposes a new problem somewhere else
+- The failure spans components and the boundary evidence is missing
+- The cause must be proven before another line changes
 
-Use this ESPECIALLY when:
+Enter directly, skipping the front door, when:
 
 - Under time pressure (emergencies make guessing tempting)
 - "Just one quick fix" seems obvious
-- Multiple fixes have already been attempted
-- The previous fix did not work
-- The issue is not fully understood
+- A fix already feels obvious while the issue is not fully understood
 
-Do not skip when:
+Complete the whole process even when:
 
 - The issue seems simple (simple bugs have root causes too)
 - You are in a hurry (rushing guarantees rework)

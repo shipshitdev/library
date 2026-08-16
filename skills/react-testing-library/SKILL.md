@@ -1,14 +1,23 @@
 ---
 name: react-testing-library
-description: React Testing Library best practices for writing maintainable, user-centric tests. Use when writing, reviewing, or refactoring RTL tests. Triggers on test files, testing patterns, getBy/queryBy queries, userEvent, waitFor, and component testing.
+description: React Testing Library mechanics for testing React components and hooks — query selection, async handling, user interaction, assertions, provider setup, and the anti-patterns that make tests brittle. Use for any test that renders a React component or a hook, including choosing between getBy/queryBy/findBy, userEvent flows, waitFor usage, renderHook, custom render wrappers, and reviewing RTL tests for implementation-detail assertions.
 metadata:
-  version: "1.0.0"
-  tags: "react, testing, rtl"
+  version: "1.1.0"
+  tags: "react, testing, rtl, components, hooks"
+  author: Ship Shit Dev
+when_to_use: "test a React component, test a React hook, render a component in a test, getByRole, getByLabelText, queryBy vs getBy, findBy, waitFor, userEvent, fireEvent, renderHook, custom render with providers, screen.debug, my component test is brittle, review these RTL tests, testing-library anti-patterns"
 ---
 
 # React Testing Library Best Practices
 
 43 rules across 9 categories for testing React components with Testing Library, prioritized by impact to guide test writing and code review.
+
+## Scope
+
+This skill owns React component and hook testing mechanics. For
+framework-agnostic questions — which level a behavior belongs at, what a coverage
+number means, how to choose test data, how to kill a flake — use
+`testing-expert`.
 
 ## When to Apply
 
@@ -117,4 +126,3 @@ Read individual reference files for detailed explanations and code examples:
 |------|-------------|
 | [references/_sections.md](references/_sections.md) | Category definitions and ordering |
 | [assets/templates/_template.md](assets/templates/_template.md) | Template for new rules |
-| [metadata.json](metadata.json) | Version and reference information |

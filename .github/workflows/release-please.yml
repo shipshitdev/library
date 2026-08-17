@@ -5,11 +5,12 @@ name: Release Please
 # (feat → minor, fix/chore/refactor → patch, ! → major). Merging that PR cuts
 # the vX.Y.Z tag and GitHub release.
 #
-# Runs on the built-in GITHUB_TOKEN — no PAT to provision or rotate. GitHub
-# deliberately does not fire push/pull_request workflow runs for anything
-# GITHUB_TOKEN does, so the release PR would never produce the `checks` status
-# that master requires. workflow_dispatch is exempt from that rule, so the sync
-# job kicks CI on the release branch explicitly once its head SHA is final.
+# Runs on the built-in GITHUB_TOKEN — no PAT to provision or rotate. The
+# tradeoff: GitHub queues the release PR's CI at `action_required` instead of
+# running it, so `checks` — required on master — needs one "Approve and run"
+# click per release before the PR can merge. Dispatching CI on the branch
+# instead does NOT help: that check run attaches to the head SHA but never
+# enters the PR's status rollup, so protection still sees the check as missing.
 
 on:
   push:
@@ -20,7 +21,6 @@ on:
 permissions:
   contents: write
   pull-requests: write
-  actions: write # dispatch CI on the release branch
 
 concurrency:
   group: release-please
@@ -45,8 +45,7 @@ jobs:
 
   # The release PR bumps package.json, and bundle/marketplace versions are
   # generated from it — regenerate on the release branch so CI's
-  # "Verify generated bundles are current" gate stays green. Then dispatch CI
-  # so the required `checks` status actually lands on the PR head.
+  # "Verify generated bundles are current" gate stays green.
   sync-generated:
     needs: release-please
     if: ${{ needs.release-please.outputs.pr }}
@@ -83,8 +82,3 @@ jobs:
           git add -A
           git commit -m "chore: regenerate bundles for release"
           git push
-
-      - name: Dispatch CI on the release branch
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh workflow run CI --repo "$GITHUB_REPOSITORY" --ref "$RELEASE_BRANCH"

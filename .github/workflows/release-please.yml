@@ -5,10 +5,11 @@ name: Release Please
 # (feat → minor, fix/chore/refactor → patch, ! → major). Merging that PR cuts
 # the vX.Y.Z tag and GitHub release.
 #
-# Uses a PAT instead of GITHUB_TOKEN so the release PR triggers CI — required
-# checks would otherwise never go green on it. Prefers RELEASE_PLEASE_TOKEN
-# (Contents + Pull requests write on this repo); falls back to PROJECTS_TOKEN,
-# the same PAT the dev-loop workflows use, when the dedicated one is not set.
+# Runs on the built-in GITHUB_TOKEN — no PAT to provision or rotate. GitHub
+# deliberately does not fire push/pull_request workflow runs for anything
+# GITHUB_TOKEN does, so the release PR would never produce the `checks` status
+# that master requires. workflow_dispatch is exempt from that rule, so the sync
+# job kicks CI on the release branch explicitly once its head SHA is final.
 
 on:
   push:
@@ -19,6 +20,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  actions: write # dispatch CI on the release branch
 
 concurrency:
   group: release-please
@@ -37,24 +39,27 @@ jobs:
         id: release
         uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
         with:
-          token: ${{ secrets.RELEASE_PLEASE_TOKEN || secrets.PROJECTS_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
 
   # The release PR bumps package.json, and bundle/marketplace versions are
   # generated from it — regenerate on the release branch so CI's
-  # "Verify generated bundles are current" gate stays green.
+  # "Verify generated bundles are current" gate stays green. Then dispatch CI
+  # so the required `checks` status actually lands on the PR head.
   sync-generated:
     needs: release-please
     if: ${{ needs.release-please.outputs.pr }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      RELEASE_BRANCH: ${{ fromJSON(needs.release-please.outputs.pr).headBranchName }}
     steps:
       - name: Checkout release branch
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
-          ref: ${{ fromJSON(needs.release-please.outputs.pr).headBranchName }}
-          token: ${{ secrets.RELEASE_PLEASE_TOKEN || secrets.PROJECTS_TOKEN }}
+          ref: ${{ env.RELEASE_BRANCH }}
+          fetch-depth: 0 # CI's version:check diffs against origin/master
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
@@ -78,3 +83,8 @@ jobs:
           git add -A
           git commit -m "chore: regenerate bundles for release"
           git push
+
+      - name: Dispatch CI on the release branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run CI --repo "$GITHUB_REPOSITORY" --ref "$RELEASE_BRANCH"

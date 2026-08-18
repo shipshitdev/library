@@ -1,6 +1,6 @@
 {
   "name": "shipshitdev-security",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Security review, dependency safety, and release-risk skills",
   "author": "Ship Shit Dev",
   "license": "MIT",

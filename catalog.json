@@ -53,6 +53,10 @@
       "role": "Git hook configuration"
     },
     {
+      "path": ".tmp/",
+      "role": "Tracked repository content"
+    },
+    {
       "path": "assets/",
       "role": "Static repository assets"
     },

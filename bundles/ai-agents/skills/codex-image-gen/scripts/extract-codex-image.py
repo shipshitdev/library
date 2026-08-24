@@ -11,7 +11,7 @@ Usage:
     extract-codex-image.py <session-id> <out.png>
 
 Example:
-    extract-codex-image.py 0f4c1e2a-... /tmp/out.png
+    extract-codex-image.py 0f4c1e2a-... .tmp/out.png
 """
 
 import base64

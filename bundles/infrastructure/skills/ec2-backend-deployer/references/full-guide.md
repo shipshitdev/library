@@ -1171,7 +1171,9 @@ HEALTH_URL="${1:-http://localhost:3001/health}"
 SLACK_WEBHOOK="${SLACK_WEBHOOK:-}"
 
 check_health() {
-  response=$(curl -sf -w "%{http_code}" "$HEALTH_URL" -o /tmp/health_response.json 2>/dev/null)
+  APP_DIR="${APP_DIR:-.}"
+  mkdir -p "$APP_DIR/.tmp"
+  response=$(curl -sf -w "%{http_code}" "$HEALTH_URL" -o "$APP_DIR/.tmp/health_response.json" 2>/dev/null)
 
   if [ "$response" = "200" ]; then
     echo "$(date): Health check passed"

@@ -84,6 +84,21 @@ skills/my-skill/
 
 Keep `SKILL.md` focused: under 500 lines. Move anything detailed to `references/`.
 
+## Scratch files
+
+Disposable process files belong in the **current repository's** `.tmp/`
+directory, not `/tmp` or `/private/tmp`.
+
+```bash
+REPO_TMP="$(git rev-parse --show-toplevel)/.tmp"
+mkdir -p "$REPO_TMP"
+# write "$REPO_TMP/snapshot.json", "$REPO_TMP/body.md", …
+```
+
+Worktrees stay at `<repo>/.worktrees/<name>`. Durable non-repo artifacts stay
+under `~/.codex/artifacts/`. Never write helper scripts, PR snapshots, issue
+bodies, or logs to the machine-wide temp directory.
+
 Keep references **one level deep**: `SKILL.md` may point at files in `references/`, but those files must not chain on to further files (no A→B→C). Progressive disclosure breaks down when Claude has to follow a trail.
 
 ## Contract blocks for composable skills

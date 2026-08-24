@@ -1,6 +1,6 @@
 {
   "name": "release-cleanup",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Verify squash-merged branches and prune merged branches and stale worktrees.",
   "author": {
     "name": "Ship Shit Dev",

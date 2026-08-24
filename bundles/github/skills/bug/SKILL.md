@@ -3,7 +3,7 @@ name: bug
 description: File a GitHub issue of type Bug from a description — structures a clear bug report (summary, steps to reproduce, expected vs actual, environment), previews it, then on confirmation creates the issue with the Bug issue type (falling back to a bug label when the repo has no issue types). Use when the user asks to file a bug, open a bug report, create a GitHub bug issue, log a bug, or runs /bug.
 compatibility: Requires git and GitHub CLI gh access to the target repository.
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
   tags: "github, issue, bug, report, gh, triage"
 allowed-tools: Bash(gh *) Bash(git *)
 disable-model-invocation: true
@@ -134,13 +134,15 @@ read-only or dry-run request, end here and file nothing.
 
 ## Phase 4: Create the Issue
 
-Only after confirmation, write the body to a temp file (to preserve formatting) and
-create the issue.
+Only after confirmation, write the body under the current repo's `.tmp/` (to
+preserve formatting) and create the issue.
 
 Preferred — Bug issue type:
 
 ```bash
-gh issue create --title "<title>" --body-file /tmp/bug_body.md --type Bug
+REPO_TMP="$(git rev-parse --show-toplevel)/.tmp"
+mkdir -p "$REPO_TMP"
+gh issue create --title "<title>" --body-file "$REPO_TMP/bug_body.md" --type Bug
 ```
 
 Fallback — `bug` label (create the label first only if it is missing and the user
@@ -148,7 +150,7 @@ agreed):
 
 ```bash
 gh label create bug --color d73a4a --description "Something isn't working" 2>/dev/null || true
-gh issue create --title "<title>" --body-file /tmp/bug_body.md --label bug
+gh issue create --title "<title>" --body-file "$REPO_TMP/bug_body.md" --label bug
 ```
 
 Add `--assignee`, `--label`, `--milestone`, or `--project` only for values the user

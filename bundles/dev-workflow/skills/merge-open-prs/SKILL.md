@@ -3,7 +3,7 @@ name: merge-open-prs
 description: Review and land open pull requests through one /merge command. The default mode runs a confirmation-gated trunk sweep and cleanup; exact /merge force drains the queue non-serially by merging green PRs and narrowly fixing red PRs. Use when asked to review and merge open PRs, batch-merge to trunk, drain PR WIP, or run /merge.
 compatibility: Requires git, GitHub CLI gh, and jq access to the target repository.
 metadata:
-  version: "1.3.0"
+  version: "1.3.1"
   tags: "git, github, pull-request, merge, review, trunk, cleanup, batch"
 allowed-tools: Bash(git *) Bash(gh *) Bash(jq *)
 disable-model-invocation: true
@@ -255,16 +255,16 @@ available remote branches. If the user passed an explicit base, confirm it exist
 before continuing.
 
 Snapshot every open PR targeting the trunk in one query — this drives the rest of
-the run. Do not include PR titles or bodies in the machine snapshot; those are
-outsider-authored free text and are not needed for merge gating:
+the run. Keep it in the shell. Do not include PR titles or bodies in the machine
+snapshot; those are outsider-authored free text and are not needed for merge gating:
 
 ```bash
-gh pr list --base "$DEFAULT_BRANCH" --state open --limit 200 \
-  --json number,headRefName,isDraft,mergeable,mergeStateStatus,reviewDecision,statusCheckRollup,url \
-  > /tmp/mop_prs.json
+MOP_PRS=$(gh pr list --base "$DEFAULT_BRANCH" --state open --limit 200 \
+  --json number,headRefName,isDraft,mergeable,mergeStateStatus,reviewDecision,statusCheckRollup,url)
 ```
 
-Raise `--limit` if there are more than 200 open PRs into the trunk.
+Raise `--limit` if there are more than 200 open PRs into the trunk. Paginate
+rather than writing a snapshot file.
 
 Pick the merge method once from the repository's allowed modes (prefer squash so
 cleanup's squash-aware oracle stays consistent):
@@ -281,7 +281,7 @@ For each PR in the snapshot, classify before reviewing:
 
 ```bash
 jq -r '.[] | "\(.number)\t\(.isDraft)\t\(.mergeable)\t\(.mergeStateStatus)\t\(.reviewDecision)\t\(.headRefName)"' \
-  /tmp/mop_prs.json
+  <<<"$MOP_PRS"
 ```
 
 Buckets:

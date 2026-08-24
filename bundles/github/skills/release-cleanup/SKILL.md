@@ -3,7 +3,7 @@ name: release-cleanup
 description: Verify a release branch is provably merged into the trunk (default branch) via the squash-aware GitHub PR merge oracle, then prune merged local and remote feature branches and stale git worktrees. Squash-merge aware — uses GitHub PR merge state as the merge oracle, not commit ancestry. Use when the user asks to clean up branches after a deploy, prune worktrees, remove merged branches, or confirm nothing stale was left behind before pruning.
 compatibility: Requires git, GitHub CLI gh, and jq access to the target repository.
 metadata:
-  version: "2.1.1"
+  version: "2.2.0"
   tags: "git, cleanup, branches, worktrees, release, prune, ci-cd, squash-merge, trunk-based"
 allowed-tools: Bash(git *) Bash(gh *) Bash(jq *)
 disable-model-invocation: true
@@ -36,12 +36,15 @@ Consequence if you trust ancestry on a squash repo:
 
 Therefore this skill's merge oracle is **GitHub PR state first, ancestry second**:
 
-A branch's work is IN the production branch iff EITHER
+A branch's work is IN the production branch iff ANY of:
 
 1. its most-recent PR is `MERGED` and that PR's `mergeCommit` is an ancestor of the
    production branch (covers squash, rebase, and merge-commit), OR
 2. the branch tip is an ancestor of the production branch (covers
-   no-PR fast-forwards and merge-commit merges that predate the PR API).
+   no-PR fast-forwards and merge-commit merges that predate the PR API), OR
+3. every unique commit subject still ahead of the trunk matches a merged PR whose
+   `mergeCommit` is in the trunk (covers local retarget/rebase copies whose name
+   no longer matches a PR head).
 
 Only branches that satisfy this are prunable. Everything else is reported, never
 deleted.
@@ -118,10 +121,14 @@ Hard rules:
 5. `git worktree remove --force` and deleting a remote branch the oracle has NOT
    proven-in-prod are never done automatically.
 6. If promotion verification fails, STOP. Do not offer to prune around it.
+7. Run `git`/`gh`/`jq` in the agent shell. If a command is missing, restore
+   `PATH` in that same shell (`/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin`).
+   Never write a helper script to disk for this skill.
 
 ## Phase 1: Discover Branches and Refresh State
 
 ```bash
+command -v git >/dev/null || export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
 gh auth status -h github.com
 git status -sb
 git remote -v
@@ -135,57 +142,82 @@ Determine the trunk from the repo metadata:
 - All feature/release branches are short-lived and eventually merged into the trunk.
 - Verification checks only that each candidate branch's work has reached the trunk.
 
-Snapshot every PR once — this is the data the Merge Oracle runs against:
+Look up the latest PR **per candidate head**, in memory. Do not dump the repo's
+PR list to a file, and do not cap the search at 1000 PRs.
 
 ```bash
-gh pr list --state all --limit 1000 \
-  --json number,headRefName,baseRefName,state,mergedAt,mergeCommit \
-  > /tmp/rc_prs.json
+latest_pr_for_head() {   # arg: branch name without origin/
+  gh pr list --head "$1" --state all --limit 1 \
+    --json number,headRefName,baseRefName,state,mergedAt,mergeCommit
+}
 ```
 
-Raise `--limit` if the repo has more open+closed PRs than that.
+After a squash merge, GitHub often deletes the remote head. Remotes can already
+be just `origin/<trunk>` while leftover **local** branches and worktrees remain.
+Classify remotes, locals, and extra worktrees. A remote-only pass is not enough.
 
 ## Phase 2: Trunk Verification (Hard Gate)
 
-### 2a. Check candidate branches against the trunk
+### 2a. Check candidate refs against the trunk
 
-For each candidate branch (feature branches targeted for cleanup), verify that its
-work has reached the trunk. Ancestry is the first signal, but squash merges require
-corroboration against the latest merged PR for that branch before declaring work missing.
-
-```bash
-TRUNK=$(gh repo view --json defaultBranchRef --jq .defaultBranchRef.name)
-
-# Show commits on a candidate branch not yet in the trunk
-git log --oneline origin/${TRUNK}..origin/<branch>
-# Check the PR that merged this branch into the trunk
-gh pr list --base ${TRUNK} --head <branch> --state merged --limit 1 \
-  --json number,mergedAt,mergeCommit
-```
-
-Interpreting a non-empty result:
-
-- Commits exist on the branch that are genuine direct commits not yet in the trunk => NOT MERGED. Report and STOP.
-- All listed commits belong to a PR already squash-merged into the trunk => ancestry artifact, not a real gap. Treat as merged.
-- Distinguish the two by checking whether each ahead-commit's PR is already merged into the trunk.
-
-### 2b. Branch classification (the "nothing is stale" check)
-
-Run the Merge Oracle over every non-protected remote branch. Do NOT use
-`git branch -r --no-merged` for this — it lies on squash repos.
+For each candidate (remote branch, local branch, or extra worktree HEAD), verify
+that its work has reached the trunk. Ancestry is the first signal, but squash
+merges require corroboration against the latest merged PR for that work.
 
 ```bash
 TRUNK=$(gh repo view --json defaultBranchRef --jq .defaultBranchRef.name)
 PROD="origin/${TRUNK}"
 
-classify_branch() {        # arg: branch name without origin/
-  local b="$1" rec st mc base num
-  rec=$(jq -c --arg b "$b" \
-    '[.[]|select(.headRefName==$b)]|sort_by(.number)|last' /tmp/rc_prs.json)
+# Commits on a ref not in the trunk
+git log --oneline "$PROD".."<ref>"
+# PR that landed this head name
+latest_pr_for_head "<branch>"
+```
+
+Interpreting a non-empty ahead range:
+
+- Genuine commits not yet in the trunk => NOT MERGED. Report and STOP.
+- Every ahead subject matches a PR already squash-merged into the trunk =>
+  squash artifact, not a real gap. Treat as merged. This is how local
+  retarget/rebase copies (`*-onto-<trunk>`, `pr-N-rebase`, detached worktree
+  HEADs) get classified when their name no longer matches a PR head.
+
+### 2b. Branch classification (the "nothing is stale" check)
+
+Run the Merge Oracle over every non-protected **remote and local** branch, plus
+each extra worktree. Do NOT use `git branch --merged` / `-r --no-merged`.
+
+```bash
+TRUNK=$(gh repo view --json defaultBranchRef --jq .defaultBranchRef.name)
+PROD="origin/${TRUNK}"
+CURRENT="$(git symbolic-ref --quiet --short HEAD || echo)"
+PROTECT="${TRUNK}|${CURRENT:-__none__}|HEAD"
+
+squash_artifact() {      # arg: git ref. 0 = every ahead subject is a merged PR in trunk
+  local ref="$1" sub rec mc subjects
+  subjects=$(git log --format=%s "$PROD".."$ref" 2>/dev/null | sort -u)
+  [ -n "$subjects" ] || return 1
+  while IFS= read -r sub; do
+    [ -z "$sub" ] && continue
+    rec=$(gh pr list --state merged --search "$sub" --limit 20 \
+      --json number,title,mergeCommit \
+      | jq -c --arg s "$sub" '[.[]|select(.title==$s)]|first')
+    [ -n "$rec" ] && [ "$rec" != "null" ] || return 1
+    mc=$(jq -r '.mergeCommit.oid // empty' <<<"$rec")
+    [ -n "$mc" ] && git merge-base --is-ancestor "$mc" "$PROD" 2>/dev/null || return 1
+  done <<< "$subjects"
+}
+
+classify_ref() {         # args: head-name, git-ref to test for ancestry
+  local b="$1" ref="$2" rec st mc base num
+  rec=$(latest_pr_for_head "$b")
+  rec=$(jq -c 'if type=="array" then .[0] else . end' <<<"${rec:-null}")
 
   if [ -z "$rec" ] || [ "$rec" = "null" ]; then
-    git merge-base --is-ancestor "refs/remotes/origin/$b" "$PROD" 2>/dev/null \
+    git merge-base --is-ancestor "$ref" "$PROD" 2>/dev/null \
       && { echo "PRUNABLE_NO_PR_FF"; return; }
+    squash_artifact "$ref" \
+      && { echo "PRUNABLE_SQUASH_ARTIFACT"; return; }
     echo "STRANDED_NO_PR"
     return
   fi
@@ -197,27 +229,33 @@ classify_branch() {        # arg: branch name without origin/
 
   case "$st" in
     OPEN)   echo "IN_FLIGHT_OPEN_PR(#$num->$base)";;
-    CLOSED) git merge-base --is-ancestor "refs/remotes/origin/$b" "$PROD" 2>/dev/null \
+    CLOSED) git merge-base --is-ancestor "$ref" "$PROD" 2>/dev/null \
               && echo "PRUNABLE_CLOSED_PR_IN_PROD(#$num)" \
               || echo "STRANDED_CLOSED_UNMERGED(#$num)";;
     MERGED)
       if [ -n "$mc" ] && git merge-base --is-ancestor "$mc" "$PROD" 2>/dev/null; then
         echo "PRUNABLE_IN_TRUNK(#$num)"
-      elif git merge-base --is-ancestor "refs/remotes/origin/$b" "$PROD" 2>/dev/null; then
+      elif git merge-base --is-ancestor "$ref" "$PROD" 2>/dev/null; then
         echo "PRUNABLE_IN_TRUNK(#$num)"
+      elif squash_artifact "$ref"; then
+        echo "PRUNABLE_SQUASH_ARTIFACT(#$num)"
       else
         echo "MERGED_NOT_YET_IN_TRUNK(#$num->$base)"
       fi;;
   esac
 }
 
-# Drive it over all non-protected remote branches:
-git branch -r --format '%(refname:short)' \
-  | grep -v -- '->' \
-  | sed 's#^origin/##' \
+git branch -r --format '%(refname:short)' | grep -v -- '->' | sed 's#^origin/##' \
   | grep -vxE "origin|${TRUNK}|HEAD" \
-  | while read -r b; do printf '%-50s %s\n' "$b" "$(classify_branch "$b")"; done
+  | while read -r b; do printf 'REMOTE  %-50s %s\n' "$b" "$(classify_ref "$b" "refs/remotes/origin/$b")"; done
+
+git branch --format '%(refname:short)' | grep -vxE "$PROTECT" \
+  | while read -r b; do printf 'LOCAL   %-50s %s\n' "$b" "$(classify_ref "$b" "$b")"; done
 ```
+
+For each extra worktree from `git worktree list --porcelain`, classify its
+checked-out branch the same way. Detached HEAD: use `PRUNABLE_SQUASH_ARTIFACT`
+when `squash_artifact HEAD` succeeds at that path.
 
 Buckets and what they mean:
 
@@ -239,54 +277,29 @@ Gate outcome:
 
 ## Phase 3: Build the Prune Plan (Dry-Run, Default)
 
-The prunable remote set is exactly the branches the oracle tagged `PRUNABLE_*` in
-Phase 2b. Now compute the local and worktree sets the same way.
+The prunable set is exactly the refs the oracle tagged `PRUNABLE_*` in Phase 2b.
+Print three lists from that classification:
 
-```bash
-TRUNK=$(gh repo view --json defaultBranchRef --jq .defaultBranchRef.name)
-CURRENT="$(git symbolic-ref --quiet --short HEAD || echo)"
-PROTECT="${TRUNK}|${CURRENT:-__none__}"
+- **Local branches** tagged `PRUNABLE_*` (annotate `needs -D` for squash/rebase).
+- **Remote branches** tagged `PRUNABLE_*`.
+- **Worktrees** whose branch is `PRUNABLE_*` and whose `git -C <path> status --porcelain`
+  is empty. Dirty => SKIP. Unmerged => SKIP. Upstream gone and proven-in-prod =>
+  safe to remove.
 
-# Local branches — classify each with the SAME oracle (reuse classify_branch,
-# but test the LOCAL ref, not origin/, for the ancestry fallback).
-git branch --format '%(refname:short)' \
-  | grep -vxE "$PROTECT" \
-  | while read -r b; do
-      rec=$(jq -c --arg b "$b" \
-        '[.[]|select(.headRefName==$b)]|sort_by(.number)|last' /tmp/rc_prs.json)
-      mc=$(jq -r '.mergeCommit.oid // empty' <<<"${rec:-null}")
-      st=$(jq -r '.state // empty' <<<"${rec:-null}")
-      if { [ "$st" = "MERGED" ] && [ -n "$mc" ] \
-             && git merge-base --is-ancestor "$mc" "$PROD" 2>/dev/null; } \
-         || git merge-base --is-ancestor "$b" "$PROD" 2>/dev/null; then
-        echo "PRUNABLE_LOCAL  $b  (needs -D if squash-merged)"
-      else
-        echo "KEEP_LOCAL      $b  ($st)"
-      fi
-    done
-
-# Worktrees
-git worktree list --porcelain
-```
-
-For each worktree other than the main checkout, classify it:
-
-- Branch proven-in-prod by the oracle AND `git -C <path> status --porcelain` empty => safe to remove.
-- Uncommitted changes => SKIP, report as dirty.
-- Branch not proven-in-prod => SKIP, report as unmerged.
-- Upstream gone (deleted on remote) and proven-in-prod => safe to remove.
-
-Print the plan as three explicit lists — local branches, remote branches,
-worktree paths — each annotated with the oracle verdict and PR number, plus a
-skipped list with reasons (`MERGED_NOT_YET_IN_TRUNK`, `IN_FLIGHT_OPEN_PR`,
+Plus a skipped list with reasons (`MERGED_NOT_YET_IN_TRUNK`, `IN_FLIGHT_OPEN_PR`,
 `STRANDED_*`, dirty worktree). Then stop and ask for confirmation. In `dry-run`
 (default) and `verify` modes, end here.
 
 ## Phase 4: Execute Prune (Only in `prune` Mode, After Confirmation)
 
-Only after the user confirms the printed plan:
+Only after the user confirms the printed plan. **Worktrees first**: a branch
+checked out in a worktree cannot be deleted.
 
 ```bash
+# Worktrees flagged safe. Never --force; refuses on dirty.
+git worktree remove <path> ...
+git worktree prune
+
 # Local branches proven-in-prod. Try -d first; fall back to -D ONLY when the
 # oracle proved the branch is in prod (squash/rebase merges require it).
 for b in <prunable-local-branches>; do
@@ -296,10 +309,6 @@ done
 # Remote branches proven-in-prod
 git push origin --delete <branch> ...
 
-# Worktrees flagged safe
-git worktree remove <path> ...    # never --force; refuses on dirty
-git worktree prune
-
 # Drop stale remote-tracking refs
 git remote prune origin
 git fetch --all --prune
@@ -307,7 +316,7 @@ git fetch --all --prune
 
 Rules during execution:
 
-- `-D` is permitted ONLY for branches the Phase-3 oracle tagged `PRUNABLE_LOCAL`.
+- `-D` is permitted ONLY for branches the Phase-3 oracle tagged `PRUNABLE_*`.
   Never blind-force a branch that is not proven-in-prod.
 - If `git worktree remove` refuses (dirty/locked), do not `--force`. Report and skip.
 - Delete remote branches in a batch; if a delete fails (protected on the server),

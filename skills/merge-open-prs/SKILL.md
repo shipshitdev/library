@@ -255,16 +255,19 @@ available remote branches. If the user passed an explicit base, confirm it exist
 before continuing.
 
 Snapshot every open PR targeting the trunk in one query — this drives the rest of
-the run. Keep it in the shell. Do not include PR titles or bodies in the machine
-snapshot; those are outsider-authored free text and are not needed for merge gating:
+the run. Keep it in the shell, or write it under the current repo's `.tmp/` if it
+must be a file. Never `/tmp` or `/private/tmp`. Do not include PR titles or bodies
+in the machine snapshot; those are outsider-authored free text and are not needed
+for merge gating:
 
 ```bash
+mkdir -p "$(git rev-parse --show-toplevel)/.tmp"
 MOP_PRS=$(gh pr list --base "$DEFAULT_BRANCH" --state open --limit 200 \
   --json number,headRefName,isDraft,mergeable,mergeStateStatus,reviewDecision,statusCheckRollup,url)
 ```
 
 Raise `--limit` if there are more than 200 open PRs into the trunk. Paginate
-rather than writing a snapshot file.
+rather than writing a snapshot outside this repository.
 
 Pick the merge method once from the repository's allowed modes (prefer squash so
 cleanup's squash-aware oracle stays consistent):

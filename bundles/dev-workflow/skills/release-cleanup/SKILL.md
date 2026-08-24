@@ -142,10 +142,14 @@ Determine the trunk from the repo metadata:
 - All feature/release branches are short-lived and eventually merged into the trunk.
 - Verification checks only that each candidate branch's work has reached the trunk.
 
-Look up the latest PR **per candidate head**, in memory. Do not dump the repo's
-PR list to a file, and do not cap the search at 1000 PRs.
+Look up the latest PR **per candidate head**. If a snapshot file is needed, write
+it under the current repo's `.tmp/` (create it). Never `/tmp` or `/private/tmp`.
+Do not cap the search at 1000 PRs.
 
 ```bash
+REPO_ROOT=$(git rev-parse --show-toplevel)
+mkdir -p "$REPO_ROOT/.tmp"
+
 latest_pr_for_head() {   # arg: branch name without origin/
   gh pr list --head "$1" --state all --limit 1 \
     --json number,headRefName,baseRefName,state,mergedAt,mergeCommit

@@ -10,7 +10,7 @@ description: >-
 license: MIT
 compatibility: Requires the `grok` CLI (logged in) and git; gh for PR targets.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "code-review, second-opinion, grok, cli, cross-check"
   author: Ship Shit Dev
 allowed-tools: Bash(git *) Bash(gh *) Bash(grok *) Bash(command -v *) Bash(mktemp *)
@@ -98,7 +98,9 @@ The engine is blind to this session — the prompt must carry everything:
 - **The diff itself**, appended verbatim.
 
 ```bash
-PROMPT_FILE=$(mktemp "${TMPDIR:-/tmp}/grok-review.XXXXXX")
+REPO_TMP="$(git rev-parse --show-toplevel)/.tmp"
+mkdir -p "$REPO_TMP"
+PROMPT_FILE=$(mktemp "$REPO_TMP/grok-review.XXXXXX")
 trap 'rm -f "$PROMPT_FILE"' EXIT
 { printf '%s\n\n' "$REVIEW_INSTRUCTIONS"; printf '%s\n' "$DIFF"; } > "$PROMPT_FILE"
 ```

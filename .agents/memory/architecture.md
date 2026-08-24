@@ -13,6 +13,7 @@ last_verified: 2026-07-13
 | `.codex/` | Codex loader adapters for shared maintenance content | Tracked |
 | `.github/` | Issue templates and GitHub Actions workflows | Tracked |
 | `.husky/` | Git hook configuration | Tracked |
+| `.tmp/` | Tracked repository content | Tracked |
 | `assets/` | Static repository assets | Tracked |
 | `bundles/` | Generated marketplace bundle snapshots | 13 generated bundles |
 | `commands/` | Claude Code/plugin command adapters | 32 command adapters |

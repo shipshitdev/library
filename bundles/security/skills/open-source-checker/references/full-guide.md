@@ -406,10 +406,12 @@ onboarding steps that route through internal Slack, wikis, or VPN.
 
 ```bash
 # Variables the code reads, versus what the example documents
+REPO_TMP="$(git rev-parse --show-toplevel)/.tmp"
+mkdir -p "$REPO_TMP"
 grep -rhoE 'process\.env\.[A-Z_]+|os\.environ\[.[A-Z_]+' src/ 2>/dev/null \
-  | grep -oE '[A-Z_]{3,}' | sort -u > /tmp/used-vars
-grep -oE '^[A-Z_]+' .env.example 2>/dev/null | sort -u > /tmp/documented-vars
-comm -23 /tmp/used-vars /tmp/documented-vars     # read but undocumented
+  | grep -oE '[A-Z_]{3,}' | sort -u > "$REPO_TMP/used-vars"
+grep -oE '^[A-Z_]+' .env.example 2>/dev/null | sort -u > "$REPO_TMP/documented-vars"
+comm -23 "$REPO_TMP/used-vars" "$REPO_TMP/documented-vars"     # read but undocumented
 ```
 
 ### 5.3 CI and repository configuration
@@ -503,8 +505,10 @@ copy — the local repository keeps the old objects in its reflog and packs unti
 they are pruned, which can mask an incomplete rewrite.
 
 ```bash
-git clone --mirror <remote-url> /tmp/verify-clone
-gitleaks detect --source /tmp/verify-clone --verbose
+REPO_TMP="$(git rev-parse --show-toplevel)/.tmp"
+mkdir -p "$REPO_TMP"
+git clone --mirror <remote-url> "$REPO_TMP/verify-clone"
+gitleaks detect --source "$REPO_TMP/verify-clone" --verbose
 ```
 
 ---

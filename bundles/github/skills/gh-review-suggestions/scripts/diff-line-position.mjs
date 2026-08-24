@@ -51,7 +51,7 @@ function readValue(argv, index, flag) {
 
 function printHelp() {
   process.stdout.write(`Usage:
-  node diff-line-position.mjs --diff /tmp/pr.diff --path src/file.ts --line 42 [--side RIGHT]
+  node diff-line-position.mjs --diff .tmp/pr.diff --path src/file.ts --line 42 [--side RIGHT]
 
 If --diff is omitted, reads the diff from stdin.
 Outputs JSON with path, line, side, and deprecated diff position.

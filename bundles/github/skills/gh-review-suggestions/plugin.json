@@ -1,6 +1,6 @@
 {
   "name": "gh-review-suggestions",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Review GitHub PRs and post precise inline suggested changes with safe GitHub suggestion blocks.",
   "author": {
     "name": "Ship Shit Dev",

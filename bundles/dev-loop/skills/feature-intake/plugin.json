@@ -1,6 +1,6 @@
 {
   "name": "feature-intake",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Capture client requirements as PRD epics, sub-issues, and GitHub Projects kanban items.",
   "author": {
     "name": "Ship Shit Dev",

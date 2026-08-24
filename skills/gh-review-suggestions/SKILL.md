@@ -5,7 +5,7 @@ compatibility: Requires GitHub CLI gh access to the repository. The bundled diff
 disable-model-invocation: true
 allowed-tools: Bash(git *) Bash(gh *) Bash(node *) Bash(bun *)
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "github, pull-requests, review, suggestions"
 ---
 
@@ -56,7 +56,9 @@ Delegates To:
    ```bash
    gh auth status -h github.com
    gh pr view <pr> --json number,url,headRefOid,commits,files,reviewDecision
-   gh pr diff <pr> > /tmp/pr.diff
+   REPO_TMP="$(git rev-parse --show-toplevel)/.tmp"
+   mkdir -p "$REPO_TMP"
+   gh pr diff <pr> > "$REPO_TMP/pr.diff"
    ```
 
 2. Review changed files, not the whole repository. Focus on:
@@ -81,7 +83,7 @@ Delegates To:
 
    ```bash
    node ${CLAUDE_SKILL_DIR}/scripts/diff-line-position.mjs \
-     --diff /tmp/pr.diff \
+     --diff "$REPO_TMP/pr.diff" \
      --path src/example.ts \
      --line 42
    ```
@@ -95,7 +97,7 @@ Delegates To:
    gh api \
      --method POST \
      /repos/<owner>/<repo>/pulls/<pr>/comments \
-     -f body="$(cat /tmp/comment.md)" \
+     -f body="$(cat "$REPO_TMP/comment.md")" \
      -f commit_id="$COMMIT_ID" \
      -f path="src/example.ts" \
      -F line=42 \

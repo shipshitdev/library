@@ -5,7 +5,7 @@ compatibility: Requires GitHub CLI gh for GitHub issue and project-board operati
 disable-model-invocation: true
 allowed-tools: Bash(gh *) Bash(git *)
 metadata:
-  version: "1.2.0"
+  version: "1.2.1"
   tags: "feature-intake, prd, github, kanban, requirements, ears"
   author: Ship Shit Dev
 when_to_use: "feature intake, client requirement, stakeholder requirement, write this as a PRD, create kanban tickets, push to GitHub board, turn this idea into issues, /feature"
@@ -303,8 +303,10 @@ Show the parent and sub-issue draft. Wait for approval before writing to GitHub.
 After approval, create the parent first, then sub-issues:
 
 ```bash
-gh issue create --title "<short imperative title>" --body-file /tmp/parent-prd.md --label "type:feature"
-gh issue create --title "[backend] <title>" --body-file /tmp/backend.md --label "type:feature"
+REPO_TMP="$(git rev-parse --show-toplevel)/.tmp"
+mkdir -p "$REPO_TMP"
+gh issue create --title "<short imperative title>" --body-file "$REPO_TMP/parent-prd.md" --label "type:feature"
+gh issue create --title "[backend] <title>" --body-file "$REPO_TMP/backend.md" --label "type:feature"
 ```
 
 Link sub-issues using the repository's supported GitHub sub-issue API or tracker

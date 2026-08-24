@@ -1,5 +1,9 @@
 node_modules/
 
+# Agent/process scratch for this checkout. Never /tmp or /private/tmp.
+.tmp/*
+!.tmp/.gitkeep
+
 # Generated marketplace output
 plugins/
 

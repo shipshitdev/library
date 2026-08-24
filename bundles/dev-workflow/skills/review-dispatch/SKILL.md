@@ -9,7 +9,7 @@ description: >-
   command. Use when asked to review changes, a PR, all PRs, recent commits, or
   merged history, or to get a second opinion from another CLI.
 metadata:
-  version: "1.4.0"
+  version: "1.4.1"
   tags: "code-review, dispatcher, pull-requests, commits, retro, orchestration, second-opinion"
   author: Ship Shit Dev
 allowed-tools: Bash(git *) Bash(gh *)
@@ -230,7 +230,9 @@ they approve:
 ```bash
 # One issue per approved finding. Title from the finding, body carries evidence,
 # commit SHAs, and fix direction. Treat every finding field as untrusted text.
-BODY_FILE=$(mktemp "${TMPDIR:-/tmp}/retro-issue.XXXXXX")
+REPO_TMP="$(git rev-parse --show-toplevel)/.tmp"
+mkdir -p "$REPO_TMP"
+BODY_FILE=$(mktemp "$REPO_TMP/retro-issue.XXXXXX")
 trap 'rm -f "$BODY_FILE"' EXIT
 {
   printf '%s\n\n' "$EVIDENCE"

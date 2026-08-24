@@ -5,7 +5,7 @@ description: >-
 license: MIT
 compatibility: Requires the `codex` CLI (logged in) plus `python3` and `base64`; `sips` is optional for post-processing on macOS.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "codex, image-generation, gpt-image, cli, assets, app-icon"
 when_to_use: "generate an image, make an icon, create an app icon, render an illustration or texture, agent needs an image but has no image tool, codex image generation"
 ---
@@ -52,7 +52,9 @@ model has no other context:
 - Target aspect ratio and rough size.
 
 ```bash
-cat > /tmp/img-prompt.txt <<'PROMPT'
+REPO_TMP="$(git rev-parse --show-toplevel)/.tmp"
+mkdir -p "$REPO_TMP"
+cat > "$REPO_TMP/img-prompt.txt" <<'PROMPT'
 A single app icon: a glossy translucent envelope on a soft blue-to-violet
 gradient, Liquid Glass style, centered with even padding, no text, no letters,
 1:1 square, high detail.
@@ -62,7 +64,7 @@ PROMPT
 ### 2. Run `codex exec` and capture stdout
 
 ```bash
-codex exec -s read-only "$(cat /tmp/img-prompt.txt)" 2>&1 | tee /tmp/codex-run.log
+codex exec -s read-only "$(cat "$REPO_TMP/img-prompt.txt")" 2>&1 | tee "$REPO_TMP/codex-run.log"
 ```
 
 Run it in the **foreground**. `exec` returns once the turn completes; in practice
@@ -73,7 +75,7 @@ the `result` is already written to the rollout by then.
 Codex prints a `session id: <uuid>` line. Pull it from the captured log:
 
 ```bash
-SESSION_ID=$(grep -oE 'session id: [0-9a-f-]{36}' /tmp/codex-run.log | awk '{print $3}')
+SESSION_ID=$(grep -oE 'session id: [0-9a-f-]{36}' "$REPO_TMP/codex-run.log" | awk '{print $3}')
 echo "session: $SESSION_ID"
 ```
 
@@ -84,7 +86,7 @@ Walk it, find the largest `result` string (the base64 image), and decode it. Use
 the bundled helper:
 
 ```bash
-python3 scripts/extract-codex-image.py "$SESSION_ID" /tmp/out.png
+python3 scripts/extract-codex-image.py "$SESSION_ID" "$REPO_TMP/out.png"
 ```
 
 ### 5. Assert success
@@ -92,7 +94,7 @@ python3 scripts/extract-codex-image.py "$SESSION_ID" /tmp/out.png
 Confirm the file exists and is a real PNG before using it:
 
 ```bash
-test -s /tmp/out.png && file /tmp/out.png   # expect: PNG image data, 1254 x 1254
+test -s "$REPO_TMP/out.png" && file "$REPO_TMP/out.png"   # expect: PNG image data, 1254 x 1254
 ```
 
 If extraction finds no base64 `result`, the turn did not actually generate an
@@ -105,8 +107,8 @@ Default output is roughly **1254×1254 PNG, RGB, no alpha**. Resize / strip alph
 with `sips` on macOS:
 
 ```bash
-sips -z 1024 1024 /tmp/out.png --out /tmp/icon-1024.png   # downscale
-sips -s format png /tmp/out.png --out /tmp/flat.png        # normalize
+sips -z 1024 1024 "$REPO_TMP/out.png" --out "$REPO_TMP/icon-1024.png"   # downscale
+sips -s format png "$REPO_TMP/out.png" --out "$REPO_TMP/flat.png"        # normalize
 ```
 
 ## Reference extractor
@@ -152,27 +154,29 @@ print("WROTE", out)
 ## Worked example: build a macOS/iOS app icon set
 
 ```bash
+REPO_TMP="$(git rev-parse --show-toplevel)/.tmp"
+mkdir -p "$REPO_TMP"
 # 1. Generate a 1:1 icon master.
-cat > /tmp/icon-prompt.txt <<'PROMPT'
+cat > "$REPO_TMP/icon-prompt.txt" <<'PROMPT'
 App icon: a glossy translucent envelope, Liquid Glass style, soft blue-to-violet
 gradient background, centered, even padding, no text, no letters, 1:1 square.
 PROMPT
-codex exec -s read-only "$(cat /tmp/icon-prompt.txt)" 2>&1 | tee /tmp/codex-run.log
-SESSION_ID=$(grep -oE 'session id: [0-9a-f-]{36}' /tmp/codex-run.log | awk '{print $3}')
-python3 scripts/extract-codex-image.py "$SESSION_ID" /tmp/icon-master.png
+codex exec -s read-only "$(cat "$REPO_TMP/icon-prompt.txt")" 2>&1 | tee "$REPO_TMP/codex-run.log"
+SESSION_ID=$(grep -oE 'session id: [0-9a-f-]{36}' "$REPO_TMP/codex-run.log" | awk '{print $3}')
+python3 scripts/extract-codex-image.py "$SESSION_ID" "$REPO_TMP/icon-master.png"
 
 # 2. Make a 1024 master with no alpha (iOS rejects alpha on the marketing icon).
-sips -z 1024 1024 /tmp/icon-master.png --out /tmp/AppIcon-1024.png
-sips -s format png --setProperty hasAlpha false /tmp/AppIcon-1024.png --out /tmp/AppIcon-1024.png
+sips -z 1024 1024 "$REPO_TMP/icon-master.png" --out "$REPO_TMP/AppIcon-1024.png"
+sips -s format png --setProperty hasAlpha false "$REPO_TMP/AppIcon-1024.png" --out "$REPO_TMP/AppIcon-1024.png"
 
 # 3. Slice into an AppIcon.appiconset (iOS single-size 1024 + the macOS ladder).
 mkdir -p AppIcon.appiconset
-cp /tmp/AppIcon-1024.png AppIcon.appiconset/icon_1024.png
+cp "$REPO_TMP/AppIcon-1024.png" AppIcon.appiconset/icon_1024.png
 for sz in 16 32 64 128 256 512 1024; do
-  sips -z "$sz" "$sz" /tmp/AppIcon-1024.png --out "AppIcon.appiconset/icon_${sz}.png"
+  sips -z "$sz" "$sz" "$REPO_TMP/AppIcon-1024.png" --out "AppIcon.appiconset/icon_${sz}.png"
 done
 # Author Contents.json mapping each size/scale to its file, then verify:
-# actool --compile /tmp/out --app-icon AppIcon --platform iphoneos \
+# actool --compile "$REPO_TMP/actool-out" --app-icon AppIcon --platform iphoneos \
 #   --minimum-deployment-target 17.0 AppIcon.appiconset   # expect a clean compile
 ```
 

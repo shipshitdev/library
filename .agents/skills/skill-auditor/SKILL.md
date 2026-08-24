@@ -5,7 +5,7 @@ description: |
   Run periodically or before releases.
 metadata:
   internal: true
-  version: "1.2.0"
+  version: "1.2.1"
   tags: "audit, skills, quality, maintenance"
 ---
 
@@ -72,15 +72,17 @@ per-skill link table):
 
 ```bash
 # Get skills from filesystem
-find skills -maxdepth 1 -mindepth 1 -type d | sed 's|skills/||' | sort > /tmp/fs-skills.txt
+REPO_TMP="$(git rev-parse --show-toplevel)/.tmp"
+mkdir -p "$REPO_TMP"
+find skills -maxdepth 1 -mindepth 1 -type d | sed 's|skills/||' | sort > "$REPO_TMP/fs-skills.txt"
 
 # Get skills from the README's categorized lists
 sed -n '/^## Skills (/,/^## How Skills Adapt/p' README.md \
-  | grep -oE '`[a-z0-9-]+`' | tr -d '`' | sort -u > /tmp/readme-skills.txt
+  | grep -oE '`[a-z0-9-]+`' | tr -d '`' | sort -u > "$REPO_TMP/readme-skills.txt"
 
 # Diff
-comm -23 /tmp/fs-skills.txt /tmp/readme-skills.txt  # in fs, not README
-comm -13 /tmp/fs-skills.txt /tmp/readme-skills.txt  # in README, not fs
+comm -23 "$REPO_TMP/fs-skills.txt" "$REPO_TMP/readme-skills.txt"  # in fs, not README
+comm -13 "$REPO_TMP/fs-skills.txt" "$REPO_TMP/readme-skills.txt"  # in README, not fs
 ```
 
 Also verify each category heading's `(N)` count matches the number of names in

@@ -30,8 +30,10 @@ live in `.github/agent-loop.env`.
 ## Command vocabulary
 
 ```bash
-# Create (use --body-file with a heredoc/temp file for multi-line PRDs)
-gh issue create --title "<title>" --body-file /tmp/body.md --label "type:feature"
+# Create (use --body-file under the current repo's .tmp/ for multi-line PRDs)
+REPO_TMP="$(git rev-parse --show-toplevel)/.tmp"
+mkdir -p "$REPO_TMP"
+gh issue create --title "<title>" --body-file "$REPO_TMP/body.md" --label "type:feature"
 
 # Read one issue with full comment history (rejection + triage notes live here)
 gh issue view <number> --comments

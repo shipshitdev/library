@@ -1,0 +1,82 @@
+---
+name: show-me-your-work
+description: Keep a reviewable decision trail for long-running or unattended work. A TSV log with one row per decision (what, why, evidence, result). Local by default. Commit it when a reviewer needs the trail to trust the result. Use for show-me-your-work, autonomous or multi-phase runs, or work a human reviews after stepping away.
+disable-model-invocation: true
+license: MIT
+metadata:
+  version: "1.0.0"
+  tags: "audit, decisions, trail, verification"
+  author: Ship Shit Dev
+  source: https://github.com/cursor/plugins/blob/main/pstack/skills/show-me-your-work/SKILL.md
+  upstream_repo: cursor/plugins
+  upstream_ref: main
+  upstream_commit: bdf7aa355337
+  last_synced: "2026-08-26"
+  license: MIT
+when_to_use: "show me your work, decision trail, audit log, unattended run record"
+---
+
+# Show me your work
+
+For work a human reviews after the fact, a decision trail reconstructs
+what was decided, why, and on what evidence.
+
+## Contract
+
+Inputs:
+
+- A long, autonomous, or multi-phase run that needs an audit trail
+
+Outputs:
+
+- One canonical TSV log, plus an Attention section from a
+  different-tier review of the trail
+
+Creates/Modifies:
+
+- `decisions.tsv` in the work dir, or `.tmp/audit/<task-slug>.tsv`
+  when several efforts run at once
+- Commit the log only when a reviewer needs it
+
+External Side Effects:
+
+- None unless the caller commits the trail
+
+Confirmation Required:
+
+- Before committing the log to the repo
+
+Delegates To:
+
+- None. Other skills route their trail here.
+
+## Format
+
+Copy [references/decision-log-template.tsv](references/decision-log-template.tsv)
+to start. Columns: `ts`, `phase`, `decision`, `why`, `evidence`,
+`result`. Cells stay single-line. Evidence is a pointer, not prose.
+
+Use `scripts/log.sh <logfile> <phase> <decision> <why> <evidence> <result>`
+so rows stay well-formed.
+
+Log decision points and checkpoints, not every action. Append-only. A
+wrong call gets a new row.
+
+Write each entry the way you'd tell a teammate. Apply
+`skills/de-slop/references/prose-slop.md` to log text.
+
+## Audit the log
+
+Before handing back, walk the log against what actually happened in
+this run's transcript (the path the harness names). Cut invented rows.
+Add missing forks. Drop padding.
+
+## Cross-tier review
+
+Spawn a subagent on a different capability tier or family from the
+one that did the work. It reads the trail and the transcript, then
+flags weak evidence, skipped verification, and risky choices.
+
+Every reply for a run that produced a trail ends with an Attention
+section. Lead with the reviewer's capability tier, then list flags.
+"No flags" is valid. Never name a concrete model.

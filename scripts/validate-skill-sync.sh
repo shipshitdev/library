@@ -71,6 +71,13 @@ session-documenter
 session-end
 session-start
 prd-task-creator
+pstack
+create-verification-skill
+maintain-verification-skill
+show-me-your-work
+no-comments
+arena
+swarm
 "
 
 skill_exists() {

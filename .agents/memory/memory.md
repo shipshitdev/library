@@ -7,7 +7,7 @@ last_verified: 2026-08-14
 <!-- catalog-summary:start -->
 Public skills library at `shipshitdev/skills`. Installable via `npx skills add shipshitdev/skills --skill <name>`. Works with Claude Code, Codex, Cursor, OpenClaw, and Gemini.
 
-Generated catalog: **168 skills · 32 commands · 13 bundles · 181 plugins**.
+Generated catalog: **184 skills · 32 commands · 13 bundles · 197 plugins**.
 <!-- catalog-summary:end -->
 
 Published through committed marketplace bundles in `bundles/` and the generated `.claude-plugin/marketplace.json` catalog. The old generated `plugins/` package tree is retired.
@@ -26,10 +26,10 @@ Published through committed marketplace bundles in `bundles/` and the generated 
 <!-- catalog-counts:start -->
 | Asset | Count | Canonical source |
 |---|---:|---|
-| Skills | 168 | `skills/*/SKILL.md` |
+| Skills | 184 | `skills/*/SKILL.md` |
 | Commands | 32 | `commands/*.md` |
 | Bundles | 13 | `scripts/plugin-categories.json` |
-| Plugins | 181 | skills + bundles |
+| Plugins | 197 | skills + bundles |
 <!-- catalog-counts:end -->
 
 ## Architecture Decisions
@@ -89,6 +89,16 @@ not a ratified standard — the gate regex is the single point to adjust if it s
 | Keep all 5 security skills | Distinct: expert persona, audit workflow, API-specific, backend impl, frontend impl |
 | Keep react-patterns + react-refactor + react-component-performance | Cleanly separated by concern |
 | Keep all expo-*/resend-*/static-analysis-* families | Non-overlapping topics |
+
+### pstack port (2026-08-26)
+
+Adapted Lauren Tan's pstack (MIT, cursor/plugins) as first-class skills.
+Orchestrator is `pstack` (not a Cursor sticky mode). Principles live as
+`pstack/references/principles.md`, not 21 catalog skills. `tdd` and
+`de-slop` were rewritten in place with pstack rigor. Overlaps skipped:
+wait-what, skill-creator / skill-capture, verification-before-completion,
+typescript-expert, review-dispatch / code-review / grok-review. Benny and
+setup-pstack stay out.
 
 ### Pocock craft and primitives (2026-08-14)
 

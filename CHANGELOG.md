@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/shipshitdev/skills/compare/v1.1.1...v1.2.0) (2026-08-27)
+
+
+### Features
+
+* port Lauren Tan pstack skills and recut tdd/de-slop ([#119](https://github.com/shipshitdev/skills/issues/119)) ([e983aba](https://github.com/shipshitdev/skills/commit/e983abae69365fc68d346e311044e168c081eef7))
+
+
+### Bug Fixes
+
+* **skills:** write disposable scratch to the current repo .tmp ([#116](https://github.com/shipshitdev/skills/issues/116)) ([5d747b4](https://github.com/shipshitdev/skills/commit/5d747b4b10a6a82dc081ba95ed2fa09d29540575))
+
 ## [1.1.1](https://github.com/shipshitdev/skills/compare/v1.1.0...v1.1.1) (2026-08-18)
 
 

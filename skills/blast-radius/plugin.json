@@ -1,0 +1,12 @@
+{
+  "name": "blast-radius",
+  "version": "1.0.0",
+  "description": "Prove what a small change could break elsewhere.",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://shipshit.dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

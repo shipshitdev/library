@@ -1,56 +1,79 @@
 ---
 name: de-slop
 description: >-
-  Strip AI-generated slop from a codebase and product. Code slop — console
-  statements, `any` types, unused imports, commented-out code, redundant comments,
-  needless defensive try-catch on trusted paths, over-nesting. Product slop (with
-  --product) — marketing-filler copy, generic AI phrasing, default-shadcn look,
-  unstyled loading/error states, dead buttons and half-wired flows that make an app
-  feel unfinished. UI slop (`ui`) runs a project-derived design-system primitive
-  pass. Can scope to the current branch's diff or sweep the whole tree. Use when
-  asked to clean up AI-generated code, remove slop, or make an app feel finished
-  before shipping to customers.
+  Strip AI-generated slop from a codebase, product, and prose. Code slop —
+  console statements, `any` types, unused imports, commented-out code, redundant
+  comments, needless defensive try-catch on trusted paths, over-nesting. Product
+  slop (with --product) — marketing-filler copy, generic AI phrasing,
+  default-shadcn look, unstyled loading/error states, dead buttons and half-wired
+  flows. UI slop (`ui`) runs a project-derived design-system primitive pass.
+  Prose slop (`prose`) cuts AI tells from writing. Can scope to the current
+  branch's diff or sweep the whole tree. Use when asked to clean up AI-generated
+  code, unslop writing, remove slop, or make an app feel finished before
+  shipping to customers.
 disable-model-invocation: true
-argument-hint: "[ui | --changed | all | dry-run | --product]"
+argument-hint: "[ui | prose | --changed | all | dry-run | --product]"
 metadata:
-  version: "1.3.0"
-  tags: "code-quality, cleanup, ai-artifacts, product-polish, maintenance"
+  version: "1.4.0"
+  tags: "code-quality, cleanup, ai-artifacts, product-polish, prose, maintenance"
+  source: https://github.com/cursor/plugins/blob/main/pstack/skills/unslop/SKILL.md
+  upstream_repo: cursor/plugins
+  upstream_ref: main
+  upstream_commit: bdf7aa355337
+  last_synced: "2026-08-26"
+  license: MIT
 ---
 
 # De-Slop
 
-AI-assisted development leaves two kinds of slop. **Code slop** compiles but reads as
-machine-written — dead code, `any`, defensive noise. **Product slop** ships but feels
-unfinished to a paying customer — filler copy, default styling, half-wired flows.
-This skill removes both. Code slop is the default; `--product` adds the product pass.
+AI-assisted development leaves three kinds of slop. **Code slop** compiles but
+reads as machine-written. **Product slop** ships but feels unfinished to a
+paying customer. **Prose slop** is writing with AI tells: puffery, em-dash
+habits, chatbot phrases, voiceless neutrality. This skill removes all three.
+Code slop is the default. `--product` adds the product pass. `prose` runs the
+writing pass. `ui` runs only the design-system pass.
 
-Edits and removes code, so it runs behind a confirmation gate and prefers the branch
-diff. For a read-only pass that only flags, use `structural-review` / `/review`.
+Edits and removes code, so it runs behind a confirmation gate and prefers the
+branch diff. For a read-only pass that only flags, use `structural-review` /
+`/review`. For a layered doc standard (Diátaxis, STE, Global English), use
+`technical-writing` and then apply the prose catalog here.
+
+Other skills that need the prose catalog point at
+[references/prose-slop.md](references/prose-slop.md). They do not fire this
+skill.
 
 ## Contract
 
 Inputs:
 
-- A package or repo to clean; optional scope (`--changed`, `all`, `dry-run`) and
-  dimension (`--product` to add the product pass, `ui` to run the UI primitive pass).
+- A package, repo, or prose surface to clean; optional scope (`--changed`,
+  `all`, `dry-run`) and dimension (`--product`, `ui`, `prose`).
 
 Outputs:
 
-- Applied edits (or, in `dry-run`, a grouped report of what would change), plus a
-  short count of artifacts removed by type.
+- Applied edits (or, in `dry-run`, a grouped report of what would change), plus
+  a short count of artifacts removed by type.
 
 Creates/Modifies:
 
-- Edits source files. Never deletes entry points, configs, or READMEs.
+- Edits source files or named prose. Never deletes entry points, configs, or
+  READMEs.
 
 External Side Effects:
 
-- None beyond local file edits. Runs type-check and tests to verify.
+- None beyond local file edits. Runs type-check and tests after code edits.
+
+Confirmation Required:
+
+- Before sweeping the whole tree (`all`) or rewriting product copy whose intent
+  is ambiguous.
 
 Delegates To:
 
 - `polish` for the final micro-detail pass after the structural slop is gone.
 - `refactor-code` when a fix is a real refactor, not a mechanical strip.
+- `technical-writing` when the ask is a docs, RFC, README, PR, or commit
+  standard rather than a slop strip.
 
 ## Code slop (default)
 
@@ -61,27 +84,41 @@ Remove, matching the surrounding file's existing style:
 3. **Unused imports / variables** → delete.
 4. **Commented-out code** → delete (git remembers it).
 5. **Debug / temporary code** → delete leftover TODO/FIXME debug lines.
-6. **Redundant comments** — remove those that restate *what*; keep those that explain
-   *why*.
-7. **Needless defensive checks** — drop try-catch and null guards on trusted internal
-   paths that cannot fail; keep guards on real external boundaries.
+6. **Redundant comments** — remove those that restate *what*; keep those that
+   explain *why*.
+7. **Needless defensive checks** — drop try-catch and null guards on trusted
+   internal paths that cannot fail; keep guards on real external boundaries.
 8. **Over-nesting** — collapse deep if/else pyramids into early returns.
+
+## Prose slop (`prose`)
+
+When the first argument is `prose`, or when the target is a reply, README,
+RFC, PR description, commit message, or other writing surface, apply
+[references/prose-slop.md](references/prose-slop.md).
+
+1. Scan for the 31 patterns.
+2. Rewrite. Preserve meaning. Match intended tone.
+3. Add soul: opinions, varied rhythm, specific facts.
+4. Self-audit: "What makes this obviously AI generated?" Fix remaining tells.
+
+`--product` copy cleanup also runs this catalog. Do not invent product voice
+when the intended copy is unclear; flag it.
 
 ## Product slop (`--product`)
 
 The layer that decides whether an app feels finished. See
-[references/product-slop.md](references/product-slop.md) for the full Incorrect →
-Correct catalog; the three families:
+[references/product-slop.md](references/product-slop.md) for the full Incorrect
+→ Correct catalog; the three families:
 
-- **Copy** — marketing filler ("Seamlessly elevate your workflow"), generic AI
-  phrasing, em-dash overuse, empty-states and error messages that say nothing useful.
+- **Copy** — marketing filler, generic AI phrasing, empty-states and error
+  messages that say nothing useful. Run the prose catalog on every string.
 - **UI** — the untouched-shadcn-plus-purple-gradient look, inconsistent
   spacing/radius, loading and error states left unstyled or absent.
-- **UX** — buttons wired to nothing, flows that dead-end, placeholder pages behind
-  real-looking nav, forms with no validation or success feedback.
+- **UX** — buttons wired to nothing, flows that dead-end, placeholder pages
+  behind real-looking nav, forms with no validation or success feedback.
 
-Product slop needs judgment, not just deletion — flag anything ambiguous rather than
-guessing at intended copy or behavior.
+Product slop needs judgment, not just deletion. Flag anything ambiguous rather
+than guessing at intended copy or behavior.
 
 ## UI slop (`ui`)
 
@@ -130,8 +167,8 @@ If a primitive exists:
 - Do not override its core visual contract from call sites: background, border,
   radius, shadow, typography, spacing, focus, disabled, loading, or state
   styling.
-- If the needed variant does not exist, add a named variant to the primitive only
-  when the need is clear and reusable. Otherwise defer with a finding.
+- If the needed variant does not exist, add a named variant to the primitive
+  only when the need is clear and reusable. Otherwise defer with a finding.
 
 If no primitive exists:
 
@@ -141,8 +178,8 @@ If no primitive exists:
 - Do not invent a one-off visual treatment unless the user explicitly requested
   a bespoke design.
 
-Raw semantic HTML is fine for document structure and prose. Raw HTML is not fine
-when it is acting as a design-system control or surface.
+Raw semantic HTML is fine for document structure and prose. Raw HTML is not
+fine when it is acting as a design-system control or surface.
 
 Fix objective design-system drift before subjective taste. Keep changes scoped
 to the audited surface and defer product-judgment calls with a concrete finding
@@ -150,10 +187,10 @@ instead of inventing intent.
 
 ## Workflow
 
-1. **Route UI mode** — if the first argument is `ui`, run the UI slop pass above
-   and stop.
-2. **Detect structure** — monorepo vs single package (`ls packages/ 2>/dev/null`).
-   Process each package separately.
+1. **Route mode** — `ui` runs the UI pass and stops. `prose` runs the prose
+   catalog and stops. `--product` adds product + prose after code slop.
+2. **Detect structure** — monorepo vs single package
+   (`ls packages/ 2>/dev/null`). Process each package separately.
 3. **Scope** — in `--changed`, limit edits to the branch diff:
 
    ```bash
@@ -161,37 +198,40 @@ instead of inventing intent.
    git diff --name-only "$BASE"..HEAD    # files this branch touched
    ```
 
-   Touch only those files/hunks; do not clean pre-existing slop elsewhere in this mode.
-4. **Strip code slop** by the categories above; add the product pass if `--product`.
-5. **Verify** — the change must still build and pass:
+   Touch only those files/hunks; do not clean pre-existing slop elsewhere in
+   this mode.
+4. **Strip** by the categories above.
+5. **Verify** — a code change must still build and pass:
 
    ```bash
    bun run type-check || bunx tsc --noEmit
    bun run test
    ```
 
-6. **Document** — log packages cleaned and per-type counts in
-   `.agents/sessions/YYYY-MM-DD.md`.
+6. **Document** — log packages cleaned and per-type counts in the current
+   repository's session log when one exists.
 
 ## Modes
 
 - **default** — code slop, current package, edits applied.
 - **`ui`** — run the UI/design-system primitive pass.
+- **`prose`** — run the writing-tell catalog only.
 - **`--changed`** — only the files/hunks this branch introduced (safest for a PR).
-- **`--product`** — add the product-slop pass (copy/UI/UX).
+- **`--product`** — add the product-slop pass (copy/UI/UX) and the prose catalog.
 - **`all`** — sweep every package in a monorepo, each processed separately.
-- **`dry-run`** — detect only; report every artifact grouped by type with counts, edit
-  nothing. Combines with any scope.
+- **`dry-run`** — detect only; report every artifact grouped by type with
+  counts, edit nothing. Combines with any scope.
 
 ## Anti-Patterns
 
-- **Cleaning the whole tree when a branch scope was meant** — `--changed` keeps a PR
-  reviewable; whole-tree edits need confirmation.
-- **Deleting side-effect imports** (CSS, polyfills) or critical files (README,
-  configs, entry points).
-- **Removing a "why" comment** because it looks redundant — only *what*-restating
-  comments go.
-- **Guessing at product copy or intended behavior** — flag ambiguous product slop for
-  the user instead of inventing a fix.
-- **Rewriting logic under the banner of cleanup** — a behavior change is a refactor
-  (`refactor-code`), not de-slop.
+- **Cleaning the whole tree when a branch scope was meant** — `--changed`
+  keeps a PR reviewable; whole-tree edits need confirmation.
+- **Deleting side-effect imports** (CSS, polyfills) or critical files
+  (README, configs, entry points).
+- **Removing a "why" comment** because it looks redundant — only
+  *what*-restating comments go.
+- **Guessing at product copy or intended behavior** — flag ambiguous product
+  slop for the user instead of inventing a fix.
+- **Rewriting logic under the banner of cleanup** — a behavior change is a
+  refactor (`refactor-code`), not de-slop.
+- **Leaving voiceless prose after the strip** — sterile writing is still slop.

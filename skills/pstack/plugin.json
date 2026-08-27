@@ -1,0 +1,12 @@
+{
+  "name": "pstack",
+  "version": "1.0.0",
+  "description": "Playbook orchestrator for verified, unslopped engineering work.",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://shipshit.dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

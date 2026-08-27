@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "168 AI agent skills for development workflows",
+  "description": "184 AI agent skills for development workflows",
   "plugins": [
     {
       "name": "shipshitdev-testing",
@@ -150,6 +150,18 @@
       "description": "Expert in RESTful API design, OpenAPI/Swagger documentation, versioning, error handling, and API best practices for NestJS applications. Use when designing API endpoints, building RESTful APIs, writing OpenAPI/Swagger docs, implementing versioning, or designing error responses and DTOs."
     },
     {
+      "name": "architect",
+      "source": "./skills/architect",
+      "version": "1.0.0",
+      "description": "Sketch types, signatures, and module structure before code, then stay in the loop while implementation fills in. Use for architect this, design this, or non-trivial work where jumping to code would lock in the wrong shape."
+    },
+    {
+      "name": "arena",
+      "source": "./skills/arena",
+      "version": "1.0.0",
+      "description": "Spawn N parallel candidates at the same task, pick a base, and graft the strongest parts of the losers into it. Use for arena this, throw it in the arena, or when one attempt at a non-trivial artifact would lock in the wrong shape."
+    },
+    {
       "name": "artifacts-builder",
       "source": "./skills/artifacts-builder",
       "version": "1.0.0",
@@ -178,6 +190,12 @@
       "source": "./skills/biome-validator",
       "version": "1.0.1",
       "description": "Validate Biome 2.3+ configuration and detect outdated patterns. Ensures proper schema version, domains, assists, and recommended rules. Use before any linting work or when auditing existing projects."
+    },
+    {
+      "name": "blast-radius",
+      "source": "./skills/blast-radius",
+      "version": "1.0.0",
+      "description": "Find what a small-looking change could break somewhere else, and prove the one fact it is safe because of by running real code. Use for blast radius of X, what could this break, or reviewing a small diff you do not trust."
     },
     {
       "name": "bug",
@@ -282,6 +300,12 @@
       "description": "Improve context efficiency through context budgeting, observation masking, prefix or KV-cache strategy, partitioning, token-cost reduction, retrieval scoping, and extending effective context capacity without lowering answer quality. Use when token costs or context budgets constrain a task, tool outputs are verbose, cache hit rate is low, or context must be partitioned across agents."
     },
     {
+      "name": "create-verification-skill",
+      "source": "./skills/create-verification-skill",
+      "version": "1.0.0",
+      "description": "Generate a project-local verification skill that drives the app the way a user does. Use for create-verification-skill, make a verify skill for this repo, or when a project has no scripted way to prove UI, CLI, or service behavior."
+    },
+    {
       "name": "critique",
       "source": "./skills/critique",
       "version": "2.1.1",
@@ -296,8 +320,8 @@
     {
       "name": "de-slop",
       "source": "./skills/de-slop",
-      "version": "1.3.0",
-      "description": "Strip AI-generated slop from a codebase and product. Code slop — console statements, `any` types, unused imports, commented-out code, redundant comments, needless defensive try-catch on trusted paths, over-nesting. Product slop (with --product) — marketing-filler copy, generic AI phrasing, default-shadcn look, unstyled loading/error states, dead buttons and half-wired flows that make an app feel unfinished. UI slop (`ui`) runs a project-derived design-system primitive pass. Can scope to the current branch's diff or sweep the whole tree. Use when asked to clean up AI-generated code, remove slop, or make an app feel finished before shipping to customers."
+      "version": "1.4.0",
+      "description": "Strip AI-generated slop from a codebase, product, and prose. Code slop — console statements, `any` types, unused imports, commented-out code, redundant comments, needless defensive try-catch on trusted paths, over-nesting. Product slop (with --product) — marketing-filler copy, generic AI phrasing, default-shadcn look, unstyled loading/error states, dead buttons and half-wired flows. UI slop (`ui`) runs a project-derived design-system primitive pass. Prose slop (`prose`) cuts AI tells from writing. Can scope to the current branch's diff or sweep the whole tree. Use when asked to clean up AI-generated code, unslop writing, remove slop, or make an app feel finished before shipping to customers."
     },
     {
       "name": "debug",
@@ -408,6 +432,12 @@
       "description": "Capture a client or stakeholder feature request, turn it into a planner-ready PRD epic with scoped sub-issues, check for duplicate work, and place approved issues on a GitHub Projects kanban. Use when a user invokes feature intake, asks to turn a rough client requirement into GitHub issues, or wants an idea written as a PRD and pushed to a board."
     },
     {
+      "name": "figure-it-out",
+      "source": "./skills/figure-it-out",
+      "version": "1.0.0",
+      "description": "Design an auditable playbook when no narrower one fits. Use for figure it out, a large migration, an ambitious multi-part change, or work a human reviews after stepping away. Scales rigor to the task, runs a hypothesis loop, and logs decisions via show-me-your-work."
+    },
+    {
       "name": "finishing-a-development-branch",
       "source": "./skills/finishing-a-development-branch",
       "version": "1.0.0",
@@ -504,6 +534,12 @@
       "description": "Independent second-opinion code review through the Grok CLI. Builds a self-contained review prompt from the exact diff, runs one headless Grok invocation on the CLI's own default model and effort, then verifies every returned finding against the code before reporting. Use when asked to review with Grok, get a second opinion on a branch, worktree, or PR from another CLI, or cross-check a review with an independent engine."
     },
     {
+      "name": "how",
+      "source": "./skills/how",
+      "version": "1.0.0",
+      "description": "Walk through how a subsystem works. Use for \"how does X work\", code walkthroughs before changing something, and placement or ownership questions. Explains architecture, runtime flow, and onboarding mental models. Can critique architecture. Use why for motivation."
+    },
+    {
       "name": "html-style",
       "source": "./skills/html-style",
       "version": "1.0.0",
@@ -526,6 +562,12 @@
       "source": "./skills/incremental-fetch",
       "version": "1.0.0",
       "description": "Guides construction of resilient data ingestion pipelines from paginated APIs. Activates on: \"ingest data from API\", \"pull tweets\", \"fetch historical data\", \"sync from X\", \"build a data pipeline\", \"fetch without re-downloading\", \"resume the download\", \"backfill older data\". NOT for: simple one-shot API calls, websocket/streaming connections, file downloads, or APIs without pagination."
+    },
+    {
+      "name": "interrogate",
+      "source": "./skills/interrogate",
+      "version": "1.0.0",
+      "description": "Adversarial multi-reviewer pass over a diff. Use for interrogate, adversarial review, multi-model review, challenge this, stress test this code, find blind spots, or tear this apart. Several independent reviewers challenge the change. The lead synthesizes a verdict and does not auto-apply fixes."
     },
     {
       "name": "interview",
@@ -556,6 +598,12 @@
       "source": "./skills/llm-structured-output",
       "version": "1.0.0",
       "description": "Design prompts, schemas, validation, and recovery logic for reliable machine-readable model outputs. Use when generating JSON, typed objects, extraction results, tool arguments, or any output another system must parse safely."
+    },
+    {
+      "name": "maintain-verification-skill",
+      "source": "./skills/maintain-verification-skill",
+      "version": "1.0.0",
+      "description": "Keep a project's verification skill and feature map honest. Parallel source readers per feature, one live session driving every feature, at most one PR of proven corrections. Use for maintain-verification-skill or audit the verify skill."
     },
     {
       "name": "mcp-builder",
@@ -634,6 +682,12 @@
       "source": "./skills/nextra-writer",
       "version": "1.0.0",
       "description": "Expert in creating clear, comprehensive technical documentation with Nextra (Next.js-based docs framework), MDX, and modern documentation patterns. Use for documentation sites that need Next.js integration."
+    },
+    {
+      "name": "no-comments",
+      "source": "./skills/no-comments",
+      "version": "1.0.0",
+      "description": "Review comments on a diff, delete narration and workaround sermons, fix accepted findings, and offer encodings for claimed constraints. Use before review or when asked to strip comments."
     },
     {
       "name": "open-source-checker",
@@ -726,6 +780,12 @@
       "description": "Build a throwaway prototype to answer a design question. Use when the user wants to sanity-check whether a state model or logic feels right, or explore what a UI should look like."
     },
     {
+      "name": "pstack",
+      "source": "./skills/pstack",
+      "version": "1.0.0",
+      "description": "Playbook orchestrator for verified, unslopped engineering work. Matches a task to a named playbook, applies the principles index, and routes to how, why, architect, arena, swarm, interrogate, tdd, and related skills. Use for pstack, poteto-mode, /pstack, or requests to work in this style."
+    },
+    {
       "name": "qa-loop",
       "source": "./skills/qa-loop",
       "version": "1.0.0",
@@ -784,6 +844,12 @@
       "source": "./skills/react-testing-library",
       "version": "1.1.0",
       "description": "React Testing Library mechanics for testing React components and hooks — query selection, async handling, user interaction, assertions, provider setup, and the anti-patterns that make tests brittle. Use for any test that renders a React component or a hook, including choosing between getBy/queryBy/findBy, userEvent flows, waitFor usage, renderHook, custom render wrappers, and reviewing RTL tests for implementation-detail assertions."
+    },
+    {
+      "name": "recall",
+      "source": "./skills/recall",
+      "version": "1.0.0",
+      "description": "Rebuild recent working context from chat history, live state, and the shared record, then hand back a tight current-state brief. Use for recall my work on X, catch me up, what have I been working on, or where did I leave off."
     },
     {
       "name": "receiving-code-review",
@@ -900,6 +966,12 @@
       "description": "Plan the UX and UI for a feature before writing code. Produces a design brief that guides implementation."
     },
     {
+      "name": "show-me-your-work",
+      "source": "./skills/show-me-your-work",
+      "version": "1.0.0",
+      "description": "Keep a reviewable decision trail for long-running or unattended work. A TSV log with one row per decision (what, why, evidence, result). Local by default. Commit it when a reviewer needs the trail to trust the result. Use for show-me-your-work, autonomous or multi-phase runs, or work a human reviews after stepping away."
+    },
+    {
       "name": "skill-capture",
       "source": "./skills/skill-capture",
       "version": "1.0.0",
@@ -960,6 +1032,12 @@
       "description": "Perform a structural and maintainability review of a PR or codebase diff — covering file-size blockers, abstraction quality, layer violations, type structural discipline, spaghetti branching, non-atomic mutations, stack-specific hygiene (Bun, Tailwind v4, Next.js 16, shadcn/ui), design purity (code-judo), and directness over magic (no speculative generality). Use when asked to review code quality, maintainability, structural health, or architecture of a change. Orthogonal to /code-review (which owns correctness bugs and repo rule compliance) — run after correctness passes or in parallel when a thorough PR review is requested."
     },
     {
+      "name": "swarm",
+      "source": "./skills/swarm",
+      "version": "1.0.0",
+      "description": "Fan out N parallel workers, drain them, and return one report. Use for swarm this, or parallel coverage, races, gauntlets, and exploration partitions."
+    },
+    {
       "name": "systematic-debugging",
       "source": "./skills/systematic-debugging",
       "version": "1.1.0",
@@ -986,14 +1064,26 @@
     {
       "name": "tdd",
       "source": "./skills/tdd",
-      "version": "1.0.1",
-      "description": "Test-driven development workflow for feature work and bug fixes. Use when the user asks for TDD, red-green-refactor, test-first implementation, regression-first bug fixes, or vertical-slice delivery."
+      "version": "1.1.0",
+      "description": "Test-driven development workflow for feature work and bug fixes. Use when the user asks for TDD, red-green-refactor, test-first implementation, regression-first bug fixes, or vertical-slice delivery. For bugs, require a cheap local test path; skip a new test when the path is unclear, expensive, or integration-heavy."
+    },
+    {
+      "name": "teach",
+      "source": "./skills/teach",
+      "version": "1.0.0",
+      "description": "Explain a body of work so a person actually understands it. Runs how and why and weaves what they find into one plain explanation, built up diagram by diagram. Use for teach me this, help me really understand X, or explain this change or subsystem."
     },
     {
       "name": "tech-debt",
       "source": "./skills/tech-debt",
       "version": "1.0.1",
       "description": "Inventories a real codebase and ranks its technical debt into a register scored by interest (how often it hurts) over principal (effort to fix), every item anchored to a file-and-line or a metric. Covers code smells, dependency debt, test gaps, and architectural churn hotspots across frontend and backend. Use when asked what to pay down, where the codebase is rotting, or to turn debt into a tracked backlog. Files the register as GitHub issues on request. For org-level technology strategy and architecture direction, use `cto-advisor`."
+    },
+    {
+      "name": "technical-writing",
+      "source": "./skills/technical-writing",
+      "version": "1.0.0",
+      "description": "Layered technical-writing standard for docs, RFCs, READMEs, PR descriptions, and commit messages. Diátaxis structure, Google developer style sentences, STE instruction rules, Global English syntax. Use for technical-writing or when writing or reviewing those surfaces."
     },
     {
       "name": "test-dispatch",
@@ -1066,6 +1156,12 @@
       "source": "./skills/wait-what",
       "version": "1.0.0",
       "description": "Re-pitch the last message in plain English using the project's CONTEXT.md vocabulary."
+    },
+    {
+      "name": "why",
+      "source": "./skills/why",
+      "version": "1.0.0",
+      "description": "Investigate why code is shaped the way it is. Use for design rationale, regressions, postmortems, or data-backed thresholds. Queries available evidence categories in parallel, then returns a cited read on decisions and tradeoffs. Use how for runtime behavior."
     },
     {
       "name": "wizard",

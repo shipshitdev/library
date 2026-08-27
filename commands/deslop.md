@@ -10,8 +10,9 @@ copy, default-shadcn UI, missing loading/error states, dead buttons and half-wir
 ```bash
 /deslop              # clean code slop in the current package/project
 /deslop ui [target]  # audit/fix UI slop with the design-system primitive pass
+/deslop prose        # cut AI tells from writing (replies, docs, PR copy)
 /deslop --changed    # clean only the lines this branch introduced (diff-only)
-/deslop --product    # also strip product slop (copy / UI / UX)
+/deslop --product    # also strip product slop (copy / UI / UX) and prose tells
 /deslop --changed --product # combine diff-only scope with product cleanup
 /deslop all          # sweep every package in a monorepo
 /deslop dry-run      # preview the cleanup, change nothing
@@ -24,7 +25,7 @@ Also reachable as `/refactor deslop`.
 Use the `de-slop` skill.
 
 1. If invoked as `/deslop ui`, run the `de-slop` UI mode. Do not run code cleanup
-   first.
+   first. If invoked as `/deslop prose`, run the prose catalog only.
 2. Detect project structure (monorepo vs single package); in `--changed` mode,
    compute the branch diff (`git diff <merge-base>...HEAD`) and limit edits to those
    files/hunks.

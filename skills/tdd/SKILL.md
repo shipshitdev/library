@@ -1,22 +1,24 @@
 ---
 name: tdd
-description: Test-driven development workflow for feature work and bug fixes. Use when the user asks for TDD, red-green-refactor, test-first implementation, regression-first bug fixes, or vertical-slice delivery.
+description: Test-driven development workflow for feature work and bug fixes. Use when the user asks for TDD, red-green-refactor, test-first implementation, regression-first bug fixes, or vertical-slice delivery. For bugs, require a cheap local test path; skip a new test when the path is unclear, expensive, or integration-heavy.
 license: MIT
 metadata:
-  version: "1.0.1"
-  tags: "testing, tdd, red-green-refactor, quality"
+  version: "1.1.0"
+  tags: "testing, tdd, red-green-refactor, quality, verification"
   author: Ship Shit Dev
   source: https://github.com/mattpocock/skills/blob/main/skills/engineering/tdd/SKILL.md
   upstream_repo: mattpocock/skills
   upstream_ref: main
   upstream_commit: 8b78b531ab96
-  last_synced: "2026-08-14"
+  last_synced: "2026-08-26"
   license: MIT
 ---
 
 # Test-Driven Development
 
-Build or fix behavior one verified slice at a time.
+Build or fix behavior one verified slice at a time. A cheap local test path
+writes the failing check first. An expensive or unclear path names why and uses
+the closest executable proof instead.
 
 ## Contract
 
@@ -28,9 +30,9 @@ Inputs:
 
 Outputs:
 
-- Test-first implementation plan
+- Test-first implementation plan when a cheap path exists
 - New or updated tests and code when implementation is requested
-- Verification commands and results
+- Verification commands and the failing-before / passing-after evidence
 
 Creates/Modifies:
 
@@ -52,6 +54,28 @@ Delegates To:
 - `ai-regression-testing` for bug-specific regression coverage and path parity
 - `debug` when the root cause is still unknown
 - `codebase-design` when the test boundary is a module **seam** that still needs shaping
+- `verification-before-completion` when about to claim the work is done
+
+## Cheap-path gate
+
+Write a new test only when the path is cheap and local:
+
+- A focused unit, component, or existing integration check for that codepath
+- Deterministic, fast enough to rerun, and free of production-only state
+- Encodes intended behavior, not the current broken implementation
+
+Skip a new test when it would need broad harness setup, brittle mocks, slow
+end-to-end infrastructure, vague reproduction steps, or large unrelated fixture
+churn. Prefer no new test over a bad one.
+
+A bad test mostly tests mocks, encodes implementation details, depends on
+timing or unrelated global state, needs expensive infrastructure for a small
+fix, or would be deleted immediately after proving the fix.
+
+Do not skip silently. Before changing production code, name why a failing test
+is not worth the cost and name the closest executable check: a targeted script,
+reproduction command, browser drive, snapshot comparison, log assertion, or
+focused integration check.
 
 ## Core Rule
 
@@ -83,6 +107,9 @@ The test must fail for the right reason:
 - It exercises the public behavior, not a private detail.
 - It fails because the behavior is missing or broken.
 - It is deterministic and small enough to run repeatedly.
+
+Run the new test before changing production code. If it passes or fails for an
+unrelated reason, fix the test or the reproduction first.
 
 ### 2. Green
 
@@ -122,7 +149,7 @@ Bad:
 
 For bugs, reproduce first. If the cause is unknown, use `debug`.
 
-When the cause is known:
+When the cause is known and the cheap-path gate passes:
 
 1. Convert the reproduction into a failing regression test.
 2. Verify the test fails on the broken behavior.
@@ -130,8 +157,19 @@ When the cause is known:
 4. Verify the regression test passes.
 5. Re-run the original reproduction or user flow.
 
+Stage the failing repro before the fix in git history when committing. The
+diff tells the story: red, then green.
+
 If there is no good test boundary, state that as a design finding. Add the best
 available verification and note the residual risk.
+
+## Guardrails
+
+- Do not change tests merely to match a wrong implementation.
+- Do not weaken existing assertions unless the expected behavior has genuinely changed.
+- Keep the regression test focused on the bug. Avoid broad fixture churn.
+- If the bug is flaky, make the test deterministic where possible and document the locked signal.
+- If the bug exposes a broader class of failures, land the focused path first, then consider sibling coverage.
 
 ## Mocking Rules
 
@@ -142,9 +180,17 @@ available verification and note the residual risk.
 
 ## Done Checklist
 
-- [ ] New behavior is covered by at least one failing-then-passing test.
+- [ ] New behavior is covered by at least one failing-then-passing test, or the skip is named with the closest check.
 - [ ] Test name describes the behavior, not the implementation.
 - [ ] Test uses the public interface available to callers or users.
 - [ ] Narrow verification command passes.
 - [ ] Relevant broader suite, typecheck, or lint command passes when practical.
 - [ ] No unrelated refactor or broad rewrite was bundled into the slice.
+
+## Final Response
+
+Report the evidence, not just the outcome:
+
+- Name the failing-before test or executable check and the failure it produced.
+- Name the passing-after run and any nearby validation performed.
+- If failing-before evidence could not be demonstrated, state why and describe the closest regression check used instead.

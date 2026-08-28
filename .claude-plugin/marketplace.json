@@ -788,8 +788,8 @@
     {
       "name": "qa-loop",
       "source": "./skills/qa-loop",
-      "version": "1.0.0",
-      "description": "Runs an interactive localhost QA session that accepts issues, screenshots, routes, and browser evidence; reproduces and fixes each defect; verifies the result; and creates one local commit per fix. Use when asked to start QA, QA a local app, fix localhost issues as they arrive, or work through screenshot feedback without leaving the current checkout."
+      "version": "1.1.0",
+      "description": "Runs an interactive localhost QA session that accepts issues, screenshots, routes, and browser evidence; watches app, API, browser, and network errors; reproduces and fixes each defect; verifies the result; and creates one local commit per fix. Use when asked to start QA, QA a local app, fix localhost issues as they arrive, or work through screenshot feedback without leaving the current checkout."
     },
     {
       "name": "qa-reviewer",

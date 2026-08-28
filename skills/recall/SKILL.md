@@ -4,7 +4,7 @@ description: Rebuild recent working context from chat history, live state, and t
 disable-model-invocation: true
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "context, resume, briefing"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/recall/SKILL.md
@@ -80,5 +80,5 @@ Delegates To:
 - **Problems.** At most 5 recurring ones.
 - **Next move.** The single most useful next action.
 
-Apply `skills/de-slop/references/prose-slop.md`. Sanitize private
+Apply `skills/deslop/references/prose-slop.md`. Sanitize private
 context before any public output.

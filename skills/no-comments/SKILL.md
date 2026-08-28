@@ -4,7 +4,7 @@ description: Review comments on a diff, delete narration and workaround sermons,
 disable-model-invocation: true
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "comments, review, cleanup"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/no-comments/SKILL.md
@@ -24,7 +24,7 @@ Authoring agents defend comments. Defer to a fresh reviewer that did
 not write the code.
 
 Companion to `comment-mode` (granular feedback on prose drafts) and
-`de-slop` (broader AI-artifact strip). This skill is the pre-review
+`deslop` (broader AI-artifact strip). This skill is the pre-review
 comment pass.
 
 ## Contract

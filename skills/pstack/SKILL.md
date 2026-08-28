@@ -4,7 +4,7 @@ description: Playbook orchestrator for verified, unslopped engineering work. Mat
 disable-model-invocation: true
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "orchestrator, playbooks, verification, architecture, review"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/poteto-mode/SKILL.md
@@ -23,8 +23,8 @@ Copy the playbook steps into the todo list verbatim. Route to the other skills
 as the steps fire. Name each principle that shaped a decision.
 
 This is a **router**. It may invoke model-invoked skills. It does not fire other
-user-invoked skills. For `de-slop`, apply
-`skills/de-slop/references/prose-slop.md` as a file. For review, name
+user-invoked skills. For `deslop`, apply
+`skills/deslop/references/prose-slop.md` as a file. For review, name
 `review-dispatch`. For landing a branch, name
 `finishing-a-development-branch`.
 
@@ -58,8 +58,8 @@ Delegates To:
 
 - `how`, `why`, `architect`, `arena`, `swarm`, `interrogate`, `tdd`,
   `figure-it-out`, `show-me-your-work`, `blast-radius`, `teach`, `recall`
-- File pointer: `skills/de-slop/references/prose-slop.md` for reply prose
-- Named, not fired: `de-slop`, `review-dispatch`,
+- File pointer: `skills/deslop/references/prose-slop.md` for reply prose
+- Named, not fired: `deslop`, `review-dispatch`,
   `finishing-a-development-branch`, `worktree`, `release-cleanup`,
   `skill-creator`
 
@@ -128,7 +128,7 @@ Write the reply clean as you draft it.
 - Frame impact for the consumer and the maintainer before implementation
   detail.
 - Never fabricate a link, citation, or transcript reference.
-- Apply `skills/de-slop/references/prose-slop.md`.
+- Apply `skills/deslop/references/prose-slop.md`.
 
 Keep a comment only for a non-obvious *why* the code cannot show.
 

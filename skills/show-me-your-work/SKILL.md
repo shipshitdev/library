@@ -4,7 +4,7 @@ description: Keep a reviewable decision trail for long-running or unattended wor
 disable-model-invocation: true
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "audit, decisions, trail, verification"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/show-me-your-work/SKILL.md
@@ -63,7 +63,7 @@ Log decision points and checkpoints, not every action. Append-only. A
 wrong call gets a new row.
 
 Write each entry the way you'd tell a teammate. Apply
-`skills/de-slop/references/prose-slop.md` to log text.
+`skills/deslop/references/prose-slop.md` to log text.
 
 ## Audit the log
 

@@ -18,7 +18,7 @@ frontend and backend.
 
 ## Modes
 
-- **`deslop`** → the `de-slop` skill. Removes AI artifacts (console logs, `any`, dead
+- **`deslop`** → the `deslop` skill. Removes AI artifacts (console logs, `any`, dead
   code, over-nesting), product slop (marketing-filler copy, default-shadcn UI,
   half-wired flows), and prose tells. Edits code. Default scope is the current
   package; `--changed` keeps it to the branch diff.

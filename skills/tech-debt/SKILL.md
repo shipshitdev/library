@@ -5,7 +5,7 @@ user-invocable: true
 argument-hint: "[directory, or 'issues' to file]"
 compatibility: Requires git; gh to file issues; optional bun/npm audit for dependency debt.
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
   tags: "tech-debt, refactor, prioritization, code-quality, maintenance"
   author: Ship Shit Dev
 when_to_use: "what to pay down, debt register, where is the codebase rotting, scan this repo for tech debt, prioritize refactoring, debt backlog, /refactor debt"
@@ -45,7 +45,7 @@ Confirmation Required:
 
 Delegates To:
 
-- `refactor-code` / `de-slop` / `stack-modernization` to actually pay down an item.
+- `refactor-code` / `deslop` / `stack-modernization` to actually pay down an item.
 - `roadmap-analyzer` when debt competes with features — it ranks both against revenue.
 - `roadmap-to-milestones` to schedule a debt-paydown milestone.
 - `cto-advisor` when the question is how much to invest overall, or which architecture

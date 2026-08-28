@@ -2,7 +2,7 @@
 name: refactor-code
 description: Systematic approach to safely refactoring code with tests. Use when user says 'refactor', 'clean up code', 'simplify', 'reduce complexity', or 'technical debt'.
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
   tags: "refactoring, code-quality, testing, maintenance, clean-code"
 ---
 
@@ -12,7 +12,7 @@ Improve readability, cohesion, and maintainability without changing behavior.
 
 The `code` engine of the refactoring vertical (`/refactor code`). Draws on
 `typescript-refactor` for type-architecture work and `react-refactor` for component
-architecture. For mechanical AI-slop removal use `de-slop`; for a read-only structural
+architecture. For mechanical AI-slop removal use `deslop`; for a read-only structural
 review use `structural-review`.
 
 ## Triggers

@@ -6,16 +6,16 @@ description: >-
   refactor), debt (tech-debt register), perf (frontend + backend optimization),
   structure (read-only structural review), or stack (dependency + framework-pattern
   modernization). Backs the /refactor command. Use when asked to refactor, clean up,
-  de-slop, pay down tech debt, optimize, or modernize, and the mode must be picked
+  deslop, pay down tech debt, optimize, or modernize, and the mode must be picked
   from an argument like "deslop", "debt", "perf", or "stack".
 compatibility: Requires git; gh for filing debt as issues.
 disable-model-invocation: true
 allowed-tools: Bash(git *) Bash(gh *)
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "refactor, deslop, tech-debt, performance, modernization, dispatcher, orchestration"
   author: Ship Shit Dev
-when_to_use: "/refactor, refactor this, clean up the code, de-slop, pay down tech debt, tech debt register, optimize performance, modernize the stack, update dependencies, which refactor for this"
+when_to_use: "/refactor, refactor this, clean up the code, deslop, pay down tech debt, tech debt register, optimize performance, modernize the stack, update dependencies, which refactor for this"
 ---
 
 # Refactor Dispatch
@@ -57,7 +57,7 @@ Delegates To:
 
 | Mode | Engine | Edits code? |
 |---|---|---|
-| `deslop` | `de-slop` — AI-slop removal, code + product (copy/UI/UX) | Yes |
+| `deslop` | `deslop` — AI-slop removal, code + product (copy/UI/UX) | Yes |
 | `code` | `refactor-code` — safe behavior-preserving refactor, test-locked; draws on `typescript-refactor` / `react-refactor` as language lenses | Yes |
 | `debt` | `tech-debt` — inventory, quantify, and prioritize debt into a register | No (files issues on request) |
 | `perf` | `performance-expert` (backend + fullstack), `react-component-performance` (a slow component), `workspace-performance-audit` (whole monorepo) | No (diagnoses) |
@@ -70,7 +70,7 @@ Resolve the argument into `(mode, scope, target)`.
 
 | Argument | Mode | Notes |
 |---|---|---|
-| `deslop` | de-slop | default scope is the current package; `--changed` / `all` / `dry-run` pass through |
+| `deslop` | deslop | default scope is the current package; `--changed` / `all` / `dry-run` pass through |
 | `code [target]` | refactor-code | target is the file/function to refactor |
 | `debt` | tech-debt | whole repo unless a dir is given |
 | `perf [target]` | performance | route by target: a component → `react-component-performance`; a monorepo/whole app → `workspace-performance-audit`; else `performance-expert` |

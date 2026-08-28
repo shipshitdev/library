@@ -20,7 +20,7 @@ Code review, debugging, refactoring, release, and AI-assisted development workfl
 - `codebase-advisor`
 - `codebase-design`
 - `commit-summary`
-- `de-slop`
+- `deslop`
 - `debug`
 - `deploy`
 - `deploy-dispatch`

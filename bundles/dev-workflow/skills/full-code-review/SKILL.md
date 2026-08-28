@@ -11,7 +11,7 @@ description: >-
   prioritized backlog instead of a merge verdict.
 compatibility: Requires gh CLI and git for PR diff fetching.
 metadata:
-  version: "1.0.2"
+  version: "1.0.3"
   tags: "code-review, security, structural, devex, orchestration, pr-gate"
   author: Ship Shit Dev
 allowed-tools: Bash(git *) Bash(gh *)
@@ -34,7 +34,7 @@ does not edit.
 - Three independent review lenses are needed before merging a high-risk change.
 
 Do not invoke for a quick diff check — use `/code-review` for that. Do not
-invoke `de-slop` or `refactor-code` from within this skill; it reviews, it
+invoke `deslop` or `refactor-code` from within this skill; it reviews, it
 does not apply changes.
 
 ## Scope Boundary — What This Adds Over the Correctness Review Harness
@@ -187,7 +187,7 @@ Adversarial pass: <N raw> → <M surviving>
 
 - **Running this skill instead of `/code-review`** for a simple typo or config fix.
 - **Re-checking correctness bugs** inside reviewer prompts — those are owned by the harness.
-- **Invoking `de-slop`, `refactor-code`, or any mutating skill** from within this review — this skill is read-only.
+- **Invoking `deslop`, `refactor-code`, or any mutating skill** from within this review — this skill is read-only.
 - **Treating the verdict as a merge gate bypass** — the correctness review harness must also pass for correctness and repo rule compliance.
 - **Reporting findings without evidence lines** — every finding must provide concrete evidence; redact tokens, keys, passwords, cookies, and other secret-like values.
 - **Calling low-confidence speculation a BLOCKER** — the adversarial pass exists to eliminate these; do not re-introduce them in synthesis.

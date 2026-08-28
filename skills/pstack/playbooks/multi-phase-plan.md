@@ -15,7 +15,7 @@ runs box by box. Do not implement.
    evidence. Name the execution playbook: Autopilot-full,
    Autopilot-stack, or Orchestrate.
 5. Write with `technical-writing` in how-to mode, then apply
-   `skills/de-slop/references/prose-slop.md`.
+   `skills/deslop/references/prose-slop.md`.
 6. Hand back. Execution starts on the operator's explicit go.
 
 **Verification rule.** Tests alone are not sufficient. A PR is verified

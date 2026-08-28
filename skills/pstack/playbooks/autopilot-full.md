@@ -6,7 +6,7 @@ PR from build to merge. Nothing merges without a clean swarm verdict.
 1. Mark the operator's items. Execution starts only on an explicit go.
    Items the operator names stay theirs to click.
 2. Spawn one owner per PR. Each owns build, self-proof on the real
-   artifact, review-bot triage, a named `de-slop` / `no-comments` pass,
+   artifact, review-bot triage, a named `deslop` / `no-comments` pass,
    babysit to green, and the merge itself. The merge is gated by step 4.
    Each owner keeps a `show-me-your-work` trail.
 3. Run owners in parallel when PRs are self-contained. One writer per

@@ -4,7 +4,7 @@ description: Explain a body of work so a person actually understands it. Runs ho
 disable-model-invocation: true
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "teaching, explanation, onboarding"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/teach/SKILL.md
@@ -63,7 +63,7 @@ Delegates To:
    series of diagrams that each add one part. Mermaid for flows. Skip
    a figure that only decorates.
 
-Apply `skills/de-slop/references/prose-slop.md`. Give each concept one
+Apply `skills/deslop/references/prose-slop.md`. Give each concept one
 name and keep it.
 
 **Reply:** the explanation. Lead with the main point, then what it is,

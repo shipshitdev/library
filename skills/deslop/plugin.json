@@ -1,6 +1,6 @@
 {
-  "name": "de-slop",
-  "version": "1.4.0",
+  "name": "deslop",
+  "version": "2.0.0",
   "description": "Strip AI slop from code, product surfaces, and prose.",
   "author": {
     "name": "Ship Shit Dev",

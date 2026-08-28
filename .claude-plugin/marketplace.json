@@ -318,12 +318,6 @@
       "description": "Advises engineering leadership on direction — architecture decisions recorded as ADRs, technology and vendor evaluation, team scaling ratios, and DORA/engineering-metric targets. Reasons from org-level indicators and frameworks, never from a repository scan. Use when the user asks which technology to adopt, how to structure or scale the engineering team, whether to write an ADR, what DORA targets to hold, or mentions CTO, technical leadership, technology strategy, vendor selection, or engineering metrics. To inventory and rank the debt already sitting in a codebase, use `tech-debt`."
     },
     {
-      "name": "de-slop",
-      "source": "./skills/de-slop",
-      "version": "1.4.0",
-      "description": "Strip AI-generated slop from a codebase, product, and prose. Code slop — console statements, `any` types, unused imports, commented-out code, redundant comments, needless defensive try-catch on trusted paths, over-nesting. Product slop (with --product) — marketing-filler copy, generic AI phrasing, default-shadcn look, unstyled loading/error states, dead buttons and half-wired flows. UI slop (`ui`) runs a project-derived design-system primitive pass. Prose slop (`prose`) cuts AI tells from writing. Can scope to the current branch's diff or sweep the whole tree. Use when asked to clean up AI-generated code, unslop writing, remove slop, or make an app feel finished before shipping to customers."
-    },
-    {
       "name": "debug",
       "source": "./skills/debug",
       "version": "2.0.0",
@@ -364,6 +358,12 @@
       "source": "./skills/design-dispatch",
       "version": "1.0.0",
       "description": "Single front door for UI/design review and refinement. Parses a subcommand — audit, clarify, critique, layout, polish, quieter, shape, or consistency — and routes to the right design engine: audit (technical quality checks with scored report), clarify (UX copy and microcopy improvement), critique (UX evaluation with quantitative scoring), layout (layout and spacing improvement), polish (final pre-ship quality pass), quieter (tone down visually aggressive designs), shape (UX/UI planning and design brief), or design-consistency-auditor (cross-app design system consistency audit). Backs the /design command. Use when asked to review, audit, polish, plan, or refine UI, and the action must be picked from an argument like \"audit\", \"critique\", \"polish\", or \"shape\"."
+    },
+    {
+      "name": "deslop",
+      "source": "./skills/deslop",
+      "version": "2.0.0",
+      "description": "Strip AI-generated slop from a codebase, product, and prose. Code slop — console statements, `any` types, unused imports, commented-out code, redundant comments, needless defensive try-catch on trusted paths, over-nesting. Product slop (with --product) — marketing-filler copy, generic AI phrasing, default-shadcn look, unstyled loading/error states, dead buttons and half-wired flows. UI slop (`ui`) runs a project-derived design-system primitive pass. Prose slop (`prose`) cuts AI tells from writing. Can scope to the current branch's diff or sweep the whole tree. Use when asked to clean up AI-generated code, unslop writing, remove slop, or make an app feel finished before shipping to customers."
     },
     {
       "name": "devcontainer-setup",
@@ -458,7 +458,7 @@
     {
       "name": "full-code-review",
       "source": "./skills/full-code-review",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "description": "Fan-out PR review across three parallel dimension agents (structural, security, devex/flag-hygiene), adversarially verify every finding, and synthesize a single prioritized verdict via a strongest-tier judge. Use when asked for a full, comprehensive, or end-to-end review of a branch or PR — after /code-review passes correctness, this skill covers the orthogonal dimensions it does not: security depth, structural health, devex regressions, and feature-flag hygiene. In retro mode (a commit log is passed in) it adds a cross-commit lens and emits a prioritized backlog instead of a merge verdict."
     },
     {
@@ -686,7 +686,7 @@
     {
       "name": "no-comments",
       "source": "./skills/no-comments",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Review comments on a diff, delete narration and workaround sermons, fix accepted findings, and offer encodings for claimed constraints. Use before review or when asked to strip comments."
     },
     {
@@ -782,7 +782,7 @@
     {
       "name": "pstack",
       "source": "./skills/pstack",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Playbook orchestrator for verified, unslopped engineering work. Matches a task to a named playbook, applies the principles index, and routes to how, why, architect, arena, swarm, interrogate, tdd, and related skills. Use for pstack, poteto-mode, /pstack, or requests to work in this style."
     },
     {
@@ -848,7 +848,7 @@
     {
       "name": "recall",
       "source": "./skills/recall",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Rebuild recent working context from chat history, live state, and the shared record, then hand back a tight current-state brief. Use for recall my work on X, catch me up, what have I been working on, or where did I leave off."
     },
     {
@@ -866,14 +866,14 @@
     {
       "name": "refactor-code",
       "source": "./skills/refactor-code",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "description": "Systematic approach to safely refactoring code with tests. Use when user says 'refactor', 'clean up code', 'simplify', 'reduce complexity', or 'technical debt'."
     },
     {
       "name": "refactor-dispatch",
       "source": "./skills/refactor-dispatch",
-      "version": "1.0.0",
-      "description": "Single front door for improving existing code — routes to the right engine by mode: deslop (strip AI slop, code + product), code (safe behavior-preserving refactor), debt (tech-debt register), perf (frontend + backend optimization), structure (read-only structural review), or stack (dependency + framework-pattern modernization). Backs the /refactor command. Use when asked to refactor, clean up, de-slop, pay down tech debt, optimize, or modernize, and the mode must be picked from an argument like \"deslop\", \"debt\", \"perf\", or \"stack\"."
+      "version": "1.0.1",
+      "description": "Single front door for improving existing code — routes to the right engine by mode: deslop (strip AI slop, code + product), code (safe behavior-preserving refactor), debt (tech-debt register), perf (frontend + backend optimization), structure (read-only structural review), or stack (dependency + framework-pattern modernization). Backs the /refactor command. Use when asked to refactor, clean up, deslop, pay down tech debt, optimize, or modernize, and the mode must be picked from an argument like \"deslop\", \"debt\", \"perf\", or \"stack\"."
     },
     {
       "name": "release",
@@ -968,7 +968,7 @@
     {
       "name": "show-me-your-work",
       "source": "./skills/show-me-your-work",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Keep a reviewable decision trail for long-running or unattended work. A TSV log with one row per decision (what, why, evidence, result). Local by default. Commit it when a reviewer needs the trail to trust the result. Use for show-me-your-work, autonomous or multi-phase runs, or work a human reviews after stepping away."
     },
     {
@@ -1070,19 +1070,19 @@
     {
       "name": "teach",
       "source": "./skills/teach",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Explain a body of work so a person actually understands it. Runs how and why and weaves what they find into one plain explanation, built up diagram by diagram. Use for teach me this, help me really understand X, or explain this change or subsystem."
     },
     {
       "name": "tech-debt",
       "source": "./skills/tech-debt",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Inventories a real codebase and ranks its technical debt into a register scored by interest (how often it hurts) over principal (effort to fix), every item anchored to a file-and-line or a metric. Covers code smells, dependency debt, test gaps, and architectural churn hotspots across frontend and backend. Use when asked what to pay down, where the codebase is rotting, or to turn debt into a tracked backlog. Files the register as GitHub issues on request. For org-level technology strategy and architecture direction, use `cto-advisor`."
     },
     {
       "name": "technical-writing",
       "source": "./skills/technical-writing",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Layered technical-writing standard for docs, RFCs, READMEs, PR descriptions, and commit messages. Diátaxis structure, Google developer style sentences, STE instruction rules, Global English syntax. Use for technical-writing or when writing or reviewing those surfaces."
     },
     {

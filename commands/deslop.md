@@ -22,9 +22,9 @@ Also reachable as `/refactor deslop`.
 
 ## Workflow
 
-Use the `de-slop` skill.
+Use the `deslop` skill.
 
-1. If invoked as `/deslop ui`, run the `de-slop` UI mode. Do not run code cleanup
+1. If invoked as `/deslop ui`, run the `deslop` UI mode. Do not run code cleanup
    first. If invoked as `/deslop prose`, run the prose catalog only.
 2. Detect project structure (monorepo vs single package); in `--changed` mode,
    compute the branch diff (`git diff <merge-base>...HEAD`) and limit edits to those

@@ -10,8 +10,8 @@ create one.
 **Commits.** Commit liberally. Rebase into small, ordered commits before
 opening PRs. Each commit is landable and tells the story.
 
-**Cleanup.** Apply `skills/de-slop/references/prose-slop.md` to titles,
-descriptions, and commit bodies. Name `de-slop` for a code strip and
+**Cleanup.** Apply `skills/deslop/references/prose-slop.md` to titles,
+descriptions, and commit bodies. Name `deslop` for a code strip and
 `no-comments` before review. Write PR title, description, and commit
 body with `technical-writing`. Apply every technical-writing layer
 except Diátaxis.

@@ -95,7 +95,7 @@ not a ratified standard — the gate regex is the single point to adjust if it s
 Adapted Lauren Tan's pstack (MIT, cursor/plugins) as first-class skills.
 Orchestrator is `pstack` (not a Cursor sticky mode). Principles live as
 `pstack/references/principles.md`, not 21 catalog skills. `tdd` and
-`de-slop` were rewritten in place with pstack rigor. Overlaps skipped:
+`deslop` were rewritten in place with pstack rigor. Overlaps skipped:
 wait-what, skill-creator / skill-capture, verification-before-completion,
 typescript-expert, review-dispatch / code-review / grok-review. Benny and
 setup-pstack stay out.

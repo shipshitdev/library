@@ -1,6 +1,6 @@
 {
   "name": "tech-debt",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Inventory a codebase and rank its technical debt into a register scored interest over principal.",
   "author": {
     "name": "Ship Shit Dev",

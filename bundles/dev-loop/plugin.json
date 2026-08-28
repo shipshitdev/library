@@ -1,6 +1,6 @@
 {
   "name": "shipshitdev-dev-loop",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "description": "Autonomous GitHub issue-to-PR loop with PRDs, plans, board dispatch, QA, and review",
   "author": "Ship Shit Dev",
   "license": "MIT",

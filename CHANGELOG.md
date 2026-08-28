@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/shipshitdev/skills/compare/v1.2.0...v2.0.0) (2026-08-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* hard-rename deslop and monitor QA runtime errors ([#120](https://github.com/shipshitdev/skills/issues/120))
+
+### Features
+
+* hard-rename deslop and monitor QA runtime errors ([#120](https://github.com/shipshitdev/skills/issues/120)) ([1cac5d9](https://github.com/shipshitdev/skills/commit/1cac5d9455de92040fb869c4c63ffddb6f38098c))
+
 ## [1.2.0](https://github.com/shipshitdev/skills/compare/v1.1.1...v1.2.0) (2026-08-27)
 
 

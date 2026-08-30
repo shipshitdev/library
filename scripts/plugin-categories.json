@@ -153,6 +153,7 @@
       "skills": [
         "bug",
         "gh-address-comments",
+        "gh-board-sync",
         "gh-fix-ci",
         "gh-inbox",
         "gh-pr-publish",
@@ -164,7 +165,7 @@
         "merge-open-prs",
         "release",
         "release-dispatch",
-        "release-cleanup",
+        "git-cleanup",
         "release-pr-gates",
         "worktree",
         "finishing-a-development-branch",
@@ -210,7 +211,7 @@
         "refactor-code",
         "refactor-dispatch",
         "release",
-        "release-cleanup",
+        "git-cleanup",
         "release-dispatch",
         "release-pr-gates",
         "review-dispatch",
@@ -256,6 +257,7 @@
         "executing-plans",
         "setup-agent-routing",
         "gh-project-board",
+        "gh-board-sync",
         "qa-reviewer"
       ]
     }

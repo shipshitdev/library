@@ -13,6 +13,7 @@ GitHub workflow and automation skills
 
 - `bug`
 - `gh-address-comments`
+- `gh-board-sync`
 - `gh-fix-ci`
 - `gh-inbox`
 - `gh-pr-publish`
@@ -24,7 +25,7 @@ GitHub workflow and automation skills
 - `merge-open-prs`
 - `release`
 - `release-dispatch`
-- `release-cleanup`
+- `git-cleanup`
 - `release-pr-gates`
 - `worktree`
 - `finishing-a-development-branch`

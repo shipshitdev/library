@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.0.0](https://github.com/shipshitdev/skills/compare/v1.3.0...v2.0.0) (2026-08-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* consolidate test/scan/env/prompt/performance commands behind skills ([#127](https://github.com/shipshitdev/skills/issues/127))
+* rename release-cleanup to git-cleanup behind /cleanup, retire /clean and /inbox ([#125](https://github.com/shipshitdev/skills/issues/125))
+
+### Features
+
+* add gh-board-sync skill and expand /board into a full front door ([#126](https://github.com/shipshitdev/skills/issues/126)) ([7e30880](https://github.com/shipshitdev/skills/commit/7e30880753c9d9e2a8660e8ddaeac20b3ba9111f))
+* consolidate test/scan/env/prompt/performance commands behind skills ([#127](https://github.com/shipshitdev/skills/issues/127)) ([9a403e2](https://github.com/shipshitdev/skills/commit/9a403e230cf0dfe9c8f3407fa7f9dde6049b6ca6))
+* rename release-cleanup to git-cleanup behind /cleanup, retire /clean and /inbox ([#125](https://github.com/shipshitdev/skills/issues/125)) ([43d321a](https://github.com/shipshitdev/skills/commit/43d321a7f665583a785a0175d8aa3da46ec85351))
+
 ## [1.3.0](https://github.com/shipshitdev/skills/compare/v1.2.0...v1.3.0) (2026-08-28)
 
 

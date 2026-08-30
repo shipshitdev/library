@@ -3,7 +3,7 @@ name: merge-open-prs
 description: Review and land open pull requests through one /merge command. The default mode runs a confirmation-gated trunk sweep and cleanup; exact /merge force drains the queue non-serially by merging green PRs and narrowly fixing red PRs. Use when asked to review and merge open PRs, batch-merge to trunk, drain PR WIP, or run /merge.
 compatibility: Requires git, GitHub CLI gh, and jq access to the target repository.
 metadata:
-  version: "1.3.1"
+  version: "1.3.2"
   tags: "git, github, pull-request, merge, review, trunk, cleanup, batch"
 allowed-tools: Bash(git *) Bash(gh *) Bash(jq *)
 disable-model-invocation: true
@@ -40,7 +40,7 @@ Outputs:
 - A consolidated merge plan: the mergeable, reviewed PRs versus the excluded ones
   (draft, conflicted, failing checks, unresolved findings) with a reason each
 - Merge result per PR
-- The prune summary delegated to `release-cleanup` in the default mode
+- The prune summary delegated to `git-cleanup` in the default mode
 - In `force` mode: queue classification, PRs merged, PRs fixed and pushed with
   CI pending, blocked PRs, evidence, and no-deploy confirmation
 
@@ -50,7 +50,7 @@ Creates/Modifies:
 - In `force` mode, commits and pushes narrow fixes to PR branches when the root
   cause is clear, and may rerun or cancel setup-stuck CI
 - Deletes each merged PR's head branch (`--delete-branch`)
-- Delegates local branch, remote branch, and worktree pruning to `release-cleanup`
+- Delegates local branch, remote branch, and worktree pruning to `git-cleanup`
 - Never merges a draft, a conflicted PR, or a PR with failing required checks
   without explicit per-PR confirmation
 
@@ -69,7 +69,7 @@ Confirmation Required:
   explicit yes in the default sweep
 - Before merging a PR whose checks are failing or still pending, or that carries
   an unaddressed review finding
-- Before pruning — handled by `release-cleanup`, which runs its own dry-run and
+- Before pruning — handled by `git-cleanup`, which runs its own dry-run and
   confirmation gate
 - Exact `/merge force` authorizes normal queue actions: merge green PRs, rerun
   setup-stuck CI, commit narrow fixes, push, and continue. It does not authorize
@@ -80,7 +80,7 @@ Delegates To:
 - `code-review` to review each open PR before it is merged
 - `gh-fix-ci` when a PR's required checks are failing and the user wants them fixed
 - `fix-merge-conflicts` when a conflicted PR should be resolved rather than skipped
-- `release-cleanup` to prune merged branches and stale worktrees after merges land
+- `git-cleanup` to prune merged branches and stale worktrees after merges land
 - `release` to cut a semver tag and GitHub release from the trunk once PRs are merged
 
 ## When to Use
@@ -210,7 +210,7 @@ gh run rerun <run-id> --job <job-id>
 Leave unrelated pending PRs pending. Report conflicts and unclear review blocks
 without broadening the fix. Reclassify dependents after an upstream PR merges.
 
-Force mode does not run `release-cleanup`; it stops after draining everything
+Force mode does not run `git-cleanup`; it stops after draining everything
 that can safely progress. Its final report must include `PRs merged`, `PRs fixed
 and pushed, CI pending`, `PRs blocked`, `Evidence`, and `Deploy status: no deploy
 ran`.
@@ -237,7 +237,7 @@ Hard rules:
 6. The default plan contains only PRs that are non-draft, mergeable, green, and
    review-clean. Everything else is listed with its reason and skipped.
 7. No deletion happens here beyond the merged PR's own head branch. All other
-   branch and worktree pruning is delegated to `release-cleanup`, which gates it.
+   branch and worktree pruning is delegated to `git-cleanup`, which gates it.
 
 ## Phase 1: Discover Open PRs Into the Trunk
 
@@ -362,7 +362,7 @@ git fetch --all --prune
 
 ## Phase 5: Prune (Delegated)
 
-By default (no `--no-prune`), hand off to `release-cleanup` in `prune` mode once
+By default (no `--no-prune`), hand off to `git-cleanup` in `prune` mode once
 the merges have landed. It re-derives what is provably merged with its
 squash-aware merge oracle, prints its own dry-run plan, and requires its own
 confirmation before deleting any local branch, remote branch, or worktree. Do not
@@ -370,14 +370,14 @@ delete branches or worktrees directly from this skill beyond the per-PR
 `--delete-branch` already done in Phase 4.
 
 If any PR was left unmerged (conflicted, failing, or skipped), tell
-`release-cleanup` to treat those branches as in-flight so they are not pruned.
+`git-cleanup` to treat those branches as in-flight so they are not pruned.
 
 With `--no-prune`, stop after Phase 4 and report; do not prune.
 
 ## Arguments
 
 - `merge-open-prs` — Phases 1-5. Review, confirm, merge, then delegate prune to
-  `release-cleanup`. The full sweep. (Default.)
+  `git-cleanup`. The full sweep. (Default.)
 - `merge-open-prs force [dependency order]` — run Force Mode. Merge green PRs,
   narrowly fix red PRs, and move on without serial CI waiting or pruning.
 - `merge-open-prs review` — Phases 1-3. Review every open PR into the trunk and
@@ -400,6 +400,6 @@ Report:
 - PRs merged, with numbers and head branches
 - PRs excluded, grouped by reason (draft, conflicting, checks, review-blocked)
 - Any merge that failed mid-batch and why
-- The `release-cleanup` prune summary, or that pruning was skipped
+- The `git-cleanup` prune summary, or that pruning was skipped
 - What the user should decide next (e.g. rebase a conflicted PR, fix CI via
   `gh-fix-ci`, or cut a release from trunk via the `release` skill)

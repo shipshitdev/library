@@ -504,6 +504,12 @@
       "description": "Review GitHub pull requests and post precise inline suggested changes with GitHub suggestion blocks. Use when asked to review a PR, leave actionable GitHub comments, propose applyable fixes, or submit review suggestions through gh."
     },
     {
+      "name": "git-cleanup",
+      "source": "./skills/git-cleanup",
+      "version": "3.1.0",
+      "description": "Clean up the git working state — verify branches are provably merged into the trunk (default branch) via the squash-aware GitHub PR merge oracle, then prune merged local and remote feature branches and stale git worktrees. Squash-merge aware — uses GitHub PR merge state as the merge oracle, not commit ancestry. Use when the user asks to clean up branches or worktrees, prune what is already merged, run /cleanup, or confirm nothing stale was left behind before pruning."
+    },
+    {
       "name": "git-safety",
       "source": "./skills/git-safety",
       "version": "1.1.0",
@@ -620,7 +626,7 @@
     {
       "name": "merge-open-prs",
       "source": "./skills/merge-open-prs",
-      "version": "1.3.1",
+      "version": "1.3.2",
       "description": "Review and land open pull requests through one /merge command. The default mode runs a confirmation-gated trunk sweep and cleanup; exact /merge force drains the queue non-serially by merging green PRs and narrowly fixing red PRs. Use when asked to review and merge open PRs, batch-merge to trunk, drain PR WIP, or run /merge."
     },
     {
@@ -782,7 +788,7 @@
     {
       "name": "pstack",
       "source": "./skills/pstack",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Playbook orchestrator for verified, unslopped engineering work. Matches a task to a named playbook, applies the principles index, and routes to how, why, architect, arena, swarm, interrogate, tdd, and related skills. Use for pstack, poteto-mode, /pstack, or requests to work in this style."
     },
     {
@@ -878,20 +884,14 @@
     {
       "name": "release",
       "source": "./skills/release",
-      "version": "2.0.1",
+      "version": "2.0.2",
       "description": "Cuts the release itself — derives the next semantic version from commits since the last tag, writes plain-English patch notes, previews the plan, then on confirmation creates an annotated tag plus GitHub release, or dispatches the repo's guarded release workflow where production sits behind a workflow_dispatch promote gate. Trunk-based; no develop or staging branch promotion. Assumes the trunk is already green — to open a release PR or wait on required checks first, use `release-pr-gates`."
-    },
-    {
-      "name": "release-cleanup",
-      "source": "./skills/release-cleanup",
-      "version": "2.2.0",
-      "description": "Verify a release branch is provably merged into the trunk (default branch) via the squash-aware GitHub PR merge oracle, then prune merged local and remote feature branches and stale git worktrees. Squash-merge aware — uses GitHub PR merge state as the merge oracle, not commit ancestry. Use when the user asks to clean up branches after a deploy, prune worktrees, remove merged branches, or confirm nothing stale was left behind before pruning."
     },
     {
       "name": "release-dispatch",
       "source": "./skills/release-dispatch",
-      "version": "1.0.1",
-      "description": "Single front door for releases. Parses a subcommand — gates, cut, notes, or cleanup — and routes to the right release engine: release-pr-gates (verify CI green, then cut a tag/release or open a release PR), release (semver bump + plain-English patch notes), or release-cleanup (prune merged branches and stale worktrees). Backs the /release command. Use when asked to release, cut a tag, open a release PR, wait for CI to go green, generate patch notes, or clean up branches after a deploy, and the action must be picked from an argument like \"gates\", \"cut\", \"notes\", or \"cleanup\"."
+      "version": "2.0.1",
+      "description": "Single front door for releases. Parses a subcommand — gates, cut, or notes — and routes to the right release engine: release-pr-gates (verify CI green, then cut a tag/release or open a release PR) or release (semver bump + plain-English patch notes). Backs the /release command. Use when asked to release, cut a tag, open a release PR, wait for CI to go green, or generate patch notes, and the action must be picked from an argument like \"gates\", \"cut\", or \"notes\". Branch/worktree pruning is not a release step — that is git-cleanup, behind /cleanup."
     },
     {
       "name": "release-pr-gates",
@@ -1178,7 +1178,7 @@
     {
       "name": "worktree",
       "source": "./skills/worktree",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Create an isolated git worktree from the correct base branch and check it out into a clean, gitignored directory. Use when the user asks to make a worktree, spin up a parallel/isolated workspace, work on something without disturbing the current checkout, branch off the current work, or run multiple agents on the same repo at once. Picks the base branch smartly — the current feature branch when you are on one, otherwise the repository's default/trunk branch — so worktrees continue your in-progress work by default instead of forking from the wrong place."
     },
     {

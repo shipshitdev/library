@@ -60,15 +60,31 @@ Confirmation Required:
 Scan the codebase for environment reads:
 
 ```bash
-grep -rEoh "process\.env\.[A-Z0-9_]+|import\.meta\.env\.[A-Z0-9_]+" \
-  --include="*.ts" --include="*.tsx" --include="*.js" --include="*.mjs" . \
-  | grep -v node_modules | sort -u
+grep -rEoh "(process\.env|import\.meta\.env)(\.[A-Z0-9_]+|\[['\"][A-Z0-9_]+['\"]\])" \
+  --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" \
+  --include="*.mjs" --include="*.cjs" \
+  --exclude-dir=node_modules --exclude-dir=dist --exclude-dir=build \
+  --exclude-dir=.next --exclude-dir=coverage . \
+  | grep -oE "[A-Z0-9_]{2,}" | sort -u
 ```
 
-Also check framework config (`next.config.*`, `nest-cli.json`, deploy config),
-schema-based env validation modules (zod/valibot env files), and existing
-`.env*` files. In a monorepo, inventory per app/package — apps often need
-different variables.
+**Treat that grep as a starting inventory, never as the answer.** It knows one
+language family (JS/TS) and two syntaxes (`process.env.X` and
+`process.env["X"]`, plus the `import.meta.env` equivalents). It cannot see a
+variable read through a helper (`getEnv("STRIPE_KEY")`), a destructure
+(`const { DATABASE_URL } = process.env`), a dynamic key, or a non-JS service in
+the same repo — Python `os.environ`, Go `os.Getenv`, Dockerfiles, CI workflows.
+Exclusions are directory-scoped (`--exclude-dir`) because filtering `grep -oh`
+output by path is impossible: `-o` prints only the matched text and `-h`
+suppresses the filename, so a downstream `grep -v node_modules` matches nothing
+and silently filters nothing.
+
+Widen the sweep by hand from there: framework config (`next.config.*`,
+`nest-cli.json`, deploy config), schema-based env validation modules
+(zod/valibot env files), container and CI definitions, and existing `.env*`
+files. In a monorepo, inventory per app/package — apps often need different
+variables. Report the inventory as "found by scan + found by hand", so a reader
+can see what the automated pass could not cover.
 
 ## Phase 2: Generate .env.example
 

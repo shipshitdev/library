@@ -1100,7 +1100,7 @@
     {
       "name": "test-dispatch",
       "source": "./skills/test-dispatch",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "description": "Single front door for testing. Parses a subcommand — run, qa, tdd, e2e, coverage, init, or regression — and routes to the right testing engine: test-runner (run tests, fix failures), qa-reviewer (structured verification pass on completed work), tdd (red-green-refactor workflow), playwright-e2e-init (scaffold E2E tests for frontend projects), husky-test-coverage (enforce coverage thresholds via git hooks), testing-cicd-init (Vitest + GitHub Actions CI setup), or ai-regression-testing (design regression tests targeting AI blind spots). Backs the /test command. Use when asked to run tests, write tests, set up testing, check coverage, or start TDD, and the action must be picked from an argument like \"run\", \"qa\", \"tdd\", \"e2e\", \"coverage\", \"init\", or \"regression\"."
     },
     {

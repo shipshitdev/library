@@ -10,7 +10,9 @@ AI-targeted regression suites.
 /test                    # status: detected runner, coverage config + usage
 /test run                # changed-only: tests related to your dirty worktree, auto-fix until green
 /test run full           # the whole suite (what CI runs)
-/test run unit | integration | e2e   # run existing tests by type
+/test run unit           # run existing unit tests
+/test run integration    # run existing integration tests
+/test run e2e            # run existing end-to-end tests
 /test run types          # tsc --noEmit and clear the errors in a loop
 /test run coverage       # full run + coverage report
 /test run <path|pattern> # run a focused test path or pattern

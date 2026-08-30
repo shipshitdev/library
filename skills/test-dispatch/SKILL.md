@@ -12,7 +12,7 @@ description: >-
   up testing, check coverage, or start TDD, and the action must be picked from an
   argument like "run", "qa", "tdd", "e2e", "coverage", "init", or "regression".
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
   tags: "testing, dispatcher, tdd, e2e, coverage, ci, orchestration"
   author: Ship Shit Dev
 when_to_use: "/test, run tests, qa review, tdd, e2e tests, coverage enforcement, testing setup, ai regression tests, check your work, fix failing tests"
@@ -50,8 +50,12 @@ Outputs:
 
 Creates/Modifies:
 
-- Nothing directly. The delegated skill performs any mutation (writing tests,
-  editing config, creating workflows) behind its own gates.
+- Nothing directly, but routing is not the same as being read-only. Every
+  mutation happens inside the delegated skill, under that skill's gates — and
+  `run` is a mutating route: `test-runner`'s auto-fix loop edits the code under
+  test and its tests until the suite is green. `e2e`, `coverage`, and `init`
+  write config, hooks, and workflows. Only `status`, `qa`, and `--no-fix` runs
+  leave the tree untouched.
 
 External Side Effects:
 
@@ -62,8 +66,14 @@ External Side Effects:
 Confirmation Required:
 
 - This skill is explicit-invoke only (`disable-model-invocation`). Delegated
-  skills that mutate files (e2e, coverage, init) each re-confirm before writing.
-  Never chain mutating subcommands automatically.
+  skills that scaffold files (e2e, coverage, init) each re-confirm before
+  writing. Never chain mutating subcommands automatically.
+- `run` is different, and saying so matters: `test-runner` is _designed_ to edit
+  the file(s) under test and their tests without asking — that loop is the whole
+  point of `/test run`. It re-confirms before editing source _beyond_ those
+  files, before an expensive full/e2e run, and before changing any test's
+  expectations. When the user wants a report and no edits at all, route
+  `--no-fix` rather than relying on a gate `test-runner` does not have.
 
 Delegates To:
 
@@ -116,7 +126,9 @@ router does not relax them.
 /test                    # status: detected runner, coverage config + usage
 /test run                # changed-only: tests related to your dirty worktree, auto-fix until green
 /test run full           # the whole suite (what CI runs)
-/test run unit | integration | e2e   # run existing tests by type
+/test run unit           # run existing unit tests
+/test run integration    # run existing integration tests
+/test run e2e            # run existing end-to-end tests
 /test run types          # tsc --noEmit and clear the errors in a loop
 /test run coverage       # full run + coverage report
 /test run <path|pattern> # run a focused test path or pattern

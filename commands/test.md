@@ -8,8 +8,16 @@ AI-targeted regression suites.
 
 ```bash
 /test                    # status: detected runner, coverage config + usage
-/test run                # run tests at the right scope, auto-fix failures until green
+/test run                # changed-only: tests related to your dirty worktree, auto-fix until green
+/test run full           # the whole suite (what CI runs)
+/test run unit           # run existing unit tests
+/test run integration    # run existing integration tests
+/test run e2e            # run existing end-to-end tests
+/test run types          # tsc --noEmit and clear the errors in a loop
+/test run coverage       # full run + coverage report
 /test run <path|pattern> # run a focused test path or pattern
+/test run --since <ref>  # tests related to a commit range
+/test run --no-fix       # run and report only; make no edits
 /test qa                 # structured multi-phase verification pass on completed work
 /test tdd                # red-green-refactor workflow for a feature or bug fix
 /test e2e                # scaffold Playwright E2E tests for a frontend project
@@ -18,11 +26,18 @@ AI-targeted regression suites.
 /test regression         # design regression tests targeting AI-generated code blind spots
 ```
 
+Note the run/setup split: `/test run e2e` executes existing E2E tests, while
+`/test e2e` scaffolds Playwright from scratch. Likewise `/test run coverage`
+runs the suite with coverage, while `/test coverage` installs the Husky gate.
+`/test qa` is also reachable directly as `/qa`.
+
 ## Steps
 
 - **`run`** — the `test-runner` skill: detect the test runner, run tests at the
   right scope (changed-only by default), and on failure read output and traces,
-  apply a minimal fix, and rerun until green or blocked.
+  apply a minimal fix, and rerun until green or blocked. Scope tokens (`full`,
+  `unit`/`integration`/`e2e`, `types`, `coverage`, a path/pattern,
+  `--since <ref>`, `--no-fix`) forward to the runner verbatim.
 - **`qa`** — the `qa-reviewer` skill: run a structured multi-phase verification
   pass on completed AI agent work, catching bugs, missed requirements, and
   incorrect assumptions before changes are committed.

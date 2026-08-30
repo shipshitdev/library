@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "185 AI agent skills for development workflows",
+  "description": "186 AI agent skills for development workflows",
   "plugins": [
     {
       "name": "shipshitdev-testing",
@@ -396,6 +396,12 @@
       "description": "Deploys backend applications to EC2 instances using Docker, GitHub Actions CI/CD, and Tailscale for secure SSH access. Activates when setting up EC2 deployment pipelines, configuring container registries, or wiring automated deploys for NestJS, Next.js, or Express backends."
     },
     {
+      "name": "env-setup",
+      "source": "./skills/env-setup",
+      "version": "1.0.0",
+      "description": "Discover the environment variables a codebase actually reads, generate or update a grouped .env.example template, validate that required variables are set, and keep secrets out of git. Use when setting up environment variables for a project, scaffolding .env templates, validating an existing .env file, documenting required configuration, or checking that .gitignore covers env files. Backs the /env command."
+    },
+    {
       "name": "error-handling-expert",
       "source": "./skills/error-handling-expert",
       "version": "1.0.0",
@@ -782,7 +788,7 @@
     {
       "name": "prompt-engineering",
       "source": "./skills/prompt-engineering",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "description": "Expert guide on prompt engineering patterns, best practices, and optimization techniques. Use when user wants to improve prompts, learn prompting strategies, debug agent behavior, or design content generation prompts."
     },
     {
@@ -1094,14 +1100,14 @@
     {
       "name": "test-dispatch",
       "source": "./skills/test-dispatch",
-      "version": "1.0.0",
+      "version": "1.1.1",
       "description": "Single front door for testing. Parses a subcommand — run, qa, tdd, e2e, coverage, init, or regression — and routes to the right testing engine: test-runner (run tests, fix failures), qa-reviewer (structured verification pass on completed work), tdd (red-green-refactor workflow), playwright-e2e-init (scaffold E2E tests for frontend projects), husky-test-coverage (enforce coverage thresholds via git hooks), testing-cicd-init (Vitest + GitHub Actions CI setup), or ai-regression-testing (design regression tests targeting AI blind spots). Backs the /test command. Use when asked to run tests, write tests, set up testing, check coverage, or start TDD, and the action must be picked from an argument like \"run\", \"qa\", \"tdd\", \"e2e\", \"coverage\", \"init\", or \"regression\"."
     },
     {
       "name": "test-runner",
       "source": "./skills/test-runner",
-      "version": "1.0.0",
-      "description": "Run a project's tests at the right scope — changed-only, focused, full, type-check, or e2e — then, on failure, read the output and traces, apply a minimal fix, and rerun until green or blocked. Detects the test runner and package manager from the repo. Use when the user asks to run tests, run the suite, run smoke/e2e tests, type-check, check the build compiles, fix failing tests, or runs /tests."
+      "version": "1.0.1",
+      "description": "Run a project's tests at the right scope — changed-only, focused, full, type-check, or e2e — then, on failure, read the output and traces, apply a minimal fix, and rerun until green or blocked. Detects the test runner and package manager from the repo. Use when the user asks to run tests, run the suite, run smoke/e2e tests, type-check, check the build compiles, fix failing tests, or runs /test run."
     },
     {
       "name": "testing-cicd-init",

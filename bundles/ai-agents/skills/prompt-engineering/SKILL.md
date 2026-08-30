@@ -2,7 +2,7 @@
 name: prompt-engineering
 description: Expert guide on prompt engineering patterns, best practices, and optimization techniques. Use when user wants to improve prompts, learn prompting strategies, debug agent behavior, or design content generation prompts.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   tags: "prompt-engineering, ai, optimization, content-generation, templates"
 ---
 
@@ -190,6 +190,8 @@ When designing prompts for content generation:
 ## When to Use
 
 Activate when user wants to improve prompts, learn prompting strategies, debug agent behavior, or design content generation pipelines.
+
+**When optimizing an existing prompt** (the `/prompt` command's job): follow the systematic 4-D workflow — Deconstruct, Diagnose, Develop, Deliver — in `references/prompt-optimization.md`.
 
 ## Limitations
 

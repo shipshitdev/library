@@ -30,5 +30,7 @@ Use the `qa-reviewer` skill.
 
 ## Related
 
+- `/qa` is the direct shortcut for `/test qa` — same `qa-reviewer` engine,
+  kept as its own command because it is the most-used pre-commit gate.
 - `/qa` verifies *your* work before commit; `/review` is the correctness +
   security gate on a diff/PR. Run `/qa` before `/pr`.

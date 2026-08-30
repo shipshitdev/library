@@ -1,12 +1,7 @@
 # Changelog
 
-## [2.0.0](https://github.com/shipshitdev/skills/compare/v1.3.0...v2.0.0) (2026-08-30)
+## [1.3.1](https://github.com/shipshitdev/skills/compare/v1.3.0...v1.3.1) (2026-08-30)
 
-
-### ⚠ BREAKING CHANGES
-
-* consolidate test/scan/env/prompt/performance commands behind skills ([#127](https://github.com/shipshitdev/skills/issues/127))
-* rename release-cleanup to git-cleanup behind /cleanup, retire /clean and /inbox ([#125](https://github.com/shipshitdev/skills/issues/125))
 
 ### Features
 

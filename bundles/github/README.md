@@ -13,6 +13,7 @@ GitHub workflow and automation skills
 
 - `bug`
 - `gh-address-comments`
+- `gh-board-sync`
 - `gh-fix-ci`
 - `gh-inbox`
 - `gh-pr-publish`

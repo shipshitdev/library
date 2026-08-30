@@ -152,6 +152,7 @@
       "skills": [
         "bug",
         "gh-address-comments",
+        "gh-board-sync",
         "gh-fix-ci",
         "gh-inbox",
         "gh-pr-publish",
@@ -255,6 +256,7 @@
         "executing-plans",
         "setup-agent-routing",
         "gh-project-board",
+        "gh-board-sync",
         "qa-reviewer"
       ]
     }

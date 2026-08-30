@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "184 AI agent skills for development workflows",
+  "description": "185 AI agent skills for development workflows",
   "plugins": [
     {
       "name": "shipshitdev-testing",
@@ -472,6 +472,12 @@
       "source": "./skills/gh-address-comments",
       "version": "1.0.1",
       "description": "Implements the fixes a PR review asked for — maps each thread to the code it touches, edits that code, and drafts a reply per thread for approval before anything is posted. Starts from feedback that is already understood; producing the read-only digest is `pr-comments`."
+    },
+    {
+      "name": "gh-board-sync",
+      "source": "./skills/gh-board-sync",
+      "version": "1.0.0",
+      "description": "Reconcile a GitHub Projects v2 board against real repository state — merged PRs, closed issues, stale lanes, untracked work — and report every drifted item with evidence. Read-only by default; fixes Status/Priority values only with --apply and per-category confirmation. Use when asking whether the board reflects reality, auditing board drift, or syncing board state after merges."
     },
     {
       "name": "gh-fix-ci",

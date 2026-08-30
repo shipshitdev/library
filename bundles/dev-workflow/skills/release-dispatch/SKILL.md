@@ -10,7 +10,7 @@ description: >-
   "cut", or "notes". Branch/worktree pruning is not a release step — that is
   git-cleanup, behind /cleanup.
 metadata:
-  version: "2.0.0"
+  version: "2.0.1"
   tags: "release, dispatcher, ci-cd, semver, github, orchestration"
   author: Ship Shit Dev
 allowed-tools: Bash(git *) Bash(gh *)
@@ -45,8 +45,9 @@ Outputs:
 
 Creates/Modifies:
 
-- Nothing directly. The delegated skill performs any mutation (tag, release, PR,
-  branch/worktree deletion) behind its own confirmation gate.
+- Nothing directly. The delegated skill performs any mutation (tag, release, PR)
+  behind its own confirmation gate. No `/release` mode deletes branches or
+  worktrees — that is `/cleanup`'s job.
 
 External Side Effects:
 

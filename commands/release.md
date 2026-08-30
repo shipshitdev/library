@@ -38,8 +38,8 @@ or prunes unmerged branches.
 
 1. **Parse the argument** into a mode (`status` / `gates` / `cut` / `notes`),
    forwarding any bump token (`patch`/`minor`/`major`/`vX.Y.Z`) to the cut
-   engine. `cleanup` → point to `/cleanup` and stop. Unknown argument → print
-   Usage, don't guess.
+   engine. `cleanup` or `prune` → point to `/cleanup` and stop. Unknown argument
+   → print Usage, don't guess.
 2. **Detect and verify the trunk** (`gh repo view` default branch, verified on
    the remote). If it can't be verified, stop and ask.
 3. **Route** to the delegated skill (or, for `status`, print latest tag + commits

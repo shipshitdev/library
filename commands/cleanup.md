@@ -38,15 +38,20 @@ Close completed work tracked in GitHub Issues so the open backlog stays accurate
 1. Find issues that are done (all checklist items `[x]`, or work shipped/merged)
    but still open (`gh issue list --state open`).
 2. Confirm the list with the user before closing anything.
-3. Close each with a short completion comment, e.g.
-   `gh issue close <number> --comment "Completed — see .agents/sessions/<date>.md."`
+3. Close each with a short, self-contained completion comment that points at
+   something a reader on GitHub can actually open — the shipped PR or commit:
+   `gh issue close <number> --comment "Completed in <pr-or-commit-url>."`
+   Never cite a local session file; `.agents/sessions/` is gitignored in most
+   repos, so it is invisible to anyone reading the issue.
 4. Log the closed issues to today's session file.
 
 ## Sessions (`sessions`)
 
 Merge daily sessions into monthly, monthly into yearly.
 
-1. Back up `.agents/sessions/` to `.agents/sessions/backups/` first.
+1. Back up the contents of `.agents/sessions/` to a **sibling** directory first —
+   `.agents/session-backups/<timestamp>/`. Never nest the backup inside the
+   directory being consolidated, or a rerun sweeps earlier backups into itself.
 2. Consolidate `YYYY-MM-DD.md` files for past months into `YYYY-MM.md`.
 3. Consolidate `YYYY-MM.md` files for past years into `YYYY-yearly-review.md`.
 4. Preserve `README.md`; report what was consolidated.

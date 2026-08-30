@@ -3,7 +3,7 @@ name: git-cleanup
 description: Clean up the git working state — verify branches are provably merged into the trunk (default branch) via the squash-aware GitHub PR merge oracle, then prune merged local and remote feature branches and stale git worktrees. Squash-merge aware — uses GitHub PR merge state as the merge oracle, not commit ancestry. Use when the user asks to clean up branches or worktrees, prune what is already merged, run /cleanup, or confirm nothing stale was left behind before pruning.
 compatibility: Requires git, GitHub CLI gh, and jq access to the target repository.
 metadata:
-  version: "3.0.0"
+  version: "3.1.0"
   tags: "git, cleanup, branches, worktrees, prune, ci-cd, squash-merge, trunk-based"
 allowed-tools: Bash(git *) Bash(gh *) Bash(jq *)
 disable-model-invocation: true
@@ -42,12 +42,24 @@ A branch's work is IN the production branch iff ANY of:
    production branch (covers squash, rebase, and merge-commit), OR
 2. the branch tip is an ancestor of the production branch (covers
    no-PR fast-forwards and merge-commit merges that predate the PR API), OR
-3. every unique commit subject still ahead of the trunk matches a merged PR whose
-   `mergeCommit` is in the trunk (covers local retarget/rebase copies whose name
-   no longer matches a PR head).
+3. everything the branch changes is already in the trunk **by patch identity** —
+   either every ahead commit has a patch-identical twin upstream (`git cherry`),
+   or the branch's cumulative diff is patch-identical to a single trunk commit
+   added since the merge base (covers local retarget/rebase copies whose name no
+   longer matches a PR head).
 
 Only branches that satisfy this are prunable. Everything else is reported, never
 deleted.
+
+**A matching commit subject is never proof of a merge.** Subjects like `fix: lint`
+or `chore: bump deps` recur across unrelated branches, so subject equality would
+classify genuinely unmerged work as prunable and hand it to `git branch -D`. Worse,
+subject matching barely helps in the case it was meant for: a squash merge
+rewrites the branch's several subjects into one PR title, so they no longer match
+anyway. Rule 3 therefore never compares subjects — the proof is always
+`git patch-id`, scanning the trunk commits added since the merge base. The scan is
+bounded (`--max-count=500`); if the squashed commit falls outside that window the
+branch is reported unproven, never deleted.
 
 ## Contract
 
@@ -167,7 +179,8 @@ Classify remotes, locals, and extra worktrees. A remote-only pass is not enough.
 
 For each candidate (remote branch, local branch, or extra worktree HEAD), verify
 that its work has reached the trunk. Ancestry is the first signal, but squash
-merges require corroboration against the latest merged PR for that work.
+merges require corroboration — the merged PR for that head, or failing that,
+patch identity against the trunk (`squash_artifact` in 2b).
 
 ```bash
 TRUNK=$(gh repo view --json defaultBranchRef --jq .defaultBranchRef.name)
@@ -182,10 +195,13 @@ latest_pr_for_head "<branch>"
 Interpreting a non-empty ahead range:
 
 - Genuine commits not yet in the trunk => NOT MERGED. Report and STOP.
-- Every ahead subject matches a PR already squash-merged into the trunk =>
-  squash artifact, not a real gap. Treat as merged. This is how local
-  retarget/rebase copies (`*-onto-<trunk>`, `pr-N-rebase`, detached worktree
-  HEADs) get classified when their name no longer matches a PR head.
+- Every ahead commit is patch-identical to work already in the trunk => squash
+  artifact, not a real gap. Treat as merged. This is how local retarget/rebase
+  copies (`*-onto-<trunk>`, `pr-N-rebase`, detached worktree HEADs) get
+  classified when their name no longer matches a PR head.
+- A matching subject with a *different* patch => NOT MERGED. Two branches can
+  carry the same commit message and different changes; only patch identity
+  settles it.
 
 ### 2b. Branch classification (the "nothing is stale" check)
 
@@ -198,19 +214,29 @@ PROD="origin/${TRUNK}"
 CURRENT="$(git symbolic-ref --quiet --short HEAD || echo)"
 PROTECT="${TRUNK}|${CURRENT:-__none__}|HEAD"
 
-squash_artifact() {      # arg: git ref. 0 = every ahead subject is a merged PR in trunk
-  local ref="$1" sub rec mc subjects
-  subjects=$(git log --format=%s "$PROD".."$ref" 2>/dev/null | sort -u)
-  [ -n "$subjects" ] || return 1
-  while IFS= read -r sub; do
-    [ -z "$sub" ] && continue
-    rec=$(gh pr list --state merged --search "$sub" --limit 20 \
-      --json number,title,mergeCommit \
-      | jq -c --arg s "$sub" '[.[]|select(.title==$s)]|first')
-    [ -n "$rec" ] && [ "$rec" != "null" ] || return 1
-    mc=$(jq -r '.mergeCommit.oid // empty' <<<"$rec")
-    [ -n "$mc" ] && git merge-base --is-ancestor "$mc" "$PROD" 2>/dev/null || return 1
-  done <<< "$subjects"
+# Proves a ref's changes are already in the trunk by PATCH IDENTITY.
+# Never matches on commit subjects: unrelated branches reuse subjects like
+# "fix: lint", and a subject match would send live work to `git branch -D`.
+squash_artifact() {      # arg: git ref. 0 = the ref's changes are provably in trunk
+  local ref="$1" base mine c pid
+  base=$(git merge-base "$PROD" "$ref" 2>/dev/null) || return 1
+  # Nothing ahead of the merge base => this rule has nothing to prove.
+  [ -n "$(git log --format=%H "$base".."$ref" 2>/dev/null)" ] || return 1
+
+  # (a) Per-commit equivalence: every ahead commit has a patch-identical twin
+  #     upstream. `git cherry` marks those '-'; a surviving '+' means real work.
+  git cherry "$PROD" "$ref" 2>/dev/null | grep -q '^+' || return 0
+
+  # (b) Squash equivalence: the ref's cumulative diff is patch-identical to the
+  #     patch a single trunk commit introduced. Scan only trunk commits added
+  #     since the merge base — the squash commit can only live in that window.
+  mine=$(git diff "$base".."$ref" | git patch-id --stable | awk '{print $1}')
+  [ -n "$mine" ] || return 1
+  for c in $(git rev-list --max-count=500 "$base".."$PROD" 2>/dev/null); do
+    pid=$(git show "$c" | git patch-id --stable | awk '{print $1}')
+    [ "$pid" = "$mine" ] && return 0
+  done
+  return 1   # unproven => caller reports it, never deletes it
 }
 
 classify_ref() {         # args: head-name, git-ref to test for ancestry

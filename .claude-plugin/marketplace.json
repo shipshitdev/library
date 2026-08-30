@@ -506,7 +506,7 @@
     {
       "name": "git-cleanup",
       "source": "./skills/git-cleanup",
-      "version": "3.0.0",
+      "version": "3.1.0",
       "description": "Clean up the git working state — verify branches are provably merged into the trunk (default branch) via the squash-aware GitHub PR merge oracle, then prune merged local and remote feature branches and stale git worktrees. Squash-merge aware — uses GitHub PR merge state as the merge oracle, not commit ancestry. Use when the user asks to clean up branches or worktrees, prune what is already merged, run /cleanup, or confirm nothing stale was left behind before pruning."
     },
     {
@@ -890,7 +890,7 @@
     {
       "name": "release-dispatch",
       "source": "./skills/release-dispatch",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "description": "Single front door for releases. Parses a subcommand — gates, cut, or notes — and routes to the right release engine: release-pr-gates (verify CI green, then cut a tag/release or open a release PR) or release (semver bump + plain-English patch notes). Backs the /release command. Use when asked to release, cut a tag, open a release PR, wait for CI to go green, or generate patch notes, and the action must be picked from an argument like \"gates\", \"cut\", or \"notes\". Branch/worktree pruning is not a release step — that is git-cleanup, behind /cleanup."
     },
     {

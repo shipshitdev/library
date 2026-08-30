@@ -1,6 +1,6 @@
 {
   "name": "test-runner",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Run tests at the right scope, then read failures and traces, fix, and rerun until green.",
   "author": {
     "name": "Ship Shit Dev",

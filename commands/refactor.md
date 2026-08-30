@@ -29,7 +29,8 @@ frontend and backend.
   files it as issues on request.
 - **`perf`** → `performance-expert`, or `react-component-performance` for one slow
   component, or `workspace-performance-audit` for a whole monorepo. Diagnoses; you
-  apply via `code`.
+  apply via `code`. This is the sole performance front door — the retired
+  `/performance` command folded in here.
 - **`structure`** → the `structural-review` skill — read-only structural lens (also
   reachable as `/review --structural`).
 - **`stack`** → the `stack-modernization` skill — outdated dependencies, dead

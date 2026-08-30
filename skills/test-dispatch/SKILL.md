@@ -12,7 +12,7 @@ description: >-
   up testing, check coverage, or start TDD, and the action must be picked from an
   argument like "run", "qa", "tdd", "e2e", "coverage", "init", or "regression".
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   tags: "testing, dispatcher, tdd, e2e, coverage, ci, orchestration"
   author: Ship Shit Dev
 when_to_use: "/test, run tests, qa review, tdd, e2e tests, coverage enforcement, testing setup, ai regression tests, check your work, fix failing tests"
@@ -33,8 +33,10 @@ and AI-targeted regression design in `ai-regression-testing`.
 Inputs:
 
 - A single argument string (may be empty) parsed into a `mode`. Scope tokens
-  (`changed`, `full`, a path/pattern, `--since <ref>`) are forwarded verbatim
-  to the test-runner engine.
+  after `run` (`full`, `unit`/`integration`/`e2e`, `types`, `coverage`, a
+  path/pattern, `--since <ref>`, `--no-fix`) are forwarded verbatim to the
+  test-runner engine. `/test` absorbed the former `/tests` command — every
+  old `/tests <scope>` spelling is now `/test run <scope>`.
 
 Outputs:
 
@@ -80,13 +82,14 @@ Resolve the raw argument into a `mode`.
 | Argument | Mode | Delegates to |
 |---|---|---|
 | _(empty)_ | `status` | none — print a domain overview + Usage block |
-| `run`, `suite`, `smoke` | `run` | `test-runner` (forward any scope token) |
+| `run`, `suite`, `smoke` | `run` | `test-runner` (forward every scope token verbatim) |
 | `qa`, `review`, `verify` | `qa` | `qa-reviewer` |
 | `tdd`, `red-green` | `tdd` | `tdd` |
 | `e2e`, `playwright` | `e2e` | `playwright-e2e-init` |
 | `coverage`, `hooks` | `coverage` | `husky-test-coverage` |
 | `init`, `setup`, `ci` | `init` | `testing-cicd-init` |
 | `regression` | `regression` | `ai-regression-testing` |
+| bare scope token (`full`, `unit`, `integration`, `types`, path, `--since`, `--no-fix`) | `run` | `test-runner` (legacy `/tests` spelling) |
 
 If the argument matches none of these, report the unrecognized input and print
 the Usage block — do not guess.
@@ -111,8 +114,14 @@ router does not relax them.
 
 ```bash
 /test                    # status: detected runner, coverage config + usage
-/test run                # run tests at the right scope, auto-fix failures until green
+/test run                # changed-only: tests related to your dirty worktree, auto-fix until green
+/test run full           # the whole suite (what CI runs)
+/test run unit | integration | e2e   # run existing tests by type
+/test run types          # tsc --noEmit and clear the errors in a loop
+/test run coverage       # full run + coverage report
 /test run <path|pattern> # run a focused test path or pattern
+/test run --since <ref>  # tests related to a commit range
+/test run --no-fix       # run and report only; make no edits
 /test qa                 # structured multi-phase verification pass on completed work
 /test tdd                # red-green-refactor workflow for a feature or bug fix
 /test e2e                # scaffold Playwright E2E tests for a frontend project
@@ -120,6 +129,15 @@ router does not relax them.
 /test init               # install Vitest + GitHub Actions CI with 80% coverage threshold
 /test regression         # design regression tests targeting AI-generated code blind spots
 ```
+
+The run/setup split matters: `/test run e2e` executes existing E2E tests while
+`/test e2e` scaffolds Playwright; `/test run coverage` runs the suite with
+coverage while `/test coverage` installs the Husky gate. When a bare scope
+token arrives without `run` and matches no mode (e.g. `/test full`,
+`/test types`, `/test --since <ref>`, a path), treat it as `run <scope>` —
+those spellings came from the retired `/tests` command. Mode names always win:
+a bare `e2e` or `coverage` resolves to the setup mode, so running those scopes
+requires the explicit `run` prefix.
 
 ## Anti-Patterns
 

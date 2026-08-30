@@ -5,9 +5,9 @@
 ![Project Type](https://img.shields.io/badge/Project-Skills-blue)
 
 <!-- catalog-summary:start -->
-184 AI agent skills for development workflows. Works with Claude Code, OpenAI Codex, and Cursor.
+185 AI agent skills for development workflows. Works with Claude Code, OpenAI Codex, and Cursor.
 
-Catalog: **184 skills · 32 commands · 13 bundles · 197 plugins**.
+Catalog: **185 skills · 30 commands · 13 bundles · 198 plugins**.
 <!-- catalog-summary:end -->
 
 Skills are **model-agnostic playbooks**: the harness supplies the model, so no skill names a concrete model — orchestrators speak in capability tiers, and each repo's routing block maps tiers to models. Enforced by `scripts/validate-skill-sync.sh`; standards live in `.agents/memory/system/skill-standards.md`.
@@ -19,19 +19,19 @@ Skills are **model-agnostic playbooks**: the harness supplies the model, so no s
 |---|---|---|
 | `.agents/` | Repository memory, standards, and maintenance skills | Tracked |
 | `.claude/` | Claude loader adapters for shared maintenance content | Tracked |
-| `.claude-plugin/` | Generated Claude marketplace catalog | 197 generated plugins |
+| `.claude-plugin/` | Generated Claude marketplace catalog | 198 generated plugins |
 | `.codex/` | Codex loader adapters for shared maintenance content | Tracked |
 | `.github/` | Issue templates and GitHub Actions workflows | Tracked |
 | `.husky/` | Git hook configuration | Tracked |
 | `.tmp/` | Tracked repository content | Tracked |
 | `assets/` | Static repository assets | Tracked |
 | `bundles/` | Generated marketplace bundle snapshots | 13 generated bundles |
-| `commands/` | Claude Code/plugin command adapters | 32 command adapters |
+| `commands/` | Claude Code/plugin command adapters | 30 command adapters |
 | `docs/` | Human-facing orientation pages for flagship skills | Tracked |
 | `prompts/` | Shared prompt resources | Tracked |
 | `resources/` | Authoring references and supporting documentation | Tracked |
 | `scripts/` | Validation, generation, migration, and audit tooling | Tracked |
-| `skills/` | Canonical public Agent Skills sources | 184 canonical skills |
+| `skills/` | Canonical public Agent Skills sources | 185 canonical skills |
 <!-- catalog-layout:end -->
 
 ## What's Included
@@ -208,39 +208,52 @@ or another Agent Skills-compatible harness.
 
 | Command | Description |
 |---------|-------------|
-| ask | Name the Dev Loop skill that fits the current situation |
 | address | Resolve PR review comments — propose fixes and replies |
 | agent | Audit, configure, scaffold, and route agents and subagents |
+| ask | Name the Dev Loop skill that fits the current situation |
 | board | Set up, audit, or normalize a GitHub Projects v2 board |
 | bug | File a GitHub bug issue |
 | clean | Clean completed tasks and consolidate session files |
 | codex-loop | Claim and work one dispatch:codex issue locally via codex exec |
 | deploy | Deploy the app and provision infrastructure |
 | design | Review and refine UI — audit, critique, polish, layout |
-| deslop | Remove AI slop and tells from code |
-| env | Scaffold and validate environment variables |
+| deslop | Remove AI slop and tells from code — shortcut for `/refactor deslop` |
+| env | Discover, scaffold, and validate environment variables via `env-setup` |
 | feature | Capture requirements into PRD epics and GitHub issues |
 | fix-ci | Diagnose and fix failing CI checks on a PR |
 | inbox | Capture quick tasks into a project inbox |
 | loop | Claim and work one dispatch issue end-to-end |
 | merge | Review and land open PRs into the trunk |
-| performance | Analyze frontend, backend, database, and infrastructure performance |
 | pr | Create, update, and publish a pull request |
 | prd | Create specs, PRDs, and feature plans |
-| prompt | Optimize prompts for AI generation |
-| qa | Run a structured verification pass before commit |
+| prompt | Optimize a prompt via `prompt-engineering`'s 4-D workflow |
+| qa | Run a structured verification pass before commit — shortcut for `/test qa` |
+| refactor | Improve existing code — deslop, refactor, debt, perf, structure, stack |
 | release | Cut a trunk release with patch notes |
 | review | Review changes, a PR, all open PRs, or recent commits — natively or via the Grok CLI |
-| scan | Run dependency, code, config, and OWASP security scans |
+| roadmap | Turn ICP into a revenue-ranked backlog and dated milestones |
+| scan | Run a security audit — full app/API audit or dependency supply chain |
 | skill | Author, capture, test, and scout agent skills |
 | standup | Summarize what you shipped over a time window |
 | suggest | Post inline suggested changes on a PR |
-| test | Run, author, and set up tests |
-| tests | Run the right tests and turn red green |
+| test | One testing front door — run, qa, tdd, e2e, coverage, init, regression |
 | wait-what | Re-pitch the last message in plain English |
 
+### Intentional shortcuts, not duplicates
+
+- `/qa` = `/test qa` and `/deslop` = `/refactor deslop` — the two most-used
+  modes keep their own top-level spelling on purpose.
+- `/address`, `/suggest`, and `/fix-ci` are three distinct jobs in the same PR
+  flow, not overlapping reviews: `/review` finds issues *for you*, `/suggest`
+  posts suggestions *onto someone else's PR*, `/address` resolves comments
+  *others left on yours*, and `/fix-ci` repairs the failing checks. `/merge`
+  then lands what's green.
+- `/performance` and `/tests` were retired: performance analysis lives at
+  `/refactor perf`, and every `/tests <scope>` spelling is now
+  `/test run <scope>`.
+
 <!-- catalog-skills-heading:start -->
-## Skills (184)
+## Skills (185)
 <!-- catalog-skills-heading:end -->
 
 ### Dev Loop (14)
@@ -279,9 +292,9 @@ or another Agent Skills-compatible harness.
 
 `prompt-engineering`, `mcp-builder`, `skill-creator`, `context-fundamentals`, `context-optimization`, `context-degradation`, `context-engineering`, `memory-systems`, `multi-agent-patterns`, `tool-design`, `evaluation`, `advanced-evaluation`, `comment-mode`, `spec-first`, `agent-browser`, `agent-dispatch`, `codex-image-gen`
 
-### Workspace Setup (12)
+### Workspace Setup (13)
 
-`fullstack-workspace-init`, `project-init-orchestrator`, `linter-formatter-init`, `clerk-validator`, `content-script-developer`, `package-architect`, `artifacts-builder`, `wizard`, `open-source-checker`, `devcontainer-setup`, `biome-validator`, `bun-validator`
+`fullstack-workspace-init`, `project-init-orchestrator`, `env-setup`, `linter-formatter-init`, `clerk-validator`, `content-script-developer`, `package-architect`, `artifacts-builder`, `wizard`, `open-source-checker`, `devcontainer-setup`, `biome-validator`, `bun-validator`
 
 ### Planning & PRDs (15)
 

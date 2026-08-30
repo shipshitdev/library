@@ -1,0 +1,129 @@
+---
+name: env-setup
+description: >-
+  Discover the environment variables a codebase actually reads, generate or
+  update a grouped .env.example template, validate that required variables are
+  set, and keep secrets out of git. Use when setting up environment variables
+  for a project, scaffolding .env templates, validating an existing .env file,
+  documenting required configuration, or checking that .gitignore covers env
+  files. Backs the /env command.
+metadata:
+  version: "1.0.0"
+  tags: "environment, dotenv, secrets, configuration, scaffolding, validation"
+  author: Ship Shit Dev
+when_to_use: "/env, set up environment variables, create .env.example, validate .env, missing env var, document environment configuration, env template, secrets in git"
+---
+
+# Env Setup
+
+Make a project's environment configuration explicit: find every variable the
+code reads, keep `.env.example` truthful, verify the developer's real `.env`
+satisfies it, and make sure no secret file can reach git.
+
+## Contract
+
+Inputs:
+
+- A repository; mode `setup` (default, discover + scaffold + validate),
+  `validate` (check only), or `scaffold` (regenerate templates only).
+
+Outputs:
+
+- The discovered variable inventory grouped by service, gaps between code and
+  `.env.example`, missing/unset required variables, and any `.gitignore` holes.
+
+Creates/Modifies:
+
+- `setup`/`scaffold`: creates or updates `.env.example` (and per-app templates
+  in a monorepo). May add missing `.env*` rules to `.gitignore`.
+- Never creates, edits, or overwrites a real `.env`/`.env.local` — it reports
+  what is missing there and leaves the values to the developer.
+
+External Side Effects:
+
+- None. Reads the codebase and env files locally; never transmits values.
+
+Confirmation Required:
+
+- Before overwriting an existing `.env.example` that has hand-written comments
+  or values the scan did not produce.
+
+## When to Use
+
+- Setting up environment variables for a new project or app
+- Regenerating `.env.example` after configuration drift
+- Validating that a `.env` satisfies what the code requires
+- Auditing that `.gitignore` keeps secret env files out of git
+
+## Phase 1: Discover Required Variables
+
+Scan the codebase for environment reads:
+
+```bash
+grep -rEoh "process\.env\.[A-Z0-9_]+|import\.meta\.env\.[A-Z0-9_]+" \
+  --include="*.ts" --include="*.tsx" --include="*.js" --include="*.mjs" . \
+  | grep -v node_modules | sort -u
+```
+
+Also check framework config (`next.config.*`, `nest-cli.json`, deploy config),
+schema-based env validation modules (zod/valibot env files), and existing
+`.env*` files. In a monorepo, inventory per app/package — apps often need
+different variables.
+
+## Phase 2: Generate .env.example
+
+Create or update `.env.example` from the inventory. Group by service with a
+comment header per group, placeholder values only — never a real credential:
+
+```env
+# Application
+NODE_ENV=development
+PORT=3001
+
+# Database
+DATABASE_URL=postgresql://user:password@host:5432/dbname
+
+# Authentication
+AUTH_SECRET=...
+
+# Monitoring
+SENTRY_DSN=https://...
+```
+
+For monorepos, write per-app templates when apps diverge. Preserve existing
+hand-written comments; confirm before overwriting anything the scan did not
+produce. Document any variable whose purpose is not obvious from its name.
+
+## Phase 3: Validate
+
+- Every variable the code reads appears in `.env.example`; every template
+  variable is actually read somewhere (flag dead entries).
+- The local `.env` (if present) sets every required variable; report gaps
+  without printing secret values.
+- For TypeScript projects, recommend schema-based env validation (e.g. zod) at
+  app startup so missing variables fail fast — point at where to add it rather
+  than wiring it unasked.
+
+## Phase 4: Keep Secrets Out of Git
+
+- `.gitignore` must cover `.env`, `.env.local`, and every `.env.*` variant
+  **except** `.env.example` (which must be committed).
+- Check nothing secret is already tracked: `git ls-files '.env*'` should return
+  only templates. A tracked secret file is a finding to surface — removing it
+  from history belongs to `git-safety`, not this skill.
+- For production, point at platform-native secret stores (AWS Secrets Manager,
+  Vercel/hosting env vars) — real values never live in the repo.
+
+## Final Report
+
+State the mode that ran, variables discovered (per app where relevant),
+template files created or updated, validation gaps, and any `.gitignore` or
+tracked-secret findings.
+
+## Anti-Patterns
+
+- **Writing real values.** This skill produces templates and reports; actual
+  secrets are entered by the developer or a secret manager.
+- **Printing secret values in output.** Name the variable, never its value.
+- **Guessing variables the code never reads.** The template mirrors the code,
+  not a generic stack checklist.

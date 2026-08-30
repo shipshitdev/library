@@ -1,9 +1,9 @@
 ---
 name: test-runner
-description: "Run a project's tests at the right scope — changed-only, focused, full, type-check, or e2e — then, on failure, read the output and traces, apply a minimal fix, and rerun until green or blocked. Detects the test runner and package manager from the repo. Use when the user asks to run tests, run the suite, run smoke/e2e tests, type-check, check the build compiles, fix failing tests, or runs /tests."
+description: "Run a project's tests at the right scope — changed-only, focused, full, type-check, or e2e — then, on failure, read the output and traces, apply a minimal fix, and rerun until green or blocked. Detects the test runner and package manager from the repo. Use when the user asks to run tests, run the suite, run smoke/e2e tests, type-check, check the build compiles, fix failing tests, or runs /test run."
 compatibility: Requires a JavaScript/TypeScript project with a test runner (Vitest, Jest, Bun test, or Playwright) and a package manager.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "testing, vitest, jest, playwright, e2e, smoke, type-check, ci, scoped-tests"
 allowed-tools: Bash(bun *) Bash(bunx *) Bash(git *)
 disable-model-invocation: true
@@ -163,15 +163,15 @@ Flag any test that passes inconsistently rather than declaring success.
 
 ## Modes
 
-- `/tests` — changed-only, related to your dirty worktree (default; falls back to
-  full on a clean tree or when related detection is unavailable, and says so)
-- `/tests full` — the whole suite
-- `/tests unit` | `integration` | `e2e` — by type
-- `/tests coverage` — full run + coverage; gate via `husky-test-coverage`
-- `/tests types` — `tsc --noEmit` and clear the errors in a loop
-- `/tests <path|pattern>` — focused
-- `/tests --since <ref>` — tests related to a commit range
-- `/tests --no-fix` — run and report; make no edits
+- `/test run` — changed-only, related to your dirty worktree (default; falls back
+  to full on a clean tree or when related detection is unavailable, and says so)
+- `/test run full` — the whole suite
+- `/test run unit` | `integration` | `e2e` — by type
+- `/test run coverage` — full run + coverage; gate via `husky-test-coverage`
+- `/test run types` — `tsc --noEmit` and clear the errors in a loop
+- `/test run <path|pattern>` — focused
+- `/test run --since <ref>` — tests related to a commit range
+- `/test run --no-fix` — run and report; make no edits
 
 ## Final Status
 

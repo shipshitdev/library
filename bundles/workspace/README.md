@@ -13,6 +13,7 @@ Project setup and workspace initialization
 
 - `fullstack-workspace-init`
 - `project-init-orchestrator`
+- `env-setup`
 - `linter-formatter-init`
 - `clerk-validator`
 - `content-script-developer`

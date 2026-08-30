@@ -13,8 +13,8 @@ git worktrees. Deletion is irreversible. Creating worktrees is the
    decision first. Untracked throwaway is safe to drop when named.
 4. Prune the confirmed set. Per path, `git worktree remove` then
    `git worktree prune`. Branch refs survive. Confirm disk use after.
-5. Name `release-cleanup` when the ask is merged-branch and release
-   residue rather than worktrees.
+5. Name `git-cleanup` when the ask is merged-branch residue rather
+   than worktrees.
 
 Do not delete the main checkout, active worktrees, or anything holding
 uncommitted work without an explicit yes.

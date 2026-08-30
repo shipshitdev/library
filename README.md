@@ -7,7 +7,7 @@
 <!-- catalog-summary:start -->
 185 AI agent skills for development workflows. Works with Claude Code, OpenAI Codex, and Cursor.
 
-Catalog: **185 skills · 32 commands · 13 bundles · 198 plugins**.
+Catalog: **185 skills · 31 commands · 13 bundles · 198 plugins**.
 <!-- catalog-summary:end -->
 
 Skills are **model-agnostic playbooks**: the harness supplies the model, so no skill names a concrete model — orchestrators speak in capability tiers, and each repo's routing block maps tiers to models. Enforced by `scripts/validate-skill-sync.sh`; standards live in `.agents/memory/system/skill-standards.md`.
@@ -26,7 +26,7 @@ Skills are **model-agnostic playbooks**: the harness supplies the model, so no s
 | `.tmp/` | Tracked repository content | Tracked |
 | `assets/` | Static repository assets | Tracked |
 | `bundles/` | Generated marketplace bundle snapshots | 13 generated bundles |
-| `commands/` | Claude Code/plugin command adapters | 32 command adapters |
+| `commands/` | Claude Code/plugin command adapters | 31 command adapters |
 | `docs/` | Human-facing orientation pages for flagship skills | Tracked |
 | `prompts/` | Shared prompt resources | Tracked |
 | `resources/` | Authoring references and supporting documentation | Tracked |
@@ -213,7 +213,7 @@ or another Agent Skills-compatible harness.
 | agent | Audit, configure, scaffold, and route agents and subagents |
 | board | Set up, sync, schedule, and review a GitHub Projects v2 board |
 | bug | File a GitHub bug issue |
-| clean | Clean completed tasks and consolidate session files |
+| cleanup | Prune merged branches, stale worktrees, and finished work |
 | codex-loop | Claim and work one dispatch:codex issue locally via codex exec |
 | deploy | Deploy the app and provision infrastructure |
 | design | Review and refine UI — audit, critique, polish, layout |
@@ -221,9 +221,8 @@ or another Agent Skills-compatible harness.
 | env | Scaffold and validate environment variables |
 | feature | Capture requirements into PRD epics and GitHub issues |
 | fix-ci | Diagnose and fix failing CI checks on a PR |
-| inbox | Capture quick tasks into a project inbox |
 | loop | Claim and work one dispatch issue end-to-end |
-| merge | Review and land open PRs into the trunk |
+| merge | Merge all approved open PRs into the trunk in one gated sweep |
 | performance | Analyze frontend, backend, database, and infrastructure performance |
 | pr | Create, update, and publish a pull request |
 | prd | Create specs, PRDs, and feature plans |
@@ -249,11 +248,11 @@ or another Agent Skills-compatible harness.
 
 ### Dev Workflow (43)
 
-`agent-architecture-audit`, `agent-config-audit`, `ai-agent-cost-optimizer`, `ai-regression-testing`, `codebase-advisor`, `codebase-design`, `code-review`, `structural-review`, `full-code-review`, `grok-review`, `review-dispatch`, `commit-summary`, `changelog-generator`, `standup`, `deslop`, `refactor-dispatch`, `tech-debt`, `stack-modernization`, `debug`, `deploy`, `execution-debugging`, `deployment-composer`, `docs`, `llm-structured-output`, `merge-open-prs`, `production-audit`, `refactor-code`, `release`, `release-dispatch`, `release-cleanup`, `release-pr-gates`, `scaffold`, `shape`, `skill-capture`, `skill-comply`, `skill-scout`, `systematic-debugging`, `receiving-code-review`, `verification-before-completion`, `wizard`, `worktree`, `skill-dispatch`, `deploy-dispatch`
+`agent-architecture-audit`, `agent-config-audit`, `ai-agent-cost-optimizer`, `ai-regression-testing`, `codebase-advisor`, `codebase-design`, `code-review`, `structural-review`, `full-code-review`, `grok-review`, `review-dispatch`, `commit-summary`, `changelog-generator`, `standup`, `deslop`, `refactor-dispatch`, `tech-debt`, `stack-modernization`, `debug`, `deploy`, `execution-debugging`, `deployment-composer`, `docs`, `llm-structured-output`, `merge-open-prs`, `production-audit`, `refactor-code`, `release`, `release-dispatch`, `git-cleanup`, `release-pr-gates`, `scaffold`, `shape`, `skill-capture`, `skill-comply`, `skill-scout`, `systematic-debugging`, `receiving-code-review`, `verification-before-completion`, `wizard`, `worktree`, `skill-dispatch`, `deploy-dispatch`
 
 ### GitHub (20)
 
-`bug`, `gh-address-comments`, `gh-board-sync`, `gh-fix-ci`, `gh-inbox`, `gh-pr-publish`, `gh-project-board`, `gh-review-suggestions`, `github-actions-author`, `git-safety`, `feature-intake`, `merge-open-prs`, `release`, `release-dispatch`, `release-cleanup`, `release-pr-gates`, `worktree`, `finishing-a-development-branch`, `pr-comments`, `fix-merge-conflicts`
+`bug`, `gh-address-comments`, `gh-board-sync`, `gh-fix-ci`, `gh-inbox`, `gh-pr-publish`, `gh-project-board`, `gh-review-suggestions`, `github-actions-author`, `git-safety`, `feature-intake`, `merge-open-prs`, `release`, `release-dispatch`, `git-cleanup`, `release-pr-gates`, `worktree`, `finishing-a-development-branch`, `pr-comments`, `fix-merge-conflicts`
 
 ### Testing (9)
 

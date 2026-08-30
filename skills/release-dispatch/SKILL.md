@@ -1,20 +1,20 @@
 ---
 name: release-dispatch
 description: >-
-  Single front door for releases. Parses a subcommand — gates, cut, notes, or
-  cleanup — and routes to the right release engine: release-pr-gates (verify CI
-  green, then cut a tag/release or open a release PR), release (semver bump +
-  plain-English patch notes), or release-cleanup (prune merged branches and
-  stale worktrees). Backs the /release command. Use when asked to release, cut a
-  tag, open a release PR, wait for CI to go green, generate patch notes, or clean
-  up branches after a deploy, and the action must be picked from an argument like
-  "gates", "cut", "notes", or "cleanup".
+  Single front door for releases. Parses a subcommand — gates, cut, or notes —
+  and routes to the right release engine: release-pr-gates (verify CI green,
+  then cut a tag/release or open a release PR) or release (semver bump +
+  plain-English patch notes). Backs the /release command. Use when asked to
+  release, cut a tag, open a release PR, wait for CI to go green, or generate
+  patch notes, and the action must be picked from an argument like "gates",
+  "cut", or "notes". Branch/worktree pruning is not a release step — that is
+  git-cleanup, behind /cleanup.
 metadata:
-  version: "1.0.1"
+  version: "2.0.1"
   tags: "release, dispatcher, ci-cd, semver, github, orchestration"
   author: Ship Shit Dev
 allowed-tools: Bash(git *) Bash(gh *)
-when_to_use: "/release, release gates, cut a release, release notes, release cleanup, ship the trunk, prune merged branches after a deploy, which release step for this scope"
+when_to_use: "/release, release gates, cut a release, release notes, ship the trunk, which release step for this scope"
 disable-model-invocation: true
 ---
 
@@ -23,7 +23,8 @@ disable-model-invocation: true
 The router behind `/release`. It owns one job: turn a subcommand into the right
 release action and delegate. It does **not** contain release logic of its own —
 CI gating + cut/PR live in `release-pr-gates`, semver + patch notes live in
-`release`, branch/worktree pruning lives in `release-cleanup`. Trunk-based
+`release`. Branch/worktree pruning is `git-cleanup`'s job (the `/cleanup`
+command), not a release mode. Trunk-based
 throughout: releases are tags cut from the trunk; staging and production are
 deployment environments driven by CI/CD and tags, not branch promotions.
 
@@ -41,12 +42,12 @@ Outputs:
   by either a cut tag + GitHub release or an opened release PR.
 - For `cut`: a published `vX.Y.Z` tag + GitHub release with patch notes.
 - For `notes`: a dry-run patch-notes preview — nothing cut.
-- For `cleanup`: a pruned-branch / pruned-worktree report.
 
 Creates/Modifies:
 
-- Nothing directly. The delegated skill performs any mutation (tag, release, PR,
-  branch/worktree deletion) behind its own confirmation gate.
+- Nothing directly. The delegated skill performs any mutation (tag, release, PR)
+  behind its own confirmation gate. No `/release` mode deletes branches or
+  worktrees — that is `/cleanup`'s job.
 
 External Side Effects:
 
@@ -57,14 +58,14 @@ External Side Effects:
 Confirmation Required:
 
 - This skill is explicit-invoke only (`disable-model-invocation`). The delegated
-  engines each re-confirm before any mutation (cutting a tag, deleting branches).
-  Never chain `cut` straight into `cleanup` without a separate confirmation.
+  engines each re-confirm before any mutation (cutting a tag, opening a PR).
+  Never chain `cut` straight into a `/cleanup` prune without a separate
+  confirmation.
 
 Delegates To:
 
 - `release-pr-gates` for `gates` (CI-green gate → cut or release PR).
 - `release` for `cut` / `notes` (semver derivation + patch notes).
-- `release-cleanup` for `cleanup` (verify squash-merge, prune branches/worktrees).
 
 ## Step 1 — Parse the Subcommand
 
@@ -76,7 +77,7 @@ Resolve the raw argument into a `mode`.
 | `gates`, `ship` | `gates` | `release-pr-gates` |
 | `cut`, `patch`, `minor`, `major`, `vX.Y.Z` (`^v\d+\.\d+\.\d+$`) | `cut` | `release` (forward the bump token) |
 | `notes` | `notes` | `release` (dry run — cut nothing) |
-| `cleanup`, `prune` | `cleanup` | `release-cleanup` |
+| `cleanup`, `prune` | — | point the user to `/cleanup` (the `git-cleanup` skill) and stop |
 
 If the argument matches none of these, report the unrecognized input and print
 the Usage block — do not guess a mode (a wrong guess could tag or delete).
@@ -101,7 +102,8 @@ branch** — never tag or prune against a guessed `origin/main`.
 - **gates →** apply the `release-pr-gates` skill.
 - **cut / notes →** apply the `release` skill, forwarding any bump token; `notes`
   runs it in dry-run (notes only, no tag).
-- **cleanup →** apply the `release-cleanup` skill.
+- **cleanup / prune →** say that branch/worktree pruning moved to `/cleanup`
+  (the `git-cleanup` skill) and stop — do not run it from here.
 
 Each delegated skill owns its own preconditions (clean, synced trunk; green CI;
 squash-merge verification) and confirmation gate. This router does not relax
@@ -116,12 +118,13 @@ them.
 /release patch|minor|major   # force the bump, then cut
 /release vX.Y.Z          # cut an explicit version
 /release notes           # patch notes for the next version only — cut nothing (dry run)
-/release cleanup         # verify merged, prune merged local/remote branches + stale worktrees
 ```
+
+Branch and worktree pruning lives in `/cleanup`, not here.
 
 ## Anti-Patterns
 
-- **Re-implementing release logic here.** This skill resolves the subcommand and delegates; semver/notes live in `release`, CI gating in `release-pr-gates`, pruning in `release-cleanup`.
-- **Guessing on an unknown argument.** Cutting or pruning on a misread token is destructive — print Usage instead.
-- **Chaining cut → cleanup automatically.** Prune only after a release is confirmed merged, as a separate, confirmed step.
+- **Re-implementing release logic here.** This skill resolves the subcommand and delegates; semver/notes live in `release`, CI gating in `release-pr-gates`. Pruning lives in `git-cleanup` behind `/cleanup`.
+- **Guessing on an unknown argument.** Cutting on a misread token is destructive — print Usage instead.
+- **Chaining cut → `/cleanup` automatically.** Prune only after a release is confirmed merged, as a separate, confirmed step.
 - **Tagging a dirty or behind trunk**, reusing an existing tag, or force-pushing — the delegated skills forbid this; the router never overrides it.

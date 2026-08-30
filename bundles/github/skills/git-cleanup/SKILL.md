@@ -1,24 +1,24 @@
 ---
-name: release-cleanup
-description: Verify a release branch is provably merged into the trunk (default branch) via the squash-aware GitHub PR merge oracle, then prune merged local and remote feature branches and stale git worktrees. Squash-merge aware — uses GitHub PR merge state as the merge oracle, not commit ancestry. Use when the user asks to clean up branches after a deploy, prune worktrees, remove merged branches, or confirm nothing stale was left behind before pruning.
+name: git-cleanup
+description: Clean up the git working state — verify branches are provably merged into the trunk (default branch) via the squash-aware GitHub PR merge oracle, then prune merged local and remote feature branches and stale git worktrees. Squash-merge aware — uses GitHub PR merge state as the merge oracle, not commit ancestry. Use when the user asks to clean up branches or worktrees, prune what is already merged, run /cleanup, or confirm nothing stale was left behind before pruning.
 compatibility: Requires git, GitHub CLI gh, and jq access to the target repository.
 metadata:
-  version: "2.2.0"
-  tags: "git, cleanup, branches, worktrees, release, prune, ci-cd, squash-merge, trunk-based"
+  version: "3.1.0"
+  tags: "git, cleanup, branches, worktrees, prune, ci-cd, squash-merge, trunk-based"
 allowed-tools: Bash(git *) Bash(gh *) Bash(jq *)
 disable-model-invocation: true
 ---
 
-# Release Cleanup
+# Git Cleanup
 
-Confirm a release branch's work has reached the trunk (default branch), then prune
-the feature branches and git worktrees that are no longer needed. Verification is a
+Confirm each branch's work has reached the trunk (default branch), then prune the
+feature branches and git worktrees that are no longer needed. Verification is a
 hard gate: never prune until each branch's work is proven to have reached the trunk
 and no in-flight work is stranded.
 
-This skill is standalone and manually triggerable. It does not promote code (use
-`release-pr-gates` for that) and does not deploy (use `deploy`). It runs after a
-promotion has landed and tidies up.
+This skill is standalone and manually triggerable (exposed as `/cleanup`). It does
+not promote code (use `release-pr-gates` for that) and does not deploy (use
+`deploy`). It runs after merges have landed and tidies up.
 
 ## The Merge Oracle (read this first)
 
@@ -42,12 +42,24 @@ A branch's work is IN the production branch iff ANY of:
    production branch (covers squash, rebase, and merge-commit), OR
 2. the branch tip is an ancestor of the production branch (covers
    no-PR fast-forwards and merge-commit merges that predate the PR API), OR
-3. every unique commit subject still ahead of the trunk matches a merged PR whose
-   `mergeCommit` is in the trunk (covers local retarget/rebase copies whose name
-   no longer matches a PR head).
+3. everything the branch changes is already in the trunk **by patch identity** —
+   either every ahead commit has a patch-identical twin upstream (`git cherry`),
+   or the branch's cumulative diff is patch-identical to a single trunk commit
+   added since the merge base (covers local retarget/rebase copies whose name no
+   longer matches a PR head).
 
 Only branches that satisfy this are prunable. Everything else is reported, never
 deleted.
+
+**A matching commit subject is never proof of a merge.** Subjects like `fix: lint`
+or `chore: bump deps` recur across unrelated branches, so subject equality would
+classify genuinely unmerged work as prunable and hand it to `git branch -D`. Worse,
+subject matching barely helps in the case it was meant for: a squash merge
+rewrites the branch's several subjects into one PR title, so they no longer match
+anyway. Rule 3 therefore never compares subjects — the proof is always
+`git patch-id`, scanning the trunk commits added since the merge base. The scan is
+bounded (`--max-count=500`); if the squashed commit falls outside that window the
+branch is reported unproven, never deleted.
 
 ## Contract
 
@@ -56,6 +68,7 @@ Inputs:
 - Repository root with a git remote
 - Trunk (default branch) to verify against — auto-detected via `gh repo view --json defaultBranchRef` if not supplied
 - Optional mode: `verify` (gate only), `dry-run` (default, plan only), or `prune` (execute after confirmation)
+- Optional scope: `branches`, `worktrees`, or all resource types (default)
 
 Outputs:
 
@@ -166,7 +179,8 @@ Classify remotes, locals, and extra worktrees. A remote-only pass is not enough.
 
 For each candidate (remote branch, local branch, or extra worktree HEAD), verify
 that its work has reached the trunk. Ancestry is the first signal, but squash
-merges require corroboration against the latest merged PR for that work.
+merges require corroboration — the merged PR for that head, or failing that,
+patch identity against the trunk (`squash_artifact` in 2b).
 
 ```bash
 TRUNK=$(gh repo view --json defaultBranchRef --jq .defaultBranchRef.name)
@@ -181,10 +195,13 @@ latest_pr_for_head "<branch>"
 Interpreting a non-empty ahead range:
 
 - Genuine commits not yet in the trunk => NOT MERGED. Report and STOP.
-- Every ahead subject matches a PR already squash-merged into the trunk =>
-  squash artifact, not a real gap. Treat as merged. This is how local
-  retarget/rebase copies (`*-onto-<trunk>`, `pr-N-rebase`, detached worktree
-  HEADs) get classified when their name no longer matches a PR head.
+- Every ahead commit is patch-identical to work already in the trunk => squash
+  artifact, not a real gap. Treat as merged. This is how local retarget/rebase
+  copies (`*-onto-<trunk>`, `pr-N-rebase`, detached worktree HEADs) get
+  classified when their name no longer matches a PR head.
+- A matching subject with a *different* patch => NOT MERGED. Two branches can
+  carry the same commit message and different changes; only patch identity
+  settles it.
 
 ### 2b. Branch classification (the "nothing is stale" check)
 
@@ -197,19 +214,29 @@ PROD="origin/${TRUNK}"
 CURRENT="$(git symbolic-ref --quiet --short HEAD || echo)"
 PROTECT="${TRUNK}|${CURRENT:-__none__}|HEAD"
 
-squash_artifact() {      # arg: git ref. 0 = every ahead subject is a merged PR in trunk
-  local ref="$1" sub rec mc subjects
-  subjects=$(git log --format=%s "$PROD".."$ref" 2>/dev/null | sort -u)
-  [ -n "$subjects" ] || return 1
-  while IFS= read -r sub; do
-    [ -z "$sub" ] && continue
-    rec=$(gh pr list --state merged --search "$sub" --limit 20 \
-      --json number,title,mergeCommit \
-      | jq -c --arg s "$sub" '[.[]|select(.title==$s)]|first')
-    [ -n "$rec" ] && [ "$rec" != "null" ] || return 1
-    mc=$(jq -r '.mergeCommit.oid // empty' <<<"$rec")
-    [ -n "$mc" ] && git merge-base --is-ancestor "$mc" "$PROD" 2>/dev/null || return 1
-  done <<< "$subjects"
+# Proves a ref's changes are already in the trunk by PATCH IDENTITY.
+# Never matches on commit subjects: unrelated branches reuse subjects like
+# "fix: lint", and a subject match would send live work to `git branch -D`.
+squash_artifact() {      # arg: git ref. 0 = the ref's changes are provably in trunk
+  local ref="$1" base mine c pid
+  base=$(git merge-base "$PROD" "$ref" 2>/dev/null) || return 1
+  # Nothing ahead of the merge base => this rule has nothing to prove.
+  [ -n "$(git log --format=%H "$base".."$ref" 2>/dev/null)" ] || return 1
+
+  # (a) Per-commit equivalence: every ahead commit has a patch-identical twin
+  #     upstream. `git cherry` marks those '-'; a surviving '+' means real work.
+  git cherry "$PROD" "$ref" 2>/dev/null | grep -q '^+' || return 0
+
+  # (b) Squash equivalence: the ref's cumulative diff is patch-identical to the
+  #     patch a single trunk commit introduced. Scan only trunk commits added
+  #     since the merge base — the squash commit can only live in that window.
+  mine=$(git diff "$base".."$ref" | git patch-id --stable | awk '{print $1}')
+  [ -n "$mine" ] || return 1
+  for c in $(git rev-list --max-count=500 "$base".."$PROD" 2>/dev/null); do
+    pid=$(git show "$c" | git patch-id --stable | awk '{print $1}')
+    [ "$pid" = "$mine" ] && return 0
+  done
+  return 1   # unproven => caller reports it, never deletes it
 }
 
 classify_ref() {         # args: head-name, git-ref to test for ancestry
@@ -328,13 +355,14 @@ Rules during execution:
 
 ## Modes
 
-- `release-cleanup verify` — Phase 1 + 2 only. Report trunk verification status and the branch classification. No plan, no deletion.
-- `release-cleanup` or `release-cleanup dry-run` — Phases 1-3. Verify, then print the prune plan. No deletion. (Default.)
-- `release-cleanup prune` — Phases 1-4. Verify, print plan, confirm, then delete.
+- `git-cleanup verify` — Phase 1 + 2 only. Report trunk verification status and the branch classification. No plan, no deletion.
+- `git-cleanup` or `git-cleanup dry-run` — Phases 1-3. Verify, then print the prune plan. No deletion. (Default.)
+- `git-cleanup prune` — Phases 1-4. Verify, print plan, confirm, then delete.
 
-If the user explicitly scopes the cleanup ("only worktrees", "local branches
-only", "skip remote"), honor it: still run verification, but restrict the plan
-and execution to the requested resource types.
+If the caller scopes the cleanup (`branches`, `worktrees`, "local branches only",
+"skip remote"), honor it: still run verification, but restrict the plan and
+execution to the requested resource types. The default scope is everything —
+branches and worktrees.
 
 ## Final Status
 

@@ -1,0 +1,12 @@
+{
+  "name": "git-cleanup",
+  "version": "3.1.0",
+  "description": "Verify branches are provably merged into the trunk, then prune merged branches and stale worktrees.",
+  "author": {
+    "name": "Ship Shit Dev",
+    "email": "hello@shipshit.dev",
+    "url": "https://shipshit.dev"
+  },
+  "license": "MIT",
+  "skills": "."
+}

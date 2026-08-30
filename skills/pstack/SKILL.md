@@ -4,7 +4,7 @@ description: Playbook orchestrator for verified, unslopped engineering work. Mat
 disable-model-invocation: true
 license: MIT
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
   tags: "orchestrator, playbooks, verification, architecture, review"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/poteto-mode/SKILL.md
@@ -60,7 +60,7 @@ Delegates To:
   `figure-it-out`, `show-me-your-work`, `blast-radius`, `teach`, `recall`
 - File pointer: `skills/deslop/references/prose-slop.md` for reply prose
 - Named, not fired: `deslop`, `review-dispatch`,
-  `finishing-a-development-branch`, `worktree`, `release-cleanup`,
+  `finishing-a-development-branch`, `worktree`, `git-cleanup`,
   `skill-creator`
 
 ## Start

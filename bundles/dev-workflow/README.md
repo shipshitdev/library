@@ -36,7 +36,7 @@ Code review, debugging, refactoring, release, and AI-assisted development workfl
 - `refactor-code`
 - `refactor-dispatch`
 - `release`
-- `release-cleanup`
+- `git-cleanup`
 - `release-dispatch`
 - `release-pr-gates`
 - `review-dispatch`

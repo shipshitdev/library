@@ -1,24 +1,24 @@
 ---
-name: release-cleanup
-description: Verify a release branch is provably merged into the trunk (default branch) via the squash-aware GitHub PR merge oracle, then prune merged local and remote feature branches and stale git worktrees. Squash-merge aware — uses GitHub PR merge state as the merge oracle, not commit ancestry. Use when the user asks to clean up branches after a deploy, prune worktrees, remove merged branches, or confirm nothing stale was left behind before pruning.
+name: git-cleanup
+description: Clean up the git working state — verify branches are provably merged into the trunk (default branch) via the squash-aware GitHub PR merge oracle, then prune merged local and remote feature branches and stale git worktrees. Squash-merge aware — uses GitHub PR merge state as the merge oracle, not commit ancestry. Use when the user asks to clean up branches or worktrees, prune what is already merged, run /cleanup, or confirm nothing stale was left behind before pruning.
 compatibility: Requires git, GitHub CLI gh, and jq access to the target repository.
 metadata:
-  version: "2.2.0"
-  tags: "git, cleanup, branches, worktrees, release, prune, ci-cd, squash-merge, trunk-based"
+  version: "3.0.0"
+  tags: "git, cleanup, branches, worktrees, prune, ci-cd, squash-merge, trunk-based"
 allowed-tools: Bash(git *) Bash(gh *) Bash(jq *)
 disable-model-invocation: true
 ---
 
-# Release Cleanup
+# Git Cleanup
 
-Confirm a release branch's work has reached the trunk (default branch), then prune
-the feature branches and git worktrees that are no longer needed. Verification is a
+Confirm each branch's work has reached the trunk (default branch), then prune the
+feature branches and git worktrees that are no longer needed. Verification is a
 hard gate: never prune until each branch's work is proven to have reached the trunk
 and no in-flight work is stranded.
 
-This skill is standalone and manually triggerable. It does not promote code (use
-`release-pr-gates` for that) and does not deploy (use `deploy`). It runs after a
-promotion has landed and tidies up.
+This skill is standalone and manually triggerable (exposed as `/cleanup`). It does
+not promote code (use `release-pr-gates` for that) and does not deploy (use
+`deploy`). It runs after merges have landed and tidies up.
 
 ## The Merge Oracle (read this first)
 
@@ -56,6 +56,7 @@ Inputs:
 - Repository root with a git remote
 - Trunk (default branch) to verify against — auto-detected via `gh repo view --json defaultBranchRef` if not supplied
 - Optional mode: `verify` (gate only), `dry-run` (default, plan only), or `prune` (execute after confirmation)
+- Optional scope: `branches`, `worktrees`, or all resource types (default)
 
 Outputs:
 
@@ -328,13 +329,14 @@ Rules during execution:
 
 ## Modes
 
-- `release-cleanup verify` — Phase 1 + 2 only. Report trunk verification status and the branch classification. No plan, no deletion.
-- `release-cleanup` or `release-cleanup dry-run` — Phases 1-3. Verify, then print the prune plan. No deletion. (Default.)
-- `release-cleanup prune` — Phases 1-4. Verify, print plan, confirm, then delete.
+- `git-cleanup verify` — Phase 1 + 2 only. Report trunk verification status and the branch classification. No plan, no deletion.
+- `git-cleanup` or `git-cleanup dry-run` — Phases 1-3. Verify, then print the prune plan. No deletion. (Default.)
+- `git-cleanup prune` — Phases 1-4. Verify, print plan, confirm, then delete.
 
-If the user explicitly scopes the cleanup ("only worktrees", "local branches
-only", "skip remote"), honor it: still run verification, but restrict the plan
-and execution to the requested resource types.
+If the caller scopes the cleanup (`branches`, `worktrees`, "local branches only",
+"skip remote"), honor it: still run verification, but restrict the plan and
+execution to the requested resource types. The default scope is everything —
+branches and worktrees.
 
 ## Final Status
 

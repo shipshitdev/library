@@ -3,7 +3,7 @@ name: worktree
 description: Create an isolated git worktree from the correct base branch and check it out into a clean, gitignored directory. Use when the user asks to make a worktree, spin up a parallel/isolated workspace, work on something without disturbing the current checkout, branch off the current work, or run multiple agents on the same repo at once. Picks the base branch smartly — the current feature branch when you are on one, otherwise the repository's default/trunk branch — so worktrees continue your in-progress work by default instead of forking from the wrong place.
 compatibility: Requires git 2.5+ (worktree support).
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
   tags: "git, worktree, branch, isolation, parallel, workspace"
   author: Ship Shit Dev
 allowed-tools: Bash(git *)
@@ -16,7 +16,7 @@ when_to_use: "make a worktree, create a worktree, new worktree, isolated workspa
 Create a git worktree off the **right base branch**, in a clean gitignored
 directory, with the safety checks that keep the main checkout and `.gitignore`
 correct. This skill only **creates** and **lists** worktrees. Removing and
-pruning merged worktrees is `release-cleanup`'s job — do not delete here.
+pruning merged worktrees is `git-cleanup`'s job (`/cleanup`) — do not delete here.
 
 ## Contract
 
@@ -53,7 +53,7 @@ Confirmation Required:
 
 Delegates To:
 
-- `release-cleanup` to verify promotion and prune merged worktrees and branches
+- `git-cleanup` to verify promotion and prune merged worktrees and branches
 - `git-safety` if a branch about to live in a worktree may contain secrets
 
 ## Base Branch Selection (the core behavior)
@@ -229,4 +229,4 @@ tracking the worktree dir or clobbering an existing branch/path.
 3. Local tips by default; network only on explicit `--fetch`.
 4. Never `--force`, never reset an existing branch, never overwrite an existing
    path. On conflict, report and stop.
-5. Removal and pruning are out of scope — hand off to `release-cleanup`.
+5. Removal and pruning are out of scope — hand off to `git-cleanup` (`/cleanup`).

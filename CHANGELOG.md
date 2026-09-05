@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/shipshitdev/skills/compare/v2.0.0...v2.1.0) (2026-09-05)
+
+
+### Features
+
+* **weekly-review:** coordinate recurring engineering maintenance ([#139](https://github.com/shipshitdev/skills/issues/139)) ([e26b1bc](https://github.com/shipshitdev/skills/commit/e26b1bc40da7982aee67cfd801fae14afcbdb7bb))
+
 ## [2.0.0](https://github.com/shipshitdev/skills/compare/v1.3.1...v2.0.0) (2026-09-05)
 
 

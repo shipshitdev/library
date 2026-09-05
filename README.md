@@ -5,9 +5,9 @@
 ![Project Type](https://img.shields.io/badge/Project-Skills-blue)
 
 <!-- catalog-summary:start -->
-186 AI agent skills for development workflows. Works with Claude Code, OpenAI Codex, and Cursor.
+187 AI agent skills for development workflows. Works with Claude Code, OpenAI Codex, and Cursor.
 
-Catalog: **186 skills · 29 commands · 13 bundles · 199 plugins**.
+Catalog: **187 skills · 30 commands · 13 bundles · 200 plugins**.
 <!-- catalog-summary:end -->
 
 Skills are **model-agnostic playbooks**: the harness supplies the model, so no skill names a concrete model — orchestrators speak in capability tiers, and each repo's routing block maps tiers to models. Enforced by `scripts/validate-skill-sync.sh`; standards live in `.agents/memory/system/skill-standards.md`.
@@ -19,19 +19,19 @@ Skills are **model-agnostic playbooks**: the harness supplies the model, so no s
 |---|---|---|
 | `.agents/` | Repository memory, standards, and maintenance skills | Tracked |
 | `.claude/` | Claude loader adapters for shared maintenance content | Tracked |
-| `.claude-plugin/` | Generated Claude marketplace catalog | 199 generated plugins |
+| `.claude-plugin/` | Generated Claude marketplace catalog | 200 generated plugins |
 | `.codex/` | Codex loader adapters for shared maintenance content | Tracked |
 | `.github/` | Issue templates and GitHub Actions workflows | Tracked |
 | `.husky/` | Git hook configuration | Tracked |
 | `.tmp/` | Tracked repository content | Tracked |
 | `assets/` | Static repository assets | Tracked |
 | `bundles/` | Generated marketplace bundle snapshots | 13 generated bundles |
-| `commands/` | Claude Code/plugin command adapters | 29 command adapters |
+| `commands/` | Claude Code/plugin command adapters | 30 command adapters |
 | `docs/` | Human-facing orientation pages for flagship skills | Tracked |
 | `prompts/` | Shared prompt resources | Tracked |
 | `resources/` | Authoring references and supporting documentation | Tracked |
 | `scripts/` | Validation, generation, migration, and audit tooling | Tracked |
-| `skills/` | Canonical public Agent Skills sources | 186 canonical skills |
+| `skills/` | Canonical public Agent Skills sources | 187 canonical skills |
 <!-- catalog-layout:end -->
 
 ## What's Included
@@ -237,6 +237,7 @@ or another Agent Skills-compatible harness.
 | suggest | Post inline suggested changes on a PR |
 | test | One testing front door — run, qa, tdd, e2e, coverage, init, regression |
 | wait-what | Re-pitch the last message in plain English |
+| weekly-review | Audit board accuracy, recent changes, operations, and scoped cleanup |
 
 ### Intentional shortcuts, not duplicates
 
@@ -251,8 +252,21 @@ or another Agent Skills-compatible harness.
   `/refactor perf`, and every `/tests <scope>` spelling is now
   `/test run <scope>`.
 
+### Weekly engineering review
+
+Run `/weekly-review 7d` with a repository and board URL for an evidence-backed
+report on issue accuracy, recent changes, operational gaps, and deslop findings.
+Use `since <SHA>` to resume from a completed review checkpoint. Add `--fix` for
+scoped code repairs; board writes and other external actions retain their own
+authorization boundaries. The workflow does not schedule itself.
+
+The coordinator reuses [weekly-review](skills/weekly-review/SKILL.md)'s declared
+engines. Install those companions when they are absent from the active catalog.
+Plain `deslop` is the Shipshit adaptation. `pstack:deslop` is a separate upstream
+plugin skill, not an alias.
+
 <!-- catalog-skills-heading:start -->
-## Skills (186)
+## Skills (187)
 <!-- catalog-skills-heading:end -->
 
 ### Dev Loop (15)

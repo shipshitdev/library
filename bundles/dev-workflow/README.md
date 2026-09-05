@@ -54,3 +54,4 @@ Code review, debugging, refactoring, release, and AI-assisted development workfl
 - `verification-before-completion`
 - `wizard`
 - `worktree`
+- `weekly-review`

@@ -228,7 +228,8 @@
         "tech-debt",
         "verification-before-completion",
         "wizard",
-        "worktree"
+        "worktree",
+        "weekly-review"
       ]
     },
     "session": {

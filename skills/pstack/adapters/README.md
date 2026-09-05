@@ -49,3 +49,17 @@ selected actions. Probe with a harmless payload before declaring it live.
 For another harness, require equivalent webhook and secure secret-entry support.
 If either is unavailable, report the missing capability instead of inventing tools
 or falling back to a public unauthenticated endpoint.
+
+## Runtime path audit
+
+The external runner requires explicit prompt, cwd, output and receipt paths.
+The orchestration store requires `--store` or `ORCH_STORE`; it has no home-directory
+default. The decision-log helper requires its logfile argument. Bootstrap installs
+locked dependencies beside the installed runtime, so installation needs write
+permission there and runs only on the authorized host.
+
+The upstream worktree-audit script is superseded by canonical `git-cleanup`.
+Its original source remains in the immutable upstream snapshot for review. Resolve
+the installed cleanup skill's `scripts/cleanup.py` for candidate inventory and
+immutable merge proof, and use the active harness session interface for in-use
+checks. Read-only disk tools can report size without becoming deletion authority.

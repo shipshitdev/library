@@ -28,15 +28,15 @@ Skip when the conversation is trivial, off-topic, or already covered by an exist
 
 ### 1. Locate the active transcript
 
-The parent finds its own transcript file before fanning out. The system prompt names Claude Code's per-project transcripts directory at `~/.claude/projects/<encoded-cwd>/`; use that path. Do not glob across `~/.claude/projects/`. That crosses workspace boundaries and reads private chats from unrelated projects.
+Resolve the current session record through the active harness session interface or
+its configured workspace-scoped transcript root. Confirm the session ID, repository
+and opening request before reading. Use the provider's documented event schema;
+do not assume JSONL layout or a particular message field. Never search unrelated
+workspaces or substitute another provider's history.
 
-```bash
-ls -t ~/.claude/projects/<encoded-cwd>/*.jsonl 2>/dev/null | head -10
-```
-
-Three transcript layouts: legacy flat (`<id>.jsonl`), current nested (`<id>/<id>.jsonl`), and subagent (`<parent>/subagents/<child>.jsonl`).
-
-For each candidate, read the first JSONL line and check that `message.content[0].text` contains the conversation's opening user prompt. Take the matching path. If no path resolves, write a tight digest of the session and pass that instead.
+Pass reviewers the exact session record, approved transcript path or a tightly
+scoped digest. If the full record is unavailable, label that limitation and use
+the digest instead of claiming transcript-backed verification.
 
 ### 2. Spawn three reviewers in parallel
 

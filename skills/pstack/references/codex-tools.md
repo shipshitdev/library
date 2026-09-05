@@ -21,7 +21,10 @@ pstack skills retain Claude Code tool language (`Skill`, `Agent`, `AskUserQuesti
 | Track tasks (the todolist / `TodoWrite`) | `update_plan` |
 | Ask the human a fixed-choice question (`AskUserQuestion`) | Ask in plain text and let the user answer. Codex has no structured-choice tool. |
 
-Subagent dispatch needs `multi_agent` enabled. Add to `~/.codex/config.toml`:
+This is a Codex-specific adapter reference. Read the active Codex configuration
+to discover available delegation support. Only during explicitly authorized setup,
+configure the supported feature in that harness’s resolved configuration file.
+A configuration example, not an automatic edit:
 
 ```toml
 [features]
@@ -57,8 +60,11 @@ Some triggers name skills that ship with Claude Code, not pstack. They do not ex
 
 ## Vendored scripts
 
-`skills/pstack/scripts/` ships the `watch-pr` PR watcher, the `orch` store CLI, `worktree-audit.sh`, and `runner/pstack-runner`. They are plain bun and bash, so they run the same on Codex; invoke them through `shell`. The external runner additionally needs the assigned `claude`, `codex`, or `grok` executable already authenticated. It rejects a Codex provider when Codex is the parent because that lane belongs on native `spawn_agent`. The other scripts need `bun`, `gh`, (for stack work) `gt`, and (for `worktree-audit.sh`) `jq` and `rg`. `worktree-audit.sh` reads Claude Code transcripts under `~/.claude/projects/`; point it at your runtime's transcript directory instead when you run it elsewhere.
+`skills/pstack/scripts/` ships the `watch-pr` PR watcher, the `orch` store CLI, and `runner/pstack-runner`. They are plain bun and bash, so they run the same on Codex; invoke them through `shell`. The external runner additionally needs the assigned `claude`, `codex`, or `grok` executable already authenticated. It rejects a Codex provider when Codex is the parent because that lane belongs on native `spawn_agent`. The watcher and store use Bun and GitHub CLI where documented; Graphite is not required. Worktree inventory and cleanup resolve the `git-cleanup` skill and its packaged
+`scripts/cleanup.py` helper through the active catalog. Pair its immutable plan
+with the active harness session inventory. The legacy audit script is superseded;
+no Claude transcript scan or alternate unsafe classification path ships here.
 
 ## Instructions file
 
-Where a pstack skill says "your instructions file", on Codex that is `AGENTS.md` (project root, plus `~/.codex/AGENTS.md` global). On Claude Code it is `CLAUDE.md`.
+Where a skill says "your instructions file", resolve the current harness’s actual project/global instruction sources from its configuration. Standard filenames such as `AGENTS.md` or `CLAUDE.md` identify formats, not permission to create or rewrite a default home-directory path.

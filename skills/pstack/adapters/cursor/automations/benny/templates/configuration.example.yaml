@@ -48,7 +48,7 @@ control:
   skill_name: "control-target-app"
   feature_map_path: ".cursor/benny/feature-map.md"
   environment: "safe-test-environment-placeholder"
-  artifact_directory: "/tmp/benny-artifacts"
+  artifact_directory: "<harness-selected-durable-artifact-directory>"
   artifact_retention_hours: 24
 
 verdict_markers:

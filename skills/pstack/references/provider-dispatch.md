@@ -54,7 +54,9 @@ user-selected lane within the task budget.
 - `scripts/watch-pr/watch-pr` observes and drives a PR using its selected mode.
 - `scripts/orch/orch.ts` manages the local orchestration state store.
 - `scripts/check-plan.mjs` checks the multi-phase plan contract.
-- `scripts/worktree-audit.sh` reports worktree state.
+- Worktree inventory and cleanup use the canonical `git-cleanup` skill's
+  `scripts/cleanup.py` helper, resolved through that skill's installed directory.
+  The old audit script is superseded; no second cleanup runtime ships here.
 
 Read each tool’s CLI contract before use and preserve the caller’s mutation scope.
 The plan checker accepts `node scripts/check-plan.mjs <plan.md>`; it has no

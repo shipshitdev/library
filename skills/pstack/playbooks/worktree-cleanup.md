@@ -6,8 +6,9 @@ selection, account choice and worktree placement remain harness-owned. Publicati
 external messages, destructive actions and configuration changes require authority
 covering that action. The procedure supplies no new permission.
 
-Use the canonical `git-cleanup` skill's packaged cleanup helper. The upstream
-worktree audit can supplement inventory; its buckets never authorize deletion.
+Use the canonical `git-cleanup` skill's packaged cleanup helper and the active
+harness session inventory. This supersedes upstream's worktree-audit script.
+Read-only disk tools may supplement the plan; size and age never prove safety.
 
 1. Resolve `git-cleanup` through the active catalog and read its proof rules.
    Run its packaged `scripts/cleanup.py dry-run --root <repository> --scope worktrees`

@@ -1,6 +1,6 @@
 {
   "name": "deployment-composer",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Compose trunk-based deployment workflows with CI gates, deploys, and rollback checks.",
   "author": {
     "name": "Ship Shit Dev",

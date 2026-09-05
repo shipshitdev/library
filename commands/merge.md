@@ -2,16 +2,16 @@
 
 **Default = merge them all.** `/merge` reviews every open pull request targeting
 the trunk, shows you one consolidated plan, and after your yes merges the whole
-approved set — then prunes the merged branches and stale worktrees left behind.
+approved set, then reports possible cleanup candidates without pruning them.
 It is not a single-PR tool and not review-only (that's `/merge review`).
 
 ## Usage
 
 ```bash
-/merge              # merge ALL approved open PRs: review, confirm, merge, prune (default)
+/merge              # review, confirm, merge all approved PRs; report cleanup candidates
 /merge review       # plan only — review everything, merge nothing
 /merge force        # drain WIP — merge green PRs, narrowly fix red PRs, keep moving
-/merge --no-prune   # review + merge all, but skip the prune step
+/merge --no-prune   # review + merge all; skip the cleanup inventory
 /merge <base>       # use an explicit base branch instead of the auto-detected trunk
 ```
 
@@ -44,10 +44,10 @@ All other modes use the confirm-gated sweep:
    Use `/review prs` when you want the sweep without merging.
 5. Print one consolidated plan — the PRs that will merge versus the excluded ones
    with a reason each — and wait for explicit confirmation.
-6. Merge the approved PRs into the trunk (oldest first), deleting each head branch.
-7. Hand off to the `git-cleanup` skill (the `/cleanup` engine) to prune merged
-   branches and stale worktrees. It runs its own dry-run and confirmation before
-   deleting anything.
+6. Merge the approved PRs into the trunk (oldest first), without requesting head-branch deletion.
+7. Report possible cleanup candidates using read-only inventory. Preserve local
+   branches and worktrees. Recommend `/cleanup` as a separately selected workflow;
+   it retains its own proof, dry-run, and confirmation before deleting anything.
 
 ## Gates
 
@@ -55,9 +55,10 @@ All other modes use the confirm-gated sweep:
   checks without explicit per-PR confirmation.
 - Never force-merge past a protected-branch rule — report the block instead.
 - In `/merge force`, `force` means force queue progress. It never authorizes a
-  force-push, admin merge, required-check bypass, history rewrite, or deploy.
-- All branch and worktree deletion beyond the merged PR's own head branch is
-  delegated to `git-cleanup`, which confirms before pruning.
+  force-push, admin merge, required-check bypass, history rewrite, pruning, or deploy.
+- Merge confirmation authorizes merges only. All merge modes request no
+  branch or worktree deletion. If the user already selected merge and prune, carry
+  that scope into the cleanup handoff; do not infer it from a merge request alone.
 - This command lands PRs onto the trunk only. To cut a release, use the `release`
   skill to tag from trunk after the PRs are merged.
 

@@ -10,7 +10,7 @@ recommendation, not a code change.
    read-only investigation`.
 3. Produce the how-shaped output, or a recommendation with a tradeoffs table
    if the request is a decision between alternatives.
-4. Apply `skills/deslop/references/prose-slop.md` to the reply.
+4. Apply `references/prose-slop.md` from the selected `deslop` skill directory to the reply.
 
 No PR, no babysit, no `architect` unless the investigation precedes a code
 change. If it does, hand back and re-route to Bug fix or Feature.

@@ -2,7 +2,7 @@
 name: ai-regression-testing
 description: Design regression tests for AI-assisted development by targeting model blind spots such as sandbox versus production path drift, response-shape mismatches, untested bug fixes, and same-model review failures. Use after AI-generated code changes, bug fixes, API edits, or feature-flag/sandbox changes.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "testing, ai, regression, quality, api"
 ---
 
@@ -44,7 +44,7 @@ Delegates To:
 
 - `testing-expert` for general testing strategy
 - `react-testing-library` for React component tests
-- `playwright-e2e-init` or `e2e-testing` for browser workflows
+- `playwright-e2e-init` for browser setup or `test-runner` for existing browser tests
 - `debug` when the root cause is still unknown
 
 ## When to Use

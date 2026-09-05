@@ -1,10 +1,9 @@
 ---
 name: no-comments
 description: Review comments on a diff, delete narration and workaround sermons, fix accepted findings, and offer encodings for claimed constraints. Use before review or when asked to strip comments.
-disable-model-invocation: true
 license: MIT
 metadata:
-  version: "1.0.1"
+  version: "1.1.0"
   tags: "comments, review, cleanup"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/no-comments/SKILL.md
@@ -26,6 +25,14 @@ not write the code.
 Companion to `comment-mode` (granular feedback on prose drafts) and
 `deslop` (broader AI-artifact strip). This skill is the pre-review
 comment pass.
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 

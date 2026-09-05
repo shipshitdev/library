@@ -2,7 +2,7 @@
 name: production-audit
 description: Audit an application for production readiness using local evidence from code, CI, config, migrations, runtime checks, observability, and deployment paths. Use before launch, after risky merges, or when asked whether an app is ready to ship.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "production, audit, launch, deployment, reliability"
 ---
 
@@ -40,9 +40,9 @@ Confirmation Required:
 Delegates To:
 
 - `security-audit` for application security findings
-- `deploy` or `deployment-patterns` for release mechanics
+- `deploy` or `deployment-composer` for release mechanics
 - `release-pr-gates` for GitHub release promotion
-- `playwright-e2e-init` or `e2e-testing` for missing launch-critical browser coverage
+- `playwright-e2e-init` for missing launch-critical browser coverage; `test-runner` for existing tests
 
 ## When to Use
 

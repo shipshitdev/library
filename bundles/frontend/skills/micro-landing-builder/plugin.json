@@ -1,6 +1,6 @@
 {
   "name": "micro-landing-builder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Scaffold, clone, and deploy config-driven NextJS landing pages that use a shared UI components packa",
   "author": {
     "name": "Ship Shit Dev",

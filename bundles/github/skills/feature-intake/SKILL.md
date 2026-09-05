@@ -2,10 +2,9 @@
 name: feature-intake
 description: Capture a client or stakeholder feature request, turn it into a planner-ready PRD epic with scoped sub-issues, check for duplicate work, and place approved issues on a GitHub Projects kanban. Use when a user invokes feature intake, asks to turn a rough client requirement into GitHub issues, or wants an idea written as a PRD and pushed to a board.
 compatibility: Requires GitHub CLI gh for GitHub issue and project-board operations.
-disable-model-invocation: true
 allowed-tools: Bash(gh *) Bash(git *)
 metadata:
-  version: "1.2.1"
+  version: "1.3.0"
   tags: "feature-intake, prd, github, kanban, requirements, ears"
   author: Ship Shit Dev
 when_to_use: "feature intake, client requirement, stakeholder requirement, write this as a PRD, create kanban tickets, push to GitHub board, turn this idea into issues, /feature"
@@ -17,6 +16,14 @@ Turn a rough client, sales, founder, or stakeholder requirement into a tracker
 artifact that agents can plan and implement without re-eliciting the same
 context. Create one parent PRD issue plus focused sub-issues unless the request
 is a single-layer change.
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 
@@ -105,7 +112,8 @@ gh project item-list <project-number> --owner <owner> --limit 100 --format json
 ```
 
 Use the repository's native board vocabulary. If the board is missing expected
-Status or Priority fields, run `gh-project-board` before writing items.
+Status or Priority fields, report the missing mapping before writing items.
+Recommend `gh-project-board` when configuring the board is a separate task.
 
 ### 2. Check Current Work State
 

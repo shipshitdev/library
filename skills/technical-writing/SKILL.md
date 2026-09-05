@@ -1,10 +1,9 @@
 ---
 name: technical-writing
 description: Layered technical-writing standard for docs, RFCs, READMEs, PR descriptions, and commit messages. Diátaxis structure, Google developer style sentences, STE instruction rules, Global English syntax. Use for technical-writing or when writing or reviewing those surfaces.
-disable-model-invocation: true
 license: MIT
 metadata:
-  version: "1.0.1"
+  version: "1.1.0"
   tags: "docs, writing, diataxis, style"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/technical-writing/SKILL.md
@@ -25,8 +24,16 @@ reads two ways.
 
 Companion to `docs` (repo-convention docs writer) and `deslop`
 (prose-tell catalog). Apply
-`skills/deslop/references/prose-slop.md` to every doc this skill
+`references/prose-slop.md` from the selected `deslop` skill directory to every doc this skill
 touches.
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 
@@ -54,7 +61,7 @@ Confirmation Required:
 
 Delegates To:
 
-- File pointer: `skills/deslop/references/prose-slop.md`
+- File pointer: `references/prose-slop.md` from the selected `deslop` skill directory
 
 ## Rules above the layers
 

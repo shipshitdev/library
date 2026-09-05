@@ -9,7 +9,7 @@ description: >-
   command. Use when asked to review changes, a PR, all PRs, recent commits, or
   merged history, or to get a second opinion from another CLI.
 metadata:
-  version: "1.4.1"
+  version: "1.4.2"
   tags: "code-review, dispatcher, pull-requests, commits, retro, orchestration, second-opinion"
   author: Ship Shit Dev
 allowed-tools: Bash(git *) Bash(gh *)
@@ -23,6 +23,14 @@ target workflow, pick the review depth when applicable, and delegate. It does
 **not** contain review rubrics or merge logic of its own — correctness/security
 live in `code-review`, the multi-dimension pass lives in `full-code-review`, and
 non-serial queue draining belongs exclusively to `/merge force`.
+
+## Composition Boundary
+
+Run only the selected mode. Pass the user's target, authorized actions, and
+report-only restrictions to the engine. Existing explicit approval satisfies
+that engine's gate for the same scope; obtain approval for missing or expanded
+authority. Delegation never grants new host, provider, cost, publication, or
+production permissions. An empty or advisory mode starts no mutating workflow.
 
 ## Contract
 

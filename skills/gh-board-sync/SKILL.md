@@ -4,7 +4,7 @@ description: "Reconcile a GitHub Projects v2 board against real repository state
 compatibility: Requires GitHub CLI gh with project scope. The bundled report script runs with Node.js or Bun.
 allowed-tools: Bash(gh *) Bash(node *) Bash(bun *)
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
   tags: "github, projects, kanban, sync, drift, audit"
 when_to_use: "is the board up to date, board vs reality, board drift, sync the board, board truth check, stale in progress items, why is this still in progress, reconcile board after merges, sprint focus, what ships this week, what should we work on next sprint, what is waiting on human review"
 ---
@@ -68,9 +68,9 @@ Delegates To:
 
 - `gh-project-board` for explicitly requested board configuration changes;
   an audit does not require normalizing the board
-- `roadmap-to-milestones` when the readiness check shows the coming week needs
+- Recommend `roadmap-to-milestones` when the readiness check shows the coming week needs
   milestones created or re-dated
-- `standup` when the user wants a personal what-did-I-do summary, not board
+- Recommend `standup` when the user wants a personal what-did-I-do summary, not board
   truth
 - `gh-inbox` when the user wants their own me-scoped queue, not the board
 - `prd-task-creator` when untracked work should become tracked issues

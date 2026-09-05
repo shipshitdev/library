@@ -12,7 +12,7 @@ description: >-
   action must be picked from an argument like "new", "spec", "gate", "write",
   "intake", or "interview".
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   tags: "prd, planning, dispatcher, requirements, spec, orchestration"
   author: Ship Shit Dev
 when_to_use: "/prd, create a PRD, plan a feature, write a spec, validate a PRD, feature intake, discovery interview, scope this out, write up this feature"
@@ -22,6 +22,14 @@ disable-model-invocation: true
 # PRD Dispatch
 
 The router behind `/prd`: turns a subcommand into the right planning action and delegates. Contains no PRD or planning logic — issue/file creation lives in `prd-task-creator`, spec-loop enforcement in `spec-first`, completeness validation in `prd-quality-gate`, full PRD drafting in `prd-writer`, client-requirement intake in `feature-intake`, and discovery interviewing in `interview`.
+
+## Composition Boundary
+
+Run only the selected mode. Pass the user's target, authorized actions, and
+report-only restrictions to the engine. Existing explicit approval satisfies
+that engine's gate for the same scope; obtain approval for missing or expanded
+authority. Delegation never grants new host, provider, cost, publication, or
+production permissions. An empty or advisory mode starts no mutating workflow.
 
 ## Contract
 
@@ -35,7 +43,8 @@ Outputs:
 
 - For _(empty)_: a one-line domain status (active PRD count if determinable) plus
   the Usage block. Nothing is created or modified.
-- For all other modes: the output of the delegated skill.
+- For `interview`: a handoff to `/interview` with the requested discovery context.
+- For the other modes: the output of the delegated engine.
 
 Creates/Modifies:
 
@@ -61,7 +70,7 @@ Delegates To:
 - `prd-quality-gate` for `gate` (PRD completeness validation).
 - `prd-writer` for `write` (full PRD draft scoped for a planning agent).
 - `feature-intake` for `intake` (client/stakeholder requirement → kanban issues).
-- `interview` for `interview` (discovery interview before PRD writing).
+- Recommend `interview` for `interview` (discovery interview before PRD writing).
 
 ## Step 1 — Parse the Subcommand
 
@@ -75,7 +84,7 @@ Resolve the raw argument into a `mode`.
 | `gate` | `gate` | `prd-quality-gate` |
 | `write` | `write` | `prd-writer` |
 | `intake` | `intake` | `feature-intake` |
-| `interview` | `interview` | `interview` |
+| `interview` | `interview` | recommend `/interview` |
 
 If the argument matches none of these, report the unrecognized input and print
 the Usage block — do not guess.
@@ -90,7 +99,8 @@ the Usage block — do not guess.
 - **gate →** apply the `prd-quality-gate` skill.
 - **write →** apply the `prd-writer` skill.
 - **intake →** apply the `feature-intake` skill.
-- **interview →** apply the `interview` skill.
+- **interview →** recommend `/interview` with the supplied context. This explicit
+  advisory workflow runs when the user selects that entry point.
 
 Each delegated skill owns its own preconditions and confirmation gate. This
 router does not relax them.
@@ -104,7 +114,7 @@ router does not relax them.
 /prd gate             # validate a PRD for completeness before handing it to a planning agent
 /prd write            # draft and formalize a feature as a full PRD ready for a planning agent
 /prd intake           # turn a client or stakeholder requirement into kanban issues on GitHub Projects
-/prd interview        # run a repo-grounded discovery interview before PRD writing or planning
+/prd interview        # hand off to the explicit /interview discovery workflow
 ```
 
 ## Anti-Patterns

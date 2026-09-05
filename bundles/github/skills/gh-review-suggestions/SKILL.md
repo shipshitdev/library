@@ -2,14 +2,21 @@
 name: gh-review-suggestions
 description: "Review GitHub pull requests and post precise inline suggested changes with GitHub suggestion blocks. Use when asked to review a PR, leave actionable GitHub comments, propose applyable fixes, or submit review suggestions through gh."
 compatibility: Requires GitHub CLI gh access to the repository. The bundled diff-line helper runs with Node.js or Bun.
-disable-model-invocation: true
 allowed-tools: Bash(git *) Bash(gh *) Bash(node *) Bash(bun *)
 metadata:
-  version: "1.0.1"
+  version: "1.1.0"
   tags: "github, pull-requests, review, suggestions"
 ---
 
 # GH Review Suggestions
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 

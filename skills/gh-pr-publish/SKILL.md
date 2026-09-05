@@ -2,14 +2,21 @@
 name: gh-pr-publish
 description: "Create, update, and publish GitHub pull requests with a clean title, durable body, branch hygiene, validation notes, and safe push/PR gates. Use when opening a PR, updating a PR description, preparing a draft PR, or publishing local changes to GitHub."
 compatibility: Requires git and GitHub CLI gh access to the target repository.
-disable-model-invocation: true
 allowed-tools: Bash(git *) Bash(gh *)
 metadata:
-  version: "1.0.2"
+  version: "1.1.0"
   tags: "github, pull-requests, publishing"
 ---
 
 # GH PR Publish
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 

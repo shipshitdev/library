@@ -4,7 +4,7 @@ description: Playbook orchestrator for verified, unslopped engineering work. Mat
 disable-model-invocation: true
 license: MIT
 metadata:
-  version: "1.0.2"
+  version: "1.1.0"
   tags: "orchestrator, playbooks, verification, architecture, review"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/poteto-mode/SKILL.md
@@ -22,11 +22,11 @@ Lauren Tan's poteto-mode, recut for this catalog. Match the task to a playbook.
 Copy the playbook steps into the todo list verbatim. Route to the other skills
 as the steps fire. Name each principle that shaped a decision.
 
-This is a **router**. It may invoke model-invoked skills. It does not fire other
-user-invoked skills. For `deslop`, apply
-`skills/deslop/references/prose-slop.md` as a file. For review, name
-`review-dispatch`. For landing a branch, name
-`finishing-a-development-branch`.
+This is an **execution router** for the task the user selected. Invoke callable
+companion engines within that scope. Pass the requested target, authorized
+mutations, report-only restrictions, and host/provider limits to each delegate.
+Loading a playbook never grants additional authority. Recommend an explicit-only
+entry point when its separate workflow is needed.
 
 ## Contract
 
@@ -58,10 +58,24 @@ Delegates To:
 
 - `how`, `why`, `architect`, `arena`, `swarm`, `interrogate`, `tdd`,
   `figure-it-out`, `show-me-your-work`, `blast-radius`, `teach`, `recall`
-- File pointer: `skills/deslop/references/prose-slop.md` for reply prose
-- Named, not fired: `deslop`, `review-dispatch`,
-  `finishing-a-development-branch`, `worktree`, `git-cleanup`,
-  `skill-creator`
+- `deslop`, `no-comments`, `technical-writing`, `review-dispatch`, `worktree`,
+  and `skill-creator` when their steps are authorized
+- Recommend `finishing-a-development-branch` or `git-cleanup` for their
+  separate explicit workflows
+
+## Installation and Companion Resolution
+
+Use one selected pstack implementation per run. This catalog's adaptation and
+an installed upstream plugin have separate routing and action contracts; do not
+mix their orchestrators or silently switch to a similarly named companion.
+Resolve companions through the active skill catalog and prefer this distribution's
+companions when using this adaptation. Report a missing dependency or an ambiguous
+implementation before relying on it; never assume the upstream plugin is installed.
+
+Resolve referenced files relative to each selected skill's installed directory.
+For prose, load `references/prose-slop.md` from the selected `deslop` skill.
+The upstream source and sync marker record attribution to the adapted snapshot,
+not an automatic dependency or a claim of parity with the installed plugin.
 
 ## Start
 
@@ -128,7 +142,7 @@ Write the reply clean as you draft it.
 - Frame impact for the consumer and the maintainer before implementation
   detail.
 - Never fabricate a link, citation, or transcript reference.
-- Apply `skills/deslop/references/prose-slop.md`.
+- Apply `references/prose-slop.md` from the selected `deslop` skill directory.
 
 Keep a comment only for a non-obvious *why* the code cannot show.
 

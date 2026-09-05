@@ -1,9 +1,8 @@
 ---
 name: project-init-orchestrator
-disable-model-invocation: true
 description: Selects the correct project initialization route and orchestrates setup. Triggers on "initialize project", "set up new project", "bootstrap project", or when scaffolding a new Shipshit.dev product repo. Use v0 for new Shipshit.dev product repos; use lower-level setup skills only for existing repo repair, customization, or small additions.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   tags: "project-init, scaffolding, orchestration, setup, monorepo"
 ---
 
@@ -12,6 +11,14 @@ metadata:
 Choose the smallest safe setup route. For new Shipshit.dev product repos, prefer `npx @shipshitdev/v0`
 as the primary scaffolder. Use the lower-level init skills for existing repos,
 repairs, or project types not covered by v0.
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 

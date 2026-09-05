@@ -22,7 +22,7 @@ This repo follows the [Agent Skills open standard](https://agentskills.io/specif
 | Field | Purpose |
 |-------|---------|
 | `when_to_use` | Extra trigger phrases appended to `description` in skill listing. Combined with `description`, capped at 1,536 chars. |
-| `disable-model-invocation` | `true` = only user can invoke (no auto-trigger). Use for destructive/side-effect skills. |
+| `disable-model-invocation` | `true` keeps an entry point user-only. Reusable engines omit it and enforce action authorization in their body. |
 | `user-invocable` | `false` = hides from `/` menu. Use for background knowledge skills. |
 | `model` | Recognized by Claude Code, but forbidden in this public library; the harness owns model selection. |
 | `effort` | Recognized by Claude Code, but forbidden in this public library; the harness owns reasoning effort. |
@@ -171,20 +171,39 @@ Rules:
 
 ## Invocation architecture
 
-Every public skill is either **user-invoked** or **model-invoked**. That split is the composition rule for this catalog.
+Separate discoverability from authorization. Loading a skill grants no permission
+to edit files, send messages, publish, deploy, or spend beyond the user's request.
 
-| Kind | Frontmatter | Who can reach it | Description |
-|------|-------------|------------------|-------------|
-| **User-invoked** | `disable-model-invocation: true` | Only the human typing its name. No other skill may fire it. | Human-facing summary. Strip "Use when…" lists. |
-| **Model-invoked** | omit `disable-model-invocation` | Model or user. Other skills may invoke it. | Model-facing triggers. One trigger per real branch. |
+| Kind | Frontmatter | Composition |
+|------|-------------|-------------|
+| **Explicit entry point** | `disable-model-invocation: true` | The human selects the workflow. Keep advisory maps and open-ended session starters here. |
+| **Reusable engine** | omit `disable-model-invocation` | A user or another workflow may invoke it within the authorized task. Its body owns action gates. |
 
-Pick model-invocation when the agent must reach the skill on its own, or another skill must. If it only ever fires by hand, make it user-invoked.
+**Execution routers** such as `/test run` select a declared engine and pass the
+requested mode, target, authorized actions, and restrictions. Existing explicit
+authorization satisfies an action gate within that scope; ask only for a missing
+or expanded authorization. A read-only/report-only request stays read-only across
+all delegates. Delegation never expands host, provider, cost, publication, or
+production permissions. A test-run request does not authorize repairs.
 
-**Composition:** a user-invoked skill may invoke model-invoked skills. It must not invoke another user-invoked skill. Shared material that two user-invoked skills need lives in a model-invoked primitive (for example `grilling`) or a plain file any skill can point at.
+**Advisory routers** such as `/ask` return a recommendation. `interview` and
+`shape` stop at their promised brief. Their stopping point follows their output
+contract, not a catalog-wide prohibition on composition. Recommend an explicit
+entry point instead of pretending to invoke one the harness hides from the model.
 
-**Router skills** are user-invoked maps. They name the other skills and when to reach for each so the human has one thing to remember. They hint; they do not fire other user-invoked skills.
+Pick engine discoverability whenever another skill must run the workflow.
+Keep safety gates in the body, including a clear authorized mutation scope for
+writing engines. Frontmatter controls discovery; it is not a permission boundary.
+Resolve dependencies through the active skill catalog, then resolve resources
+relative to the selected skill's installed directory. Never assume a consumer has
+this repository's `skills/` directory or repository-management meta-skills.
 
-Apply this split to every new skill and to the Dev Loop / planning cluster. Full-catalog classification is a later audit.
+Use direct imperative routes (for example, Run the `engine-name` skill) for actual
+composition, and `Recommend` for a handoff. The validator checks these explicit
+execution routes and leading target lists in `Delegates To:` bullets, including
+comma-joined lists across wrapped lines. Start advisory declarations with
+`Recommend` and resource declarations with `File pointer`. Mode names in an
+explanation and fenced examples are not execution dependencies.
 
 ---
 
@@ -211,7 +230,7 @@ Skills are documents an agent runs, not essays. These levers keep a run predicta
 | Field | Add when... |
 |-------|-------------|
 | `when_to_use` | Description alone doesn't cover all trigger phrases |
-| `disable-model-invocation: true` | Human-only orchestrators, destructive/side-effect skills, or anything that must not auto-fire. Shared primitives stay model-invoked. |
+| `disable-model-invocation: true` | Explicit entry points and advisory workflows. Reusable writing engines stay callable and require scoped authorization in their body. |
 | `user-invocable: false` | Skill is background knowledge, not an action users invoke |
 | `context: fork` | Skill does independent research/exploration that shouldn't see conversation history (must have an actionable task — guidelines-only forks return empty) |
 | `allowed-tools` | You want to skip the per-use prompt for tools the skill calls repeatedly. Remember it only *auto-approves*, it does not restrict — see note below |

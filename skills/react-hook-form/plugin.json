@@ -1,6 +1,6 @@
 {
   "name": "react-hook-form",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React Hook Form performance optimization for client-side form validation using useForm, useWatch, us",
   "author": {
     "name": "Ship Shit Dev",

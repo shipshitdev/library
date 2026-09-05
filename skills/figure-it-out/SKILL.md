@@ -1,10 +1,9 @@
 ---
 name: figure-it-out
 description: Design an auditable playbook when no narrower one fits. Use for figure it out, a large migration, an ambitious multi-part change, or work a human reviews after stepping away. Scales rigor to the task, runs a hypothesis loop, and logs decisions via show-me-your-work.
-disable-model-invocation: true
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.1.1"
   tags: "playbook, migration, audit, hypothesis"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/figure-it-out/SKILL.md
@@ -24,6 +23,14 @@ before any code is the workflow itself. Bias toward more rigor.
 Do not reinvent a playbook you already have. A focused single-unit task
 routes to Bug fix, Perf, Feature, Visual parity, Eval, or Multi-phase
 plan. A large or cross-cutting version of one belongs here.
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 
@@ -51,12 +58,13 @@ Confirmation Required:
 
 Delegates To:
 
-- `pstack` principles index, `architect`, `arena`, `show-me-your-work`
+- File pointer: `references/principles.md` from the selected `pstack` skill directory
+- `architect`, `arena`, `show-me-your-work` for authorized investigation
 
 ## Start
 
 Open a todo list whose first item is reading
-`skills/pstack/references/principles.md`. Then add the phases below.
+`references/principles.md` from the selected `pstack` skill directory. Then add the phases below.
 
 ## Phase A: Frame
 

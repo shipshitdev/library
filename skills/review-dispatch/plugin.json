@@ -1,6 +1,6 @@
 {
   "name": "review-dispatch",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Front door for report-only reviews plus an explicit merge-train mode",
   "author": {
     "name": "Ship Shit Dev",

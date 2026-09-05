@@ -3,11 +3,10 @@ name: release
 description: Cuts the release itself — derives the next semantic version from commits since the last tag, writes plain-English patch notes, previews the plan, then on confirmation creates an annotated tag plus GitHub release, or dispatches the repo's guarded release workflow where production sits behind a workflow_dispatch promote gate. Trunk-based; no develop or staging branch promotion. Assumes the trunk is already green — to open a release PR or wait on required checks first, use `release-pr-gates`.
 compatibility: Requires git, GitHub CLI gh, and jq access to the target repository.
 metadata:
-  version: "2.0.2"
+  version: "2.1.1"
   tags: "git, github, release, tag, semver, changelog, patch-notes, trunk-based, ci-cd"
 when_to_use: "cut a release, ship a release, tag a release, promote to production, release to production, generate release notes, generate a changelog, /release"
 allowed-tools: Bash(git *) Bash(gh *) Bash(jq *)
-disable-model-invocation: true
 ---
 
 # Release
@@ -15,6 +14,14 @@ disable-model-invocation: true
 Cut a release from the trunk and produce plain-English patch notes. Trunk-based flow: `master`/`main` is the source of truth, releases are tags cut from the trunk, no `develop`/`staging` promotion chain. Staging and production are environments driven by CI and tags.
 
 Reads commit history, derives the next semantic version, writes patch notes, then — after confirmation — tags the trunk and publishes a GitHub release. Never rewrites history or tags a dirty or unsynced trunk.
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 
@@ -65,7 +72,7 @@ Delegates To:
 - `release-pr-gates` to open the release PR and wait on required CI checks before
   this skill cuts anything — that skill owns the pre-merge gate, this one owns the cut
 - `gh-fix-ci` when the trunk's required checks are failing and the user wants them fixed
-- `git-cleanup` to prune merged feature branches and stale worktrees afterward
+- Recommend `git-cleanup` to prune merged feature branches and stale worktrees afterward
 - `deploy` / `deployment-composer` to ship the freshly cut tag to an environment
 
 ## Safety Model

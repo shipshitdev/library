@@ -2,7 +2,7 @@
 name: skill-comply
 description: Measure whether agents actually follow a skill, rule, command, or agent definition by deriving expected behaviors, running representative scenarios, and comparing observed action timelines against the spec. Use after adding or changing instructions, before publishing skills, or when rules appear to be ignored.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "skills, evaluation, compliance, agents, quality"
 ---
 
@@ -43,8 +43,9 @@ Confirmation Required:
 
 Delegates To:
 
-- `skill-validator` for frontmatter/spec checks
-- `skill-auditor` for portfolio-level duplicate and quality audits
+- `skill-creator` for frontmatter and instruction-quality guidance
+- Optional repository-maintenance tools may validate a local catalog when
+  available. Do not require unpublished meta-skills in an installed skill.
 - `evaluation` for broader agent eval design
 
 ## When to Use

@@ -1,7 +1,7 @@
 {
   "name": "test-dispatch",
-  "version": "2.0.0",
-  "description": "Front door for testing \u2014 routes run/qa/tdd/e2e/coverage/init/regression to the right engine.",
+  "version": "2.0.1",
+  "description": "Front door for testing — routes run/qa/tdd/e2e/coverage/init/regression to the right engine.",
   "author": {
     "name": "Ship Shit Dev",
     "email": "hello@shipshit.dev",

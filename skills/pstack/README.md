@@ -2,6 +2,14 @@
 
 Lauren Tan's poteto-mode recut as a portable playbook orchestrator. Matches a task to a named playbook and routes to how, why, architect, arena, swarm, and related skills.
 
+## Coexistence
+
+Keep one orchestrator implementation and a consistent set of companion skills
+for each run. The public adaptation resolves companions through the active skill
+catalog; it does not require the upstream plugin. Installed upstream and public
+adapted skills can coexist, but their provider routing and action gates may differ.
+Do not silently mix them or treat this snapshot's attribution as a live dependency.
+
 ## Upstream
 
 Derived from **[Lauren Tan's pstack](https://github.com/cursor/plugins/tree/main/pstack)** (MIT), shipped in [cursor/plugins](https://github.com/cursor/plugins).

@@ -5,14 +5,21 @@ description: >-
   touches, edits that code, and drafts a reply per thread for approval before
   anything is posted. Starts from feedback that is already understood; producing
   the read-only digest is `pr-comments`.
-disable-model-invocation: true
 metadata:
-  version: "1.0.1"
+  version: "1.1.0"
   tags: "github, pull-requests, review-comments"
 when_to_use: "address the PR comments, fix the review feedback, implement the review suggestions, resolve these review threads, reply to the reviewer"
 ---
 
 # GH Address Comments
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 

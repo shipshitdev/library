@@ -1,10 +1,9 @@
 ---
 name: prd-task-creator
 description: 'Files work into a tracker — turns a feature, bug, or finished PRD into GitHub issues, linked sub-issues, or local task files, slicing epics into thin vertical slices sized for one PR each and tagged AFK or HITL. Starts once the requirements are settled; authoring the PRD document itself is `prd-writer`.'
-disable-model-invocation: true
 allowed-tools: Bash(gh *)
 metadata:
-  version: "1.2.1"
+  version: "1.3.0"
   tags: "tasks, prd, github, ears"
 when_to_use: "create a task, open a GitHub issue, create a sub-issue, break this epic down into issues, file this PRD as work items, write up this bug as an issue"
 ---
@@ -12,6 +11,14 @@ when_to_use: "create a task, open a GitHub issue, create a sub-issue, break this
 # PRD Task Creator
 
 Write a clear, actionable PRD or task — output depends on where the user tracks work.
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 
@@ -155,7 +162,7 @@ Show the draft PRD. Wait for "looks good" or edits. Then create.
 
 ## Rules
 
-- `disable-model-invocation: true` → only runs when user explicitly invokes
+- Reusable engine → act only within the requested destination and approved draft
 - Never create files or GitHub issues without user seeing the draft first
 - Sub-issues should be small enough to ship in one PR
 - If requirements are unclear, write the problem statement first — not the solution

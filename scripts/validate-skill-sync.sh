@@ -366,9 +366,8 @@ check_harness_execution_parameters() {
     return $warnings
 }
 
-# Mutating scripts or auto-approved Write/Edit tools require both explicit invocation
-# and an in-body confirmation gate. This remains a warning because static detection is
-# intentionally conservative and cannot prove every command's side effects.
+# Mutating scripts and auto-approved Write/Edit tools require a body authorization
+# gate. Engine discoverability does not grant permission to perform those writes.
 check_side_effect_safety() {
     local file="$1"
     local skill_dir="$2"
@@ -413,9 +412,6 @@ for script_dir_name in ("scripts",):
 
 if not mutating:
     sys.exit(0)
-
-if not re.search(r"^disable-model-invocation:\s*true\s*$", frontmatter, re.M):
-    print("side-effecting skill must set disable-model-invocation: true")
 
 confirmation = re.search(
     r"^Confirmation Required:\s*\n(.*?)(?=^[A-Z][A-Za-z /]+:\s*$|^## )",
@@ -488,7 +484,7 @@ for line in lines[1:end]:
     if in_metadata and line and not line.startswith((" ", "\t")):
         break
     if in_metadata:
-        match = re.match(r'^  version:\s*["\']?([^"\']*)["\']?\s*$', line)
+        match = re.match(r"^  version:\s*[\"']?([^\"']*)[\"']?\s*$", line)
         if match:
             skill_version = match.group(1).strip()
             break
@@ -964,17 +960,18 @@ import sys
 path = pathlib.Path(sys.argv[1])
 patterns = [
     re.compile(
-        r"\b(?:apply|run|use|invoke|delegate(?:s|d)?\s+to|route(?:s|d)?\s+to|via)"
-        r"\s+(?:the\s+)?\x60([a-z0-9]+(?:-[a-z0-9]+)+)\x60"
+        r"\b(?:apply|run|use|invoke)\s+(?:the\s+)?"
+        r"\x60([a-z0-9]+(?:-[a-z0-9]+)+)\x60\s+skill\b"
     ),
-    re.compile(r"\x60([a-z0-9]+(?:-[a-z0-9]+)+)\x60\s+skill\b"),
+    re.compile(r"\b(?:the|existing|installed)\s+\x60([a-z0-9]+(?:-[a-z0-9]+)+)\x60\s+skill\b"),
     re.compile(r"^\s*-\s+\x60([a-z0-9]+(?:-[a-z0-9]+)+)\x60\s+(?:for|when|to)\b"),
     re.compile(r"→\s*\x60([a-z0-9]+(?:-[a-z0-9]+)+)\x60\s*$"),
-    re.compile(r"Use @([a-z0-9]+(?:-[a-z0-9]+)+)"),
+    re.compile(r"Use @([a-z0-9]+(?:-[a-z0-9]+)+)\s+skill\b"),
 ]
 
 in_code_fence = False
 in_frontmatter = False
+in_delegates = False
 for lineno, line in enumerate(path.read_text().splitlines(), 1):
     if lineno == 1 and line == "---":
         in_frontmatter = True
@@ -989,7 +986,14 @@ for lineno, line in enumerate(path.read_text().splitlines(), 1):
     if in_code_fence:
         continue
 
-    for pattern in patterns:
+    if line == "Delegates To:":
+        in_delegates = True
+    elif line.startswith("## ") or re.match(r"^[A-Z][A-Za-z /]+:$", line):
+        in_delegates = False
+
+    for index, pattern in enumerate(patterns):
+        if index == 2 and not in_delegates:
+            continue
         match = pattern.search(line)
         if match:
             print(f"{lineno}:{match.group(1)}")
@@ -1199,6 +1203,22 @@ print((datetime.date.today() - d).days)
     return $warnings
 }
 
+check_skill_composition() {
+    local skill_name="$1"
+    local output
+    local issues=0
+    if output=$(python3 "$SCRIPT_DIR/check-skill-composition.py" "$SKILLS_DIR" "$skill_name" 2>&1); then
+        return 0
+    fi
+    while IFS= read -r finding; do
+        [[ -n "$finding" ]] || continue
+        echo -e "  ${RED}✗${NC} $finding"
+        ((++issues))
+    done <<< "$output"
+    [[ $issues -gt 0 ]] || issues=1
+    return "$issues"
+}
+
 # Function to validate a single skill
 validate_skill() {
     local skill_name="$1"
@@ -1267,6 +1287,10 @@ validate_skill() {
         local reference_warnings=0
         check_missing_skill_references "$skill_file" || reference_warnings=$?
         ((skill_warnings += reference_warnings, 1))
+
+        local composition_issues=0
+        check_skill_composition "$skill_name" || composition_issues=$?
+        ((skill_issues += composition_issues, 1))
 
         local contract_warnings=0
         check_contract_requirements "$skill_file" "$skill_name" || contract_warnings=$?

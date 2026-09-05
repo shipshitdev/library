@@ -1,10 +1,9 @@
 ---
 name: architect
 description: Sketch types, signatures, and module structure before code, then stay in the loop while implementation fills in. Use for architect this, design this, or non-trivial work where jumping to code would lock in the wrong shape.
-disable-model-invocation: true
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   tags: "architecture, design, types, modules"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/architect/SKILL.md
@@ -24,6 +23,14 @@ across parallel candidates, then fill in code against the chosen sketch.
 
 Companion to `codebase-design`, which owns deep-module vocabulary. This
 skill owns the pre-implementation sketch loop.
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 

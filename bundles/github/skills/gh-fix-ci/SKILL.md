@@ -7,13 +7,20 @@ description: >-
   Actions errors, get a green build, or continue PR queue work without waiting on
   unrelated pending checks. Can run autonomously in a loop — fix, push, recheck —
   until all required checks are green when the user asks to loop on CI.
-disable-model-invocation: true
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
   tags: "github, ci, actions"
 ---
 
 # GH Fix CI
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 
@@ -30,7 +37,7 @@ Outputs:
 
 Creates/Modifies:
 
-- Local code/config changes only when the fix is clear or explicitly requested
+- Local code/config changes only within explicitly authorized repair scope
 - Does not rerun CI without approval unless the user has already authorized
   autonomous CI looping or PR merge-train queue work
 

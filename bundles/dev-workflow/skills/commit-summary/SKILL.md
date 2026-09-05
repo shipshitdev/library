@@ -2,16 +2,23 @@
 name: commit-summary
 description: "Generate Conventional Commit messages from staged or unstaged git changes, split unrelated changes into logical commits, detect breaking changes, and optionally create commits after approval. Use when writing commit messages, preparing commits, or committing local work."
 compatibility: Requires git.
-disable-model-invocation: true
 allowed-tools: Bash(git *)
 metadata:
-  version: "1.0.1"
+  version: "1.1.0"
   tags: "git, workflow, commits, productivity"
 ---
 
 # Commit Summary
 
 Generate accurate Conventional Commits from real git diffs.
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 
@@ -108,7 +115,9 @@ Delegates To:
    Refs: #123
    ```
 
-8. If the user asked to commit, show the exact message and get approval:
+8. If the user asked to commit, show the exact message and proceed within that
+   authorization. Obtain approval only if the selected files or operation exceed
+   the request:
 
    ```bash
    git add <approved-paths>

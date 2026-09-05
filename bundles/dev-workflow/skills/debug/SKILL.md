@@ -11,7 +11,7 @@ description: >-
   `systematic-debugging` when a fix attempt has already failed or the cause
   survives the loop.
 metadata:
-  version: "2.0.0"
+  version: "2.0.2"
   tags: "debugging, triage, reproduction, instrumentation, front-door"
 when_to_use: "new bug report, just hit an error, crash, wrong output, performance regression, how do I reproduce this, build a repro case, where should I add logging, which instrumentation, read this stack trace, bug pattern lookup, off-by-one, race condition, memory leak, triage incoming bugs, prioritize bug reports"
 ---
@@ -60,7 +60,7 @@ Delegates To:
   escalation table fires.
 - `execution-debugging` when the failure is a test or build breaking during
   stabilization and scope must stay on that one check.
-- `bug` to file the report when the case ends in a ticket rather than a fix.
+- Recommend `bug` to file the report when the case ends in a ticket rather than a fix.
 
 ## Front-Door Loop
 

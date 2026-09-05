@@ -12,7 +12,7 @@ description: >-
   up testing, check coverage, or start TDD, and the action must be picked from an
   argument like "run", "qa", "tdd", "e2e", "coverage", "init", or "regression".
 metadata:
-  version: "2.0.0"
+  version: "2.0.1"
   tags: "testing, dispatcher, tdd, e2e, coverage, ci, orchestration"
   author: Ship Shit Dev
 when_to_use: "/test, run tests, qa review, tdd, e2e tests, coverage enforcement, testing setup, ai regression tests, check your work, fix failing tests"
@@ -66,8 +66,8 @@ External Side Effects:
 Confirmation Required:
 
 - This skill is explicit-invoke only (`disable-model-invocation`). Delegated
-  skills that scaffold files (e2e, coverage, init) each re-confirm before
-  writing. Never chain mutating subcommands automatically.
+  skills that scaffold files (e2e, coverage, init) honor existing scoped
+  authorization before writing. Never chain mutating subcommands automatically.
 - Before the first source or test edit, obtain explicit repair authorization.
   Existing explicit authorization such as "fix the failures" satisfies this gate
   within its stated scope; do not ask again. Neither `run` nor a bare scope

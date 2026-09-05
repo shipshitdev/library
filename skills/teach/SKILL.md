@@ -1,10 +1,9 @@
 ---
 name: teach
 description: Explain a body of work so a person actually understands it. Runs how and why and weaves what they find into one plain explanation, built up diagram by diagram. Use for teach me this, help me really understand X, or explain this change or subsystem.
-disable-model-invocation: true
 license: MIT
 metadata:
-  version: "1.0.1"
+  version: "1.1.0"
   tags: "teaching, explanation, onboarding"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/teach/SKILL.md
@@ -20,6 +19,14 @@ when_to_use: "teach me this, help me really understand, explain this subsystem"
 
 Explain what a thing is, how it works, and why it is built that way,
 in one plain account at the person's pace. Change nothing.
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 
@@ -63,7 +70,7 @@ Delegates To:
    series of diagrams that each add one part. Mermaid for flows. Skip
    a figure that only decorates.
 
-Apply `skills/deslop/references/prose-slop.md`. Give each concept one
+Apply `references/prose-slop.md` from the selected `deslop` skill directory. Give each concept one
 name and keep it.
 
 **Reply:** the explanation. Lead with the main point, then what it is,

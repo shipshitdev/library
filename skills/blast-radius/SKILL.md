@@ -1,10 +1,9 @@
 ---
 name: blast-radius
 description: Find what a small-looking change could break somewhere else, and prove the one fact it is safe because of by running real code. Use for blast radius of X, what could this break, or reviewing a small diff you do not trust.
-disable-model-invocation: true
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   tags: "impact, safety, review, verification"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/blast-radius/SKILL.md
@@ -21,6 +20,14 @@ when_to_use: "blast radius, what could this break, is this small diff safe"
 Find what a change breaks somewhere else, before it ships. Companion
 to `how` and `why`. Listing callers is not the job. The job is the
 breakage grep will not show you.
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 

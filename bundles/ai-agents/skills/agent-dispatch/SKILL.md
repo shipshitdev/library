@@ -11,7 +11,7 @@ description: >-
   drift, initialize agent docs, or wire up routing, and the action must be picked
   from an argument like "audit", "config", "init", or "route".
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
   tags: "agents, dispatcher, architecture, config, setup, routing, orchestration"
   author: Ship Shit Dev
 when_to_use: "/agent, agent audit, config audit, init agent folder, setup agent routing, audit LLM wrappers, check agent config drift, add .agents/ folder, wire up dev-loop routing"
@@ -21,6 +21,14 @@ disable-model-invocation: true
 # Agent Dispatch
 
 The router behind `/agent`. Turns a subcommand into the right action and delegates. Contains no logic of its own — delegates to `agent-architecture-audit`, `agent-config-audit`, `agent-folder-init`, and `setup-agent-routing`.
+
+## Composition Boundary
+
+Run only the selected mode. Pass the user's target, authorized actions, and
+report-only restrictions to the engine. Existing explicit approval satisfies
+that engine's gate for the same scope; obtain approval for missing or expanded
+authority. Delegation never grants new host, provider, cost, publication, or
+production permissions. An empty or advisory mode starts no mutating workflow.
 
 ## Contract
 

@@ -4,7 +4,7 @@ description: Ask which Dev Loop skill or flow fits the current situation. A rout
 disable-model-invocation: true
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "dev-loop, router, planning, dispatch"
   author: Ship Shit Dev
 when_to_use: "which skill, what should I run, ask-dev-loop, how do I start, idea to ship, which flow"
@@ -14,9 +14,10 @@ when_to_use: "which skill, what should I run, ask-dev-loop, how do I start, idea
 
 The human does not remember every skill. Ask.
 
-This is a **router**: it names the skill to type next and why. It hints. It does
-not fire other user-invoked skills. Model-invoked primitives (`grilling`,
-`domain-modeling`, `tdd`, `debug`) may be named as what the chosen skill will run.
+This is an **advisory router**: name the skill to type next and why, then stop.
+Execution routers can invoke reusable engines within an authorized task, but
+this skill only recommends. `grilling`, `domain-modeling`, `tdd`, and `debug`
+may be named as what the chosen workflow will run.
 
 ## Contract
 
@@ -73,7 +74,7 @@ Keep grilling, spec, and tickets in **one context window**. Each `/loop` /
 ## On-ramps
 
 - **Bugs and incoming requests piling up** → `/prd intake` (`feature-intake`) or
-  `/inbox`. Tickets that `prd-task-creator` already wrote are agent-ready; do not
+  `gh-inbox`. Tickets that `prd-task-creator` already wrote are agent-ready; do not
   re-intake them.
 - **Something's broken** → `/debug` (or `systematic-debugging` when previous fixes
   failed). Tight red loop first; no theory without a loop.

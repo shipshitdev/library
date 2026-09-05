@@ -1,19 +1,26 @@
 ---
 name: shadcn-setup
-disable-model-invocation: true
 description: >-
   Sets up shadcn/ui with Tailwind CSS v4 CSS-first configuration — installs
   packages, generates globals.css with @theme tokens, creates components.json,
   and adds the cn() utility. Use when starting a new Next.js or React project
   that needs a shadcn component library, or migrating from shadcn + Tailwind v3.
 metadata:
-  version: "1.0.1"
+  version: "1.1.0"
   tags: "shadcn, ui, components, tailwind, react, nextjs"
 ---
 
 # shadcn/ui Setup
 
 Sets up shadcn/ui with the modern CSS-first Tailwind v4 setup, not the deprecated v3 approach.
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 
@@ -44,7 +51,9 @@ External Side Effects:
 
 Confirmation Required:
 
-- None. Running this skill applies all changes immediately. Review the component list before invoking in an existing project.
+- Apply only the explicitly requested setup or migration. Invocation alone
+  grants no permission to replace existing styles or configuration.
+- Confirm before overwriting files or installing components beyond that scope.
 
 Delegates To:
 

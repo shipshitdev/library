@@ -1,6 +1,5 @@
 ---
 name: testing-cicd-init
-disable-model-invocation: true
 description: >-
   Installs Vitest testing infrastructure and GitHub Actions CI/CD for TypeScript
   projects (Next.js, NestJS, React). Configures 80% coverage thresholds, test
@@ -8,11 +7,19 @@ description: >-
   project, migrating from Jest to Vitest, or setting up GitHub Actions CI/CD
   for the first time.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   tags: "testing, ci, vitest"
 ---
 
 # Testing & CI/CD Initialization
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 
@@ -41,7 +48,10 @@ External Side Effects:
 
 Confirmation Required:
 
-- None. All changes are applied immediately on invocation.
+- Apply setup only when the user explicitly requested this configuration or
+  approved a plan containing it. Invocation alone grants no write authority.
+- Confirm before overwriting existing test configuration or adding dependencies
+  outside that authorized setup.
 
 Delegates To:
 

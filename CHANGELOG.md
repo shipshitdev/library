@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/shipshitdev/skills/compare/v2.1.0...v2.2.0) (2026-09-05)
+
+
+### Features
+
+* consolidate Pstack with pinned upstream synchronization ([#142](https://github.com/shipshitdev/skills/issues/142)) ([17d3741](https://github.com/shipshitdev/skills/commit/17d37411045d3b0c4416b843d584a8b3443b2147))
+
 ## [2.1.0](https://github.com/shipshitdev/skills/compare/v2.0.0...v2.1.0) (2026-09-05)
 
 

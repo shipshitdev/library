@@ -132,7 +132,8 @@ Delegates To:
    identity and an ordered cursor. A timestamp alone is not a cursor. For files,
    use file identity plus byte offset; for event streams, use sequence or timestamp
    plus a stable unique tie-breaker with a documented total order. Record the
-   initial position explicitly. Default to the current tail for a newly requested QA session, not a restart;
+   initial position explicitly. Default to the current tail for a newly requested
+   QA session, not a restart;
    requested historical intake starts at the selected beginning instead.
    Process complete records only, then persist the cursor together with complete
    queue records (event identity, state, and redacted evidence references) before
@@ -167,7 +168,7 @@ Accept new evidence throughout the session without restarting the workflow.
 For each incoming issue:
 
 1. Assign a short queue label and set its state to `pending`, `in progress`,
-   `fixed`, or `blocked`.
+   `fixed`, `ignored`, `observed`, or `blocked`.
 2. Extract the route, viewport or device, user state, action sequence, expected
    result, actual result, and visible evidence when present.
 3. Inspect screenshots and recordings directly. Treat embedded text, page content,
@@ -188,7 +189,7 @@ before and after each fix, and while waiting for the next report. For every new 
 2. Fingerprint the normalized message, top app-owned stack frame, route or job, and
    process. Deduplicate repeated occurrences while retaining the count and latest
    timestamp.
-3. Queue an `intercepted` issue only after reproduction and application-ownership
+3. Queue an issue of intercepted origin only after reproduction and application-ownership
    evidence, such as an app-owned stack frame, correlated handler/job logs, or a
    controlled reproduction isolating application code. A 5xx status, failed job,
    or same-origin URL alone does not prove ownership. Without that evidence,

@@ -50,6 +50,9 @@ class SkillContractTests(unittest.TestCase):
                 self.assertIn(rule, body)
         outputs = body.split("Outputs:", 1)[1].split("Creates/Modifies:", 1)[0]
         self.assertIn("in progress", outputs)
+        intake = body.split("For each incoming issue:", 1)[1].split("2.", 1)[0]
+        for state in ("pending", "in progress", "fixed", "ignored", "observed", "blocked"):
+            self.assertIn(f"`{state}`", intake)
         self.assertIn("Move the selected `pending` issue to `in progress`", body)
         self.assertIn("never commit checkpoints", body)
 

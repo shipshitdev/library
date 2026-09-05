@@ -89,7 +89,8 @@ obvious.
 ## Jargon
 
 - **26. Vague metaphor nouns.** Flag substrate, wedge, vector, locus, vantage,
-    nexus, surface, bedrock, modality, paradigm, gold-plating, ratchet, evacuate,
+    nexus, surface, bedrock, modality, paradigm, primitive, harness, scaffolding,
+    gold-plating, ratchet, evacuate,
     endgame, north star, and flywheel when
     used as vague metaphors without a concrete referent. Preserve established
     technical meanings, including API surface, embedding vector, attack vector,

@@ -9,7 +9,7 @@ export const meta = {
 // Supply the canonical skill directory and an explicit selected name list from
 // the current catalog. The harness owns discovery, model choice, and capacity.
 if (typeof SKILLS_ROOT !== 'string' || !SKILLS_ROOT.trim() ||
-    !Array.isArray(SKILL_NAMES) || !SKILL_NAMES.length ||
+    typeof SKILL_NAMES === 'undefined' || !Array.isArray(SKILL_NAMES) || !SKILL_NAMES.length ||
     SKILL_NAMES.some((name) => typeof name !== 'string' || !/^[a-z][a-z0-9-]*$/.test(name))) {
   throw new Error('Supply SKILLS_ROOT and a nonempty canonical SKILL_NAMES list.');
 }

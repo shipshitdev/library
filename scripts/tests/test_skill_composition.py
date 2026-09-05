@@ -3,6 +3,7 @@ from __future__ import annotations
 import importlib.util
 import subprocess
 import shutil
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -44,8 +45,22 @@ class SkillCompositionTests(unittest.TestCase):
         path = commands / "board.md"
         path.write_text("Run the `gh-board-sync` skill.\n")
         self.assertIn("Retired skill reference", composition.catalog_findings(self.skills / "skills")[0])
-        path.write_text("Run the `board-sync` skill.\nSource: https://example.com/gh-board-sync\n")
+        path.write_text("Run the `board-sync` skill.\nSource: https://example.com/gh-board-sync\nUse `gh-ost` and the `gh-pages` branch.\n")
         self.assertEqual(composition.catalog_findings(self.skills / "skills"), [])
+
+    def test_catalog_rejects_stale_published_sources_and_bundled_identities(self) -> None:
+        root = self.skills
+        marketplace = root / ".claude-plugin"
+        marketplace.mkdir()
+        manifest = marketplace / "marketplace.json"
+        manifest.write_text(json.dumps({"plugins": [{"name": "board-sync", "source": "./skills/gh-board-sync"}]}))
+        self.assertIn("Missing local plugin source", composition.catalog_findings(root / "skills")[0])
+        source = root / "skills/board-sync"
+        source.mkdir(parents=True)
+        manifest.write_text(json.dumps({"plugins": [{"name": "board-sync", "source": "./skills/board-sync"}]}))
+        self.assertEqual(composition.catalog_findings(root / "skills"), [])
+        (root / "bundles/example/skills/gh-board-sync").mkdir(parents=True)
+        self.assertIn("Retired bundled skill identity", composition.catalog_findings(root / "skills")[0])
 
     def test_direct_route_rejects_hidden_engine(self) -> None:
         caller = self.add_skill("caller", "1. Run the `engine` skill.")
@@ -188,6 +203,8 @@ const source = readFileSync("scripts/classify-provenance.workflow.js", "utf8")
   .replace("export const meta", "const meta");
 const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;
 const execute = new AsyncFunction("agent", "parallel", "phase", "SKILLS_ROOT", "SKILL_NAMES", source);
+const missingNames = new AsyncFunction("agent", "parallel", "phase", "SKILLS_ROOT", source);
+await assert.rejects(missingNames(null, null, null, "/installed/skills"), /Supply SKILLS_ROOT/);
 let calls = 0;
 const agent = async (prompt, options) => {
   assert.equal(Object.hasOwn(options, "model"), false);

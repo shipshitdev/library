@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+import json
 import sys
 from collections.abc import Iterator
 from pathlib import Path
@@ -126,8 +127,19 @@ def catalog_findings(skills_root: Path) -> list[str]:
             continue
         for number, line in enumerate(path.read_text().splitlines(), 1):
             line = re.sub(r"https?://[^\s)]+", "", line)
-            for match in re.finditer(r"(?<![a-zA-Z0-9_-])gh-[a-z0-9][a-z0-9-]*", line):
+            for match in re.finditer(r"(?<![a-zA-Z0-9_-])gh-(?:address-comments|board-sync|fix-ci|inbox|pr-publish|project-board|review-suggestions)(?![a-z0-9-])", line):
                 result.append(f"{path.relative_to(root)}:{number}: Retired skill reference: {match.group()}")
+    # Inspect committed installation entry points as well as canonical callers.
+    marketplace = root / ".claude-plugin/marketplace.json"
+    if marketplace.is_file():
+        for plugin in json.loads(marketplace.read_text()).get("plugins", []):
+            name, source = plugin.get("name", ""), plugin.get("source")
+            if name.startswith("gh-"):
+                result.append(f"{marketplace.relative_to(root)}: Retired plugin identity: {name}")
+            if not isinstance(source, str) or not (root / source).is_dir():
+                result.append(f"{marketplace.relative_to(root)}: Missing local plugin source: {source}")
+    for directory in sorted((root / "bundles").glob("*/skills/gh-*")):
+        result.append(f"{directory.relative_to(root)}: Retired bundled skill identity")
     return result
 
 

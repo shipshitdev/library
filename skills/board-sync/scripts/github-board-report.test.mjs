@@ -265,3 +265,14 @@ test('status map needs its own value rather than consuming the following option'
     assert.throws(()=>parseArgs(['--owner','org','--project','1','--status-map',...tail]),/Missing value for --status-map/);
   }
 });
+
+test('GraphQL transport preserves explicit numeric and boolean values', () => {
+  let captured;
+  const reader = createReader((args) => { captured = args; return { data: {} }; });
+  reader.graphql('query($count: Int!, $enabled: Boolean!) { fixture }', { count: 12, enabled: false });
+  for (const value of ['count=12', 'enabled=false']) {
+    const index = captured.indexOf(value);
+    assert.ok(index > 0);
+    assert.equal(captured[index - 1], '-F');
+  }
+});

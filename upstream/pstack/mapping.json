@@ -331,12 +331,12 @@
         {
           "executable": false,
           "path": "skills/pstack/adapters/cursor/docs/guide/05-build-and-clean.md",
-          "sha256": "b8fb3875e9858efc0f9588989819595f32717cc30071b1d37dfe98404a556b87"
+          "sha256": "1636e01f5bbed67d02aa474421c0169ed4950692cb208ccfba87ab4b27e5ace5"
         }
       ],
       "disposition": "adapted",
       "reason": "Dormant Cursor adapter; explicit setup verifies supported capabilities and authorized effects.",
-      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
+      "review_note": "Resolve follow-up documentation findings and align capture persistence with explicit authority.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -390,12 +390,12 @@
         {
           "executable": false,
           "path": "skills/pstack/adapters/cursor/docs/guide/09-make-it-yours.md",
-          "sha256": "71868d1c85ab546ce9ee6207c29076f7a2b4bcca1eb7d691badae4f057cd7f34"
+          "sha256": "569eb31630ad3acf0c6bfd1e7a8b2bab1016bddae34b3c5030753809b3028570"
         }
       ],
       "disposition": "adapted",
       "reason": "Dormant Cursor adapter; explicit setup verifies supported capabilities and authorized effects.",
-      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
+      "review_note": "Resolve follow-up documentation findings and align capture persistence with explicit authority.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -576,12 +576,12 @@
         {
           "executable": false,
           "path": "skills/arena/references/arena-procedure.md",
-          "sha256": "9d88f02bc6f1c6d428116d276d16a934701a11ae6bca2cd565399ef82219b69d"
+          "sha256": "84933abdfa2363de8c1cef2f9420ff0fd677c4943f66395114d5e1fd0752f4ae"
         }
       ],
       "disposition": "adapted",
       "reason": "Original capability carried through the portable Open Pstack implementation. Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
-      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
+      "review_note": "Resolve follow-up documentation findings and align capture persistence with explicit authority.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -849,12 +849,12 @@
         {
           "executable": false,
           "path": "skills/maintain-verification-skill/references/maintain-verification-skill-procedure.md",
-          "sha256": "da53c75a0df3368be1b13f9c2e4b067050e36e044e54076a181bb7010b9b3cb4"
+          "sha256": "133cc7ac6be6188a0b4535c1bcc0829881518f3e716e2daea4e6d06c2db22cc7"
         }
       ],
       "disposition": "adapted",
       "reason": "Original capability carried through the portable Open Pstack implementation. Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
-      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
+      "review_note": "Resolve follow-up documentation findings and align capture persistence with explicit authority.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -1841,12 +1841,12 @@
         {
           "executable": false,
           "path": "skills/skill-capture/references/reflect-procedure.md",
-          "sha256": "ca0ce15deee352446b3049bbe9db592ab5d6968d503493ca97666c9b9f06bb51"
+          "sha256": "82185b430df990dd9b89262e7294a0eafcee535a67bf13035a0d287f91f4ea3f"
         }
       ],
       "disposition": "adapted",
       "reason": "Original capability carried through the portable Open Pstack implementation. Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
-      "review_note": "Integrated reviewed portable paths, canonical cleanup preservation and complete source coverage.",
+      "review_note": "Resolve follow-up documentation findings and align capture persistence with explicit authority.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -2822,7 +2822,7 @@
         {
           "executable": false,
           "path": "skills/arena/references/arena-procedure.md",
-          "sha256": "9d88f02bc6f1c6d428116d276d16a934701a11ae6bca2cd565399ef82219b69d"
+          "sha256": "84933abdfa2363de8c1cef2f9420ff0fd677c4943f66395114d5e1fd0752f4ae"
         },
         {
           "executable": false,
@@ -2832,7 +2832,7 @@
       ],
       "disposition": "adapted",
       "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
-      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
+      "review_note": "Resolve follow-up documentation findings and align capture persistence with explicit authority.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -3231,7 +3231,7 @@
         {
           "executable": false,
           "path": "skills/maintain-verification-skill/references/maintain-verification-skill-procedure.md",
-          "sha256": "da53c75a0df3368be1b13f9c2e4b067050e36e044e54076a181bb7010b9b3cb4"
+          "sha256": "133cc7ac6be6188a0b4535c1bcc0829881518f3e716e2daea4e6d06c2db22cc7"
         },
         {
           "executable": false,
@@ -3241,7 +3241,7 @@
       ],
       "disposition": "adapted",
       "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
-      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
+      "review_note": "Resolve follow-up documentation findings and align capture persistence with explicit authority.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -3454,7 +3454,7 @@
         }
       ],
       "disposition": "adapted",
-      "reason": "Preserves executable plan shape and verification coverage while binding cadence and notification policy to authorized harness configuration instead of hardcoded30-minute/always-notify behavior.",
+      "reason": "Preserves executable plan shape and verification coverage while binding cadence and notification policy to authorized harness configuration instead of hardcoded 30-minute/always-notify behavior.",
       "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
@@ -3727,7 +3727,7 @@
         }
       ],
       "disposition": "adapted",
-      "reason": "Preserves executable plan shape and verification coverage while binding cadence and notification policy to authorized harness configuration instead of hardcoded30-minute/always-notify behavior.",
+      "reason": "Preserves executable plan shape and verification coverage while binding cadence and notification policy to authorized harness configuration instead of hardcoded 30-minute/always-notify behavior.",
       "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
@@ -3742,7 +3742,7 @@
         }
       ],
       "disposition": "adapted",
-      "reason": "Preserves executable plan shape and verification coverage while binding cadence and notification policy to authorized harness configuration instead of hardcoded30-minute/always-notify behavior. Reviewed adaptation to canonical routing and harness policy.",
+      "reason": "Preserves executable plan shape and verification coverage while binding cadence and notification policy to authorized harness configuration instead of hardcoded 30-minute/always-notify behavior. Reviewed adaptation to canonical routing and harness policy.",
       "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
@@ -4608,17 +4608,17 @@
         {
           "executable": false,
           "path": "skills/skill-capture/references/reflect-procedure.md",
-          "sha256": "ca0ce15deee352446b3049bbe9db592ab5d6968d503493ca97666c9b9f06bb51"
+          "sha256": "82185b430df990dd9b89262e7294a0eafcee535a67bf13035a0d287f91f4ea3f"
         },
         {
           "executable": false,
           "path": "skills/skill-capture/SKILL.md",
-          "sha256": "6fd2219253ad79f30987fe429a02e9341f3f6f6736ba7ce15eca293d8d1bb69c"
+          "sha256": "43db334a4be851793fed7edf923118b324cd605cd2f224763fb0b816b8a046c2"
         }
       ],
       "disposition": "adapted",
       "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
-      "review_note": "Integrated reviewed portable paths, canonical cleanup preservation and complete source coverage.",
+      "review_note": "Resolve follow-up documentation findings and align capture persistence with explicit authority.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]

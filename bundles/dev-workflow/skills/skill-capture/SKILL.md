@@ -46,6 +46,8 @@ Activate when the user mentions ANY of these:
 
 ## Capture Process
 
+A capture request authorizes the matching skill edits. A completion signal alone authorizes a proposal, not persistence or tracker submissions. Preserve the user's scope and ask before consequential changes outside it.
+
 Follow these 5 phases in order:
 
 ### Phase 1: Identification

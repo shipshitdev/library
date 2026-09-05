@@ -60,9 +60,9 @@ Sanity-check the synthesizer's Accepted list. For any item that would be enforce
 
 ### 5. Apply
 
-Before applying any Accepted edit, present the synthesizer's full Accepted/Rejected/Backlog output to the user and wait for explicit approval. The user picks which subset to apply and may redirect routings. Skill changes affect every future agent in the org; do not auto-apply.
+Present the synthesizer's Accepted/Rejected/Backlog output. Apply only skill edits already covered by the user's capture request and the harness's authority rules. If capture was suggested after a session without a request to persist it, leave the proposals as a report. Ask before any consequential scope expansion or unresolved routing choice.
 
-Backlog items file to whatever devex / backlog tracker your team uses automatically. Those are tracker submissions, not skill edits. Only the Accepted list waits for approval.
+Create backlog issues only when tracker writes are already authorized. Otherwise include them as proposals in the report.
 
 For each approved Accepted item, follow the Routing field exactly:
 

@@ -26,7 +26,7 @@ Right after a task that taught you something, run:
 /skill-capture that took way too long. capture what we learned so the next run doesn't repeat it.
 ```
 
-`/skill-capture` (resolve the `skill-capture` skill through the active catalog) sends the transcript to three parallel reviewers, then a synthesizer sorts the proposals into `Accepted`, `Rejected`, and `Backlog` and applies only changes covered by your requested capture task, presenting any additional consequential choice before expanding scope. Approve a proposal only if it would change a future decision. One weird session is an anecdote, not a rule.
+`/skill-capture` (resolve the `skill-capture` skill through the active catalog) sends the transcript to three parallel reviewers, then a synthesizer sorts the proposals into `Accepted`, `Rejected`, and `Backlog` and applies only changes covered by your requested capture task, presenting any additional consequential choice before expanding scope. Keep a proposal only if it would change a future decision. One weird session is an anecdote, not a rule.
 
 ## Author a focused skill
 

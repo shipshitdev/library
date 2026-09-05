@@ -1,9 +1,9 @@
 ---
 name: test-runner
-description: "Run a project's tests at the right scope — changed-only, focused, full, type-check, or e2e — then, on failure, read the output and traces, apply a minimal fix, and rerun until green or blocked. Detects the test runner and package manager from the repo. Use when the user asks to run tests, run the suite, run smoke/e2e tests, type-check, check the build compiles, fix failing tests, or runs /test run."
+description: "Run a project's tests at the right scope — changed-only, focused, full, type-check, or e2e — then report failures with evidence. Repair and rerun only when fixing failures is explicitly authorized. Detects the test runner and package manager from the repo. Use when the user asks to run tests, run the suite, run smoke/e2e tests, type-check, check the build compiles, fix failing tests, or runs /test run."
 compatibility: Requires a JavaScript/TypeScript project with a test runner (Vitest, Jest, Bun test, or Playwright) and a package manager.
 metadata:
-  version: "1.0.1"
+  version: "1.1.0"
   tags: "testing, vitest, jest, playwright, e2e, smoke, type-check, ci, scoped-tests"
 allowed-tools: Bash(bun *) Bash(bunx *) Bash(git *)
 disable-model-invocation: true
@@ -11,11 +11,10 @@ disable-model-invocation: true
 
 # Test Runner
 
-Run the right tests, not all the tests — then make red go green. This skill picks a
-scope (changed-only by default, matching the "scoped tests locally, full suite in
-CI" discipline), detects the runner, executes, and on failure reads the actual
-output and traces, applies a minimal targeted fix, and reruns until the suite is
-stable or it hits a genuine blocker.
+Run the requested test scope and report the result. Default to changed tests,
+detect the runner, and read the actual failure output and traces. A test execution
+request, including a bare scope, authorizes execution and diagnosis. Repair files
+only after explicit authorization to fix the failures.
 
 It subsumes the "run the smoke suite and stabilize it" and "compile and fix the
 type errors in a loop" workflows behind one scoped entry point.
@@ -33,12 +32,14 @@ Outputs:
 
 - A pass/fail summary: tests run, passed, failed, skipped, and duration
 - For failures: the failing tests, the isolated root cause, and the minimal fix
-  applied (or proposed, under `--no-fix`)
+  proposed, or applied when repair is authorized
 - A note of what scope ran and what was deliberately not run
 
 Creates/Modifies:
 
-- May edit source or test files to fix a genuine failure (skipped under `--no-fix`)
+- Edit source or test files only within explicitly authorized repair scope
+- `--no-fix` or report-only mode prohibits source and test edits, even when
+  repair was previously authorized; runner reports and traces remain permitted
 - Does not commit, push, or change CI configuration
 - May write runner artifacts (coverage reports, Playwright traces) to their
   default locations
@@ -51,7 +52,11 @@ External Side Effects:
 
 Confirmation Required:
 
-- Before editing source beyond the file(s) under test to fix a failure
+- Before the first source or test edit, obtain explicit repair authorization.
+  Existing explicit authorization such as "fix the failures" satisfies this gate
+  within its stated scope; do not ask again. `/test run`, a bare scope, and a
+  request to type-check do not grant repair authority.
+- Before expanding an authorized repair beyond its agreed scope
 - Before running an expensive full or e2e suite when the user asked for a quick check
 - Before changing any test's expectations (never weaken or delete a test to make it
   pass without flagging it)
@@ -146,14 +151,17 @@ For each failure, work the loop:
 1. **Read the real error.** Full stack/assertion, not just the summary line. For
    Playwright, open the trace and screenshots — they are the primary artifact.
 2. **Isolate.** Re-run just the failing file/test to reproduce deterministically.
-3. **Hypothesize, then fix the root cause** in the code under test (or the test, if
-   the test itself is wrong — and say which).
-4. **Rerun** the focused failure; when green, rerun the original scope.
-5. Repeat until the scope is green or you hit a genuine blocker (missing env,
+3. **Resolve repair authority.** In report-only mode, report the diagnosis and
+   proposed fix without editing. Otherwise, use existing explicit repair
+   authorization or obtain it before the first edit.
+4. **Fix the root cause** within that scope. If the test itself is wrong, explain
+   why and honor the test-expectation gate before changing it.
+5. **Rerun** the focused failure; when green, rerun the original scope.
+6. Repeat until the scope is green or you hit a genuine blocker (missing env,
    external dependency, ambiguous intent) — then stop and report it, do not thrash.
 
-For `types` mode, run the type checker, group errors by file and category, fix the
-highest-confidence ones first, and re-run until clean or blocked.
+For `types` mode, run the type checker and group errors by file and category.
+The same repair gate applies before editing; report-only mode ends with findings.
 
 ## Phase 5: Flakiness Check
 
@@ -168,7 +176,7 @@ Flag any test that passes inconsistently rather than declaring success.
 - `/test run full` — the whole suite
 - `/test run unit` | `integration` | `e2e` — by type
 - `/test run coverage` — full run + coverage; gate via `husky-test-coverage`
-- `/test run types` — `tsc --noEmit` and clear the errors in a loop
+- `/test run types` — type-check and report; repair only when authorized
 - `/test run <path|pattern>` — focused
 - `/test run --since <ref>` — tests related to a commit range
 - `/test run --no-fix` — run and report; make no edits

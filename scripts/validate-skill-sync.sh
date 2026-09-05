@@ -67,9 +67,6 @@ project-init-orchestrator
 release-pr-gates
 rules-capture
 scaffold
-session-documenter
-session-end
-session-start
 prd-task-creator
 pstack
 create-verification-skill

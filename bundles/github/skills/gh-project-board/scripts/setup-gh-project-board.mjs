@@ -56,49 +56,6 @@ const DEFAULT_PRIORITY_OPTIONS = [
   },
 ];
 
-const PROJECT_QUERY = `
-query($id: ID!) {
-  node(id: $id) {
-    ... on ProjectV2 {
-      id
-      title
-      url
-      closed
-      views(first: 20) {
-        nodes {
-          id
-          name
-          layout
-        }
-      }
-      fields(first: 100) {
-        nodes {
-          ... on ProjectV2Field {
-            id
-            name
-            dataType
-          }
-          ... on ProjectV2IterationField {
-            id
-            name
-            dataType
-          }
-          ... on ProjectV2SingleSelectField {
-            id
-            name
-            dataType
-            options {
-              id
-              name
-              color
-              description
-            }
-          }
-        }
-      }
-    }
-  }
-}`;
 
 function parseArgs(argv) {
   const args = {
@@ -209,23 +166,33 @@ function graphql(query, variables = {}) {
 }
 
 function listProjects(owner, includeClosed) {
-  const args = [
-    'project',
-    'list',
-    '--owner',
-    owner,
-    '--format',
-    'json',
-    '--limit',
-    '100',
-  ];
+  const identity = ghJson(['api', '--method', 'GET', `users/${owner}`]);
+  const type = identity.type === 'Organization' ? 'Organization' : 'User';
+  return readConnection(identity.node_id, type, 'projectsV2',
+    'id number closed', includeClosed ? '' : ', query: "is:open"');
+}
 
-  if (includeClosed) {
-    args.push('--closed');
-  }
-
-  const response = ghJson(args);
-  return response.projects ?? [];
+function readConnection(id, type, field, selection, extra = '') {
+  const nodes = [];
+  let after = null;
+  const cursors = new Set();
+  do {
+    const response = graphql(`query($id: ID!, $after: String) {
+      node(id: $id) { ... on ${type} {
+        ${field}(first: 100, after: $after ${extra}) {
+          pageInfo { hasNextPage endCursor } nodes { ${selection} }
+        }
+      } }
+    }`, { id, ...(after ? { after } : {}) });
+    const page = response.data?.node?.[field];
+    if (!page?.nodes || !page.pageInfo) fail(`Could not fully read ${field}; no changes applied.`);
+    nodes.push(...page.nodes);
+    if (!page.pageInfo.hasNextPage) break;
+    after = page.pageInfo.endCursor;
+    if (!after || cursors.has(after)) fail(`Invalid cursor for ${field}; no changes applied.`);
+    cursors.add(after);
+  } while (true);
+  return nodes;
 }
 
 function projectSummary(owner, number) {
@@ -233,11 +200,18 @@ function projectSummary(owner, number) {
 }
 
 function projectDetails(projectId) {
-  const response = graphql(PROJECT_QUERY, { id: projectId });
+  const response = graphql('query($id: ID!) { node(id: $id) { ... on ProjectV2 { id title url closed } } }', { id: projectId });
   const project = response.data?.node;
-  if (!project) {
-    fail(`Could not load project node ${projectId}.`);
-  }
+  if (!project) fail(`Could not load project node ${projectId}.`);
+  project.fields = { nodes: readConnection(projectId, 'ProjectV2', 'fields', `
+    ... on ProjectV2Field { id name dataType }
+    ... on ProjectV2IterationField { id name dataType }
+    ... on ProjectV2SingleSelectField { id name dataType options { id name color description } }
+  `) };
+  project.views = { nodes: readConnection(projectId, 'ProjectV2', 'views', 'id name layout') };
+  project.issueOwners = readConnection(projectId, 'ProjectV2', 'items',
+    'content { ... on Issue { repository { owner { login } } } }')
+    .map((item) => item.content?.repository?.owner?.login).filter(Boolean);
   return project;
 }
 
@@ -461,6 +435,19 @@ function formatNames(options) {
   return options.map((option) => option.name).join(', ');
 }
 
+function nativePriority(owner) {
+  const identity = ghJson(['api', '--method', 'GET', `users/${owner}`]);
+  if (identity.type !== 'Organization') return null;
+  // A failed discovery stops before writes; it does not justify a duplicate field.
+  const pages = ghJson(['api', '--method', 'GET', '--paginate', '--slurp',
+    `orgs/${owner}/issue-fields`, '-H', 'X-GitHub-Api-Version: 2026-03-10']);
+  const fields = pages.flat().filter((field) => field.name === 'Priority');
+  if (fields.length > 1 || (fields[0] && fields[0].data_type !== 'single_select')) {
+    fail('Native Priority is ambiguous or not single-select; inspect organization schema before applying.');
+  }
+  return fields[0] ?? null;
+}
+
 function normalizeProject(owner, number, options) {
   const summary = projectSummary(owner, number);
   const project = projectDetails(summary.id);
@@ -471,14 +458,19 @@ function normalizeProject(owner, number, options) {
     options.statusOptions,
     options.exact
   );
-  const priorityPlan = buildPlan(
+  const native = [...new Set([owner, ...project.issueOwners])]
+    .map((issueOwner) => nativePriority(issueOwner)).find(Boolean);
+  const priorityPlan = native ? null : buildPlan(
     fieldByName(fields, 'Priority'),
     'Priority',
     options.priorityOptions,
     options.exact
   );
   const boardViews = boardViewNames(project);
-  const plans = [statusPlan, priorityPlan];
+  const plans = [statusPlan, priorityPlan].filter(Boolean);
+  if (native) {
+    process.stdout.write(`  Priority: organization-native field ${native.id}; options: ${native.options.map((option) => option.name).join(', ')}; project Priority normalization skipped\n`);
+  }
   const blocked = plans.filter((plan) => plan.error);
   const changed = plans.filter((plan) => !plan.error && plan.changed);
 

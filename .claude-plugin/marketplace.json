@@ -482,7 +482,7 @@
     {
       "name": "gh-board-sync",
       "source": "./skills/gh-board-sync",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "description": "Reconcile a GitHub Projects v2 board against real repository state — merged PRs, closed issues, stale lanes, untracked work — and report every drifted item with evidence. Read-only by default; fixes Status/Priority values only with --apply and per-category confirmation. Use when asking whether the board reflects reality, auditing board drift, or syncing board state after merges."
     },
     {
@@ -506,7 +506,7 @@
     {
       "name": "gh-project-board",
       "source": "./skills/gh-project-board",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "Configure GitHub Projects v2 kanban boards with Ship Shit Dev defaults: the Backlog / In Progress / Human Review / Done / Deferred Status columns (the dev-loop board-as-truth model) and P0-P3 Priority. Use when setting up, copying, auditing, or normalizing GitHub project boards."
     },
     {

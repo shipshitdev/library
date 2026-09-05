@@ -1,5 +1,26 @@
 # Changelog
 
+## [2.0.0](https://github.com/shipshitdev/skills/compare/v1.3.1...v2.0.0) (2026-09-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* unify GitHub names and provider-aware board workflows ([#137](https://github.com/shipshitdev/skills/issues/137))
+* bind cleanup deletion to immutable scoped proof ([#134](https://github.com/shipshitdev/skills/issues/134))
+* enforce skill repair and monitoring contracts ([#132](https://github.com/shipshitdev/skills/issues/132))
+
+### Bug Fixes
+
+* bind cleanup deletion to immutable scoped proof ([#134](https://github.com/shipshitdev/skills/issues/134)) ([51bebea](https://github.com/shipshitdev/skills/commit/51bebea40de3f4133142a7fcd1ecfdb36f69417c))
+* enforce skill repair and monitoring contracts ([#132](https://github.com/shipshitdev/skills/issues/132)) ([1267d8f](https://github.com/shipshitdev/skills/commit/1267d8f72859965f9f0c9588ad9bf508e5a718a7))
+* make workflow composition scoped and discoverable ([#136](https://github.com/shipshitdev/skills/issues/136)) ([60a5587](https://github.com/shipshitdev/skills/commit/60a558762db37e361470ba60f26ae33aeb40bda7))
+* reconcile board evidence and native issue priority ([#133](https://github.com/shipshitdev/skills/issues/133)) ([0ee2886](https://github.com/shipshitdev/skills/commit/0ee28867b6c1f89e9760c691a82774109258cc75))
+
+
+### Refactors
+
+* unify GitHub names and provider-aware board workflows ([#137](https://github.com/shipshitdev/skills/issues/137)) ([9365897](https://github.com/shipshitdev/skills/commit/93658979383fdbf20679742f570d4bd30d8d3e7c))
+
 ## [1.3.1](https://github.com/shipshitdev/skills/compare/v1.3.0...v1.3.1) (2026-08-30)
 
 

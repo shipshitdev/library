@@ -25,6 +25,14 @@ class SkillContractTests(unittest.TestCase):
                 self.assertNotIn("their tests without asking", body)
                 self.assertNotIn("Only `status`, `qa`, and `--no-fix`", body)
 
+    def test_command_preserves_engine_repair_gate(self) -> None:
+        body = re.sub(r"\s+", " ", (ROOT / "commands/test.md").read_text())
+        self.assertIn("Before the first source or test edit", body)
+        self.assertIn("Existing explicit authorization", body)
+        self.assertIn("report-only mode prohibits source and test edits", body)
+        self.assertNotIn("auto-fix until green", body)
+        self.assertNotIn("apply a minimal fix and rerun until green or blocked", body)
+
     def test_report_only_overrides_repair_authorization(self) -> None:
         for name in ("test-runner", "test-dispatch"):
             with self.subTest(skill=name):

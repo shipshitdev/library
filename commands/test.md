@@ -1,6 +1,6 @@
 # Test - One Front Door for Running, Authoring, and Setting Up Tests
 
-Drive the whole testing lifecycle from one command — run and fix tests, author
+Drive the whole testing lifecycle from one command — run tests and repair authorized failures, author
 tests with TDD, scaffold E2E or CI infrastructure, enforce coverage, or design
 AI-targeted regression suites.
 
@@ -8,12 +8,12 @@ AI-targeted regression suites.
 
 ```bash
 /test                    # status: detected runner, coverage config + usage
-/test run                # changed-only: tests related to your dirty worktree, auto-fix until green
+/test run                # run changed tests and report; repair requires authorization
 /test run full           # the whole suite (what CI runs)
 /test run unit           # run existing unit tests
 /test run integration    # run existing integration tests
 /test run e2e            # run existing end-to-end tests
-/test run types          # tsc --noEmit and clear the errors in a loop
+/test run types          # type-check and report; repair requires authorization
 /test run coverage       # full run + coverage report
 /test run <path|pattern> # run a focused test path or pattern
 /test run --since <ref>  # tests related to a commit range
@@ -72,3 +72,11 @@ directly.
 3. **Route** to the delegated skill.
 4. **Defer** preconditions and confirmation to the delegated skill — this command
    does not relax them.
+
+## Repair scope
+
+Before the first source or test edit, obtain explicit repair authorization.
+Existing explicit authorization within the agreed scope satisfies this gate;
+do not ask again. Neither `/test run` nor a bare scope authorizes repairs.
+`--no-fix` or report-only mode prohibits source and test edits even after earlier
+repair authorization. Forward these constraints to the dispatcher and engine.

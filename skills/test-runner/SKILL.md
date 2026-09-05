@@ -1,7 +1,7 @@
 ---
 name: test-runner
-description: "Run a project's tests at the right scope — changed-only, focused, full, type-check, or e2e — then report failures with evidence. Repair and rerun only when fixing failures is explicitly authorized. Detects the test runner and package manager from the repo. Use when the user asks to run tests, run the suite, run smoke/e2e tests, type-check, check the build compiles, fix failing tests, or runs /test run."
-compatibility: Requires a JavaScript/TypeScript project with a test runner (Vitest, Jest, Bun test, or Playwright) and a package manager.
+description: "Run a project's tests at the right scope — changed-only, focused, full, type-check, or e2e — then report failures with evidence. Repair and rerun only when fixing failures is explicitly authorized. Detects the test runner in a Bun-managed repo. Use when the user asks to run tests, run the suite, run smoke/e2e tests, type-check, check the build compiles, fix failing tests, or runs /test run."
+compatibility: Requires a Bun-managed JavaScript/TypeScript project with Vitest, Jest, Bun test, or Playwright.
 metadata:
   version: "2.0.0"
   tags: "testing, vitest, jest, playwright, e2e, smoke, type-check, ci, scoped-tests"
@@ -99,6 +99,10 @@ Hard rules:
 test -f bun.lock && echo "pm=bun"
 cat package.json | sed -n 's/.*"\(test[^"]*\)".*/\1/p'   # discover test scripts
 ```
+
+Confirm Bun is the repository package manager before execution. If the project
+uses another package manager, report this engine unavailable rather than changing
+lockfiles, installing Bun, or substituting a different command.
 
 Detect the runner from `package.json` scripts and dev-dependencies:
 

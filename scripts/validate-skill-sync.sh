@@ -344,16 +344,20 @@ PY
 
 # App/session execution parameters are recognized by some harnesses but forbidden by
 # this library's execution boundary. Warn because prose/examples still require review.
+filter_pstack_execution_protocol() {
+    grep -vE '/pstack/scripts/runner/commands\.test\.ts:|/pstack/scripts/runner/commands\.ts:[0-9]+:[[:space:]]*return .model_reasoning_effort=[$][{]JSON[.]stringify[(]effort[)][}].;' || true
+}
+
 check_harness_execution_parameters() {
     local skill_dir="$1"
     local warnings=0
     local hits
 
-    hits=$(grep -rInE \
+    hits=$(grep -rInE --exclude-dir=node_modules \
         --include='SKILL.md' --include='*.md' --include='*.py' \
         --include='*.js' --include='*.ts' --include='*.sh' \
         '^(model|effort):|model:[[:space:]]*["'"'"']?(sonnet|opus|haiku|inherit)(["'"'"']|$)|effort:[[:space:]]*["'"'"']?(low|medium|high|xhigh|max)(["'"'"']|$)|CODEX_(MODEL|EFFORT)|model_reasoning_effort' \
-        "$skill_dir" 2>/dev/null || true)
+        "$skill_dir" 2>/dev/null | filter_pstack_execution_protocol || true)
 
     if [[ -n "$hits" ]]; then
         while IFS= read -r hit; do
@@ -400,6 +404,8 @@ for script_dir_name in ("scripts",):
     if not script_dir.is_dir():
         continue
     for path in script_dir.rglob("*"):
+        if "node_modules" in path.relative_to(script_dir).parts:
+            continue
         if not path.is_file() or path.suffix not in {".py", ".js", ".ts", ".sh", ".mjs"}:
             continue
         try:
@@ -648,6 +654,13 @@ check_platform_names() {
 # These are hard errors: version-pinned IDs and bare model-family names used as
 # routing keys are never legitimate in a portable public skill. Capability-tier
 # prose remains valid; concrete model mappings belong to harness configuration.
+# These five files parse provider receipts or test explicit caller-supplied values.
+# They contain protocol samples, never model defaults. All other runtime files and
+# every prompt/config surface remain subject to the ordinary model-policy check.
+filter_pstack_protocol_fixtures() {
+    grep -vE '/pstack/scripts/runner/(model-aliases\.ts|commands\.test\.ts|run\.test\.ts|cli\.test\.ts|parse-output\.test\.ts):' || true
+}
+
 check_model_references() {
     local skill_dir="$1"
     local warnings=0
@@ -661,10 +674,10 @@ check_model_references() {
     local model_re='claude-[0-9]|claude-(opus|sonnet|haiku)-|gpt-[0-9]|gemini-[0-9]'
 
     local hits
-    hits=$(grep -rIniE "$model_re" \
+    hits=$(grep -rIniE "$model_re" --exclude-dir=node_modules \
         --include='SKILL.md' --include='*.md' --include='*.py' \
         --include='*.js' --include='*.ts' --include='*.sh' \
-        "$skill_dir" 2>/dev/null || true)
+        "$skill_dir" 2>/dev/null | filter_pstack_protocol_fixtures || true)
 
     if [[ -n "$hits" ]]; then
         while IFS= read -r hit; do
@@ -677,12 +690,12 @@ check_model_references() {
     # the skill to one vendor's tier vocabulary. The tier→model mapping belongs
     # in the per-repo routing block, not in the skill.
     local bare_tier_hits
-    bare_tier_hits=$(grep -rInEw 'sonnet|opus|haiku' \
+    bare_tier_hits=$(grep -rInEw 'sonnet|opus|haiku' --exclude-dir=node_modules \
         --include='SKILL.md' --include='*.md' --include='*.py' \
         --include='*.js' --include='*.ts' --include='*.sh' \
         "$skill_dir" 2>/dev/null \
         | grep -viE 'model["'"'"']?\s*[:=]\s*["'"'"']?(sonnet|opus|haiku)' \
-        | grep -vE "$model_re" || true)
+        | grep -vE "$model_re" | filter_pstack_protocol_fixtures || true)
 
     if [[ -n "$bare_tier_hits" ]]; then
         while IFS= read -r hit; do
@@ -709,7 +722,7 @@ check_public_concrete_models() {
     [[ ${#roots[@]} -gt 0 ]] || return 0
 
     local hits
-    hits=$(grep -rIniE "$model_re" \
+    hits=$(grep -rIniE "$model_re" --exclude-dir=node_modules \
         --include='*.md' --include='*.py' --include='*.js' \
         --include='*.ts' --include='*.sh' "${roots[@]}" 2>/dev/null || true)
     if [[ -n "$hits" ]]; then
@@ -737,7 +750,7 @@ check_public_execution_parameters() {
     [[ ${#roots[@]} -gt 0 ]] || return 0
 
     local hits
-    hits=$(grep -rInE \
+    hits=$(grep -rInE --exclude-dir=node_modules \
         --include='*.md' --include='*.py' --include='*.js' \
         --include='*.ts' --include='*.sh' \
         'CODEX_(MODEL|EFFORT)|model_reasoning_effort|^(model|effort):[[:space:]]*(sonnet|opus|haiku|inherit|low|medium|high|xhigh|max)' \
@@ -779,7 +792,7 @@ check_supported_codex_surfaces() {
     done
 
     local claims
-    claims=$(grep -rInE \
+    claims=$(grep -rInE --exclude-dir=node_modules \
         --include='*.md' \
         '(\.codex/instructions\.md|\.codex/commands)' \
         "${roots[@]}" 2>/dev/null \
@@ -866,7 +879,7 @@ check_platform_markers() {
     local issues=0
     local hits
 
-    hits=$(grep -rInF --include='*.md' 'PLATFORM-SPECIFIC-' "$skill_dir" 2>/dev/null || true)
+    hits=$(grep -rInF --exclude-dir=node_modules --include='*.md' 'PLATFORM-SPECIFIC-' "$skill_dir" 2>/dev/null || true)
     if [[ -n "$hits" ]]; then
         while IFS= read -r hit; do
             [[ -n "$hit" ]] || continue

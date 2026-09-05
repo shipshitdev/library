@@ -3,7 +3,7 @@
   "owner": {
     "name": "Ship Shit Dev"
   },
-  "description": "187 AI agent skills for development workflows",
+  "description": "188 AI agent skills for development workflows",
   "plugins": [
     {
       "name": "shipshitdev-testing",
@@ -152,13 +152,13 @@
     {
       "name": "architect",
       "source": "./skills/architect",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "Sketch types, signatures, and module structure before code, then stay in the loop while implementation fills in. Use for architect this, design this, or non-trivial work where jumping to code would lock in the wrong shape."
     },
     {
       "name": "arena",
       "source": "./skills/arena",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "Spawn N parallel candidates at the same task, pick a base, and graft the strongest parts of the losers into it. Use for arena this, throw it in the arena, or when one attempt at a non-trivial artifact would lock in the wrong shape."
     },
     {
@@ -194,7 +194,7 @@
     {
       "name": "blast-radius",
       "source": "./skills/blast-radius",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "Find what a small-looking change could break somewhere else, and prove the one fact it is safe because of by running real code. Use for blast radius of X, what could this break, or reviewing a small diff you do not trust."
     },
     {
@@ -266,7 +266,7 @@
     {
       "name": "commit-summary",
       "source": "./skills/commit-summary",
-      "version": "1.1.1",
+      "version": "1.2.0",
       "description": "Generate Conventional Commit messages from staged or unstaged git changes, split unrelated changes into logical commits, detect breaking changes, and optionally create commits after approval. Use when writing commit messages, preparing commits, or committing local work."
     },
     {
@@ -308,7 +308,7 @@
     {
       "name": "create-verification-skill",
       "source": "./skills/create-verification-skill",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "Generate a project-local verification skill that drives the app the way a user does. Use for create-verification-skill, make a verify skill for this repo, or when a project has no scripted way to prove UI, CLI, or service behavior."
     },
     {
@@ -368,7 +368,7 @@
     {
       "name": "deslop",
       "source": "./skills/deslop",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "description": "Strip AI-generated slop from a codebase, product, and prose. Code slop — console statements, `any` types, unused imports, commented-out code, redundant comments, needless defensive try-catch on trusted paths, over-nesting. Product slop (with --product) — marketing-filler copy, generic AI phrasing, default-shadcn look, unstyled loading/error states, dead buttons and half-wired flows. UI slop (`ui`) runs a project-derived design-system primitive pass. Prose slop (`prose`) cuts AI tells from writing. Can scope to the current branch's diff or sweep the whole tree. Use when asked to clean up AI-generated code, unslop writing, remove slop, or make an app feel finished before shipping to customers."
     },
     {
@@ -446,7 +446,7 @@
     {
       "name": "figure-it-out",
       "source": "./skills/figure-it-out",
-      "version": "1.1.1",
+      "version": "1.2.0",
       "description": "Design an auditable playbook when no narrower one fits. Use for figure it out, a large migration, an ambitious multi-part change, or work a human reviews after stepping away. Scales rigor to the task, runs a hypothesis loop, and logs decisions via show-me-your-work."
     },
     {
@@ -458,7 +458,7 @@
     {
       "name": "fix-merge-conflicts",
       "source": "./skills/fix-merge-conflicts",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "description": "Resolve git merge conflicts correctness-first, then prove the tree still builds. Use when a merge, rebase, cherry-pick, or stash pop leaves conflict markers, when git status shows unmerged paths, or when the user asks to fix conflicts, resolve a merge, or rebase onto the trunk and clear the conflicts."
     },
     {
@@ -470,7 +470,7 @@
     {
       "name": "full-code-review",
       "source": "./skills/full-code-review",
-      "version": "1.0.4",
+      "version": "1.1.0",
       "description": "Fan-out PR review across three parallel dimension agents (structural, security, devex/flag-hygiene), adversarially verify every finding, and synthesize a single prioritized verdict via a strongest-tier judge. Use when asked for a full, comprehensive, or end-to-end review of a branch or PR — after /code-review passes correctness, this skill covers the orthogonal dimensions it does not: security depth, structural health, devex regressions, and feature-flag hygiene. In retro mode (a commit log is passed in) it adds a cross-commit lens and emits a prioritized backlog instead of a merge verdict."
     },
     {
@@ -506,7 +506,7 @@
     {
       "name": "github-fix-ci",
       "source": "./skills/github-fix-ci",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "description": "Diagnoses failing or setup-stuck GitHub Actions checks on a PR, identifies root cause, and proposes or applies targeted fixes. Triggers when the user asks to fix CI, diagnose failing checks, fix a failing workflow, address GitHub Actions errors, get a green build, or continue PR queue work without waiting on unrelated pending checks. Can run autonomously in a loop — fix, push, recheck — until all required checks are green when the user asks to loop on CI."
     },
     {
@@ -518,7 +518,7 @@
     {
       "name": "github-pr-publish",
       "source": "./skills/github-pr-publish",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "description": "Create, update, and publish GitHub pull requests with a clean title, durable body, branch hygiene, validation notes, and safe push/PR gates. Use when opening a PR, updating a PR description, preparing a draft PR, or publishing local changes to GitHub."
     },
     {
@@ -548,7 +548,7 @@
     {
       "name": "how",
       "source": "./skills/how",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "description": "Walk through how a subsystem works. Use for \"how does X work\", code walkthroughs before changing something, and placement or ownership questions. Explains architecture, runtime flow, and onboarding mental models. Can critique architecture. Use why for motivation."
     },
     {
@@ -578,7 +578,7 @@
     {
       "name": "interrogate",
       "source": "./skills/interrogate",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "Adversarial multi-reviewer pass over a diff. Use for interrogate, adversarial review, multi-model review, challenge this, stress test this code, find blind spots, or tear this apart. Several independent reviewers challenge the change. The lead synthesizes a verdict and does not auto-apply fixes."
     },
     {
@@ -614,7 +614,7 @@
     {
       "name": "maintain-verification-skill",
       "source": "./skills/maintain-verification-skill",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "Keep a project's verification skill and feature map honest. Parallel source readers per feature, one live session driving every feature, at most one PR of proven corrections. Use for maintain-verification-skill or audit the verify skill."
     },
     {
@@ -698,7 +698,7 @@
     {
       "name": "no-comments",
       "source": "./skills/no-comments",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "Review comments on a diff, delete narration and workaround sermons, fix accepted findings, and offer encodings for claimed constraints. Use before review or when asked to strip comments."
     },
     {
@@ -740,7 +740,7 @@
     {
       "name": "pr-comments",
       "source": "./skills/pr-comments",
-      "version": "1.1.1",
+      "version": "1.2.0",
       "description": "Reads a pull request's review threads and returns a digest — grouped by thread, severity-tagged, priority-ordered, with the open questions called out. Strictly read-only: no code edits, no replies, no thread resolution. Reach for it to triage feedback before deciding what to fix; implementing those fixes is `github-address-comments`."
     },
     {
@@ -800,7 +800,7 @@
     {
       "name": "pstack",
       "source": "./skills/pstack",
-      "version": "1.1.1",
+      "version": "1.2.0",
       "description": "Playbook orchestrator for verified, unslopped engineering work. Matches a task to a named playbook, applies the principles index, and routes to how, why, architect, arena, swarm, interrogate, tdd, and related skills. Use for pstack, poteto-mode, /pstack, or requests to work in this style."
     },
     {
@@ -866,7 +866,7 @@
     {
       "name": "recall",
       "source": "./skills/recall",
-      "version": "1.1.1",
+      "version": "1.2.0",
       "description": "Rebuild recent working context from chat history, live state, and the shared record, then hand back a tight current-state brief. Use for recall my work on X, catch me up, what have I been working on, or where did I leave off."
     },
     {
@@ -960,6 +960,12 @@
       "description": "Sets up an `## Agent skills` routing block in CLAUDE.md/AGENTS.md plus docs/agents/ so the dev-loop skills (executing-plans, feature-intake, prd-writer, qa-reviewer) know this repo's GitHub issue tracker, kanban label vocabulary, and domain doc layout. Run once per repo before first use of the loop, or when those skills appear to lack tracker, label, or domain context."
     },
     {
+      "name": "setup-pstack",
+      "source": "./skills/setup-pstack",
+      "version": "1.0.0",
+      "description": "Configures canonical Shipshit Pstack adapters for selected harnesses while preserving existing role choices. Use when setting up Pstack, migrating duplicate installations, or enabling a supported optional adapter."
+    },
+    {
       "name": "shadcn",
       "source": "./skills/shadcn",
       "version": "1.0.1",
@@ -980,13 +986,13 @@
     {
       "name": "show-me-your-work",
       "source": "./skills/show-me-your-work",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "Keep a reviewable decision trail for long-running or unattended work. A TSV log with one row per decision (what, why, evidence, result). Local by default. Commit it when a reviewer needs the trail to trust the result. Use for show-me-your-work, autonomous or multi-phase runs, or work a human reviews after stepping away."
     },
     {
       "name": "skill-capture",
       "source": "./skills/skill-capture",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "description": "Extracts valuable workflows, patterns, and domain knowledge from conversations and persists them as reusable SKILL.md files. Triggers on: \"save this as a skill\", \"capture this as a skill\", \"make this reusable\", \"this workflow should be reusable\", \"this was tricky to figure out\", \"I wish I knew this earlier\", or on completion of complex multi-step procedures."
     },
     {
@@ -1046,7 +1052,7 @@
     {
       "name": "swarm",
       "source": "./skills/swarm",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "Fan out N parallel workers, drain them, and return one report. Use for swarm this, or parallel coverage, races, gauntlets, and exploration partitions."
     },
     {
@@ -1076,13 +1082,13 @@
     {
       "name": "tdd",
       "source": "./skills/tdd",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "Test-driven development workflow for feature work and bug fixes. Use when the user asks for TDD, red-green-refactor, test-first implementation, regression-first bug fixes, or vertical-slice delivery. For bugs, require a cheap local test path; skip a new test when the path is unclear, expensive, or integration-heavy."
     },
     {
       "name": "teach",
       "source": "./skills/teach",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "Explain a body of work so a person actually understands it. Runs how and why and weaves what they find into one plain explanation, built up diagram by diagram. Use for teach me this, help me really understand X, or explain this change or subsystem."
     },
     {
@@ -1094,7 +1100,7 @@
     {
       "name": "technical-writing",
       "source": "./skills/technical-writing",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "Layered technical-writing standard for docs, RFCs, READMEs, PR descriptions, and commit messages. Diátaxis structure, Google developer style sentences, STE instruction rules, Global English syntax. Use for technical-writing or when writing or reviewing those surfaces."
     },
     {
@@ -1142,7 +1148,7 @@
     {
       "name": "typescript-expert",
       "source": "./skills/typescript-expert",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "description": "Resolves TypeScript and JavaScript problems across type-level programming, performance, monorepo management, migration, and modern tooling. Invoke when diagnosing \"type instantiation excessively deep\" errors, migrating JS to TS, configuring strict tsconfig, debugging module resolution, or choosing between Biome/ESLint/Turborepo/Nx."
     },
     {
@@ -1178,7 +1184,7 @@
     {
       "name": "why",
       "source": "./skills/why",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "description": "Investigate why code is shaped the way it is. Use for design rationale, regressions, postmortems, or data-backed thresholds. Queries available evidence categories in parallel, then returns a cited read on decisions and tradeoffs. Use how for runtime behavior."
     },
     {

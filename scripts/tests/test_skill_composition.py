@@ -35,6 +35,13 @@ class SkillCompositionTests(unittest.TestCase):
         )
         return directory
 
+    def test_installed_dependency_docs_do_not_become_skill_routes(self) -> None:
+        caller = self.add_skill("caller")
+        dependency = caller / "scripts/node_modules/example/README.md"
+        dependency.parent.mkdir(parents=True)
+        dependency.write_text("Run the `missing-engine` skill.\n")
+        self.assertEqual(composition.findings(caller, self.skills), [])
+
     def test_retired_provider_family_is_rejected(self) -> None:
         caller = self.add_skill("gh-inbox")
         self.assertIn("Retired gh-* skill family", composition.findings(caller, self.skills)[0])

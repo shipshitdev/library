@@ -3,7 +3,9 @@ name: pr-comments
 description: "Reads a pull request's review threads and returns a digest — grouped by thread, severity-tagged, priority-ordered, with the open questions called out. Strictly read-only: no code edits, no replies, no thread resolution. Reach for it to triage feedback before deciding what to fix; implementing those fixes is `github-address-comments`."
 compatibility: Requires git and GitHub CLI gh access to the target repository.
 metadata:
-  version: "1.1.1"
+  portable_source: "https://github.com/ericlitman/open-pstack"
+  portable_commit: "56bfd14418fa733e34d98f714f357d28788470e3"
+  version: "1.2.0"
   tags: "github, pull-requests, code-review, comments, triage, digest"
 when_to_use: "what are the comments on my PR, summarize the review feedback, what's blocking this PR, what do I still need to address, triage the review comments, /pr comments"
 allowed-tools: Bash(gh *) Bash(git *)
@@ -130,3 +132,10 @@ Suggested order: <1..n, blocking first>. Hand to github-address-comments to act.
 
 Report the PR, the counts by severity and state, the ordered action list, and the
 open questions. Note that acting on them is delegated to `github-address-comments`.
+
+## Get Pr Comments procedure
+
+Read [get-pr-comments procedure](references/get-pr-comments-procedure.md) when running this workflow.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.

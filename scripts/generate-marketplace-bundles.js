@@ -8,7 +8,7 @@
  */
 
 import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
-import { dirname, join } from 'node:path';
+import { basename, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -71,7 +71,12 @@ for (const [category, config] of Object.entries(CATEGORIES.bundles)) {
       continue;
     }
 
-    cpSync(srcSkill, destSkill, { recursive: true });
+    cpSync(srcSkill, destSkill, {
+      recursive: true,
+      filter: (source) =>
+        !['node_modules', '__pycache__', '.git', '.DS_Store'].includes(basename(source)) &&
+        !source.endsWith('.pyc'),
+    });
   }
 
   // Generate plugin.json

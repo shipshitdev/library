@@ -4,7 +4,9 @@ description: "Generate Conventional Commit messages from staged or unstaged git 
 compatibility: Requires git.
 allowed-tools: Bash(git *)
 metadata:
-  version: "1.1.1"
+  portable_source: "https://github.com/ericlitman/open-pstack"
+  portable_commit: "56bfd14418fa733e34d98f714f357d28788470e3"
+  version: "1.2.0"
   tags: "git, workflow, commits, productivity"
 ---
 
@@ -148,3 +150,10 @@ Delegates To:
 - `ci(actions): restrict pull request token permissions`
 - `refactor(utils): extract date formatting helper`
 - `docs: update GitHub project board workflow`
+
+## What Did I Get Done procedure
+
+Read [what-did-i-get-done procedure](references/what-did-i-get-done-procedure.md) when compiling an activity summary over a requested date range.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.

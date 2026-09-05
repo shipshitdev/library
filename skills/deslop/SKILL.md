@@ -14,7 +14,7 @@ description: >-
 disable-model-invocation: true
 argument-hint: "[ui | prose | --changed | all | dry-run | --product]"
 metadata:
-  version: "2.0.0"
+  version: "2.0.1"
   tags: "code-quality, cleanup, ai-artifacts, product-polish, prose, maintenance"
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/unslop/SKILL.md
   upstream_repo: cursor/plugins

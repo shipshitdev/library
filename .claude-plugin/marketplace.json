@@ -362,7 +362,7 @@
     {
       "name": "deslop",
       "source": "./skills/deslop",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "description": "Strip AI-generated slop from a codebase, product, and prose. Code slop — console statements, `any` types, unused imports, commented-out code, redundant comments, needless defensive try-catch on trusted paths, over-nesting. Product slop (with --product) — marketing-filler copy, generic AI phrasing, default-shadcn look, unstyled loading/error states, dead buttons and half-wired flows. UI slop (`ui`) runs a project-derived design-system primitive pass. Prose slop (`prose`) cuts AI tells from writing. Can scope to the current branch's diff or sweep the whole tree. Use when asked to clean up AI-generated code, unslop writing, remove slop, or make an app feel finished before shipping to customers."
     },
     {
@@ -806,7 +806,7 @@
     {
       "name": "qa-loop",
       "source": "./skills/qa-loop",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "description": "Runs an interactive localhost QA session that accepts issues, screenshots, routes, and browser evidence; watches app, API, browser, and network errors; reproduces and fixes each defect; verifies the result; and creates one local commit per fix. Use when asked to start QA, QA a local app, fix localhost issues as they arrive, or work through screenshot feedback without leaving the current checkout."
     },
     {
@@ -1028,7 +1028,7 @@
     {
       "name": "standup",
       "source": "./skills/standup",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Summarize what you personally shipped over a time window from git history — an engineer standup or weekly recap, not a customer changelog. Scopes commits to your git author identity, reads the diffs, and classifies each as a feature, fix, refactor, tech-debt, or docs change. Use when the user asks what did I get done, write my standup, what did I ship this week, weekly recap, or runs /standup."
     },
     {
@@ -1100,14 +1100,14 @@
     {
       "name": "test-dispatch",
       "source": "./skills/test-dispatch",
-      "version": "1.1.1",
-      "description": "Single front door for testing. Parses a subcommand — run, qa, tdd, e2e, coverage, init, or regression — and routes to the right testing engine: test-runner (run tests, fix failures), qa-reviewer (structured verification pass on completed work), tdd (red-green-refactor workflow), playwright-e2e-init (scaffold E2E tests for frontend projects), husky-test-coverage (enforce coverage thresholds via git hooks), testing-cicd-init (Vitest + GitHub Actions CI setup), or ai-regression-testing (design regression tests targeting AI blind spots). Backs the /test command. Use when asked to run tests, write tests, set up testing, check coverage, or start TDD, and the action must be picked from an argument like \"run\", \"qa\", \"tdd\", \"e2e\", \"coverage\", \"init\", or \"regression\"."
+      "version": "2.0.0",
+      "description": "Single front door for testing. Parses a subcommand — run, qa, tdd, e2e, coverage, init, or regression — and routes to the right testing engine: test-runner (run tests, repair authorized failures), qa-reviewer (structured verification pass on completed work), tdd (red-green-refactor workflow), playwright-e2e-init (scaffold E2E tests for frontend projects), husky-test-coverage (enforce coverage thresholds via git hooks), testing-cicd-init (Vitest + GitHub Actions CI setup), or ai-regression-testing (design regression tests targeting AI blind spots). Backs the /test command. Use when asked to run tests, write tests, set up testing, check coverage, or start TDD, and the action must be picked from an argument like \"run\", \"qa\", \"tdd\", \"e2e\", \"coverage\", \"init\", or \"regression\"."
     },
     {
       "name": "test-runner",
       "source": "./skills/test-runner",
-      "version": "1.0.1",
-      "description": "Run a project's tests at the right scope — changed-only, focused, full, type-check, or e2e — then, on failure, read the output and traces, apply a minimal fix, and rerun until green or blocked. Detects the test runner and package manager from the repo. Use when the user asks to run tests, run the suite, run smoke/e2e tests, type-check, check the build compiles, fix failing tests, or runs /test run."
+      "version": "2.0.0",
+      "description": "Run a project's tests at the right scope — changed-only, focused, full, type-check, or e2e — then report failures with evidence. Repair and rerun only when fixing failures is explicitly authorized. Detects the test runner in a Bun-managed repo. Use when the user asks to run tests, run the suite, run smoke/e2e tests, type-check, check the build compiles, fix failing tests, or runs /test run."
     },
     {
       "name": "testing-cicd-init",

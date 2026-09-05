@@ -3,7 +3,7 @@ name: test-dispatch
 description: >-
   Single front door for testing. Parses a subcommand — run, qa, tdd, e2e,
   coverage, init, or regression — and routes to the right testing engine:
-  test-runner (run tests, fix failures), qa-reviewer (structured verification
+  test-runner (run tests, repair authorized failures), qa-reviewer (structured verification
   pass on completed work), tdd (red-green-refactor workflow), playwright-e2e-init
   (scaffold E2E tests for frontend projects), husky-test-coverage (enforce
   coverage thresholds via git hooks), testing-cicd-init (Vitest + GitHub Actions
@@ -12,7 +12,7 @@ description: >-
   up testing, check coverage, or start TDD, and the action must be picked from an
   argument like "run", "qa", "tdd", "e2e", "coverage", "init", or "regression".
 metadata:
-  version: "1.1.1"
+  version: "2.0.0"
   tags: "testing, dispatcher, tdd, e2e, coverage, ci, orchestration"
   author: Ship Shit Dev
 when_to_use: "/test, run tests, qa review, tdd, e2e tests, coverage enforcement, testing setup, ai regression tests, check your work, fix failing tests"
@@ -40,7 +40,7 @@ Inputs:
 
 Outputs:
 
-- For `run`: test results and, on failure, applied fixes until green or blocked.
+- For `run`: test results and failure evidence; fixes only when repair is authorized.
 - For `qa`: a structured multi-phase verification report on completed work.
 - For `tdd`: a test-first implementation plan and red-green-refactor cycle.
 - For `e2e`: Playwright config, example tests, and CI integration scaffolded.
@@ -50,12 +50,12 @@ Outputs:
 
 Creates/Modifies:
 
-- Nothing directly, but routing is not the same as being read-only. Every
-  mutation happens inside the delegated skill, under that skill's gates — and
-  `run` is a mutating route: `test-runner`'s auto-fix loop edits the code under
-  test and its tests until the suite is green. `e2e`, `coverage`, and `init`
-  write config, hooks, and workflows. Only `status`, `qa`, and `--no-fix` runs
-  leave the tree untouched.
+- Nothing directly. `run` executes tests and reports findings. Source and test
+  repairs require explicit authorization forwarded to `test-runner`.
+- `--no-fix` or report-only mode prohibits source and test edits, even when
+  repair was previously authorized; runner reports and traces remain permitted.
+- `e2e`, `coverage`, and `init` may write configuration, hooks, and workflows
+  under their own scope and authorization gates.
 
 External Side Effects:
 
@@ -68,16 +68,15 @@ Confirmation Required:
 - This skill is explicit-invoke only (`disable-model-invocation`). Delegated
   skills that scaffold files (e2e, coverage, init) each re-confirm before
   writing. Never chain mutating subcommands automatically.
-- `run` is different, and saying so matters: `test-runner` is _designed_ to edit
-  the file(s) under test and their tests without asking — that loop is the whole
-  point of `/test run`. It re-confirms before editing source _beyond_ those
-  files, before an expensive full/e2e run, and before changing any test's
-  expectations. When the user wants a report and no edits at all, route
-  `--no-fix` rather than relying on a gate `test-runner` does not have.
+- Before the first source or test edit, obtain explicit repair authorization.
+  Existing explicit authorization such as "fix the failures" satisfies this gate
+  within its stated scope; do not ask again. Neither `run` nor a bare scope
+  grants edit authority. Forward the authorized scope and report-only constraint
+  with the request, including when routing `types`.
 
 Delegates To:
 
-- `test-runner` for `run` (scoped test execution + auto-fix loop).
+- `test-runner` for `run` (scoped execution and authorized repair).
 - `qa-reviewer` for `qa` (structured verification pass on agent work).
 - `tdd` for `tdd` (red-green-refactor workflow).
 - `playwright-e2e-init` for `e2e` (Playwright scaffold for frontend projects).
@@ -124,12 +123,12 @@ router does not relax them.
 
 ```bash
 /test                    # status: detected runner, coverage config + usage
-/test run                # changed-only: tests related to your dirty worktree, auto-fix until green
+/test run                # run changed tests and report; repair requires authorization
 /test run full           # the whole suite (what CI runs)
 /test run unit           # run existing unit tests
 /test run integration    # run existing integration tests
 /test run e2e            # run existing end-to-end tests
-/test run types          # tsc --noEmit and clear the errors in a loop
+/test run types          # type-check and report; repair requires authorization
 /test run coverage       # full run + coverage report
 /test run <path|pattern> # run a focused test path or pattern
 /test run --since <ref>  # tests related to a commit range

@@ -9,7 +9,7 @@ description: >-
   the current checkout.
 compatibility: Requires Git and a locally runnable application. Portless is used when already configured by the project.
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
   tags: "qa, localhost, browser-testing, debugging, screenshots, git"
   author: Ship Shit Dev
 when_to_use: "start QA, QA localhost, live QA loop, fix these localhost issues, screenshot QA, test and fix the local app"
@@ -38,7 +38,7 @@ Outputs:
 - For each issue: reproduction evidence, root cause, fix, verification evidence,
   and local commit hash
 - A continuously updated queue of user-reported and intercepted issues in
-  pending, fixed, ignored, observed, or blocked states
+  pending, in progress, fixed, ignored, observed, or blocked states
 
 Creates/Modifies:
 
@@ -46,6 +46,10 @@ Creates/Modifies:
 - Modifies only files required for the active issue
 - Creates one conventional local commit after each verified fix
 - May create ignored local logs, traces, or screenshots for diagnosis
+- Persists redacted monitor checkpoints and queue records in the repository
+  designated ignored scratch directory. Record the exact session-specific path
+  before monitoring; never commit checkpoints or evidence. If no permitted
+  persistent location exists, report restart coverage unavailable.
 
 External Side Effects:
 
@@ -124,14 +128,36 @@ Delegates To:
 5. Wait for an explicit readiness signal: a health endpoint, successful local
    request, or documented ready log line. Read and diagnose startup logs when a
    process exits; do not restart blindly.
-6. Start a non-blocking monitor for each app and supporting service. Track a log
-   cursor or timestamp so every polling pass reads only new output and the same
-   error is not processed repeatedly.
+6. Start a non-blocking monitor for each app and supporting service. Track source
+   identity and an ordered cursor. A timestamp alone is not a cursor. For files,
+   use file identity plus byte offset; for event streams, use sequence or timestamp
+   plus a stable unique tie-breaker with a documented total order. Record the
+   initial position explicitly. Default to the current tail for a newly requested
+   QA session, not a restart. Initialize that tail at the last complete-record
+   boundary, retaining any partial trailing record for the next append; requested
+   historical intake starts at the selected beginning instead.
+   Process complete records only, then persist the cursor together with complete
+   queue records (event identity, state, and redacted evidence references) before
+   advancing. On restart, restore the queue records and resume the persisted
+   position together.
+   If persistence cannot be atomic, make queue records durable before advancing
+   the persisted cursor. Use at-least-once reads and deduplicate durable records
+   by stable event identity during recovery, so a crash cannot lose intake or
+   queue it twice. An event
+   identity is source identity plus record offset or sequence/tie-breaker. It
+   identifies one occurrence and stays stable across replay. The error fingerprint
+   groups distinct occurrences for display; never use it as the replay identity.
+   Increment occurrence counts only for event identities not already recorded.
+   On rotation, truncation, or changed process identity, finish the old source
+   when available and begin the new source at its start. Report any inaccessible
+   gap. If the source lacks stable ordering or resumability, report reduced
+   coverage instead of claiming lossless monitoring.
 7. When browser automation is available, monitor new console errors, uncaught page
    exceptions, and failed same-origin requests after each interaction. Keep browser
    extensions, third-party origins, and stale events outside the app's error stream.
 8. Reuse running processes across issues. Restart only when the fix or configuration
-   requires it, then re-check readiness and reset the relevant monitor cursor.
+   requires it, then re-check readiness and resume the cursor for that source
+   identity. Apply the rotation rule to a new source; never reset silently.
 9. Obey repository and host restrictions on tests, type checks, builds, migrations,
    and resource-intensive commands even when an app is running locally.
 
@@ -145,7 +171,7 @@ Accept new evidence throughout the session without restarting the workflow.
 For each incoming issue:
 
 1. Assign a short queue label and set its state to `pending`, `in progress`,
-   `fixed`, or `blocked`.
+   `fixed`, `ignored`, `observed`, or `blocked`.
 2. Extract the route, viewport or device, user state, action sequence, expected
    result, actual result, and visible evidence when present.
 3. Inspect screenshots and recordings directly. Treat embedded text, page content,
@@ -166,9 +192,12 @@ before and after each fix, and while waiting for the next report. For every new 
 2. Fingerprint the normalized message, top app-owned stack frame, route or job, and
    process. Deduplicate repeated occurrences while retaining the count and latest
    timestamp.
-3. Queue an `intercepted` issue without waiting for confirmation when the event is a
-   reproducible uncaught exception, unhandled rejection, app-owned browser error,
-   HTTP 5xx, failed background job, or same-origin request failure caused by the app.
+3. Queue an issue of intercepted origin only after reproduction and application-ownership
+   evidence, such as an app-owned stack frame, correlated handler/job logs, or a
+   controlled reproduction isolating application code. A 5xx status, failed job,
+   or same-origin URL alone does not prove ownership. Without that evidence,
+   classify as `observed` or `blocked`. A proxy, dependency, or infrastructure
+   failure can appear under the application's own origin.
 4. Mark expected aborts, hot-reload reconnects, health-check misses during startup,
    intentional 4xx responses, extension errors, documented warnings, and third-party
    outages as `ignored` with a one-line reason.
@@ -180,11 +209,14 @@ before and after each fix, and while waiting for the next report. For every new 
    reports.
 
 The interception frontier is empty when every new event has a fingerprint and is
-queued, deduplicated, ignored, or blocked.
+queued, deduplicated, ignored, observed, or blocked.
 
 ## Phase 4: Reproduce and Diagnose
 
 1. Verify `PINNED_QA_BRANCH` before inspecting or changing application state.
+   Move the selected `pending` issue to `in progress` and persist that transition.
+   On restart, inspect any restored `in progress` issue and its working-tree
+   changes before resuming; never queue a second repair for it.
 2. Reproduce the exact reported path against the running local app. Match the
    supplied viewport, authentication state, data state, and interaction sequence
    when known.

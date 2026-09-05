@@ -88,13 +88,19 @@ obvious.
 
 ## Jargon
 
-- **26. Abstract metaphor nouns.** Substrate, wedge, vector, locus, vantage,
-    nexus, primitive (as noun), harness (as metaphor), surface (as in "API
-    surface"), bedrock, scaffolding (as metaphor), modality, paradigm,
-    gold-plating, ratchet (as metaphor), evacuate (for moving code),
-    endgame, north star, flywheel. These read as technical but usually have
-    a plainer concrete word. "Substrate" becomes "base". "Wedge in" becomes
-    "add". "Vector" becomes "way" or "method". Pick the concrete word.
+- **26. Vague metaphor nouns.** Flag substrate, wedge, vector, locus, vantage,
+    nexus, surface, bedrock, modality, paradigm, primitive, harness, scaffolding,
+    gold-plating, ratchet, evacuate,
+    endgame, north star, and flywheel when
+    used as vague metaphors without a concrete referent. Preserve established
+    technical meanings, including API surface, embedding vector, attack vector,
+    primitive types, and a test harness, when they precisely name the concept.
+    Judge the sentence rather than substituting a banned-word list. For vague
+    metaphors, "substrate" can become "base" and "wedge in" can become "add".
+    "A vector for growth" can become "a way to increase paid signups" when that
+    is the intended meaning. "Compare embedding vectors with cosine similarity"
+    and "Reduce the public API surface to three methods" already name concrete
+    technical operations. Keep them unless the surrounding explanation is unclear.
 
 ## Plain speech
 

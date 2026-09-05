@@ -2,31 +2,31 @@
 
 pstack is one person's style. The machinery underneath, playbooks, routing, model roles, works just as well wearing yours. This page covers generating a personal mode, capturing lessons from a session, authoring a focused skill, and testing a skill change before you trust it.
 
-## Generate your own mode with `/automate-me`
+## Generate a personal mode through Pstack
 
 ```text
-/automate-me
+/pstack capture my working conventions as a personal mode
 ```
 
-You don't describe your style, because [`/automate-me`](../../../../SKILL.md) reads it out of your history. It mines your recent transcripts in the active workspace for repeated preferences, in how you like replies, delegation, verification, code, prose, and process, then asks you which patterns are really you. It drafts `.cursor/skills/<your-name>-mode/procedure.md` through Cursor's built-in `create-skill` flow, runs the draft through `/unslop` (resolve the `deslop` skill through the active catalog), and opens a PR from a worktree so you review it like any other change.
+You don't describe your style, because [`/pstack capture my working conventions as a personal mode`](../../../../SKILL.md) reads it out of your history. It mines your recent transcripts in the active workspace for repeated preferences, in how you like replies, delegation, verification, code, prose, and process, then asks you which patterns are really you. It uses canonical `skill-creator` to draft a real `SKILL.md` in the active harness's selected skill root, runs the draft through `/deslop prose` (resolve the `deslop` skill through the active catalog), and opens a PR from a worktree so you review it like any other change.
 
 Run it again whenever your habits drift:
 
 ```text
-/automate-me update my mode skill with everything since its last edit
+/pstack update my mode skill with everything since its last edit
 ```
 
 Update mode mines only the history since the skill last changed. It keeps rules you haven't contradicted, revises the ones with new evidence, and adds sections only for genuinely new patterns.
 
-## Capture a session's lessons with `/reflect`
+## Capture a session's lessons with `/skill-capture`
 
 Right after a task that taught you something, run:
 
 ```text
-/reflect that took way too long. capture what we learned so the next run doesn't repeat it.
+/skill-capture that took way too long. capture what we learned so the next run doesn't repeat it.
 ```
 
-`/reflect` (resolve the `skill-capture` skill through the active catalog) sends the transcript to three parallel reviewers, then a synthesizer sorts the proposals into `Accepted`, `Rejected`, and `Backlog` and waits for your approval before any skill changes. Approve a proposal only if it would change a future decision. One weird session is an anecdote, not a rule.
+`/skill-capture` (resolve the `skill-capture` skill through the active catalog) sends the transcript to three parallel reviewers, then a synthesizer sorts the proposals into `Accepted`, `Rejected`, and `Backlog` and applies only changes covered by your requested capture task, presenting any additional consequential choice before expanding scope. Approve a proposal only if it would change a future decision. One weird session is an anecdote, not a rule.
 
 ## Author a focused skill
 
@@ -36,7 +36,7 @@ When you already know the workflow you want to capture:
 /pstack write a skill for verifying database migrations in this repo
 ```
 
-Writing a skill matches the [Authoring or modifying a skill playbook](../../../../playbooks/authoring-a-skill.md), which routes through Cursor's built-in `create-skill`, validates the frontmatter and links, and ships the result through the Opening a PR playbook. Agent-facing prose has a higher bar than human prose, because an unhelpful sentence becomes an instruction some future agent follows. Let the playbook hold that bar rather than writing a `procedure.md` freehand.
+Writing a skill matches the [Authoring or modifying a skill playbook](../../../../playbooks/authoring-a-skill.md), which routes through canonical `skill-creator`, validates the frontmatter and links, and ships the result through the Opening a PR playbook. Agent-facing prose has a higher bar than human prose, because an unhelpful sentence becomes an instruction some future agent follows. Let the playbook hold that bar rather than writing an unvalidated `SKILL.md`.
 
 One special case has its own generator. A skill that must drive your app and prove behavior is a verification skill, so use `/create-verification-skill` (resolve the `create-verification-skill` skill through the active catalog) and `/maintain-verification-skill` (resolve the `maintain-verification-skill` skill through the active catalog) instead. [Verify and ship](06-verify-and-ship.md#create-a-project-verification-skill) covers both.
 

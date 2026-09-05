@@ -1,70 +1,72 @@
-# Codex tool mapping for pstack
+# Codex capability mapping
 
-pstack skills retain Claude Code tool language (`Skill`, `Agent`, `AskUserQuestion`) in shared prose. On Codex the files are the same; only those tool names resolve differently. Model execution is not translated here. Read [`provider-dispatch.md`](provider-dispatch.md) for the parent-owned Claude/Codex/Grok route table and provider-qualified descriptors.
+Resolve actions against the tools actually exposed by the active Codex harness.
+Desktop, CLI and hosted sessions can expose different names and permissions.
+This reference maps behavior; it does not enable features or change configuration.
 
-## Tool actions
+## Actions
 
-| pstack / Claude action | Codex equivalent |
-|------------------------|------------------|
-| Read a file | `shell` (`cat`, `head`, `tail`) |
-| Create / edit / delete a file | `apply_patch` |
-| Run a shell command | `shell` |
-| Search file contents / find files | `shell` (`rg`, `grep`, `find`, `ls`) |
-| Fetch a URL | `shell` with `curl` / `wget` |
-| Search the web | `web_search` |
-| Invoke a skill (the `Skill` tool, `/command`) | Skills load natively. Follow the instructions presented. |
-| `paths` frontmatter scopes automatic loading | Claude Code only. On Codex, invoke `typescript-expert` by name. |
-| Dispatch a subagent (the `Agent`/`Task` tool) | `spawn_agent` |
-| Dispatch N parallel subagents in one turn | N `spawn_agent` calls in one response |
-| Wait for a subagent result | `wait_agent` |
-| Free a finished subagent slot | `close_agent` |
-| Track tasks (the todolist / `TodoWrite`) | `update_plan` |
-| Ask the human a fixed-choice question (`AskUserQuestion`) | Ask in plain text and let the user answer. Codex has no structured-choice tool. |
+| Workflow action | Execution requirement |
+|---|---|
+| Read or search files | Use the available filesystem or command interface within the authorized workspace. |
+| Edit files | Use the harness editing interface within the requested mutation scope. |
+| Fetch or search external information | Prefer the available connector or web interface and preserve its restrictions. |
+| Invoke another skill | Resolve the canonical Shipshit entry through the active catalog and read its installed resources. |
+| Delegate independent work | Use exposed, authorized native delegation and its actual model and effort controls. |
+| Wait for a delegate | Retain the returned handle and use the corresponding wait/status interface. |
+| Release a delegate | Use a supported lifecycle operation if one exists; do not invent a close tool. |
+| Track work | Use the available plan/task interface or a scoped written checklist. |
+| Ask a structured question | Use the available question interface; otherwise ask a concise plain-text question. |
 
-This is a Codex-specific adapter reference. Read the active Codex configuration
-to discover available delegation support. Only during explicitly authorized setup,
-configure the supported feature in that harness’s resolved configuration file.
-A configuration example, not an automatic edit:
+Loading a skill grants no authority to change a sandbox, enable delegation,
+register a plugin, schedule work or select another provider.
 
-```toml
-[features]
-multi_agent = true
-```
+## Native and external roles
 
-Without it, the native Codex lane is a named dropout. Independent external lanes still run, and the parent records the reduced provider count. Never collapse a panel into a sequential single-model pass.
+Read [provider dispatch](provider-dispatch.md) and the harness's canonical role
+configuration. Preserve existing assignments. There is no default four-provider
+panel and no fallback model table in this distribution.
 
-## Subagent policy
+A configured external lane supplies provider, model and requested effort.
+On a Codex parent, its own provider uses native delegation. An explicitly
+authorized external provider uses the packaged runner. The parent resolves roles;
+children cannot add providers or choose their own execution route.
 
-pstack's Subagents section sets Claude-specific defaults (`subagent_type: "poteto-agent"`, `run_in_background: true`). On Codex:
+If native delegation or a selected external lane is unavailable, record the
+missing coverage. Continue permitted independent work. Use another route only
+when the task and role policy authorize it; never claim model diversity or
+independent review that did not occur.
 
-- There is no `poteto-agent` subagent type. Route an ad-hoc subagent through pstack's style by dispatching a `spawn_agent` whose instructions tell it to read the `pstack` skill in full first.
-- `spawn_agent` calls already run concurrently with your turn, so `run_in_background: true` has no separate flag. Issue the dispatch and continue.
-- There is no `comment-sicko` subagent type either. The **no-comments** skill spawns it on Claude Code; on Codex dispatch a `spawn_agent` whose instructions tell it to read `agents/comment-sicko.md` in full first.
-- Claude Code runs every subagent on this machine, so the **swarm** skill's workers and the fan-out playbooks (`orchestrate`, `autopilot-full`, `autopilot-stack`) isolate writers with worktrees. The same holds on Codex.
-- Keep the rest of the policy unchanged. Pass file pointers not inlined context, give each worker its own worktree or branch when they write, review every subagent's diff yourself.
+Resolve the no-comments reviewer template relative to the installed pstack
+adapter directory. Its existence does not mean a named native agent is registered.
+Give writers isolated locations selected by the harness and read their actual
+diffs before accepting results.
 
-## Models and providers
+## Surface verification and pacing
 
-Do not replace every configured entry with a Codex model. `/setup-pstack` writes portable descriptors such as `configured-role-descriptor`, `configured-role-descriptor`, and `configured-role-descriptor`. In a Codex parent, only `codex:*` is native. Route Claude and Grok descriptors through the external launcher exactly as `provider-dispatch.md` specifies. The current default panel intentionally keeps four-provider frontier diversity and contains no older GPT or Claude substitute.
+A CLI or TUI needs observation through the available command/terminal interface.
+A UI needs the available browser or app-driving interface. If the required
+surface cannot be exercised, name the missing evidence instead of claiming proof.
 
-## Claude built-in skills pstack references
+Use canonical skill-creator for authoring guidance. Resolve watchers and
+automations through the active harness. Scheduling, cadence and notifications
+remain configured outside reusable prompts. A bounded status request is one
+read-only pass and does not authorize a recurring watcher.
 
-Some triggers name skills that ship with Claude Code, not pstack. They do not exist on Codex. Substitute the behavior:
+## Packaged tools
 
-| Claude built-in named in pstack | On Codex |
-|---------------------------------|----------|
-| `run` (drive a CLI/TUI to see a change work) | Run the app yourself via `shell` and observe the real output. |
-| `verify` (drive a UI to confirm a fix) | Drive the UI with whatever automation you have, or hand the user a concrete manual check. Do not claim done without observing the artifact. |
-| `skill-creator` (Claude's SKILL.md authoring guidance) | Follow your platform's skill-authoring guidance; the `writing-skills` skill if present. Keep `name` + `description` frontmatter and progressive disclosure. |
-| `loop` (recurring/self-paced re-invocation, used by `babysit`) | Codex has no `loop` skill. Re-run the step yourself on a cadence, or use a Codex scheduled task if available. |
+Resolve the installed pstack directory before invoking scripts/watch-pr/watch-pr,
+scripts/orch/orch.ts or scripts/runner/pstack-runner. They require Bun; provider
+and GitHub operations additionally require their documented authenticated CLI.
+Do not assume a source checkout, plugin-root variable or Graphite installation.
 
-## Vendored scripts
+Worktree inventory and cleanup use canonical git-cleanup and its packaged
+scripts/cleanup.py. Pair immutable evidence with active harness session inventory.
+No alternate Claude-specific audit path ships here.
 
-`skills/pstack/scripts/` ships the `watch-pr` PR watcher, the `orch` store CLI, and `runner/pstack-runner`. They are plain bun and bash, so they run the same on Codex; invoke them through `shell`. The external runner additionally needs the assigned `claude`, `codex`, or `grok` executable already authenticated. It rejects a Codex provider when Codex is the parent because that lane belongs on native `spawn_agent`. The watcher and store use Bun and GitHub CLI where documented; Graphite is not required. Worktree inventory and cleanup resolve the `git-cleanup` skill and its packaged
-`scripts/cleanup.py` helper through the active catalog. Pair its immutable plan
-with the active harness session inventory. The legacy audit script is superseded;
-no Claude transcript scan or alternate unsafe classification path ships here.
+## Configuration
 
-## Instructions file
-
-Where a skill says "your instructions file", resolve the current harness’s actual project/global instruction sources from its configuration. Standard filenames such as `AGENTS.md` or `CLAUDE.md` identify formats, not permission to create or rewrite a default home-directory path.
+Resolve the active harness's instruction and configuration sources before setup.
+Preserve generators and their source-of-truth relationships. Changes require
+authorization for the specific setup action; this reference never writes a
+default home-directory file or enables a plugin.

@@ -12,6 +12,22 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 class BundleResourceTests(unittest.TestCase):
+    def test_ci_fixture_discovery_never_executes_dependency_tests(self) -> None:
+        workflow = (ROOT / ".github/workflows/ci.yml").read_text()
+        command = next(line.strip() for line in workflow.splitlines() if line.strip().startswith("find skills "))
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            owned = root / "skills/example/owned.test.mjs"
+            dependency = root / "skills/pstack/scripts/node_modules/provider/unowned.test.mjs"
+            owned.parent.mkdir(parents=True)
+            dependency.parent.mkdir(parents=True)
+            owned.write_text("import test from 'node:test'; test('owned fixture', () => {});\n")
+            dependency.write_text("throw new Error('dependency tests must not execute');\n")
+            result = subprocess.run(["bash", "-c", command], cwd=root, text=True, capture_output=True)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertIn("owned fixture", result.stdout)
+            self.assertNotIn("unowned.test", result.stdout + result.stderr)
+
     def test_runtime_dependencies_stay_out_of_bundles_but_sources_and_lock_ship(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

@@ -12,7 +12,7 @@ with an example here. Use only capabilities the active harness actually exposes.
 
 A guided flow for turning the user's working conventions into a skill agents will follow. The output is one `-mode` skill tailored to them (e.g. `jay-mode`, `priya-mode`).
 
-This skill orchestrates three others: an inline mining pass (see step 1), the `skill-creator` skill (authoring), and the **unslop** skill (prose discipline). It sequences them; it doesn't replace them.
+This skill orchestrates three others: an inline mining pass (see step 1), the `skill-creator` skill (authoring), and the prose mode of the **deslop** skill (prose discipline). It sequences them; it doesn't replace them.
 
 **Platform note.** On Codex or another non-Claude runtime, the Claude tool names, `claude-*` slugs, and Claude built-in skills named below (including `skill-creator`) are Claude defaults. Resolve them via [`codex-tools.md`](codex-tools.md).
 
@@ -81,7 +81,7 @@ Use the **skill-creator** skill to author the skill. Placement:
 
 ### 5. Iterate on prose
 
-Apply the **unslop** skill and `skill-creator`'s writing guidelines to every line. Both apply to any agent-read prose, not just skills.
+Apply the prose mode of the **deslop** skill and `skill-creator`'s writing guidelines to every line. Both apply to any agent-read prose, not just skills.
 
 Show the draft to the user and take feedback. Expect multiple iterations. Cut ruthlessly; a mode skill is not a manual.
 

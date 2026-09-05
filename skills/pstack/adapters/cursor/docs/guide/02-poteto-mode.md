@@ -51,7 +51,7 @@ continue
 keep going until done
 ```
 
-Short works because the mode is sticky and the playbook holds the structure. Your words carry the intent, and the skill carries the rigor.
+Short follow-ups work within the selected task because the playbook holds the structure. Your words carry the intent, and the skill carries the rigor.
 
 ## Switch tasks with "new task"
 
@@ -79,7 +79,7 @@ Worktrees accumulate. When disk gets tight, ask:
 /pstack what's eating my disk? prune the worktrees that are safe to prune.
 ```
 
-The [Worktree cleanup playbook](../../../../playbooks/worktree-cleanup.md) classifies every worktree by merge state, uncommitted work, and which chats still touch it. It deletes only what that evidence clears and pauses for your call on anything holding uncommitted work.
+The [Worktree cleanup playbook](../../../../playbooks/worktree-cleanup.md) uses canonical immutable merge evidence plus active-session checks. It preserves tracked, untracked and ignored work and deletes only unchanged candidates in an authorized plan.
 
 ## Leave it running
 

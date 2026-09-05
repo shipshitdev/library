@@ -39,14 +39,13 @@ Write one clear paragraph. Reviewers challenge whether the work achieves the int
 
 ## Step 3, Spawn Reviewers
 
-Start all reviewers in one fan-out phase. Use `interrogate reviewers` from the current harness's pstack model sheet when present, one reviewer per entry, extending or shrinking the Reviewer A/B/C/D labels below to the configured entry count; otherwise use the table defaults. Native reviewers use the parent subagent primitive. External reviewers use the launcher directly and must return a complete, model-verified receipt.
-
-| Subagent | Default model |
-|----------|---------------|
-| Reviewer A | `configured-role-descriptor` |
-| Reviewer B | `configured-role-descriptor` |
-| Reviewer C | `configured-role-descriptor` |
-| Reviewer D | `configured-role-descriptor` |
+Resolve interrogate reviewers from the active harness's canonical role map.
+Use one reviewer per authorized configured entry and label the resulting lanes
+in the report. This distribution supplies no fixed panel size or model defaults.
+When the map lacks this role, use an independent parent-native reviewer only if
+the harness policy permits it; otherwise report the missing review coverage.
+Start available independent lanes together. Native reviewers use native
+delegation; external reviewers use the authorized launcher and return receipts.
 
 For each reviewer, route the configured descriptor with `read-only` access and a unique output/receipt path. If the descriptor is `inherit-parent` or `auto`, use the parent subagent primitive without a model override. If a provider, login, or model is unavailable, record a dropout and continue with the completed reviewers. Never pick the closest model or silently fall back; that destroys the meaning of cross-provider agreement.
 

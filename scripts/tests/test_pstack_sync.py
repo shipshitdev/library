@@ -105,6 +105,27 @@ class PstackSyncTests(unittest.TestCase):
         self.save()
         self.assertTrue(any("cannot be archive-only" in e for e in sync.verify(self.root)))
 
+    def test_extensionless_executables_and_additional_script_types_cannot_be_archive_only(self) -> None:
+        for name, mode in [
+            ("skills/pstack/scripts/runner/pstack-runner", 0o755),
+            ("skills/pstack/scripts/helper.py", 0o644),
+            ("skills/pstack/scripts/helper.ps1", 0o644),
+            ("skills/pstack/scripts/component.tsx", 0o644),
+        ]:
+            with self.subTest(name=name):
+                files = {name: (b"runtime fixture\n", mode)}
+                blob = sync.archive_bytes(files)
+                (self.directory / "fixture.tar.gz").write_bytes(blob)
+                self.source.update(sha256=sync.digest(blob), files=sync.inventory(files))
+                self.mapping["files"] = {"fixture:" + name: {
+                    "disposition": "metadata", "reason": "Invalid archive-only runtime.",
+                    "destinations": [{"path": "upstream/pstack/fixture.tar.gz",
+                                      "sha256": sync.digest(blob), "executable": False}],
+                    "verification": ["docs/verification.md"],
+                }}
+                self.save()
+                self.assertTrue(any("cannot be archive-only" in e for e in sync.verify(self.root)))
+
     def test_pending_mapping_and_missing_evidence_fail(self) -> None:
         self.entry.update(disposition="pending", verification=["missing-review.md"])
         self.save()

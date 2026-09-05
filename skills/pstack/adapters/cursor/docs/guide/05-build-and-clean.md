@@ -44,16 +44,16 @@ In context, that's enough. `/tdd` (resolve the `tdd` skill through the active ca
 
 ## Let the TypeScript rules load themselves
 
-`typescript-best-practices` (resolve the `typescript-expert` skill through the active catalog) has no slash command in your workflow. It loads whenever the agent touches a `.ts` or `.tsx` file and turns the type-system principles into concrete rules: discriminated unions, `unknown` at boundaries, exhaustive variants, schema-derived types.
+`typescript-best-practices` (resolve the `typescript-expert` skill through the active catalog) is the canonical `typescript-expert` engine. Invoke it when TypeScript work needs its guidance; automatic loading depends on the configured harness and turns the type-system principles into concrete rules: discriminated unions, `unknown` at boundaries, exhaustive variants, schema-derived types.
 
 ## Clean before you commit
 
-The [Opening a PR playbook](../../../../playbooks/opening-a-pr.md) runs `/deslop` on the diff before each commit and applies `/unslop` (resolve the `deslop` skill through the active catalog) to the PR description and commit bodies. `/deslop` ships in the `cursor-team-kit` plugin, not in pstack. If you don't have it, ask for the same outcome in plain words: remove narrating comments, unsupported guards, dead compatibility paths, and unrelated edits.
+The [Opening a PR playbook](../../../../playbooks/opening-a-pr.md) runs `/deslop` on the diff before each commit and applies `/deslop prose` (resolve the `deslop` skill through the active catalog) to the PR description and commit bodies. `/deslop` ships in the `cursor-team-kit` plugin, not in pstack. If you don't have it, ask for the same outcome in plain words: remove narrating comments, unsupported guards, dead compatibility paths, and unrelated edits.
 
-For prose, `/unslop` takes a target and any extra rules you have:
+For prose, `/deslop prose` takes a target and any extra rules you have:
 
 ```text
-/unslop the readme changes, no emdashes
+/deslop prose the readme changes, no emdashes
 ```
 
 You'll develop your own shorthand. The skill reads intent fine from terse prompts like `unslop that, tighten it`.
@@ -66,9 +66,9 @@ Comments need their own pass, and not from the agent that wrote them. An author 
 /no-comments the diff
 ```
 
-`/no-comments` (resolve the `no-comments` skill through the active catalog) spawns [Comment Sicko](../../../agents/comment-sicko.md), a read-only reviewer with a short keep list: license headers, doc comments on a public API, links that explain what code can't, behavior forced by an external dependency you can't reshape. Everything else goes. A surprise in your own code gets no such pass. The comment comes back as a refactor flag, and `/no-comments` fixes the flags it accepts at the root cause. When a comment claims a constraint, "do not remove", the skill offers to encode the claim as a type, test, or lint. Either way, the comment comes out.
+`/no-comments` (resolve the `no-comments` skill through the active catalog) spawns [Comment Sicko](../../../agents/comment-sicko.md), a read-only reviewer with a short keep list: license headers, doc comments on a public API, links that explain what code can't, behavior forced by an external dependency you can't reshape. Everything else goes. A surprise in your own code gets no such pass. The comment comes back as a refactor flag, and `/no-comments` fixes the flags it accepts at the root cause. When a comment claims a constraint, "do not remove", the skill offers to encode the claim as a type, test, or lint. Retain comments whose non-obvious rationale remains necessary after review.
 
-The division of labor is worth keeping straight. `/deslop` cleans slop out of the code, `/unslop` cleans it out of prose, and `/no-comments` hands the comments to a reviewer who didn't write them.
+The division of labor is worth keeping straight. `/deslop` cleans slop out of the code, `/deslop prose` cleans it out of prose, and `/no-comments` hands the comments to a reviewer who didn't write them.
 
 **Pitfall:** cleanup is not optional polish. A diff with narrating comments and defensive dead weight reads as unfinished to reviewers, and the extra code is where the next bug hides. If the diff feels padded, say `deslop it` before you commit, not after review calls it out.
 

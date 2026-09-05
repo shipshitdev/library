@@ -179,7 +179,7 @@ Match the task, open the file, copy its steps.
 
 ## Automate Me procedure
 
-Read [automate-me procedure](references/automate-me-procedure.md) when the user asks to automate recurring personal work.
+Read [automate-me procedure](references/automate-me-procedure.md) when creating or updating a personal mode from the user’s working conventions.
 Apply the authorized scope and mode of this entry point to every step.
 Resolve other skills through this distribution’s active catalog; resolve
 resources relative to the installed skill directory.
@@ -193,7 +193,7 @@ resources relative to the installed skill directory.
 
 ## Bro procedure
 
-Read [bro procedure](references/bro-procedure.md) when resuming interrupted work from another session.
+Read [bro procedure](references/bro-procedure.md) when the user asks to restate the previous answer more simply.
 Apply the authorized scope and mode of this entry point to every step.
 Resolve other skills through this distribution’s active catalog; resolve
 resources relative to the installed skill directory.

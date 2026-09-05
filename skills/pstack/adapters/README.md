@@ -1,8 +1,7 @@
 # Optional Pstack adapters
 
 These files are inert installed resources. Installing the skill does not register
-hooks, models, agents, routines or servers. Run the `setup-pstack` skill when the
-user asks to configure a harness. Resolve this directory from the installed pstack
+hooks, models, agents, routines or servers. The user-invoked `setup-pstack` workflow configures a harness when requested. Resolve this directory from the installed pstack
 skill, and preserve the harness's canonical role sheet and generator.
 
 ## Session startup and agents
@@ -54,9 +53,10 @@ or falling back to a public unauthenticated endpoint.
 
 The external runner requires explicit prompt, cwd, output and receipt paths.
 The orchestration store requires `--store` or `ORCH_STORE`; it has no home-directory
-default. The decision-log helper requires its logfile argument. Bootstrap installs
-locked dependencies beside the installed runtime, so installation needs write
-permission there and runs only on the authorized host.
+default. The decision-log helper requires its logfile argument. The launchers call the
+bootstrap library to install locked dependencies beside the installed runtime;
+bootstrap is not a standalone command. Installation needs write permission there
+and runs only on the authorized host.
 
 The upstream worktree-audit script is superseded by canonical `git-cleanup`.
 Its original source remains in the immutable upstream snapshot for review. Resolve

@@ -112,10 +112,11 @@ def snapshot(checkout: Path, commit: str, paths: list[str]) -> dict:
     return files
 
 
-def execution_source(name: str) -> bool:
+def execution_source(name: str, mode: int) -> bool:
     parts = PurePosixPath(name).parts
     return any(part in {"skills", "agents", "hooks", "automations"} for part in parts) and (
-        name.endswith((".md", ".ts", ".js", ".mjs", ".sh", ".cmd"))
+        bool(mode & 0o111)
+        or name.endswith((".md", ".ts", ".tsx", ".mts", ".js", ".mjs", ".sh", ".bash", ".zsh", ".py", ".ps1", ".cmd"))
         or PurePosixPath(name).name in {"session-start", "run-hook", "hooks.json"}
     )
 
@@ -140,7 +141,7 @@ def verify(root: Path) -> list[str]:
         contents = read_archive(raw)
         if inventory(contents) != source["files"]:
             errors.append(f"{source['id']}: archive inventory differs from lock")
-        expected.update({source["id"] + ":" + name: data for name, (data, _) in contents.items()})
+        expected.update({source["id"] + ":" + name: value for name, value in contents.items()})
     entries = mapping["files"]
     for missing in sorted(expected.keys() - entries.keys()):
         errors.append(f"Unmapped upstream file: {missing}")
@@ -156,7 +157,7 @@ def verify(root: Path) -> list[str]:
         destinations = entry.get("destinations", [])
         if not destinations:
             errors.append(f"{key}: canonical destination required")
-        if execution_source(key.split(":", 1)[1]) and (
+        if execution_source(key.split(":", 1)[1], expected[key][1]) and (
             kind == "metadata" or not any(d.get("path", "").startswith("skills/") for d in destinations)
         ):
             errors.append(f"{key}: executable/procedure resource cannot be archive-only")
@@ -170,7 +171,7 @@ def verify(root: Path) -> list[str]:
                 errors.append(f"{key}: unreviewed destination change {destination['path']}")
             if bool(path.stat().st_mode & 0o111) != destination.get("executable"):
                 errors.append(f"{key}: unreviewed executable-bit change {destination['path']}")
-            if kind == "identical" and raw != expected[key]:
+            if kind == "identical" and raw != expected[key][0]:
                 errors.append(f"{key}: identical disposition differs from upstream")
         for evidence in entry.get("verification", []):
             if not local_file(root, evidence).is_file():

@@ -90,11 +90,11 @@ Read the corresponding `references/principle-*.md` resource in full for any prin
 
 ## Subagents
 
-For `inherit-parent`, `auto`, or an unconfigured native ad-hoc helper, use the harness-native configured role. `/pstack` and `poteto-agent` route through the same wrapper. A provider-qualified role instead follows provider dispatch: Claude's shipped frontier agent definitions select the model alias and requested effort, Codex passes both to `spawn_agent`, and external providers run through the deterministic launcher. Routed workflow skills set the task and access mode; do not override their choices.
+Resolve every delegation through the active harness role map. Use parent-native aliases only when that harness supports them. The optional configured-role template does not install model-specific agents. Native lanes use the harness's actual delegation interface; explicitly authorized external lanes use the packaged launcher. Routed workflow skills set the task and access mode; do not override their choices.
 
 **Defaults for every delegation.** Start independent lanes together, use file pointers rather than inlined dumps, preserve only the tools or MCPs the task needs, and assign every writer a worktree or unique output directory. `/setup-pstack` configures the descriptor per role. Use the active harness role map. A parent-native fallback must be permitted by that map and recorded as reduced panel diversity.
 
-You own every subagent's work. Review the diff and write your own summary, don't pass through what it said. Interrupt-chained resumes silently drop directives, so fire a fresh subagent with consolidated scope rather than trusting a "done" summary. A second opinion is the same prompt against a different model. Agreement is high-signal.
+You own every subagent's work. Review the diff and write your own summary, don't pass through what it said. Interrupt-chained resumes silently drop directives, so fire a fresh subagent with consolidated scope rather than trusting a "done" summary. An independent second opinion receives the same evidence and rubric. Different model families can improve coverage when authorized; verify every finding against the artifact instead of treating agreement as proof.
 
 ## Writing the reply
 

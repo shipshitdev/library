@@ -45,7 +45,7 @@ The official skills installer was exercised on Studio with all 188 canonical
 skills selected for Codex, Claude Code and Cursor. The shared agent directory and
 Claude-specific copies contain every selected skill with no extra identities,
 missing resources or source-byte differences. No dependency directory was copied.
-The installed runtime then passed all 155 tests (557 assertions) and strict
+The installed runtime then passed all 155 tests (561 assertions) and strict
 TypeScript checks, independent of the upstream checkouts.
 
 A full live provider cutover additionally requires backed-up configuration

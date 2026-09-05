@@ -65,7 +65,7 @@ apply prove it works. show me the real output, not the build log.
 ```
 
 ```text
-/unslop that, no emdashes
+/deslop prose that, no emdashes
 ```
 
 You rarely need more words. You need the right name, and [the principles page](08-principles.md) is the vocabulary.
@@ -73,10 +73,10 @@ You rarely need more words. You need the right name, and [the principles page](0
 ## Get the reply in plain words
 
 ```text
-/bro
+/pstack restate your last answer plainly
 ```
 
-That's the whole prompt. [`/bro`](../../../../SKILL.md) restates the last message like one human talking to another, no jargon, shorter. Use it when a reply is technically thorough and you still don't know what it said.
+That's the whole prompt. [`/pstack restate your last answer plainly`](../../../../SKILL.md) restates the last message like one human talking to another, no jargon, shorter. Use it when a reply is technically thorough and you still don't know what it said.
 
 ## The pitfalls
 

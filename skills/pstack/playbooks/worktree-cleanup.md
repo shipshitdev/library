@@ -13,7 +13,9 @@ Read-only disk tools may supplement the plan; size and age never prove safety.
 1. Resolve `git-cleanup` through the active catalog and read its proof rules.
    Run its packaged `scripts/cleanup.py dry-run --root <repository> --scope worktrees`
    on the harness-approved host. Record exact paths, candidate and trunk object
-   IDs, merge evidence and skipped reasons.
+   IDs, merge evidence and skipped reasons. Preserve the exact JSON output as
+   a plan file in the caller-approved artifact directory; keep report-only
+   requests within their allowed output scope.
 2. Cross-check candidates against active and pinned tasks, child worktrees and
    operations in progress. Preserve the main checkout, caller's worktree, locked,
    inaccessible, symlinked or in-use worktrees.
@@ -22,10 +24,15 @@ Read-only disk tools may supplement the plan; size and age never prove safety.
    Preserve unpushed or unproven commits and both sides of open PRs.
 4. Present the exact plan. Existing authorization covers only its named cleanup
    scope. If deletion is not authorized, stop at the report.
-5. Pass the unchanged authorized plan to the helper's prune mode, which revalidates
-   each candidate before deletion. A changed candidate needs a fresh plan.
-   Do not use forced worktree removal, recursive directory deletion, broad
-   registration pruning or a shell fallback when the helper refuses.
+5. After confirming exclusive access to the selected worktrees and authority for
+   the printed plan, run the same installed helper:
+   `python3 scripts/cleanup.py prune --root <repository> --scope worktrees --plan <saved-plan.json> --confirmed --exclusive-worktrees`.
+   The flags record existing authorization and verified exclusivity; they do not
+   grant either. If exclusivity cannot be established, preserve the worktrees.
+   The helper re-derives merge proof and current state rather than trusting the
+   saved plan. A changed candidate needs a fresh plan. Do not use forced worktree
+   removal, recursive directory deletion, broad registration pruning or a shell
+   fallback when the helper refuses.
 6. Re-list and report removed and preserved paths with reasons. Worktree-only
    scope preserves branches and all remote references.
 

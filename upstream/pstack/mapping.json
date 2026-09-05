@@ -233,7 +233,7 @@
         }
       ],
       "disposition": "adapted",
-      "reason": "Dormant configuration template uses caller-selected paths and canonical Shipshit dependencies instead of upstream plugin activation.",
+      "reason": "Dormant Cursor adapter; explicit setup verifies supported capabilities and authorized effects.",
       "review_note": "Integrated reviewed portable paths, canonical cleanup preservation and complete source coverage.",
       "verification": [
         "docs/pstack-import-verification.md"
@@ -272,11 +272,12 @@
         {
           "executable": false,
           "path": "skills/pstack/adapters/cursor/docs/guide/01-setup.md",
-          "sha256": "19882b3e23f1d18a3e5d5a5d3603bba165d035e6a43e8cd6fb9e44248897d765"
+          "sha256": "10e7ca5e2b8883c94a437a265be0db231b050604c70fcf7637561198e7582f41"
         }
       ],
       "disposition": "adapted",
-      "reason": "Dormant Cursor adapter; explicit setup verifies supported capabilities and authorized effects.",
+      "reason": "Canonical installer/setup preserves existing harness source of truth and selected roles; removes original-plugin reinstall, default model restoration and fixed Cursor model-file claims.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -286,11 +287,12 @@
         {
           "executable": false,
           "path": "skills/pstack/adapters/cursor/docs/guide/02-poteto-mode.md",
-          "sha256": "b393ad737362d24cc233a89538d6ac48f8917d63641e6f680ff0bf7e67aa9a34"
+          "sha256": "17a450f79f51496f224e003c0dcc5df00ff1a0a614d86b8a0ab50bf86aefa569"
         }
       ],
       "disposition": "adapted",
       "reason": "Dormant Cursor adapter; explicit setup verifies supported capabilities and authorized effects.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -314,11 +316,12 @@
         {
           "executable": false,
           "path": "skills/pstack/adapters/cursor/docs/guide/04-design.md",
-          "sha256": "059da5012304db502b8064abe3663560ac81176368da3cb3cc27c794d86455b1"
+          "sha256": "9c5163de876f19c940806a9d8dfa8c5c9f4083bcff82d7ba57908877f39a0015"
         }
       ],
       "disposition": "adapted",
       "reason": "Dormant Cursor adapter; explicit setup verifies supported capabilities and authorized effects.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -328,11 +331,12 @@
         {
           "executable": false,
           "path": "skills/pstack/adapters/cursor/docs/guide/05-build-and-clean.md",
-          "sha256": "a3c481e55f703829817f07d265fbdebb4140d39b5e17f6277a61495ac6e6553e"
+          "sha256": "b8fb3875e9858efc0f9588989819595f32717cc30071b1d37dfe98404a556b87"
         }
       ],
       "disposition": "adapted",
       "reason": "Dormant Cursor adapter; explicit setup verifies supported capabilities and authorized effects.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -342,11 +346,12 @@
         {
           "executable": false,
           "path": "skills/pstack/adapters/cursor/docs/guide/06-verify-and-ship.md",
-          "sha256": "c283f6a6c66747229fed041052c7af185b94442e38e0a9eb41e0612bb5ebe261"
+          "sha256": "73d73932931b2f03a95ac70e14ef41d80c7e9152c4959b58497cfb761e1dce33"
         }
       ],
       "disposition": "adapted",
       "reason": "Dormant Cursor adapter; explicit setup verifies supported capabilities and authorized effects.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -356,11 +361,12 @@
         {
           "executable": false,
           "path": "skills/pstack/adapters/cursor/docs/guide/07-overnight.md",
-          "sha256": "d9ea7608ec75a4d721dfacbcc09c5b3f2bb16c53c1bb546b51a4e5973195ea17"
+          "sha256": "0ce4e50822f27f65d882b3ea35f2a657d68bed4218c07b85ad8c710a3f0e2166"
         }
       ],
       "disposition": "adapted",
       "reason": "Dormant Cursor adapter; explicit setup verifies supported capabilities and authorized effects.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -384,11 +390,12 @@
         {
           "executable": false,
           "path": "skills/pstack/adapters/cursor/docs/guide/09-make-it-yours.md",
-          "sha256": "f2d3f363cdd9b5cd58d7808c326df816340611dd5c6ca31be22fc21bc6fdd740"
+          "sha256": "71868d1c85ab546ce9ee6207c29076f7a2b4bcca1eb7d691badae4f057cd7f34"
         }
       ],
       "disposition": "adapted",
       "reason": "Dormant Cursor adapter; explicit setup verifies supported capabilities and authorized effects.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -398,11 +405,12 @@
         {
           "executable": false,
           "path": "skills/pstack/adapters/cursor/docs/guide/10-recipes-and-pitfalls.md",
-          "sha256": "294dbf69f026c8e825bc011ead3529170cc8157a5371fabc5a8ede5cbf965193"
+          "sha256": "9edd2b4089d527e589574b9b2d8ff472d874b744ac264a8cec56c83d2ff92bcc"
         }
       ],
       "disposition": "adapted",
       "reason": "Dormant Cursor adapter; explicit setup verifies supported capabilities and authorized effects.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -412,11 +420,12 @@
         {
           "executable": false,
           "path": "skills/pstack/adapters/cursor/docs/guide/README.md",
-          "sha256": "c21f7842f8ce065b73d578951656e9961a725f6662b98bb7d2fc3d02c1ba8110"
+          "sha256": "eea9ba8b0311691293cf7c2aec7dab7376c650a86156c3eb858f2918cf5684e3"
         }
       ],
       "disposition": "adapted",
       "reason": "Dormant Cursor adapter; explicit setup verifies supported capabilities and authorized effects.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -552,11 +561,12 @@
         {
           "executable": false,
           "path": "skills/architect/references/runner-prompt.md",
-          "sha256": "3ef8c1452a0382a15b7601c7c94f2a16a00954170d705b7af8cc49ac78080ec9"
+          "sha256": "3b0f4c75d85ac44e6b38b338a52cd47b1a624825ada6699056fb126fdd4408d9"
         }
       ],
-      "disposition": "identical",
-      "reason": "Original capability carried through the portable Open Pstack implementation. Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "disposition": "adapted",
+      "reason": "Original capability carried through the portable Open Pstack implementation. Canonical name and harness-owned authorization; runtime preserved unless explicitly noted. Reviewed adaptation to canonical routing and harness policy.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -566,11 +576,12 @@
         {
           "executable": false,
           "path": "skills/arena/references/arena-procedure.md",
-          "sha256": "f2f7ec79e13b11a918a1d426ac0dcd2034c13edafafc1a58d4ed73cf6de04cb2"
+          "sha256": "9d88f02bc6f1c6d428116d276d16a934701a11ae6bca2cd565399ef82219b69d"
         }
       ],
       "disposition": "adapted",
       "reason": "Original capability carried through the portable Open Pstack implementation. Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -580,12 +591,12 @@
         {
           "executable": false,
           "path": "skills/pstack/references/automate-me-procedure.md",
-          "sha256": "c3468ddc8add0e87e06fe5b2410fc20c5085df8104a6ef39f0a80d52d0232193"
+          "sha256": "2e636cfeb5aaf9c82e9434d43bba34641dc6bb7957d880fb86142c25da8b4f98"
         }
       ],
       "disposition": "adapted",
       "reason": "Original capability carried through the portable Open Pstack implementation. Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
-      "review_note": "Integrated reviewed portable paths, canonical cleanup preservation and complete source coverage.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -623,11 +634,12 @@
         {
           "executable": false,
           "path": "skills/create-verification-skill/references/create-verification-skill-procedure.md",
-          "sha256": "513689de07336c0c1f7546c399b8be1cc3ff4091a6551eca8fea33f7cf41c7a1"
+          "sha256": "e4089f5d4508c95f63b1346de81791e9cc09fec91979e863a83d15c8a992c3de"
         }
       ],
       "disposition": "adapted",
       "reason": "Original capability carried through the portable Open Pstack implementation. Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -637,11 +649,12 @@
         {
           "executable": false,
           "path": "skills/create-verification-skill/references/feature-map-example/README.md",
-          "sha256": "6ac34cad74b882ae2a28871be03090b73329ce9d976277fe8fa961d7b358fb4f"
+          "sha256": "bce385088452c6d01a039511e7ab714cc0ea1d34290918213ed3f62072e09224"
         }
       ],
       "disposition": "adapted",
       "reason": "Original capability carried through the portable Open Pstack implementation. Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -679,11 +692,12 @@
         {
           "executable": false,
           "path": "skills/figure-it-out/references/figure-it-out-procedure.md",
-          "sha256": "9a20900751248c23c7db4908ec441d87830ef1ec8b213b30b23c778ac5b88bfb"
+          "sha256": "3fc41600d3f6f7d5fc758279c936eb7e626232d04d00463bc94600ac2060fec0"
         }
       ],
       "disposition": "adapted",
       "reason": "Original capability carried through the portable Open Pstack implementation. Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -693,11 +707,12 @@
         {
           "executable": false,
           "path": "skills/how/references/how-procedure.md",
-          "sha256": "0140817e54cd31b57b64b3f0f827972b7bf1df727ffda028e1932561524b444c"
+          "sha256": "f25f3a53064fb16cd54f0ad1f51dd515ce47956bbb6089395217547ce62595b9"
         }
       ],
       "disposition": "adapted",
       "reason": "Original capability carried through the portable Open Pstack implementation. Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -763,11 +778,12 @@
         {
           "executable": false,
           "path": "skills/interrogate/references/interrogate-procedure.md",
-          "sha256": "946b754d9ee6b26b24939d866891216e065560d79c1d6f273d942342db77ec8e"
+          "sha256": "2559f0288f41239caecf2553df107e2306ba3d5e3b8b114197e9af0a1f6aa3d3"
         }
       ],
       "disposition": "adapted",
       "reason": "Original capability carried through the portable Open Pstack implementation. Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -833,11 +849,12 @@
         {
           "executable": false,
           "path": "skills/maintain-verification-skill/references/maintain-verification-skill-procedure.md",
-          "sha256": "7c8d38dcb97696933dc6b41381b7447ad1e076bcd1fec3cc57d1af32ea4c629c"
+          "sha256": "da53c75a0df3368be1b13f9c2e4b067050e36e044e54076a181bb7010b9b3cb4"
         }
       ],
       "disposition": "adapted",
       "reason": "Original capability carried through the portable Open Pstack implementation. Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -875,11 +892,12 @@
         {
           "executable": false,
           "path": "skills/pstack/references/poteto-mode-procedure.md",
-          "sha256": "fab7212c491869c7308c62c9655627143a4b86ccf625c9320373291edc31ab14"
+          "sha256": "cdfe57a2a485a00f1956d4c4dc9d9c3c2339eea7d9ba3c98288a9acbb93d693c"
         }
       ],
       "disposition": "adapted",
       "reason": "Original capability carried through the portable Open Pstack implementation. Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -1030,11 +1048,12 @@
         {
           "executable": false,
           "path": "skills/pstack/playbooks/multi-phase-plan.md",
-          "sha256": "dec78c588d4bea2e952d849139eaab28860b55ac829df82d7cb1f7ec3bf60a0e"
+          "sha256": "ee4425b6742133c58000f0655727c8889b7ab348f650256f3c4afa174de58617"
         }
       ],
       "disposition": "adapted",
       "reason": "Original capability carried through the portable Open Pstack implementation. Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -1044,11 +1063,12 @@
         {
           "executable": false,
           "path": "skills/pstack/playbooks/opening-a-pr.md",
-          "sha256": "2521408bc25f3b26373771efbbf5250f8c3d79069f8136a7ed3ab1873e738281"
+          "sha256": "cd6910f18c0092b39c7f81d400c4abd8a254b89a79c4f4930767801a8881825b"
         }
       ],
       "disposition": "adapted",
       "reason": "Original capability carried through the portable Open Pstack implementation. Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -1200,12 +1220,12 @@
         {
           "executable": false,
           "path": "skills/pstack/playbooks/worktree-cleanup.md",
-          "sha256": "4a1331e6d2608249eb67952dab547f472ffd8bec45bc8809272ba67fb7a7acbc"
+          "sha256": "a7c21ff360c9fee490e1ddd03c9dee82eaf129b7c43fbcd29911c342fd5a991c"
         }
       ],
       "disposition": "adapted",
       "reason": "Original capability carried through the portable Open Pstack implementation. Deliberate safety divergence: routes through canonical evidence-based cleanup helper; preserves tracked/untracked/ignored/unpushed/in-use state and excludes cache/simulator deletion.",
-      "review_note": "Integrated reviewed portable paths, canonical cleanup preservation and complete source coverage.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -1257,11 +1277,12 @@
         {
           "executable": true,
           "path": "skills/pstack/scripts/check-plan.mjs",
-          "sha256": "6fdc5a73583d7ee1e68550e72ca985bb3fe8f493a3df5468ff1d924d79688a8e"
+          "sha256": "460515ec772985ee226f2fe36e0e23f6b2b7ff76316720c46128c93307c1fb6f"
         }
       ],
       "disposition": "adapted",
       "reason": "Original capability carried through the portable Open Pstack implementation. Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -1499,7 +1520,7 @@
         }
       ],
       "disposition": "superseded",
-      "reason": "Canonical cleanup helper replaces the legacy audit that fetched a hardcoded trunk and inferred safety from incomplete PR/transcript evidence.",
+      "reason": "Superseded legacy audit by canonical immutable-evidence cleanup helper. Removes implicit fetch, global Claude transcript scan, incomplete PR buckets and second cleanup implementation; active harness session inventory supplies in-use evidence.",
       "review_note": "Integrated reviewed portable paths, canonical cleanup preservation and complete source coverage.",
       "verification": [
         "docs/pstack-import-verification.md",
@@ -1805,12 +1826,12 @@
         {
           "executable": false,
           "path": "skills/recall/references/recall-procedure.md",
-          "sha256": "8dea9d2e29943c7c6249eb3a63cf3fb18988fe80cc61f38181d4cb47c90c130f"
+          "sha256": "122bde37a59992c5f014054de22a65b8867329cdaaffa79849e14645f20eb041"
         }
       ],
       "disposition": "adapted",
       "reason": "Original capability carried through the portable Open Pstack implementation. Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
-      "review_note": "Integrated reviewed portable paths, canonical cleanup preservation and complete source coverage.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -1908,12 +1929,12 @@
         {
           "executable": false,
           "path": "skills/show-me-your-work/references/show-me-your-work-procedure.md",
-          "sha256": "e15ce9b9b6f0e7cc1cc4872b9816d246d0032919a47942c3729dd854c58e6d8e"
+          "sha256": "c7eee26048b525b288a96a03c4f2f8a339584005cea0e71481d55d8eb61e1a82"
         }
       ],
       "disposition": "adapted",
       "reason": "Original capability carried through the portable Open Pstack implementation. Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
-      "review_note": "Integrated reviewed portable paths, canonical cleanup preservation and complete source coverage.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -1951,11 +1972,12 @@
         {
           "executable": false,
           "path": "skills/swarm/references/swarm-procedure.md",
-          "sha256": "a8890f4c173ebdd079fbfade8ae871aaae9205b022e606b85265635a04e1f7fb"
+          "sha256": "5bc73543b2eabcdf7d60f625244f3406faa6a6d58d756dca9679d274e1f51fd4"
         }
       ],
       "disposition": "adapted",
       "reason": "Original capability carried through the portable Open Pstack implementation. Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -1979,11 +2001,12 @@
         {
           "executable": false,
           "path": "skills/teach/references/teach-procedure.md",
-          "sha256": "da4ef31ce6466c9e55c0f706960e897e8c37e55d00d93f82a4dea9ea299ae107"
+          "sha256": "040e9778c6c5c2c466834e3978dcc21882c737e5f637a2bd2783947b43edcfcc"
         }
       ],
       "disposition": "adapted",
       "reason": "Original capability carried through the portable Open Pstack implementation. Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -1993,11 +2016,12 @@
         {
           "executable": false,
           "path": "skills/technical-writing/references/technical-writing-procedure.md",
-          "sha256": "0daad427c5d607640adc66cc90c7f79550cbd0a39eea5e816ea208a7b928b89d"
+          "sha256": "230338a69eda4877ff1feb669fd2ac5a0ac1866b153bb489cf9dd0563c5fd273"
         }
       ],
       "disposition": "adapted",
       "reason": "Original capability carried through the portable Open Pstack implementation. Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -2273,11 +2297,12 @@
         {
           "executable": false,
           "path": ".github/workflows/ci.yml",
-          "sha256": "8d9b4b0f9a0080ee9c0d63dc49321802c883ab6186aeba2fed1218dee149800d"
+          "sha256": "8140607d9123a3cde382fb6d73214676670fa2808ea370f28177661a1a03ac04"
         }
       ],
       "disposition": "superseded",
       "reason": "Shipshit CI verifies source coverage, runtime tests/types, canonical contracts and generated packages.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -2736,6 +2761,11 @@
           "executable": false,
           "path": "skills/architect/references/architect-procedure.md",
           "sha256": "ade10bba424516ab88bf7b0536c73faf3ce9276040830205eed3abc79ee80d2c"
+        },
+        {
+          "executable": false,
+          "path": "skills/architect/SKILL.md",
+          "sha256": "ef989d2705784c7a17d5249a66c097ad6d812fa62ec8a05b5f9f588f1e2d18a1"
         }
       ],
       "disposition": "adapted",
@@ -2777,11 +2807,12 @@
         {
           "executable": false,
           "path": "skills/architect/references/runner-prompt.md",
-          "sha256": "3ef8c1452a0382a15b7601c7c94f2a16a00954170d705b7af8cc49ac78080ec9"
+          "sha256": "3b0f4c75d85ac44e6b38b338a52cd47b1a624825ada6699056fb126fdd4408d9"
         }
       ],
-      "disposition": "identical",
-      "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "disposition": "adapted",
+      "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted. Reviewed adaptation to canonical routing and harness policy.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -2791,11 +2822,17 @@
         {
           "executable": false,
           "path": "skills/arena/references/arena-procedure.md",
-          "sha256": "f2f7ec79e13b11a918a1d426ac0dcd2034c13edafafc1a58d4ed73cf6de04cb2"
+          "sha256": "9d88f02bc6f1c6d428116d276d16a934701a11ae6bca2cd565399ef82219b69d"
+        },
+        {
+          "executable": false,
+          "path": "skills/arena/SKILL.md",
+          "sha256": "09a674c40b088f38698afafb7e8dea88723541705cc0872edd911a64106ba45d"
         }
       ],
       "disposition": "adapted",
       "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -2805,12 +2842,17 @@
         {
           "executable": false,
           "path": "skills/pstack/references/automate-me-procedure.md",
-          "sha256": "c3468ddc8add0e87e06fe5b2410fc20c5085df8104a6ef39f0a80d52d0232193"
+          "sha256": "2e636cfeb5aaf9c82e9434d43bba34641dc6bb7957d880fb86142c25da8b4f98"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
-      "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
-      "review_note": "Integrated reviewed portable paths, canonical cleanup preservation and complete source coverage.",
+      "reason": "Creates or updates a personal mode from working conventions; canonical skill-creator and harness-selected roots; does not schedule automation.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -2820,11 +2862,17 @@
         {
           "executable": false,
           "path": "skills/pstack/references/babysit-procedure.md",
-          "sha256": "5ade3fe8535e3b516120ee7de522357f259998dfdf08d61b681f52131d3309f3"
+          "sha256": "83c297fe601e852f015ed40f857f971d126fade5966aad49744c2384d7825bc4"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
-      "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "reason": "One canonical monitoring playbook owns all modes; removes shadow standalone entrypoint, implicit scheduling and topology rewrite permissions.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -2835,6 +2883,11 @@
           "executable": false,
           "path": "skills/blast-radius/references/blast-radius-procedure.md",
           "sha256": "ff24f0279e63bd3ba2d9ce18b3e4aadff572cc643d74f718cfe0524fbc952956"
+        },
+        {
+          "executable": false,
+          "path": "skills/blast-radius/SKILL.md",
+          "sha256": "fda4893de1afb1fb3900b0147eb9175c5a87387426b3805293f41ec9fe0a8d62"
         }
       ],
       "disposition": "adapted",
@@ -2849,10 +2902,15 @@
           "executable": false,
           "path": "skills/pstack/references/bro-procedure.md",
           "sha256": "e426d13a1a8b2024c92c2443cc75f53cace983ceb977436ef0207718d61543f1"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
-      "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "reason": "Plain-language restatement of the preceding response, routed conditionally from canonical pstack; not a session-resume workflow.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -2862,11 +2920,17 @@
         {
           "executable": false,
           "path": "skills/create-verification-skill/references/create-verification-skill-procedure.md",
-          "sha256": "513689de07336c0c1f7546c399b8be1cc3ff4091a6551eca8fea33f7cf41c7a1"
+          "sha256": "e4089f5d4508c95f63b1346de81791e9cc09fec91979e863a83d15c8a992c3de"
+        },
+        {
+          "executable": false,
+          "path": "skills/create-verification-skill/SKILL.md",
+          "sha256": "d51dc40237ca05b328a6f10c2a7364337ae057dc764fccdd963cf3e9eabe3e21"
         }
       ],
       "disposition": "adapted",
       "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -2876,11 +2940,12 @@
         {
           "executable": false,
           "path": "skills/create-verification-skill/references/feature-map-example/README.md",
-          "sha256": "6ac34cad74b882ae2a28871be03090b73329ce9d976277fe8fa961d7b358fb4f"
+          "sha256": "bce385088452c6d01a039511e7ab714cc0ea1d34290918213ed3f62072e09224"
         }
       ],
       "disposition": "adapted",
       "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -2919,6 +2984,11 @@
           "executable": false,
           "path": "skills/deslop/references/deslop-procedure.md",
           "sha256": "a229838a478bcdd3091913bab0e7bba79ff0b9ace475b7f4c9316052816d5a4c"
+        },
+        {
+          "executable": false,
+          "path": "skills/deslop/SKILL.md",
+          "sha256": "36e4e1c19c9a3f14c70f6ba7a36d87067512ad8d39af00011af2c6da800ba9bb"
         }
       ],
       "disposition": "adapted",
@@ -2932,11 +3002,17 @@
         {
           "executable": false,
           "path": "skills/figure-it-out/references/figure-it-out-procedure.md",
-          "sha256": "9a20900751248c23c7db4908ec441d87830ef1ec8b213b30b23c778ac5b88bfb"
+          "sha256": "3fc41600d3f6f7d5fc758279c936eb7e626232d04d00463bc94600ac2060fec0"
+        },
+        {
+          "executable": false,
+          "path": "skills/figure-it-out/SKILL.md",
+          "sha256": "b29084fa79c608f26f4be176254a6a3982e8fa49e581f1f6f67b274d68a3d390"
         }
       ],
       "disposition": "adapted",
       "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -2947,6 +3023,11 @@
           "executable": false,
           "path": "skills/github-fix-ci/references/fix-ci-procedure.md",
           "sha256": "60a76c3996c1fd7edde88ce940aff18d6e3786c49999763f8ca6d637987793bc"
+        },
+        {
+          "executable": false,
+          "path": "skills/github-fix-ci/SKILL.md",
+          "sha256": "877e2c918e156286dcc02210a9ae88a4f32ffb5af6495f76d1accf2ff363e4af"
         }
       ],
       "disposition": "adapted",
@@ -2961,6 +3042,11 @@
           "executable": false,
           "path": "skills/fix-merge-conflicts/references/fix-merge-conflicts-procedure.md",
           "sha256": "67dd461664467eb39e0f27d6c6d5759560c20d08767826770aa896d3d9797c6a"
+        },
+        {
+          "executable": false,
+          "path": "skills/fix-merge-conflicts/SKILL.md",
+          "sha256": "eb03a33c7a1293109c5b01509be6daeafce4ba200dd2964d6d3dd53e38f75e5a"
         }
       ],
       "disposition": "adapted",
@@ -2975,6 +3061,11 @@
           "executable": false,
           "path": "skills/pr-comments/references/get-pr-comments-procedure.md",
           "sha256": "a5dde3ef8ab8167ba10b3b622bec3715ce058dcf1f6bfcb6560c853b1b18b2d8"
+        },
+        {
+          "executable": false,
+          "path": "skills/pr-comments/SKILL.md",
+          "sha256": "31251c565eb43b65e701d984676832909f57725c6ba7bb1958f322e4c235c26a"
         }
       ],
       "disposition": "adapted",
@@ -2988,11 +3079,17 @@
         {
           "executable": false,
           "path": "skills/how/references/how-procedure.md",
-          "sha256": "0140817e54cd31b57b64b3f0f827972b7bf1df727ffda028e1932561524b444c"
+          "sha256": "f25f3a53064fb16cd54f0ad1f51dd515ce47956bbb6089395217547ce62595b9"
+        },
+        {
+          "executable": false,
+          "path": "skills/how/SKILL.md",
+          "sha256": "5a40f50212ebbdc62adf9969653085278d7f4d2b609bf86f1e0c889664d7341e"
         }
       ],
       "disposition": "adapted",
       "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -3058,11 +3155,17 @@
         {
           "executable": false,
           "path": "skills/interrogate/references/interrogate-procedure.md",
-          "sha256": "946b754d9ee6b26b24939d866891216e065560d79c1d6f273d942342db77ec8e"
+          "sha256": "2559f0288f41239caecf2553df107e2306ba3d5e3b8b114197e9af0a1f6aa3d3"
+        },
+        {
+          "executable": false,
+          "path": "skills/interrogate/SKILL.md",
+          "sha256": "48d50f2002b2b71d061f59131161e4a28cd56e0d285a3341d90c990303ee1705"
         }
       ],
       "disposition": "adapted",
       "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -3128,11 +3231,17 @@
         {
           "executable": false,
           "path": "skills/maintain-verification-skill/references/maintain-verification-skill-procedure.md",
-          "sha256": "7c8d38dcb97696933dc6b41381b7447ad1e076bcd1fec3cc57d1af32ea4c629c"
+          "sha256": "da53c75a0df3368be1b13f9c2e4b067050e36e044e54076a181bb7010b9b3cb4"
+        },
+        {
+          "executable": false,
+          "path": "skills/maintain-verification-skill/SKILL.md",
+          "sha256": "f370a60b3ce50da5d36f70a84c5dd2ba077934812c356baa02225f0c0adbc0d4"
         }
       ],
       "disposition": "adapted",
       "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -3143,6 +3252,11 @@
           "executable": false,
           "path": "skills/github-pr-publish/references/make-pr-easy-to-review-procedure.md",
           "sha256": "448de2e017350bf12aef2ef896e98766247e6bd92ef459dcb3a7805573ee4b94"
+        },
+        {
+          "executable": false,
+          "path": "skills/github-pr-publish/SKILL.md",
+          "sha256": "56a3abef74e411afa3b28c39d29faa3a6ac47b9e03f5acc4cddabac524ffa6e8"
         }
       ],
       "disposition": "adapted",
@@ -3157,6 +3271,11 @@
           "executable": false,
           "path": "skills/no-comments/references/no-comments-procedure.md",
           "sha256": "a3e031d64c3dd025270b90ec158d539af2ad244b0b482ca4f55eca02bdc78428"
+        },
+        {
+          "executable": false,
+          "path": "skills/no-comments/SKILL.md",
+          "sha256": "e70a7da82334b5ead83fc614c88f9af22fa9cc77d16280e9a799b4056b6b5894"
         }
       ],
       "disposition": "adapted",
@@ -3170,11 +3289,17 @@
         {
           "executable": false,
           "path": "skills/pstack/references/poteto-mode-procedure.md",
-          "sha256": "fab7212c491869c7308c62c9655627143a4b86ccf625c9320373291edc31ab14"
+          "sha256": "cdfe57a2a485a00f1956d4c4dc9d9c3c2339eea7d9ba3c98288a9acbb93d693c"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
       "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -3325,11 +3450,12 @@
         {
           "executable": false,
           "path": "skills/pstack/playbooks/multi-phase-plan.md",
-          "sha256": "dec78c588d4bea2e952d849139eaab28860b55ac829df82d7cb1f7ec3bf60a0e"
+          "sha256": "ee4425b6742133c58000f0655727c8889b7ab348f650256f3c4afa174de58617"
         }
       ],
       "disposition": "adapted",
-      "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "reason": "Preserves executable plan shape and verification coverage while binding cadence and notification policy to authorized harness configuration instead of hardcoded30-minute/always-notify behavior.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -3339,11 +3465,12 @@
         {
           "executable": false,
           "path": "skills/pstack/playbooks/opening-a-pr.md",
-          "sha256": "2521408bc25f3b26373771efbbf5250f8c3d79069f8136a7ed3ab1873e738281"
+          "sha256": "cd6910f18c0092b39c7f81d400c4abd8a254b89a79c4f4930767801a8881825b"
         }
       ],
       "disposition": "adapted",
       "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -3495,12 +3622,12 @@
         {
           "executable": false,
           "path": "skills/pstack/playbooks/worktree-cleanup.md",
-          "sha256": "4a1331e6d2608249eb67952dab547f472ffd8bec45bc8809272ba67fb7a7acbc"
+          "sha256": "a7c21ff360c9fee490e1ddd03c9dee82eaf129b7c43fbcd29911c342fd5a991c"
         }
       ],
       "disposition": "adapted",
       "reason": "Deliberate safety divergence: routes through canonical evidence-based cleanup helper; preserves tracked/untracked/ignored/unpushed/in-use state and excludes cache/simulator deletion.",
-      "review_note": "Integrated reviewed portable paths, canonical cleanup preservation and complete source coverage.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -3524,12 +3651,12 @@
         {
           "executable": false,
           "path": "skills/pstack/references/codex-tools.md",
-          "sha256": "d9a2285b460e0cad82b599dbd5ecd58d0b62e5a5f51816bd21a5b94f35343a4d"
+          "sha256": "56b26c45d3c69e40d97d07c3b66e985d8b2732d997e8700659f634048f1b110b"
         }
       ],
       "disposition": "adapted",
-      "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
-      "review_note": "Integrated reviewed portable paths, canonical cleanup preservation and complete source coverage.",
+      "reason": "Behavior-to-capability mapping uses actual active tools; no assumed structured-question absence, forced frontier panel, model default, feature enablement or plugin installation.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -3539,12 +3666,12 @@
         {
           "executable": false,
           "path": "skills/pstack/references/provider-dispatch.md",
-          "sha256": "6ca2ca5bb07e29e7a165843b82d7cff7dedf7b701915438a4fe4c44fda9a5dc4"
+          "sha256": "ea718f9b6b50b54d3d259977eb8cf66c1c2e6c133286482368c637814e8437ec"
         }
       ],
       "disposition": "adapted",
       "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
-      "review_note": "Integrated reviewed portable paths, canonical cleanup preservation and complete source coverage.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -3596,11 +3723,12 @@
         {
           "executable": true,
           "path": "skills/pstack/scripts/check-plan.mjs",
-          "sha256": "6fdc5a73583d7ee1e68550e72ca985bb3fe8f493a3df5468ff1d924d79688a8e"
+          "sha256": "460515ec772985ee226f2fe36e0e23f6b2b7ff76316720c46128c93307c1fb6f"
         }
       ],
       "disposition": "adapted",
-      "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "reason": "Preserves executable plan shape and verification coverage while binding cadence and notification policy to authorized harness configuration instead of hardcoded30-minute/always-notify behavior.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -3610,11 +3738,12 @@
         {
           "executable": false,
           "path": "skills/pstack/scripts/check-plan.test.ts",
-          "sha256": "8d305042e837e7475a00a0abe85ccd91053f9848fa46a5f2cf335cd9654976c5"
+          "sha256": "13ae1cbff4fb23228842a39dfb8268532cede309ead6b8ecdacd991ee84a44bb"
         }
       ],
-      "disposition": "identical",
-      "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "disposition": "adapted",
+      "reason": "Preserves executable plan shape and verification coverage while binding cadence and notification policy to authorized harness configuration instead of hardcoded30-minute/always-notify behavior. Reviewed adaptation to canonical routing and harness policy.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -4048,7 +4177,7 @@
         }
       ],
       "disposition": "superseded",
-      "reason": "Canonical cleanup helper replaces the legacy audit that fetched a hardcoded trunk and inferred safety from incomplete PR/transcript evidence.",
+      "reason": "Superseded legacy audit by canonical immutable-evidence cleanup helper. Removes implicit fetch, global Claude transcript scan, incomplete PR buckets and second cleanup implementation; active harness session inventory supplies in-use evidence.",
       "review_note": "Integrated reviewed portable paths, canonical cleanup preservation and complete source coverage.",
       "verification": [
         "docs/pstack-import-verification.md",
@@ -4061,6 +4190,11 @@
           "executable": false,
           "path": "skills/pstack/references/principle-boundary-discipline.md",
           "sha256": "c680d9c536990785357d07ea57789f7a6df3b88457be9bdeaa4dd3775b65213a"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
@@ -4075,6 +4209,11 @@
           "executable": false,
           "path": "skills/pstack/references/principle-build-the-lever.md",
           "sha256": "0cc66e6a6785cc255ae915941c874581a6e4eab65f1eb32ac6fc93b4e1a83b31"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
@@ -4089,6 +4228,11 @@
           "executable": false,
           "path": "skills/pstack/references/principle-encode-lessons-in-structure.md",
           "sha256": "b22929f6461b70e293a63a0c94d84bc79242a94b340a07978dcc3dfd5b9e6236"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
@@ -4103,6 +4247,11 @@
           "executable": false,
           "path": "skills/pstack/references/principle-exhaust-the-design-space.md",
           "sha256": "f04cccb9636217c86ba1c638806ec937771a4947a9c83ea3019437f3c3da2522"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
@@ -4117,6 +4266,11 @@
           "executable": false,
           "path": "skills/pstack/references/principle-experience-first.md",
           "sha256": "5b52d4aae8a91a45b0c4d753ea9362e6543615975b77e569c896113bfb49f9a3"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
@@ -4131,6 +4285,11 @@
           "executable": false,
           "path": "skills/pstack/references/principle-fix-root-causes.md",
           "sha256": "4781fdbe7803cd2a8b0943cd1d9f616eea827e1c6187d5f7a928a5e2f90713ff"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
@@ -4145,6 +4304,11 @@
           "executable": false,
           "path": "skills/pstack/references/principle-foundational-thinking.md",
           "sha256": "5f0272c908c43ce01c71893f3731349088d1e4a44efb6b178f57f1211c7abe92"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
@@ -4159,6 +4323,11 @@
           "executable": false,
           "path": "skills/pstack/references/principle-guard-the-context-window.md",
           "sha256": "eb22ebaf65b71eaf38e6aba7082b2e147b5c66ffd77c07e84932f84e75429093"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
@@ -4173,6 +4342,11 @@
           "executable": false,
           "path": "skills/pstack/references/principle-laziness-protocol.md",
           "sha256": "522635113284ce187bd954e73be131db6e12335359df2520a9e7a89dfeff05d8"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
@@ -4187,6 +4361,11 @@
           "executable": false,
           "path": "skills/pstack/references/principle-make-operations-idempotent.md",
           "sha256": "0a879d342ec4a56721eef064bbfa6be73835d818bd7cf68089714c8282525222"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
@@ -4201,6 +4380,11 @@
           "executable": false,
           "path": "skills/pstack/references/principle-migrate-callers-then-delete-legacy-apis.md",
           "sha256": "84569466a198cbe648387367ae668bd190c41061c8a8df4a1146c14cdc325d8c"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
@@ -4215,6 +4399,11 @@
           "executable": false,
           "path": "skills/pstack/references/principle-minimize-reader-load.md",
           "sha256": "691c0d1fb49e5f47d592fc8f1bc597476747c0b0df6d9ebe60445a4d30a82e7d"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
@@ -4229,6 +4418,11 @@
           "executable": false,
           "path": "skills/pstack/references/principle-model-the-domain.md",
           "sha256": "bf95458d79c5b2d5224430581b7812e34e8a7ff0de95d274ec9a1e9eb50d45de"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
@@ -4243,6 +4437,11 @@
           "executable": false,
           "path": "skills/pstack/references/principle-never-block-on-the-human.md",
           "sha256": "def3485bfaf27ac290176ff6a3433c756d6ac4ef671be30648d7748db00723a6"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
@@ -4257,6 +4456,11 @@
           "executable": false,
           "path": "skills/pstack/references/principle-outcome-oriented-execution.md",
           "sha256": "82673c9ba328075cb61924d2de528f8fa200a6b0aa6a6bbd40842b001dee4c2c"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
@@ -4271,6 +4475,11 @@
           "executable": false,
           "path": "skills/pstack/references/principle-prove-it-works.md",
           "sha256": "cac8565f0e54b56eed8c99d9c40457385d3e182a2912770c7e242aa02d4680f2"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
@@ -4285,6 +4494,11 @@
           "executable": false,
           "path": "skills/pstack/references/principle-redesign-from-first-principles.md",
           "sha256": "b1490d467bae21a93982e4887a4cfa964e0a89fa313b424682b1544ed4630ef4"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
@@ -4299,6 +4513,11 @@
           "executable": false,
           "path": "skills/pstack/references/principle-separate-before-serializing-shared-state.md",
           "sha256": "e94ad13fab47c89cb826cbaa0950df195ecb98f1bdd11e7b44b3bd0a92580d8e"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
@@ -4313,6 +4532,11 @@
           "executable": false,
           "path": "skills/pstack/references/principle-sequence-verifiable-units.md",
           "sha256": "ece48dd89489bb49a4ba9b206d85976b7d2591b3f800b95691b9792e169eaf5c"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
@@ -4327,6 +4551,11 @@
           "executable": false,
           "path": "skills/pstack/references/principle-subtract-before-you-add.md",
           "sha256": "c806356c15f55e36d5f90538eaa04ed521f82e9e01fb0cb9ee0bcd07d7673e4e"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
@@ -4341,6 +4570,11 @@
           "executable": false,
           "path": "skills/pstack/references/principle-type-system-discipline.md",
           "sha256": "fdd3c02b8697b187e344ce4582145c2ab53e990af6120f5b7f7d65dcff637f40"
+        },
+        {
+          "executable": false,
+          "path": "skills/pstack/SKILL.md",
+          "sha256": "dc25778a58fb1a12eba87980fcd7f1ccefd6e300e7fb71b2895ecb3e21968d04"
         }
       ],
       "disposition": "adapted",
@@ -4354,12 +4588,17 @@
         {
           "executable": false,
           "path": "skills/recall/references/recall-procedure.md",
-          "sha256": "8dea9d2e29943c7c6249eb3a63cf3fb18988fe80cc61f38181d4cb47c90c130f"
+          "sha256": "122bde37a59992c5f014054de22a65b8867329cdaaffa79849e14645f20eb041"
+        },
+        {
+          "executable": false,
+          "path": "skills/recall/SKILL.md",
+          "sha256": "413c593f5786f8d67e972acbf928d4ee28a90c8d5af29dd0b8a9bd8acd15dceb"
         }
       ],
       "disposition": "adapted",
       "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
-      "review_note": "Integrated reviewed portable paths, canonical cleanup preservation and complete source coverage.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -4370,6 +4609,11 @@
           "executable": false,
           "path": "skills/skill-capture/references/reflect-procedure.md",
           "sha256": "ca0ce15deee352446b3049bbe9db592ab5d6968d503493ca97666c9b9f06bb51"
+        },
+        {
+          "executable": false,
+          "path": "skills/skill-capture/SKILL.md",
+          "sha256": "6fd2219253ad79f30987fe429a02e9341f3f6f6736ba7ce15eca293d8d1bb69c"
         }
       ],
       "disposition": "adapted",
@@ -4444,6 +4688,11 @@
           "executable": false,
           "path": "skills/setup-pstack/references/setup-pstack-procedure.md",
           "sha256": "995ea5ac21c75e51e5e39c0a621ed4e9573b82e38ea81d997a82f182cb5fb969"
+        },
+        {
+          "executable": false,
+          "path": "skills/setup-pstack/SKILL.md",
+          "sha256": "0c4565383c035fe18bb16c071dfee3035873c2aa59058f835888a6074d555160"
         }
       ],
       "disposition": "adapted",
@@ -4457,12 +4706,17 @@
         {
           "executable": false,
           "path": "skills/show-me-your-work/references/show-me-your-work-procedure.md",
-          "sha256": "e15ce9b9b6f0e7cc1cc4872b9816d246d0032919a47942c3729dd854c58e6d8e"
+          "sha256": "c7eee26048b525b288a96a03c4f2f8a339584005cea0e71481d55d8eb61e1a82"
+        },
+        {
+          "executable": false,
+          "path": "skills/show-me-your-work/SKILL.md",
+          "sha256": "53f2dc526038aa24030cce9f8009093ebccedf9c35482d5f8aceb2e9d6375200"
         }
       ],
       "disposition": "adapted",
       "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
-      "review_note": "Integrated reviewed portable paths, canonical cleanup preservation and complete source coverage.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -4500,11 +4754,17 @@
         {
           "executable": false,
           "path": "skills/swarm/references/swarm-procedure.md",
-          "sha256": "a8890f4c173ebdd079fbfade8ae871aaae9205b022e606b85265635a04e1f7fb"
+          "sha256": "5bc73543b2eabcdf7d60f625244f3406faa6a6d58d756dca9679d274e1f51fd4"
+        },
+        {
+          "executable": false,
+          "path": "skills/swarm/SKILL.md",
+          "sha256": "f96b32343b997d67880ce507067f43ddd3f6645e64f88b67a3bee5758b4dc4e1"
         }
       ],
       "disposition": "adapted",
       "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -4515,6 +4775,11 @@
           "executable": false,
           "path": "skills/tdd/references/tdd-procedure.md",
           "sha256": "c53525ea40abba565d24e1104a633c02fae73e101bfd604149da54339684bedf"
+        },
+        {
+          "executable": false,
+          "path": "skills/tdd/SKILL.md",
+          "sha256": "72d2a69acd139f281a0d3177dbb90fba0d473e9001defd57f985297aa06c57fa"
         }
       ],
       "disposition": "adapted",
@@ -4528,11 +4793,17 @@
         {
           "executable": false,
           "path": "skills/teach/references/teach-procedure.md",
-          "sha256": "da4ef31ce6466c9e55c0f706960e897e8c37e55d00d93f82a4dea9ea299ae107"
+          "sha256": "040e9778c6c5c2c466834e3978dcc21882c737e5f637a2bd2783947b43edcfcc"
+        },
+        {
+          "executable": false,
+          "path": "skills/teach/SKILL.md",
+          "sha256": "4f346423537c793f951d04e9004dfcc15202f929954f066f9f9399533bb4de0c"
         }
       ],
       "disposition": "adapted",
       "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -4542,11 +4813,17 @@
         {
           "executable": false,
           "path": "skills/technical-writing/references/technical-writing-procedure.md",
-          "sha256": "0daad427c5d607640adc66cc90c7f79550cbd0a39eea5e816ea208a7b928b89d"
+          "sha256": "230338a69eda4877ff1feb669fd2ac5a0ac1866b153bb489cf9dd0563c5fd273"
+        },
+        {
+          "executable": false,
+          "path": "skills/technical-writing/SKILL.md",
+          "sha256": "1011e7ecf876cd9f6a33414f279676dc32471429ae3723114516abd2ac1bbf53"
         }
       ],
       "disposition": "adapted",
       "reason": "Canonical name and harness-owned authorization; runtime preserved unless explicitly noted.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]
@@ -4557,6 +4834,11 @@
           "executable": false,
           "path": "skills/full-code-review/references/thermo-nuclear-code-quality-review-procedure.md",
           "sha256": "398363cf1fc379a728e29ae1724023bbe7d40437368e0ae4c9658992a12955fb"
+        },
+        {
+          "executable": false,
+          "path": "skills/full-code-review/SKILL.md",
+          "sha256": "f636ebfffa614727f7f61616018429919d0ebfa01634f4a92d315fce1eccd172"
         }
       ],
       "disposition": "adapted",
@@ -4571,6 +4853,11 @@
           "executable": false,
           "path": "skills/typescript-expert/references/typescript-best-practices-procedure.md",
           "sha256": "ee9f1ecc8fd1b19b35f10f4d60437dfce1ecf7277c807b6ba4557fe97328d168"
+        },
+        {
+          "executable": false,
+          "path": "skills/typescript-expert/SKILL.md",
+          "sha256": "3e975b254874115fd00c65f2fc5c633a6387a50937c4474b74ab4f52d7ebd1c4"
         }
       ],
       "disposition": "adapted",
@@ -4599,6 +4886,11 @@
           "executable": false,
           "path": "skills/deslop/references/unslop-procedure.md",
           "sha256": "cc35d8a73d63cf1f4be8924bc14099c0b814be13f62024b0b1c82a8a976c53bb"
+        },
+        {
+          "executable": false,
+          "path": "skills/deslop/SKILL.md",
+          "sha256": "36e4e1c19c9a3f14c70f6ba7a36d87067512ad8d39af00011af2c6da800ba9bb"
         }
       ],
       "disposition": "adapted",
@@ -4613,6 +4905,11 @@
           "executable": false,
           "path": "skills/commit-summary/references/what-did-i-get-done-procedure.md",
           "sha256": "726f0fe17c2a55e52ce354e5e878d936602730835993454203cfbf9ff3dba296"
+        },
+        {
+          "executable": false,
+          "path": "skills/commit-summary/SKILL.md",
+          "sha256": "d30c4195372a1d61f40c65ce28862bf060f63c24235437d861c3657a10c6b77b"
         }
       ],
       "disposition": "adapted",
@@ -4627,6 +4924,11 @@
           "executable": false,
           "path": "skills/why/references/why-procedure.md",
           "sha256": "7a3ae9c47343edd7cabe2ff14ff5b943b8c6cbf8df44f509f679770ce4a0d2e3"
+        },
+        {
+          "executable": false,
+          "path": "skills/why/SKILL.md",
+          "sha256": "352785b2c618bf7a9ed53e0abe0a9737701f0579f146d3717ea69b8169dba66e"
         }
       ],
       "disposition": "adapted",
@@ -4808,7 +5110,7 @@
         {
           "executable": false,
           "path": "scripts/tests/test_bundle_resources.py",
-          "sha256": "97a973abdd22fefa7893b21e4a7fbba040ee638be4a601234e8e26da05fcf5e7"
+          "sha256": "8a32ce9b4621b4b7a483e288ea6ec9857cd3ab47edf8be748017a9118dd14a27"
         },
         {
           "executable": false,
@@ -4818,6 +5120,7 @@
       ],
       "disposition": "superseded",
       "reason": "Canonical catalog and installed-artifact checks replace the duplicate-provider reproduction fixture; upstream fixture remains in the snapshot.",
+      "review_note": "Address independent review F1-F5 and semantic audit; include canonical entrypoints in source mappings.",
       "verification": [
         "docs/pstack-import-verification.md"
       ]

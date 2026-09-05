@@ -1,6 +1,7 @@
 ---
 name: setup-pstack
 description: "Configures canonical Shipshit Pstack adapters for selected harnesses while preserving existing role choices. Use when setting up Pstack, migrating duplicate installations, or enabling a supported optional adapter."
+disable-model-invocation: true
 license: MIT
 metadata:
   portable_source: "https://github.com/ericlitman/open-pstack"

@@ -50,7 +50,6 @@ user-selected lane within the task budget.
 
 ## Packaged tools
 
-- `scripts/bootstrap.ts` installs this runtime's locked dependencies.
 - `scripts/watch-pr/watch-pr` observes and drives a PR using its selected mode.
 - `scripts/orch/orch.ts` manages the local orchestration state store.
 - `scripts/check-plan.mjs` checks the multi-phase plan contract.
@@ -60,5 +59,7 @@ user-selected lane within the task budget.
 
 Read each tool’s CLI contract before use and preserve the caller’s mutation scope.
 The plan checker accepts `node scripts/check-plan.mjs <plan.md>`; it has no
-`--help` option. Other entrypoints expose `--help`.
+`--help` option. The three launchers above expose `--help`. Their imported
+`bootstrap.ts` library installs locked dependencies when needed; it is not a
+standalone command and has no CLI or help flag.
 Runtime installation and execution happen only on the harness-approved host.

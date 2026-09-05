@@ -10,9 +10,9 @@ covering that action. The procedure supplies no new permission.
 
 1. When the change is one or two files with an obvious approach, skip the plan. Say so and stop.
 2. Settle open questions by prototype before you write. For a question about layout, timing, behavior, or whether an API works, run `playbooks/prototype.md`. Keep the branch, the SHA, and the screenshots for Appendix A. Ask the operator only about a product or preference call that no run can settle. Give options (the corresponding **never-block-on-the-human** principle resource).
-3. Explore in subagents. Resolve the configured `judgment and prose` role through [`../references/provider-dispatch.md`](../references/provider-dispatch.md). Use `poteto-agent` only for an unqualified `inherit-parent` / `auto` native helper. Never use Claude Code's built-in `Plan` agent. It ignores this skill (the corresponding **guard-the-context-window** principle resource). Each explorer returns file pointers, conventions, test commands, and entry points. No inlined dumps. Children do not detect the parent harness or choose a route. Preserve the selected effort. A dropout stays a dropout. Do not add a fallback or an implicit timeout.
+3. Explore in subagents. Resolve the configured `judgment and prose` role through [`../references/provider-dispatch.md`](../references/provider-dispatch.md). Use the active harness's permitted native role for a parent-native helper. Pass the plan's scope and evidence requirements explicitly; do not assume a named upstream agent registration. Each explorer returns file pointers, conventions, test commands, and entry points. No inlined dumps. Children do not detect the parent harness or choose a route. Preserve the selected effort. A dropout stays a dropout. Do not add a fallback or an implicit timeout.
 4. Copy the skeleton below into the plan file and fill every placeholder. Unless the operator names a path, write the file under the working repository's `docs/`. Keep every heading and every sub-block in the order shown. One section per PR. One PR is one change with its own evidence (the corresponding **sequence-verifiable-units** principle resource). Name the execution playbook in **How to read this**. Pick between `playbooks/autopilot-full.md` and `playbooks/autopilot-stack.md` per the rule at the end of `playbooks/autopilot-stack.md`. A standing program takes `playbooks/orchestrate.md`.
-5. Write under `/technical-writing` in full, then `/unslop`. The body is one Diátaxis mode, how-to. Appendices hold explanation and reference. Two rules apply verbatim. "i dont want any abstract metaphors" and "write like hemingway". Each heading states the task or the finding. No long dashes. No mid-sentence colons.
+5. Write under `/technical-writing` in full, then `/deslop prose`. The body is one Diátaxis mode, how-to. Appendices hold explanation and reference. Use concrete, plain prose and preserve the operator’s stated writing preferences. Each heading states the task or the finding. No long dashes. No mid-sentence colons.
 6. Run `node <installed-pstack>/scripts/check-plan.mjs <plan.md>` relative to the installed canonical pstack skill and fix every line it prints (the corresponding **encode-lessons-in-structure** principle resource). It enforces the skeleton's shape, the verification rule in every verification block, and the punctuation rules. The playbook file is not checker input. Check the plan file created in step 4.
 7. Hand back. Post the plan path and the script's output, then stop. Execution starts on the operator's explicit go, under the execution playbook the plan names.
 
@@ -20,7 +20,7 @@ covering that action. The procedure supplies no new permission.
 
 **Driver skill.** Pick it by surface. Browser, Electron, and web UIs use Claude Code's **verify** skill. CLIs and TUIs use Claude Code's **run** skill. Native mobile uses whatever simulator-driving skill the repo has. On Codex, substitute per [`../references/codex-tools.md`](../references/codex-tools.md). A PR that touches two surfaces gets lanes on both. A surface with no driver skill is a risk in Appendix C, and its live block still names how each lane drives it.
 
-On Claude Code, arm the 30-minute audit tick as a real `/loop` in dynamic mode. On Codex, arm the cadence per [`../references/codex-tools.md`](../references/codex-tools.md). Never leave the cadence to memory. Keep skill-relative links in this playbook body. Do not copy them into the plan file.
+When recurring execution is explicitly authorized, resolve the configured harness cadence and notification policy through [`../references/codex-tools.md`](../references/codex-tools.md). Record the authorized scheduling mechanism; do not invent an interval. Keep skill-relative links in this playbook body. Do not copy them into the plan file.
 
 ````markdown
 # <Program> plan
@@ -41,14 +41,14 @@ Tests alone are not sufficient verification. A PR is verified only when its unit
 
 - [ ] State the protocol and this plan to the operator, then stop. Start execution only on the operator's explicit go.
 - [ ] On the operator's go, write the program objective into the standing orders and your todolist with this exact text. "<The plan path, the PR ids in order, the verification rule, who merges, and the done condition.>"
-- [ ] Read these from the installed plugin at program start. Re-read them at every tick.
+- [ ] Resolve these from the installed canonical skills at program start. Re-read them at every tick.
   - [ ] `skills/pstack/playbooks/<execution playbook>.md`
   - [ ] `skills/swarm/SKILL.md`
   - [ ] `<driver skill path>`
   - [ ] `skills/pstack/playbooks/opening-a-pr.md`
   - [ ] `skills/<each other leaf skill the program uses>/SKILL.md`
-- [ ] Arm the 30-minute audit tick as a real cadence. Never leave the cadence to memory.
-- [ ] Use this tick prompt, verbatim. "Re-read the execution playbook from the installed plugin and the standing orders. Audit the operation against both and fix drift in this tick. Probe every active lane and judge progress by side effects only. Stand down a lane only on affirmative failure evidence, and dispatch its replacement in the same tick. Then send the operator a status message, whether or not anything changed, with the queue table of PR, owner, state, and head SHA, the verdicts since the last tick, what merged, open operator gates, and blockers."
+- [ ] Bind the harness cadence and notification policy from the authorized automation configuration. If recurring execution is not authorized, keep scheduling disabled.
+- [ ] Use this tick prompt, verbatim. "Re-read the execution playbook from the installed canonical skills and the standing orders. Audit the operation against both and fix drift in this tick. Probe every active lane and judge progress by side effects only. Stand down a lane only on affirmative failure evidence, and dispatch its replacement in the same tick. Apply the notification policy. When it calls for a status message, include PR, owner, state, head SHA, new verdicts, merges, operator gates and blockers. Stay quiet on unchanged state unless periodic updates were requested."
 - [ ] On the operator's hold or stand-down, send every owner a zero-writes order at once.
 
 ### Spawn owners

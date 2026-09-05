@@ -133,8 +133,9 @@ export const CONTRACT = Object.freeze({
   ]),
   programMarkers: Object.freeze([
     "standing orders",
-    "the installed plugin",
-    "30-minute",
+    "the installed canonical skills",
+    "harness cadence",
+    "notification policy",
     "status message",
   ]),
   howToReadMarkers: Object.freeze([

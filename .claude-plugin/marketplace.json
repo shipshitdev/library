@@ -1107,7 +1107,7 @@
       "name": "test-runner",
       "source": "./skills/test-runner",
       "version": "2.0.0",
-      "description": "Run a project's tests at the right scope — changed-only, focused, full, type-check, or e2e — then report failures with evidence. Repair and rerun only when fixing failures is explicitly authorized. Detects the test runner and package manager from the repo. Use when the user asks to run tests, run the suite, run smoke/e2e tests, type-check, check the build compiles, fix failing tests, or runs /test run."
+      "description": "Run a project's tests at the right scope — changed-only, focused, full, type-check, or e2e — then report failures with evidence. Repair and rerun only when fixing failures is explicitly authorized. Detects the test runner in a Bun-managed repo. Use when the user asks to run tests, run the suite, run smoke/e2e tests, type-check, check the build compiles, fix failing tests, or runs /test run."
     },
     {
       "name": "testing-cicd-init",

@@ -23,7 +23,7 @@ type errors in a loop" workflows behind one scoped entry point.
 
 Inputs:
 
-- A repository with a detectable test runner and package manager
+- A Bun-managed repository with a detectable test runner
 - A scope: `changed` (default), `full`, a focused path/pattern, `--since <ref>`,
   or a type: `unit` / `integration` / `e2e` / `coverage` / `types`
 - Optional `--no-fix` to report failures without editing anything

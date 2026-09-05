@@ -1,7 +1,8 @@
 # Test - One Front Door for Running, Authoring, and Setting Up Tests
 
-Drive the whole testing lifecycle from one command — run tests and repair authorized failures, author
-tests with TDD, scaffold E2E or CI infrastructure, enforce coverage, or design
+Drive the whole testing lifecycle from one command — run tests and repair
+authorized failures, author tests with TDD, scaffold E2E or CI infrastructure,
+enforce coverage, or design
 AI-targeted regression suites.
 
 ## Usage

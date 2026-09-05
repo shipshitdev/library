@@ -7,10 +7,12 @@ description: >-
   configuring strict tsconfig, debugging module resolution, or choosing between
   Biome/ESLint/Turborepo/Nx.
 metadata:
+  portable_source: "https://github.com/ericlitman/open-pstack"
+  portable_commit: "56bfd14418fa733e34d98f714f357d28788470e3"
   category: framework
   risk: critical
   date_added: '2026-02-27'
-  version: "1.0.1"
+  version: "1.1.0"
   tags: "typescript, javascript, tooling"
 ---
 
@@ -256,3 +258,10 @@ Slow language server? → Exclude node_modules, limit files in tsconfig
 - Testing: [Vitest Type Testing](https://vitest.dev/guide/testing-types), [tsd](https://github.com/tsdjs/tsd) (standalone type testing)
 
 Always validate changes don't break existing functionality before considering the issue resolved.
+
+## Typescript Best Practices procedure
+
+Read [typescript-best-practices procedure](references/typescript-best-practices-procedure.md) when running this workflow.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.

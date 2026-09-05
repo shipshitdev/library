@@ -3,14 +3,16 @@ name: swarm
 description: Fan out N parallel workers, drain them, and return one report. Use for swarm this, or parallel coverage, races, gauntlets, and exploration partitions.
 license: MIT
 metadata:
-  version: "1.1.0"
+  portable_source: "https://github.com/ericlitman/open-pstack"
+  portable_commit: "56bfd14418fa733e34d98f714f357d28788470e3"
+  version: "1.2.0"
   tags: "fan-out, coverage, race, report"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/swarm/SKILL.md
   upstream_repo: cursor/plugins
   upstream_ref: main
   upstream_commit: bdf7aa355337
-  last_synced: "2026-08-26"
+  last_synced: "2026-09-05"
   license: MIT
 when_to_use: "swarm this, parallel coverage, race N workers, gauntlet"
 ---
@@ -90,3 +92,10 @@ paste raw worker dumps.
 
 Return one in-chat report: table, issue one-liners, gaps or dropouts,
 and the race rule when used.
+
+## Swarm procedure
+
+Read [swarm procedure](references/swarm-procedure.md) when running this workflow.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.

@@ -3,7 +3,9 @@ name: fix-merge-conflicts
 description: "Resolve git merge conflicts correctness-first, then prove the tree still builds. Use when a merge, rebase, cherry-pick, or stash pop leaves conflict markers, when git status shows unmerged paths, or when the user asks to fix conflicts, resolve a merge, or rebase onto the trunk and clear the conflicts."
 compatibility: Requires git; uses the repo's package manager and test runner to verify after resolving.
 metadata:
-  version: "1.0.0"
+  portable_source: "https://github.com/ericlitman/open-pstack"
+  portable_commit: "56bfd14418fa733e34d98f714f357d28788470e3"
+  version: "1.1.0"
   tags: "git, merge, rebase, conflicts, resolution, lockfiles"
 allowed-tools: Bash(git *) Bash(bun *) Bash(bunx *)
 ---
@@ -163,3 +165,10 @@ flagged for a human.
 Report each file's resolution and the reasoning, the regenerated artifacts, the
 build/test result, anything left for a human to decide, and whether the
 merge/rebase was continued or is paused awaiting confirmation.
+
+## Fix Merge Conflicts procedure
+
+Read [fix-merge-conflicts procedure](references/fix-merge-conflicts-procedure.md) when running this workflow.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.

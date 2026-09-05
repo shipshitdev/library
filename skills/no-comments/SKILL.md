@@ -3,14 +3,16 @@ name: no-comments
 description: Review comments on a diff, delete narration and workaround sermons, fix accepted findings, and offer encodings for claimed constraints. Use before review or when asked to strip comments.
 license: MIT
 metadata:
-  version: "1.1.0"
+  portable_source: "https://github.com/ericlitman/open-pstack"
+  portable_commit: "56bfd14418fa733e34d98f714f357d28788470e3"
+  version: "1.2.0"
   tags: "comments, review, cleanup"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/no-comments/SKILL.md
   upstream_repo: cursor/plugins
   upstream_ref: main
   upstream_commit: bdf7aa355337
-  last_synced: "2026-08-26"
+  last_synced: "2026-09-05"
   license: MIT
 when_to_use: "no comments, strip comments, comment review before PR"
 ---
@@ -90,3 +92,10 @@ Delegates To:
    constraint open, and sketch out-of-scope work.
 6. Report the deletion count, restored comments, reruns, architect
    sketch, fixes, encoding offers, encodings, and open work.
+
+## No Comments procedure
+
+Read [no-comments procedure](references/no-comments-procedure.md) when running this workflow.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.

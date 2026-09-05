@@ -3,14 +3,16 @@ name: create-verification-skill
 description: Generate a project-local verification skill that drives the app the way a user does. Use for create-verification-skill, make a verify skill for this repo, or when a project has no scripted way to prove UI, CLI, or service behavior.
 license: MIT
 metadata:
-  version: "1.1.0"
+  portable_source: "https://github.com/ericlitman/open-pstack"
+  portable_commit: "56bfd14418fa733e34d98f714f357d28788470e3"
+  version: "1.2.0"
   tags: "verification, harness, feature-map, project-local"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/create-verification-skill/SKILL.md
   upstream_repo: cursor/plugins
   upstream_ref: main
   upstream_commit: bdf7aa355337
-  last_synced: "2026-08-26"
+  last_synced: "2026-09-05"
   license: MIT
 when_to_use: "create verification skill, make a verify skill, scripted app proof"
 ---
@@ -78,3 +80,10 @@ Delegates To:
    exists. A skill that was never executed is a draft.
 5. **Offer the maintenance loop.** Point at
    `maintain-verification-skill`.
+
+## Create Verification Skill procedure
+
+Read [create-verification-skill procedure](references/create-verification-skill-procedure.md) when running this workflow.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.

@@ -11,7 +11,9 @@ description: >-
   prioritized backlog instead of a merge verdict.
 compatibility: Requires gh CLI and git for PR diff fetching.
 metadata:
-  version: "1.0.4"
+  portable_source: "https://github.com/ericlitman/open-pstack"
+  portable_commit: "56bfd14418fa733e34d98f714f357d28788470e3"
+  version: "1.1.0"
   tags: "code-review, security, structural, devex, orchestration, pr-gate"
   author: Ship Shit Dev
 allowed-tools: Bash(git *) Bash(gh *)
@@ -195,3 +197,10 @@ Adversarial pass: <N raw> → <M surviving>
 - **Treating the verdict as a merge gate bypass** — the correctness review harness must also pass for correctness and repo rule compliance.
 - **Reporting findings without evidence lines** — every finding must provide concrete evidence; redact tokens, keys, passwords, cookies, and other secret-like values.
 - **Calling low-confidence speculation a BLOCKER** — the adversarial pass exists to eliminate these; do not re-introduce them in synthesis.
+
+## Thermo Nuclear Code Quality Review procedure
+
+Read [thermo-nuclear-code-quality-review procedure](references/thermo-nuclear-code-quality-review-procedure.md) when the request calls for the exhaustive review workflow.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.

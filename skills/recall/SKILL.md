@@ -3,14 +3,16 @@ name: recall
 description: Rebuild recent working context from chat history, live state, and the shared record, then hand back a tight current-state brief. Use for recall my work on X, catch me up, what have I been working on, or where did I leave off.
 license: MIT
 metadata:
-  version: "1.1.1"
+  portable_source: "https://github.com/ericlitman/open-pstack"
+  portable_commit: "56bfd14418fa733e34d98f714f357d28788470e3"
+  version: "1.2.0"
   tags: "context, resume, briefing"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/recall/SKILL.md
   upstream_repo: cursor/plugins
   upstream_ref: main
   upstream_commit: bdf7aa355337
-  last_synced: "2026-08-26"
+  last_synced: "2026-09-05"
   license: MIT
 when_to_use: "recall my work, catch me up, where did I leave off, what have I been working on"
 ---
@@ -89,3 +91,10 @@ Delegates To:
 
 Apply `references/prose-slop.md` from the selected `deslop` skill directory. Sanitize private
 context before any public output.
+
+## Recall procedure
+
+Read [recall procedure](references/recall-procedure.md) when running this workflow.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.

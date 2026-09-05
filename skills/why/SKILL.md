@@ -3,14 +3,16 @@ name: why
 description: Investigate why code is shaped the way it is. Use for design rationale, regressions, postmortems, or data-backed thresholds. Queries available evidence categories in parallel, then returns a cited read on decisions and tradeoffs. Use how for runtime behavior.
 license: MIT
 metadata:
-  version: "1.0.0"
+  portable_source: "https://github.com/ericlitman/open-pstack"
+  portable_commit: "56bfd14418fa733e34d98f714f357d28788470e3"
+  version: "1.1.0"
   tags: "investigation, rationale, history, evidence"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/why/SKILL.md
   upstream_repo: cursor/plugins
   upstream_ref: main
   upstream_commit: bdf7aa355337
-  last_synced: "2026-08-26"
+  last_synced: "2026-09-05"
   license: MIT
 ---
 
@@ -125,3 +127,10 @@ skips.
 
 If the why is a precursor to a change, convert findings into Preserve /
 Change / Avoid / Risk constraints.
+
+## Why procedure
+
+Read [why procedure](references/why-procedure.md) when running this workflow.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.

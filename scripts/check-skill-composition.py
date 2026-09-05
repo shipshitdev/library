@@ -95,6 +95,8 @@ def findings(skill_dir: Path, skills_root: Path) -> list[str]:
     if skill_dir.name.startswith("gh-"):
         result.append(f"{skill_dir.name}: Retired gh-* skill family; use the canonical workflow/provider name")
     for path in sorted(skill_dir.rglob("*.md")):
+        if "node_modules" in path.relative_to(skill_dir).parts:
+            continue
         lines = list(instruction_lines(path.read_text()))
         for number, name in declared_delegates(lines):
             check_target(name, f"{path.relative_to(skills_root)}:{number}", True)

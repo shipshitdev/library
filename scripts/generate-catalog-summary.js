@@ -25,6 +25,7 @@ const ROLE_BY_DIRECTORY = {
   resources: 'Authoring references and supporting documentation',
   scripts: 'Validation, generation, migration, and audit tooling',
   skills: 'Canonical public Agent Skills sources',
+  upstream: 'Pinned upstream snapshots and reviewed adaptation ledgers',
 };
 
 const BLOCKS = {

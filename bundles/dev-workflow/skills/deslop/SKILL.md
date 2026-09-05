@@ -13,13 +13,15 @@ description: >-
   shipping to customers.
 argument-hint: "[ui | prose | --changed | all | dry-run | --product]"
 metadata:
-  version: "2.1.0"
+  portable_source: "https://github.com/ericlitman/open-pstack"
+  portable_commit: "56bfd14418fa733e34d98f714f357d28788470e3"
+  version: "2.2.0"
   tags: "code-quality, cleanup, ai-artifacts, product-polish, prose, maintenance"
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/unslop/SKILL.md
   upstream_repo: cursor/plugins
   upstream_ref: main
   upstream_commit: bdf7aa355337
-  last_synced: "2026-08-26"
+  last_synced: "2026-09-05"
   license: MIT
 ---
 
@@ -242,3 +244,17 @@ instead of inventing intent.
 - **Rewriting logic under the banner of cleanup** — a behavior change is a
   refactor (`refactor-code`), not deslop.
 - **Leaving voiceless prose after the strip** — sterile writing is still slop.
+
+## Deslop procedure
+
+Read [deslop procedure](references/deslop-procedure.md) for the code mode only.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.
+
+## Unslop procedure
+
+Read [unslop procedure](references/unslop-procedure.md) for prose mode or the prose portion of product cleanup only.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.

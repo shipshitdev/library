@@ -7,7 +7,9 @@ description: >-
   "this workflow should be reusable", "this was tricky to figure out", "I wish
   I knew this earlier", or on completion of complex multi-step procedures.
 metadata:
-  version: "1.0.0"
+  portable_source: "https://github.com/ericlitman/open-pstack"
+  portable_commit: "56bfd14418fa733e34d98f714f357d28788470e3"
+  version: "1.1.0"
   tags: "skills, capture, automation, knowledge-management"
 ---
 
@@ -43,6 +45,8 @@ Activate when the user mentions ANY of these:
 ---
 
 ## Capture Process
+
+A capture request authorizes the matching skill edits. A completion signal alone authorizes a proposal, not persistence or tracker submissions. Preserve the user's scope and ask before consequential changes outside it.
 
 Follow these 5 phases in order:
 
@@ -292,3 +296,10 @@ The skill activates on these patterns:
 # Learning signals
 (wish I knew|should have known|next time|for future)
 ```
+
+## Reflect procedure
+
+Read [reflect procedure](references/reflect-procedure.md) when reviewing a completed session for reusable lessons.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.

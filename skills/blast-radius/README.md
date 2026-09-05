@@ -10,10 +10,22 @@ Derived from **[Lauren Tan's pstack](https://github.com/cursor/plugins/tree/main
 |-------|-------|
 | Source | [`pstack/skills/blast-radius/SKILL.md`](https://github.com/cursor/plugins/blob/main/pstack/skills/blast-radius/SKILL.md) |
 | Upstream ref | `main` |
-| Synced at commit | `bdf7aa355337` |
-| Last synced | 2026-08-26 |
+| Original adaptation commit | `bdf7aa355337` |
+| Original adaptation date | 2026-08-26 |
 | License | MIT |
 
-**Local modifications:** Recut for this catalog: model-agnostic capability tiers, no Cursor-only APIs, Graphite land paths, or named models, house-style Contract blocks, and routing to existing shipshitdev skills. Attribution only — not a sync target.
+**Local modifications:** Recut for this catalog: model-agnostic capability tiers, no Cursor-only APIs, Graphite land paths, or named models, house-style Contract blocks, and routing to existing shipshitdev skills. The original adaptation remains part of this skill; the current integration is tracked below.
 
-**Checking for upstream changes:** when upstream has moved ahead of the synced marker above, diff [`pstack/skills/blast-radius/SKILL.md`](https://github.com/cursor/plugins/blob/main/pstack/skills/blast-radius/SKILL.md) on `main` since commit `bdf7aa355337`, port anything worth bringing home, then bump `metadata.upstream_commit` (or `metadata.upstream_version`) and `metadata.last_synced` in `SKILL.md` and this table.
+Use the repository’s pinned Pstack sync workflow to review upstream changes and
+verify local adaptations before updating this distribution.
+
+### Current Pstack integration
+
+| Source | Pinned commit | Reviewed |
+|---|---|---|
+| [Open Pstack](https://github.com/ericlitman/open-pstack) | `56bfd14418fa733e34d98f714f357d28788470e3` | 2026-09-05 |
+
+Detailed procedures and resources are adapted to canonical skill names and the
+harness-owned execution boundary. Existing Shipshit mode and authorization
+contracts remain authoritative. Applicable upstream licenses and notices ship
+in `licenses/`. Platform-specific adapters are dormant until explicitly set up.

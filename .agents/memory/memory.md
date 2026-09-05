@@ -7,7 +7,7 @@ last_verified: 2026-08-14
 <!-- catalog-summary:start -->
 Public skills library at `shipshitdev/skills`. Installable via `npx skills add shipshitdev/skills --skill <name>`. Works with Claude Code, Codex, Cursor, OpenClaw, and Gemini.
 
-Generated catalog: **187 skills · 30 commands · 13 bundles · 200 plugins**.
+Generated catalog: **188 skills · 30 commands · 13 bundles · 201 plugins**.
 <!-- catalog-summary:end -->
 
 Published through committed marketplace bundles in `bundles/` and the generated `.claude-plugin/marketplace.json` catalog. The old generated `plugins/` package tree is retired.
@@ -26,10 +26,10 @@ Published through committed marketplace bundles in `bundles/` and the generated 
 <!-- catalog-counts:start -->
 | Asset | Count | Canonical source |
 |---|---:|---|
-| Skills | 187 | `skills/*/SKILL.md` |
+| Skills | 188 | `skills/*/SKILL.md` |
 | Commands | 30 | `commands/*.md` |
 | Bundles | 13 | `scripts/plugin-categories.json` |
-| Plugins | 200 | skills + bundles |
+| Plugins | 201 | skills + bundles |
 <!-- catalog-counts:end -->
 
 ## Architecture Decisions
@@ -90,15 +90,24 @@ not a ratified standard — the gate regex is the single point to adjust if it s
 | Keep react-patterns + react-refactor + react-component-performance | Cleanly separated by concern |
 | Keep all expo-*/resend-*/static-analysis-* families | Non-overlapping topics |
 
-### pstack port (2026-08-26)
+### Pstack consolidation (2026-09-05)
 
-Adapted Lauren Tan's pstack (MIT, cursor/plugins) as first-class skills.
-Orchestrator is `pstack` (not a Cursor sticky mode). Principles live as
-`pstack/references/principles.md`, not 21 catalog skills. `tdd` and
-`deslop` were rewritten in place with pstack rigor. Overlaps skipped:
-wait-what, skill-creator / skill-capture, verification-before-completion,
-typescript-expert, review-dispatch / code-review / grok-review. Benny and
-setup-pstack stay out.
+Maintain one canonical Shipshit implementation. Open Pstack supplies the portable
+base; Cursor Pstack is independently tracked for original-only capabilities.
+Pinned archives and exhaustive source mappings live in upstream/pstack/. Runtime
+scripts ship in skills/pstack/scripts/; principles and platform adapters are
+installed resources, not duplicate skill catalogs. Existing deslop modes and tdd
+contributions stay canonical. Benny and Bot UI are dormant, explicit setup
+capabilities. Installing a skill does not activate their routines or services.
+
+Use scripts/pstack-sync.py to verify accepted snapshots and stage reviewed
+upstream candidates. Never advance accepted source commits or overwrite local
+adaptations automatically. Review after major model/harness releases while
+preserving user-owned provider routing. See upstream/pstack/README.md.
+
+Duplicate installed providers may be disabled only after replacement verification.
+Preserve generated user role sheets and their actual source of truth. Source
+coverage and runtime unit tests do not prove a live harness cutover.
 
 ### Pocock craft and primitives (2026-08-14)
 

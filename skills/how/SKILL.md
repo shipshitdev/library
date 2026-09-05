@@ -3,14 +3,16 @@ name: how
 description: Walk through how a subsystem works. Use for "how does X work", code walkthroughs before changing something, and placement or ownership questions. Explains architecture, runtime flow, and onboarding mental models. Can critique architecture. Use why for motivation.
 license: MIT
 metadata:
-  version: "1.0.0"
+  portable_source: "https://github.com/ericlitman/open-pstack"
+  portable_commit: "56bfd14418fa733e34d98f714f357d28788470e3"
+  version: "1.1.0"
   tags: "architecture, walkthrough, onboarding, critique"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/how/SKILL.md
   upstream_repo: cursor/plugins
   upstream_ref: main
   upstream_commit: bdf7aa355337
-  last_synced: "2026-08-26"
+  last_synced: "2026-09-05"
   license: MIT
 ---
 
@@ -117,3 +119,10 @@ understanding.
    and [references/critique-rubric.md](references/critique-rubric.md).
 3. Lead judgment. Categorize findings: Act on, Consider, Noted, Dismissed.
    Present the explanation first, then the critique.
+
+## How procedure
+
+Read [how procedure](references/how-procedure.md) when running this workflow.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.

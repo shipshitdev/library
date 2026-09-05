@@ -3,14 +3,16 @@ name: technical-writing
 description: Layered technical-writing standard for docs, RFCs, READMEs, PR descriptions, and commit messages. Diátaxis structure, Google developer style sentences, STE instruction rules, Global English syntax. Use for technical-writing or when writing or reviewing those surfaces.
 license: MIT
 metadata:
-  version: "1.1.0"
+  portable_source: "https://github.com/ericlitman/open-pstack"
+  portable_commit: "56bfd14418fa733e34d98f714f357d28788470e3"
+  version: "1.2.0"
   tags: "docs, writing, diataxis, style"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/technical-writing/SKILL.md
   upstream_repo: cursor/plugins
   upstream_ref: main
   upstream_commit: bdf7aa355337
-  last_synced: "2026-08-26"
+  last_synced: "2026-09-05"
   license: MIT
 when_to_use: "technical writing, write the README, RFC style, PR description standard"
 ---
@@ -130,3 +132,10 @@ Global English Style Guide.
 6. Does each thing have exactly one name?
 7. Would a developer say these words out loud?
 8. Are symbols, paths, and counts real at this commit?
+
+## Technical Writing procedure
+
+Read [technical-writing procedure](references/technical-writing-procedure.md) when running this workflow.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.

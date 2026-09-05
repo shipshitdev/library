@@ -3,14 +3,16 @@ name: maintain-verification-skill
 description: Keep a project's verification skill and feature map honest. Parallel source readers per feature, one live session driving every feature, at most one PR of proven corrections. Use for maintain-verification-skill or audit the verify skill.
 license: MIT
 metadata:
-  version: "1.1.0"
+  portable_source: "https://github.com/ericlitman/open-pstack"
+  portable_commit: "56bfd14418fa733e34d98f714f357d28788470e3"
+  version: "1.2.0"
   tags: "verification, maintenance, feature-map"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/maintain-verification-skill/SKILL.md
   upstream_repo: cursor/plugins
   upstream_ref: main
   upstream_commit: bdf7aa355337
-  last_synced: "2026-08-26"
+  last_synced: "2026-09-05"
   license: MIT
 when_to_use: "maintain verification skill, audit the verify skill, feature map drift"
 ---
@@ -80,3 +82,10 @@ regression (report it).
    Broken app behavior → report it, keep it out of this PR.
 6. Ship or stop. `changed` gets one PR of proven corrections.
    `clean` or `blocked` gets a report only.
+
+## Maintain Verification Skill procedure
+
+Read [maintain-verification-skill procedure](references/maintain-verification-skill-procedure.md) when running this workflow.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.

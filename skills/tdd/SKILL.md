@@ -3,14 +3,16 @@ name: tdd
 description: Test-driven development workflow for feature work and bug fixes. Use when the user asks for TDD, red-green-refactor, test-first implementation, regression-first bug fixes, or vertical-slice delivery. For bugs, require a cheap local test path; skip a new test when the path is unclear, expensive, or integration-heavy.
 license: MIT
 metadata:
-  version: "1.1.0"
+  portable_source: "https://github.com/ericlitman/open-pstack"
+  portable_commit: "56bfd14418fa733e34d98f714f357d28788470e3"
+  version: "1.2.0"
   tags: "testing, tdd, red-green-refactor, quality, verification"
   author: Ship Shit Dev
   source: https://github.com/mattpocock/skills/blob/main/skills/engineering/tdd/SKILL.md
   upstream_repo: mattpocock/skills
   upstream_ref: main
   upstream_commit: 8b78b531ab96
-  last_synced: "2026-08-26"
+  last_synced: "2026-09-05"
   license: MIT
 ---
 
@@ -194,3 +196,10 @@ Report the evidence, not just the outcome:
 - Name the failing-before test or executable check and the failure it produced.
 - Name the passing-after run and any nearby validation performed.
 - If failing-before evidence could not be demonstrated, state why and describe the closest regression check used instead.
+
+## Tdd procedure
+
+Read [tdd procedure](references/tdd-procedure.md) when applying the cheap-path gate and vertical-slice contract above.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.

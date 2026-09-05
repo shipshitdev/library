@@ -46,8 +46,13 @@ jobs:
         env:
           BASE_REF: origin/${{ github.base_ref || 'master' }}
 
-      - name: Check agent-folder-init safety fixtures
-        run: python3 -m unittest discover -s skills/agent-folder-init/tests -p 'test_*.py'
+      - name: Check packaged skill helper fixtures
+        run: |
+          for test_dir in skills/*/tests; do
+            [ -d "$test_dir" ] || continue
+            python3 -m unittest discover -s "$test_dir" -p 'test_*.py'
+          done
+          find skills -type f -name '*.test.mjs' -exec node --test {} +
 
       - name: Check validator regression fixtures
         run: python3 -m unittest discover -s scripts/tests -p 'test_*.py'

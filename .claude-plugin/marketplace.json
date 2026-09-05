@@ -518,8 +518,8 @@
     {
       "name": "git-cleanup",
       "source": "./skills/git-cleanup",
-      "version": "3.1.0",
-      "description": "Clean up the git working state — verify branches are provably merged into the trunk (default branch) via the squash-aware GitHub PR merge oracle, then prune merged local and remote feature branches and stale git worktrees. Squash-merge aware — uses GitHub PR merge state as the merge oracle, not commit ancestry. Use when the user asks to clean up branches or worktrees, prune what is already merged, run /cleanup, or confirm nothing stale was left behind before pruning."
+      "version": "4.0.0",
+      "description": "Verifies immutable branch history against trunk before planning or removing merged branches and worktrees. Defaults to a read-only cleanup plan."
     },
     {
       "name": "git-safety",

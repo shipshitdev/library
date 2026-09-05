@@ -138,6 +138,29 @@ class GitFixtureTests(unittest.TestCase):
         self.git("push", "origin", "main")
         self.assertEqual(self.repo.plan("local-branches")["actions"], [])
 
+    def test_terminal_added_line_whitespace_is_not_stripped_from_proof(self):
+        self.git("switch", "-c", "feature")
+        feature = self.commit("trailing whitespace", "x \n")
+        self.git("switch", "main")
+        trunk = self.commit("no trailing whitespace", "x\n")
+        base = self.git("merge-base", feature, trunk)
+        self.assertNotEqual(self.repo.patch(base, feature), self.repo.patch(base, trunk))
+        self.git("push", "origin", "main")
+        self.assertEqual(self.repo.plan("local-branches")["actions"], [])
+
+    def test_historical_patch_membership_does_not_prove_combined_final_state(self):
+        self.git("switch", "-c", "feature")
+        first = self.commit("first feature", "first\n", "first.txt")
+        second = self.commit("second feature", "second\n", "second.txt")
+        self.git("switch", "main")
+        self.commit("diverge", "other\n", "other.txt")
+        self.git("cherry-pick", first)
+        self.git("revert", "--no-edit", "HEAD")
+        self.git("cherry-pick", second)
+        self.git("revert", "--no-edit", "HEAD")
+        self.git("push", "origin", "main")
+        self.assertEqual(self.repo.plan("local-branches")["actions"], [])
+
     def test_empty_commit_and_merge_commit_are_not_silently_ignored(self):
         self.git("switch", "-c", "feature")
         self.git("commit", "--allow-empty", "-m", "empty")

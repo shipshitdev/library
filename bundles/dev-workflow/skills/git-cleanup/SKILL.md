@@ -72,7 +72,11 @@ The helper accepts one of these proofs:
 2. **Every-commit patch:** enumerate *every* commit ahead of trunk and match each
    nonempty, single-parent patch against a trunk commit. Use whitespace-preserving
    patch IDs, including binary changes. Merge commits and empty patches require
-   another proof; they cannot disappear through `git cherry` filtering.
+   another proof; they cannot disappear through `git cherry` filtering. Also
+   compare the final tree entry for every path the candidate changes against
+   trunk: historical patch membership alone does not prove a combined final
+   state after reordering or reverts. Preserve candidates when later trunk edits
+   make this conservative comparison uncertain.
 3. **Exact PR head squash:** the PR's head and base repositories match the target
    repository, its captured head SHA equals the entire candidate tip, its merge
    commit is in captured trunk, and the cumulative candidate patch equals that

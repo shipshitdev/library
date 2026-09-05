@@ -54,8 +54,25 @@ class Repository:
         return output[0] if output else ""
 
     def patch(self, older: str, newer: str) -> str:
-        return self.patch_id(self.git("diff", "--no-ext-diff", "--no-textconv",
-                                      "--binary", older, newer, "--"))
+        return self.patch_id(self.run("git", "diff", "--no-ext-diff", "--no-textconv",
+                                      "--binary", older, newer, "--").stdout)
+
+    def final_paths_match(self, oid: str, trunk: str) -> bool:
+        base = self.git("merge-base", oid, trunk)
+        changed = self.run("git", "diff", "--no-renames", "--name-only", "-z",
+                           base, oid, "--").stdout.split("\0")
+        trees = []
+        for commit in (oid, trunk):
+            entries = {}
+            output = self.run("git", "ls-tree", "-r", "-t", "-z", commit).stdout
+            for entry in output.split("\0"):
+                if entry:
+                    metadata, path = entry.split("\t", 1)
+                    entries[path] = metadata
+            trees.append(entries)
+        # Compare blob IDs, modes, symlinks, gitlinks, directories, and deletion.
+        # Independent historical patches do not prove their final combination.
+        return all(trees[0].get(path) == trees[1].get(path) for path in changed if path)
 
     def worktrees(self) -> list[dict]:
         records = []
@@ -147,7 +164,7 @@ class Repository:
             parents = self.git("rev-list", "--parents", "-n", "1", commit).split()[1:]
             if len(parents) == 1 and self.patch(parents[0], commit) in upstream_patches:
                 covered.append(commit)
-        if ahead and covered == ahead:
+        if ahead and covered == ahead and self.final_paths_match(oid, trunk):
             return {"kind": "every-commit-patch", "ahead": ahead}
         # Squash proof binds the entire candidate history to the exact merged
         # PR head, then compares its cumulative content with the landed commit.

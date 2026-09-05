@@ -31,7 +31,8 @@ class SkillContractTests(unittest.TestCase):
         self.assertIn("Existing explicit authorization", body)
         self.assertIn("report-only mode prohibits source and test edits", body)
         self.assertNotIn("auto-fix until green", body)
-        self.assertNotIn("apply a minimal fix and rerun until green or blocked", body)
+        self.assertNotIn("apply a minimal fix, and rerun until green or blocked", body)
+        self.assertIn("when repair is authorized apply a minimal fix", body)
 
     def test_report_only_overrides_repair_authorization(self) -> None:
         for name in ("test-runner", "test-dispatch"):
@@ -53,7 +54,7 @@ class SkillContractTests(unittest.TestCase):
 
     def test_monitor_contract_covers_restart_and_equal_timestamps(self) -> None:
         body = skill("qa-loop")
-        for rule in ("timestamp alone is not a cursor", "source identity", "persist", "tie-breaker", "rotation", "at-least-once", "restore the queue records", "never use it as the replay identity"):
+        for rule in ("last complete-record boundary", "make queue records durable before advancing the persisted cursor", "timestamp alone is not a cursor", "source identity", "persist", "tie-breaker", "rotation", "at-least-once", "restore the queue records", "never use it as the replay identity"):
             with self.subTest(rule=rule):
                 self.assertIn(rule, body)
         outputs = body.split("Outputs:", 1)[1].split("Creates/Modifies:", 1)[0]

@@ -36,7 +36,8 @@ runs the suite with coverage, while `/test coverage` installs the Husky gate.
 
 - **`run`** — the `test-runner` skill: detect the test runner, run tests at the
   right scope (changed-only by default), and on failure read output and traces,
-  apply a minimal fix, and rerun until green or blocked. Scope tokens (`full`,
+  report failures, and when repair is authorized apply a minimal fix and rerun
+  until green or blocked. Scope tokens (`full`,
   `unit`/`integration`/`e2e`, `types`, `coverage`, a path/pattern,
   `--since <ref>`, `--no-fix`) forward to the runner verbatim.
 - **`qa`** — the `qa-reviewer` skill: run a structured multi-phase verification

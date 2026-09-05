@@ -133,14 +133,17 @@ Delegates To:
    use file identity plus byte offset; for event streams, use sequence or timestamp
    plus a stable unique tie-breaker with a documented total order. Record the
    initial position explicitly. Default to the current tail for a newly requested
-   QA session, not a restart;
-   requested historical intake starts at the selected beginning instead.
+   QA session, not a restart. Initialize that tail at the last complete-record
+   boundary, retaining any partial trailing record for the next append; requested
+   historical intake starts at the selected beginning instead.
    Process complete records only, then persist the cursor together with complete
    queue records (event identity, state, and redacted evidence references) before
    advancing. On restart, restore the queue records and resume the persisted
    position together.
-   If persistence cannot be atomic, use at-least-once reads and deduplicate by
-   stable event identity, so a crash cannot lose intake or queue it twice. An event
+   If persistence cannot be atomic, make queue records durable before advancing
+   the persisted cursor. Use at-least-once reads and deduplicate durable records
+   by stable event identity during recovery, so a crash cannot lose intake or
+   queue it twice. An event
    identity is source identity plus record offset or sequence/tie-breaker. It
    identifies one occurrence and stays stable across replay. The error fingerprint
    groups distinct occurrences for display; never use it as the replay identity.

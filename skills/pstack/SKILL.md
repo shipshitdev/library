@@ -4,7 +4,7 @@ description: Playbook orchestrator for verified, unslopped engineering work. Mat
 disable-model-invocation: true
 license: MIT
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
   tags: "orchestrator, playbooks, verification, architecture, review"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/poteto-mode/SKILL.md

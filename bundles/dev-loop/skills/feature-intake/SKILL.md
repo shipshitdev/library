@@ -4,7 +4,7 @@ description: Capture a client or stakeholder feature request, turn it into a pla
 compatibility: Requires GitHub CLI gh for GitHub issue and project-board operations.
 allowed-tools: Bash(gh *) Bash(git *)
 metadata:
-  version: "1.3.0"
+  version: "1.3.1"
   tags: "feature-intake, prd, github, kanban, requirements, ears"
   author: Ship Shit Dev
 when_to_use: "feature intake, client requirement, stakeholder requirement, write this as a PRD, create kanban tickets, push to GitHub board, turn this idea into issues, /feature"
@@ -65,7 +65,7 @@ Delegates To:
 
 - `prd-writer` for PRD structure and quality gates
 - `prd-task-creator` for issue and sub-issue creation mechanics
-- `gh-project-board` when the target board needs inspection or normalization
+- `project-board` when the target board needs inspection or normalization
 - `prd-quality-gate` before marking the intake ready for planning
 
 ## Core Behavior
@@ -111,9 +111,12 @@ gh project field-list <project-number> --owner <owner> --format json
 gh project item-list <project-number> --owner <owner> --limit 100 --format json
 ```
 
-Use the repository's native board vocabulary. If the board is missing expected
-Status or Priority fields, report the missing mapping before writing items.
-Recommend `gh-project-board` when configuring the board is a separate task.
+Use the repository's native board vocabulary. Resolve organization-native
+Priority from each issue's repository organization before expecting a project
+Priority field. Do not create a duplicate field or fall back from an unreadable
+native value. Report missing status/priority mappings before writing items;
+paginate membership when the intake depends on a complete board inventory.
+Recommend `project-board` when configuring the board is a separate task.
 
 ### 2. Check Current Work State
 

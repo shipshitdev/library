@@ -3,7 +3,7 @@ name: prd-task-creator
 description: 'Files work into a tracker — turns a feature, bug, or finished PRD into GitHub issues, linked sub-issues, or local task files, slicing epics into thin vertical slices sized for one PR each and tagged AFK or HITL. Starts once the requirements are settled; authoring the PRD document itself is `prd-writer`.'
 allowed-tools: Bash(gh *)
 metadata:
-  version: "1.3.0"
+  version: "1.3.1"
   tags: "tasks, prd, github, ears"
 when_to_use: "create a task, open a GitHub issue, create a sub-issue, break this epic down into issues, file this PRD as work items, write up this bug as an issue"
 ---
@@ -53,7 +53,7 @@ Delegates To:
 
 - `spec-first` when implementation constraints are still unclear
 - `tdd` when the work should be executed test-first
-- `gh-fix-ci` for CI failures after implementation
+- `github-fix-ci` for CI failures after implementation
 - `roadmap-analyzer` for roadmap-level planning
 - `cto-advisor` for technical strategy and architecture tradeoffs
 
@@ -173,6 +173,6 @@ Show the draft PRD. Wait for "looks good" or edits. Then create.
 - `prd-writer` — author the PRD document first when requirements are not settled yet; this skill files what that one wrote
 - `spec-first` — spec-driven development before writing code
 - `tdd` — red-green-refactor execution for tasks with clear behavior
-- `gh-fix-ci` — fix CI on existing PRs
+- `github-fix-ci` — fix CI on existing PRs
 - `roadmap-analyzer` — broader roadmap planning
 - `cto-advisor` — technical strategy and architecture tradeoffs

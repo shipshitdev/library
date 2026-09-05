@@ -17,7 +17,7 @@ Optional scope: name files or a severity threshold, e.g. `/suggest 142 src/auth 
 
 ## Workflow
 
-Use the `gh-review-suggestions` skill.
+Use the `github-review-suggestions` skill.
 
 1. Resolve the target PR and fetch its diff (read-only) before touching the branch.
 2. Identify high-conviction, mechanically-applyable fixes and build exact

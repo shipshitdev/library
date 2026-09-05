@@ -170,7 +170,7 @@
     {
       "name": "ask-dev-loop",
       "source": "./skills/ask-dev-loop",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Ask which Dev Loop skill or flow fits the current situation. A router over the flagship idea-to-ship path."
     },
     {
@@ -198,9 +198,15 @@
       "description": "Find what a small-looking change could break somewhere else, and prove the one fact it is safe because of by running real code. Use for blast radius of X, what could this break, or reviewing a small diff you do not trust."
     },
     {
+      "name": "board-sync",
+      "source": "./skills/board-sync",
+      "version": "2.0.0",
+      "description": "Reconciles a project board with current work and delivery evidence, reports incomplete coverage and metadata gaps, and applies only approved provider-supported field changes. Use when auditing board drift, reviewing blocked work, or assessing upcoming delivery."
+    },
+    {
       "name": "bug",
       "source": "./skills/bug",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "description": "File a GitHub issue of type Bug from a description — structures a clear bug report (summary, steps to reproduce, expected vs actual, environment), previews it, then on confirmation creates the issue with the Bug issue type (falling back to a bug label when the repo has no issue types). Use when the user asks to file a bug, open a bug report, create a GitHub bug issue, log a bug, or runs /bug."
     },
     {
@@ -260,7 +266,7 @@
     {
       "name": "commit-summary",
       "source": "./skills/commit-summary",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "description": "Generate Conventional Commit messages from staged or unstaged git changes, split unrelated changes into logical commits, detect breaking changes, and optionally create commits after approval. Use when writing commit messages, preparing commits, or committing local work."
     },
     {
@@ -332,7 +338,7 @@
     {
       "name": "deploy",
       "source": "./skills/deploy",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Run deployment workflows for web applications (staging, production). Use when user says 'deploy', 'push to staging', 'release', 'ship it', or 'go live'."
     },
     {
@@ -344,7 +350,7 @@
     {
       "name": "deployment-composer",
       "source": "./skills/deployment-composer",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "description": "Compose deployment workflows from smaller skills and repo signals, including trunk-based releases, CI quality gates, provider deployment, post-deploy verification, rollback, and failed-check diagnosis. Use when the user asks for a deployment plan, release workflow, ship-to-staging/production environments, or a smart deploy process across GitHub, Vercel, EC2, Docker, or custom CI."
     },
     {
@@ -434,7 +440,7 @@
     {
       "name": "feature-intake",
       "source": "./skills/feature-intake",
-      "version": "1.3.0",
+      "version": "1.3.1",
       "description": "Capture a client or stakeholder feature request, turn it into a planner-ready PRD epic with scoped sub-issues, check for duplicate work, and place approved issues on a GitHub Projects kanban. Use when a user invokes feature intake, asks to turn a rough client requirement into GitHub issues, or wants an idea written as a PRD and pushed to a board."
     },
     {
@@ -474,48 +480,6 @@
       "description": "Initialize Shipshit.dev full-stack product workspaces through npx @shipshitdev/v0, then customize and verify the generated repo. Use for new product scaffolds or post-v0 workspace setup."
     },
     {
-      "name": "gh-address-comments",
-      "source": "./skills/gh-address-comments",
-      "version": "1.1.0",
-      "description": "Implements the fixes a PR review asked for — maps each thread to the code it touches, edits that code, and drafts a reply per thread for approval before anything is posted. Starts from feedback that is already understood; producing the read-only digest is `pr-comments`."
-    },
-    {
-      "name": "gh-board-sync",
-      "source": "./skills/gh-board-sync",
-      "version": "1.1.1",
-      "description": "Reconcile a GitHub Projects v2 board against real repository state — merged PRs, closed issues, stale lanes, untracked work — and report every drifted item with evidence. Read-only by default; fixes Status/Priority values only with --apply and per-category confirmation. Use when asking whether the board reflects reality, auditing board drift, or syncing board state after merges."
-    },
-    {
-      "name": "gh-fix-ci",
-      "source": "./skills/gh-fix-ci",
-      "version": "1.2.0",
-      "description": "Diagnoses failing or setup-stuck GitHub Actions checks on a PR, identifies root cause, and proposes or applies targeted fixes. Triggers when the user asks to fix CI, diagnose failing checks, fix a failing workflow, address GitHub Actions errors, get a green build, or continue PR queue work without waiting on unrelated pending checks. Can run autonomously in a loop — fix, push, recheck — until all required checks are green when the user asks to loop on CI."
-    },
-    {
-      "name": "gh-inbox",
-      "source": "./skills/gh-inbox",
-      "version": "1.1.0",
-      "description": "Collect and triage a GitHub work inbox from assigned issues, review requests, mentions, authored PRs with failing checks, and optional project filters. Use when checking what needs attention across GitHub or prioritizing GitHub tasks."
-    },
-    {
-      "name": "gh-pr-publish",
-      "source": "./skills/gh-pr-publish",
-      "version": "1.1.0",
-      "description": "Create, update, and publish GitHub pull requests with a clean title, durable body, branch hygiene, validation notes, and safe push/PR gates. Use when opening a PR, updating a PR description, preparing a draft PR, or publishing local changes to GitHub."
-    },
-    {
-      "name": "gh-project-board",
-      "source": "./skills/gh-project-board",
-      "version": "1.2.0",
-      "description": "Configure GitHub Projects v2 kanban boards with Ship Shit Dev defaults: the Backlog / In Progress / Human Review / Done / Deferred Status columns (the dev-loop board-as-truth model) and P0-P3 Priority. Use when setting up, copying, auditing, or normalizing GitHub project boards."
-    },
-    {
-      "name": "gh-review-suggestions",
-      "source": "./skills/gh-review-suggestions",
-      "version": "1.1.0",
-      "description": "Review GitHub pull requests and post precise inline suggested changes with GitHub suggestion blocks. Use when asked to review a PR, leave actionable GitHub comments, propose applyable fixes, or submit review suggestions through gh."
-    },
-    {
       "name": "git-cleanup",
       "source": "./skills/git-cleanup",
       "version": "4.0.0",
@@ -530,8 +494,38 @@
     {
       "name": "github-actions-author",
       "source": "./skills/github-actions-author",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Author, review, and harden GitHub Actions workflows using current official documentation, secure trigger patterns, least-privilege permissions, current action versions, and CI/CD validation. Use when creating, editing, debugging, or security-reviewing workflow YAML."
+    },
+    {
+      "name": "github-address-comments",
+      "source": "./skills/github-address-comments",
+      "version": "2.0.0",
+      "description": "Implements the fixes a PR review asked for — maps each thread to the code it touches, edits that code, and drafts a reply per thread for approval before anything is posted. Starts from feedback that is already understood; producing the read-only digest is `pr-comments`."
+    },
+    {
+      "name": "github-fix-ci",
+      "source": "./skills/github-fix-ci",
+      "version": "2.0.0",
+      "description": "Diagnoses failing or setup-stuck GitHub Actions checks on a PR, identifies root cause, and proposes or applies targeted fixes. Triggers when the user asks to fix CI, diagnose failing checks, fix a failing workflow, address GitHub Actions errors, get a green build, or continue PR queue work without waiting on unrelated pending checks. Can run autonomously in a loop — fix, push, recheck — until all required checks are green when the user asks to loop on CI."
+    },
+    {
+      "name": "github-inbox",
+      "source": "./skills/github-inbox",
+      "version": "2.0.0",
+      "description": "Collect and triage a GitHub work inbox from assigned issues, review requests, mentions, authored PRs with failing checks, and optional project filters. Use when checking what needs attention across GitHub or prioritizing GitHub tasks."
+    },
+    {
+      "name": "github-pr-publish",
+      "source": "./skills/github-pr-publish",
+      "version": "2.0.0",
+      "description": "Create, update, and publish GitHub pull requests with a clean title, durable body, branch hygiene, validation notes, and safe push/PR gates. Use when opening a PR, updating a PR description, preparing a draft PR, or publishing local changes to GitHub."
+    },
+    {
+      "name": "github-review-suggestions",
+      "source": "./skills/github-review-suggestions",
+      "version": "2.0.0",
+      "description": "Review GitHub pull requests and post precise inline suggested changes with GitHub suggestion blocks. Use when asked to review a PR, leave actionable GitHub comments, propose applyable fixes, or submit review suggestions through gh."
     },
     {
       "name": "graphql-architect",
@@ -638,7 +632,7 @@
     {
       "name": "merge-open-prs",
       "source": "./skills/merge-open-prs",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "description": "Review and land open pull requests through one /merge command. The default mode runs a confirmation-gated trunk sweep and reports cleanup candidates; exact /merge force drains the queue non-serially by merging green PRs and narrowly fixing red PRs. Use when asked to review and merge open PRs, batch-merge to trunk, drain PR WIP, or run /merge."
     },
     {
@@ -746,8 +740,8 @@
     {
       "name": "pr-comments",
       "source": "./skills/pr-comments",
-      "version": "1.1.0",
-      "description": "Reads a pull request's review threads and returns a digest — grouped by thread, severity-tagged, priority-ordered, with the open questions called out. Strictly read-only: no code edits, no replies, no thread resolution. Reach for it to triage feedback before deciding what to fix; implementing those fixes is `gh-address-comments`."
+      "version": "1.1.1",
+      "description": "Reads a pull request's review threads and returns a digest — grouped by thread, severity-tagged, priority-ordered, with the open questions called out. Strictly read-only: no code edits, no replies, no thread resolution. Reach for it to triage feedback before deciding what to fix; implementing those fixes is `github-address-comments`."
     },
     {
       "name": "prd-dispatch",
@@ -764,7 +758,7 @@
     {
       "name": "prd-task-creator",
       "source": "./skills/prd-task-creator",
-      "version": "1.3.0",
+      "version": "1.3.1",
       "description": "Files work into a tracker — turns a feature, bug, or finished PRD into GitHub issues, linked sub-issues, or local task files, slicing epics into thin vertical slices sized for one PR each and tagged AFK or HITL. Starts once the requirements are settled; authoring the PRD document itself is `prd-writer`."
     },
     {
@@ -778,6 +772,12 @@
       "source": "./skills/production-audit",
       "version": "1.0.1",
       "description": "Audit an application for production readiness using local evidence from code, CI, config, migrations, runtime checks, observability, and deployment paths. Use before launch, after risky merges, or when asked whether an app is ready to ship."
+    },
+    {
+      "name": "project-board",
+      "source": "./skills/project-board",
+      "version": "2.0.0",
+      "description": "Audits project board configuration and prepares explicitly requested setup, copy, or normalization changes while preserving the existing workflow and provider boundaries. Use when inspecting a board's fields, columns, scope, or configuration."
     },
     {
       "name": "project-init-orchestrator",
@@ -800,7 +800,7 @@
     {
       "name": "pstack",
       "source": "./skills/pstack",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "description": "Playbook orchestrator for verified, unslopped engineering work. Matches a task to a named playbook, applies the principles index, and routes to how, why, architect, arena, swarm, interrogate, tdd, and related skills. Use for pstack, poteto-mode, /pstack, or requests to work in this style."
     },
     {
@@ -872,7 +872,7 @@
     {
       "name": "receiving-code-review",
       "source": "./skills/receiving-code-review",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Evaluate incoming code-review feedback with technical rigor before implementing any change. Verify each point against the codebase, push back with reasoning when the reviewer is wrong, and never perform empty agreement. Use when you receive a review, before touching any code, especially when feedback seems unclear or technically questionable."
     },
     {
@@ -896,7 +896,7 @@
     {
       "name": "release",
       "source": "./skills/release",
-      "version": "2.1.1",
+      "version": "2.1.2",
       "description": "Cuts the release itself — derives the next semantic version from commits since the last tag, writes plain-English patch notes, previews the plan, then on confirmation creates an annotated tag plus GitHub release, or dispatches the repo's guarded release workflow where production sits behind a workflow_dispatch promote gate. Trunk-based; no develop or staging branch promotion. Assumes the trunk is already green — to open a release PR or wait on required checks first, use `release-pr-gates`."
     },
     {
@@ -908,7 +908,7 @@
     {
       "name": "release-pr-gates",
       "source": "./skills/release-pr-gates",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "description": "Holds a release at the gate — opens or reuses a release PR into the trunk, runs local format, lint, and type-check, watches required GitHub checks through to green, and summarizes the failing run's root cause when they are not. Tags only after the gate passes. Reach for it during the pre-merge wait; for version derivation and plain-English patch notes, use `release`."
     },
     {
@@ -926,7 +926,7 @@
     {
       "name": "roadmap-to-milestones",
       "source": "./skills/roadmap-to-milestones",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Turn a revenue-ranked roadmap into tracked GitHub Milestones with due dates, assign issues to them, and report burndown. Bridges roadmap-analyzer's backlog to the dev-loop board. Use when asked to create milestones, set milestone due dates, group issues under milestones, turn a roadmap into a schedule, or track milestone progress. Creates and edits GitHub milestones only after confirmation."
     },
     {

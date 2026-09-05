@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+import json
 import sys
 from collections.abc import Iterator
 from pathlib import Path
@@ -91,6 +92,8 @@ def findings(skill_dir: Path, skills_root: Path) -> list[str]:
         elif re.search(r"^disable-model-invocation:\s*true\s*$", header, re.M):
             result.append(f"{location}: Execution route targets user-only skill: {name}")
 
+    if skill_dir.name.startswith("gh-"):
+        result.append(f"{skill_dir.name}: Retired gh-* skill family; use the canonical workflow/provider name")
     for path in sorted(skill_dir.rglob("*.md")):
         lines = list(instruction_lines(path.read_text()))
         for number, name in declared_delegates(lines):
@@ -114,8 +117,39 @@ def findings(skill_dir: Path, skills_root: Path) -> list[str]:
     return result
 
 
+def catalog_findings(skills_root: Path) -> list[str]:
+    root = skills_root.parent
+    paths = sorted((root / "commands").glob("*.md"))
+    paths += [root / "scripts/setup-dev-loop.sh", root / "scripts/plugin-categories.json"]
+    result = []
+    for path in paths:
+        if not path.is_file():
+            continue
+        for number, line in enumerate(path.read_text().splitlines(), 1):
+            line = re.sub(r"https?://[^\s)]+", "", line)
+            for match in re.finditer(r"(?<![a-zA-Z0-9_-])gh-(?:address-comments|board-sync|fix-ci|inbox|pr-publish|project-board|review-suggestions)(?![a-z0-9-])", line):
+                result.append(f"{path.relative_to(root)}:{number}: Retired skill reference: {match.group()}")
+    # Inspect committed installation entry points as well as canonical callers.
+    marketplace = root / ".claude-plugin/marketplace.json"
+    if marketplace.is_file():
+        for plugin in json.loads(marketplace.read_text()).get("plugins", []):
+            name, source = plugin.get("name", ""), plugin.get("source")
+            if name.startswith("gh-"):
+                result.append(f"{marketplace.relative_to(root)}: Retired plugin identity: {name}")
+            if not isinstance(source, str) or not (root / source).is_dir():
+                result.append(f"{marketplace.relative_to(root)}: Missing local plugin source: {source}")
+    for directory in sorted((root / "bundles").glob("*/skills/gh-*")):
+        result.append(f"{directory.relative_to(root)}: Retired bundled skill identity")
+    return result
+
+
 def main() -> int:
     skills_root = Path(sys.argv[1]).resolve()
+    if len(sys.argv) > 2 and sys.argv[2] == "--catalog":
+        result = catalog_findings(skills_root)
+        for finding in result:
+            print(finding)
+        return int(bool(result))
     selected = [skills_root / sys.argv[2]] if len(sys.argv) > 2 else sorted(skills_root.iterdir())
     result = []
     for skill_dir in selected:

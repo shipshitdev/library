@@ -1,9 +1,9 @@
 ---
 name: pr-comments
-description: "Reads a pull request's review threads and returns a digest — grouped by thread, severity-tagged, priority-ordered, with the open questions called out. Strictly read-only: no code edits, no replies, no thread resolution. Reach for it to triage feedback before deciding what to fix; implementing those fixes is `gh-address-comments`."
+description: "Reads a pull request's review threads and returns a digest — grouped by thread, severity-tagged, priority-ordered, with the open questions called out. Strictly read-only: no code edits, no replies, no thread resolution. Reach for it to triage feedback before deciding what to fix; implementing those fixes is `github-address-comments`."
 compatibility: Requires git and GitHub CLI gh access to the target repository.
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
   tags: "github, pull-requests, code-review, comments, triage, digest"
 when_to_use: "what are the comments on my PR, summarize the review feedback, what's blocking this PR, what do I still need to address, triage the review comments, /pr comments"
 allowed-tools: Bash(gh *) Bash(git *)
@@ -11,7 +11,7 @@ allowed-tools: Bash(gh *) Bash(git *)
 
 # PR Comments
 
-Turns a PR's scattered review threads into one ordered action list: fetches inline review comments, review summaries, and conversation comments, then groups and prioritizes them. Stops before proposing code or drafting replies — acting on feedback is `gh-address-comments`'s job.
+Turns a PR's scattered review threads into one ordered action list: fetches inline review comments, review summaries, and conversation comments, then groups and prioritizes them. Stops before proposing code or drafting replies — acting on feedback is `github-address-comments`'s job.
 
 ## Authorized Scope
 
@@ -54,7 +54,7 @@ Confirmation Required:
 
 Delegates To:
 
-- `gh-address-comments` to actually implement fixes and reply to threads
+- `github-address-comments` to actually implement fixes and reply to threads
 - `receiving-code-review` to evaluate and decide which feedback to accept or push
   back on
 
@@ -62,9 +62,9 @@ Delegates To:
 
 - "What are the comments on my PR / what's still blocking it?"
 - A quick triage of review feedback before deciding what to fix
-- Producing an action list to hand to `gh-address-comments`
+- Producing an action list to hand to `github-address-comments`
 
-Do not use this to apply changes or post replies — that is `gh-address-comments`.
+Do not use this to apply changes or post replies — that is `github-address-comments`.
 
 ## Phase 1: Resolve the PR
 
@@ -116,7 +116,7 @@ Nits (<k>)
 Open questions
 - <question> (@reviewer)
 
-Suggested order: <1..n, blocking first>. Hand to gh-address-comments to act.
+Suggested order: <1..n, blocking first>. Hand to github-address-comments to act.
 ```
 
 ## Modes
@@ -129,4 +129,4 @@ Suggested order: <1..n, blocking first>. Hand to gh-address-comments to act.
 ## Final Status
 
 Report the PR, the counts by severity and state, the ordered action list, and the
-open questions. Note that acting on them is delegated to `gh-address-comments`.
+open questions. Note that acting on them is delegated to `github-address-comments`.

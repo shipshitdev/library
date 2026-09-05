@@ -31,4 +31,4 @@ Use the `bug` skill.
 - Never fabricate reproduction steps, versions, or behavior — mark gaps as not provided.
 - Files bugs only; for feature requests or tasks, use the matching issue type.
 - To root-cause before filing, use `debug` — it escalates to `systematic-debugging`
-  itself once a fix attempt has failed; for a failing CI check, use `gh-fix-ci`.
+  itself once a fix attempt has failed; for a failing CI check, use `github-fix-ci`.

@@ -6,9 +6,15 @@ export const meta = {
   ],
 }
 
-const SKILLS = ["accessibility","advanced-evaluation","agent-architecture-audit","agent-browser","agent-config-audit","agent-folder-init","ai-agent-cost-optimizer","ai-loading-ux","ai-regression-testing","analyze-codebase","api-design-expert","artifacts-builder","audit","aws-infrastructure","biome-validator","bug","bun-validator","changelog-generator","clarify","clerk-validator","code-review","codebase-advisor","comment-mode","commit-summary","component-library","content-script-developer","context-degradation","context-engineering","context-fundamentals","context-optimization","critique","cto-advisor","deslop","debug","deploy","deployment-composer","design-consistency-auditor","devcontainer-setup","docker-expert","docs","ec2-backend-deployer","error-handling-expert","evaluation","executing-plans","execution-debugging","expo-architect","feature-intake","finishing-a-development-branch","frontend-design","full-code-review","fullstack-workspace-init","gh-address-comments","gh-fix-ci","gh-inbox","gh-pr-publish","gh-project-board","gh-review-suggestions","git-safety","github-actions-author","graphql-architect","html-style","husky-test-coverage","incremental-fetch","landing-page-vercel","layout","linter-formatter-init","llm-structured-output","mcp-builder","memory-systems","merge-open-prs","micro-landing-builder","mongodb-atlas-checker","mongodb-migration-expert","monitoring-setup","multi-agent-patterns","nestjs-expert","nestjs-queue-architect","nextjs-validator","nextra-writer","open-source-checker","package-architect","performance-expert","playwright-e2e-init","polish","prd-quality-gate","production-audit","project-init-orchestrator","prompt-engineering","qa-reviewer","quick-view","quieter","react-component-performance","react-hook-form","react-native-components","react-patterns","react-refactor","react-testing-library","receiving-code-review","redis-caching","refactor-code","release","git-cleanup","release-pr-gates","roadmap-analyzer","rules-capture","scaffold","security-audit","security-expert","session-documenter","session-end","session-start","setup-agent-routing","shadcn","shadcn-setup","shape","skill-capture","skill-comply","skill-creator","skill-scout","spec-first","stripe-implementer","structural-review","systematic-debugging","table-filters","tailwind","tailwind-validator","prd-task-creator","tdd","testing-cicd-init","testing-expert","theme-factory","tool-design","turborepo","typescript-expert","typescript-refactor","verification-before-completion","workspace-performance-audit","worktree","writing-plans","prd-writer"]
-
-const BASE = '/Users/decod3rs/www/shipshitdev/public/skills/skills'
+// Supply the canonical skill directory and an explicit selected name list from
+// the current catalog. The harness owns discovery, model choice, and capacity.
+if (typeof SKILLS_ROOT !== 'string' || !SKILLS_ROOT.trim() ||
+    typeof SKILL_NAMES === 'undefined' || !Array.isArray(SKILL_NAMES) || !SKILL_NAMES.length ||
+    SKILL_NAMES.some((name) => typeof name !== 'string' || !/^[a-z][a-z0-9-]*$/.test(name))) {
+  throw new Error('Supply SKILLS_ROOT and a nonempty canonical SKILL_NAMES list.');
+}
+const SKILLS = [...new Set(SKILL_NAMES)]
+const BASE = SKILLS_ROOT.replace(/\/$/, '')
 
 const SCHEMA = {
   type: 'object',
@@ -28,12 +34,12 @@ const SCHEMA = {
 }
 
 const KNOWN = `Known upstream families in this marketplace (for reference — do NOT force-fit):
-- pbakaus/impeccable (Apache-2.0): design-quality skills (audit, critique, polish, layout, quieter, shape, clarify) — ALREADY classified, not in your set.
-- obra/superpowers (MIT): agent workflow skills (writing-plans, systematic-debugging, etc.) — ALREADY classified. NOTE: 'executing-plans' shares a name with superpowers but is NOT in your set.
-- anthropics/skills (Apache-2.0): artifacts, mcp-builder, skill-creator, theme-factory — ALREADY classified.
-- Dimillian/Skills (MIT): react-component-performance, plus swift/ios skills — ALREADY classified.
+- pbakaus/impeccable (Apache-2.0): design-quality skills (audit, critique, polish, layout, quieter, shape, clarify).
+- obra/superpowers (MIT): agent workflow skills (writing-plans, systematic-debugging, etc.).
+- anthropics/skills (Apache-2.0): artifacts, mcp-builder, skill-creator, theme-factory.
+- Dimillian/Skills (MIT): react-component-performance, plus swift/ios skills.
 - snarktank/ai-dev-tasks: the classic create-prd / generate-tasks / process-task-list pattern — CHECK if 'prd-task-creator' or 'spec-first' derive from it.
-- Vincent's own private 'vitae' spec-pipeline (internal, no public repo): prd-writer, prd-quality-gate, context-engineering, execution-debugging were ported from it. Other spec/PRD/context skills MIGHT be internal-port too (classification: internal-port, upstream_repo empty).`
+- Internal ports require evidence supplied by the owner; do not infer a private source from similar names.`
 
 phase('Classify')
 
@@ -51,7 +57,7 @@ Method:
 2. Decide whether this looks like a generic/original skill or a port. Most skills in this marketplace are the owner's OWN work (solo founder's GTM + engineering toolkit). DEFAULT to in-house.
 3. If — and only if — the content smells imported, web-search for the origin: try the skill name + a distinctive verbatim phrase + "SKILL.md github", and the known families below.
 4. If you find a candidate public file, you MUST fetch it (WebFetch the raw/blob URL) and confirm its content genuinely matches this skill (same name/structure, substantial verbatim or near-verbatim overlap). Only then set classification="external" and verified=true with the EXACT url you fetched.
-5. If a skill is clearly part of the owner's private spec-pipeline ('vitae') with no public repo, use classification="internal-port", upstream_repo="", verified=false.
+5. If owner-supplied evidence establishes a private internal port with no public repo, use classification="internal-port", upstream_repo="", verified=false.
 6. If you cannot verify a real matching upstream, DO NOT invent one. Use "in-house" (original) or "uncertain" (smells imported but unconfirmed), upstream_url="", verified=false.
 
 ${KNOWN}
@@ -63,7 +69,7 @@ HARD RULES:
 - confidence: "high" only when verified=true OR you are certain it is original in-house work. Otherwise "medium"/"low".
 
 Return the structured object for skill="${skill}".`,
-    { label: skill, phase: 'Classify', model: 'sonnet', schema: SCHEMA }
+    { label: skill, phase: 'Classify', schema: SCHEMA }
   )
 ))
 

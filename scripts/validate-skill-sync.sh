@@ -58,8 +58,8 @@ deploy
 deployment-composer
 feature-intake
 fullstack-workspace-init
-gh-address-comments
-gh-fix-ci
+github-address-comments
+github-fix-ci
 git-safety
 landing-page-vercel
 micro-landing-builder
@@ -1380,6 +1380,11 @@ check_legacy_installer_retired || installer_issues=$?
 adapter_issues=0
 validate_adapter_examples || adapter_issues=$?
 ((TOTAL_ISSUES += adapter_issues, 1))
+
+# Check live public entry points once, including installer and bundle membership.
+if ! python3 "$SCRIPT_DIR/check-skill-composition.py" "$SKILLS_DIR" --catalog; then
+    ((++TOTAL_ISSUES))
+fi
 
 # Main validation logic
 if [[ -n "$SKILL_NAME" ]]; then

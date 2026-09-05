@@ -6,7 +6,7 @@ disable-model-invocation: true
 allowed-tools: Bash(gh *) Bash(git *)
 argument-hint: "[roadmap file, or 'burndown']"
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
   tags: "github, milestones, roadmap, planning, burndown, mrr"
   author: Ship Shit Dev
 when_to_use: "create milestones, roadmap to milestones, set milestone due dates, group issues under a milestone, turn the roadmap into a schedule, milestone burndown, milestone progress"
@@ -58,7 +58,8 @@ Delegates To:
 
 - `roadmap-analyzer` when there is no ranked backlog to sequence yet.
 - `feature-intake` / `prd-task-creator` when a theme has no issues to assign.
-- `gh-project-board` when issues are not yet on the dev-loop board.
+- `board-sync` to inspect missing board membership. Adding issues requires a
+  separately scoped provider action; configuration and reconciliation do not add cards.
 
 ## Step 1 — Preconditions
 

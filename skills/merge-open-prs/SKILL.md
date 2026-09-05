@@ -3,7 +3,7 @@ name: merge-open-prs
 description: Review and land open pull requests through one /merge command. The default mode runs a confirmation-gated trunk sweep and reports cleanup candidates; exact /merge force drains the queue non-serially by merging green PRs and narrowly fixing red PRs. Use when asked to review and merge open PRs, batch-merge to trunk, drain PR WIP, or run /merge.
 compatibility: Requires git, GitHub CLI gh, and jq access to the target repository.
 metadata:
-  version: "2.0.0"
+  version: "2.0.1"
   tags: "git, github, pull-request, merge, review, trunk, cleanup, batch"
 allowed-tools: Bash(git *) Bash(gh *) Bash(jq *)
 disable-model-invocation: true
@@ -77,7 +77,7 @@ Confirmation Required:
 Delegates To:
 
 - `code-review` to review each open PR before it is merged
-- `gh-fix-ci` when a PR's required checks are failing and the user wants them fixed
+- `github-fix-ci` when a PR's required checks are failing and the user wants them fixed
 - `fix-merge-conflicts` when a conflicted PR should be resolved rather than skipped
 - Recommend `git-cleanup` for separately requested branch or worktree pruning
 - `release` to cut a semver tag and GitHub release from the trunk once PRs are merged
@@ -197,7 +197,7 @@ For each non-dependency-blocked red PR:
 4. Run only focused checks permitted by repository policy.
 5. Commit, push, report `CI pending, moved on`, and continue.
 
-Use `gh-fix-ci` behavior for setup-stuck jobs:
+Use `github-fix-ci` behavior for setup-stuck jobs:
 
 ```bash
 gh run view <run-id> --json jobs
@@ -404,4 +404,4 @@ Report:
 - Any merge that failed mid-batch and why
 - Cleanup candidates or that inventory was skipped; state that this workflow did not prune them
 - What the user should decide next (e.g. rebase a conflicted PR, fix CI via
-  `gh-fix-ci`, or cut a release from trunk via the `release` skill)
+  `github-fix-ci`, or cut a release from trunk via the `release` skill)

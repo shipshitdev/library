@@ -3,7 +3,7 @@ name: deployment-composer
 description: Compose deployment workflows from smaller skills and repo signals, including trunk-based releases, CI quality gates, provider deployment, post-deploy verification, rollback, and failed-check diagnosis. Use when the user asks for a deployment plan, release workflow, ship-to-staging/production environments, or a smart deploy process across GitHub, Vercel, EC2, Docker, or custom CI.
 compatibility: Requires local repository access. GitHub release flows require gh and git access.
 metadata:
-  version: "1.2.0"
+  version: "1.2.1"
   tags: "deployment, orchestration, release, ci-cd, github, staging, production"
 allowed-tools: Bash(git *) Bash(gh *) Bash(ls *) Bash(find *) Bash(rg *) Bash(cat *)
 ---
@@ -56,7 +56,7 @@ Delegates To:
 
 - `release-pr-gates`
 - `deploy`
-- `gh-fix-ci`
+- `github-fix-ci`
 - `ec2-backend-deployer`
 - `testing-cicd-init`
 - `changelog-generator`
@@ -67,7 +67,7 @@ Delegates To:
 |-------|-----|
 | `release-pr-gates` | GitHub release PRs, branch discovery, gate + cut releases on the trunk, waiting for checks |
 | `deploy` | General staging/production deploy checklist, local quality gates, post-deploy monitoring |
-| `gh-fix-ci` | Failed GitHub Actions checks on release or deploy PRs |
+| `github-fix-ci` | Failed GitHub Actions checks on release or deploy PRs |
 | `ec2-backend-deployer` | Docker + GitHub Actions + EC2 backend deployment setup |
 | `testing-cicd-init` | Missing or weak GitHub Actions/test infrastructure |
 | `changelog-generator` | Release notes from commit history |
@@ -111,7 +111,7 @@ If the user wants to cut a release:
 2. A short-lived feature or fix branch is merged into the trunk via PR; the release is then cut from the trunk as a semver tag + GitHub release.
 3. `staging` and `production` are deployment environments driven by CI/tags — not git branches.
 4. Wait for quality gates before calling the release ready.
-5. Use `gh-fix-ci` if checks fail.
+5. Use `github-fix-ci` if checks fail.
 
 ### Direct Provider Deploy
 
@@ -131,7 +131,7 @@ If the repo has no CI or weak gates:
 
 1. Use `testing-cicd-init` to add baseline checks.
 2. Use `deploy` after CI exists.
-3. For failing existing checks, use `gh-fix-ci`.
+3. For failing existing checks, use `github-fix-ci`.
 
 ### Release Notes
 

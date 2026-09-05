@@ -23,6 +23,6 @@ Autonomous GitHub issue-to-PR loop with PRDs, plans, board dispatch, QA, and rev
 - `prd-task-creator`
 - `executing-plans`
 - `setup-agent-routing`
-- `gh-project-board`
-- `gh-board-sync`
+- `project-board`
+- `board-sync`
 - `qa-reviewer`

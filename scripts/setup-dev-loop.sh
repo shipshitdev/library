@@ -46,7 +46,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WORKFLOW_DIR="${SCRIPT_DIR}/../.github/workflows"
 # Board normalizer (sets the Status options to the 5-column model).
-BOARD_SCRIPT="${SCRIPT_DIR}/../skills/gh-project-board/scripts/setup-gh-project-board.mjs"
+BOARD_SCRIPT="${SCRIPT_DIR}/../skills/project-board/scripts/setup-github-board.mjs"
 
 # Phase-2 push workflows installed into the target repo: one planning gate
 # (plan-dispatch.yml, dispatch:plan) plus one execution lane per engine.

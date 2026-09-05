@@ -12,13 +12,13 @@ GitHub workflow and automation skills
 ## Included Skills
 
 - `bug`
-- `gh-address-comments`
-- `gh-board-sync`
-- `gh-fix-ci`
-- `gh-inbox`
-- `gh-pr-publish`
-- `gh-project-board`
-- `gh-review-suggestions`
+- `github-address-comments`
+- `board-sync`
+- `github-fix-ci`
+- `github-inbox`
+- `github-pr-publish`
+- `project-board`
+- `github-review-suggestions`
 - `github-actions-author`
 - `git-safety`
 - `feature-intake`

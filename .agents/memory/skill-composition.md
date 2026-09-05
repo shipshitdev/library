@@ -17,3 +17,12 @@ The composition validator checks explicit execution routes and relative resource
 links, including declared delegate lists. It distinguishes explicit recommendations,
 library names, and fenced examples.
 These static checks do not certify that an agent follows every instruction.
+
+## Workflow naming (2026-09-05)
+
+Name reusable workflows for their job. Use one provider spelling for provider
+engines: `github-*`, with no competing `gh-*` skill identities. Keep the real
+GitHub CLI named `gh`. Board configuration and reconciliation use `project-board`
+and `board-sync`, resolving the provider from the target. Existing workflows and
+all 29 command names remain; the house board layout is an optional preset.
+The complete historical map is `docs/skills/catalog-naming.md`.

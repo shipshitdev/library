@@ -2,7 +2,7 @@
 name: deploy
 description: Run deployment workflows for web applications (staging, production). Use when user says 'deploy', 'push to staging', 'release', 'ship it', or 'go live'.
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
   tags: "deployment, devops, ci-cd, production, staging"
 ---
 
@@ -45,7 +45,7 @@ Delegates To:
 
 - `deployment-composer` for route discovery across providers
 - `release-pr-gates` for branch promotion PRs
-- `gh-fix-ci` for failed GitHub Actions checks
+- `github-fix-ci` for failed GitHub Actions checks
 - `ec2-backend-deployer` for EC2/Docker deployment setup
 
 ## When to Use

@@ -14,7 +14,7 @@ instead of guessing from the red X.
 
 ## Workflow
 
-Use the `gh-fix-ci` skill.
+Use the `github-fix-ci` skill.
 
 1. Resolve the target PR and list its checks; identify the failing ones.
 2. Pull the failing run logs with read-only `gh` and locate the root-cause line.

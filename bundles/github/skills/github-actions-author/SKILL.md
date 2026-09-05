@@ -5,7 +5,7 @@ compatibility: Requires access to GitHub Actions documentation for version-sensi
 disable-model-invocation: true
 allowed-tools: Bash(git *) Bash(gh *) Bash(bun *)
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "github, actions, ci-cd, workflows, security"
 ---
 
@@ -46,7 +46,7 @@ Confirmation Required:
 Delegates To:
 
 - `testing-cicd-init` for first-pass TypeScript test infrastructure
-- `gh-fix-ci` when a workflow is failing on a PR
+- `github-fix-ci` when a workflow is failing on a PR
 - `git-safety` when workflows touch credentials, tokens, or publish steps
 
 ## Workflow

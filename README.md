@@ -257,7 +257,7 @@ or another Agent Skills-compatible harness.
 
 ### Dev Loop (15)
 
-`interview`, `grilling`, `domain-modeling`, `ask-dev-loop`, `wait-what`, `feature-intake`, `prd-writer`, `writing-plans`, `prd-quality-gate`, `prd-task-creator`, `executing-plans`, `setup-agent-routing`, `gh-project-board`, `gh-board-sync`, `qa-reviewer`
+`interview`, `grilling`, `domain-modeling`, `ask-dev-loop`, `wait-what`, `feature-intake`, `prd-writer`, `writing-plans`, `prd-quality-gate`, `prd-task-creator`, `executing-plans`, `setup-agent-routing`, `project-board`, `board-sync`, `qa-reviewer`
 
 ### Dev Workflow (43)
 
@@ -265,7 +265,7 @@ or another Agent Skills-compatible harness.
 
 ### GitHub (20)
 
-`bug`, `gh-address-comments`, `gh-board-sync`, `gh-fix-ci`, `gh-inbox`, `gh-pr-publish`, `gh-project-board`, `gh-review-suggestions`, `github-actions-author`, `git-safety`, `feature-intake`, `merge-open-prs`, `release`, `release-dispatch`, `git-cleanup`, `release-pr-gates`, `worktree`, `finishing-a-development-branch`, `pr-comments`, `fix-merge-conflicts`
+`bug`, `github-address-comments`, `board-sync`, `github-fix-ci`, `github-inbox`, `github-pr-publish`, `project-board`, `github-review-suggestions`, `github-actions-author`, `git-safety`, `feature-intake`, `merge-open-prs`, `release`, `release-dispatch`, `git-cleanup`, `release-pr-gates`, `worktree`, `finishing-a-development-branch`, `pr-comments`, `fix-merge-conflicts`
 
 ### Testing (9)
 
@@ -342,3 +342,18 @@ Users install directly from GitHub:
 /plugin install shipshitdev-session@shipshitdev
 /plugin install shipshitdev-planning@shipshitdev
 ```
+
+## Workflow names and upgrades
+
+Use `/board` for configuration, reconciliation, review queues, and upcoming work.
+It resolves the provider and preserves the board's existing workflow. GitHub has
+packaged helpers; Jira has a documented procedure using an existing connection.
+Jira has no packaged runner or live integration validation in this release.
+
+Seven former `gh-*` skills now use `github-*` names or the shared `board-sync`
+and `project-board` workflows. All 29 command names remain. See the
+[complete naming inventory](docs/skills/catalog-naming.md) for replacements.
+Update existing installations through their installer and remove only retired
+identities owned by this library after checking their replacements. Repository
+publication does not automatically migrate global installations or unrelated
+upstream pstack plugins.

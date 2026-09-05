@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import subprocess
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
@@ -32,6 +33,19 @@ class SkillCompositionTests(unittest.TestCase):
             f"---\nname: {name}\ndescription: Fixture.\n{restriction}---\n{body}\n"
         )
         return directory
+
+    def test_retired_provider_family_is_rejected(self) -> None:
+        caller = self.add_skill("gh-inbox")
+        self.assertIn("Retired gh-* skill family", composition.findings(caller, self.skills)[0])
+
+    def test_catalog_adapters_reject_retired_routes_but_preserve_upstream_urls(self) -> None:
+        commands = self.skills / "commands"
+        commands.mkdir()
+        path = commands / "board.md"
+        path.write_text("Run the `gh-board-sync` skill.\n")
+        self.assertIn("Retired skill reference", composition.catalog_findings(self.skills / "skills")[0])
+        path.write_text("Run the `board-sync` skill.\nSource: https://example.com/gh-board-sync\n")
+        self.assertEqual(composition.catalog_findings(self.skills / "skills"), [])
 
     def test_direct_route_rejects_hidden_engine(self) -> None:
         caller = self.add_skill("caller", "1. Run the `engine` skill.")
@@ -145,12 +159,47 @@ class SkillCompositionTests(unittest.TestCase):
     def test_public_pstack_routes_are_discoverable(self) -> None:
         self.assertEqual(composition.findings(ROOT / "skills/pstack", ROOT / "skills"), [])
 
+    def test_board_packages_resolve_when_installed_outside_the_repository(self) -> None:
+        for name in ("board-sync", "project-board"):
+            shutil.copytree(ROOT / "skills" / name, self.skills / name)
+        for name, helper in (("board-sync", "github-board-report.mjs"),
+                             ("project-board", "setup-github-board.mjs")):
+            installed = self.skills / name
+            self.assertEqual(composition.findings(installed, self.skills), [])
+            result = subprocess.run(["node", str(installed / "scripts" / helper), "--help"],
+                                    cwd=self.skills, capture_output=True, text=True, check=False)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
     def test_system_bash_parses_the_repository_validator(self) -> None:
         result = subprocess.run(
             ["/bin/bash", "-n", str(ROOT / "scripts/validate-skill-sync.sh")],
             capture_output=True, text=True, check=False,
         )
         self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_provenance_workflow_uses_explicit_targets_and_harness_model(self) -> None:
+        script = r'''
+import { readFileSync } from "node:fs";
+import assert from "node:assert/strict";
+const source = readFileSync("scripts/classify-provenance.workflow.js", "utf8")
+  .replace("export const meta", "const meta");
+const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;
+const execute = new AsyncFunction("agent", "parallel", "phase", "SKILLS_ROOT", "SKILL_NAMES", source);
+let calls = 0;
+const agent = async (prompt, options) => {
+  assert.equal(Object.hasOwn(options, "model"), false);
+  assert.match(prompt, /installed\/skills\/board-sync\/SKILL.md/);
+  calls++;
+  return { skill: options.label };
+};
+const parallel = (tasks) => Promise.all(tasks.map((task) => task()));
+await assert.rejects(execute(agent, parallel, () => {}, "", []), /Supply SKILLS_ROOT/);
+const result = await execute(agent, parallel, () => {}, "/installed/skills", ["board-sync", "board-sync"]);
+assert.equal(calls, 1);
+assert.deepEqual(result.results, [{ skill: "board-sync" }]);
+'''
+        result = subprocess.run(["bun", "-e", script], cwd=ROOT, capture_output=True, text=True, check=False)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
     def test_review_workflow_leaves_model_selection_with_harness(self) -> None:
         script = r'''

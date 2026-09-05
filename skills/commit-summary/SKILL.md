@@ -4,7 +4,7 @@ description: "Generate Conventional Commit messages from staged or unstaged git 
 compatibility: Requires git.
 allowed-tools: Bash(git *)
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
   tags: "git, workflow, commits, productivity"
 ---
 
@@ -51,7 +51,7 @@ Confirmation Required:
 
 Delegates To:
 
-- `gh-pr-publish` when the commit should be pushed and opened as a PR
+- `github-pr-publish` when the commit should be pushed and opened as a PR
 - `git-safety` when secrets or sensitive files appear in the diff
 
 ## Workflow

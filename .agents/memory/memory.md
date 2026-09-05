@@ -7,7 +7,7 @@ last_verified: 2026-08-14
 <!-- catalog-summary:start -->
 Public skills library at `shipshitdev/skills`. Installable via `npx skills add shipshitdev/skills --skill <name>`. Works with Claude Code, Codex, Cursor, OpenClaw, and Gemini.
 
-Generated catalog: **186 skills · 29 commands · 13 bundles · 199 plugins**.
+Generated catalog: **187 skills · 30 commands · 13 bundles · 200 plugins**.
 <!-- catalog-summary:end -->
 
 Published through committed marketplace bundles in `bundles/` and the generated `.claude-plugin/marketplace.json` catalog. The old generated `plugins/` package tree is retired.
@@ -26,10 +26,10 @@ Published through committed marketplace bundles in `bundles/` and the generated 
 <!-- catalog-counts:start -->
 | Asset | Count | Canonical source |
 |---|---:|---|
-| Skills | 186 | `skills/*/SKILL.md` |
-| Commands | 29 | `commands/*.md` |
+| Skills | 187 | `skills/*/SKILL.md` |
+| Commands | 30 | `commands/*.md` |
 | Bundles | 13 | `scripts/plugin-categories.json` |
-| Plugins | 199 | skills + bundles |
+| Plugins | 200 | skills + bundles |
 <!-- catalog-counts:end -->
 
 ## Architecture Decisions
@@ -108,6 +108,15 @@ Adapted selected patterns from [mattpocock/skills](https://github.com/mattpocock
 - New adapted primitives: `grilling`, `domain-modeling`, `wait-what`, `wizard`, `prototype`, `codebase-design`.
 - New user-invoked router: `ask-dev-loop`. `interview` / `shape` invoke `grilling`; they hint at other user-invoked skills rather than firing them.
 - `tdd` provenance completed; `code-review` gained a Spec axis; flagship human docs live in `docs/skills/`.
+
+### Weekly review composition (2026-09-05)
+
+`weekly-review` coordinates board evidence, issue-to-code checks, a frozen
+all-author retrospective, operational evidence, and scoped deslop. Report-only
+is the default. Existing scoped repair authorization carries to engines; board
+writes and deployment actions keep their own boundaries. Code coverage controls
+the next review checkpoint, with unresolved work retained separately. Shipshit
+`deslop` and upstream `pstack:deslop` remain separate implementations.
 
 ## Known Issues
 

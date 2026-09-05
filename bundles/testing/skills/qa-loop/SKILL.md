@@ -46,6 +46,10 @@ Creates/Modifies:
 - Modifies only files required for the active issue
 - Creates one conventional local commit after each verified fix
 - May create ignored local logs, traces, or screenshots for diagnosis
+- Persists redacted monitor checkpoints and queue records in the repository
+  designated ignored scratch directory. Record the exact session-specific path
+  before monitoring; never commit checkpoints or evidence. If no permitted
+  persistent location exists, report restart coverage unavailable.
 
 External Side Effects:
 
@@ -128,14 +132,18 @@ Delegates To:
    identity and an ordered cursor. A timestamp alone is not a cursor. For files,
    use file identity plus byte offset; for event streams, use sequence or timestamp
    plus a stable unique tie-breaker with a documented total order. Record the
-   initial position explicitly. Default to the current tail for a new session;
+   initial position explicitly. Default to the current tail for a newly requested QA session, not a restart;
    requested historical intake starts at the selected beginning instead.
    Process complete records only, then persist the cursor together with complete
    queue records (event identity, state, and redacted evidence references) before
    advancing. On restart, restore the queue records and resume the persisted
    position together.
    If persistence cannot be atomic, use at-least-once reads and deduplicate by
-   stable event identity, so a crash cannot lose intake or queue it twice.
+   stable event identity, so a crash cannot lose intake or queue it twice. An event
+   identity is source identity plus record offset or sequence/tie-breaker. It
+   identifies one occurrence and stays stable across replay. The error fingerprint
+   groups distinct occurrences for display; never use it as the replay identity.
+   Increment occurrence counts only for event identities not already recorded.
    On rotation, truncation, or changed process identity, finish the old source
    when available and begin the new source at its start. Report any inaccessible
    gap. If the source lacks stable ordering or resumability, report reduced
@@ -202,6 +210,9 @@ queued, deduplicated, ignored, observed, or blocked.
 ## Phase 4: Reproduce and Diagnose
 
 1. Verify `PINNED_QA_BRANCH` before inspecting or changing application state.
+   Move the selected `pending` issue to `in progress` and persist that transition.
+   On restart, inspect any restored `in progress` issue and its working-tree
+   changes before resuming; never queue a second repair for it.
 2. Reproduce the exact reported path against the running local app. Match the
    supplied viewport, authentication state, data state, and interaction sequence
    when known.

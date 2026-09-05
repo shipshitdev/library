@@ -41,14 +41,17 @@ class SkillContractTests(unittest.TestCase):
         contract_list = validator.split('CONTRACT_REQUIRED_SKILLS="', 1)[1].split('"', 1)[0].split()
         for name in ("session-documenter", "session-start", "session-end"):
             self.assertNotIn(name, contract_list)
+            self.assertFalse((ROOT / "skills" / name).exists())
 
     def test_monitor_contract_covers_restart_and_equal_timestamps(self) -> None:
         body = skill("qa-loop")
-        for rule in ("timestamp alone is not a cursor", "source identity", "persist", "tie-breaker", "rotation", "at-least-once", "restore the queue records"):
+        for rule in ("timestamp alone is not a cursor", "source identity", "persist", "tie-breaker", "rotation", "at-least-once", "restore the queue records", "never use it as the replay identity"):
             with self.subTest(rule=rule):
                 self.assertIn(rule, body)
         outputs = body.split("Outputs:", 1)[1].split("Creates/Modifies:", 1)[0]
         self.assertIn("in progress", outputs)
+        self.assertIn("Move the selected `pending` issue to `in progress`", body)
+        self.assertIn("never commit checkpoints", body)
 
     def test_interception_requires_application_ownership(self) -> None:
         body = skill("qa-loop")

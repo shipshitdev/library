@@ -3,7 +3,7 @@ name: test-runner
 description: "Run a project's tests at the right scope — changed-only, focused, full, type-check, or e2e — then report failures with evidence. Repair and rerun only when fixing failures is explicitly authorized. Detects the test runner and package manager from the repo. Use when the user asks to run tests, run the suite, run smoke/e2e tests, type-check, check the build compiles, fix failing tests, or runs /test run."
 compatibility: Requires a JavaScript/TypeScript project with a test runner (Vitest, Jest, Bun test, or Playwright) and a package manager.
 metadata:
-  version: "1.1.0"
+  version: "2.0.0"
   tags: "testing, vitest, jest, playwright, e2e, smoke, type-check, ci, scoped-tests"
 allowed-tools: Bash(bun *) Bash(bunx *) Bash(git *)
 disable-model-invocation: true
@@ -56,7 +56,10 @@ Confirmation Required:
   Existing explicit authorization such as "fix the failures" satisfies this gate
   within its stated scope; do not ask again. `/test run`, a bare scope, and a
   request to type-check do not grant repair authority.
-- Before expanding an authorized repair beyond its agreed scope
+- Before expanding an authorized repair beyond its agreed scope. Without an
+  explicit wider scope, repair covers the failing tests and files under test;
+  obtain authorization before editing other source files. An already authorized
+  feature or bug-fix task retains its stated scope.
 - Before running an expensive full or e2e suite when the user asked for a quick check
 - Before changing any test's expectations (never weaken or delete a test to make it
   pass without flagging it)

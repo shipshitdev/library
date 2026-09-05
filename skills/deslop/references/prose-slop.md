@@ -89,11 +89,13 @@ obvious.
 ## Jargon
 
 - **26. Vague metaphor nouns.** Flag substrate, wedge, vector, locus, vantage,
-    nexus, surface, bedrock, modality, paradigm, north star, and flywheel when
+    nexus, surface, bedrock, modality, paradigm, gold-plating, ratchet, evacuate,
+    endgame, north star, and flywheel when
     used as vague metaphors without a concrete referent. Preserve established
     technical meanings, including API surface, embedding vector, attack vector,
     primitive types, and a test harness, when they precisely name the concept.
-    Judge the sentence rather than substituting a banned-word list.
+    Judge the sentence rather than substituting a banned-word list. For vague
+    metaphors, "substrate" can become "base" and "wedge in" can become "add".
     "A vector for growth" can become "a way to increase paid signups" when that
     is the intended meaning. "Compare embedding vectors with cosine similarity"
     and "Reduce the public API surface to three methods" already name concrete

@@ -3,7 +3,7 @@ name: worktree
 description: Create an isolated git worktree from the correct base branch and check it out into a clean, gitignored directory. Use when the user asks to make a worktree, spin up a parallel/isolated workspace, work on something without disturbing the current checkout, branch off the current work, or run multiple agents on the same repo at once. Picks the base branch smartly — the current feature branch when you are on one, otherwise the repository's default/trunk branch — so worktrees continue your in-progress work by default instead of forking from the wrong place.
 compatibility: Requires git 2.5+ (worktree support).
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
   tags: "git, worktree, branch, isolation, parallel, workspace"
   author: Ship Shit Dev
 allowed-tools: Bash(git *)
@@ -60,7 +60,7 @@ Confirmation Required:
 
 Delegates To:
 
-- `git-cleanup` to verify promotion and prune merged worktrees and branches
+- Recommend `git-cleanup` to verify promotion and prune merged worktrees and branches
 - `git-safety` if a branch about to live in a worktree may contain secrets
 
 ## Base Branch Selection (the core behavior)

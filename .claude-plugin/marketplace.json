@@ -320,7 +320,7 @@
     {
       "name": "debug",
       "source": "./skills/debug",
-      "version": "2.0.1",
+      "version": "2.0.2",
       "description": "Front door for a freshly reported failure: build a deterministic feedback loop, reproduce the symptom, rank falsifiable hypotheses, and instrument the narrowest point that separates them. Carries the lookup library — 54 rules across 10 categories covering observation technique, common bug patterns, and triage priority. Use on first contact with a bug, crash, wrong output, or performance regression before any fix has been attempted, and to look up a debugging technique or bug pattern by name. Hands off to `systematic-debugging` when a fix attempt has already failed or the cause survives the loop."
     },
     {
@@ -440,7 +440,7 @@
     {
       "name": "figure-it-out",
       "source": "./skills/figure-it-out",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "description": "Design an auditable playbook when no narrower one fits. Use for figure it out, a large migration, an ambitious multi-part change, or work a human reviews after stepping away. Scales rigor to the task, runs a hypothesis loop, and logs decisions via show-me-your-work."
     },
     {
@@ -482,7 +482,7 @@
     {
       "name": "gh-board-sync",
       "source": "./skills/gh-board-sync",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "description": "Reconcile a GitHub Projects v2 board against real repository state — merged PRs, closed issues, stale lanes, untracked work — and report every drifted item with evidence. Read-only by default; fixes Status/Priority values only with --apply and per-category confirmation. Use when asking whether the board reflects reality, auditing board drift, or syncing board state after merges."
     },
     {
@@ -572,7 +572,7 @@
     {
       "name": "icp",
       "source": "./skills/icp",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Discover and document a product's Ideal Customer Profile as a durable .agents/memory/icp.md — segments ranked by revenue potential, each with acute pain, willingness-to-pay, buying trigger, and churn reasons. Use when a user says \"define our ICP\", \"who is our customer\", \"who are we selling to\", \"document our ideal customer\", or before roadmap-analyzer / roadmap-to-milestones need a customer to prioritize against."
     },
     {
@@ -626,7 +626,7 @@
     {
       "name": "mcp-builder",
       "source": "./skills/mcp-builder",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "description": "Creates MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Activates on: \"build an MCP server\", \"create MCP tools\", \"integrate API via MCP\", \"write a FastMCP server\", \"add an MCP server to an agent\", or any request to wrap an external API as LLM-callable tools in Python or Node/TypeScript."
     },
     {
@@ -638,13 +638,13 @@
     {
       "name": "merge-open-prs",
       "source": "./skills/merge-open-prs",
-      "version": "1.3.2",
-      "description": "Review and land open pull requests through one /merge command. The default mode runs a confirmation-gated trunk sweep and cleanup; exact /merge force drains the queue non-serially by merging green PRs and narrowly fixing red PRs. Use when asked to review and merge open PRs, batch-merge to trunk, drain PR WIP, or run /merge."
+      "version": "2.0.0",
+      "description": "Review and land open pull requests through one /merge command. The default mode runs a confirmation-gated trunk sweep and reports cleanup candidates; exact /merge force drains the queue non-serially by merging green PRs and narrowly fixing red PRs. Use when asked to review and merge open PRs, batch-merge to trunk, drain PR WIP, or run /merge."
     },
     {
       "name": "micro-landing-builder",
       "source": "./skills/micro-landing-builder",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Scaffolds, clones, and deploys config-driven NextJS landing pages that use a shared UI components package. Use when creating single or multiple startup landing pages with email capture, analytics, and modern design. Supports batch creation from templates or CSV/JSON files and Vercel deployment with custom domains. Each landing is a standalone NextJS app driven by an app.json config file."
     },
     {
@@ -866,7 +866,7 @@
     {
       "name": "recall",
       "source": "./skills/recall",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "description": "Rebuild recent working context from chat history, live state, and the shared record, then hand back a tight current-state brief. Use for recall my work on X, catch me up, what have I been working on, or where did I leave off."
     },
     {
@@ -896,7 +896,7 @@
     {
       "name": "release",
       "source": "./skills/release",
-      "version": "2.1.0",
+      "version": "2.1.1",
       "description": "Cuts the release itself — derives the next semantic version from commits since the last tag, writes plain-English patch notes, previews the plan, then on confirmation creates an annotated tag plus GitHub release, or dispatches the repo's guarded release workflow where production sits behind a workflow_dispatch promote gate. Trunk-based; no develop or staging branch promotion. Assumes the trunk is already green — to open a release PR or wait on required checks first, use `release-pr-gates`."
     },
     {
@@ -920,7 +920,7 @@
     {
       "name": "roadmap-analyzer",
       "source": "./skills/roadmap-analyzer",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "description": "Turn a product's ICP into a revenue-ranked roadmap. Reads .agents/memory/icp.md (from the icp skill), inventories what already ships, finds the gaps that block landing/retaining/expanding the primary segment, and outputs a prioritized backlog plus strategic themes. Use when asked what to build next, how to prioritize the roadmap, what's blocking revenue, or to plan toward MRR. Hands off to roadmap-to-milestones."
     },
     {
@@ -1088,7 +1088,7 @@
     {
       "name": "tech-debt",
       "source": "./skills/tech-debt",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "description": "Inventories a real codebase and ranks its technical debt into a register scored by interest (how often it hurts) over principal (effort to fix), every item anchored to a file-and-line or a metric. Covers code smells, dependency debt, test gaps, and architectural churn hotspots across frontend and backend. Use when asked what to pay down, where the codebase is rotting, or to turn debt into a tracked backlog. Files the register as GitHub issues on request. For org-level technology strategy and architecture direction, use `cto-advisor`."
     },
     {
@@ -1190,7 +1190,7 @@
     {
       "name": "worktree",
       "source": "./skills/worktree",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "description": "Create an isolated git worktree from the correct base branch and check it out into a clean, gitignored directory. Use when the user asks to make a worktree, spin up a parallel/isolated workspace, work on something without disturbing the current checkout, branch off the current work, or run multiple agents on the same repo at once. Picks the base branch smartly — the current feature branch when you are on one, otherwise the repository's default/trunk branch — so worktrees continue your in-progress work by default instead of forking from the wrong place."
     },
     {

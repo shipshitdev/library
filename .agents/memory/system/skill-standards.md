@@ -200,7 +200,10 @@ this repository's `skills/` directory or repository-management meta-skills.
 
 Use direct imperative routes (for example, Run the `engine-name` skill) for actual
 composition, and `Recommend` for a handoff. The validator checks these explicit
-execution routes, while examples and advisory references remain documentation.
+execution routes and leading target lists in `Delegates To:` bullets, including
+comma-joined lists across wrapped lines. Start advisory declarations with
+`Recommend` and resource declarations with `File pointer`. Mode names in an
+explanation and fenced examples are not execution dependencies.
 
 ---
 

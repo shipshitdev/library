@@ -4,7 +4,7 @@ description: Turn a product's ICP into a revenue-ranked roadmap. Reads .agents/m
 user-invocable: true
 argument-hint: "[product or focus area]"
 metadata:
-  version: "2.0.0"
+  version: "2.0.1"
   tags: "roadmap, product, revenue, mrr, prioritization, icp"
   author: Ship Shit Dev
 when_to_use: "what should we build next, prioritize the roadmap, roadmap analysis, what's blocking revenue, plan toward MRR, gap analysis, product gaps, what to focus on to grow revenue"
@@ -41,7 +41,7 @@ Creates/Modifies:
 Delegates To:
 
 - `icp` when no ICP doc exists yet.
-- `roadmap-to-milestones` to turn the ranked backlog into GitHub milestones + issues.
+- Recommend `roadmap-to-milestones` to turn the ranked backlog into GitHub milestones + issues.
 - `feature-intake` / `prd-writer` to expand a single backlog item into a PRD.
 
 ## Step 1 — Load the ICP

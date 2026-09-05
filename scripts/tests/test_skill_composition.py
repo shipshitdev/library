@@ -87,6 +87,61 @@ class SkillCompositionTests(unittest.TestCase):
         caller = self.add_skill("caller", "[docs](https://example.com/docs) [section](#usage)\n[reference](URL) [reference]({Reference URL}) [site](/docs/concepts/resources)")
         self.assertEqual(composition.findings(caller, self.skills), [])
 
+    def test_declared_lists_check_every_target_across_wrapped_lines(self) -> None:
+        caller = self.add_skill("caller", "## Contract\nDelegates To:\n\n- `visible`, `hidden`,\n  and `missing-engine` for investigation.")
+        self.add_skill("visible")
+        self.add_skill("hidden", explicit=True)
+        findings = composition.findings(caller, self.skills)
+        self.assertEqual(len(findings), 2)
+        self.assertIn("user-only skill: hidden", findings[0])
+        self.assertIn("Missing execution skill: missing-engine", findings[1])
+
+    def test_declared_recommendation_and_mode_names_are_not_execution(self) -> None:
+        caller = self.add_skill("caller", "Delegates To:\n\n- Recommend `hidden`, `absent` for other work.\n- `visible` for `hidden` mode.\n\n## Examples\n- `hidden` for a later workflow.")
+        self.add_skill("visible")
+        self.add_skill("hidden", explicit=True)
+        self.assertEqual(composition.findings(caller, self.skills), [])
+
+    def test_ordinary_prose_example_does_not_hide_an_execution_route(self) -> None:
+        caller = self.add_skill("caller", "For example, if setup is missing, run the `hidden` skill.\nRecommend a report first; run the `hidden` skill.")
+        self.add_skill("hidden", explicit=True)
+        self.assertEqual(len(composition.findings(caller, self.skills)), 2)
+
+    def test_missing_or_unclosed_target_frontmatter_is_a_finding(self) -> None:
+        caller = self.add_skill("caller", "Run the `engine` skill.")
+        target = self.add_skill("engine") / "SKILL.md"
+        for text in ["# No frontmatter\n", "---\nname: engine\n"]:
+            with self.subTest(text=text):
+                target.write_text(text)
+                self.assertIn("missing or unclosed frontmatter", composition.findings(caller, self.skills)[0])
+
+    def test_trailing_space_frontmatter_delimiters_do_not_hide_routes(self) -> None:
+        caller = self.add_skill("caller", "Run the `hidden` skill.")
+        target = self.add_skill("hidden", explicit=True)
+        for directory in [caller, target]:
+            path = directory / "SKILL.md"
+            path.write_text(path.read_text().replace("---\n", "---  \n"))
+        self.assertIn("user-only skill: hidden", composition.findings(caller, self.skills)[0])
+
+    def test_review_dispatch_is_callable_in_the_public_catalog(self) -> None:
+        header = composition.frontmatter((ROOT / "skills/review-dispatch/SKILL.md").read_text())
+        self.assertIsNotNone(header)
+        self.assertNotIn("disable-model-invocation: true", header)
+
+    def test_default_merge_preserves_cleanup_selection_boundary(self) -> None:
+        """Static contract guard; this does not simulate a merge or an agent run."""
+        body = (ROOT / "skills/merge-open-prs/SKILL.md").read_text()
+        command = (ROOT / "commands/merge.md").read_text()
+        self.assertNotIn("--delete-branch", body)
+        self.assertNotIn("--delete-branch", command)
+        for text in (body, command):
+            normalized = " ".join(text.split())
+            self.assertIn("Merge confirmation authorizes merges only", normalized)
+            self.assertIn("Preserve local branches and worktrees", normalized)
+        self.assertIn("Cleanup Inventory (Read-Only)", body)
+        self.assertIn("Recommend `git-cleanup`", body)
+        self.assertIn("With `--no-prune`, stop after Phase 4", body)
+
     def test_public_pstack_routes_are_discoverable(self) -> None:
         self.assertEqual(composition.findings(ROOT / "skills/pstack", ROOT / "skills"), [])
 

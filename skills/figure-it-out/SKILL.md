@@ -3,7 +3,7 @@ name: figure-it-out
 description: Design an auditable playbook when no narrower one fits. Use for figure it out, a large migration, an ambitious multi-part change, or work a human reviews after stepping away. Scales rigor to the task, runs a hypothesis loop, and logs decisions via show-me-your-work.
 license: MIT
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
   tags: "playbook, migration, audit, hypothesis"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/figure-it-out/SKILL.md
@@ -58,7 +58,8 @@ Confirmation Required:
 
 Delegates To:
 
-- `pstack` principles index, `architect`, `arena`, `show-me-your-work`
+- File pointer: `references/principles.md` from the selected `pstack` skill directory
+- `architect`, `arena`, `show-me-your-work` for authorized investigation
 
 ## Start
 

@@ -12,18 +12,30 @@ ROUTE = re.compile(
 )
 ADVISORY = re.compile(
     r"(?:\b(?:do not|does not|must not|should not|never)\s+(?:automatically\s+)?$|"
-    r"\b(?:recommend|named|example)\b)", re.IGNORECASE
+    r"^\s*(?:[-*]\s+|\d+[.)]\s+)?Recommend\s*:?\s*$)", re.IGNORECASE
 )
 LINK = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
 
 
+def frontmatter(text: str) -> str | None:
+    lines = text.splitlines()
+    if not lines or lines[0].strip() != "---":
+        return None
+    for index, line in enumerate(lines[1:], 1):
+        if line.strip() == "---":
+            return "\n".join(lines[1:index])
+    return None
+
+
 def instruction_lines(text: str) -> Iterator[tuple[int, str]]:
-    frontmatter = text.startswith("---\n")
+    header = frontmatter(text)
+    header_end = next(
+        number for number, line in enumerate(text.splitlines()[1:], 2)
+        if line.strip() == "---"
+    ) if header is not None else 0
     fence = None
     for number, line in enumerate(text.splitlines(), 1):
-        if frontmatter:
-            if number > 1 and line == "---":
-                frontmatter = False
+        if number <= header_end:
             continue
         marker = re.match(r"^\s*(`{3,}|~{3,})", line)
         if marker:
@@ -37,29 +49,61 @@ def instruction_lines(text: str) -> Iterator[tuple[int, str]]:
             yield number, line
 
 
+def declared_delegates(lines: list[tuple[int, str]]) -> Iterator[tuple[int, str]]:
+    in_delegates = False
+    target = re.compile(r"`([a-z][a-z0-9-]*)`")
+    connector = re.compile(r"\s*(?:,\s*(?:and\s+|or\s+)?|(?:and|or)\s+|/\s*)")
+    for index, (number, line) in enumerate(lines):
+        if line.strip() == "Delegates To:":
+            in_delegates = True
+            continue
+        if line.startswith("#") or re.match(r"^[A-Z][A-Za-z /]+:$", line):
+            in_delegates = False
+        if not in_delegates or not line.startswith("- "):
+            continue
+        item = line[2:]
+        for _, continuation in lines[index + 1:]:
+            if not continuation.startswith("  "):
+                break
+            item += " " + continuation.strip()
+        # Only the leading target list declares execution; Recommend/File pointer
+        # entries and mode names in the explanation are not delegates.
+        match = target.match(item)
+        while match:
+            yield number, match.group(1)
+            separator = connector.match(item, match.end())
+            match = target.match(item, separator.end()) if separator else None
+
+
 def findings(skill_dir: Path, skills_root: Path) -> list[str]:
     result = []
+    def check_target(name: str, location: str, required: bool) -> None:
+        target = skills_root / name / "SKILL.md"
+        if not target.is_file():
+            if required:
+                result.append(f"{location}: Missing execution skill: {name}")
+            return
+        if target.parent == skill_dir:
+            return
+        header = frontmatter(target.read_text())
+        if header is None:
+            result.append(f"{location}: Execution skill has missing or unclosed frontmatter: {name}")
+        elif re.search(r"^disable-model-invocation:\s*true\s*$", header, re.M):
+            result.append(f"{location}: Execution route targets user-only skill: {name}")
+
     for path in sorted(skill_dir.rglob("*.md")):
+        lines = list(instruction_lines(path.read_text()))
+        for number, name in declared_delegates(lines):
+            check_target(name, f"{path.relative_to(skills_root)}:{number}", True)
         advisory_section = False
-        for number, line in instruction_lines(path.read_text()):
+        for number, line in lines:
             if line.startswith("## "):
                 advisory_section = line[3:].lower() in {"when not to use", "related", "related skills", "examples"}
             location = f"{path.relative_to(skills_root)}:{number}"
             for route in ROUTE.finditer(line):
                 if advisory_section or ADVISORY.search(line[:route.start()]):
                     continue
-                target = skills_root / route.group(1) / "SKILL.md"
-                if not target.is_file():
-                    if route.group("skill"):
-                        result.append(f"{location}: Missing execution skill: {route.group(1)}")
-                    continue
-                if target.parent == skill_dir:
-                    continue
-                frontmatter = target.read_text().split("---", 2)[1]
-                if re.search(r"^disable-model-invocation:\s*true\s*$", frontmatter, re.M):
-                    result.append(
-                        f"{location}: Execution route targets user-only skill: {route.group(1)}"
-                    )
+                check_target(route.group(1), location, bool(route.group("skill")))
             for link in LINK.finditer(line):
                 reference = link.group(1).split("#", 1)[0]
                 if (not reference or ":" in reference or "<" in reference

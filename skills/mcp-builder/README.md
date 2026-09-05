@@ -14,6 +14,6 @@ Derived from **[anthropics/skills](https://github.com/anthropics/skills)** (Apac
 | Last synced | 2026-06-12 |
 | License | Apache-2.0 |
 
-**Local modifications:** Adapted from Anthropic's official skills repo. Owns a scoped authorization contract, uses the harness-selected evaluation model instead of a fixed default, and moves long examples into references. Maintain these local behaviors when selectively incorporating upstream changes; the source marker records attribution to the adapted snapshot.
+**Local modifications:** Adapted from Anthropic's official skills repo with a scoped authorization contract and long examples in references. The bundled evaluator remains in `scripts/evaluation.py`, with its guide in `references/evaluation.md`. It requires an explicitly configured model through `-m`/`--model` or `ANTHROPIC_MODEL` instead of a fixed default. Maintain these local behaviors when selectively incorporating upstream changes; the source marker records attribution to the adapted snapshot.
 
 **Checking for upstream changes:** when upstream has moved ahead of the synced marker above, diff [`skills/mcp-builder/SKILL.md`](https://github.com/anthropics/skills/blob/main/skills/mcp-builder/SKILL.md) on `main` since commit `ef740771ac90`, port anything worth bringing home, then bump `metadata.upstream_commit` (or `metadata.upstream_version`) and `metadata.last_synced` in `SKILL.md` and this table.

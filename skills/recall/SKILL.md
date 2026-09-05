@@ -3,7 +3,7 @@ name: recall
 description: Rebuild recent working context from chat history, live state, and the shared record, then hand back a tight current-state brief. Use for recall my work on X, catch me up, what have I been working on, or where did I leave off.
 license: MIT
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
   tags: "context, resume, briefing"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/recall/SKILL.md
@@ -58,7 +58,7 @@ Confirmation Required:
 Delegates To:
 
 - `why` investigators for the shared record
-- `pstack` Session pickup when the ask is one specific prior chat
+- Recommend `pstack` Session pickup when the ask is one specific prior chat
 
 ## Steps
 

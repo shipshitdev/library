@@ -14,5 +14,6 @@ consistent set of companions from the installed catalog; resolve resources from
 the selected skill directory, never an assumed consumer `skills/` checkout.
 
 The composition validator checks explicit execution routes and relative resource
-links. It distinguishes advisory references, library names, and fenced examples.
+links, including declared delegate lists. It distinguishes explicit recommendations,
+library names, and fenced examples.
 These static checks do not certify that an agent follows every instruction.

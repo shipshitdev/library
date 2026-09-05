@@ -134,9 +134,12 @@ rechecking evidence when the branch has advanced. A weekly request does not
 authorize a whole-tree rewrite.
 
 Run the `test-runner` skill for affected verification, preserving host restrictions
-and the authorized repair scope. Use fresh CI and required review gates for
-publication and any separately authorized merge. Keep fixes isolated from
-unrelated work; failed checks remain unresolved findings.
+and the authorized repair scope. Satisfy repository-required local checks and
+review gates before publication. If the allowed verification host is unavailable,
+keep the repair unverified; do not substitute CI for required local checks.
+Follow the repository's policy for any draft PR. Use fresh CI and required review
+for a separately authorized merge. Report completed actions separately from
+planned actions. Failed checks remain unresolved findings.
 
 Re-read affected board evidence after repairs. Apply only separately authorized,
 provider-supported corrections through `board-sync`. Issue closure and Jira
@@ -155,7 +158,9 @@ Deliver one concise report with evidence links:
 - **Repaired:** exact changes, verification, PRs, and remaining delivery gates
 - **Next priorities:** the three highest-value actions, or fewer when justified
 - **Checkpoint:** END only for completely reviewed code scope; retain the previous
-  checkpoint and exact remaining scope when review is partial. Track unresolved
+  checkpoint and exact remaining scope when review is partial. Required cross-package
+  contract and consumer checks are part of that scope; an uninspected required
+  consumer prevents advancing the affected checkpoint. Track unresolved
   findings and incomplete board/operational checks separately for the next run.
 
 An empty commit window still permits board and operational review. State no code

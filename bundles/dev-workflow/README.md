@@ -52,6 +52,6 @@ Code review, debugging, refactoring, release, and AI-assisted development workfl
 - `systematic-debugging`
 - `tech-debt`
 - `verification-before-completion`
+- `weekly-review`
 - `wizard`
 - `worktree`
-- `weekly-review`

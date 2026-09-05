@@ -261,7 +261,8 @@ scoped code repairs; board writes and other external actions retain their own
 authorization boundaries. The workflow does not schedule itself.
 
 The coordinator reuses [weekly-review](skills/weekly-review/SKILL.md)'s declared
-engines. Install those companions when they are absent from the active catalog.
+engines. When preparing an installation, select the coordinator and any missing
+companions. During a review, missing companions are reported without installation.
 Plain `deslop` is the Shipshit adaptation. `pstack:deslop` is a separate upstream
 plugin skill, not an alias.
 

@@ -14,7 +14,7 @@ Coordinate the recurring repository maintenance review through `weekly-review`.
 
 Pass the repository, board URL, optional package scope, window, and existing
 authorization to the `weekly-review` skill. Default to seven days and report-only.
-Preserve `--report-only` across every delegate. `--fix` authorizes scoped code
+Preserve `--report-only` across every delegate; it wins when both flags are supplied. `--fix` authorizes scoped code
 repairs; it does not authorize board writes, issue closure, merges, deployments,
 or a recurring schedule. Preserve separately granted authority without reasking.
 

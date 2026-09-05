@@ -83,27 +83,50 @@ export function createReader(run = ghJson) {
     coverage.connections.push({ name: endpoint, fetched: nodes.length, pages: pages.length });
     return nodes;
   };
-  const connection = (name, fetch, initial) => {
+  const connection = (name, fetch, initial, window) => {
     const nodes = [];
     let after = null;
     let page = initial;
     let pages = 0;
     const cursors = new Set();
+    let termination = 'exhausted';
+    let previousDate = Number.POSITIVE_INFINITY;
+    let ordered = true;
+    const ids = new Set();
     do {
       page ??= fetch(after);
       if (!page?.nodes || !page.pageInfo) throw new Error(`Missing connection: ${name}`);
+      if (page.nodes.some((node) => !node)) warn(`${name}: inaccessible nodes in response.`);
       nodes.push(...page.nodes.filter(Boolean));
       pages += 1;
+      if (window) {
+        for (const node of page.nodes.filter(Boolean)) {
+          const date = Date.parse(node[window.field]);
+          if (!Number.isFinite(date) || date > previousDate) {
+            ordered = false;
+            warn(`${name}: invalid or unordered ${window.field}; window boundary cannot establish completeness.`);
+          }
+          previousDate = date;
+          if (!node.id || ids.has(node.id)) warn(`${name}: duplicate or missing activity ID; collection changed or is incomplete.`);
+          ids.add(node.id);
+        }
+      }
       if (!page.pageInfo.hasNextPage) break;
+      if (window && ordered && previousDate < window.since) {
+        termination = 'window_boundary';
+        break;
+      }
       after = page.pageInfo.endCursor;
       if (!after || cursors.has(after)) throw new Error(`Invalid pagination cursor: ${name}`);
       cursors.add(after);
       page = null;
     } while (true);
-    if (page.totalCount !== undefined && nodes.length !== page.totalCount) {
+    if (termination === 'exhausted' && page.totalCount !== undefined && nodes.length !== page.totalCount) {
       warn(`${name}: fetched ${nodes.length}, expected ${page.totalCount}; changed during collection or inaccessible nodes.`);
     }
-    coverage.connections.push({ name, fetched: nodes.length, total: page.totalCount, pages });
+    coverage.connections.push({ name, fetched: nodes.length, total: page.totalCount, pages,
+      termination, ...(window ? { scope: 'activity_window', orderedBy: window.field,
+        since: new Date(window.since).toISOString() } : {}) });
     return nodes;
   };
   const nodeConnection = (id, type, field, selection, extra = '', initial) =>
@@ -209,20 +232,21 @@ export function fetchRepoActivity(reader, repo, windowDays, now = Date.now()) {
   const [owner, name] = repo.split('/');
   const since = now - windowDays * 86400000;
   // Repository connections avoid Search's 1,000-result ceiling entirely.
-  const repoConnection = (field, selection, extra) => reader.connection(`${repo}.${field}`,
+  const repoConnection = (field, selection, extra, dateField) => reader.connection(`${repo}.${field}`,
     (after) => reader.graphql(`query($owner: String!, $name: String!, $after: String) {
       repository(owner: $owner, name: $name) {
         ${field}(first: 100, after: $after, ${extra}) { ${PAGE} nodes { ${selection} } }
       }
-    }`, { owner, name, after }).repository?.[field]);
-  const allMergedPrs = repoConnection('pullRequests', `id number title url mergedAt
-    closingIssuesReferences(first: 100) { ${PAGE} nodes { ${ISSUE_LINK} } }`, 'states: MERGED');
+    }`, { owner, name, after }).repository?.[field], undefined, { field: dateField, since });
+  const allMergedPrs = repoConnection('pullRequests', `id number title url mergedAt updatedAt
+    closingIssuesReferences(first: 100) { ${PAGE} nodes { ${ISSUE_LINK} } }`, 'states: MERGED, orderBy: { field: UPDATED_AT, direction: DESC }', 'updatedAt');
   const mergedPrs = allMergedPrs.filter((pr) => Date.parse(pr.mergedAt) >= since);
   for (const pr of mergedPrs) {
     pr.closingIssues = reader.nodeConnection(pr.id, 'PullRequest', 'closingIssuesReferences',
       ISSUE_LINK, '', pr.closingIssuesReferences);
   }
-  const allOpenIssues = repoConnection('issues', 'id number title url createdAt', 'states: OPEN');
+  const allOpenIssues = repoConnection('issues', 'id number title url createdAt',
+    'states: OPEN, orderBy: { field: CREATED_AT, direction: DESC }', 'createdAt');
   const openIssues = allOpenIssues.filter((issue) => Date.parse(issue.createdAt) >= since);
   const milestones = reader.restPages(`repos/${repo}/milestones?state=open&per_page=100`);
   for (const milestone of milestones) {
@@ -244,7 +268,7 @@ export function issueIsShipped(item) {
 
 export function buildFindings(items, drafts, repoActivity, options, now = Date.now()) {
   const findings = { mergedNotDone: [], doneNotMerged: [], staleInProgress: [], reviewStarvation: [],
-    untrackedWork: [], missingFormalLinks: [], epicDrift: [], milestoneReadiness: [], priorityHygiene: [], closedWithoutMerge: [] };
+    untrackedWork: [], missingFormalLinks: [], epicDrift: [], milestoneReadiness: [], priorityHygiene: [], closedWithoutMerge: [], closedInActive: [] };
   const key = (item) => `${item.repo.toLowerCase()}#${item.number}`;
   const issueKeys = new Set(items.filter((item) => item.type === 'Issue').map(key));
   const prKeys = new Set(items.filter((item) => item.type === 'PullRequest').map(key));
@@ -254,7 +278,12 @@ export function buildFindings(items, drafts, repoActivity, options, now = Date.n
     const shipped = issueIsShipped(item);
     if (item.priorityKnown && !item.priority) findings.priorityHygiene.push(item);
     if (status === 'deferred') continue;
-    if (item.state === 'CLOSED' && !shipped) findings.closedWithoutMerge.push(item);
+    if (item.state === 'CLOSED' && !shipped) {
+      findings.closedWithoutMerge.push(item);
+      if (status === 'inProgress' || status === 'review') findings.closedInActive.push({
+        ...item, reason: 'Closed work remains in an active lane; review its disposition. Closure is not shipment evidence.',
+      });
+    }
     if (shipped && status !== 'done') findings.mergedNotDone.push(item);
     if (status === 'done' && item.state === 'OPEN') findings.doneNotMerged.push(item);
     const hasOpenPr = item.type === 'PullRequest' ? item.state === 'OPEN' : item.closingPrs.some((pr) => pr.state === 'OPEN');
@@ -291,7 +320,7 @@ export function buildFindings(items, drafts, repoActivity, options, now = Date.n
       });
     }
   }
-  const driftKeys = ['mergedNotDone', 'doneNotMerged', 'staleInProgress', 'reviewStarvation', 'epicDrift', 'priorityHygiene'];
+  const driftKeys = ['mergedNotDone', 'doneNotMerged', 'staleInProgress', 'reviewStarvation', 'epicDrift', 'priorityHygiene', 'closedInActive'];
   const driftItemCount = new Set(driftKeys.flatMap((name) => findings[name].map((item) => item.itemId))).size;
   return { findings, draftCount: drafts.length, driftItemCount };
 }
@@ -303,7 +332,9 @@ export function renderReport(report) {
     `Scope: ${report.options.repos.join(', ')}; activity ${report.options.window}d; stale ${report.options.stale}d; horizon ${report.options.horizon}d`,
     ...report.coverage.warnings.map((warning) => `WARNING: ${warning}`),
     ...report.activityCounts.map((entry) => `${entry.repo}: ${JSON.stringify(entry.counts)}`),
-    ...report.coverage.connections.map((entry) => `Fetched ${entry.name}: ${entry.fetched}${entry.total === undefined ? '' : `/${entry.total}`} (${entry.pages} page(s))`),
+    `Collections: ${report.coverage.connections.length}; pages: ${report.coverage.connections.reduce((sum, entry) => sum + entry.pages, 0)}; deliberate activity-window stops: ${report.coverage.connections.filter((entry) => entry.termination === 'window_boundary').length}`,
+    ...report.coverage.connections.filter((entry) => entry.scope === 'activity_window').map((entry) =>
+      `Fetched ${entry.name}: ${entry.fetched} of ${entry.total ?? 'unknown'} historical items; ${entry.pages} page(s); ${entry.termination}; since ${entry.since}`),
   ];
   for (const [name, rows] of Object.entries(report.findings)) {
     lines.push(`\n${name}: ${rows.length}`);
@@ -360,7 +391,9 @@ export function parseArgs(argv) {
   for (let index = 0; index < argv.length; index += 1) {
     const flag = argv[index];
     if (flag === '--status-map') {
-      options.statusMap = parseStatusMap(argv[++index]);
+      const value = argv[++index];
+      if (!value || value.startsWith('--')) throw new Error('Missing value for --status-map');
+      options.statusMap = parseStatusMap(value);
       continue;
     }
     if (flag === '--json') { options.json = true; continue; }

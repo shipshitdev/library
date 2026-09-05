@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { audit, buildFindings, createReader, issueIsShipped, parseArgs, parseStatusMap, renderReport, resolvePriorities } from './gh-board-sync-report.mjs';
+import { audit, buildFindings, createReader, fetchRepoActivity, issueIsShipped, parseArgs, parseStatusMap, renderReport, resolvePriorities } from './gh-board-sync-report.mjs';
 
 const NOW = Date.now();
 const RECENT = new Date(NOW - 86400000).toISOString();
@@ -29,7 +29,7 @@ function fixture() {
     content: { ...issue(index), subIssues: page(index === 0 ? nested : []), closedByPullRequestsReferences: page(index === 1 ? closing : []) } }));
   board.push({ id: 'draft', isArchived: false, content: { __typename: 'DraftIssue', title: 'idea' }, fieldValues: page([]) });
   board.push({ id: 'pr-card', isArchived: true, content: { ...issue(1), __typename: 'PullRequest', merged: true }, fieldValues: page([]) });
-  const prs = Array.from({ length: 105 }, (_, index) => ({ id: `PR${index}`, number: index, title: `PR ${index}`, mergedAt: RECENT,
+  const prs = Array.from({ length: 105 }, (_, index) => ({ id: `PR${index}`, number: index, title: `PR ${index}`, mergedAt: RECENT, updatedAt: RECENT,
     url: `https://github.com/org/repo/pull/${index}`, closingIssuesReferences: page(index === 104 ? nested : []) }));
   const issues = Array.from({ length: 205 }, (_, index) => ({ ...issue(index), createdAt: index === 204 ? OLD : RECENT }));
   const milestones = Array.from({ length: 101 }, (_, index) => ({ number: index, title: `M${index}`, due_on: index === 100 ? RECENT : null, open_issues: 101, closed_issues: 0 }));
@@ -66,7 +66,7 @@ function fixture() {
     if (endpoint.includes('/milestones?')) return [milestones.slice(0, 100), milestones.slice(100)];
     return [issues.slice(0, 100), issues.slice(100, 101)];
   };
-  return { run, calls };
+  return { run, calls, board };
 }
 
 test('whole audit paginates every relevant connection and emits equal console/JSON evidence', () => {
@@ -178,4 +178,87 @@ test('custom lane semantics preserve the board workflow and missing metadata in 
   assert.equal(findings.reviewStarvation[0].status, 'Acceptance');
   assert.throws(() => parseStatusMap('{"done":["Backlog"]}'), /Ambiguous/);
   assert.throws(() => parseStatusMap('{"unknown":["Custom"]}'), /Invalid/);
+});
+
+
+test('closed work in active lanes affects the verdict without implying shipment or Done', () => {
+  for (const status of ['In Progress', 'Human Review']) {
+    for (const type of ['Issue', 'PullRequest']) {
+      const card = issue(1, { type, state: 'CLOSED', stateReason: 'NOT_PLANNED', status });
+      const result = buildFindings([card], [], [], options, NOW);
+      assert.equal(result.findings.closedInActive.length, 1);
+      assert.equal(result.driftItemCount, 1);
+      assert.equal(result.findings.mergedNotDone.length, 0);
+      assert.match(result.findings.closedInActive[0].reason, /review its disposition/i);
+    }
+  }
+  const { run, board } = fixture();
+  board.splice(1);
+  board[0].fieldValues = page([{name: 'In Progress', field: {id:'STATUS',name:'Status'}}]);
+  board[0].content = { ...board[0].content, state:'CLOSED', stateReason:'NOT_PLANNED', subIssues:page([]) };
+  const report = audit(options, (args) => args.some((arg) => arg.includes('/issue-field-values?'))
+    ? [[{ issue_field_id:9, value:1, single_select_option:{id:1,name:'High'} }]] : run(args));
+  assert.equal(report.findings.priorityHygiene.length, 0);
+  assert.equal(report.driftItemCount, 1);
+  assert.equal(report.verdict, '1 distinct item(s) have drift.');
+  assert.match(renderReport(report), /closedInActive: 1/);
+});
+
+test('old-created PR merged recently survives ordered window boundary; stale merge updated recently is excluded', () => {
+  const history = Array.from({length:350}, (_, index) => ({id:`H${index}`,number:index,title:`PR${index}`,
+    createdAt:OLD, updatedAt:index < 105 ? RECENT : OLD,
+    mergedAt:index < 105 && index !== 0 ? RECENT : OLD,
+    closingIssuesReferences:page([])}));
+  const issues = Array.from({length:350}, (_,index)=>({id:`I${index}`,number:index,createdAt:index < 205 ? RECENT : OLD}));
+  const requests = [];
+  const reader = createReader((args) => {
+    const query = args.find((arg)=>arg.startsWith('query='));
+    if (!query) return [[]];
+    const after = args.find((arg)=>arg.startsWith('after='))?.slice(6);
+    const field = query.includes('pullRequests(') ? 'pullRequests' : 'issues';
+    assert.match(query, field === 'pullRequests' ? /field: UPDATED_AT, direction: DESC/ : /field: CREATED_AT, direction: DESC/);
+    requests.push([field,Number(after ?? 0)]);
+    return {data:{repository:{[field]:page(field === 'pullRequests' ? history : issues,after)}}};
+  });
+  const activity = fetchRepoActivity(reader,'org/repo',14,NOW);
+  assert.equal(activity.mergedPrs.length,104);
+  assert.ok(activity.mergedPrs.some((pr)=>pr.number===104), 'old-created PR merged recently is included across pages');
+  assert.ok(!activity.mergedPrs.some((pr)=>pr.number===0), 'updated old merge is not new shipment');
+  assert.equal(activity.openIssues.length,205);
+  assert.deepEqual(requests,[['pullRequests',0],['pullRequests',100],['issues',0],['issues',100],['issues',200]]);
+  assert.equal(reader.coverage.complete,true);
+  const stopped = reader.coverage.connections.filter((entry)=>entry.termination==='window_boundary');
+  assert.equal(stopped.length,2);
+  assert.ok(stopped.every((entry)=>entry.scope==='activity_window' && entry.fetched < entry.total));
+});
+
+test('window boundary is inclusive and untrustworthy ordering prevents an early stop', () => {
+  const reader=createReader();
+  const since=NOW-14*86400000;
+  const history=[{id:'a',createdAt:new Date(since).toISOString()},
+    {id:'b',createdAt:new Date(since).toISOString()},
+    {id:'c',createdAt:OLD}];
+  let calls=0;
+  reader.connection('inclusive',(after)=> {
+    const index=Number(after ?? 0); calls++;
+    return {nodes:[history[index]],totalCount:3,pageInfo:{hasNextPage:index<2,endCursor:String(index+1)}};
+  },undefined,{field:'createdAt',since});
+  assert.equal(calls,3, 'equal boundary dates cannot stop pagination');
+  const unordered=createReader();
+  let secondRead=false;
+  unordered.connection('unordered',(after)=>{
+    if (!after) return {nodes:[{id:'a',createdAt:OLD},{id:'b',createdAt:RECENT},{id:'c',createdAt:OLD}],
+      totalCount:4,pageInfo:{hasNextPage:true,endCursor:'next'}};
+    secondRead=true;
+    return {nodes:[{id:'d',createdAt:RECENT}],totalCount:4,pageInfo:{hasNextPage:false}};
+  },undefined,{field:'createdAt',since});
+  assert.equal(secondRead,true);
+  assert.equal(unordered.coverage.complete,false);
+  assert.equal(unordered.coverage.connections[0].termination,'exhausted');
+});
+
+test('status map needs its own value rather than consuming the following option', () => {
+  for (const tail of [[],['--json']]) {
+    assert.throws(()=>parseArgs(['--owner','org','--project','1','--status-map',...tail]),/Missing value for --status-map/);
+  }
 });

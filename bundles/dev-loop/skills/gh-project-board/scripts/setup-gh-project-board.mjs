@@ -139,7 +139,7 @@ function fail(message) {
   process.exit(1);
 }
 
-function gh(args) {
+function gh(args, { throwOnError = false } = {}) {
   try {
     return execFileSync('gh', args, {
       encoding: 'utf8',
@@ -148,12 +148,14 @@ function gh(args) {
   } catch (error) {
     const stderr = error.stderr ? String(error.stderr).trim() : '';
     const detail = stderr || error.message;
-    fail(`gh ${args.join(' ')} failed:\n${detail}`);
+    const message = `gh ${args.join(' ')} failed:\n${detail}`;
+    if (throwOnError) throw new Error(message);
+    fail(message);
   }
 }
 
-function ghJson(args) {
-  const output = gh(args);
+function ghJson(args, options) {
+  const output = gh(args, options);
   return output ? JSON.parse(output) : {};
 }
 
@@ -436,14 +438,14 @@ function formatNames(options) {
 }
 
 function nativePriority(owner) {
-  const identity = ghJson(['api', '--method', 'GET', `users/${owner}`]);
+  const identity = ghJson(['api', '--method', 'GET', `users/${owner}`], { throwOnError: true });
   if (identity.type !== 'Organization') return null;
   // A failed discovery stops before writes; it does not justify a duplicate field.
   const pages = ghJson(['api', '--method', 'GET', '--paginate', '--slurp',
-    `orgs/${owner}/issue-fields`, '-H', 'X-GitHub-Api-Version: 2026-03-10']);
+    `orgs/${owner}/issue-fields`, '-H', 'X-GitHub-Api-Version: 2026-03-10'], { throwOnError: true });
   const fields = pages.flat().filter((field) => field.name === 'Priority');
   if (fields.length > 1 || (fields[0] && fields[0].data_type !== 'single_select')) {
-    fail('Native Priority is ambiguous or not single-select; inspect organization schema before applying.');
+    throw new Error('Native Priority is ambiguous or not single-select; inspect organization schema before applying.');
   }
   return fields[0] ?? null;
 }
@@ -458,9 +460,15 @@ function normalizeProject(owner, number, options) {
     options.statusOptions,
     options.exact
   );
-  const native = [...new Set([owner, ...project.issueOwners])]
-    .map((issueOwner) => nativePriority(issueOwner)).find(Boolean);
-  const priorityPlan = native ? null : buildPlan(
+  let native;
+  let priorityError;
+  try {
+    native = [...new Set([owner, ...project.issueOwners])]
+      .map((issueOwner) => nativePriority(issueOwner)).find(Boolean);
+  } catch (error) {
+    priorityError = error.message;
+  }
+  const priorityPlan = native || priorityError ? null : buildPlan(
     fieldByName(fields, 'Priority'),
     'Priority',
     options.priorityOptions,
@@ -488,6 +496,17 @@ function normalizeProject(owner, number, options) {
     process.stdout.write(
       '  warning: field normalization cannot create a board view through the public GitHub Projects API\n'
     );
+  }
+
+  if (priorityError) {
+    process.stdout.write(`  WARNING: Priority discovery unavailable; its plan is withheld. ${priorityError}\n`);
+    if (options.apply) {
+      process.stdout.write('  BLOCKED: no changes applied while Priority ownership is unresolved.\n');
+      process.exitCode = 2;
+    } else {
+      process.stdout.write('  INCOMPLETE audit: Status/view evidence above remains available.\n');
+    }
+    return;
   }
 
   if (blocked.length > 0) {

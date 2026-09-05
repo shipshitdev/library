@@ -149,8 +149,9 @@ should be normalized to the five-column model.
 Before normalization, the script reads the board owner and issue repository
 owners represented by the board. For each organization, it reads
 `GET /orgs/{org}/issue-fields`. It skips project Priority normalization whenever
-native Priority exists. An unavailable/ambiguous schema stops before writes;
-a 404 is not proof that native Priority does not exist. Status stays project-scoped.
+native Priority exists. An unavailable/ambiguous schema withholds the Priority
+plan and marks the read-only audit incomplete while preserving available Status
+and view evidence. Apply fails before writes. A 404 is not proof that native Priority does not exist. Status stays project-scoped.
 
 Native field configuration affects every repository in the organization. It is
 outside this project-normalization contract; report differences for a separately

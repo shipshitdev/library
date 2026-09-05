@@ -88,6 +88,8 @@ Ordered by severity — the earlier the check, the more the drift misleads.
    Report CLOSED issues and unmerged CLOSED PRs separately as closed without
    merge evidence. Cancellation, duplication, and completion without a PR are
    not proof of shipment and do not automatically justify reopening a card.
+   Closed work left in In Progress or Review is separate active-lane drift;
+   review its disposition without automatically recommending Done.
 3. **Stale In Progress.** In Progress with no open PR and no movement in N days
    (default 7). Claimed-but-abandoned work blocks the lane.
 4. **Human Review starvation.** A PR sitting in Human Review that is approved
@@ -226,9 +228,14 @@ schema or inaccessible native fields produces an INCOMPLETE verdict.
   a yes to "unclaim stale items".
 - Paginate board items, fields, sub-issues, closing references, repository
   activity, milestones, and focus lists. Repository connections avoid Search's
-  1,000-result ceiling. Every report includes fetched/page counts in text and
-  JSON; permission gaps prevent a trustworthy verdict. API reads are not an
-  atomic snapshot; count mismatches invalidate completeness.
+  1,000-result ceiling. Read merged PRs by descending updated date and open
+  issues by descending creation date, stopping only after an observed date
+  strictly predates the activity window. A recently merged old PR remains in
+  scope because its merge updates it. Filter actual merges by merged date.
+  Record deliberate window boundaries separately from exhausted history and
+  incomplete retrieval. Text summarizes collection/page counts; JSON preserves
+  each connection's counts, historical total, and boundary. API reads are not an
+  atomic snapshot; invalid ordering or duplicate activity IDs invalidate trust.
 - Resolve issue→PR through `closedByPullRequestsReferences` and PR→issue
   through `closingIssuesReferences`. Body keywords are not formal-link proof.
 - Discover native fields per issue repository organization, not just board

@@ -25,15 +25,23 @@ class Refused(RuntimeError):
     """Evidence is missing, changed, or unsafe."""
 
 
+FAILURES = (Refused, OSError, ValueError, KeyError, TypeError)
+
+
 class Repository:
     def __init__(self, root: Path):
         self.root = root.resolve()
+        self._trunk_patches: dict[str, set[str]] = {}
 
     def run(self, *args: str, input_text: str | None = None,
             accepted: tuple[int, ...] = (0,)) -> subprocess.CompletedProcess:
         env = dict(os.environ, GIT_OPTIONAL_LOCKS="0", GIT_NO_REPLACE_OBJECTS="1")
-        result = subprocess.run(args, cwd=self.root, text=True, input=input_text,
-                                capture_output=True, env=env, check=False)
+        payload = input_text.encode("utf-8", "surrogateescape") if input_text is not None else None
+        raw = subprocess.run(args, cwd=self.root, input=payload,
+                             capture_output=True, env=env, check=False)
+        result = subprocess.CompletedProcess(args, raw.returncode,
+            raw.stdout.decode("utf-8", "surrogateescape"),
+            raw.stderr.decode("utf-8", "surrogateescape"))
         if result.returncode not in accepted:
             raise Refused(f"{args[0]} {args[1]} failed ({result.returncode}); no proof")
         return result
@@ -126,22 +134,47 @@ class Repository:
                 "trunk": trunk, "trunk_oid": remote_oid, "current": current,
                 "head": self.oid("HEAD")}
 
+    def assert_no_operations(self, worktrees: list[dict]) -> None:
+        markers = ("rebase-merge", "rebase-apply", "MERGE_HEAD", "CHERRY_PICK_HEAD",
+                   "REVERT_HEAD", "sequencer", "BISECT_LOG")
+        for record in worktrees:
+            git_dir = Path(self.git("-C", record["worktree"], "rev-parse", "--absolute-git-dir"))
+            if any((git_dir / marker).exists() for marker in markers):
+                raise Refused("active worktree operation; preserve cleanup candidates until it finishes")
+
     def pull_requests(self, repository: str, branch: str) -> list[dict]:
         owner = repository.split("/")[0]
-        pages = json.loads(self.run("gh", "api", "--method", "GET", "--paginate", "--slurp",
-                                    f"repos/{repository}/pulls", "-f", "state=all", "-f",
-                                    f"head={owner}:{branch}", "-f", "per_page=100").stdout)
         records = []
-        for page in pages:
-            for pr in page:
-                head = pr.get("head") or {}
-                head_repo = head.get("repo") or {}
-                base_repo = (pr.get("base") or {}).get("repo") or {}
-                if (head_repo.get("full_name", "").lower() == repository.lower()
-                        and base_repo.get("full_name", "").lower() == repository.lower()
-                        and head.get("ref") == branch):
-                    records.append(pr)
+        for field, value, state in (("head", f"{owner}:{branch}", "all"), ("base", branch, "open")):
+            pages = json.loads(self.run("gh", "api", "--method", "GET", "--paginate", "--slurp",
+                                        f"repos/{repository}/pulls", "-f", f"state={state}", "-f",
+                                        f"{field}={value}", "-f", "per_page=100").stdout)
+            for page in pages:
+                for pr in page:
+                    head = pr.get("head") or {}
+                    base = pr.get("base") or {}
+                    head_repo = head.get("repo") or {}
+                    base_repo = base.get("repo") or {}
+                    same_head = head_repo.get("full_name", "").lower() == repository.lower()
+                    same_base = base_repo.get("full_name", "").lower() == repository.lower()
+                    if field == "head" and same_head and same_base and head.get("ref") == branch:
+                        records.append(pr)
+                    elif field == "base" and same_base and base.get("ref") == branch and pr.get("state") == "open":
+                        # An open PR depends on its base even when its head is a fork.
+                        records.append(pr)
         return records
+
+    def trunk_patches(self, trunk: str) -> set[str]:
+        if trunk not in self._trunk_patches:
+            patches = set()
+            for commit in self.git("rev-list", "--max-count=500", trunk).splitlines():
+                parents = self.git("rev-list", "--parents", "-n", "1", commit).split()[1:]
+                if len(parents) == 1:
+                    patch = self.patch(parents[0], commit)
+                    if patch:
+                        patches.add(patch)
+            self._trunk_patches[trunk] = patches
+        return self._trunk_patches[trunk]
 
     def proof(self, oid: str, trunk: str, prs: list[dict]) -> dict:
         if any(pr.get("state") == "open" for pr in prs):
@@ -149,23 +182,6 @@ class Repository:
         ahead = self.git("rev-list", trunk + ".." + oid).splitlines()
         if self.ancestor(oid, trunk):
             return {"kind": "ancestor", "ahead": ahead}
-        # Every non-upstream commit is accounted for. Merge commits and empty
-        # patches are deliberately not silently omitted as they are by git cherry.
-        upstream = self.git("rev-list", "--max-count=500", trunk).splitlines()
-        upstream_patches = set()
-        for commit in upstream:
-            parents = self.git("rev-list", "--parents", "-n", "1", commit).split()[1:]
-            if len(parents) == 1:
-                patch = self.patch(parents[0], commit)
-                if patch:
-                    upstream_patches.add(patch)
-        covered = []
-        for commit in ahead:
-            parents = self.git("rev-list", "--parents", "-n", "1", commit).split()[1:]
-            if len(parents) == 1 and self.patch(parents[0], commit) in upstream_patches:
-                covered.append(commit)
-        if ahead and covered == ahead and self.final_paths_match(oid, trunk):
-            return {"kind": "every-commit-patch", "ahead": ahead}
         # Squash proof binds the entire candidate history to the exact merged
         # PR head, then compares its cumulative content with the landed commit.
         for pr in prs:
@@ -182,12 +198,68 @@ class Repository:
             if candidate_patch and candidate_patch == self.patch(parents[0], merge):
                 return {"kind": "exact-pr-head-squash", "pr": pr["number"],
                         "head": oid, "merge": merge, "ahead": ahead}
+        # Every non-upstream commit is accounted for. Merge commits and empty
+        # patches are deliberately not silently omitted as they are by git cherry.
+        upstream_patches = self.trunk_patches(trunk)
+        covered = []
+        for commit in ahead:
+            parents = self.git("rev-list", "--parents", "-n", "1", commit).split()[1:]
+            if len(parents) == 1 and self.patch(parents[0], commit) in upstream_patches:
+                covered.append(commit)
+        if ahead and covered == ahead and self.final_paths_match(oid, trunk):
+            return {"kind": "every-commit-patch", "ahead": ahead}
         raise Refused("candidate history not proven in trunk")
+
+    def evaluate(self, candidate: dict, context: dict, scope: str, *,
+                 worktrees: list[dict] | None = None, heads: dict | None = None,
+                 pr_cache: dict | None = None) -> dict:
+        kind, ref, oid = candidate["kind"], candidate["ref"], candidate["oid"]
+        if kind not in SCOPES[scope]:
+            raise Refused("candidate outside authorized resource scope")
+        if ref and not ref.startswith("refs/heads/"):
+            raise Refused("candidate is not a branch ref")
+        branch = ref.removeprefix("refs/heads/")
+        protected = {"main", "master", "HEAD", context["trunk"],
+                     context["current"].removeprefix("refs/heads/")}
+        if branch and branch in protected:
+            raise Refused("protected branch")
+        worktrees = self.worktrees() if worktrees is None else worktrees
+        result = {"kind": kind, "ref": ref, "oid": oid}
+        if kind == "worktree":
+            records = [wt for wt in worktrees if wt["worktree"] == candidate["path"]]
+            if (len(records) != 1 or records[0] == worktrees[0]
+                    or Path(candidate["path"]).resolve() == self.root):
+                raise Refused("missing, main, or caller worktree")
+            result.update(self.worktree_state(records[0]))
+            if any(result[key] != candidate[key] for key in ("path", "oid", "ref")):
+                raise Refused("worktree changed since discovery")
+        elif kind == "local":
+            self.git("check-ref-format", ref)
+            if self.oid(ref) != oid:
+                raise Refused("local ref changed since discovery")
+            if any(wt.get("branch") == ref for wt in worktrees):
+                raise Refused("branch checked out; remove worktree, then replan")
+        elif kind == "remote":
+            self.git("check-ref-format", ref)
+            heads = self.remote_heads() if heads is None else heads
+            if heads.get(ref) != oid:
+                raise Refused("remote ref changed since discovery")
+        if self.oid(oid) != oid:
+            raise Refused("candidate must contain an immutable object ID")
+        if branch:
+            if pr_cache is not None:
+                if branch not in pr_cache:
+                    pr_cache[branch] = self.pull_requests(context["repository"], branch)
+                prs = pr_cache[branch]
+            else:
+                prs = self.pull_requests(context["repository"], branch)
+        else:
+            prs = []
+        result["proof"] = self.proof(oid, context["trunk_oid"], prs)
+        return result
 
     def plan(self, scope: str, trunk: str | None = None) -> dict:
         context = self.context(trunk)
-        protected = {"main", "master", "HEAD", context["trunk"],
-                     context["current"].removeprefix("refs/heads/")}
         worktrees = self.worktrees()
         remote_heads = self.remote_heads()
         candidates = []
@@ -197,8 +269,7 @@ class Repository:
                 if Path(path).resolve() == self.root or record == worktrees[0]:
                     continue
                 candidates.append({"kind": "worktree", "path": path,
-                                   "ref": record.get("branch", ""), "oid": record.get("HEAD", ""),
-                                   "record": record})
+                                   "ref": record.get("branch", ""), "oid": record.get("HEAD", "")})
         if "local" in SCOPES[scope]:
             for line in self.git("for-each-ref", "--format=%(refname) %(objectname)", "refs/heads/").splitlines():
                 ref, oid = line.split(" ")
@@ -206,49 +277,47 @@ class Repository:
         if "remote" in SCOPES[scope]:
             for ref, oid in remote_heads.items():
                 candidates.append({"kind": "remote", "ref": ref, "oid": oid})
+        operation_error = None
+        try:
+            self.assert_no_operations(worktrees)
+        except FAILURES as error:
+            operation_error = str(error)
         actions, skipped, pr_cache = [], [], {}
         for candidate in candidates:
-            record = candidate.pop("record", None)
-            branch = candidate["ref"].removeprefix("refs/heads/")
             try:
-                if branch in protected:
-                    raise Refused("protected branch")
-                if candidate["kind"] == "worktree":
-                    candidate.update(self.worktree_state(record))
-                elif candidate["kind"] == "local" and any(
-                    wt.get("branch") == candidate["ref"] for wt in worktrees
-                ):
-                    raise Refused("branch checked out; remove worktree, then replan")
-                self.oid(candidate["oid"])
-                if branch and branch not in pr_cache:
-                    pr_cache[branch] = self.pull_requests(context["repository"], branch)
-                candidate["proof"] = self.proof(candidate["oid"], context["trunk_oid"], pr_cache.get(branch, []))
-                actions.append(candidate)
-            except Refused as error:
+                if operation_error:
+                    raise Refused(operation_error)
+                actions.append(self.evaluate(candidate, context, scope, worktrees=worktrees,
+                                             heads=remote_heads, pr_cache=pr_cache))
+            except FAILURES as error:
                 skipped.append({**candidate, "reason": str(error)})
         return {"version": 1, "scope": scope, "context": context, "actions": actions, "skipped": skipped}
 
     def revalidate(self, context: dict, action: dict) -> None:
         if self.context(context["trunk"]) != context:
             raise Refused("repository changed immediately before deletion")
+        worktrees = self.worktrees()
+        self.assert_no_operations(worktrees)
         if action["kind"] == "remote":
             if self.remote_heads().get(action["ref"]) != action["oid"]:
                 raise Refused("remote ref changed immediately before deletion")
         elif action["kind"] == "local":
             if self.oid(action["ref"]) != action["oid"]:
                 raise Refused("local ref changed immediately before deletion")
-            if any(wt.get("branch") == action["ref"] for wt in self.worktrees()):
+            if any(wt.get("branch") == action["ref"] for wt in worktrees):
                 raise Refused("branch checked out immediately before deletion")
         elif action["kind"] == "worktree":
-            records = [wt for wt in self.worktrees() if wt["worktree"] == action["path"]]
+            records = [wt for wt in worktrees if wt["worktree"] == action["path"]]
             if len(records) != 1:
                 raise Refused("worktree registration changed immediately before deletion")
             state = self.worktree_state(records[0])
             if any(state[key] != action[key] for key in ("path", "oid", "ref")):
                 raise Refused("worktree HEAD changed immediately before deletion")
 
-    def apply(self, plan: dict, scope: str, *, exclusive_worktrees: bool = False) -> list[dict]:
-        if plan.get("version") != 1 or plan.get("scope") != scope:
+    def apply(self, plan: dict, scope: str, *, exclusive_worktrees: bool = False) -> dict:
+        if (not isinstance(plan, dict) or plan.get("version") != 1 or plan.get("scope") != scope
+                or not isinstance(plan.get("actions"), list) or not isinstance(plan.get("skipped"), list)
+                or not all(isinstance(item, dict) for item in plan["actions"] + plan["skipped"])):
             raise Refused("plan format or authorized scope differs")
         if self.context(plan["context"]["trunk"]) != plan["context"]:
             raise Refused("repository, trunk, or current checkout changed; replan")
@@ -258,9 +327,9 @@ class Repository:
                 if action["kind"] == "worktree" and not exclusive_worktrees:
                     raise Refused("exclusive worktree access not established")
                 # Recompute proof and state immediately before each mutation.
-                fresh = self.plan(scope, plan["context"]["trunk"])
-                if fresh["context"] != plan["context"] or action not in fresh["actions"]:
-                    raise Refused("candidate or repository changed; replan")
+                fresh = self.evaluate(action, plan["context"], scope)
+                if fresh != action:
+                    raise Refused("candidate evidence differs from the reviewed plan")
                 self.revalidate(plan["context"], action)
                 if action["kind"] == "local":
                     # CAS prevents deleting newer commits; never branch -D.
@@ -273,9 +342,9 @@ class Repository:
                 else:
                     raise Refused("unknown action")
                 results.append({**action, "result": "removed"})
-            except Refused as error:
+            except FAILURES as error:
                 results.append({**action, "result": "skipped", "reason": str(error)})
-        return results
+        return {**plan, "actions": results}
 
 
 def main() -> int:
@@ -290,7 +359,7 @@ def main() -> int:
                         help="Assert exclusive access to candidate worktrees before removal")
     args = parser.parse_args()
     try:
-        for executable in ("git", "gh", "jq"):
+        for executable in ("git", "gh"):
             if not shutil.which(executable):
                 raise Refused(f"missing prerequisite: {executable}")
         repo = Repository(args.root)
@@ -302,8 +371,8 @@ def main() -> int:
         else:
             result = repo.plan(args.scope, args.trunk)
         print(json.dumps(result, indent=2))
-        return 0
-    except (Refused, OSError, ValueError, KeyError, TypeError) as error:
+        return int(args.mode == "prune" and any(action["result"] == "skipped" for action in result["actions"]))
+    except FAILURES as error:
         print(f"Cleanup stopped: {error}", file=sys.stderr)
         return 1
 

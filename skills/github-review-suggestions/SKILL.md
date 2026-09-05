@@ -58,6 +58,10 @@ Delegates To:
 
 ## Workflow
 
+Resolve `<skill-dir>` to this skill's installed directory through the active
+catalog before running a helper. Do not assume a repository checkout or a
+provider-specific environment variable.
+
 1. Verify context:
 
    ```bash
@@ -89,7 +93,7 @@ Delegates To:
 4. Validate the target line is in the PR diff:
 
    ```bash
-   node ${CLAUDE_SKILL_DIR}/scripts/diff-line-position.mjs \
+   node <skill-dir>/scripts/diff-line-position.mjs \
      --diff "$REPO_TMP/pr.diff" \
      --path src/example.ts \
      --line 42

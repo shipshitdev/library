@@ -160,12 +160,15 @@ class SkillCompositionTests(unittest.TestCase):
         self.assertEqual(composition.findings(ROOT / "skills/pstack", ROOT / "skills"), [])
 
     def test_board_packages_resolve_when_installed_outside_the_repository(self) -> None:
-        for name in ("board-sync", "project-board"):
+        for name in ("board-sync", "project-board", "github-inbox", "github-review-suggestions"):
             shutil.copytree(ROOT / "skills" / name, self.skills / name)
         for name, helper in (("board-sync", "github-board-report.mjs"),
-                             ("project-board", "setup-github-board.mjs")):
+                             ("project-board", "setup-github-board.mjs"),
+                             ("github-inbox", "github-inbox-report.mjs"),
+                             ("github-review-suggestions", "diff-line-position.mjs")):
             installed = self.skills / name
-            self.assertEqual(composition.findings(installed, self.skills), [])
+            if name in ("board-sync", "project-board"):
+                self.assertEqual(composition.findings(installed, self.skills), [])
             result = subprocess.run(["node", str(installed / "scripts" / helper), "--help"],
                                     cwd=self.skills, capture_output=True, text=True, check=False)
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)

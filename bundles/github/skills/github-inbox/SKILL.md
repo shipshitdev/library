@@ -59,6 +59,10 @@ Delegates To:
 
 ## Workflow
 
+Resolve `<skill-dir>` to this skill's installed directory through the active
+catalog before running a helper. Do not assume a repository checkout or a
+provider-specific environment variable.
+
 1. Verify auth:
 
    ```bash
@@ -69,16 +73,16 @@ Delegates To:
 2. Generate the inbox:
 
    ```bash
-   node ${CLAUDE_SKILL_DIR}/scripts/github-inbox-report.mjs
+   node <skill-dir>/scripts/github-inbox-report.mjs
    ```
 
    Common filters:
 
    ```bash
-   node ${CLAUDE_SKILL_DIR}/scripts/github-inbox-report.mjs --owner shipshitdev
-   node ${CLAUDE_SKILL_DIR}/scripts/github-inbox-report.mjs --repo shipshitdev/shipcode
-   node ${CLAUDE_SKILL_DIR}/scripts/github-inbox-report.mjs --project shipshitdev/1
-   node ${CLAUDE_SKILL_DIR}/scripts/github-inbox-report.mjs --limit 50
+   node <skill-dir>/scripts/github-inbox-report.mjs --owner shipshitdev
+   node <skill-dir>/scripts/github-inbox-report.mjs --repo shipshitdev/shipcode
+   node <skill-dir>/scripts/github-inbox-report.mjs --project shipshitdev/1
+   node <skill-dir>/scripts/github-inbox-report.mjs --limit 50
    ```
 
 3. Triage order:

@@ -2,10 +2,9 @@
 name: gh-project-board
 description: "Configure GitHub Projects v2 kanban boards with Ship Shit Dev defaults: the Backlog / In Progress / Human Review / Done / Deferred Status columns (the dev-loop board-as-truth model) and P0-P3 Priority. Use when setting up, copying, auditing, or normalizing GitHub project boards."
 compatibility: Requires GitHub CLI gh with project scope. The bundled normalizer script runs with Node.js or Bun.
-disable-model-invocation: true
 allowed-tools: Bash(gh *) Bash(node *) Bash(bun *)
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
   tags: "github, projects, kanban, triage"
 ---
 
@@ -61,8 +60,11 @@ Use GitHub Projects v2.
   the dev-loop board-as-truth model. `In Progress` holds the running AI loop
   (its `loop:planning/executing/testing/shipping` sub-phases are labels, not
   columns); `Human Review` is the human PR-review gate
-- Priority field: `Priority`
-- Priority options: `P0 🔥`, `P1`, `P2`, `P3`
+- Priority source: organization-native Issue Field when present; project-local
+  single-select only when the organization has no native Priority (or a user
+  project uses project-local fields)
+- Project-local defaults: `P0 🔥`, `P1`, `P2`, `P3`. Native Priority keeps its
+  organization schema and option names; do not create a duplicate project field.
 
 The Ship Shit Dev reference board is
 `https://github.com/orgs/shipshitdev/projects/1`. `Human Review` is the human gate
@@ -141,6 +143,28 @@ should be normalized to the five-column model.
      --all-open \
      --apply
    ```
+
+## Native Priority discovery
+
+Before normalization, the script reads the board owner and issue repository
+owners represented by the board. For each organization, it reads
+`GET /orgs/{org}/issue-fields`. It skips project Priority normalization whenever
+native Priority exists. An unavailable/ambiguous schema withholds the Priority
+plan and marks the read-only audit incomplete while preserving available Status
+and view evidence. Apply fails before writes. A 404 is not proof that native Priority does not exist. Status stays project-scoped.
+
+Native field configuration affects every repository in the organization. It is
+outside this project-normalization contract; report differences for a separately
+scoped organization change. On mixed-organization boards, inspect the linked
+issue's repository organization before routing value changes. The reconciliation
+report resolves that source per issue. A copied reference board can contain an
+old project Priority; leave it intact pending an explicitly reviewed migration,
+and use the native issue value as authoritative.
+
+For native Priority value changes, resolve its numeric REST field ID and exact
+option name, obtain approval, and use the additive POST endpoint documented in
+[Issue field values](https://docs.github.com/en/rest/issues/issue-field-values).
+Do not use project item field mutations for an organization Issue Field.
 
 ## Normalizer Options
 

@@ -1,6 +1,6 @@
 {
   "name": "gh-board-sync",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Reconcile a GitHub Projects v2 board against real repository state and report every drifted item.",
   "author": {
     "name": "Ship Shit Dev",

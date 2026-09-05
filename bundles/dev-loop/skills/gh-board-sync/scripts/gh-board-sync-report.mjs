@@ -1,643 +1,424 @@
 #!/usr/bin/env node
 
-// Read-only board-truth reconciliation report for a GitHub Projects v2 board.
-// Collects the board, the repos it references, and recent merge activity, then
-// buckets drift into the eight gh-board-sync checks. Never mutates anything —
-// applying fixes is the skill's job, behind its own confirmation gates.
-
 import { execFileSync } from 'node:child_process';
+import { pathToFileURL } from 'node:url';
 
-const DONE_STATUSES = new Set(['done']);
-const IN_PROGRESS_STATUSES = new Set(['in progress']);
-const HUMAN_REVIEW_STATUSES = new Set(['human review']);
-const CLOSING_KEYWORD_PATTERN =
-  /\b(?:close[sd]?|fix(?:e[sd])?|resolve[sd]?)\b:?\s+(?:([\w.-]+\/[\w.-]+)#(\d+)|#(\d+))/gi;
+const PAGE = 'pageInfo { hasNextPage endCursor } totalCount';
+const FIELDS = `... on ProjectV2ItemFieldSingleSelectValue {
+  name field { ... on ProjectV2SingleSelectField { id name options { id name } } }
+}`;
+const PR_LINK = 'id number state merged mergedAt url repository { nameWithOwner }';
+const ISSUE_LINK = 'id number state url repository { nameWithOwner }';
+const CONTENT = `__typename
+  ... on DraftIssue { title }
+  ... on Issue {
+    id number title state stateReason url updatedAt repository { nameWithOwner }
+    subIssues(first: 100) { ${PAGE} nodes { ${ISSUE_LINK} } }
+    closedByPullRequestsReferences(first: 100, includeClosedPrs: true) {
+      ${PAGE} nodes { ${PR_LINK} }
+    }
+  }
+  ... on PullRequest {
+    id number title state url updatedAt merged mergedAt isDraft reviewDecision
+    repository { nameWithOwner }
+    commits(last: 1) { nodes { commit { statusCheckRollup { state } } } }
+  }`;
 
-const ITEMS_QUERY = `
-query($id: ID!, $after: String) {
-  node(id: $id) {
-    ... on ProjectV2 {
-      items(first: 100, after: $after) {
-        pageInfo { hasNextPage endCursor }
-        nodes {
-          id
-          fieldValues(first: 20) {
-            nodes {
-              ... on ProjectV2ItemFieldSingleSelectValue {
-                name
-                field { ... on ProjectV2SingleSelectField { name } }
-              }
-            }
+const DEFAULT_STATUS_MAP = { backlog: ['Backlog'], inProgress: ['In Progress'],
+  review: ['Human Review'], done: ['Done'], deferred: ['Deferred'] };
+
+export function parseStatusMap(value) {
+  const input = JSON.parse(value);
+  if (!input || Array.isArray(input) || typeof input !== 'object') throw new Error('Status map must be an object.');
+  const mapping = { ...DEFAULT_STATUS_MAP, ...input };
+  const seen = new Set();
+  for (const [key, names] of Object.entries(mapping)) {
+    if (!(Object.hasOwn(DEFAULT_STATUS_MAP, key)) || !Array.isArray(names) || names.some((name) => typeof name !== 'string' || !name.trim())) {
+      throw new Error(`Invalid status semantic mapping: ${key}`);
+    }
+    for (const name of names) {
+      const normalized = name.trim().toLowerCase();
+      if (seen.has(normalized)) throw new Error(`Ambiguous status: ${name}`);
+      seen.add(normalized);
+    }
+  }
+  return mapping;
+}
+
+function statusSemantic(status, mapping = DEFAULT_STATUS_MAP) {
+  return Object.entries(mapping).find(([, names]) => names.some((name) => name.trim().toLowerCase() === status.trim().toLowerCase()))?.[0] ?? 'unknown';
+}
+
+export function ghJson(args) {
+  return JSON.parse(execFileSync('gh', args, {
+    encoding: 'utf8', maxBuffer: 64 * 1024 * 1024,
+    stdio: ['ignore', 'pipe', 'pipe'],
+  }));
+}
+
+export function createReader(run = ghJson) {
+  const coverage = { complete: true, warnings: [], connections: [], archivedHistory: '', prioritySources: {} };
+  const warn = (message) => {
+    coverage.complete = false;
+    if (!coverage.warnings.includes(message)) coverage.warnings.push(message);
+  };
+  const graphql = (query, variables = {}) => {
+    const args = ['api', 'graphql', '-f', `query=${query}`];
+    for (const [key, value] of Object.entries(variables)) {
+      if (value !== null && value !== undefined) args.push('-F', `${key}=${value}`);
+    }
+    const result = run(args);
+    if (result.errors?.length) throw new Error(JSON.stringify(result.errors));
+    return result.data;
+  };
+  const rest = (endpoint) => run(['api', '--method', 'GET', endpoint,
+    '-H', 'X-GitHub-Api-Version: 2026-03-10']);
+  const restPages = (endpoint) => {
+    const pages = run(['api', '--method', 'GET', '--paginate', '--slurp', endpoint,
+      '-H', 'X-GitHub-Api-Version: 2026-03-10']);
+    if (!Array.isArray(pages) || pages.some((page) => !Array.isArray(page))) {
+      throw new Error(`Unexpected list response: ${endpoint}`);
+    }
+    const nodes = pages.flat();
+    coverage.connections.push({ name: endpoint, fetched: nodes.length, pages: pages.length });
+    return nodes;
+  };
+  const connection = (name, fetch, initial, window) => {
+    const nodes = [];
+    let after = null;
+    let page = initial;
+    let pages = 0;
+    const cursors = new Set();
+    let termination = 'exhausted';
+    let previousDate = Number.POSITIVE_INFINITY;
+    let ordered = true;
+    const ids = new Set();
+    do {
+      page ??= fetch(after);
+      if (!page?.nodes || !page.pageInfo) throw new Error(`Missing connection: ${name}`);
+      if (page.nodes.some((node) => !node)) warn(`${name}: inaccessible nodes in response.`);
+      nodes.push(...page.nodes.filter(Boolean));
+      pages += 1;
+      if (window) {
+        for (const node of page.nodes.filter(Boolean)) {
+          const date = Date.parse(node[window.field]);
+          if (!Number.isFinite(date) || date > previousDate) {
+            ordered = false;
+            warn(`${name}: invalid or unordered ${window.field}; window boundary cannot establish completeness.`);
           }
-          content {
-            __typename
-            ... on DraftIssue { title }
-            ... on Issue {
-              number
-              title
-              state
-              url
-              updatedAt
-              repository { nameWithOwner }
-              milestone { title dueOn }
-              subIssues(first: 50) { nodes { number state } }
-              closedByPullRequestsReferences(first: 10, includeClosedPrs: true) {
-                nodes { number state merged mergedAt url }
-              }
-            }
-            ... on PullRequest {
-              number
-              title
-              state
-              url
-              updatedAt
-              merged
-              mergedAt
-              isDraft
-              reviewDecision
-              repository { nameWithOwner }
-              commits(last: 1) {
-                nodes { commit { statusCheckRollup { state } } }
-              }
-            }
-          }
+          previousDate = date;
+          if (!node.id || ids.has(node.id)) warn(`${name}: duplicate or missing activity ID; collection changed or is incomplete.`);
+          ids.add(node.id);
         }
       }
+      if (!page.pageInfo.hasNextPage) break;
+      if (window && ordered && previousDate < window.since) {
+        termination = 'window_boundary';
+        break;
+      }
+      after = page.pageInfo.endCursor;
+      if (!after || cursors.has(after)) throw new Error(`Invalid pagination cursor: ${name}`);
+      cursors.add(after);
+      page = null;
+    } while (true);
+    if (termination === 'exhausted' && page.totalCount !== undefined && nodes.length !== page.totalCount) {
+      warn(`${name}: fetched ${nodes.length}, expected ${page.totalCount}; changed during collection or inaccessible nodes.`);
     }
-  }
-}`;
-
-function parseArgs(argv) {
-  const args = {
-    horizon: 7,
-    json: false,
-    owner: '',
-    project: '',
-    repo: '',
-    stale: 7,
-    window: 14,
+    coverage.connections.push({ name, fetched: nodes.length, total: page.totalCount, pages,
+      termination, ...(window ? { scope: 'activity_window', orderedBy: window.field,
+        since: new Date(window.since).toISOString() } : {}) });
+    return nodes;
   };
+  const nodeConnection = (id, type, field, selection, extra = '', initial) =>
+    connection(`${id}.${field}`, (after) => graphql(`query($id: ID!, $after: String) {
+      node(id: $id) { ... on ${type} {
+        ${field}(first: 100, after: $after ${extra}) { ${PAGE} nodes { ${selection} } }
+      } }
+    }`, { id, after }).node?.[field], initial);
+  return { run, coverage, warn, graphql, rest, restPages, connection, nodeConnection };
+}
 
-  for (let index = 0; index < argv.length; index += 1) {
-    const arg = argv[index];
-    if (arg === '--owner') {
-      args.owner = readValue(argv, (index += 1), arg);
-    } else if (arg === '--project') {
-      args.project = readValue(argv, (index += 1), arg);
-    } else if (arg === '--repo') {
-      args.repo = readValue(argv, (index += 1), arg);
-    } else if (arg === '--window') {
-      args.window = Number.parseInt(readValue(argv, (index += 1), arg), 10);
-    } else if (arg === '--stale') {
-      args.stale = Number.parseInt(readValue(argv, (index += 1), arg), 10);
-    } else if (arg === '--horizon') {
-      args.horizon = Number.parseInt(readValue(argv, (index += 1), arg), 10);
-    } else if (arg === '--json') {
-      args.json = true;
-    } else if (arg === '--help' || arg === '-h') {
-      printHelp();
-      process.exit(0);
-    } else {
-      fail(`Unknown argument: ${arg}`);
+export function fetchBoardItems(reader, projectId) {
+  const schema = reader.graphql('{ __type(name: "ProjectV2") { fields { name args { name } } } }');
+  const archiveSupported = schema.__type?.fields?.find((field) => field.name === 'items')
+    ?.args.some((arg) => arg.name === 'archivedStates');
+  reader.coverage.archivedHistory = archiveSupported
+    ? 'Active and archived items currently retained in this project; removed/deleted history is unavailable.'
+    : 'Default API item scope only; archived coverage is unavailable on this schema.';
+  if (!archiveSupported) reader.warn(reader.coverage.archivedHistory);
+  const items = reader.nodeConnection(projectId, 'ProjectV2', 'items', `id isArchived
+    fieldValues(first: 100) { ${PAGE} nodes { ${FIELDS} } }
+    content { ${CONTENT} }`, archiveSupported ? ', archivedStates: [ARCHIVED, NOT_ARCHIVED]' : '');
+  for (const raw of items) {
+    raw.fieldValues.nodes = reader.nodeConnection(raw.id, 'ProjectV2Item', 'fieldValues', FIELDS, '', raw.fieldValues);
+    if (raw.content?.__typename === 'Issue') {
+      const issue = raw.content;
+      issue.subIssues.nodes = reader.nodeConnection(issue.id, 'Issue', 'subIssues', ISSUE_LINK, '', issue.subIssues);
+      issue.closedByPullRequestsReferences.nodes = reader.nodeConnection(issue.id, 'Issue',
+        'closedByPullRequestsReferences', PR_LINK, ', includeClosedPrs: true', issue.closedByPullRequestsReferences);
     }
   }
-
-  if (!args.owner || !args.project) {
-    fail('Missing required --owner <login> and --project <number>.');
-  }
-
-  if (!Number.isInteger(args.window) || args.window <= 0) {
-    fail('--window must be a positive integer (days).');
-  }
-
-  if (!Number.isInteger(args.stale) || args.stale <= 0) {
-    fail('--stale must be a positive integer (days).');
-  }
-
-  if (!Number.isInteger(args.horizon) || args.horizon <= 0) {
-    fail('--horizon must be a positive integer (days).');
-  }
-
-  return args;
-}
-
-function readValue(argv, index, flag) {
-  const value = argv[index];
-  if (!value || value.startsWith('--')) {
-    fail(`Missing value for ${flag}.`);
-  }
-  return value;
-}
-
-function printHelp() {
-  process.stdout.write(`Usage:
-  node gh-board-sync-report.mjs --owner <owner> --project <number> [options]
-
-Options:
-  --repo owner/name   Limit repo-side checks to one repository (default: every
-                      repository the board's items reference).
-  --window 14         Days of merge/issue history for the untracked-work check.
-  --stale 7           Days without movement before In Progress counts as stale.
-  --horizon 7         Sprint horizon in days for milestone readiness — which
-                      milestones come due, and what is still open in them.
-  --json              Emit the raw finding buckets as JSON.
-
-This report is read-only. It never writes to GitHub.
-`);
-}
-
-function fail(message) {
-  process.stderr.write(`${message}\n`);
-  process.exit(1);
-}
-
-function gh(args) {
-  try {
-    return execFileSync('gh', args, {
-      encoding: 'utf8',
-      maxBuffer: 32 * 1024 * 1024,
-      stdio: ['ignore', 'pipe', 'pipe'],
-    }).trim();
-  } catch (error) {
-    const stderr = error.stderr ? String(error.stderr).trim() : '';
-    fail(`gh ${args.join(' ')} failed:\n${stderr || error.message}`);
-  }
-}
-
-function ghJson(args) {
-  const output = gh(args);
-  return output ? JSON.parse(output) : {};
-}
-
-function graphql(query, variables = {}) {
-  const args = ['api', 'graphql', '-f', `query=${query}`];
-  for (const [key, value] of Object.entries(variables)) {
-    if (value !== null && value !== undefined) {
-      args.push('-F', `${key}=${value}`);
-    }
-  }
-  return ghJson(args);
-}
-
-function fetchBoardItems(projectId) {
-  const items = [];
-  let after = null;
-
-  do {
-    const response = graphql(ITEMS_QUERY, { id: projectId, after });
-    const page = response.data?.node?.items;
-    if (!page) {
-      fail(`Could not load items for project node ${projectId}.`);
-    }
-    items.push(...page.nodes);
-    after = page.pageInfo.hasNextPage ? page.pageInfo.endCursor : null;
-  } while (after);
-
   return items;
 }
 
-function fieldValue(item, fieldName) {
-  for (const value of item.fieldValues?.nodes ?? []) {
-    if (value?.field?.name === fieldName) {
-      return value.name ?? '';
-    }
-  }
-  return '';
-}
-
-function normalizeStatus(status) {
-  return status.trim().toLowerCase();
-}
-
-function classifyItems(rawItems) {
+export function classifyItems(rawItems) {
   const drafts = [];
+  const inaccessible = [];
   const items = [];
-
   for (const raw of rawItems) {
     const content = raw.content;
-    if (!content || content.__typename === 'DraftIssue') {
-      drafts.push({ title: content?.title ?? '(untitled draft)' });
+    if (!content) { inaccessible.push(raw.id); continue; }
+    if (content.__typename === 'DraftIssue') {
+      drafts.push({ itemId: raw.id, title: content.title, archived: raw.isArchived });
       continue;
     }
-
+    const value = (name) => raw.fieldValues.nodes.find((field) => field.field?.name === name);
     items.push({
-      itemId: raw.id,
-      type: content.__typename,
-      number: content.number,
-      title: content.title,
-      state: content.state,
-      url: content.url,
-      updatedAt: content.updatedAt,
-      repo: content.repository?.nameWithOwner ?? '',
-      status: fieldValue(raw, 'Status'),
-      priority: fieldValue(raw, 'Priority'),
-      milestone: content.milestone ?? null,
+      ...content, type: content.__typename, itemId: raw.id, archived: raw.isArchived,
+      repo: content.repository.nameWithOwner, status: value('Status')?.name ?? '',
+      statusField: value('Status')?.field ?? null,
+      priority: value('Priority')?.name ?? '', priorityField: value('Priority')?.field ?? null,
+      prioritySource: 'project', priorityKnown: true,
       subIssues: content.subIssues?.nodes ?? [],
       closingPrs: content.closedByPullRequestsReferences?.nodes ?? [],
-      merged: content.merged ?? false,
-      mergedAt: content.mergedAt ?? null,
-      isDraft: content.isDraft ?? false,
-      reviewDecision: content.reviewDecision ?? '',
-      checkState:
-        content.commits?.nodes?.[0]?.commit?.statusCheckRollup?.state ?? '',
+      checkState: content.commits?.nodes?.[0]?.commit?.statusCheckRollup?.state ?? '',
     });
   }
-
-  return { drafts, items };
+  return { items, drafts, inaccessible };
 }
 
-function issueIsShipped(item) {
-  if (item.type === 'PullRequest') {
-    return item.merged;
-  }
-  if (item.state === 'CLOSED') {
-    return true;
-  }
-  return item.closingPrs.some((pr) => pr.merged);
-}
-
-function hasOpenPr(item) {
-  return item.closingPrs.some((pr) => pr.state === 'OPEN');
-}
-
-function daysSince(isoDate, now) {
-  if (!isoDate) {
-    return Number.POSITIVE_INFINITY;
-  }
-  return (now - Date.parse(isoDate)) / (1000 * 60 * 60 * 24);
-}
-
-function extractClosedIssueRefs(body, repo) {
-  const refs = new Set();
-  if (!body) {
-    return refs;
-  }
-  for (const match of body.matchAll(CLOSING_KEYWORD_PATTERN)) {
-    const [, crossRepo, crossNumber, sameNumber] = match;
-    if (crossRepo && crossNumber) {
-      refs.add(`${crossRepo.toLowerCase()}#${crossNumber}`);
-    } else if (sameNumber) {
-      refs.add(`${repo.toLowerCase()}#${sameNumber}`);
+export function resolvePriorities(reader, items) {
+  const owners = new Map();
+  for (const item of items) {
+    if (item.type !== 'Issue') continue;
+    const owner = item.repo.split('/')[0];
+    if (!owners.has(owner)) {
+      try {
+        const identity = reader.rest(`users/${owner}`);
+        const fields = identity.type === 'Organization' ? reader.restPages(`orgs/${owner}/issue-fields`) : [];
+        const priority = fields.filter((field) => field.name === 'Priority');
+        if (priority.length > 1 || (priority[0] && priority[0].data_type !== 'single_select')) {
+          throw new Error('Priority must be one unambiguous single-select field');
+        }
+        owners.set(owner, { field: priority[0] });
+      } catch {
+        owners.set(owner, { unavailable: true });
+        reader.warn(`${owner}: native Priority discovery unavailable; project values cannot prove native completeness.`);
+      }
+    }
+    const source = owners.get(owner);
+    reader.coverage.prioritySources[owner] = source.unavailable ? 'unavailable' : source.field ? 'native' : 'project';
+    if (source.unavailable) {
+      item.priorityKnown = false; item.prioritySource = 'unavailable'; item.priority = ''; continue;
+    }
+    if (!source.field) continue;
+    item.prioritySource = 'native'; item.priorityField = source.field; item.priority = '';
+    try {
+      const values = reader.restPages(`repos/${item.repo}/issues/${item.number}/issue-field-values?per_page=100`);
+      const native = values.find((value) => value.issue_field_id === source.field.id);
+      if (native?.value !== null && native?.value !== undefined) {
+        const option = native.single_select_option ?? source.field.options?.find((entry) => entry.id === native.value);
+        if (!option?.name) throw new Error('Unknown Priority option');
+        item.priority = option.name;
+      }
+    } catch {
+      item.priorityKnown = false;
+      reader.warn(`${item.repo}#${item.number}: native Priority value unavailable.`);
     }
   }
-  return refs;
 }
 
-function fetchRepoActivity(repo, windowDays) {
-  const since = new Date(Date.now() - windowDays * 24 * 60 * 60 * 1000)
-    .toISOString()
-    .slice(0, 10);
-
-  const mergedPrs = ghJson([
-    'pr',
-    'list',
-    '--repo',
-    repo,
-    '--state',
-    'merged',
-    '--search',
-    `merged:>=${since}`,
-    '--limit',
-    '100',
-    '--json',
-    'number,title,url,mergedAt,body',
-  ]);
-
-  const openIssues = ghJson([
-    'issue',
-    'list',
-    '--repo',
-    repo,
-    '--state',
-    'open',
-    '--limit',
-    '200',
-    '--json',
-    'number,title,url,createdAt',
-  ]);
-
-  const milestones = ghJson([
-    'api',
-    `repos/${repo}/milestones?state=open&per_page=100`,
-  ]);
-
-  return { repo, mergedPrs, openIssues, milestones };
-}
-
-function fetchMilestoneFocus(repo, milestoneTitle) {
-  return ghJson([
-    'issue',
-    'list',
-    '--repo',
-    repo,
-    '--milestone',
-    milestoneTitle,
-    '--state',
-    'open',
-    '--limit',
-    '100',
-    '--json',
-    'number,title,url',
-  ]);
-}
-
-function buildFindings(items, drafts, repoActivity, options) {
-  const now = Date.now();
-  const findings = {
-    mergedNotDone: [],
-    doneNotMerged: [],
-    staleInProgress: [],
-    reviewStarvation: [],
-    untrackedWork: [],
-    epicDrift: [],
-    milestoneReadiness: [],
-    priorityHygiene: [],
-  };
-
-  const boardIssueKeys = new Set();
-  const boardPrKeys = new Set();
-  for (const item of items) {
-    const key = `${item.repo.toLowerCase()}#${item.number}`;
-    if (item.type === 'Issue') {
-      boardIssueKeys.add(key);
-    } else {
-      boardPrKeys.add(key);
+export function fetchRepoActivity(reader, repo, windowDays, now = Date.now()) {
+  const [owner, name] = repo.split('/');
+  const since = now - windowDays * 86400000;
+  // Repository connections avoid Search's 1,000-result ceiling entirely.
+  const repoConnection = (field, selection, extra, dateField) => reader.connection(`${repo}.${field}`,
+    (after) => reader.graphql(`query($owner: String!, $name: String!, $after: String) {
+      repository(owner: $owner, name: $name) {
+        ${field}(first: 100, after: $after, ${extra}) { ${PAGE} nodes { ${selection} } }
+      }
+    }`, { owner, name, after }).repository?.[field], undefined, { field: dateField, since });
+  const allMergedPrs = repoConnection('pullRequests', `id number title url mergedAt updatedAt
+    closingIssuesReferences(first: 100) { ${PAGE} nodes { ${ISSUE_LINK} } }`, 'states: MERGED, orderBy: { field: UPDATED_AT, direction: DESC }', 'updatedAt');
+  const mergedPrs = allMergedPrs.filter((pr) => Date.parse(pr.mergedAt) >= since);
+  for (const pr of mergedPrs) {
+    pr.closingIssues = reader.nodeConnection(pr.id, 'PullRequest', 'closingIssuesReferences',
+      ISSUE_LINK, '', pr.closingIssuesReferences);
+  }
+  const allOpenIssues = repoConnection('issues', 'id number title url createdAt',
+    'states: OPEN, orderBy: { field: CREATED_AT, direction: DESC }', 'createdAt');
+  const openIssues = allOpenIssues.filter((issue) => Date.parse(issue.createdAt) >= since);
+  const milestones = reader.restPages(`repos/${repo}/milestones?state=open&per_page=100`);
+  for (const milestone of milestones) {
+    if (milestone.due_on) {
+      milestone.focus = reader.restPages(`repos/${repo}/issues?state=open&milestone=${milestone.number}&per_page=100`)
+        .filter((issue) => !issue.pull_request)
+        .map((issue) => ({ number: issue.number, title: issue.title, url: issue.html_url }));
     }
   }
+  return { repo, mergedPrs, openIssues, milestones,
+    counts: { mergedPrsScanned: allMergedPrs.length, mergedPrsInWindow: mergedPrs.length,
+      openIssuesScanned: allOpenIssues.length, openIssuesInWindow: openIssues.length, milestones: milestones.length } };
+}
 
+export function issueIsShipped(item) {
+  if (item.type === 'PullRequest') return item.merged === true;
+  return item.state === 'CLOSED' && item.stateReason === 'COMPLETED' && item.closingPrs.some((pr) => pr.merged);
+}
+
+export function buildFindings(items, drafts, repoActivity, options, now = Date.now()) {
+  const findings = { mergedNotDone: [], doneNotMerged: [], staleInProgress: [], reviewStarvation: [],
+    untrackedWork: [], missingFormalLinks: [], epicDrift: [], milestoneReadiness: [], priorityHygiene: [], closedWithoutMerge: [], closedInActive: [] };
+  const key = (item) => `${item.repo.toLowerCase()}#${item.number}`;
+  const issueKeys = new Set(items.filter((item) => item.type === 'Issue').map(key));
+  const prKeys = new Set(items.filter((item) => item.type === 'PullRequest').map(key));
   for (const item of items) {
-    const status = normalizeStatus(item.status);
+    if (item.archived) continue;
+    const status = statusSemantic(item.status, options.statusMap);
     const shipped = issueIsShipped(item);
-
-    // Check 1 — merged/closed but the board still shows an unfinished lane.
-    if (shipped && !DONE_STATUSES.has(status) && status !== 'deferred') {
-      findings.mergedNotDone.push(item);
-    }
-
-    // Check 2 — Done on the board, but the work never actually landed.
-    if (DONE_STATUSES.has(status) && !shipped) {
-      findings.doneNotMerged.push(item);
-    }
-
-    // Check 3 — In Progress with no open PR and no movement in N days.
-    if (
-      IN_PROGRESS_STATUSES.has(status) &&
-      !shipped &&
-      !hasOpenPr(item) &&
-      daysSince(item.updatedAt, now) >= options.stale
-    ) {
-      findings.staleInProgress.push({
-        ...item,
-        idleDays: Math.floor(daysSince(item.updatedAt, now)),
+    if (item.priorityKnown && !item.priority) findings.priorityHygiene.push(item);
+    if (status === 'deferred') continue;
+    if (item.state === 'CLOSED' && !shipped) {
+      findings.closedWithoutMerge.push(item);
+      if (status === 'inProgress' || status === 'review') findings.closedInActive.push({
+        ...item, reason: 'Closed work remains in an active lane; review its disposition. Closure is not shipment evidence.',
       });
     }
-
-    // Check 4 — Human Review holding a PR that is already merged, or approved
-    // with green checks (a human gate that has nothing left to gate).
-    if (HUMAN_REVIEW_STATUSES.has(status)) {
-      if (item.type === 'PullRequest' && item.merged) {
-        findings.reviewStarvation.push({ ...item, reason: 'already merged' });
-      } else if (
-        item.type === 'PullRequest' &&
-        item.reviewDecision === 'APPROVED' &&
-        item.checkState === 'SUCCESS'
-      ) {
-        findings.reviewStarvation.push({
-          ...item,
-          reason: 'approved with green checks',
-        });
-      } else if (item.type === 'Issue' && shipped) {
-        findings.reviewStarvation.push({
-          ...item,
-          reason: 'closing PR already merged',
-        });
-      }
+    if (shipped && status !== 'done') findings.mergedNotDone.push(item);
+    if (status === 'done' && item.state === 'OPEN') findings.doneNotMerged.push(item);
+    const hasOpenPr = item.type === 'PullRequest' ? item.state === 'OPEN' : item.closingPrs.some((pr) => pr.state === 'OPEN');
+    const idleDays = Math.floor((now - Date.parse(item.updatedAt)) / 86400000);
+    if (status === 'inProgress' && item.state === 'OPEN' && !hasOpenPr && idleDays >= options.stale) {
+      findings.staleInProgress.push({ ...item, idleDays });
     }
-
-    // Check 6 — parent open while every child is closed.
-    if (
-      item.type === 'Issue' &&
-      item.state === 'OPEN' &&
-      item.subIssues.length > 0 &&
-      item.subIssues.every((child) => child.state === 'CLOSED')
-    ) {
-      findings.epicDrift.push({ ...item, childCount: item.subIssues.length });
+    if (status === 'review' && (shipped || (item.type === 'PullRequest' && item.state === 'OPEN' &&
+      !item.isDraft && item.reviewDecision === 'APPROVED' && item.checkState === 'SUCCESS'))) {
+      findings.reviewStarvation.push({ ...item, reason: shipped ? 'merge evidenced' : 'approved with green checks; human decision pending' });
     }
-
-    // Check 8 — active lanes with no Priority set.
-    if (
-      (IN_PROGRESS_STATUSES.has(status) || HUMAN_REVIEW_STATUSES.has(status)) &&
-      !item.priority
-    ) {
-      findings.priorityHygiene.push(item);
-    }
+    if (item.type === 'Issue' && item.state === 'OPEN' && item.subIssues.length &&
+      item.subIssues.every((child) => child.state === 'CLOSED')) findings.epicDrift.push({ ...item, childCount: item.subIssues.length });
   }
-
-  // Check 5 — merged PRs and open issues the board never tracked.
   for (const activity of repoActivity) {
-    const repoKey = activity.repo.toLowerCase();
-
     for (const pr of activity.mergedPrs) {
-      const prKey = `${repoKey}#${pr.number}`;
-      if (boardPrKeys.has(prKey)) {
-        continue;
-      }
-      const closedIssues = extractClosedIssueRefs(pr.body, activity.repo);
-      const tracked = [...closedIssues].some((ref) => boardIssueKeys.has(ref));
-      if (!tracked) {
-        findings.untrackedWork.push({
-          repo: activity.repo,
-          kind: 'merged-pr',
-          number: pr.number,
-          title: pr.title,
-          url: pr.url,
-          mergedAt: pr.mergedAt,
-        });
-      }
+      const boardMembership = prKeys.has(key({ repo: activity.repo, number: pr.number }));
+      const linkedBoardIssue = pr.closingIssues.some((issue) => issueKeys.has(key({ repo: issue.repository.nameWithOwner, number: issue.number })));
+      const evidence = { ...pr, repo: activity.repo, kind: 'merged-pr', boardMembership, linkedBoardIssue };
+      if (!pr.closingIssues.length) findings.missingFormalLinks.push(evidence);
+      if (!boardMembership && !linkedBoardIssue) findings.untrackedWork.push({ ...evidence,
+        reason: 'No retained membership or formal closing link to this board; other tracking is unverified.' });
     }
-
     for (const issue of activity.openIssues) {
-      const issueKey = `${repoKey}#${issue.number}`;
-      if (!boardIssueKeys.has(issueKey)) {
-        findings.untrackedWork.push({
-          repo: activity.repo,
-          kind: 'open-issue',
-          number: issue.number,
-          title: issue.title,
-          url: issue.url,
-          createdAt: issue.createdAt,
-        });
-      }
+      if (!issueKeys.has(key({ repo: activity.repo, number: issue.number }))) findings.untrackedWork.push({
+        ...issue, repo: activity.repo, kind: 'open-issue', reason: 'No retained membership in this board; other tracking is unverified.' });
     }
-
-    // Check 7 — milestones due inside the sprint horizon, with readiness
-    // counts and the open issues that make up the sprint's focus list.
-    const horizonEnd = now + options.horizon * 24 * 60 * 60 * 1000;
     for (const milestone of activity.milestones) {
-      if (!milestone.due_on) {
-        continue;
-      }
       const due = Date.parse(milestone.due_on);
-      if (due <= horizonEnd) {
-        findings.milestoneReadiness.push({
-          repo: activity.repo,
-          title: milestone.title,
-          dueOn: milestone.due_on,
-          openIssues: milestone.open_issues,
-          closedIssues: milestone.closed_issues,
-          overdue: due < now,
-          focus: fetchMilestoneFocus(activity.repo, milestone.title),
-        });
-      }
+      if (due <= now + options.horizon * 86400000) findings.milestoneReadiness.push({
+        repo: activity.repo, title: milestone.title, dueOn: milestone.due_on,
+        openIssues: milestone.open_issues, closedIssues: milestone.closed_issues,
+        overdue: due < now, focus: milestone.focus ?? [],
+      });
     }
   }
-
-  return { findings, draftCount: drafts.length };
+  const driftKeys = ['mergedNotDone', 'doneNotMerged', 'staleInProgress', 'reviewStarvation', 'epicDrift', 'priorityHygiene', 'closedInActive'];
+  const driftItemCount = new Set(driftKeys.flatMap((name) => findings[name].map((item) => item.itemId))).size;
+  return { findings, draftCount: drafts.length, driftItemCount };
 }
 
-function itemRef(item) {
-  return `${item.repo}#${item.number}`;
-}
-
-function printSection(header, rows) {
-  process.stdout.write(`\n${header}\n`);
-  if (rows.length === 0) {
-    process.stdout.write('  clean\n');
-    return;
+export function renderReport(report) {
+  const lines = [`Board sync report — ${report.project.title} (#${report.project.number})`, report.project.url,
+    `Coverage: ${report.coverage.complete ? 'complete for disclosed scope' : 'INCOMPLETE'}; ${report.coverage.archivedHistory}`,
+    `Items: ${report.counts.boardItems}; archived: ${report.counts.archivedItems}; drafts: ${report.draftCount}; inaccessible: ${report.counts.inaccessibleItems}`,
+    `Scope: ${report.options.repos.join(', ')}; activity ${report.options.window}d; stale ${report.options.stale}d; horizon ${report.options.horizon}d`,
+    ...report.coverage.warnings.map((warning) => `WARNING: ${warning}`),
+    ...report.activityCounts.map((entry) => `${entry.repo}: ${JSON.stringify(entry.counts)}`),
+    `Collections: ${report.coverage.connections.length}; pages: ${report.coverage.connections.reduce((sum, entry) => sum + entry.pages, 0)}; deliberate activity-window stops: ${report.coverage.connections.filter((entry) => entry.termination === 'window_boundary').length}`,
+    ...report.coverage.connections.filter((entry) => entry.scope === 'activity_window').map((entry) =>
+      `Fetched ${entry.name}: ${entry.fetched} of ${entry.total ?? 'unknown'} historical items; ${entry.pages} page(s); ${entry.termination}; since ${entry.since}`),
+  ];
+  for (const [name, rows] of Object.entries(report.findings)) {
+    lines.push(`\n${name}: ${rows.length}`);
+    for (const row of rows) {
+      const identity = row.number === undefined ? row.repo : `${row.repo}#${row.number}`;
+      const evidence = [row.status && `lane=${row.status}`, row.state && `state=${row.state}`,
+        row.stateReason && `closure=${row.stateReason}`, row.prioritySource && `Priority=${row.priority || '(empty)'} (${row.prioritySource})`,
+        row.mergedAt && `merged=${row.mergedAt}`, row.updatedAt && `updated=${row.updatedAt}`,
+        row.reason, row.idleDays !== undefined && `idle=${row.idleDays}d`,
+        row.dueOn && `due=${row.dueOn} (${row.closedIssues}/${row.openIssues + row.closedIssues} closed)`,
+        row.boardMembership !== undefined && `board membership=${row.boardMembership}`,
+        ...(row.closingPrs ?? []).filter((pr) => pr.merged).map((pr) => `merge evidence=${pr.url}`),
+      ].filter(Boolean).join('; ');
+      lines.push(`  ${identity}: ${row.title} ${row.url ?? ''} — ${evidence}`);
+      for (const issue of row.focus ?? []) lines.push(`    focus: #${issue.number} ${issue.title} ${issue.url}`);
+    }
   }
-  for (const row of rows) {
-    process.stdout.write(`  ${row}\n`);
+  lines.push(`\nVerdict: ${report.verdict}`);
+  return `${lines.join('\n')}\n`;
+}
+
+export function audit(options, run = ghJson) {
+  const reader = createReader(run);
+  const project = run(['project', 'view', String(options.project), '--owner', options.owner, '--format', 'json']);
+  if (!project.id) throw new Error('Project could not be resolved.');
+  const projectFields = reader.nodeConnection(project.id, 'ProjectV2', 'fields',
+    '... on ProjectV2SingleSelectField { id name options { id name } }');
+  const rawItems = fetchBoardItems(reader, project.id);
+  const { items, drafts, inaccessible } = classifyItems(rawItems);
+  if (inaccessible.length) reader.warn(`${inaccessible.length} redacted/inaccessible board item(s); not drafts.`);
+  for (const item of items) {
+    if (!item.archived && statusSemantic(item.status, options.statusMap) === 'unknown') {
+      reader.warn(`Unmapped Status ${JSON.stringify(item.status)}; supply --status-map before interpreting lane drift.`);
+    }
+    item.statusField ??= projectFields.find((field) => field.name === 'Status') ?? null;
+    item.priorityField ??= projectFields.find((field) => field.name === 'Priority') ?? null;
   }
+  resolvePriorities(reader, items.filter((item) => !item.archived));
+  const repos = options.repo ? [options.repo] : [...new Set(items.map((item) => item.repo))];
+  const activity = repos.map((repo) => fetchRepoActivity(reader, repo, options.window));
+  const result = buildFindings(items, drafts, activity, options);
+  const verdict = !reader.coverage.complete ? 'INCOMPLETE audit; no trust verdict available.' : result.driftItemCount
+    ? `${result.driftItemCount} distinct item(s) have drift.`
+    : result.findings.untrackedWork.length || result.findings.missingFormalLinks.length
+      ? 'No item-state drift found; tracking evidence needs review.'
+      : 'No drift found within the disclosed scope; closed without merge is not proof of shipment.';
+  return { project, options: { ...options, repos }, ...result, verdict, coverage: reader.coverage,
+    counts: { boardItems: rawItems.length, archivedItems: rawItems.filter((item) => item.isArchived).length, inaccessibleItems: inaccessible.length },
+    activityCounts: activity.map(({ repo, counts }) => ({ repo, counts })) };
 }
 
-function printReport(project, result, options) {
-  const { findings, draftCount } = result;
-
-  process.stdout.write(`Board sync report — ${project.title} (#${project.number})\n`);
-  process.stdout.write(`${project.url}\n`);
-  process.stdout.write(
-    `window: ${options.window}d · stale threshold: ${options.stale}d · sprint horizon: ${options.horizon}d · drafts (not checked): ${draftCount}\n`
-  );
-
-  printSection(
-    '1. Merged but not Done',
-    findings.mergedNotDone.map(
-      (item) => `${itemRef(item)} [${item.status || 'no status'}] ${item.title}`
-    )
-  );
-
-  printSection(
-    '2. Done but not merged (false green)',
-    findings.doneNotMerged.map(
-      (item) => `${itemRef(item)} [${item.state}] ${item.title}`
-    )
-  );
-
-  printSection(
-    `3. Stale In Progress (>= ${options.stale}d, no open PR)`,
-    findings.staleInProgress.map(
-      (item) => `${itemRef(item)} idle ${item.idleDays}d — ${item.title}`
-    )
-  );
-
-  printSection(
-    '4. Human Review starvation',
-    findings.reviewStarvation.map(
-      (item) => `${itemRef(item)} (${item.reason}) ${item.title}`
-    )
-  );
-
-  printSection(
-    `5. Untracked work (last ${options.window}d)`,
-    findings.untrackedWork.map(
-      (entry) =>
-        `${entry.repo}#${entry.number} [${entry.kind}] ${entry.title}`
-    )
-  );
-
-  printSection(
-    '6. Epic/parent drift (parent open, all children closed)',
-    findings.epicDrift.map(
-      (item) => `${itemRef(item)} (${item.childCount} children) ${item.title}`
-    )
-  );
-
-  printSection(
-    `7. Sprint readiness — milestones due within ${options.horizon} days`,
-    findings.milestoneReadiness.flatMap((m) => [
-      `${m.repo} "${m.title}" due ${m.dueOn.slice(0, 10)}${m.overdue ? ' (OVERDUE)' : ''} — ${m.closedIssues}/${m.openIssues + m.closedIssues} closed`,
-      ...m.focus.map((issue) => `  focus: #${issue.number} ${issue.title}`),
-    ])
-  );
-
-  printSection(
-    '8. Priority hygiene (active lanes without Priority)',
-    findings.priorityHygiene.map(
-      (item) => `${itemRef(item)} [${item.status}] ${item.title}`
-    )
-  );
-
-  const driftCount =
-    findings.mergedNotDone.length +
-    findings.doneNotMerged.length +
-    findings.staleInProgress.length +
-    findings.reviewStarvation.length +
-    findings.epicDrift.length +
-    findings.priorityHygiene.length;
-
-  process.stdout.write(
-    `\nVerdict: ${
-      driftCount === 0
-        ? 'the board is trustworthy — no drift between board state and repo state.'
-        : `${driftCount} drifted item(s) — the board does not currently reflect reality.`
-    }\n`
-  );
+export function parseArgs(argv) {
+  const options = { window: 14, stale: 7, horizon: 7, json: false, owner: '', project: '', repo: '' };
+  for (let index = 0; index < argv.length; index += 1) {
+    const flag = argv[index];
+    if (flag === '--status-map') {
+      const value = argv[++index];
+      if (!value || value.startsWith('--')) throw new Error('Missing value for --status-map');
+      options.statusMap = parseStatusMap(value);
+      continue;
+    }
+    if (flag === '--json') { options.json = true; continue; }
+    if (flag === '--help' || flag === '-h') return null;
+    const name = flag.slice(2);
+    if (!flag.startsWith('--') || !['owner', 'project', 'repo', 'window', 'stale', 'horizon'].includes(name)) throw new Error(`Unknown argument: ${flag}`);
+    const value = argv[++index];
+    if (!value || value.startsWith('--')) throw new Error(`Missing value for ${flag}`);
+    options[name] = ['window', 'stale', 'horizon'].includes(name) ? Number(value) : value;
+  }
+  if (!options.owner || !/^\d+$/.test(options.project) || Number(options.project) < 1) throw new Error('Require --owner <login> --project <positive integer>.');
+  for (const name of ['window', 'stale', 'horizon']) if (!Number.isInteger(options[name]) || options[name] < 1) throw new Error(`--${name} must be a positive integer.`);
+  return options;
 }
 
-const args = parseArgs(process.argv.slice(2));
-
-const summary = ghJson([
-  'project',
-  'view',
-  String(args.project),
-  '--owner',
-  args.owner,
-  '--format',
-  'json',
-]);
-
-if (!summary.id) {
-  fail(`Could not resolve project ${args.project} for owner ${args.owner}.`);
-}
-
-const rawItems = fetchBoardItems(summary.id);
-const { drafts, items } = classifyItems(rawItems);
-
-const repos = args.repo
-  ? [args.repo]
-  : [...new Set(items.map((item) => item.repo).filter(Boolean))];
-
-const repoActivity = repos.map((repo) => fetchRepoActivity(repo, args.window));
-
-const result = buildFindings(items, drafts, repoActivity, {
-  horizon: args.horizon,
-  stale: args.stale,
-  window: args.window,
-});
-
-if (args.json) {
-  process.stdout.write(
-    `${JSON.stringify(
-      {
-        project: { title: summary.title, number: summary.number, url: summary.url },
-        options: { window: args.window, stale: args.stale, horizon: args.horizon, repos },
-        draftCount: result.draftCount,
-        findings: result.findings,
-      },
-      null,
-      2
-    )}\n`
-  );
-} else {
-  printReport(summary, result, args);
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  try {
+    const options = parseArgs(process.argv.slice(2));
+    if (!options) process.stdout.write('Read-only: --owner <login> --project <number> [--repo owner/name] [--window 14] [--stale 7] [--horizon 7] [--status-map JSON] [--json]\n');
+    else {
+      const report = audit(options);
+      process.stdout.write(options.json ? `${JSON.stringify(report, null, 2)}\n` : renderReport(report));
+    }
+  } catch (error) {
+    process.stderr.write(`Board audit failed: ${error.message}\n`);
+    process.exitCode = 1;
+  }
 }

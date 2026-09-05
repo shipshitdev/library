@@ -1,6 +1,6 @@
 {
   "name": "gh-inbox",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Collect and triage assigned issues, review requests, mentions, and failing PRs.",
   "author": {
     "name": "Ship Shit Dev",

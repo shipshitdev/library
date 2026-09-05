@@ -1,9 +1,8 @@
 ---
 name: prd-writer
-disable-model-invocation: true
 description: Authors the PRD document itself — problem, scope boundaries, EARS acceptance criteria, and verification plan — as one self-contained contract a planning agent consumes without re-elicitation. Ends at the written PRD; slicing it into tracked issues is `prd-task-creator`.
 metadata:
-  version: "1.2.1"
+  version: "1.3.0"
   tags: "prd, planning, requirements, spec, scoping, ears"
 when_to_use: "write a PRD for X, draft a PRD, scope this out, what should X do, formalize this feature, flesh out this issue before planning"
 ---
@@ -18,6 +17,44 @@ This skill is platform-agnostic. It assumes a plan → review → verify → shi
 where a PRD is written first, a planner decomposes it into steps, and a verifier
 checks the result against the PRD's acceptance criteria. Adapt the storage and
 field mechanics below to whatever tracker you use.
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
+
+## Contract
+
+Inputs:
+
+- Feature requirements and the selected tracker issue or document destination
+- Known constraints and accepted scope
+
+Outputs:
+
+- A PRD with EARS acceptance criteria and a verification plan
+
+Creates/Modifies:
+
+- The requested PRD document or approved tracker issue body
+- No implementation or automatic issue slicing
+
+External Side Effects:
+
+- Tracker reads and approved issue-body writes
+
+Confirmation Required:
+
+- Confirm the destination and draft before creating or replacing tracker content
+  when that exact write is not already authorized
+
+Delegates To:
+
+- `prd-quality-gate` to check completeness
+- Recommend `prd-task-creator` when the user wants to split the finished PRD
 
 ## Storage Location
 

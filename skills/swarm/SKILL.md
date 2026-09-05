@@ -1,10 +1,9 @@
 ---
 name: swarm
 description: Fan out N parallel workers, drain them, and return one report. Use for swarm this, or parallel coverage, races, gauntlets, and exploration partitions.
-disable-model-invocation: true
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   tags: "fan-out, coverage, race, report"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/swarm/SKILL.md
@@ -25,6 +24,14 @@ report.
 Companion to `arena`, which picks a base and grafts. Companion to
 `multi-agent-patterns`, which designs architectures. This skill runs
 one operational fan-out.
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 

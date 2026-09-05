@@ -2,7 +2,7 @@
 name: skill-scout
 description: Search local, marketplace, repository, package, GitHub, and web sources before creating a new skill or custom implementation. Use when asked to create, fork, import, or evaluate a skill, or before writing code for functionality that likely already exists.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "skills, research, discovery, reuse, search-first"
 ---
 
@@ -44,7 +44,7 @@ Confirmation Required:
 Delegates To:
 
 - `skill-creator` when creating or rewriting a skill after scouting
-- `skill-auditor` when the issue is portfolio overlap
+- `skill-creator` to compare an existing skill contract before adding an overlap
 - `git-safety` before publishing private code as a public skill
 
 ## When to Use

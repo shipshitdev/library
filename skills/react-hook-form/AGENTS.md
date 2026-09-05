@@ -94,4 +94,3 @@ This document was compiled from individual reference files. For detailed editing
 | [references/_sections.md](references/_sections.md) | Category definitions and impact ordering |
 | [assets/templates/_template.md](assets/templates/_template.md) | Template for creating new rules |
 | [SKILL.md](SKILL.md) | Quick reference entry point |
-| [metadata.json](metadata.json) | Version and reference URLs |

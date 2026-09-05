@@ -1,10 +1,9 @@
 ---
 name: recall
 description: Rebuild recent working context from chat history, live state, and the shared record, then hand back a tight current-state brief. Use for recall my work on X, catch me up, what have I been working on, or where did I leave off.
-disable-model-invocation: true
 license: MIT
 metadata:
-  version: "1.0.1"
+  version: "1.1.0"
   tags: "context, resume, briefing"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/recall/SKILL.md
@@ -24,6 +23,14 @@ context and hand back a tight capsule.
 Companion to `pstack` Session pickup (one specific prior chat) and
 `memory-systems` (designing persistent agent memory). This skill loads
 working context across recent chats and the shared record.
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 
@@ -80,5 +87,5 @@ Delegates To:
 - **Problems.** At most 5 recurring ones.
 - **Next move.** The single most useful next action.
 
-Apply `skills/deslop/references/prose-slop.md`. Sanitize private
+Apply `references/prose-slop.md` from the selected `deslop` skill directory. Sanitize private
 context before any public output.

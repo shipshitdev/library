@@ -11,7 +11,7 @@ description: >-
   infra, configure monitoring, or provision a dev container, and the action must be
   picked from an argument like "app", "compose", "ec2", "monitor", or "devcontainer".
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "deployment, dispatcher, infra, ec2, docker, devops, orchestration"
   author: Ship Shit Dev
 when_to_use: "/deploy, deploy the app, deploy to staging, deploy to production, set up EC2 deployment, configure monitoring, set up devcontainer, compose deployment workflow"
@@ -21,6 +21,14 @@ disable-model-invocation: true
 # Deploy Dispatch
 
 Router behind `/deploy`. One job: turn a subcommand into the right deployment or infra action and delegate. Contains no deployment logic of its own — app deployments live in `deploy` and `deployment-composer`, EC2 pipeline wiring in `ec2-backend-deployer`, observability in `monitoring-setup`, and container dev environments in `devcontainer-setup`.
+
+## Composition Boundary
+
+Run only the selected mode. Pass the user's target, authorized actions, and
+report-only restrictions to the engine. Existing explicit approval satisfies
+that engine's gate for the same scope; obtain approval for missing or expanded
+authority. Delegation never grants new host, provider, cost, publication, or
+production permissions. An empty or advisory mode starts no mutating workflow.
 
 ## Contract
 

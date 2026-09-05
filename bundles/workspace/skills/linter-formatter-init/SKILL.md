@@ -2,7 +2,7 @@
 name: linter-formatter-init
 description: Set up Biome (default) or ESLint + Prettier, Vitest testing, and pre-commit hooks for any JavaScript/TypeScript project. Uses Bun as the package manager. Use this skill when initializing code quality tooling for a new project or adding linting to an existing one.
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
   tags: "linting, formatting, setup"
 ---
 
@@ -11,6 +11,34 @@ metadata:
 Set up linting, formatting, and testing for JavaScript/TypeScript projects using **Biome 2.3+** (default), **Vitest**, and **Bun**.
 
 **IMPORTANT**: Always uses Biome 2.3+ (latest) - never older versions.
+
+## Contract
+
+Inputs:
+
+- Target repository and selected formatter, testing, and hook options
+
+Outputs:
+
+- Configured quality tooling and a summary of changes
+
+Creates/Modifies:
+
+- Only the configuration, scripts, and dependencies selected for setup
+
+External Side Effects:
+
+- Package installs and permitted local verification
+
+Confirmation Required:
+
+- Before overwriting existing configuration or installing tools outside the explicitly requested setup
+- Loading the skill grants no additional authority. Existing explicit approval
+  applies only to the same target and actions; preserve report-only restrictions.
+
+Delegates To:
+
+- None
 
 ## Purpose
 

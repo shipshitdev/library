@@ -13,7 +13,7 @@ intake a stakeholder requirement to a kanban board, or run a discovery interview
 /prd gate             # validate a PRD for completeness before handing it to a planning agent
 /prd write            # draft and formalize a feature as a full PRD ready for a planning agent
 /prd intake           # turn a client or stakeholder requirement into kanban issues on GitHub Projects
-/prd interview        # run a repo-grounded discovery interview before PRD writing or planning
+/prd interview        # hand off to the explicit /interview discovery workflow
 ```
 
 ## Steps
@@ -32,9 +32,8 @@ intake a stakeholder requirement to a kanban board, or run a discovery interview
 - **`intake`** — the `feature-intake` skill: capture a client or stakeholder
   feature request, turn it into a planner-ready PRD epic with scoped sub-issues,
   check for duplicate work, and place approved issues on a GitHub Projects kanban.
-- **`interview`** — the `interview` skill: conduct a repo-grounded discovery
-  interview before PRD writing, feature intake, or implementation planning,
-  producing a concise handoff brief with focused follow-up questions.
+- **`interview`** — recommend `/interview` with the supplied discovery context;
+  this advisory workflow remains a separate explicit entry point.
 
 ## Workflow
 

@@ -3,9 +3,9 @@
 A router over the flagship Dev Loop. You describe a situation; it names the skill
 to type and why. It hints. It does not fire other user-invoked skills.
 
-The defining constraint: user-invoked skills cannot invoke each other, so a
-router that tried to run `/interview` for you would be a router that lies. You
-are the index; this page and this skill exist to shrink that load to one name.
+Its contract is advisory: asking which workflow fits should return a recommendation.
+Execution routers such as `/test run` can run their declared engines, but `/ask`
+stops at the recommendation so you can choose the next task.
 
 ## When to reach for it
 
@@ -35,9 +35,9 @@ added, renamed, or rerouted.
 ## Common questions
 
 **Why doesn't it just run the skill for me?**
-User-invoked skills are reachable only by you typing them. That is the point —
-orchestrators stay off the model's auto-trigger list so they do not steal the
-session. The router names the next slash command.
+Because `/ask` promises advice, not execution. Its explicit entry point stays off
+the model's automatic discovery list. Other routers can run reusable engines
+within a selected task; that never expands the user's authorization.
 
 **Is this the same as `/prd` or `/review`?**
 Those are front doors for one domain (PRDs, reviews). `/ask` is the map over the

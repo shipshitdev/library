@@ -3,11 +3,10 @@ name: setup-agent-routing
 description: Sets up an `## Agent skills` routing block in CLAUDE.md/AGENTS.md plus docs/agents/ so the dev-loop skills (executing-plans, feature-intake, prd-writer, qa-reviewer) know this repo's GitHub issue tracker, kanban label vocabulary, and domain doc layout. Run once per repo before first use of the loop, or when those skills appear to lack tracker, label, or domain context.
 license: MIT
 metadata:
-  version: "1.2.1"
+  version: "1.3.0"
   tags: "setup, routing, github, labels, dev-loop"
   author: Ship Shit Dev
 allowed-tools: Bash(git remote*) Bash(gh label list*) Bash(gh project list*) Bash(gh repo view*)
-disable-model-invocation: true
 ---
 
 # Setup Agent Routing
@@ -15,6 +14,14 @@ disable-model-invocation: true
 Write a machine-readable routing block so the dev-loop skills know where this repo tracks work, which labels drive the loop, and how its domain docs are laid out. Run once per consumer repo; bridges `executing-plans`, `feature-intake`, `prd-writer`, and `qa-reviewer` into a new repo.
 
 Prompt-driven, not deterministic. Explore first, present findings, confirm each decision, show drafts, then write. Never write speculatively.
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 

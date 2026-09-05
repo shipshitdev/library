@@ -12,7 +12,7 @@ compatibility: Requires git; gh for filing debt as issues.
 disable-model-invocation: true
 allowed-tools: Bash(git *) Bash(gh *)
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
   tags: "refactor, deslop, tech-debt, performance, modernization, dispatcher, orchestration"
   author: Ship Shit Dev
 when_to_use: "/refactor, refactor this, clean up the code, deslop, pay down tech debt, tech debt register, optimize performance, modernize the stack, update dependencies, which refactor for this"
@@ -23,6 +23,14 @@ when_to_use: "/refactor, refactor this, clean up the code, deslop, pay down tech
 The router behind `/refactor`. One job: pick the mode, resolve scope, delegate. It
 holds no refactoring logic of its own — each engine below owns its rubric. Some modes
 edit code, some only report; the mode table says which.
+
+## Composition Boundary
+
+Run only the selected mode. Pass the user's target, authorized actions, and
+report-only restrictions to the engine. Existing explicit approval satisfies
+that engine's gate for the same scope; obtain approval for missing or expanded
+authority. Delegation never grants new host, provider, cost, publication, or
+production permissions. An empty or advisory mode starts no mutating workflow.
 
 ## Contract
 

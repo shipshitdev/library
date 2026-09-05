@@ -14,7 +14,7 @@ design, plan a feature before coding, or audit consistency across the app.
 /design layout           # fix layout, spacing, and visual rhythm
 /design polish           # final pre-ship pass — alignment, consistency, micro-detail
 /design quieter          # tone down visually aggressive or overstimulating designs
-/design shape            # plan UX/UI for a feature and produce a design brief
+/design shape            # hand off to the explicit /shape discovery workflow
 /design consistency      # audit design system consistency across color, components, and accessibility
 ```
 
@@ -39,9 +39,8 @@ design, plan a feature before coding, or audit consistency across the app.
 - **`quieter`** — the `quieter` skill: reduce visual intensity in designs that
   are too bold, aggressive, or overstimulating, creating a more refined and
   approachable aesthetic without losing effectiveness.
-- **`shape`** — the `shape` skill: run a structured discovery interview and
-  produce a design brief that guides feature implementation; design planning
-  only — no code written.
+- **`shape`** — recommend `/shape` with the supplied feature context; this
+  advisory workflow remains a separate explicit entry point.
 - **`consistency`** — the `design-consistency-auditor` skill: audit and maintain
   design system consistency across frontend applications — color palettes, UI/UX
   patterns, component styling, and accessibility compliance.

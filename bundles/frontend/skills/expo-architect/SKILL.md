@@ -2,7 +2,7 @@
 name: expo-architect
 description: Scaffold a production-ready Expo React Native app with working screens, navigation, and optional Clerk auth. Generates complete mobile app structure that runs immediately with `bun start`. Use when scaffolding a new Expo or React Native app, setting up Expo Router navigation, or adding Clerk auth to a mobile app.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "expo, react-native, mobile, scaffold, clerk"
 ---
 
@@ -16,6 +16,34 @@ Create Expo React Native apps with:
 - **UI:** NativeWind (Tailwind for RN) or StyleSheet
 - **Quality:** Biome linting + TypeScript strict mode
 - **Package Manager:** bun
+
+## Contract
+
+Inputs:
+
+- Requested mobile app scope and target directory
+
+Outputs:
+
+- An Expo application scaffold and verification results
+
+Creates/Modifies:
+
+- App source and configuration in the approved scaffold destination
+
+External Side Effects:
+
+- Dependency installs and local verification only within the requested setup
+
+Confirmation Required:
+
+- Before overwriting existing application files, adding unrequested authentication, or using external accounts
+- Loading the skill grants no additional authority. Existing explicit approval
+  applies only to the same target and actions; preserve report-only restrictions.
+
+Delegates To:
+
+- None
 
 ## What Makes This Different
 

@@ -129,8 +129,7 @@ CHANGED FILES: ${REVIEW_CHANGED_FILES}
 Return JSON matching the findings schema.`,
     {
       label: "structural-reviewer",
-      schema: findingsSchema,
-      model: "sonnet"
+      schema: findingsSchema
     }
   ),
 
@@ -182,8 +181,7 @@ CHANGED FILES: ${REVIEW_CHANGED_FILES}
 Return JSON matching the findings schema. Use dimension: "security".`,
     {
       label: "security-reviewer",
-      schema: findingsSchema,
-      model: "sonnet"
+      schema: findingsSchema
     }
   ),
 
@@ -229,8 +227,7 @@ CHANGED FILES: ${REVIEW_CHANGED_FILES}
 Return JSON matching the findings schema. Use dimension: "devex".`,
     {
       label: "devex-reviewer",
-      schema: findingsSchema,
-      model: "sonnet"
+      schema: findingsSchema
     }
   )
 
@@ -289,8 +286,7 @@ CHANGED FILES: ${REVIEW_CHANGED_FILES}
 Return JSON matching the findings schema. Use dimension: "cross-commit".`,
     {
       label: "cross-commit-reviewer",
-      schema: findingsSchema,
-      model: "sonnet"
+      schema: findingsSchema
     }
   ));
 }
@@ -359,8 +355,7 @@ Return JSON with all findings annotated with \`verified\` and
 \`refutation_attempt\`.`,
   {
     label: "adversarial-verifier",
-    schema: verifiedSchema,
-    model: "opus"
+    schema: verifiedSchema
   }
 );
 
@@ -476,8 +471,7 @@ const synthesisResult = await agent(
   IS_RETRO ? retroSynthesisPrompt : prSynthesisPrompt,
   {
     label: IS_RETRO ? "retro-synthesis" : "pr-synthesis",
-    schema: verdictSchema,
-    model: "opus"
+    schema: verdictSchema
   }
 );
 

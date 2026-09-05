@@ -35,7 +35,9 @@ scripts) provisions labels, board, and workflows.
 `executing-plans` (drives `tdd` + `qa-reviewer`) → human PR review.
 
 `grilling` and `domain-modeling` run underneath `interview`. They are
-model-invoked primitives. Orchestrators invoke them; you type the orchestrator.
+reusable engines. A selected workflow can invoke them within its existing scope.
+Delegation preserves report-only restrictions and action gates. `/ask`,
+`interview`, and `shape` remain explicit advisory entry points.
 
 Board columns are for humans (Backlog · In Progress · Human Review · Done ·
 Deferred). The AI loop's sub-phases ride as `loop:*` labels inside In Progress.

@@ -12,7 +12,7 @@ description: >-
   when asked to review, audit, polish, plan, or refine UI, and the action must
   be picked from an argument like "audit", "critique", "polish", or "shape".
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   tags: "design, ux, ui, dispatcher, frontend, orchestration"
   author: Ship Shit Dev
 when_to_use: "/design, design audit, critique the UI, improve layout, polish the UI, quiet down the design, shape the UX, clarify copy, check design consistency"
@@ -22,6 +22,14 @@ disable-model-invocation: true
 # Design Dispatch
 
 Router behind `/design`. One job: turn a subcommand into the right design action and delegate. Contains no design or UX logic of its own — technical quality checks live in `audit`, UX evaluation in `critique`, copy improvement in `clarify`, spatial composition in `layout`, final finishing in `polish`, visual de-intensification in `quieter`, upfront UX planning in `shape`, and cross-app consistency auditing in `design-consistency-auditor`.
+
+## Composition Boundary
+
+Run only the selected mode. Pass the user's target, authorized actions, and
+report-only restrictions to the engine. Existing explicit approval satisfies
+that engine's gate for the same scope; obtain approval for missing or expanded
+authority. Delegation never grants new host, provider, cost, publication, or
+production permissions. An empty or advisory mode starts no mutating workflow.
 
 ## Contract
 
@@ -45,8 +53,7 @@ Outputs:
   micro-detail issues.
 - For `quieter`: a visually de-intensified implementation — calmer palette,
   weight, and motion.
-- For `shape`: a design brief covering UX direction, constraints, and strategy
-  for a feature before any code is written.
+- For `shape`: a handoff to `/shape` with the requested feature context.
 - For `consistency`: a cross-app consistency audit covering color palettes, UI
   patterns, component styling, and accessibility compliance.
 
@@ -64,7 +71,7 @@ External Side Effects:
 Confirmation Required:
 
 - This skill is explicit-invoke only (`disable-model-invocation`). Delegated
-  skills that mutate code re-confirm before writing. Never chain multiple
+  skills honor existing scoped authorization before writing. Never chain multiple
   mutating subcommands automatically.
 
 Delegates To:
@@ -75,7 +82,7 @@ Delegates To:
 - `layout` for `layout` (layout, spacing, and visual rhythm fixes).
 - `polish` for `polish` (final pre-ship quality pass).
 - `quieter` for `quieter` (visual de-intensification).
-- `shape` for `shape` (UX/UI planning and design brief generation).
+- Recommend `shape` for `shape` (UX/UI planning and design brief generation).
 - `design-consistency-auditor` for `consistency` (cross-app design system audit).
 
 ## Step 1 — Parse the Subcommand
@@ -91,7 +98,7 @@ Resolve the raw argument into a `mode`.
 | `layout`, `spacing` | `layout` | `layout` |
 | `polish`, `finish` | `polish` | `polish` |
 | `quieter`, `calm`, `tone-down` | `quieter` | `quieter` |
-| `shape`, `plan` | `shape` | `shape` |
+| `shape`, `plan` | `shape` | recommend `/shape` |
 | `consistency`, `consistent` | `consistency` | `design-consistency-auditor` |
 
 If the argument matches none of these, report the unrecognized input and print
@@ -108,7 +115,8 @@ the Usage block — do not guess.
 - **layout / spacing →** apply the `layout` skill.
 - **polish / finish →** apply the `polish` skill.
 - **quieter / calm / tone-down →** apply the `quieter` skill.
-- **shape / plan →** apply the `shape` skill.
+- **shape / plan →** recommend `/shape` with the supplied context. This explicit
+  advisory workflow runs when the user selects that entry point.
 - **consistency / consistent →** apply the `design-consistency-auditor` skill.
 
 Each delegated skill owns its own preconditions and confirmation gate. This
@@ -124,7 +132,7 @@ router does not relax them.
 /design layout           # fix layout, spacing, and visual rhythm
 /design polish           # final pre-ship pass — alignment, consistency, micro-detail
 /design quieter          # tone down visually aggressive or overstimulating designs
-/design shape            # plan UX/UI for a feature and produce a design brief
+/design shape            # hand off to the explicit /shape discovery workflow
 /design consistency      # audit design system consistency across color, components, and accessibility
 ```
 

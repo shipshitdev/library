@@ -5,7 +5,7 @@ description: >-
 license: MIT
 compatibility: Requires the `codex` CLI (logged in) plus `python3` and `base64`; `sips` is optional for post-processing on macOS.
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
   tags: "codex, image-generation, gpt-image, cli, assets, app-icon"
 when_to_use: "generate an image, make an icon, create an app icon, render an illustration or texture, agent needs an image but has no image tool, codex image generation"
 ---
@@ -19,6 +19,34 @@ the Codex desktop app has the plumbing that polls the async job and saves it.
 The finished image is still recoverable, because its full base64 PNG is recorded
 in the session rollout JSONL. Run the prompt, read the session id Codex prints,
 open the matching rollout, and decode the largest `result` string to a PNG.
+
+## Contract
+
+Inputs:
+
+- An image-generation request, prompt, and selected local output path
+
+Outputs:
+
+- Generated image file and extraction evidence
+
+Creates/Modifies:
+
+- Prompt, diagnostic log, and image files at the selected local destination
+
+External Side Effects:
+
+- Calls the authenticated Codex CLI image service and reads the resulting session rollout
+
+Confirmation Required:
+
+- Before using an external provider or writing outside the requested output scope; preserve existing images unless replacement was authorized
+- Loading the skill grants no additional authority. Existing explicit approval
+  applies only to the same target and actions; preserve report-only restrictions.
+
+Delegates To:
+
+- None
 
 ## When this is the right tool
 

@@ -1,10 +1,9 @@
 ---
 name: show-me-your-work
 description: Keep a reviewable decision trail for long-running or unattended work. A TSV log with one row per decision (what, why, evidence, result). Local by default. Commit it when a reviewer needs the trail to trust the result. Use for show-me-your-work, autonomous or multi-phase runs, or work a human reviews after stepping away.
-disable-model-invocation: true
 license: MIT
 metadata:
-  version: "1.0.1"
+  version: "1.1.0"
   tags: "audit, decisions, trail, verification"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/show-me-your-work/SKILL.md
@@ -20,6 +19,14 @@ when_to_use: "show me your work, decision trail, audit log, unattended run recor
 
 For work a human reviews after the fact, a decision trail reconstructs
 what was decided, why, and on what evidence.
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 
@@ -63,7 +70,7 @@ Log decision points and checkpoints, not every action. Append-only. A
 wrong call gets a new row.
 
 Write each entry the way you'd tell a teammate. Apply
-`skills/deslop/references/prose-slop.md` to log text.
+`references/prose-slop.md` from the selected `deslop` skill directory to log text.
 
 ## Audit the log
 

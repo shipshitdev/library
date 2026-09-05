@@ -11,7 +11,7 @@ description: >-
   prioritized backlog instead of a merge verdict.
 compatibility: Requires gh CLI and git for PR diff fetching.
 metadata:
-  version: "1.0.3"
+  version: "1.0.4"
   tags: "code-review, security, structural, devex, orchestration, pr-gate"
   author: Ship Shit Dev
 allowed-tools: Bash(git *) Bash(gh *)
@@ -128,7 +128,11 @@ prompts in the Workflow script below.
 
 ## Step 2 — Run the Workflow
 
-Invoke the Workflow tool with the script at `${CLAUDE_SKILL_DIR}/scripts/full-code-review.js`.
+Resolve `scripts/full-code-review.js` from this skill's installed directory.
+Run it only when the active harness supports its `agent`, `parallel`, and `log`
+workflow API; otherwise perform the same dimension, refutation, and synthesis
+steps with available delegation tools. Model selection stays with the harness;
+the script's role labels do not override the configured provider or model.
 Pass `DIFF` and `CHANGED_FILES` as context strings embedded in each reviewer prompt.
 For a **retro**, also pass `COMMIT_LOG` — its presence adds the cross-commit reviewer
 and switches synthesis to backlog mode. Everything else is unchanged.

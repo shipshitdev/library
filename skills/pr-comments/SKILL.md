@@ -3,16 +3,23 @@ name: pr-comments
 description: "Reads a pull request's review threads and returns a digest — grouped by thread, severity-tagged, priority-ordered, with the open questions called out. Strictly read-only: no code edits, no replies, no thread resolution. Reach for it to triage feedback before deciding what to fix; implementing those fixes is `gh-address-comments`."
 compatibility: Requires git and GitHub CLI gh access to the target repository.
 metadata:
-  version: "1.0.1"
+  version: "1.1.0"
   tags: "github, pull-requests, code-review, comments, triage, digest"
 when_to_use: "what are the comments on my PR, summarize the review feedback, what's blocking this PR, what do I still need to address, triage the review comments, /pr comments"
 allowed-tools: Bash(gh *) Bash(git *)
-disable-model-invocation: true
 ---
 
 # PR Comments
 
 Turns a PR's scattered review threads into one ordered action list: fetches inline review comments, review summaries, and conversation comments, then groups and prioritizes them. Stops before proposing code or drafting replies — acting on feedback is `gh-address-comments`'s job.
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 

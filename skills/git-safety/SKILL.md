@@ -6,10 +6,9 @@ description: >-
   ignore rules and pre-commit hooks, and drives the rotate-first response when a
   credential has already leaked.
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
   tags: "git, security, secrets, pre-commit"
 when_to_use: "about to commit, check what is staged, staged secret, pre-commit hook, pre-push check, force push, push --force, reset --hard, clean -fdx, rewrite git history, filter-repo, BFG, scrub a leaked credential, rotate a leaked key, git safety check"
-disable-model-invocation: true
 ---
 
 # Git Safety
@@ -22,6 +21,14 @@ Two guards, one repository you already work in every day:
 Both are recurring. They run at commit time and at push time, on every branch,
 forever. A one-time audit of a whole repository before it goes public is a
 different moment — see [Related](#related).
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 
@@ -59,6 +66,10 @@ Delegates To:
 
 - `open-source-checker` before publishing a private repository
 - `security-audit` for broader application-security review
+
+Default a delegated safety check to `scan` or `guard`. Hook installation,
+credential rotation, and history rewriting require their own authorized action;
+finding a secret does not authorize those mutations automatically.
 
 ## Rotate first
 

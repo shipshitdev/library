@@ -3,15 +3,22 @@ name: deployment-composer
 description: Compose deployment workflows from smaller skills and repo signals, including trunk-based releases, CI quality gates, provider deployment, post-deploy verification, rollback, and failed-check diagnosis. Use when the user asks for a deployment plan, release workflow, ship-to-staging/production environments, or a smart deploy process across GitHub, Vercel, EC2, Docker, or custom CI.
 compatibility: Requires local repository access. GitHub release flows require gh and git access.
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
   tags: "deployment, orchestration, release, ci-cd, github, staging, production"
 allowed-tools: Bash(git *) Bash(gh *) Bash(ls *) Bash(find *) Bash(rg *) Bash(cat *)
-disable-model-invocation: true
 ---
 
 # Deployment Composer
 
 Compose the smallest safe deployment workflow from the repository's actual branching model, CI setup, deploy provider, and release risk. Routes work to focused skills instead of treating every deploy as the same checklist.
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 

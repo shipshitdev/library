@@ -11,7 +11,7 @@ description: >-
   existing skill, and the action must be picked from an argument like "create",
   "capture", "comply", or "scout".
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   tags: "skills, dispatcher, authoring, compliance, orchestration"
   author: Ship Shit Dev
 when_to_use: "/skill, create a skill, capture this as a skill, test skill compliance, scout for an existing skill, make a workflow reusable, check if a rule is followed"
@@ -25,6 +25,14 @@ skill-authoring action and delegate. It does **not** contain skill-authoring
 logic of its own — skill creation lives in `skill-creator`, workflow extraction
 lives in `skill-capture`, compliance measurement lives in `skill-comply`, and
 discovery search lives in `skill-scout`.
+
+## Composition Boundary
+
+Run only the selected mode. Pass the user's target, authorized actions, and
+report-only restrictions to the engine. Existing explicit approval satisfies
+that engine's gate for the same scope; obtain approval for missing or expanded
+authority. Delegation never grants new host, provider, cost, publication, or
+production permissions. An empty or advisory mode starts no mutating workflow.
 
 ## Contract
 

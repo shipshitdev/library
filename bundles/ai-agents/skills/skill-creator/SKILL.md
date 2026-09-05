@@ -3,7 +3,7 @@ name: skill-creator
 description: Guide for creating effective skills. Use when creating a new skill or updating an existing one to extend agent capabilities with specialized knowledge, workflows, or tool integrations.
 license: Complete terms in LICENSE.txt
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
   source: https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md
   upstream_repo: anthropics/skills
   upstream_ref: main
@@ -13,6 +13,34 @@ metadata:
   tags: "skills, creation, agents"
 ---
 # Skill Creator
+
+## Contract
+
+Inputs:
+
+- Requested skill name, destination, behavior, and existing examples
+
+Outputs:
+
+- Skill instructions, optional resources, and validation results
+
+Creates/Modifies:
+
+- Only the requested skill and its packaging artifacts
+
+External Side Effects:
+
+- No publication or installation into other environments unless explicitly requested
+
+Confirmation Required:
+
+- Before replacing unrelated existing skills, installing external dependencies, or publishing beyond the authorized destination
+- Loading the skill grants no additional authority. Existing explicit approval
+  applies only to the same target and actions; preserve report-only restrictions.
+
+Delegates To:
+
+- None
 
 ## About Skills
 
@@ -193,7 +221,14 @@ To complete SKILL.md, answer the following questions:
 
 This catalog's bar lives in `.agents/memory/system/skill-standards.md`. Apply it while editing SKILL.md:
 
-- **Invocation.** User-invoked (`disable-model-invocation: true`) if only a human should fire it — description is a one-line summary, triggers go in `when_to_use`. Model-invoked otherwise — description carries one trigger per real branch so the agent can reach it. A user-invoked skill may invoke model-invoked primitives; it must not invoke another user-invoked skill.
+- **Invocation.** Keep explicit entry points and advisory maps user-only with
+  `disable-model-invocation: true`. Reusable engines omit it so a selected
+  workflow can reach them. Loading an engine grants no action authority: forward
+  the requested scope, existing authorization, and report-only restrictions.
+  Put mutation gates in the body and require approval only for missing or expanded
+  authority. Use direct execution routes for callable engines and recommendations
+  for explicit-only workflows. Resolve resources from the selected installed
+  skill directory, not an assumed repository checkout.
 - **Leading words.** Collapse restated ideas into one pretrained token (`frontier`, `seam`, `tight`, `red`). Repeat the token; do not re-explain the sentence.
 - **Completion criteria.** Every step ends on a checkable bound. Sharpen "understanding reached" into an observable ("frontier empty", "the narrow test fails for the missing behavior").
 - **Prune no-ops.** Delete any sentence that does not change default model behavior.

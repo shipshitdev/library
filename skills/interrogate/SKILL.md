@@ -1,10 +1,9 @@
 ---
 name: interrogate
 description: Adversarial multi-reviewer pass over a diff. Use for interrogate, adversarial review, multi-model review, challenge this, stress test this code, find blind spots, or tear this apart. Several independent reviewers challenge the change. The lead synthesizes a verdict and does not auto-apply fixes.
-disable-model-invocation: true
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   tags: "review, adversarial, multi-reviewer, quality"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/interrogate/SKILL.md
@@ -28,6 +27,14 @@ The deliverable is a synthesized verdict. Do not auto-apply changes.
 Companion to `review-dispatch` (front door), `code-review` (correctness
 gate), `grok-review` (one external engine), and `full-code-review`. Use
 this skill when the ask is a multi-reviewer adversarial pass.
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 

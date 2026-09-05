@@ -11,10 +11,9 @@ description: >-
   branch's diff or sweep the whole tree. Use when asked to clean up AI-generated
   code, unslop writing, remove slop, or make an app feel finished before
   shipping to customers.
-disable-model-invocation: true
 argument-hint: "[ui | prose | --changed | all | dry-run | --product]"
 metadata:
-  version: "2.0.1"
+  version: "2.1.0"
   tags: "code-quality, cleanup, ai-artifacts, product-polish, prose, maintenance"
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/unslop/SKILL.md
   upstream_repo: cursor/plugins
@@ -41,6 +40,14 @@ branch diff. For a read-only pass that only flags, use `structural-review` /
 Other skills that need the prose catalog point at
 [references/prose-slop.md](references/prose-slop.md). They do not fire this
 skill.
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 

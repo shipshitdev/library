@@ -1,6 +1,6 @@
 {
   "name": "git-safety",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Block secrets from entering a commit and gate destructive git operations.",
   "author": {
     "name": "Ship Shit Dev",

@@ -8,7 +8,7 @@ description: >-
 disable-model-invocation: true
 license: Complete terms in LICENSE.txt
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
   source: https://github.com/anthropics/skills/blob/main/skills/mcp-builder/SKILL.md
   upstream_repo: anthropics/skills
   upstream_ref: main
@@ -20,6 +20,34 @@ metadata:
 # MCP Server Development Guide
 
 # Process
+
+## Contract
+
+Inputs:
+
+- Requested integration, target repository, API documentation, and approved service scope
+
+Outputs:
+
+- MCP server implementation, tool contracts, and scoped verification evidence
+
+Creates/Modifies:
+
+- Source, tests, and evaluation fixtures required for the requested server
+
+External Side Effects:
+
+- Documentation reads; provider calls and paid evaluations only when authorized
+
+Confirmation Required:
+
+- Before credentialed service writes, paid evaluation runs, publishing, or configuring an agent outside the requested scope
+- Loading the skill grants no additional authority. Existing explicit approval
+  applies only to the same target and actions; preserve report-only restrictions.
+
+Delegates To:
+
+- None
 
 ## High-Level Workflow
 

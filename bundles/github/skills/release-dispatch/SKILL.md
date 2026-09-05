@@ -10,7 +10,7 @@ description: >-
   "cut", or "notes". Branch/worktree pruning is not a release step — that is
   git-cleanup, behind /cleanup.
 metadata:
-  version: "2.0.1"
+  version: "2.0.2"
   tags: "release, dispatcher, ci-cd, semver, github, orchestration"
   author: Ship Shit Dev
 allowed-tools: Bash(git *) Bash(gh *)
@@ -27,6 +27,14 @@ CI gating + cut/PR live in `release-pr-gates`, semver + patch notes live in
 command), not a release mode. Trunk-based
 throughout: releases are tags cut from the trunk; staging and production are
 deployment environments driven by CI/CD and tags, not branch promotions.
+
+## Composition Boundary
+
+Run only the selected mode. Pass the user's target, authorized actions, and
+report-only restrictions to the engine. Existing explicit approval satisfies
+that engine's gate for the same scope; obtain approval for missing or expanded
+authority. Delegation never grants new host, provider, cost, publication, or
+production permissions. An empty or advisory mode starts no mutating workflow.
 
 ## Contract
 

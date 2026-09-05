@@ -1,15 +1,57 @@
 ---
 name: executing-plans
-disable-model-invocation: true
 description: Orchestrate autonomous AI development with task-based workflow and QA gates. Use when implementing a development plan, picking tasks from a queue, or running multi-platform parallel execution with QA gates.
 metadata:
-  version: "2.2.0"
+  version: "2.3.0"
   tags: "execution, planning, agents"
 ---
 
 # Executing Plans
 
 Autonomous task execution with QA gates across multiple AI platforms.
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
+
+When delegated a specific plan or issue, work that exact scope. Do not claim an
+unrelated queue item. Queue intake runs only when explicitly requested and the
+repository's dispatch gate authorizes the selected issue.
+
+## Contract
+
+Inputs:
+
+- An authorized plan, issue, or explicitly requested queue-intake task
+- Repository dispatch gates and the caller's action restrictions
+
+Outputs:
+
+- The selected task's implementation and verification evidence
+- A PR only when publication is within the authorized workflow
+
+Creates/Modifies:
+
+- Files required by the selected task and its verification
+
+External Side Effects:
+
+- Tracker updates and publication only within the authorized task
+
+Confirmation Required:
+
+- Before taking an unrequested queue item, changing providers, or expanding
+  publication or production scope
+- Preserve read-only mode; loading this engine cannot start implementation
+
+Delegates To:
+
+- `tdd` for the selected behavior change
+- `qa-reviewer` for verification
 
 ## Overview
 

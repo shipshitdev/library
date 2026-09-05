@@ -75,15 +75,25 @@ class SkillValidatorFixtureTests(unittest.TestCase):
     def test_missing_mutation_guard_is_reported(self) -> None:
         self.assert_finding(
             "invalid-side-effect",
-            "side-effecting skill must set disable-model-invocation",
+            "side-effecting skill must declare an explicit Confirmation Required gate",
             0,
         )
+
+    def test_callable_writer_uses_body_gate_without_hidden_invocation(self) -> None:
+        result = self.run_fixture("valid-composable-writer")
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertNotIn("side-effecting skill", result.stdout)
 
     def test_platform_marker_is_rejected(self) -> None:
         self.assert_finding("invalid-platform-marker", "Inert platform marker", 1)
 
     def test_dangling_route_is_reported_outside_named_sections(self) -> None:
-        self.assert_finding("invalid-route", "Missing local skill reference", 0)
+        self.assert_finding("invalid-route", "Missing local skill reference", 1)
+
+    def test_library_and_example_names_are_not_skill_routes(self) -> None:
+        result = self.run_fixture("valid-library-reference")
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertNotIn("Missing local skill reference", result.stdout)
 
     def test_concrete_model_is_rejected(self) -> None:
         self.assert_finding("invalid-model", "Concrete model name", 1)

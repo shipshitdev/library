@@ -1,6 +1,6 @@
 {
   "name": "ask-dev-loop",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Router over the Dev Loop: which skill to type for idea, bug, review, or setup.",
   "author": {
     "name": "Ship Shit Dev",

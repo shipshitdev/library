@@ -2,16 +2,23 @@
 name: gh-inbox
 description: "Collect and triage a GitHub work inbox from assigned issues, review requests, mentions, authored PRs with failing checks, and optional project filters. Use when checking what needs attention across GitHub or prioritizing GitHub tasks."
 compatibility: Requires GitHub CLI gh access. The bundled inbox report script runs with Node.js or Bun.
-disable-model-invocation: true
 allowed-tools: Bash(gh *) Bash(node *) Bash(bun *)
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   tags: "github, inbox, triage, issues, pull-requests"
 ---
 
 # GH Inbox
 
 Turn scattered GitHub work into a small priority queue.
+
+## Authorized Scope
+
+Apply this engine only within the user's requested task and existing explicit
+authorization. Loading or delegating to it grants no additional authority.
+Preserve report-only restrictions and the caller's target, host, provider, and
+cost limits. Existing approval satisfies a gate only for the same actions and
+scope; obtain approval before expanding them. Forward these limits to delegates.
 
 ## Contract
 

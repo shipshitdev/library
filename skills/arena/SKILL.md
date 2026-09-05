@@ -3,14 +3,16 @@ name: arena
 description: Spawn N parallel candidates at the same task, pick a base, and graft the strongest parts of the losers into it. Use for arena this, throw it in the arena, or when one attempt at a non-trivial artifact would lock in the wrong shape.
 license: MIT
 metadata:
-  version: "1.1.0"
+  portable_source: "https://github.com/ericlitman/open-pstack"
+  portable_commit: "56bfd14418fa733e34d98f714f357d28788470e3"
+  version: "1.2.0"
   tags: "fan-out, bakeoff, design, synthesis"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/arena/SKILL.md
   upstream_repo: cursor/plugins
   upstream_ref: main
   upstream_commit: bdf7aa355337
-  last_synced: "2026-08-26"
+  last_synced: "2026-09-05"
   license: MIT
 when_to_use: "arena this, throw it in the arena, compare N attempts, bakeoff"
 ---
@@ -106,3 +108,10 @@ under-specified. Reframe and re-run.
 
 The synthesized artifact holds up under the same scrutiny as any other
 output. A miss here is a re-frame or a missed graft, not a paper-over.
+
+## Arena procedure
+
+Read [arena procedure](references/arena-procedure.md) when running this workflow.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.

@@ -3,14 +3,16 @@ name: interrogate
 description: Adversarial multi-reviewer pass over a diff. Use for interrogate, adversarial review, multi-model review, challenge this, stress test this code, find blind spots, or tear this apart. Several independent reviewers challenge the change. The lead synthesizes a verdict and does not auto-apply fixes.
 license: MIT
 metadata:
-  version: "1.1.0"
+  portable_source: "https://github.com/ericlitman/open-pstack"
+  portable_commit: "56bfd14418fa733e34d98f714f357d28788470e3"
+  version: "1.2.0"
   tags: "review, adversarial, multi-reviewer, quality"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/interrogate/SKILL.md
   upstream_repo: cursor/plugins
   upstream_ref: main
   upstream_commit: bdf7aa355337
-  last_synced: "2026-08-26"
+  last_synced: "2026-09-05"
   license: MIT
 when_to_use: "interrogate, adversarial review, tear this apart, find blind spots, stress test this diff"
 ---
@@ -103,3 +105,10 @@ rationale.
 
 Where reviewers agreed, where they diverged, and what that pattern
 means.
+
+## Interrogate procedure
+
+Read [interrogate procedure](references/interrogate-procedure.md) when running this workflow.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.

@@ -8,7 +8,9 @@ description: >-
   unrelated pending checks. Can run autonomously in a loop — fix, push, recheck —
   until all required checks are green when the user asks to loop on CI.
 metadata:
-  version: "2.0.0"
+  portable_source: "https://github.com/ericlitman/open-pstack"
+  portable_commit: "56bfd14418fa733e34d98f714f357d28788470e3"
+  version: "2.1.0"
   tags: "github, ci, actions"
 ---
 
@@ -131,3 +133,10 @@ no force-push to shared branches.
 - Keep the failure summary concise and actionable.
 - Queue work should end a fixed PR with "CI pending, moved on" instead of waiting
   for unrelated pending matrices.
+
+## Fix Ci procedure
+
+Read [fix-ci procedure](references/fix-ci-procedure.md) when running this workflow.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.

@@ -4,14 +4,16 @@ description: Playbook orchestrator for verified, unslopped engineering work. Mat
 disable-model-invocation: true
 license: MIT
 metadata:
-  version: "1.1.1"
+  portable_source: "https://github.com/ericlitman/open-pstack"
+  portable_commit: "56bfd14418fa733e34d98f714f357d28788470e3"
+  version: "1.2.0"
   tags: "orchestrator, playbooks, verification, architecture, review"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/poteto-mode/SKILL.md
   upstream_repo: cursor/plugins
   upstream_ref: main
   upstream_commit: bdf7aa355337
-  last_synced: "2026-08-26"
+  last_synced: "2026-09-05"
   license: MIT
 when_to_use: "pstack, poteto-mode, poteto, work in this style, playbook match, verified run"
 ---
@@ -65,17 +67,18 @@ Delegates To:
 
 ## Installation and Companion Resolution
 
-Use one selected pstack implementation per run. This catalog's adaptation and
-an installed upstream plugin have separate routing and action contracts; do not
-mix their orchestrators or silently switch to a similarly named companion.
-Resolve companions through the active skill catalog and prefer this distribution's
-companions when using this adaptation. Report a missing dependency or an ambiguous
-implementation before relying on it; never assume the upstream plugin is installed.
+This is the canonical Shipshit integration of Open Pstack and original Pstack.
+Resolve companions through this distribution's active catalog. Installed resources
+require neither upstream plugin. Report missing or ambiguous companions before
+relying on them. Resolve resources relative to each selected installed skill.
 
-Resolve referenced files relative to each selected skill's installed directory.
+Read [provider dispatch](references/provider-dispatch.md) before launching a
+configured role. Read [optional adapters](adapters/README.md) when configuring a
+harness; preserve its canonical role sheet and existing generated adapters.
+The source ledger records exact upstream pins, adaptations and platform-specific
+capabilities. Optional adapters remain dormant until explicitly configured.
+
 For prose, load `references/prose-slop.md` from the selected `deslop` skill.
-The upstream source and sync marker record attribution to the adapted snapshot,
-not an automatic dependency or a claim of parity with the installed plugin.
 
 ## Start
 
@@ -173,3 +176,31 @@ Match the task, open the file, copy its steps.
 - **Multi-phase plan.** Checklist, no implementation. [playbooks/multi-phase-plan.md](playbooks/multi-phase-plan.md)
 - **Worktree cleanup.** Safety-gated prune. [playbooks/worktree-cleanup.md](playbooks/worktree-cleanup.md)
 - **Opening a PR.** End of every other playbook. [playbooks/opening-a-pr.md](playbooks/opening-a-pr.md)
+
+## Automate Me procedure
+
+Read [automate-me procedure](references/automate-me-procedure.md) when the user asks to automate recurring personal work.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.
+
+## Babysit procedure
+
+Read [babysit procedure](references/babysit-procedure.md) when selecting a PR monitoring workflow; the canonical Babysit playbook owns monitoring modes.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.
+
+## Bro procedure
+
+Read [bro procedure](references/bro-procedure.md) when resuming interrupted work from another session.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.
+
+## Poteto Mode procedure
+
+Read [poteto-mode procedure](references/poteto-mode-procedure.md) when selecting and running an engineering playbook.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.

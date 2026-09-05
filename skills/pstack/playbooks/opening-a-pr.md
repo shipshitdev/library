@@ -1,40 +1,37 @@
 ### Opening a PR
 
+**Execution boundary:** Carry the caller's authorized target, action scope,
+report-only mode, host and provider limits into every step. Scheduling, model
+selection, account choice and worktree placement remain harness-owned. Publication,
+external messages, destructive actions and configuration changes require authority
+covering that action. The procedure supplies no new permission.
+
 Invoked at the end of every other playbook.
 
-**Worktree.** Prefer a git worktree off trunk. Multiple writers on the
-same branch each get their own worktree. Dirty branch with unrelated
-work: patch out, fresh worktree, apply. Use the `worktree` skill to
-create one.
+**Worktree.** Work from a git worktree off main; subagents inherit it. Multiple `Agent` calls on the same branch each get their own worktree. To reuse one branch across worktrees, resolve and validate `<head-url>` through Shipping step 1, capture it as `head_url`, then run `git fetch -- "$head_url" "refs/heads/$branch" && git reset --hard FETCH_HEAD` between them. Dirty branch with unrelated work: patch out, fresh worktree, apply. Snarled worktree: reset from main, redo minimally.
 
-**Commits.** Commit liberally. Rebase into small, ordered commits before
-opening PRs. Each commit is landable and tells the story.
+**Commits.** Commit liberally; rebase into small, ordered commits before opening PRs. Each commit is a future PR: landable, ordered to tell the story. Amend when the fix belongs in a just-made commit; new commit when separable.
 
-**Cleanup.** Apply `references/prose-slop.md` from the selected `deslop` skill directory to titles,
-descriptions, and commit bodies. Name `deslop` for a code strip and
-`no-comments` before review. Write PR title, description, and commit
-body with `technical-writing`. Apply every technical-writing layer
-except Diátaxis.
+**PRs.** Run `/deslop` over the diff before commit. Run `/no-comments` before review. Write every PR title, PR description, and commit body with `/technical-writing`, then apply `/unslop`. Apply every technical-writing layer except Diátaxis. Use one word for each action, keep articles, and avoid `-ing` when a plain verb works.
 
-**Titles.** Conventional Commits: `type(scope): subject`. Types: `feat`,
-`fix`, `docs`, `refactor`, `test`, `chore`, `perf`. Short imperative
-subject. No trailing period.
+**Titles.** Use Conventional Commits in the form `type(scope): subject`. Use `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, or `perf` as the type. Use the changed area, such as `pstack` or `pstack`, as the scope. Keep the subject short and imperative. Apply the same `/technical-writing` and `/unslop` pass as the body. Name a real symbol when one carries the change. For example, `fix(pstack): retarget opening-a-pr babysit trigger`. Do not add a trailing period.
 
-**Descriptions.** These sections in order. Drop a section when empty.
+**Descriptions.** Use these sections in order. Drop a section when it is empty.
 
-- `## Why`. Intent and why this approach fits.
-- `## Scope`. Facts from the diff. Real symbols and paths.
-- `## Tradeoffs`. Real choices only.
-- `## Blast Radius`. Who and what the change touches.
-- `## Verification`. How you ran each check and its outcome.
+- `## Why`. State the intent and why this approach fits.
+- `## Scope`. State facts from the diff. Name real symbols and paths. Name both sides of a rename or retarget. State what is in and out when the boundary matters.
+- `## Tradeoffs`. State real choices only. Skip this section when there are none.
+- `## Blast Radius`. State who and what the change touches. Explain why the change is safe or risky. If main is red without the fix, name the continuing cost.
+- `## Verification`. State how you ran each check and its rigor. Name the real path, such as the `run` skill, the `verify` skill, or the targeted tests. State the outcome of each check, not only the command name.
 
-Prefer five narrow PRs to one large PR. Stack follow-ups with `gh`.
-Branch from trunk only for independent work.
+After these sections, attach videos or screenshots when they prove a claim. Do not use `## Summary` or `## Test plan` boilerplate. A commit body does not restate its subject.
 
-Open every PR ready. Name `finishing-a-development-branch` when the
-human needs merge / PR / keep / discard options. Opening a PR does not
-start a babysit. Post the URL and keep building.
+**Forge.** Resolve the forge before the first PR operation and keep that choice for create, edit, view, watch, and merge. GitHub CLI (`gh`) is the default. If `command -v origin` succeeds and Origin can resolve the repository, prefer `origin pr ...`; if Origin is absent or cannot resolve the repository, stay on `gh` and record the fallback. Record the intended PR base repository as canonical `<base-repo>` and validate it through the active forge. Do not infer it from the checkout's default remote. Capture it as a shell variable and pass `--repo "$base_repo"` to every `gh pr` command. When the head repository is a fork, validate its identity and record its owner and repository name as `<fork-owner>` and `<head-name>`. Do not require Graphite (`gt`).
 
-A subagent that opens a PR runs `interrogate`, applies the prose
-catalog, and names `no-comments`. It returns the URL and does not
-babysit.
+**Size and stacks.** Prefer five narrow PRs to one large PR. Rebase each child branch onto its parent's exact tip and freeze the bottom-to-top order. When the head and base repositories are the same, make a base-branch chain. The root PR targets trunk and each child PR targets the parent branch. Create a same-repository child with `origin pr create --status open --base "$parent_branch"` or `gh pr create --base "$parent_branch" --repo "$base_repo"` according to the resolved forge. When the head repository is a fork, every PR targets trunk in the base repository while stacked local branches retain parent ancestry. Create every fork PR with the resolved Origin command. With GitHub, capture the approved PR title and body as `<title>` and `<body>`, then run `gh api --method POST "repos/$base_repo/pulls" -f "title=$title" -f "body=$body" -f "head=$fork_owner:$branch" -f "head_repo=$head_name" -f "base=$trunk" --jq .html_url`; add `-F draft=true` only when the readiness rule requires a draft. A fork-only parent branch cannot be a PR base. Before rebasing, force-pushing, or retargeting an existing child, apply Shipping step 4's disarm-and-confirm rule to that child and every descendant. Retarget a same-repository child with `origin pr edit "$pr" --base "$parent_branch"` or `gh pr edit "$pr" --base "$parent_branch" --repo "$base_repo"`. Retarget a fork child with the resolved Origin command or `gh pr edit "$pr" --base "$trunk" --repo "$base_repo"`. Branch from trunk only for independent work. Rebase on trunk before substantial stack work.
+
+**Readiness.** Open each PR ready by default. With Origin, pass `--status open`. With the GitHub CLI create command, omit `--draft` and pass `--repo "$base_repo"`. With the GitHub fork API above, omit the `draft` field. If repository instructions require a draft until named evidence exists, keep the early PR draft and mark it ready only after recording that evidence. On GitHub, pass `--draft` to the CLI create command or `-F draft=true` to the fork API, then later run `gh pr ready "$pr" --repo "$base_repo"`. Use Origin's documented draft and ready operations when Origin is active. If no draft rule applies and a tool still opens the PR as a draft, run `origin pr ready "$pr"` or `gh pr ready "$pr" --repo "$base_repo"` according to the resolved forge. Run `origin pr view "$pr"` or `gh pr view "$pr" --repo "$base_repo"` before you refer to PR status.
+
+**Babysit.** Opening a PR does not start a babysit. Post the URL and keep building. Finish the phase or stack first. Run a separate babysit pass only when the user asks for one after the whole stack exists, per `babysit.md`. A babysit for each new PR stalls the build and spends checks on commits that later waves restart. Push back when feedback drifts from intent.
+
+A subagent that opens a PR runs `interrogate`, `/deslop`, and `/no-comments`. It returns the URL and does not babysit. Return to the parent.

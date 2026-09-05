@@ -3,14 +3,16 @@ name: teach
 description: Explain a body of work so a person actually understands it. Runs how and why and weaves what they find into one plain explanation, built up diagram by diagram. Use for teach me this, help me really understand X, or explain this change or subsystem.
 license: MIT
 metadata:
-  version: "1.1.0"
+  portable_source: "https://github.com/ericlitman/open-pstack"
+  portable_commit: "56bfd14418fa733e34d98f714f357d28788470e3"
+  version: "1.2.0"
   tags: "teaching, explanation, onboarding"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/teach/SKILL.md
   upstream_repo: cursor/plugins
   upstream_ref: main
   upstream_commit: bdf7aa355337
-  last_synced: "2026-08-26"
+  last_synced: "2026-09-05"
   license: MIT
 when_to_use: "teach me this, help me really understand, explain this subsystem"
 ---
@@ -75,3 +77,10 @@ name and keep it.
 
 **Reply:** the explanation. Lead with the main point, then what it is,
 how it works, and why.
+
+## Teach procedure
+
+Read [teach procedure](references/teach-procedure.md) when running this workflow.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.

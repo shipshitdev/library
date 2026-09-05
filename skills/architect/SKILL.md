@@ -3,14 +3,16 @@ name: architect
 description: Sketch types, signatures, and module structure before code, then stay in the loop while implementation fills in. Use for architect this, design this, or non-trivial work where jumping to code would lock in the wrong shape.
 license: MIT
 metadata:
-  version: "1.1.0"
+  portable_source: "https://github.com/ericlitman/open-pstack"
+  portable_commit: "56bfd14418fa733e34d98f714f357d28788470e3"
+  version: "1.2.0"
   tags: "architecture, design, types, modules"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/architect/SKILL.md
   upstream_repo: cursor/plugins
   upstream_ref: main
   upstream_commit: bdf7aa355337
-  last_synced: "2026-08-26"
+  last_synced: "2026-09-05"
   license: MIT
 when_to_use: "architect this, design this first, sketch the types, module shape before code"
 ---
@@ -104,3 +106,10 @@ If implementation keeps producing the same shape of friction, throw the
 sketch out. Re-run `how` over what was built. Redesign as if the new
 constraints were day-one assumptions. Subtract before adding. Return to
 Phase B.
+
+## Architect procedure
+
+Read [architect procedure](references/architect-procedure.md) when running this workflow.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.

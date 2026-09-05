@@ -3,14 +3,16 @@ name: blast-radius
 description: Find what a small-looking change could break somewhere else, and prove the one fact it is safe because of by running real code. Use for blast radius of X, what could this break, or reviewing a small diff you do not trust.
 license: MIT
 metadata:
-  version: "1.1.0"
+  portable_source: "https://github.com/ericlitman/open-pstack"
+  portable_commit: "56bfd14418fa733e34d98f714f357d28788470e3"
+  version: "1.2.0"
   tags: "impact, safety, review, verification"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/blast-radius/SKILL.md
   upstream_repo: cursor/plugins
   upstream_ref: main
   upstream_commit: bdf7aa355337
-  last_synced: "2026-08-26"
+  last_synced: "2026-09-05"
   license: MIT
 when_to_use: "blast radius, what could this break, is this small diff safe"
 ---
@@ -91,3 +93,10 @@ Any safety fact you cannot get to step 4, say so out loud.
 - **Cleared.** What you checked and why it is fine.
 - **Before you merge.** The cheapest test or repro that catches the
   real bug.
+
+## Blast Radius procedure
+
+Read [blast-radius procedure](references/blast-radius-procedure.md) when running this workflow.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.

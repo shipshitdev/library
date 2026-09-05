@@ -3,14 +3,16 @@ name: show-me-your-work
 description: Keep a reviewable decision trail for long-running or unattended work. A TSV log with one row per decision (what, why, evidence, result). Local by default. Commit it when a reviewer needs the trail to trust the result. Use for show-me-your-work, autonomous or multi-phase runs, or work a human reviews after stepping away.
 license: MIT
 metadata:
-  version: "1.1.0"
+  portable_source: "https://github.com/ericlitman/open-pstack"
+  portable_commit: "56bfd14418fa733e34d98f714f357d28788470e3"
+  version: "1.2.0"
   tags: "audit, decisions, trail, verification"
   author: Ship Shit Dev
   source: https://github.com/cursor/plugins/blob/main/pstack/skills/show-me-your-work/SKILL.md
   upstream_repo: cursor/plugins
   upstream_ref: main
   upstream_commit: bdf7aa355337
-  last_synced: "2026-08-26"
+  last_synced: "2026-09-05"
   license: MIT
 when_to_use: "show me your work, decision trail, audit log, unattended run record"
 ---
@@ -87,3 +89,10 @@ flags weak evidence, skipped verification, and risky choices.
 Every reply for a run that produced a trail ends with an Attention
 section. Lead with the reviewer's capability tier, then list flags.
 "No flags" is valid. Never name a concrete model.
+
+## Show Me Your Work procedure
+
+Read [show-me-your-work procedure](references/show-me-your-work-procedure.md) when running this workflow.
+Apply the authorized scope and mode of this entry point to every step.
+Resolve other skills through this distribution’s active catalog; resolve
+resources relative to the installed skill directory.

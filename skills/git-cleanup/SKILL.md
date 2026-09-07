@@ -124,13 +124,17 @@ Protected names use exact string comparisons: `main`, `master`, `HEAD`, the
 selected trunk, and the caller's current branch. Names containing punctuation
 are never regular expressions. Preserve the main checkout and the caller's
 worktree. Preserve missing, locked, dirty, or symlink worktrees, including
-untracked and ignored files and dirty submodules.
+untracked files and dirty submodules. Ignored files (`node_modules`, build
+output, local env files) are reproducible and do not block removal; they are
+deleted together with the worktree.
 
-An active rebase, merge, cherry-pick, revert, sequencer, or bisect operation in any
-registered worktree blocks cleanup candidates until the operation finishes. This
-preserves the original branch even while rebase temporarily detaches its HEAD.
-Missing or inaccessible worktree registrations also require separate inspection;
-report them for explicit repair without broad automatic registration pruning.
+An active rebase, merge, cherry-pick, revert, sequencer, or bisect operation pins
+only the worktree it runs in and the branch it operates on: the checked-out branch
+plus the `head-name` or `BISECT_START` branch, together with that branch's remote
+ref. Other candidates stay eligible. This preserves the original branch even while
+rebase temporarily detaches its HEAD. A worktree whose Git directory cannot be read
+is pinned the same way; report it for explicit repair without broad automatic
+registration pruning.
 
 A local branch checked out in any worktree stays out of the branch deletion plan.
 After removing a worktree, replan to consider its branch separately. Worktree-only
@@ -166,7 +170,8 @@ Changed or unproven candidates are skipped with reasons.
 
 Compare-and-swap protects branch tips, while the exclusive-access precondition
 protects worktree registration and filesystem races. Do not claim filesystem
-removal is atomic or promise that an ignored file is expendable.
+removal is atomic. Ignored files are deleted with the worktree; a caller who
+keeps irreplaceable data in an ignored path must move it out first.
 
 ## Completion
 

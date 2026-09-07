@@ -411,7 +411,7 @@ class GitFixtureTests(unittest.TestCase):
         commands = [call.args for call in self.repo.run.call_args_list]
         self.assertFalse(any("fetch" in cmd or "prune" in cmd for cmd in commands))
 
-    def test_dirty_ignored_or_changed_worktree_is_preserved(self):
+    def test_dirty_untracked_or_changed_worktree_is_preserved(self):
         worktree = self.make_worktree()
         plan = self.repo.plan("worktrees")
         (worktree / "untracked").write_text("keep")
@@ -429,14 +429,38 @@ class GitFixtureTests(unittest.TestCase):
         self.assertEqual(self.repo.apply(plan, "worktrees")["actions"][0]["result"], "skipped")
         self.assertTrue(worktree.exists())
 
-    def test_ignored_files_preserve_worktree(self):
+    def test_ignored_files_do_not_block_worktree_removal(self):
         worktree = self.make_worktree()
+        (self.root / ".git/info/exclude").write_text("node_modules\n")
+        (worktree / "node_modules").mkdir()
+        (worktree / "node_modules/dep.js").write_text("reproducible build output")
         plan = self.repo.plan("worktrees")
-        (self.root / ".git/info/exclude").write_text("cache\n")
-        (worktree / "cache").write_text("valuable ignored data")
+        self.assertEqual(plan["actions"][0]["path"], str(worktree.resolve()))
         result = self.repo.apply(plan, "worktrees", exclusive_worktrees=True)
-        self.assertEqual(result["actions"][0]["result"], "skipped")
-        self.assertTrue((worktree / "cache").exists())
+        self.assertEqual(result["actions"][0]["result"], "removed")
+        self.assertFalse(worktree.exists())
+
+    def test_operation_in_one_worktree_pins_only_its_candidates(self):
+        busy = self.make_worktree()
+        idle = self.root / ".worktrees/idle"
+        self.git("worktree", "add", "-b", "idle", str(idle), "main")
+        self.git("branch", "loose")
+        operation = Path(self.command("git", "-C", str(busy), "rev-parse", "--absolute-git-dir")) / "rebase-apply"
+        operation.mkdir()
+        (operation / "head-name").write_text("refs/heads/feature\n")
+        plan = self.repo.plan("all")
+        key = lambda item: item["path"] if item["kind"] == "worktree" else item["ref"]
+        skipped = {key(item): item["reason"] for item in plan["skipped"]}
+        self.assertEqual(skipped[str(busy.resolve())], self.repo.OPERATION_REASON)
+        self.assertEqual(skipped["refs/heads/feature"], self.repo.OPERATION_REASON)
+        self.assertIn(str(idle.resolve()), [action.get("path") for action in plan["actions"]])
+        self.assertIn("refs/heads/loose", self.action_names(plan))
+        result = self.repo.apply(plan, "all", exclusive_worktrees=True)
+        results = {key(action): action["result"] for action in result["actions"]}
+        self.assertEqual(results[str(idle.resolve())], "removed")
+        self.assertEqual(results["refs/heads/loose"], "removed")
+        self.assertTrue(busy.exists())
+        self.assertEqual(self.git("rev-parse", "feature"), self.git("rev-parse", "main"))
 
     def test_detached_clean_worktree_ancestor_is_removable(self):
         worktree = self.root / ".worktrees/detached"

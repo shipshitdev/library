@@ -102,9 +102,9 @@ class Repository:
         branch = self.run("git", "-C", str(path), "symbolic-ref", "-q", "HEAD",
                           accepted=(0, 1)).stdout.strip()
         status = self.run("git", "-C", str(path), "status", "--porcelain=v1", "-z",
-                          "--untracked-files=all", "--ignored", "--ignore-submodules=none").stdout
+                          "--untracked-files=all", "--ignore-submodules=none").stdout
         if status or "locked" in record or "prunable" in record:
-            raise Refused("dirty, ignored files, locked, or stale worktree")
+            raise Refused("dirty, untracked files, locked, or stale worktree")
         return {"path": str(path.resolve()), "oid": head, "ref": branch}
 
     def remote_heads(self) -> dict[str, str]:
@@ -134,13 +134,46 @@ class Repository:
                 "trunk": trunk, "trunk_oid": remote_oid, "current": current,
                 "head": self.oid("HEAD")}
 
-    def assert_no_operations(self, worktrees: list[dict]) -> None:
-        markers = ("rebase-merge", "rebase-apply", "MERGE_HEAD", "CHERRY_PICK_HEAD",
-                   "REVERT_HEAD", "sequencer", "BISECT_LOG")
+    OPERATION_MARKERS = ("rebase-merge", "rebase-apply", "MERGE_HEAD", "CHERRY_PICK_HEAD",
+                         "REVERT_HEAD", "sequencer", "BISECT_LOG")
+    OPERATION_REASON = "active operation in this worktree or on this branch; preserve until it finishes"
+
+    def active_operations(self, worktrees: list[dict]) -> tuple[set[str], set[str]]:
+        """Worktree paths and branch refs pinned by an in-progress or unreadable operation."""
+        paths: set[str] = set()
+        refs: set[str] = set()
         for record in worktrees:
-            git_dir = Path(self.git("-C", record["worktree"], "rev-parse", "--absolute-git-dir"))
-            if any((git_dir / marker).exists() for marker in markers):
-                raise Refused("active worktree operation; preserve cleanup candidates until it finishes")
+            branch = record.get("branch")
+            try:
+                git_dir = Path(self.git("-C", record["worktree"], "rev-parse", "--absolute-git-dir"))
+            except FAILURES:
+                paths.add(record["worktree"])
+                refs.update({branch} if branch else set())
+                continue
+            if not any((git_dir / marker).exists() for marker in self.OPERATION_MARKERS):
+                continue
+            paths.add(record["worktree"])
+            if branch:
+                refs.add(branch)
+            # Rebase and bisect detach HEAD; their metadata names the original branch.
+            for name in ("rebase-merge/head-name", "rebase-apply/head-name", "BISECT_START"):
+                marker = git_dir / name
+                if not marker.is_file():
+                    continue
+                value = marker.read_text().strip()
+                if value.startswith("refs/heads/"):
+                    refs.add(value)
+                elif value and self.run("git", "check-ref-format", f"refs/heads/{value}",
+                                        accepted=(0, 1)).returncode == 0:
+                    refs.add(f"refs/heads/{value}")
+        return paths, refs
+
+    def assert_not_pinned(self, candidate: dict, operations: tuple[set[str], set[str]]) -> None:
+        paths, refs = operations
+        if candidate["kind"] == "worktree" and candidate["path"] in paths:
+            raise Refused(self.OPERATION_REASON)
+        if candidate["kind"] in ("local", "remote") and candidate["ref"] in refs:
+            raise Refused(self.OPERATION_REASON)
 
     def pull_requests(self, repository: str, branch: str) -> list[dict]:
         owner = repository.split("/")[0]
@@ -277,16 +310,11 @@ class Repository:
         if "remote" in SCOPES[scope]:
             for ref, oid in remote_heads.items():
                 candidates.append({"kind": "remote", "ref": ref, "oid": oid})
-        operation_error = None
-        try:
-            self.assert_no_operations(worktrees)
-        except FAILURES as error:
-            operation_error = str(error)
+        operations = self.active_operations(worktrees)
         actions, skipped, pr_cache = [], [], {}
         for candidate in candidates:
             try:
-                if operation_error:
-                    raise Refused(operation_error)
+                self.assert_not_pinned(candidate, operations)
                 actions.append(self.evaluate(candidate, context, scope, worktrees=worktrees,
                                              heads=remote_heads, pr_cache=pr_cache))
             except FAILURES as error:
@@ -297,7 +325,7 @@ class Repository:
         if self.context(context["trunk"]) != context:
             raise Refused("repository changed immediately before deletion")
         worktrees = self.worktrees()
-        self.assert_no_operations(worktrees)
+        self.assert_not_pinned(action, self.active_operations(worktrees))
         if action["kind"] == "remote":
             if self.remote_heads().get(action["ref"]) != action["oid"]:
                 raise Refused("remote ref changed immediately before deletion")
